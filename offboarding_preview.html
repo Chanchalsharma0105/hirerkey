@@ -3848,13 +3848,14 @@
         <table class="hirerkey-table">
           <thead>
             <tr>
-              <th style="width: 5%" class="center">S. No.</th>
-              <th style="width: 22%">Employee</th>
-              <th style="width: 21%">Position & Seat</th>
-              <th style="width: 13%">Department</th>
-              <th style="width: 14%">Departure Reason</th>
+              <th style="width: 4%" class="center">S. No.</th>
+              <th style="width: 19%">Employee</th>
+              <th style="width: 18%">Position & Seat</th>
+              <th style="width: 11%">Department</th>
+              <th style="width: 13%">Departure Reason</th>
+              <th style="width: 11%">Start Date</th>
               <th style="width: 12%">Last Working Day</th>
-              <th style="width: 9%">Stage</th>
+              <th style="width: 8%">Stage</th>
               <th style="width: 4%" class="center sticky-action">Action</th>
             </tr>
           </thead>
@@ -5080,6 +5081,7 @@ let cases = [
     tenure: '5 yrs 6 mos',
     leaveBalance: 12.5,
     reason: 'Resigned (voluntary)',
+    startDate: '14 Sep 2026',
     noticeGivenDate: '14 Sep 2026',
     lwd: '14 Oct 2026',
     dueText: 'In 29 days',
@@ -5123,6 +5125,7 @@ let cases = [
     tenure: '2 yrs 3 mos',
     leaveBalance: 8.0,
     reason: 'Resigned (voluntary)',
+    startDate: '2 Sep 2026',
     noticeGivenDate: '2 Sep 2026',
     lwd: '2 Oct 2026',
     dueText: 'In 17 days',
@@ -5163,6 +5166,7 @@ let cases = [
     tenure: '1 yr 4 mos',
     leaveBalance: 5.0,
     reason: 'Terminated',
+    startDate: '12 Sep 2026',
     noticeGivenDate: '12 Sep 2026',
     lwd: '12 Sep 2026',
     dueText: 'Left 3 days ago',
@@ -5200,6 +5204,7 @@ let cases = [
     tenure: '7 yrs 2 mos',
     leaveBalance: 15.0,
     reason: 'Retirement',
+    startDate: '15 Aug 2026',
     noticeGivenDate: '15 Aug 2026',
     lwd: '15 Sep 2026',
     dueText: 'Today',
@@ -5239,6 +5244,7 @@ let cases = [
     tenure: '4 yrs 1 mo',
     leaveBalance: 0,
     reason: 'Retirement',
+    startDate: '31 Jul 2026',
     noticeGivenDate: '31 Jul 2026',
     lwd: '31 Aug 2026',
     dueText: 'Left 15 days ago',
@@ -6936,6 +6942,11 @@ function renderTable() {
       const comp = a.stage - b.stage;
       return currentSort.order === 'asc' ? comp : -comp;
     }
+    if (currentSort.field === 'startDate') {
+      const dateA = new Date(a.startDate || a.noticeGivenDate || 0);
+      const dateB = new Date(b.startDate || b.noticeGivenDate || 0);
+      return currentSort.order === 'asc' ? dateA - dateB : dateB - dateA;
+    }
     // Default: lwd
     const daysA = getDaysRemainingPreview(a);
     const daysB = getDaysRemainingPreview(b);
@@ -6976,7 +6987,7 @@ function renderTable() {
   if (filtered.length === 0) {
     tbody.innerHTML = `
       <tr>
-        <td colspan="8" style="text-align: center; padding: 64px 20px;">
+        <td colspan="9" style="text-align: center; padding: 64px 20px;">
           <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
             <div style="width: 48px; height: 48px; border-radius: 50%; background: #F1F5F9; display: grid; place-items: center; color: #94A3B8; margin-bottom: 4px;">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
@@ -7020,6 +7031,10 @@ function renderTable() {
       </td>
       <td>${c.dept}</td>
       <td><span class="reason-chip">${c.reason}</span></td>
+      <td>
+        <div class="start-date-text" style="font-size:13px; font-weight:600; color:var(--text-main); font-family:var(--font-inter);">${c.startDate || c.noticeGivenDate || '—'}</div>
+        <div style="font-size:11px; color:var(--text-tertiary);">Notice start</div>
+      </td>
       <td>
         <div class="last-day-date">${c.lwd}</div>
         <span class="urgency-chip ${c.dueTone}">${c.dueText}</span>
@@ -7199,6 +7214,7 @@ function submitStartModal() {
     tenure: '2 yrs 0 mos',
     leaveBalance: 10.0,
     reason: reasonLabel,
+    startDate: '15 Sep 2026',
     noticeGivenDate: '15 Sep 2026',
     lwd: lwd,
     dueText: isImmediate ? 'Today' : 'In 30 days',

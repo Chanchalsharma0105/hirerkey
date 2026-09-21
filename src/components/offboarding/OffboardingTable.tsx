@@ -235,20 +235,21 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
         >
           <thead>
             <tr>
-              <th style={{ width: '5%', textAlign: 'center' }}>S. No.</th>
-              <th style={{ width: '22%' }}>Employee</th>
-              <th style={{ width: '21%' }}>Position & Seat</th>
-              <th style={{ width: '12%' }}>Department</th>
+              <th style={{ width: '4%', textAlign: 'center' }}>S. No.</th>
+              <th style={{ width: '19%' }}>Employee</th>
+              <th style={{ width: '18%' }}>Position & Seat</th>
+              <th style={{ width: '11%' }}>Department</th>
               <th style={{ width: '13%' }}>Departure Reason</th>
+              <th style={{ width: '11%' }}>Start Date</th>
               <th style={{ width: '12%' }}>Last Working Day</th>
-              <th style={{ width: '11%' }}>Stage</th>
+              <th style={{ width: '8%' }}>Stage</th>
               <th style={{ width: '4%', textAlign: 'center' }}>Action</th>
             </tr>
           </thead>
           <tbody>
             {visibleCases.length === 0 ? (
               <tr>
-                <td colSpan={8} style={{ textAlign: 'center', padding: '64px 20px' }}>
+                <td colSpan={9} style={{ textAlign: 'center', padding: '64px 20px' }}>
                   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
                     <Box
                       sx={{
@@ -453,6 +454,33 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                       >
                         {getReasonLabel(c.reason)}
                       </Chip>
+                    </td>
+
+                    {/* Start Date */}
+                    <td>
+                      <Box>
+                        <Typography
+                          level="body-sm"
+                          sx={{
+                            fontFamily: 'Inter, system-ui, sans-serif',
+                            fontWeight: 600,
+                            color: 'text.primary',
+                            fontVariantNumeric: 'tabular-nums',
+                          }}
+                        >
+                          {c.startDate || c.noticeGivenDate || c.joinDate || '—'}
+                        </Typography>
+                        <Typography
+                          level="body-xs"
+                          sx={{
+                            fontFamily: 'Inter, system-ui, sans-serif',
+                            color: 'text.tertiary',
+                            fontSize: '11px',
+                          }}
+                        >
+                          Notice start
+                        </Typography>
+                      </Box>
                     </td>
 
                     {/* Last Working Day */}

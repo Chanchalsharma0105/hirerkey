@@ -89,6 +89,7 @@ export interface OffboardingCase {
   seat: string; // e.g., 'FDM-01'
   department: string;
   reason: OffboardingReasonType;
+  startDate?: string;
   noticeGivenDate?: string;
   lastWorkingDay: string;
   dueText: string;
