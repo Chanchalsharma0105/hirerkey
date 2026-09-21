@@ -2869,30 +2869,8 @@
       flex-direction: column;
       gap: 24px;
     }
-    .settings-header-card {
-      background: #FFFFFF;
-      border: 1px solid #E5E7EF;
-      border-radius: 16px;
-      padding: 24px 28px;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-      position: relative;
-      overflow: hidden;
-    }
-    .settings-header-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #7C3AED 0%, #A78BFA 60%, #DDD6FE 100%);
-    }
-    .settings-header-flex {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
+    .settings-title-group {
+      margin-bottom: 4px;
     }
     .settings-title-group h2 {
       font-size: 20px;
@@ -2901,19 +2879,14 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      margin: 0;
     }
     .settings-title-group p {
       font-size: 13.5px;
       color: var(--text-secondary);
-      margin-top: 6px;
-      max-width: 780px;
+      margin: 6px 0 0 0;
+      max-width: 820px;
       line-height: 1.55;
-    }
-    .settings-action-btns {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
     }
 
     /* 4-Tile Settings KPI Grid */
@@ -4132,30 +4105,15 @@
         <!-- Main Workspace for Property Settings › Offboarding -->
         <div class="settings-container">
           
-          <!-- Top Header & Actions Card -->
-          <div class="settings-header-card">
-            <div class="settings-header-flex">
-              <div class="settings-title-group">
-                <h2>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  Offboarding Process Checklist &amp; Governance
-                </h2>
-                <p>
-                  Single unified offboarding checklist for <strong>Crowne Plaza Dubai</strong>. Configure the 3 default core steps, add custom organization steps, or edit step details to match your organization.
-                </p>
-              </div>
-
-              <div class="settings-action-btns">
-                <button class="btn-secondary" onclick="handleResetSettings()" title="Reset to standard 3 defaults">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-                  Reset Defaults
-                </button>
-                <button class="btn-primary" onclick="handleSaveSettings()" style="background:#7C3AED; color:#FFFFFF; border:none; padding:8px 18px; border-radius:8px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; box-shadow:0 2px 8px rgba(124,58,237,0.3);">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Save Changes
-                </button>
-              </div>
-            </div>
+          <!-- Top Section Heading & Description -->
+          <div class="settings-title-group">
+            <h2>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              Offboarding Process Checklist &amp; Governance
+            </h2>
+            <p>
+              Single unified offboarding checklist for <strong>Crowne Plaza Dubai</strong>. Configure the 3 default core steps, add custom organization steps, or edit step details to match your organization.
+            </p>
           </div>
 
           <!-- THE SINGLE UNIFIED MASTER CHECKLIST CARD -->
