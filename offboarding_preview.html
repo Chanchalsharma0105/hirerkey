@@ -4388,45 +4388,12 @@
         </div>
       </div>
 
-      <!-- Reason for Withdrawing -->
+      <!-- Reason for Withdrawing (Textbox) -->
       <div class="form-group" style="margin-bottom: 0;">
         <label class="form-label" style="font-weight: 600; font-size: 13px; color: #0F172A; margin-bottom: 6px; display: block;">
           Reason for Withdrawing <span style="color: #DC2626;">*</span>
         </label>
-        <select class="form-control" id="withdrawReasonSelect" style="height: 38px; font-size: 13px; border-radius: 8px;">
-          <option value="retraction">Resignation Retracted / Retention Offer Accepted</option>
-          <option value="counter_offer">Counter-offer &amp; Promotion Approved</option>
-          <option value="initiated_error">Initiated by Error / Mistaken Entry</option>
-          <option value="postponed">Departure Postponed Indefinitely</option>
-          <option value="mutual_agreement">Mutual Agreement to Continue Employment</option>
-          <option value="other">Other (Specify in notes)</option>
-        </select>
-      </div>
-
-      <!-- Additional Notes / Justification -->
-      <div class="form-group" style="margin-bottom: 0;">
-        <label class="form-label" style="font-weight: 600; font-size: 13px; color: #0F172A; margin-bottom: 6px; display: block;">
-          Notes &amp; Internal Justification
-        </label>
-        <textarea class="form-control" id="withdrawNotesInput" rows="3" style="height: auto; padding: 8px 12px; resize: vertical; font-size: 13px; border-radius: 8px;" placeholder="Document the rationale, manager discussion, or retraction agreement..."></textarea>
-      </div>
-
-      <!-- Policy & System Reinstatement Options -->
-      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px;">
-        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin: 0;">
-          <input type="checkbox" id="withdrawReinstateCheck" checked style="accent-color: #7C3AED; width: 17px; height: 17px; margin-top: 2px; cursor: pointer;" />
-          <div>
-            <div style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Reinstate Active Status &amp; Cancel Departure</div>
-            <div style="font-size: 11px; color: #64748B; margin-top: 1px;">Halt access revocations, seat transfers, and restore employee to active directory.</div>
-          </div>
-        </label>
-        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin: 0;">
-          <input type="checkbox" id="withdrawNotifyCheck" checked style="accent-color: #7C3AED; width: 17px; height: 17px; margin-top: 2px; cursor: pointer;" />
-          <div>
-            <div style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Notify Reporting Manager &amp; HR Team</div>
-            <div style="font-size: 11px; color: #64748B; margin-top: 1px;">Send withdrawal confirmation email to line manager and HR operations.</div>
-          </div>
-        </label>
+        <textarea class="form-control" id="withdrawReasonInput" rows="4" style="height: auto; padding: 10px 12px; resize: vertical; font-size: 13px; border-radius: 8px; width: 100%; border: 1px solid #CBD5E1; font-family: var(--font-inter, 'Inter', sans-serif); line-height: 1.5;" placeholder="Document the rationale, manager discussion, or retraction agreement..."></textarea>
       </div>
     </div>
 
@@ -6340,17 +6307,8 @@ function openWithdrawModal(id) {
   const lwdEl = document.getElementById('withdrawLwd');
   if (lwdEl) lwdEl.textContent = c.lwd;
 
-  const reasonEl = document.getElementById('withdrawReasonSelect');
-  if (reasonEl) reasonEl.selectedIndex = 0;
-
-  const notesEl = document.getElementById('withdrawNotesInput');
-  if (notesEl) notesEl.value = '';
-
-  const reinstateEl = document.getElementById('withdrawReinstateCheck');
-  if (reinstateEl) reinstateEl.checked = true;
-
-  const notifyEl = document.getElementById('withdrawNotifyCheck');
-  if (notifyEl) notifyEl.checked = true;
+  const reasonInput = document.getElementById('withdrawReasonInput');
+  if (reasonInput) reasonInput.value = '';
 
   const modal = document.getElementById('modalWithdrawOffboarding');
   if (modal) {
@@ -6372,8 +6330,8 @@ function submitWithdrawOffboarding() {
   const target = cases.find(c => c.id === id);
   if (!target) return;
 
-  const reasonSelect = document.getElementById('withdrawReasonSelect');
-  const reasonText = reasonSelect.options[reasonSelect.selectedIndex].text;
+  const reasonInput = document.getElementById('withdrawReasonInput');
+  const reasonText = (reasonInput && reasonInput.value.trim()) ? reasonInput.value.trim() : 'Resignation retracted';
 
   // Remove from active departures cases
   cases = cases.filter(c => c.id !== id);

@@ -17,7 +17,6 @@ import {
   Drawer,
   Divider,
   Chip,
-  Checkbox,
   Textarea,
   Avatar,
 } from '@mui/joy';
@@ -72,10 +71,7 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
   const [isStartModalOpen, setIsStartModalOpen] = useState<boolean>(false);
   const [selectedCaseForDrawer, setSelectedCaseForDrawer] = useState<OffboardingCase | null>(null);
   const [withdrawModalCase, setWithdrawModalCase] = useState<OffboardingCase | null>(null);
-  const [withdrawReason, setWithdrawReason] = useState<string>('retraction');
-  const [withdrawNotes, setWithdrawNotes] = useState<string>('');
-  const [withdrawReinstate, setWithdrawReinstate] = useState<boolean>(true);
-  const [withdrawNotify, setWithdrawNotify] = useState<boolean>(true);
+  const [withdrawReason, setWithdrawReason] = useState<string>('');
 
   // Available presets for Start Offboarding modal
   const AVAILABLE_START_EMPLOYEES = [
@@ -321,10 +317,7 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
     const target = cases.find((c) => c.id === caseId);
     if (target) {
       setWithdrawModalCase(target);
-      setWithdrawReason('retraction');
-      setWithdrawNotes('');
-      setWithdrawReinstate(true);
-      setWithdrawNotify(true);
+      setWithdrawReason('');
     }
   };
 
@@ -332,9 +325,10 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
     if (!withdrawModalCase) return;
     const targetId = withdrawModalCase.id;
     const targetName = withdrawModalCase.name;
+    const reasonText = withdrawReason.trim() || 'Resignation retracted';
     setCases((prev) => prev.filter((c) => c.id !== targetId));
     setWithdrawModalCase(null);
-    setToastMessage(`✓ Offboarding withdrawn for ${targetName}. Active employment reinstated.`);
+    setToastMessage(`✓ Offboarding withdrawn for ${targetName} (${reasonText}). Active employment reinstated.`);
     setTimeout(() => setToastMessage(null), 3500);
   };
 
@@ -971,72 +965,24 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
             </Box>
           )}
 
-          {/* Reason Selection */}
-          <FormControl sx={{ mb: 2 }}>
-            <FormLabel sx={{ fontWeight: 600, fontSize: '13px', color: '#0F172A', mb: 0.5 }}>
+          {/* Reason for Withdrawing (Textbox) */}
+          <FormControl sx={{ mb: 2.5 }}>
+            <FormLabel sx={{ fontWeight: 600, fontSize: '13px', color: '#0F172A', mb: 0.75 }}>
               Reason for Withdrawing <Typography component="span" sx={{ color: '#DC2626' }}>*</Typography>
             </FormLabel>
-            <Select
-              value={withdrawReason}
-              onChange={(_, val) => val && setWithdrawReason(val)}
-              sx={{ borderRadius: '8px', fontSize: '13px' }}
-            >
-              <Option value="retraction">Resignation Retracted / Retention Offer Accepted</Option>
-              <Option value="counter_offer">Counter-offer &amp; Promotion Approved</Option>
-              <Option value="initiated_error">Initiated by Error / Mistaken Entry</Option>
-              <Option value="postponed">Departure Postponed Indefinitely</Option>
-              <Option value="mutual_agreement">Mutual Agreement to Continue Employment</Option>
-              <Option value="other">Other (Specify in notes)</Option>
-            </Select>
-          </FormControl>
-
-          {/* Internal Notes */}
-          <FormControl sx={{ mb: 2 }}>
-            <FormLabel sx={{ fontWeight: 600, fontSize: '13px', color: '#0F172A', mb: 0.5 }}>
-              Notes &amp; Internal Justification
-            </FormLabel>
             <Textarea
-              minRows={3}
+              minRows={4}
               placeholder="Document the rationale, manager discussion, or retraction agreement..."
-              value={withdrawNotes}
-              onChange={(e) => setWithdrawNotes(e.target.value)}
-              sx={{ borderRadius: '8px', fontSize: '13px' }}
+              value={withdrawReason}
+              onChange={(e) => setWithdrawReason(e.target.value)}
+              sx={{
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontFamily: 'Inter, system-ui, sans-serif',
+                lineHeight: 1.5,
+              }}
             />
           </FormControl>
-
-          {/* Policy & Reinstatement options */}
-          <Box sx={{ bgcolor: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '10px', p: 1.5, display: 'flex', flexDirection: 'column', gap: 1.25, mb: 2.5 }}>
-            <Checkbox
-              checked={withdrawReinstate}
-              onChange={(e) => setWithdrawReinstate(e.target.checked)}
-              label={
-                <Box>
-                  <Typography level="body-xs" sx={{ fontWeight: 600, color: '#0F172A' }}>
-                    Reinstate Active Status &amp; Cancel Departure
-                  </Typography>
-                  <Typography level="body-xs" sx={{ color: '#64748B', fontSize: '11px' }}>
-                    Halt access revocations, seat transfers, and restore employee to active directory.
-                  </Typography>
-                </Box>
-              }
-              sx={{ alignItems: 'flex-start', color: '#7C3AED' }}
-            />
-            <Checkbox
-              checked={withdrawNotify}
-              onChange={(e) => setWithdrawNotify(e.target.checked)}
-              label={
-                <Box>
-                  <Typography level="body-xs" sx={{ fontWeight: 600, color: '#0F172A' }}>
-                    Notify Reporting Manager &amp; HR Team
-                  </Typography>
-                  <Typography level="body-xs" sx={{ color: '#64748B', fontSize: '11px' }}>
-                    Send withdrawal confirmation email to line manager and HR operations.
-                  </Typography>
-                </Box>
-              }
-              sx={{ alignItems: 'flex-start', color: '#7C3AED' }}
-            />
-          </Box>
 
           <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1.25 }}>
             <Button variant="outlined" color="neutral" onClick={() => setWithdrawModalCase(null)} sx={{ borderRadius: '8px' }}>
