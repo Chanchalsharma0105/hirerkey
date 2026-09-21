@@ -23,6 +23,7 @@ import {
   FiChevronLeft,
   FiChevronRight,
   FiEye,
+  FiEdit,
 } from 'react-icons/fi';
 import { MdOutlineChair } from 'react-icons/md';
 import {
@@ -552,73 +553,25 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                               py: 1,
                             }}
                           >
-                            <FiExternalLink size={14} style={{ color: '#5B6173' }} />
-                            Open case details
+                            <FiEdit size={14} style={{ color: '#5B6173' }} />
+                            Edit
                           </MenuItem>
 
-                          {onQuickView && (
-                            <MenuItem
-                              onClick={() => onQuickView(c.id)}
-                              sx={{
-                                fontFamily: 'Inter, system-ui, sans-serif',
-                                gap: 1.25,
-                                fontSize: '13px',
-                                fontWeight: 500,
-                                py: 1,
-                              }}
-                            >
-                              <FiEye size={14} style={{ color: '#5B6173' }} />
-                              Quick view summary
-                            </MenuItem>
-                          )}
-
-                          {(c.stage === 1 || c.stage === 2) && (
-                            <MenuItem
-                              onClick={() => onSendExitInterview(c.id)}
-                              sx={{
-                                fontFamily: 'Inter, system-ui, sans-serif',
-                                gap: 1.25,
-                                fontSize: '13px',
-                                fontWeight: 500,
-                                py: 1,
-                              }}
-                            >
-                              <FiMail size={14} style={{ color: '#5B6173' }} />
-                              Send exit interview
-                            </MenuItem>
-                          )}
-
                           <MenuItem
-                            onClick={() => onViewVacancies(c.id)}
+                            onClick={() => onWithdrawOffboarding(c.id)}
                             sx={{
                               fontFamily: 'Inter, system-ui, sans-serif',
                               gap: 1.25,
                               fontSize: '13px',
                               fontWeight: 500,
                               py: 1,
+                              color: '#8A1C1C',
+                              '&:hover': { bgcolor: '#FEE2E2', color: '#DC2626' },
                             }}
                           >
-                            <MdOutlineChair size={15} style={{ color: '#5B6173' }} />
-                            View in Vacancies
+                            <FiCornerUpLeft size={14} style={{ color: '#DC2626' }} />
+                            Withdraw offboarding
                           </MenuItem>
-
-                          {c.stage < 2 && (
-                            <MenuItem
-                              onClick={() => onWithdrawOffboarding(c.id)}
-                              sx={{
-                                fontFamily: 'Inter, system-ui, sans-serif',
-                                gap: 1.25,
-                                fontSize: '13px',
-                                fontWeight: 500,
-                                py: 1,
-                                color: '#8A1C1C',
-                                '&:hover': { bgcolor: '#FEE2E2', color: '#DC2626' },
-                              }}
-                            >
-                              <FiCornerUpLeft size={14} style={{ color: '#DC2626' }} />
-                              Withdraw offboarding
-                            </MenuItem>
-                          )}
                         </Menu>
                       </Dropdown>
                     </td>

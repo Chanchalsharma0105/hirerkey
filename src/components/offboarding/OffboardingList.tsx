@@ -17,6 +17,9 @@ import {
   Drawer,
   Divider,
   Chip,
+  Checkbox,
+  Textarea,
+  Avatar,
 } from '@mui/joy';
 import {
   FiCheckCircle,
@@ -25,6 +28,7 @@ import {
   FiCalendar,
   FiClock,
   FiArrowRight,
+  FiCornerUpLeft,
 } from 'react-icons/fi';
 import { OffboardingListToolbar } from './OffboardingListToolbar';
 import { OffboardingTable } from './OffboardingTable';
@@ -67,6 +71,11 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
   // Modal & Drawer State
   const [isStartModalOpen, setIsStartModalOpen] = useState<boolean>(false);
   const [selectedCaseForDrawer, setSelectedCaseForDrawer] = useState<OffboardingCase | null>(null);
+  const [withdrawModalCase, setWithdrawModalCase] = useState<OffboardingCase | null>(null);
+  const [withdrawReason, setWithdrawReason] = useState<string>('retraction');
+  const [withdrawNotes, setWithdrawNotes] = useState<string>('');
+  const [withdrawReinstate, setWithdrawReinstate] = useState<boolean>(true);
+  const [withdrawNotify, setWithdrawNotify] = useState<boolean>(true);
 
   // Available presets for Start Offboarding modal
   const AVAILABLE_START_EMPLOYEES = [
@@ -310,8 +319,22 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
 
   const handleWithdrawOffboarding = (caseId: number) => {
     const target = cases.find((c) => c.id === caseId);
-    setCases((prev) => prev.filter((c) => c.id !== caseId));
-    setToastMessage(`Offboarding case for ${target?.name} has been withdrawn.`);
+    if (target) {
+      setWithdrawModalCase(target);
+      setWithdrawReason('retraction');
+      setWithdrawNotes('');
+      setWithdrawReinstate(true);
+      setWithdrawNotify(true);
+    }
+  };
+
+  const handleConfirmWithdraw = () => {
+    if (!withdrawModalCase) return;
+    const targetId = withdrawModalCase.id;
+    const targetName = withdrawModalCase.name;
+    setCases((prev) => prev.filter((c) => c.id !== targetId));
+    setWithdrawModalCase(null);
+    setToastMessage(`✓ Offboarding withdrawn for ${targetName}. Active employment reinstated.`);
     setTimeout(() => setToastMessage(null), 3500);
   };
 
@@ -853,6 +876,187 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
                 {startForm.reason === 'termination' || startForm.reason === 'death_in_service' ? 'Exit Immediately' : 'Submit & Start Notice'}
               </Button>
             </Box>
+          </Box>
+        </ModalDialog>
+      </Modal>
+
+      {/* Withdraw Offboarding Modal Dialog (Joy UI) */}
+      <Modal
+        open={Boolean(withdrawModalCase)}
+        onClose={() => setWithdrawModalCase(null)}
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 10000,
+        }}
+      >
+        <ModalDialog
+          variant="outlined"
+          role="alertdialog"
+          aria-labelledby="withdraw-dialog-title"
+          aria-describedby="withdraw-dialog-description"
+          sx={{
+            maxWidth: 540,
+            width: '100%',
+            borderRadius: '16px',
+            p: 3,
+            boxShadow: '0 24px 56px -12px rgba(0, 23, 65, 0.28)',
+            border: '1px solid #E5E7EF',
+            fontFamily: 'Inter, system-ui, sans-serif',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box
+                sx={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: '10px',
+                  bgcolor: '#FEE2E2',
+                  color: '#DC2626',
+                  display: 'grid',
+                  placeItems: 'center',
+                }}
+              >
+                <FiCornerUpLeft size={18} />
+              </Box>
+              <Box>
+                <Typography id="withdraw-dialog-title" level="title-lg" sx={{ fontWeight: 700, color: '#0F172A', fontSize: '18px' }}>
+                  Withdraw Offboarding
+                </Typography>
+                <Typography id="withdraw-dialog-description" level="body-xs" sx={{ color: '#64748B', mt: 0.25 }}>
+                  Cancel departure process for <strong>{withdrawModalCase?.name}</strong> and reinstate active employment.
+                </Typography>
+              </Box>
+            </Box>
+            <ModalClose sx={{ position: 'static' }} />
+          </Box>
+
+          {/* Employee Summary Card */}
+          {withdrawModalCase && (
+            <Box
+              sx={{
+                bgcolor: '#FEF2F2',
+                border: '1px solid #FECACA',
+                borderRadius: '10px',
+                p: 1.5,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1.5,
+                mb: 2,
+              }}
+            >
+              <Avatar
+                sx={{
+                  bgcolor: '#FEE2E2',
+                  color: '#991B1B',
+                  fontWeight: 700,
+                  fontSize: '13px',
+                  border: '1px solid #FCA5A5',
+                  width: 38,
+                  height: 38,
+                }}
+              >
+                {withdrawModalCase.avatarInitials}
+              </Avatar>
+              <Box sx={{ flex: 1 }}>
+                <Typography level="body-sm" sx={{ fontWeight: 700, color: '#7F1D1D' }}>
+                  {withdrawModalCase.name} · {withdrawModalCase.role} ({withdrawModalCase.seatCode})
+                </Typography>
+                <Typography level="body-xs" sx={{ color: '#991B1B', mt: 0.25 }}>
+                  Stage: <strong>{STAGE_CONFIGS[withdrawModalCase.stage]?.label}</strong> &bull; Last Working Day: <strong>{withdrawModalCase.lastWorkingDay}</strong>
+                </Typography>
+              </Box>
+            </Box>
+          )}
+
+          {/* Reason Selection */}
+          <FormControl sx={{ mb: 2 }}>
+            <FormLabel sx={{ fontWeight: 600, fontSize: '13px', color: '#0F172A', mb: 0.5 }}>
+              Reason for Withdrawing <Typography component="span" sx={{ color: '#DC2626' }}>*</Typography>
+            </FormLabel>
+            <Select
+              value={withdrawReason}
+              onChange={(_, val) => val && setWithdrawReason(val)}
+              sx={{ borderRadius: '8px', fontSize: '13px' }}
+            >
+              <Option value="retraction">Resignation Retracted / Retention Offer Accepted</Option>
+              <Option value="counter_offer">Counter-offer &amp; Promotion Approved</Option>
+              <Option value="initiated_error">Initiated by Error / Mistaken Entry</Option>
+              <Option value="postponed">Departure Postponed Indefinitely</Option>
+              <Option value="mutual_agreement">Mutual Agreement to Continue Employment</Option>
+              <Option value="other">Other (Specify in notes)</Option>
+            </Select>
+          </FormControl>
+
+          {/* Internal Notes */}
+          <FormControl sx={{ mb: 2 }}>
+            <FormLabel sx={{ fontWeight: 600, fontSize: '13px', color: '#0F172A', mb: 0.5 }}>
+              Notes &amp; Internal Justification
+            </FormLabel>
+            <Textarea
+              minRows={3}
+              placeholder="Document the rationale, manager discussion, or retraction agreement..."
+              value={withdrawNotes}
+              onChange={(e) => setWithdrawNotes(e.target.value)}
+              sx={{ borderRadius: '8px', fontSize: '13px' }}
+            />
+          </FormControl>
+
+          {/* Policy & Reinstatement options */}
+          <Box sx={{ bgcolor: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: '10px', p: 1.5, display: 'flex', flexDirection: 'column', gap: 1.25, mb: 2.5 }}>
+            <Checkbox
+              checked={withdrawReinstate}
+              onChange={(e) => setWithdrawReinstate(e.target.checked)}
+              label={
+                <Box>
+                  <Typography level="body-xs" sx={{ fontWeight: 600, color: '#0F172A' }}>
+                    Reinstate Active Status &amp; Cancel Departure
+                  </Typography>
+                  <Typography level="body-xs" sx={{ color: '#64748B', fontSize: '11px' }}>
+                    Halt access revocations, seat transfers, and restore employee to active directory.
+                  </Typography>
+                </Box>
+              }
+              sx={{ alignItems: 'flex-start', color: '#7C3AED' }}
+            />
+            <Checkbox
+              checked={withdrawNotify}
+              onChange={(e) => setWithdrawNotify(e.target.checked)}
+              label={
+                <Box>
+                  <Typography level="body-xs" sx={{ fontWeight: 600, color: '#0F172A' }}>
+                    Notify Reporting Manager &amp; HR Team
+                  </Typography>
+                  <Typography level="body-xs" sx={{ color: '#64748B', fontSize: '11px' }}>
+                    Send withdrawal confirmation email to line manager and HR operations.
+                  </Typography>
+                </Box>
+              }
+              sx={{ alignItems: 'flex-start', color: '#7C3AED' }}
+            />
+          </Box>
+
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1.25 }}>
+            <Button variant="outlined" color="neutral" onClick={() => setWithdrawModalCase(null)} sx={{ borderRadius: '8px' }}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleConfirmWithdraw}
+              sx={{
+                bgcolor: '#DC2626',
+                color: '#FFF',
+                borderRadius: '8px',
+                fontWeight: 600,
+                '&:hover': { bgcolor: '#B91C1C' },
+                display: 'flex',
+                gap: 1,
+              }}
+            >
+              <FiCornerUpLeft size={14} />
+              Confirm Withdrawal
+            </Button>
           </Box>
         </ModalDialog>
       </Modal>
