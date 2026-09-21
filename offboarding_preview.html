@@ -4357,6 +4357,90 @@
 </div>
 
 <!-- ==========================================================================
+     MODAL: WITHDRAW OFFBOARDING (REASON & REINSTATEMENT)
+     ========================================================================== -->
+<div class="modal-overlay" id="modalWithdrawOffboarding">
+  <div class="modal-dialog" style="max-width: 540px;">
+    <div class="modal-header">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 34px; height: 34px; border-radius: 8px; background: #FEE2E2; color: #DC2626; display: grid; place-items: center; flex-shrink: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg>
+        </div>
+        <div>
+          <h3 class="modal-title" style="font-size: 17px;">Withdraw Offboarding</h3>
+          <p class="modal-subtitle" style="margin-top: 2px;">Cancel departure process and reinstate active employment.</p>
+        </div>
+      </div>
+      <button class="btn-modal-close" onclick="closeWithdrawModal()">✕</button>
+    </div>
+
+    <div class="modal-body" style="display: flex; flex-direction: column; gap: 16px;">
+      <input type="hidden" id="withdrawCaseId" />
+
+      <!-- Employee Summary Banner -->
+      <div style="background: #FEF2F2; border: 1px solid #FECACA; border-radius: 10px; padding: 12px 14px; display: flex; align-items: center; gap: 12px;">
+        <div id="withdrawAvatar" style="width: 38px; height: 38px; border-radius: 50%; background: #FEE2E2; color: #991B1B; font-weight: 700; display: grid; place-items: center; font-size: 13px; border: 1px solid #FCA5A5;">SK</div>
+        <div style="flex: 1;">
+          <div style="font-size: 13.5px; font-weight: 700; color: #7F1D1D;" id="withdrawEmployeeTitle">Sara Khan · Front Desk Manager (FDM-01)</div>
+          <div style="font-size: 11.5px; color: #991B1B; margin-top: 2px;">
+            Stage: <span id="withdrawCurrentStage" style="font-weight: 600;">Serving notice</span> &bull; Last Working Day: <span id="withdrawLwd" style="font-weight: 600;">14 Oct 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reason for Withdrawing -->
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label" style="font-weight: 600; font-size: 13px; color: #0F172A; margin-bottom: 6px; display: block;">
+          Reason for Withdrawing <span style="color: #DC2626;">*</span>
+        </label>
+        <select class="form-control" id="withdrawReasonSelect" style="height: 38px; font-size: 13px; border-radius: 8px;">
+          <option value="retraction">Resignation Retracted / Retention Offer Accepted</option>
+          <option value="counter_offer">Counter-offer &amp; Promotion Approved</option>
+          <option value="initiated_error">Initiated by Error / Mistaken Entry</option>
+          <option value="postponed">Departure Postponed Indefinitely</option>
+          <option value="mutual_agreement">Mutual Agreement to Continue Employment</option>
+          <option value="other">Other (Specify in notes)</option>
+        </select>
+      </div>
+
+      <!-- Additional Notes / Justification -->
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label" style="font-weight: 600; font-size: 13px; color: #0F172A; margin-bottom: 6px; display: block;">
+          Notes &amp; Internal Justification
+        </label>
+        <textarea class="form-control" id="withdrawNotesInput" rows="3" style="height: auto; padding: 8px 12px; resize: vertical; font-size: 13px; border-radius: 8px;" placeholder="Document the rationale, manager discussion, or retraction agreement..."></textarea>
+      </div>
+
+      <!-- Policy & System Reinstatement Options -->
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px;">
+        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin: 0;">
+          <input type="checkbox" id="withdrawReinstateCheck" checked style="accent-color: #7C3AED; width: 17px; height: 17px; margin-top: 2px; cursor: pointer;" />
+          <div>
+            <div style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Reinstate Active Status &amp; Cancel Departure</div>
+            <div style="font-size: 11px; color: #64748B; margin-top: 1px;">Halt access revocations, seat transfers, and restore employee to active directory.</div>
+          </div>
+        </label>
+        <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; margin: 0;">
+          <input type="checkbox" id="withdrawNotifyCheck" checked style="accent-color: #7C3AED; width: 17px; height: 17px; margin-top: 2px; cursor: pointer;" />
+          <div>
+            <div style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Notify Reporting Manager &amp; HR Team</div>
+            <div style="font-size: 11px; color: #64748B; margin-top: 1px;">Send withdrawal confirmation email to line manager and HR operations.</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+      <button class="btn-secondary" onclick="closeWithdrawModal()">Cancel</button>
+      <button class="btn-primary" onclick="submitWithdrawOffboarding()" style="background: #DC2626; color: #FFF; border: none; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg>
+        Confirm Withdrawal
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================================
      CASE QUICK VIEW SLIDE-IN DRAWER
      ========================================================================== -->
 <div class="drawer-overlay" id="caseDrawer" onclick="closeDrawer(event)">
@@ -6201,6 +6285,7 @@ function closeAllMenus() {
 document.addEventListener('click', (e) => {
   if (e.target.id === 'modalAddCustomStep') closeAddCustomStepModal();
   if (e.target.id === 'modalEditStep') closeEditStepModal();
+  if (e.target.id === 'modalWithdrawOffboarding') closeWithdrawModal();
   if (!e.target.closest('.filter-dropdown-anchor')) {
     closeFilterPopover();
   }
@@ -6214,15 +6299,51 @@ document.addEventListener('click', (e) => {
 });
 
 function handleRowAction(action, id) {
-  const target = cases.find(c => c.id === id);
   closeAllMenus();
   if (action === 'edit' || action === 'open') {
     openCaseView(id);
   } else if (action === 'withdraw') {
-    cases = cases.filter(c => c.id !== id);
-    showToast(`Offboarding case for ${target.name} has been withdrawn.`);
-    renderTable();
+    openWithdrawModal(id);
   }
+}
+
+/* Modal: Withdraw Offboarding */
+function openWithdrawModal(id) {
+  closeAllMenus();
+  const c = cases.find(item => item.id === id);
+  if (!c) return;
+  document.getElementById('withdrawCaseId').value = c.id;
+  document.getElementById('withdrawEmployeeName').textContent = c.name;
+  document.getElementById('withdrawAvatar').textContent = c.ini || c.name.split(' ').map(n => n[0]).join('');
+  document.getElementById('withdrawEmployeeTitle').textContent = `${c.name} · ${c.title} (${c.seat})`;
+  document.getElementById('withdrawCurrentStage').textContent = c.stageName;
+  document.getElementById('withdrawLwd').textContent = c.lwd;
+  document.getElementById('withdrawReasonSelect').selectedIndex = 0;
+  document.getElementById('withdrawNotesInput').value = '';
+  document.getElementById('withdrawReinstateCheck').checked = true;
+  document.getElementById('withdrawNotifyCheck').checked = true;
+
+  document.getElementById('modalWithdrawOffboarding').classList.add('open');
+}
+
+function closeWithdrawModal() {
+  const m = document.getElementById('modalWithdrawOffboarding');
+  if (m) m.classList.remove('open');
+}
+
+function submitWithdrawOffboarding() {
+  const id = parseInt(document.getElementById('withdrawCaseId').value, 10);
+  const target = cases.find(c => c.id === id);
+  if (!target) return;
+
+  const reasonSelect = document.getElementById('withdrawReasonSelect');
+  const reasonText = reasonSelect.options[reasonSelect.selectedIndex].text;
+
+  // Remove from active departures cases
+  cases = cases.filter(c => c.id !== id);
+  closeWithdrawModal();
+  renderTable();
+  showToast(`✓ Offboarding withdrawn for ${target.name} (${reasonText}). Active employment reinstated.`);
 }
 
 function showToast(msg) {
