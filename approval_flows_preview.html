@@ -1,0 +1,4253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey™ — Property Settings › Approval Flows</title>
+  
+  <!-- Preconnect to Google Fonts for Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       HIRERKEY PRODUCTION TOKENS & SYSTEM BASE (100% INTER)
+       ========================================================================== */
+    :root {
+      --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+      /* Brand Palette */
+      --primary-50: #F5F3FF;
+      --primary-100: #EDE9FE;
+      --primary-200: #DDD6FE;
+      --primary-300: #C4B5FD;
+      --primary-400: #A78BFA;
+      --primary-500: #7C3AED;
+      --primary-600: #6D28D9;
+      --primary-700: #5B21B6;
+      --primary-800: #4C1D95;
+
+      /* Shell & Surfaces */
+      --ground: #F8FAFC;
+      --shell: #001741;
+      --shell-hover: rgba(255, 255, 255, 0.08);
+      --surface: #FFFFFF;
+      --surface-2: #F8FAFC;
+      --surface-3: #F1F5F9;
+      
+      /* Dividers & Borders */
+      --divider: #E5E7EF;
+      --divider-subtle: #EEF0F4;
+      --border-card: #E2E8F0;
+
+      /* Typography */
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-secondary: #64748B;
+      --text-tertiary: #94A3B8;
+
+      /* Status Colors */
+      --status-ok-bg: #DCFCE7;
+      --status-ok-text: #15803D;
+      --status-ok-border: #86EFAC;
+
+      --status-warn-bg: #FEF3C7;
+      --status-warn-text: #B45309;
+      --status-warn-border: #FCD34D;
+
+      --status-bad-bg: #FEE2E2;
+      --status-bad-text: #DC2626;
+      --status-bad-border: #FCA5A5;
+
+      --status-pri-bg: #EDE9FE;
+      --status-pri-text: #7C3AED;
+      --status-pri-border: #DDD6FE;
+
+      --status-blue-bg: #EFF6FF;
+      --status-blue-text: #2563EB;
+      --status-blue-border: #BFDBFE;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 12px 32px rgba(0, 23, 65, 0.10);
+      --shadow-purple: 0 4px 14px rgba(124, 58, 237, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-inter) !important;
+    }
+
+    body {
+      background-color: var(--ground);
+      color: var(--text-body);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* ==========================================================================
+       AUTHENTIC HIRERKEY DASHBOARD SHELL
+       ========================================================================== */
+    .app-shell {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      background: var(--ground);
+      position: relative;
+    }
+
+    /* --- SIDEBAR SYSTEM --- */
+    .sidebar {
+      width: 260px;
+      min-width: 260px;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      background: var(--shell);
+      color: #94A3B8;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), min-width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 2px 0 16px rgba(0, 23, 65, 0.15);
+      user-select: none;
+      flex-shrink: 0;
+    }
+
+    .sidebar.collapsed {
+      width: 72px;
+      min-width: 72px;
+    }
+
+    .sidebar-header {
+      height: 70px;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .sidebar.collapsed .sidebar-header {
+      justify-content: center;
+      padding: 0 8px;
+    }
+
+    .brand-logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .brand-icon-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+      flex-shrink: 0;
+    }
+
+    .brand-wordmark {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .sidebar.collapsed .brand-wordmark {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-10px);
+      width: 0;
+      display: none;
+    }
+
+    .sidebar-toggle-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #C4B5FD;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .sidebar-toggle-btn:hover {
+      background: #7C3AED;
+      border-color: #7C3AED;
+      color: #FFFFFF;
+      transform: scale(1.08);
+    }
+
+    .sidebar.collapsed .sidebar-toggle-btn {
+      position: absolute;
+      right: -14px;
+      top: 21px;
+      background: #7C3AED;
+      border-color: #6D28D9;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+      z-index: 120;
+    }
+
+    .sidebar-toggle-btn svg {
+      transition: transform 0.25s ease;
+    }
+
+    .sidebar.collapsed .sidebar-toggle-btn svg {
+      transform: rotate(180deg);
+    }
+
+    /* Sidebar Nav */
+    .sidebar-nav {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .sidebar-nav::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sidebar-nav::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+
+    .nav-group {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .nav-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 12px;
+      border-radius: 10px;
+      color: #94A3B8;
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 500;
+      transition: all 0.18s ease;
+      position: relative;
+      user-select: none;
+    }
+
+    .nav-group-header:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      transform: translateX(3px);
+    }
+
+    .sidebar.collapsed .nav-group-header:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-group-header.active-group {
+      color: #FFFFFF;
+    }
+
+    .nav-group-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .nav-group-icon {
+      width: 20px;
+      height: 20px;
+      display: grid;
+      place-items: center;
+      color: #A5B4FC;
+      flex-shrink: 0;
+    }
+
+    .nav-group-header:hover .nav-group-icon {
+      color: #FFFFFF;
+    }
+
+    .nav-group-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 13.5px;
+      font-weight: 500;
+    }
+
+    .nav-group-chevron {
+      color: #64748B;
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .nav-group.open .nav-group-chevron {
+      transform: rotate(180deg);
+      color: #A5B4FC;
+    }
+
+    /* Submenu */
+    .nav-submenu {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 36px;
+      margin-top: 2px;
+      margin-bottom: 4px;
+    }
+
+    .sidebar.collapsed .nav-submenu,
+    .sidebar.collapsed .nav-group-title,
+    .sidebar.collapsed .nav-group-chevron {
+      display: none !important;
+    }
+
+    .sidebar.collapsed .nav-group-header {
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    .sidebar.collapsed .nav-group-left {
+      gap: 0;
+      justify-content: center;
+    }
+
+    .nav-subitem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 12px;
+      border-radius: 8px;
+      color: #94A3B8;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      position: relative;
+    }
+
+    .nav-subitem:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      transform: translateX(3px);
+    }
+
+    .nav-subitem.active {
+      background: #7C3AED !important;
+      color: #FFFFFF !important;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
+    }
+
+    .nav-subitem.active::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 16px;
+      border-radius: 4px;
+      background: #FFFFFF;
+    }
+
+    /* Floating Tooltip in Collapsed Sidebar */
+    .sidebar.collapsed .nav-group-header[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: #001741;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.collapsed .nav-group-header[data-tooltip]:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) translateX(2px);
+    }
+
+    /* --- CONTENT AREA WRAPPER --- */
+    .content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow-x: hidden;
+      background: var(--ground);
+    }
+
+    /* --- TOPBAR SYSTEM --- */
+    .topbar {
+      height: 70px;
+      background: rgba(248, 250, 252, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .header-toggle-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #475569;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .header-toggle-btn:hover {
+      background: #F1F5F9;
+      color: #7C3AED;
+      border-color: #CBD5E1;
+    }
+
+    .header-search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 7px 14px;
+      color: #64748B;
+      font-size: 13.5px;
+      width: 280px;
+      background: #FFFFFF;
+      transition: all 0.2s ease;
+    }
+
+    .header-search-box:focus-within {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    .header-search-box input {
+      border: 0;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      font-size: 13px;
+      color: #0F172A;
+    }
+
+    .search-kbd {
+      font-size: 10px;
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      padding: 2px 5px;
+      color: #64748B;
+      font-weight: 600;
+    }
+
+    .header-breadcrumbs-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      color: #64748B;
+      font-weight: 500;
+      margin-left: 6px;
+    }
+
+    .crumb-home {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: #64748B;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .crumb-home:hover {
+      color: #7C3AED;
+    }
+
+    .crumb-sep {
+      color: #94A3B8;
+      font-size: 13px;
+    }
+
+    .crumb-segment {
+      color: #475569;
+    }
+
+    .crumb-active {
+      color: #7C3AED;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .hyiq-header-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid #DDD6FE;
+      border-radius: 12px;
+      padding: 6px 12px;
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.06);
+    }
+
+    .hyiq-header-btn:hover {
+      background: #F5F3FF;
+      border-color: #C4B5FD;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.12);
+    }
+
+    .hyiq-avatar-spark {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+    }
+
+    .hyiq-text {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .hyiq-voice-label {
+      font-size: 11.5px;
+      color: #6D28D9;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .hyiq-shortcut {
+      font-size: 10px;
+      font-weight: 500;
+      color: #7C3AED;
+      background: #EDE9FE;
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+
+    .version-tag {
+      font-size: 11px;
+      color: #94A3B8;
+      font-weight: 600;
+      padding: 3px 8px;
+      background: #F1F5F9;
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+    }
+
+    .icon-header-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #475569;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.18s ease;
+    }
+
+    .icon-header-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .badge-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #EF4444;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 2px solid #FFFFFF;
+    }
+
+    .topbar-divider {
+      width: 1px;
+      height: 22px;
+      background: #E2E8F0;
+      margin: 0 4px;
+    }
+
+    .user-profile-wrapper {
+      position: relative;
+    }
+
+    .user-profile-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 12px 4px 4px;
+      border-radius: 24px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .user-profile-pill:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+    }
+
+    .user-profile-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 12px;
+      display: grid;
+      place-items: center;
+    }
+
+    .user-profile-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1E293B;
+    }
+
+    /* Dropdown */
+    .user-dropdown-menu {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 8px);
+      width: 240px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      padding: 8px;
+      display: none;
+      z-index: 200;
+    }
+
+    .user-dropdown-menu.show {
+      display: block;
+      animation: fadeInDown 0.15s ease;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .user-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .user-dropdown-item:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .switch-workspace-section {
+      padding: 10px 12px 6px;
+      border-top: 1px solid #E2E8F0;
+      margin-top: 6px;
+    }
+
+    .switch-workspace-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .neumorphic-toggle-track {
+      background: #E2E8F0;
+      border-radius: 20px;
+      padding: 3px;
+      display: flex;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .neumorphic-track-bg {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748B;
+      z-index: 1;
+      padding: 3px 0;
+    }
+
+    .neumorphic-thumb {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: calc(50% - 3px);
+      height: calc(100% - 6px);
+      background: #FFFFFF;
+      border-radius: 18px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      transition: transform 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #7C3AED;
+      z-index: 2;
+    }
+
+    .neumorphic-thumb.admin-active {
+      transform: translateX(100%);
+    }
+
+    /* --- PROPERTY SETTINGS SUBHEADER --- */
+    .property-subnav-container {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--divider);
+      padding: 12px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: sticky;
+      top: 70px;
+      z-index: 30;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .subnav-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .subnav-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    .subnav-breadcrumbs a {
+      color: #64748B;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .subnav-breadcrumbs a:hover {
+      color: #7C3AED;
+    }
+
+    .subnav-breadcrumbs .active-crumb {
+      color: #7C3AED;
+      font-weight: 600;
+    }
+
+    .menus-badge-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      color: #7C3AED;
+      font-size: 11.5px;
+      font-weight: 700;
+      border-radius: 20px;
+    }
+
+    .property-tabstrip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scrollbar-width: none;
+    }
+
+    .property-tabstrip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-nav-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .tab-nav-arrow:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    .property-tab-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .property-tab-pill:hover {
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+      color: #0F172A;
+    }
+
+    .property-tab-pill.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+    }
+
+    /* ==========================================================================
+       WORKSPACE VIEWPORT
+       ========================================================================== */
+    .workspace {
+      flex: 1;
+      padding: 24px 32px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1560px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* ==========================================================================
+       VIEW 1: REDESIGNED APPROVAL FLOWS LISTING SCREEN
+       ========================================================================== */
+    .listing-view {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    /* Streamlined View Header */
+    .view-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .view-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .view-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .view-subtitle {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    .view-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-ai-drafter {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 9px;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      color: #7C3AED;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-ai-drafter:hover {
+      background: #EDE9FE;
+      border-color: #C4B5FD;
+      transform: translateY(-1px);
+    }
+
+    .btn-primary-purple {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 9px;
+      background: #7C3AED;
+      border: 1px solid #6D28D9;
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+    }
+
+    .btn-primary-purple:hover {
+      background: #6D28D9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.45);
+    }
+
+    /* COMPACT GOVERNANCE SUMMARY STRIP (Clean 48px height, zero clutter) */
+    .governance-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .gov-chip {
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.18s ease;
+    }
+
+    .gov-chip:hover {
+      border-color: #CBD5E1;
+      transform: translateY(-1px);
+    }
+
+    .gov-chip-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .gov-chip-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .gov-icon-purple { background: #F5F3FF; color: #7C3AED; }
+    .gov-icon-green  { background: #DCFCE7; color: #16A34A; }
+    .gov-icon-blue   { background: #EFF6FF; color: #2563EB; }
+    .gov-icon-orange { background: #FEF3C7; color: #D97706; }
+
+    .gov-chip-title {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .gov-chip-val {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .gov-chip-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    .badge-ok   { background: #DCFCE7; color: #15803D; }
+    .badge-info { background: #EFF6FF; color: #1D4ED8; }
+    .badge-warn { background: #FEF3C7; color: #B45309; }
+    .badge-pri  { background: #EDE9FE; color: #7C3AED; }
+
+    /* UNIFIED OPERATIONAL TOOLBAR (Modules + Search + Status + View Mode) */
+    .unified-toolbar {
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Module Filter Pills */
+    .module-pill-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 2px 0;
+    }
+
+    .mod-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #F8FAFC;
+      color: #475569;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.18s ease;
+    }
+
+    .mod-pill:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    .mod-pill.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+    }
+
+    .mod-pill-count {
+      font-size: 11px;
+      padding: 1px 5px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+
+    .mod-pill.active .mod-pill-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    /* Right Toolbar Controls */
+    .toolbar-controls-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+
+    .search-filter-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 6px 12px;
+      width: 240px;
+      color: #64748B;
+      transition: all 0.2s ease;
+    }
+
+    .search-filter-wrap:focus-within {
+      background: #FFFFFF;
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .search-filter-wrap input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 12.5px;
+      width: 100%;
+      color: #0F172A;
+    }
+
+    .status-filter-select {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 6px 10px;
+      font-size: 12.5px;
+      color: #334155;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .status-filter-select:focus {
+      border-color: #7C3AED;
+    }
+
+    .view-toggle-wrap {
+      display: flex;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .view-btn {
+      padding: 5px 8px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: #64748B;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all 0.15s ease;
+    }
+
+    .view-btn:hover {
+      color: #0F172A;
+    }
+
+    .view-btn.active {
+      background: #FFFFFF;
+      color: #7C3AED;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .btn-refresh-tool {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .btn-refresh-tool:hover {
+      background: #F8FAFC;
+      color: #7C3AED;
+      border-color: #CBD5E1;
+    }
+
+    .btn-refresh-tool.rotating svg {
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* WORKFLOW CARDS GRID (Visual Hierarchy & Pipeline Stepper) */
+    .workflow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 16px;
+    }
+
+    .wf-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .wf-card:hover {
+      border-color: #C4B5FD;
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .wf-card.inactive {
+      opacity: 0.75;
+      background: #FDFDFE;
+    }
+
+    /* Card Top Row */
+    .wf-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .wf-card-title-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .wf-module-icon-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .icon-bg-expense   { background: #ECFDF5; color: #047857; }
+    .icon-bg-leave     { background: #F0F9FF; color: #0369A1; }
+    .icon-bg-attendance{ background: #FFFBEB; color: #B45309; }
+    .icon-bg-position  { background: #F5F3FF; color: #6D28D9; }
+    .icon-bg-notice    { background: #FFF1F2; color: #BE123C; }
+    .icon-bg-appraisal { background: #FEFCE8; color: #A16207; }
+
+    .wf-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .wf-card-name-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .wf-card-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Scoped vs Default Badges */
+    .wf-tag-default {
+      background: #EDE9FE;
+      color: #6D28D9;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid #DDD6FE;
+    }
+
+    .wf-tag-scoped {
+      background: #F1F5F9;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 5px;
+      border: 1px solid #E2E8F0;
+    }
+
+    .wf-card-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* Card Top Right Actions */
+    .wf-card-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Switch Component */
+    .switch-ui {
+      width: 36px;
+      height: 20px;
+      border-radius: 12px;
+      background: #CBD5E1;
+      padding: 2px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .switch-ui.on {
+      background: #16A34A;
+    }
+
+    .switch-handle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .switch-ui.on .switch-handle {
+      transform: translateX(16px);
+    }
+
+    .card-dots-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .card-dots-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #E2E8F0;
+    }
+
+    /* VISUAL STEP PIPELINE STRIP */
+    .wf-pipeline-strip {
+      background: #F8FAFC;
+      border: 1px solid #EEF2F6;
+      border-radius: 8px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .pipe-step-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #334155;
+      white-space: nowrap;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+
+    .pipe-step-num {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-size: 10px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+
+    .pipe-arrow {
+      color: #94A3B8;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .pipe-final-badge {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: #DCFCE7;
+      border: 1px solid #86EFAC;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #15803D;
+      white-space: nowrap;
+    }
+
+    /* Card Footer */
+    .wf-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #F1F5F9;
+      padding-top: 10px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+    }
+
+    .wf-meta-tags {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .wf-meta-item strong {
+      color: #334155;
+    }
+
+    .wf-footer-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-card-inspect {
+      font-size: 12px;
+      font-weight: 600;
+      color: #7C3AED;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+    }
+
+    .btn-card-inspect:hover {
+      background: #F5F3FF;
+    }
+
+    .btn-card-edit {
+      font-size: 12px;
+      font-weight: 600;
+      color: #2563EB;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+    }
+
+    .btn-card-edit:hover {
+      background: #EFF6FF;
+    }
+
+    /* Popover Menu */
+    .card-menu-dropdown {
+      position: absolute;
+      right: 16px;
+      top: 48px;
+      width: 170px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      box-shadow: var(--shadow-lg);
+      padding: 6px;
+      display: none;
+      z-index: 50;
+    }
+
+    .card-menu-dropdown.open {
+      display: block;
+      animation: fadeInDown 0.15s ease;
+    }
+
+    .card-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      color: #334155;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .card-menu-item:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .card-menu-item.danger {
+      color: #DC2626;
+    }
+
+    .card-menu-item.danger:hover {
+      background: #FEE2E2;
+    }
+
+    /* COMPACT DENSE TABLE VIEW */
+    .dense-table-container {
+      display: none;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dense-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .dense-table th {
+      background: #F8FAFC;
+      color: #64748B;
+      font-weight: 600;
+      padding: 12px 16px;
+      border-bottom: 1px solid #E2E8F0;
+      white-space: nowrap;
+    }
+
+    .dense-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #F1F5F9;
+      color: #334155;
+      vertical-align: middle;
+    }
+
+    .dense-table tr:hover {
+      background: #F8FAFC;
+    }
+
+    /* ==========================================================================
+       VIEW 2: REDESIGNED APPROVAL FLOW BUILDER (FORM)
+       ========================================================================== */
+    .builder-view {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    /* Builder Sticky Header Bar */
+    .builder-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 12px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .builder-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-back-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #64748B;
+      font-size: 13px;
+      font-weight: 600;
+      background: transparent;
+      border: 1px solid #E2E8F0;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-back-link:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    .builder-title-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .builder-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .builder-page-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .builder-live-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: #DCFCE7;
+      color: #15803D;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .builder-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-cancel-builder {
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-cancel-builder:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    /* 2-Column Responsive Layout */
+    .builder-columns {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .builder-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* LEFT COLUMN: IDENTITY & POLICY SCOPE */
+    .builder-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .config-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .config-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 10px;
+    }
+
+    .config-card-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      background: #F5F3FF;
+      color: #7C3AED;
+      font-size: 14px;
+    }
+
+    .config-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .req-star {
+      color: #DC2626;
+    }
+
+    .form-control {
+      width: 100%;
+      border: 1px solid #CBD5E1;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #0F172A;
+      background: #FFFFFF;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    .form-control.has-error {
+      border-color: #DC2626;
+      background: #FFF5F5;
+    }
+
+    .form-helper {
+      font-size: 11.5px;
+      color: #64748B;
+      line-height: 1.4;
+    }
+
+    .form-error-text {
+      font-size: 11.5px;
+      color: #DC2626;
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-error-text.show {
+      display: block;
+    }
+
+    .setting-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px solid #F1F5F9;
+    }
+
+    .setting-toggle-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .setting-toggle-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1E293B;
+    }
+
+    .setting-toggle-desc {
+      font-size: 11.5px;
+      color: #64748B;
+    }
+
+    /* RIGHT COLUMN: VISUAL APPROVAL HIERARCHY FLOWCHART */
+    .builder-right-col {
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hierarchy-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 14px;
+    }
+
+    .hierarchy-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hierarchy-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .hierarchy-level-count {
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+
+    /* Flowchart Spine */
+    .flow-canvas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 10px 0;
+    }
+
+    /* Flow Connectors */
+    .flow-connector {
+      width: 2px;
+      height: 24px;
+      background: #CBD5E1;
+      position: relative;
+      margin: 2px 0;
+    }
+
+    .flow-connector::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -4px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #94A3B8;
+    }
+
+    /* Node: Submitter */
+    .node-submitter {
+      width: 100%;
+      background: #F8FAFC;
+      border: 1px dashed #CBD5E1;
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .node-submitter-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #E2E8F0;
+      color: #475569;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .node-submitter-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .node-submitter-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #1E293B;
+    }
+
+    .node-submitter-sub {
+      font-size: 11.5px;
+      color: #64748B;
+    }
+
+    /* Step Card (Dynamic Approval Level) */
+    .step-node-card {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1.5px solid #DDD6FE;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.05);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .step-node-card:hover {
+      border-color: #A78BFA;
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.1);
+    }
+
+    .step-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 10px;
+    }
+
+    .step-card-head-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-number-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #7C3AED;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+
+    .step-name-heading {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .step-method-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .step-card-head-right {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .step-icon-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .step-icon-btn:hover:not(:disabled) {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .step-icon-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .step-icon-btn.btn-del:hover {
+      background: #FEE2E2;
+      color: #DC2626;
+      border-color: #FCA5A5;
+    }
+
+    /* APPROVER ROUTING METHOD SELECTOR (Compact 3-Tab Segment) */
+    .routing-method-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .routing-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .routing-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .routing-tab-opt {
+      border: 1.5px solid #E2E8F0;
+      border-radius: 9px;
+      padding: 10px 12px;
+      background: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.18s ease;
+    }
+
+    .routing-tab-opt:hover {
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .routing-tab-opt.selected {
+      border-color: #7C3AED;
+      background: #F5F3FF;
+      box-shadow: 0 0 0 1px #7C3AED;
+    }
+
+    .routing-opt-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .routing-opt-texts {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .routing-opt-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: #1E293B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .routing-tab-opt.selected .routing-opt-title {
+      color: #6D28D9;
+    }
+
+    .routing-opt-sub {
+      font-size: 10.5px;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Dynamic Sub-Configuration for Routing */
+    .step-subconfig-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .subconfig-hint {
+      grid-column: span 2;
+      font-size: 12px;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #EEF2F6;
+    }
+
+    /* Add Level Button */
+    .btn-add-step-pipe {
+      width: 100%;
+      border: 1.5px dashed #DDD6FE;
+      background: #FAF8FF;
+      border-radius: 10px;
+      padding: 10px;
+      color: #7C3AED;
+      font-size: 13px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-add-step-pipe:hover {
+      background: #EDE9FE;
+      border-color: #7C3AED;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.15);
+    }
+
+    /* Terminal Outcome Nodes */
+    .terminal-outcomes-wrap {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .outcome-node {
+      border-radius: 9px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .outcome-approved {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+    }
+
+    .outcome-rejected {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+    }
+
+    .outcome-icon-approved {
+      color: #16A34A;
+      font-size: 16px;
+      margin-top: 1px;
+    }
+
+    .outcome-icon-rejected {
+      color: #D97706;
+      font-size: 16px;
+      margin-top: 1px;
+    }
+
+    .outcome-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .outcome-title {
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .outcome-approved .outcome-title { color: #15803D; }
+    .outcome-rejected .outcome-title { color: #B45309; }
+
+    .outcome-sub {
+      font-size: 11.5px;
+      color: #475569;
+      line-height: 1.35;
+    }
+
+    /* ==========================================================================
+       MODALS: AI DRAFTER & SIMULATOR
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 23, 65, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 500;
+      display: none;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: grid;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-dialog {
+      background: #FFFFFF;
+      border-radius: 14px;
+      max-width: 620px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FAF8FF;
+    }
+
+    .modal-head-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      cursor: font-size: 16px;
+    }
+
+    .modal-close-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .modal-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-height: 75vh;
+      overflow-y: auto;
+    }
+
+    .template-card {
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all 0.18s ease;
+    }
+
+    .template-card:hover {
+      border-color: #7C3AED;
+      background: #F5F3FF;
+      transform: translateX(4px);
+    }
+
+    .template-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .template-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+
+    .template-desc {
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .btn-apply-tpl {
+      font-size: 12px;
+      font-weight: 600;
+      color: #7C3AED;
+      background: #EDE9FE;
+      border: 1px solid #DDD6FE;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    /* Simulation Results */
+    .sim-result-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .sim-step-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+    }
+
+    /* Slide-over Drawer for Quick Inspection */
+    .quick-drawer {
+      position: fixed;
+      right: -420px;
+      top: 0;
+      width: 420px;
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: -4px 0 24px rgba(0, 23, 65, 0.15);
+      z-index: 300;
+      transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .quick-drawer.open {
+      right: 0;
+    }
+
+    .drawer-head {
+      padding: 20px;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FAF8FF;
+    }
+
+    .drawer-body {
+      padding: 20px;
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* TOAST NOTIFICATIONS */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-pill {
+      background: #001741;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 16px rgba(0, 23, 65, 0.3);
+      animation: toastIn 0.25s ease forwards;
+      pointer-events: auto;
+    }
+
+    .toast-pill.error {
+      background: #DC2626;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-shell">
+  
+  <!-- 1. AUTHENTIC HIRERKEY COLLAPSIBLE SIDEBAR -->
+  <aside class="sidebar" id="appSidebar">
+    <div class="sidebar-header">
+      <div class="brand-logo-area" onclick="navigateToHome()">
+        <div class="brand-icon-mark">hy</div>
+        <span class="brand-wordmark">hirerkey</span>
+      </div>
+      <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar (⌘B)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <!-- 1. Dashboard -->
+      <div class="nav-group">
+        <div class="nav-group-header" data-tooltip="Dashboard">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </span>
+            <span class="nav-group-title">Dashboard</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Recruitment -->
+      <div class="nav-group">
+        <div class="nav-group-header" data-tooltip="Recruitment">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+            </span>
+            <span class="nav-group-title">Recruitment</span>
+          </div>
+          <span class="nav-group-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+      </div>
+
+      <!-- 3. Onboarding -->
+      <div class="nav-group">
+        <div class="nav-group-header" data-tooltip="Onboarding">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </span>
+            <span class="nav-group-title">Onboarding</span>
+          </div>
+          <span class="nav-group-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+      </div>
+
+      <!-- 4. Employees (Active) -->
+      <div class="nav-group open">
+        <div class="nav-group-header active-group" data-tooltip="Employees">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </span>
+            <span class="nav-group-title">Employees</span>
+          </div>
+          <span class="nav-group-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="javascript:void(0)">All Employees</a>
+          <a class="nav-subitem" href="javascript:void(0)">Org Directory</a>
+          <a class="nav-subitem active" href="javascript:void(0)">Property Settings</a>
+          <a class="nav-subitem" href="javascript:void(0)">Off-boarding</a>
+        </div>
+      </div>
+
+      <!-- 5. Performance -->
+      <div class="nav-group">
+        <div class="nav-group-header" data-tooltip="Performance">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+            </span>
+            <span class="nav-group-title">Performance</span>
+          </div>
+          <span class="nav-group-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+      </div>
+
+      <!-- 6. Appraisal -->
+      <div class="nav-group">
+        <div class="nav-group-header" data-tooltip="Appraisal">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+            </span>
+            <span class="nav-group-title">Appraisal</span>
+          </div>
+          <span class="nav-group-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+        </div>
+      </div>
+
+      <!-- 7. Workflows -->
+      <div class="nav-group">
+        <div class="nav-group-header" data-tooltip="Workflows">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
+            </span>
+            <span class="nav-group-title">Workflows</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Pulse Surveys -->
+      <div class="nav-group">
+        <div class="nav-group-header" data-tooltip="Pulse Surveys">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </span>
+            <span class="nav-group-title">Pulse Surveys</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Intelligence -->
+      <div class="nav-group">
+        <div class="nav-group-header" data-tooltip="Intelligence">
+          <div class="nav-group-left">
+            <span class="nav-group-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line></svg>
+            </span>
+            <span class="nav-group-title">Intelligence</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- 2. MAIN APP CONTENT CONTAINER -->
+  <main class="content-area">
+    
+    <!-- Topbar Navigation -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="header-toggle-btn" id="headerToggleBtn" title="Toggle Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+
+        <div class="header-search-box">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" placeholder="Search..." id="globalHeaderSearch">
+          <span class="search-kbd">⌘K</span>
+        </div>
+
+        <nav class="header-breadcrumbs-nav">
+          <span class="crumb-home" onclick="navigateToHome()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            Home
+          </span>
+          <span class="crumb-sep">›</span>
+          <span class="crumb-segment">Property Settings</span>
+          <span class="crumb-sep">›</span>
+          <span class="crumb-active" onclick="switchToListingView()">Approval Flows</span>
+        </nav>
+      </div>
+
+      <div class="topbar-right">
+        <!-- Ask HyIQ Pill -->
+        <div class="hyiq-header-btn" onclick="openAiDrafterModal()">
+          <div class="hyiq-avatar-spark">✨</div>
+          <span class="hyiq-text">Ask HyIQ</span>
+          <span class="hyiq-voice-label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+            HyIQ Voice
+          </span>
+          <span class="hyiq-shortcut">⌘⇧Space</span>
+        </div>
+
+        <span class="version-tag">v22.0.1</span>
+
+        <!-- Notification Bell (17) -->
+        <button class="icon-header-btn" title="Notifications">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="badge-count">17</span>
+        </button>
+
+        <div class="topbar-divider"></div>
+
+        <!-- User Profile Pill -->
+        <div class="user-profile-wrapper">
+          <div class="user-profile-pill" id="userProfileBtn">
+            <div class="user-profile-avatar">CS</div>
+            <span class="user-profile-name">Chanchal Sharma</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+
+          <div class="user-dropdown-menu" id="userDropdownMenu">
+            <div class="user-dropdown-item">My Profile</div>
+            <div class="user-dropdown-item" onclick="switchToListingView()">Property Settings</div>
+            <div class="user-dropdown-item" style="color: #DC2626;">Logout</div>
+            <div class="switch-workspace-section">
+              <span class="switch-workspace-label">Switch Workspace</span>
+              <div class="neumorphic-toggle-track" id="workspaceToggle">
+                <div class="neumorphic-track-bg">
+                  <span>Employee</span>
+                  <span>Admin</span>
+                </div>
+                <div class="neumorphic-thumb admin-active" id="workspaceThumb">Admin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Property Settings Subheader Tabstrip (Identical to Screenshots) -->
+    <section class="property-subnav-container">
+      <div class="subnav-top-meta">
+        <div class="subnav-breadcrumbs">
+          <a href="javascript:void(0)" onclick="navigateToHome()">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            Home
+          </a>
+          <span>›</span>
+          <span>Property Settings</span>
+          <span>›</span>
+          <span class="active-crumb" id="subnavCrumbTitle">Approval Flows</span>
+        </div>
+
+        <div class="menus-badge-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          9 Menus
+        </div>
+      </div>
+
+      <div class="property-tabstrip">
+        <button class="tab-nav-arrow" title="Scroll left" onclick="scrollTabs('left')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <a class="property-tab-pill" href="javascript:void(0)">Departments</a>
+        <a class="property-tab-pill" href="javascript:void(0)">Grades</a>
+        <a class="property-tab-pill" href="javascript:void(0)">Designations</a>
+        <a class="property-tab-pill active" href="javascript:void(0)" onclick="switchToListingView()">Approval Flows</a>
+        <a class="property-tab-pill" href="javascript:void(0)">Business Card Configurator</a>
+        <a class="property-tab-pill" href="javascript:void(0)">Appraisals</a>
+        <button class="tab-nav-arrow" title="Scroll right" onclick="scrollTabs('right')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- WORKSPACE VIEWPORT -->
+    <div class="workspace">
+      
+      <!-- ====================================================================
+           VIEW 1: REDESIGNED APPROVAL FLOWS LISTING SCREEN
+           ==================================================================== -->
+      <div class="listing-view" id="listingView">
+        
+        <!-- View Header -->
+        <div class="view-header">
+          <div class="view-title-group">
+            <h1 class="view-title">
+              Approval Flows
+            </h1>
+            <p class="view-subtitle">
+              Configure multi-tier hierarchies, managerial routing, and automated sign-off policies.
+            </p>
+          </div>
+
+          <div class="view-header-actions">
+            <button class="btn-ai-drafter" onclick="openAiDrafterModal()">
+              <span>✨</span>
+              HyIQ AI Drafter
+            </button>
+            <button class="btn-primary-purple" onclick="switchToCreateView()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Create Approval Flow
+            </button>
+          </div>
+        </div>
+
+        <!-- Sleek Governance Summary Strip (Saves 110px vertical space, zero clutter) -->
+        <div class="governance-strip">
+          <div class="gov-chip">
+            <div class="gov-chip-left">
+              <div class="gov-chip-icon gov-icon-purple">⚡</div>
+              <div>
+                <div class="gov-chip-title">Total Workflows</div>
+                <div class="gov-chip-val" id="kpiTotalCount">14 Configured</div>
+              </div>
+            </div>
+            <span class="gov-chip-badge badge-pri">7 Modules</span>
+          </div>
+
+          <div class="gov-chip">
+            <div class="gov-chip-left">
+              <div class="gov-chip-icon gov-icon-green">✓</div>
+              <div>
+                <div class="gov-chip-title">Active in Force</div>
+                <div class="gov-chip-val" id="kpiActiveCount">13 Live</div>
+              </div>
+            </div>
+            <span class="gov-chip-badge badge-ok">93% Enforced</span>
+          </div>
+
+          <div class="gov-chip">
+            <div class="gov-chip-left">
+              <div class="gov-chip-icon gov-icon-blue">🛡️</div>
+              <div>
+                <div class="gov-chip-title">Core Coverage</div>
+                <div class="gov-chip-val">5 / 7 Covered</div>
+              </div>
+            </div>
+            <span class="gov-chip-badge badge-info">2 Pending Default</span>
+          </div>
+
+          <div class="gov-chip">
+            <div class="gov-chip-left">
+              <div class="gov-chip-icon gov-icon-orange">⏱️</div>
+              <div>
+                <div class="gov-chip-title">Average SLA</div>
+                <div class="gov-chip-val">36 Hours</div>
+              </div>
+            </div>
+            <span class="gov-chip-badge badge-warn">Fast Track</span>
+          </div>
+        </div>
+
+        <!-- UNIFIED OPERATIONAL TOOLBAR (Modules + Search + Status + View) -->
+        <div class="unified-toolbar">
+          <!-- Module Filter Pills -->
+          <div class="module-pill-group" id="modulePillGroup">
+            <button class="mod-pill active" data-module="all" onclick="filterByModule('all', this)">
+              All Modules <span class="mod-pill-count">14</span>
+            </button>
+            <button class="mod-pill" data-module="expense" onclick="filterByModule('expense', this)">
+              💳 Expense <span class="mod-pill-count">8</span>
+            </button>
+            <button class="mod-pill" data-module="leave" onclick="filterByModule('leave', this)">
+              📅 Leave <span class="mod-pill-count">3</span>
+            </button>
+            <button class="mod-pill" data-module="attendance" onclick="filterByModule('attendance', this)">
+              ⏱️ Attendance <span class="mod-pill-count">1</span>
+            </button>
+            <button class="mod-pill" data-module="position" onclick="filterByModule('position', this)">
+              💼 Positions <span class="mod-pill-count">1</span>
+            </button>
+            <button class="mod-pill" data-module="notice_period" onclick="filterByModule('notice_period', this)">
+              🚪 Notice Period <span class="mod-pill-count">1</span>
+            </button>
+          </div>
+
+          <!-- Controls Right -->
+          <div class="toolbar-controls-right">
+            <div class="search-filter-wrap">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              <input type="text" placeholder="Search flows, roles, reviewers..." id="flowSearchInput" oninput="onSearchInput(this.value)">
+            </div>
+
+            <select class="status-filter-select" id="statusFilterSelect" onchange="filterByStatus(this.value)">
+              <option value="all">All Status (14)</option>
+              <option value="active">Active Only (13)</option>
+              <option value="draft">Draft Only (1)</option>
+            </select>
+
+            <div class="view-toggle-wrap">
+              <button class="view-btn active" id="btnCardView" title="Card View" onclick="switchViewMode('grid')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              </button>
+              <button class="view-btn" id="btnTableView" title="Dense Table View" onclick="switchViewMode('table')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              </button>
+            </div>
+
+            <button class="btn-refresh-tool" id="refreshBtn" title="Refresh Live Data" onclick="refreshWorkflowList()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Workflow Cards Grid View -->
+        <div class="workflow-grid" id="workflowCardsGrid"></div>
+
+        <!-- Dense Table View -->
+        <div class="dense-table-container" id="denseTableContainer">
+          <table class="dense-table">
+            <thead>
+              <tr>
+                <th>Workflow Name</th>
+                <th>Target Module</th>
+                <th>Governance Scope</th>
+                <th>Sequential Approval Pipeline</th>
+                <th>In-Flight</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="denseTableBody"></tbody>
+          </table>
+        </div>
+
+      </div>
+
+      <!-- ====================================================================
+           VIEW 2: REDESIGNED APPROVAL FLOW BUILDER (FORM)
+           ==================================================================== -->
+      <div class="builder-view" id="builderView">
+        
+        <!-- Sticky Builder Topbar -->
+        <div class="builder-topbar">
+          <div class="builder-topbar-left">
+            <button class="btn-back-link" onclick="switchToListingView()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              Back to Approval Flows
+            </button>
+
+            <div class="builder-title-meta">
+              <div class="builder-title-row">
+                <h2 class="builder-page-title" id="builderHeadingTitle">Create Approval Flow</h2>
+                <span class="builder-live-badge" id="builderStatusBadge">
+                  ✓ Active in Force
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="builder-topbar-right">
+            <button class="btn-ai-drafter" onclick="openSimulationModal()">
+              <span>⚡</span>
+              Test Simulation
+            </button>
+            <button class="btn-cancel-builder" onclick="switchToListingView()">
+              Cancel
+            </button>
+            <button class="btn-primary-purple" onclick="saveAndDeployWorkflow()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span id="deployBtnText">Deploy Flow</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2-Column Responsive Layout -->
+        <div class="builder-columns">
+          
+          <!-- LEFT COLUMN: Identity & Governance Rules -->
+          <div class="builder-left-col">
+            
+            <!-- Card 1: Identity & Scope -->
+            <div class="config-card">
+              <div class="config-card-header">
+                <div class="config-card-icon">📋</div>
+                <h3 class="config-card-title">Flow Identity & Scope</h3>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="targetAreaSelect">
+                  Target Operational Area <span class="req-star">*</span>
+                </label>
+                <select class="form-control" id="targetAreaSelect" onchange="onModuleChange(this.value)">
+                  <option value="expense">💳 Expense & Travel Claims</option>
+                  <option value="leave">📅 Leave & Absence Management</option>
+                  <option value="attendance">⏱️ Attendance Regularization</option>
+                  <option value="position">💼 Position Authorization & Vacancy</option>
+                  <option value="notice_period">🚪 Notice Period & Exit Clearance</option>
+                  <option value="appraisal">⭐ Appraisal Sign-off & Calibration</option>
+                </select>
+                <span class="form-helper" id="moduleScopeHelper">
+                  Standard policy governing employee reimbursement claims.
+                </span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="workflowNameInput">
+                  Flow Name <span class="req-star">*</span>
+                </label>
+                <input type="text" class="form-control" id="workflowNameInput" placeholder="e.g. Standard Expense Authorization" oninput="onNameInput(this.value)">
+                <span class="form-error-text" id="nameErrorText">Please provide a descriptive flow name.</span>
+                <span class="form-helper">Recognizable title displayed across approval queues.</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="workflowDescInput">Description (Optional)</label>
+                <textarea class="form-control" id="workflowDescInput" rows="2" placeholder="Conditions, criteria, or policy notes..."></textarea>
+              </div>
+
+              <!-- Default Toggle -->
+              <div class="setting-toggle-row">
+                <div class="setting-toggle-info">
+                  <span class="setting-toggle-title" id="defaultToggleTitle">Default Fallback Flow</span>
+                  <span class="setting-toggle-desc">Auto-selected when no conditional rule matches</span>
+                </div>
+                <div class="switch-ui on" id="toggleDefaultSwitch" onclick="toggleSwitch(this)">
+                  <div class="switch-handle"></div>
+                </div>
+              </div>
+
+              <!-- Active Status Toggle -->
+              <div class="setting-toggle-row">
+                <div class="setting-toggle-info">
+                  <span class="setting-toggle-title">Active in Force</span>
+                  <span class="setting-toggle-desc">Immediately gates live employee submissions</span>
+                </div>
+                <div class="switch-ui on" id="toggleActiveSwitch" onclick="toggleActiveSwitch(this)">
+                  <div class="switch-handle"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: Governance & Escalation -->
+            <div class="config-card">
+              <div class="config-card-header">
+                <div class="config-card-icon" style="background: #EFF6FF; color: #2563EB;">🛡️</div>
+                <h3 class="config-card-title">Governance & Fallback Policy</h3>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Vacant Approver Action</label>
+                <select class="form-control" id="fallbackSelect">
+                  <option value="skip_to_next">Skip to next approval tier automatically</option>
+                  <option value="route_to_hr">Route to HR Operations Queue</option>
+                  <option value="escalate_to_skip">Escalate to Submitter's Skip-Level Manager</option>
+                </select>
+              </div>
+
+              <div class="setting-toggle-row">
+                <div class="setting-toggle-info">
+                  <span class="setting-toggle-title">Prevent Self-Approval</span>
+                  <span class="setting-toggle-desc">Disallows submitters from approving their own request</span>
+                </div>
+                <div class="switch-ui on" onclick="toggleSwitch(this)"><div class="switch-handle"></div></div>
+              </div>
+
+              <div class="setting-toggle-row">
+                <div class="setting-toggle-info">
+                  <span class="setting-toggle-title">Allow Temporary Proxy</span>
+                  <span class="setting-toggle-desc">Approver may delegate to peer during planned PTO</span>
+                </div>
+                <div class="switch-ui on" onclick="toggleSwitch(this)"><div class="switch-handle"></div></div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT COLUMN: Visual Sequential Flowchart -->
+          <div class="builder-right-col">
+            <div class="hierarchy-header-bar">
+              <div class="hierarchy-title-wrap">
+                <h3 class="hierarchy-title">Sequential Approval Hierarchy</h3>
+                <span class="hierarchy-level-count" id="builderStepCountBadge">1 Level</span>
+              </div>
+
+              <button class="btn-ai-drafter" onclick="openAiDrafterModal()">
+                <span>✨</span>
+                HyIQ Blueprint Suggestions
+              </button>
+            </div>
+
+            <div class="flow-canvas" id="flowCanvas">
+              
+              <!-- Submitter Entry Node -->
+              <div class="node-submitter">
+                <div class="node-submitter-icon">👤</div>
+                <div class="node-submitter-texts">
+                  <span class="node-submitter-title" id="submitterNodeTitle">Submitter Initiates Request</span>
+                  <span class="node-submitter-sub">Request is validated against module criteria and routed to Level 1.</span>
+                </div>
+              </div>
+
+              <!-- Steps Rendered Dynamically -->
+              <div id="dynamicStepsContainer" style="width: 100%;"></div>
+
+              <!-- Connector -->
+              <div class="flow-connector"></div>
+
+              <!-- Add Step Button -->
+              <button class="btn-add-step-pipe" onclick="addNewApprovalStep()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span id="addLevelBtnText">+ Add Approval Level 2</span>
+              </button>
+
+              <!-- Connector -->
+              <div class="flow-connector"></div>
+
+              <!-- Terminal Outcomes -->
+              <div class="terminal-outcomes-wrap">
+                <div class="outcome-node outcome-approved">
+                  <span class="outcome-icon-approved">✓</span>
+                  <div class="outcome-texts">
+                    <span class="outcome-title">Final Approval</span>
+                    <span class="outcome-sub" id="outcomeApprovedDesc">Marks request fully approved and executes downstream dispatch.</span>
+                  </div>
+                </div>
+
+                <div class="outcome-node outcome-rejected">
+                  <span class="outcome-icon-rejected">✕</span>
+                  <div class="outcome-texts">
+                    <span class="outcome-title">On Rejection</span>
+                    <span class="outcome-sub">Returns request back to submitter with reviewer remarks and closes flow.</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- ==========================================================================
+     QUICK INSPECTION SLIDE-OVER DRAWER
+     ========================================================================== -->
+<div class="quick-drawer" id="quickDrawer">
+  <div class="drawer-head">
+    <div>
+      <h3 style="font-size: 15px; font-weight: 700; color: #0F172A;" id="drawerTitle">Workflow Details</h3>
+      <span style="font-size: 12px; color: #64748B;" id="drawerModule">Module Overview</span>
+    </div>
+    <button class="modal-close-btn" onclick="closeQuickDrawer()">✕</button>
+  </div>
+  <div class="drawer-body" id="drawerBody">
+    <!-- Populated dynamically via JS -->
+  </div>
+</div>
+
+<!-- ==========================================================================
+     AI BLUEPRINT DRAFTER MODAL
+     ========================================================================== -->
+<div class="modal-backdrop" id="aiDrafterModal">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div class="modal-head-title">
+        <span>✨</span> HyIQ Flow Blueprint Drafter
+      </div>
+      <button class="modal-close-btn" onclick="closeAiDrafterModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 13px; color: #64748B;">
+        Select an enterprise best-practice template to instantly configure sequential approval tiers and SLAs:
+      </p>
+
+      <div class="template-card" onclick="applyTemplate('capex')">
+        <div class="template-texts">
+          <span class="template-name">💳 3-Tier Capex & High-Value Claims (> $2,000)</span>
+          <span class="template-desc">Submitter → Direct Manager (24h) → Finance Controller (48h) → CFO Sign-off</span>
+        </div>
+        <button class="btn-apply-tpl">Apply</button>
+      </div>
+
+      <div class="template-card" onclick="applyTemplate('sick_leave')">
+        <div class="template-texts">
+          <span class="template-name">📅 Fast-Track Sick Leave (Single Level)</span>
+          <span class="template-desc">Submitter → Direct Manager (24h) → Auto-Approval on SLA Timeout</span>
+        </div>
+        <button class="btn-apply-tpl">Apply</button>
+      </div>
+
+      <div class="template-card" onclick="applyTemplate('notice_period')">
+        <div class="template-texts">
+          <span class="template-name">🚪 Resignation & Notice Period Clearance</span>
+          <span class="template-desc">Submitter → Direct Manager (48h) → HR Operations Handover (72h)</span>
+        </div>
+        <button class="btn-apply-tpl">Apply</button>
+      </div>
+
+      <div class="template-card" onclick="applyTemplate('position_req')">
+        <div class="template-texts">
+          <span class="template-name">💼 Headcount Opening Authorization</span>
+          <span class="template-desc">Hiring Manager → Department Head (48h) → HR Director → Finance Lead</span>
+        </div>
+        <button class="btn-apply-tpl">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     LIVE FLOW SIMULATOR MODAL
+     ========================================================================== -->
+<div class="modal-backdrop" id="simulatorModal">
+  <div class="modal-dialog">
+    <div class="modal-head">
+      <div class="modal-head-title">
+        <span>⚡</span> Live Flow Simulator
+      </div>
+      <button class="modal-close-btn" onclick="closeSimulationModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size: 13px; color: #64748B;">
+        Select a test employee to simulate how this workflow resolves their hierarchy in real-time:
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Select Test Employee Persona</label>
+        <select class="form-control" id="simEmployeeSelect" onchange="runSimulation()">
+          <option value="rahul">Rahul Verma — Senior Software Engineer (Engineering)</option>
+          <option value="neha">Neha Kapoor — Key Account Manager (Sales & Hospitality)</option>
+          <option value="aarav">Aarav Patel — Associate Guest Services (Front Office)</option>
+          <option value="meera">Meera Krishnan — Finance Analyst (Finance & Accounts)</option>
+        </select>
+      </div>
+
+      <div class="sim-result-box" id="simResultBox">
+        <!-- Evaluated dynamically -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ==========================================================================
+     APPLICATION SCRIPT
+     ========================================================================== -->
+<script>
+  // Initial Mock Workflows (Enterprise Sample Data)
+  const INITIAL_WORKFLOWS = [
+    {
+      id: 'wf_exp_01',
+      name: 'Standard Expense Authorization',
+      module: 'expense',
+      policyType: 'default',
+      status: 'active',
+      description: 'Default catch-all flow for general business expenses, travel meals, and client hospitality claims under $1,000',
+      steps: [
+        { order: 1, label: 'Direct Manager Approval', routingMethod: 'direct_manager', hierarchyDepth: 1, slaHours: 48, required: true }
+      ],
+      inFlightCount: 4,
+      lastModified: 'Yesterday'
+    },
+    {
+      id: 'wf_exp_02',
+      name: 'Capital Expenditure & Hardware (> $2,500)',
+      module: 'expense',
+      policyType: 'scoped',
+      status: 'active',
+      description: 'Multi-tier review for IT workstation purchases, high-value asset acquisitions, and conference expenses',
+      steps: [
+        { order: 1, label: 'Direct Manager Review', routingMethod: 'direct_manager', hierarchyDepth: 1, slaHours: 24, required: true },
+        { order: 2, label: 'Finance Controller Sign-off', routingMethod: 'role_queue', role: 'Finance Controller', slaHours: 48, required: true },
+        { order: 3, label: 'Chief Financial Officer', routingMethod: 'specific_person', person: 'Priya Sharma (CFO)', slaHours: 72, required: true }
+      ],
+      inFlightCount: 3,
+      lastModified: '14 Sep 2026'
+    },
+    {
+      id: 'wf_leave_01',
+      name: 'Standard Annual & Casual Leave Policy',
+      module: 'leave',
+      policyType: 'default',
+      status: 'active',
+      description: 'Standard vacation and planned personal leave approval flow for all permanent property staff',
+      steps: [
+        { order: 1, label: 'Reporting Line Manager', routingMethod: 'direct_manager', hierarchyDepth: 1, slaHours: 48, required: true }
+      ],
+      inFlightCount: 6,
+      lastModified: '12 Sep 2026'
+    },
+    {
+      id: 'wf_leave_02',
+      name: 'Extended Medical & Sabbatical Leave (> 14 Days)',
+      module: 'leave',
+      policyType: 'scoped',
+      status: 'active',
+      description: 'Two-tier verification requiring medical documentation sign-off and HR operations clearance',
+      steps: [
+        { order: 1, label: 'Department Head Review', routingMethod: 'direct_manager', hierarchyDepth: 2, slaHours: 48, required: true },
+        { order: 2, label: 'HR People Operations Queue', routingMethod: 'role_queue', role: 'HR Operations', slaHours: 48, required: true }
+      ],
+      inFlightCount: 1,
+      lastModified: '08 Sep 2026'
+    },
+    {
+      id: 'wf_att_01',
+      name: 'Shift Clock & Biometric Correction',
+      module: 'attendance',
+      policyType: 'default',
+      status: 'active',
+      description: 'Automated manager sign-off for missed card punches, duty travel regularizations, and split-shift overrides',
+      steps: [
+        { order: 1, label: 'Immediate Shift Supervisor', routingMethod: 'direct_manager', hierarchyDepth: 1, slaHours: 24, required: true }
+      ],
+      inFlightCount: 8,
+      lastModified: '15 Sep 2026'
+    },
+    {
+      id: 'wf_pos_01',
+      name: 'New Headcount Requisition Approval',
+      module: 'position',
+      policyType: 'default',
+      status: 'active',
+      description: 'Comprehensive 3-stage chain required to approve unbudgeted job positions before recruiting opens',
+      steps: [
+        { order: 1, label: 'Department Head', routingMethod: 'direct_manager', hierarchyDepth: 2, slaHours: 48, required: true },
+        { order: 2, label: 'Compensation & Budget Controller', routingMethod: 'role_queue', role: 'Finance Controller', slaHours: 48, required: true },
+        { order: 3, label: 'Managing Director Sign-off', routingMethod: 'specific_person', person: 'Chanchal Sharma (GM)', slaHours: 72, required: true }
+      ],
+      inFlightCount: 2,
+      lastModified: '10 Sep 2026'
+    },
+    {
+      id: 'wf_not_01',
+      name: 'Notice Period & Exit Clearance Protocol',
+      module: 'notice_period',
+      policyType: 'default',
+      status: 'active',
+      description: 'Formal clearance coordination across reporting line manager, IT asset returns, and accounts settlement',
+      steps: [
+        { order: 1, label: 'Direct Reporting Manager', routingMethod: 'direct_manager', hierarchyDepth: 1, slaHours: 48, required: true },
+        { order: 2, label: 'HR Exit Coordinator', routingMethod: 'role_queue', role: 'HR Operations', slaHours: 72, required: true }
+      ],
+      inFlightCount: 1,
+      lastModified: '04 Sep 2026'
+    },
+    {
+      id: 'wf_exp_03',
+      name: 'Client Entertainment & Executive Dining',
+      module: 'expense',
+      policyType: 'scoped',
+      status: 'draft',
+      description: 'Proposed expedited flow for executive dining and client business development expenses',
+      steps: [
+        { order: 1, label: 'General Manager', routingMethod: 'specific_person', person: 'Chanchal Sharma (GM)', slaHours: 24, required: true }
+      ],
+      inFlightCount: 0,
+      lastModified: '16 Sep 2026'
+    }
+  ];
+
+  // App State
+  let workflows = [...INITIAL_WORKFLOWS];
+  let currentModule = 'all';
+  let currentStatus = 'all';
+  let searchQuery = '';
+  let viewMode = 'grid'; // 'grid' | 'table'
+
+  // Builder State
+  let activeEditingWorkflow = null;
+  let builderSteps = [];
+
+  // Module Configuration & Display metadata
+  const MODULE_METADATA = {
+    expense: { name: 'Expense', icon: '💳', iconClass: 'icon-bg-expense' },
+    leave: { name: 'Leave', icon: '📅', iconClass: 'icon-bg-leave' },
+    attendance: { name: 'Attendance', icon: '⏱️', iconClass: 'icon-bg-attendance' },
+    position: { name: 'Positions', icon: '💼', iconClass: 'icon-bg-position' },
+    notice_period: { name: 'Notice Period', icon: '🚪', iconClass: 'icon-bg-notice' },
+    appraisal: { name: 'Appraisal', icon: '⭐', iconClass: 'icon-bg-appraisal' }
+  };
+
+  // DOM Elements
+  const appSidebar = document.getElementById('appSidebar');
+  const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+  const headerToggleBtn = document.getElementById('headerToggleBtn');
+  const listingView = document.getElementById('listingView');
+  const builderView = document.getElementById('builderView');
+  const workflowCardsGrid = document.getElementById('workflowCardsGrid');
+  const denseTableContainer = document.getElementById('denseTableContainer');
+  const denseTableBody = document.getElementById('denseTableBody');
+
+  // Initialization
+  document.addEventListener('DOMContentLoaded', () => {
+    initSidebar();
+    initUserProfile();
+    renderWorkflows();
+  });
+
+  function initSidebar() {
+    const toggle = () => appSidebar.classList.toggle('collapsed');
+    sidebarToggleBtn.addEventListener('click', toggle);
+    headerToggleBtn.addEventListener('click', toggle);
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'b') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  }
+
+  function initUserProfile() {
+    const btn = document.getElementById('userProfileBtn');
+    const menu = document.getElementById('userDropdownMenu');
+    const wsToggle = document.getElementById('workspaceToggle');
+    const wsThumb = document.getElementById('workspaceThumb');
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+      menu.classList.remove('show');
+      closeAllCardMenus();
+    });
+
+    wsToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (wsThumb.classList.contains('admin-active')) {
+        wsThumb.classList.remove('admin-active');
+        wsThumb.textContent = 'Employee';
+        showToast('Switched to Employee Workspace');
+      } else {
+        wsThumb.classList.add('admin-active');
+        wsThumb.textContent = 'Admin';
+        showToast('Switched to Admin Workspace');
+      }
+    });
+  }
+
+  // ==========================================================================
+  // LISTING RENDER LOGIC
+  // ==========================================================================
+  function renderWorkflows() {
+    const filtered = workflows.filter(w => {
+      if (currentModule !== 'all' && w.module !== currentModule) return false;
+      if (currentStatus !== 'all' && w.status !== currentStatus) return false;
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        const matchesName = w.name.toLowerCase().includes(q);
+        const matchesDesc = (w.description || '').toLowerCase().includes(q);
+        const matchesModule = w.module.toLowerCase().includes(q);
+        if (!matchesName && !matchesDesc && !matchesModule) return false;
+      }
+      return true;
+    });
+
+    // Update KPI counters
+    const totalCount = workflows.length;
+    const activeCount = workflows.filter(w => w.status === 'active').length;
+    document.getElementById('kpiTotalCount').textContent = `${totalCount} Configured`;
+    document.getElementById('kpiActiveCount').textContent = `${activeCount} Live`;
+
+    // Render Cards
+    workflowCardsGrid.innerHTML = '';
+    if (filtered.length === 0) {
+      workflowCardsGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; text-align: center; padding: 48px; background: #FFFFFF; border-radius: 12px; border: 1px solid #E2E8F0;">
+          <p style="font-size: 16px; font-weight: 600; color: #0F172A; margin-bottom: 6px;">No workflows found</p>
+          <p style="font-size: 13px; color: #64748B;">Try adjusting your search query or module filters.</p>
+        </div>
+      `;
+    } else {
+      filtered.forEach(wf => {
+        const meta = MODULE_METADATA[wf.module] || { name: wf.module, icon: '📋', iconClass: 'icon-bg-expense' };
+        const card = document.createElement('div');
+        card.className = `wf-card ${wf.status === 'active' ? '' : 'inactive'}`;
+        card.onclick = () => editWorkflowById(wf.id);
+
+        card.innerHTML = `
+          <!-- Top Row -->
+          <div class="wf-card-top">
+            <div class="wf-card-title-group">
+              <div class="wf-module-icon-wrap ${meta.iconClass}">
+                ${meta.icon}
+              </div>
+              <div class="wf-card-info">
+                <div class="wf-card-name-row">
+                  <span class="wf-card-name">${wf.name}</span>
+                  ${wf.policyType === 'default' 
+                    ? `<span class="wf-tag-default">🛡️ Default Fallback</span>` 
+                    : `<span class="wf-tag-scoped">Scoped Rule</span>`
+                  }
+                </div>
+                <p class="wf-card-desc">${wf.description || 'Standard automated sign-off policy.'}</p>
+              </div>
+            </div>
+
+            <div class="wf-card-top-actions" onclick="event.stopPropagation()">
+              <div class="switch-ui ${wf.status === 'active' ? 'on' : ''}" title="Toggle Active Status" onclick="toggleWorkflowStatus('${wf.id}')">
+                <div class="switch-handle"></div>
+              </div>
+
+              <button class="card-dots-btn" title="More options" onclick="openCardMenu(event, '${wf.id}')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+              </button>
+
+              <div class="card-menu-dropdown" id="menu-${wf.id}">
+                <div class="card-menu-item" onclick="editWorkflowById('${wf.id}')">
+                  ✏️ Edit Flow
+                </div>
+                <div class="card-menu-item" onclick="openQuickDrawer('${wf.id}')">
+                  🔍 Inspect Rules
+                </div>
+                <div class="card-menu-item" onclick="duplicateWorkflowById('${wf.id}')">
+                  📄 Duplicate
+                </div>
+                <div class="card-menu-item danger" onclick="deleteWorkflowById('${wf.id}')">
+                  🗑️ Delete
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step Pipeline Strip -->
+          <div class="wf-pipeline-strip">
+            <div class="pipe-step-pill" style="background: #F1F5F9;">
+              <span>👤 Submitter</span>
+            </div>
+            <span class="pipe-arrow">→</span>
+            ${wf.steps.map(s => `
+              <div class="pipe-step-pill">
+                <span class="pipe-step-num">${s.order}</span>
+                <span>${s.label}</span>
+                <span style="color: #64748B; font-weight: 400; font-size: 11px;">(${s.slaHours || 48}h)</span>
+              </div>
+              <span class="pipe-arrow">→</span>
+            `).join('')}
+            <div class="pipe-final-badge">
+              ✓ Approved
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="wf-card-footer">
+            <div class="wf-meta-tags">
+              <span class="wf-meta-item">In-flight: <strong>${wf.inFlightCount || 0}</strong></span>
+              <span>•</span>
+              <span>Updated: ${wf.lastModified || 'Recent'}</span>
+            </div>
+            <div class="wf-footer-buttons" onclick="event.stopPropagation()">
+              <button class="btn-card-inspect" onclick="openQuickDrawer('${wf.id}')">Inspect</button>
+              <button class="btn-card-edit" onclick="editWorkflowById('${wf.id}')">Edit Flow →</button>
+            </div>
+          </div>
+        `;
+
+        workflowCardsGrid.appendChild(card);
+      });
+    }
+
+    // Render Table View
+    denseTableBody.innerHTML = '';
+    filtered.forEach(wf => {
+      const meta = MODULE_METADATA[wf.module] || { name: wf.module, icon: '📋' };
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="font-weight: 700; color: #0F172A;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 16px;">${meta.icon}</span>
+            <span>${wf.name}</span>
+          </div>
+        </td>
+        <td>
+          <span style="font-weight: 500;">${meta.name}</span>
+        </td>
+        <td>
+          ${wf.policyType === 'default' ? '<span class="wf-tag-default">Default</span>' : '<span class="wf-tag-scoped">Scoped</span>'}
+        </td>
+        <td>
+          <div style="display: flex; align-items: center; gap: 6px; font-size: 12px;">
+            ${wf.steps.map(s => `<span style="background: #F1F5F9; padding: 2px 7px; border-radius: 4px; font-weight: 600;">${s.order}. ${s.label}</span>`).join(' → ')}
+            <span>→</span>
+            <span style="color: #15803D; font-weight: 700;">✓ Approved</span>
+          </div>
+        </td>
+        <td><strong>${wf.inFlightCount || 0}</strong> active</td>
+        <td>
+          <span style="font-weight: 600; color: ${wf.status === 'active' ? '#15803D' : '#64748B'};">
+            ${wf.status === 'active' ? '● Active' : '○ Draft'}
+          </span>
+        </td>
+        <td>
+          <button class="btn-card-edit" onclick="editWorkflowById('${wf.id}')">Edit</button>
+        </td>
+      `;
+      denseTableBody.appendChild(tr);
+    });
+  }
+
+  // Filter actions
+  function filterByModule(key, btn) {
+    currentModule = key;
+    document.querySelectorAll('.mod-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderWorkflows();
+  }
+
+  function filterByStatus(status) {
+    currentStatus = status;
+    renderWorkflows();
+  }
+
+  function onSearchInput(val) {
+    searchQuery = val;
+    renderWorkflows();
+  }
+
+  function switchViewMode(mode) {
+    viewMode = mode;
+    const btnCard = document.getElementById('btnCardView');
+    const btnTable = document.getElementById('btnTableView');
+    if (mode === 'grid') {
+      btnCard.classList.add('active');
+      btnTable.classList.remove('active');
+      workflowCardsGrid.style.display = 'grid';
+      denseTableContainer.style.display = 'none';
+    } else {
+      btnTable.classList.add('active');
+      btnCard.classList.remove('active');
+      workflowCardsGrid.style.display = 'none';
+      denseTableContainer.style.display = 'block';
+    }
+  }
+
+  function refreshWorkflowList() {
+    const btn = document.getElementById('refreshBtn');
+    btn.classList.add('rotating');
+    setTimeout(() => {
+      btn.classList.remove('rotating');
+      renderWorkflows();
+      showToast('Workflows synced with live property policies');
+    }, 500);
+  }
+
+  function toggleWorkflowStatus(id) {
+    const wf = workflows.find(w => w.id === id);
+    if (wf) {
+      wf.status = wf.status === 'active' ? 'draft' : 'active';
+      renderWorkflows();
+      showToast(`${wf.name} set to ${wf.status.toUpperCase()}`);
+    }
+  }
+
+  function openCardMenu(e, id) {
+    e.stopPropagation();
+    closeAllCardMenus();
+    const menu = document.getElementById(`menu-${id}`);
+    if (menu) menu.classList.add('open');
+  }
+
+  function closeAllCardMenus() {
+    document.querySelectorAll('.card-menu-dropdown').forEach(m => m.classList.remove('open'));
+  }
+
+  function duplicateWorkflowById(id) {
+    const original = workflows.find(w => w.id === id);
+    if (!original) return;
+    const copy = JSON.parse(JSON.stringify(original));
+    copy.id = 'wf_copy_' + Date.now();
+    copy.name = `${original.name} (Copy)`;
+    copy.policyType = 'scoped';
+    copy.inFlightCount = 0;
+    workflows.unshift(copy);
+    renderWorkflows();
+    showToast(`Duplicated "${original.name}"`);
+  }
+
+  function deleteWorkflowById(id) {
+    const wf = workflows.find(w => w.id === id);
+    if (!wf) return;
+    if (confirm(`Are you sure you want to delete "${wf.name}"?`)) {
+      workflows = workflows.filter(w => w.id !== id);
+      renderWorkflows();
+      showToast(`Deleted "${wf.name}"`);
+    }
+  }
+
+  // ==========================================================================
+  // VIEW SWITCHING (LISTING <-> BUILDER)
+  // ==========================================================================
+  function switchToListingView() {
+    builderView.style.display = 'none';
+    listingView.style.display = 'flex';
+    document.getElementById('subnavCrumbTitle').textContent = 'Approval Flows';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function switchToCreateView() {
+    activeEditingWorkflow = null;
+    builderSteps = [
+      { order: 1, label: 'Direct Manager Approval', routingMethod: 'direct_manager', hierarchyDepth: 1, slaHours: 48, required: true }
+    ];
+
+    document.getElementById('builderHeadingTitle').textContent = 'Create Approval Flow';
+    document.getElementById('workflowNameInput').value = '';
+    document.getElementById('workflowNameInput').classList.remove('has-error');
+    document.getElementById('nameErrorText').classList.remove('show');
+    document.getElementById('workflowDescInput').value = '';
+    document.getElementById('targetAreaSelect').value = 'expense';
+    document.getElementById('deployBtnText').textContent = 'Deploy Flow';
+
+    updateModuleScopeHelper('expense');
+    renderBuilderSteps();
+
+    listingView.style.display = 'none';
+    builderView.style.display = 'flex';
+    document.getElementById('subnavCrumbTitle').textContent = 'Create Flow';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function editWorkflowById(id) {
+    const wf = workflows.find(w => w.id === id);
+    if (!wf) return;
+    activeEditingWorkflow = wf;
+    builderSteps = JSON.parse(JSON.stringify(wf.steps));
+
+    document.getElementById('builderHeadingTitle').textContent = `Edit Flow: ${wf.name}`;
+    document.getElementById('workflowNameInput').value = wf.name;
+    document.getElementById('workflowNameInput').classList.remove('has-error');
+    document.getElementById('nameErrorText').classList.remove('show');
+    document.getElementById('workflowDescInput').value = wf.description || '';
+    document.getElementById('targetAreaSelect').value = wf.module;
+    document.getElementById('deployBtnText').textContent = 'Save Changes';
+
+    document.getElementById('toggleDefaultSwitch').classList.toggle('on', wf.policyType === 'default');
+    document.getElementById('toggleActiveSwitch').classList.toggle('on', wf.status === 'active');
+
+    updateModuleScopeHelper(wf.module);
+    renderBuilderSteps();
+
+    listingView.style.display = 'none';
+    builderView.style.display = 'flex';
+    document.getElementById('subnavCrumbTitle').textContent = `Edit: ${wf.name}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Module contextual helpers
+  const SCOPE_DEFINITIONS = {
+    expense: {
+      helper: 'Standard policy governing employee reimbursement claims & travel expenses.',
+      submitter: 'Submitter Initiates Expense Request',
+      approved: 'Marks the expense claim approved and records who reviewed it.'
+    },
+    leave: {
+      helper: 'Policy governing paid time off, casual leaves, and statutory absences.',
+      submitter: 'Submitter Submits Leave Request',
+      approved: 'Deducts leave duration from balance and updates calendar.'
+    },
+    attendance: {
+      helper: 'Biometric time clock adjustments and manual shift regularizations.',
+      submitter: 'Submitter Requests Time Regularization',
+      approved: 'Adjusts attendance log and syncs with monthly payroll cycle.'
+    },
+    position: {
+      helper: 'Authorizations for job requisition, headcount budget, and new positions.',
+      submitter: 'Manager Requests New Headcount',
+      approved: 'Authorizes job requisition and publishes to talent acquisition.'
+    },
+    notice_period: {
+      helper: 'Planned employee departures, notice periods, and cross-department clearance.',
+      submitter: 'Employee Initiates Resignation',
+      approved: 'Confirms notice period timeline and initiates exit checklist.'
+    },
+    appraisal: {
+      helper: 'Annual review calibrations, bonus sign-offs, and promotion sign-offs.',
+      submitter: 'Manager Submits Performance Rating',
+      approved: 'Locks appraisal evaluation and applies calibration matrix.'
+    }
+  };
+
+  function updateModuleScopeHelper(moduleKey) {
+    const data = SCOPE_DEFINITIONS[moduleKey] || SCOPE_DEFINITIONS.expense;
+    document.getElementById('moduleScopeHelper').textContent = data.helper;
+    document.getElementById('submitterNodeTitle').textContent = data.submitter;
+    document.getElementById('outcomeApprovedDesc').textContent = data.approved;
+    document.getElementById('defaultToggleTitle').textContent = `Default for ${MODULE_METADATA[moduleKey]?.name || 'Module'}`;
+  }
+
+  function onModuleChange(val) {
+    updateModuleScopeHelper(val);
+  }
+
+  function onNameInput(val) {
+    const input = document.getElementById('workflowNameInput');
+    const err = document.getElementById('nameErrorText');
+    if (val.trim()) {
+      input.classList.remove('has-error');
+      err.classList.remove('show');
+    }
+  }
+
+  function toggleSwitch(elem) {
+    elem.classList.toggle('on');
+  }
+
+  function toggleActiveSwitch(elem) {
+    elem.classList.toggle('on');
+    const badge = document.getElementById('builderStatusBadge');
+    if (elem.classList.contains('on')) {
+      badge.style.background = '#DCFCE7';
+      badge.style.color = '#15803D';
+      badge.textContent = '✓ Active in Force';
+    } else {
+      badge.style.background = '#F1F5F9';
+      badge.style.color = '#64748B';
+      badge.textContent = '○ Draft Mode';
+    }
+  }
+
+  // ==========================================================================
+  // BUILDER STEPS LOGIC (REORDER, ADD, REMOVE, ROUTING SELECTOR)
+  // ==========================================================================
+  function renderBuilderSteps() {
+    const container = document.getElementById('dynamicStepsContainer');
+    container.innerHTML = '';
+
+    builderSteps.forEach((step, index) => {
+      step.order = index + 1;
+      const isFirst = index === 0;
+      const isLast = index === builderSteps.length - 1;
+
+      // Vertical spine connector
+      const conn = document.createElement('div');
+      conn.className = 'flow-connector';
+      container.appendChild(conn);
+
+      const card = document.createElement('div');
+      card.className = 'step-node-card';
+      card.innerHTML = `
+        <div class="step-card-head">
+          <div class="step-card-head-left">
+            <div class="step-number-circle">${step.order}</div>
+            <span class="step-name-heading">Level ${step.order} Review</span>
+            <span class="step-method-pill">${getRoutingBadgeText(step.routingMethod)}</span>
+          </div>
+
+          <div class="step-card-head-right">
+            <button class="step-icon-btn" title="Move Up" ${isFirst ? 'disabled' : ''} onclick="moveStep(${index}, -1)">↑</button>
+            <button class="step-icon-btn" title="Move Down" ${isLast ? 'disabled' : ''} onclick="moveStep(${index}, 1)">↓</button>
+            ${builderSteps.length > 1 ? `
+              <button class="step-icon-btn btn-del" title="Remove Step" onclick="removeStep(${index})">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              </button>
+            ` : ''}
+          </div>
+        </div>
+
+        <!-- Step Label Input -->
+        <div class="form-group">
+          <label class="form-label">Step Label <span class="req-star">*</span></label>
+          <input type="text" class="form-control" value="${step.label}" oninput="updateStepLabel(${index}, this.value)">
+        </div>
+
+        <!-- Approver Routing Method (Compact 3-Tab Selector) -->
+        <div class="routing-method-container">
+          <div class="routing-label-row">
+            <span>Approver Routing Method</span>
+            <span style="font-size: 11.5px; color: #7C3AED; font-weight: 500; cursor: pointer;" onclick="showToast('Org hierarchy preview loaded')">Explore Org Chart ↗</span>
+          </div>
+
+          <div class="routing-selector-grid">
+            <div class="routing-tab-opt ${step.routingMethod === 'direct_manager' ? 'selected' : ''}" onclick="setStepRouting(${index}, 'direct_manager')">
+              <span class="routing-opt-icon">👔</span>
+              <div class="routing-opt-texts">
+                <span class="routing-opt-title">Direct Manager</span>
+                <span class="routing-opt-sub">Org Hierarchy</span>
+              </div>
+            </div>
+
+            <div class="routing-tab-opt ${step.routingMethod === 'role_queue' ? 'selected' : ''}" onclick="setStepRouting(${index}, 'role_queue')">
+              <span class="routing-opt-icon">👥</span>
+              <div class="routing-opt-texts">
+                <span class="routing-opt-title">Designation Role</span>
+                <span class="routing-opt-sub">Shared Role Queue</span>
+              </div>
+            </div>
+
+            <div class="routing-tab-opt ${step.routingMethod === 'specific_person' ? 'selected' : ''}" onclick="setStepRouting(${index}, 'specific_person')">
+              <span class="routing-opt-icon">👤</span>
+              <div class="routing-opt-texts">
+                <span class="routing-opt-title">Specific Person</span>
+                <span class="routing-opt-sub">Named Individual</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Contextual Configuration -->
+          <div class="step-subconfig-box">
+            ${renderStepContextualInputs(step, index)}
+          </div>
+        </div>
+
+        <!-- Required Switch -->
+        <div class="setting-toggle-row" style="padding-bottom: 0;">
+          <div class="setting-toggle-info">
+            <span class="setting-toggle-title">Required Level</span>
+            <span class="setting-toggle-desc">Mandatory sign-off before unlocking next tier</span>
+          </div>
+          <div class="switch-ui ${step.required !== false ? 'on' : ''}" onclick="toggleSwitch(this)"><div class="switch-handle"></div></div>
+        </div>
+      `;
+
+      container.appendChild(card);
+    });
+
+    const count = builderSteps.length;
+    document.getElementById('builderStepCountBadge').textContent = `${count} ${count === 1 ? 'Level' : 'Levels'}`;
+    document.getElementById('addLevelBtnText').textContent = `+ Add Approval Level ${count + 1}`;
+  }
+
+  function getRoutingBadgeText(method) {
+    if (method === 'direct_manager') return '🌿 Reporting Line';
+    if (method === 'role_queue') return '👥 Role Queue';
+    if (method === 'specific_person') return '👤 Named Person';
+    return '🌿 Reporting Line';
+  }
+
+  function renderStepContextualInputs(step, index) {
+    if (step.routingMethod === 'direct_manager') {
+      return `
+        <span class="subconfig-hint">
+          ⚡ Goes to the submitter's direct manager, or the next active manager above them.
+        </span>
+        <div class="form-group">
+          <label class="form-label">Hierarchy Level</label>
+          <select class="form-control" onchange="updateStepParam(${index}, 'hierarchyDepth', this.value)">
+            <option value="1" ${step.hierarchyDepth === 1 ? 'selected' : ''}>Level 1 — Direct Reporting Manager</option>
+            <option value="2" ${step.hierarchyDepth === 2 ? 'selected' : ''}>Level 2 — Skip-Level Department Head</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sign-off SLA</label>
+          <select class="form-control" onchange="updateStepParam(${index}, 'slaHours', this.value)">
+            <option value="24" ${step.slaHours === 24 ? 'selected' : ''}>24 Hours (Fast Track)</option>
+            <option value="48" ${step.slaHours === 48 || !step.slaHours ? 'selected' : ''}>48 Hours (Standard)</option>
+            <option value="72" ${step.slaHours === 72 ? 'selected' : ''}>72 Hours</option>
+          </select>
+        </div>
+      `;
+    } else if (step.routingMethod === 'role_queue') {
+      return `
+        <div class="form-group">
+          <label class="form-label">Designated Role Queue</label>
+          <select class="form-control" onchange="updateStepParam(${index}, 'role', this.value)">
+            <option value="Finance Controller" ${step.role === 'Finance Controller' ? 'selected' : ''}>Finance Controller & Accounts</option>
+            <option value="HR Operations" ${step.role === 'HR Operations' ? 'selected' : ''}>HR People Operations Queue</option>
+            <option value="IT Infrastructure" ${step.role === 'IT Infrastructure' ? 'selected' : ''}>IT Infrastructure Admin</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sign-off SLA</label>
+          <select class="form-control" onchange="updateStepParam(${index}, 'slaHours', this.value)">
+            <option value="24" ${step.slaHours === 24 ? 'selected' : ''}>24 Hours</option>
+            <option value="48" ${step.slaHours === 48 || !step.slaHours ? 'selected' : ''}>48 Hours (Standard)</option>
+            <option value="72" ${step.slaHours === 72 ? 'selected' : ''}>72 Hours</option>
+          </select>
+        </div>
+      `;
+    } else {
+      return `
+        <div class="form-group">
+          <label class="form-label">Select Designated Individual</label>
+          <select class="form-control" onchange="updateStepParam(${index}, 'person', this.value)">
+            <option value="Priya Sharma (CFO)" ${step.person?.includes('Priya') ? 'selected' : ''}>Priya Sharma — Chief Financial Officer</option>
+            <option value="Chanchal Sharma (GM)" ${step.person?.includes('Chanchal') ? 'selected' : ''}>Chanchal Sharma — Property General Manager</option>
+            <option value="Ananya Roy (HRD)" ${step.person?.includes('Ananya') ? 'selected' : ''}>Ananya Roy — HR Director</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Sign-off SLA</label>
+          <select class="form-control" onchange="updateStepParam(${index}, 'slaHours', this.value)">
+            <option value="48" ${step.slaHours === 48 || !step.slaHours ? 'selected' : ''}>48 Hours</option>
+            <option value="72" ${step.slaHours === 72 ? 'selected' : ''}>72 Hours</option>
+            <option value="120" ${step.slaHours === 120 ? 'selected' : ''}>5 Days</option>
+          </select>
+        </div>
+      `;
+    }
+  }
+
+  function updateStepLabel(index, val) {
+    if (builderSteps[index]) builderSteps[index].label = val;
+  }
+
+  function setStepRouting(index, method) {
+    if (builderSteps[index]) {
+      builderSteps[index].routingMethod = method;
+      renderBuilderSteps();
+    }
+  }
+
+  function updateStepParam(index, field, val) {
+    if (builderSteps[index]) {
+      builderSteps[index][field] = isNaN(val) ? val : Number(val);
+    }
+  }
+
+  function moveStep(index, dir) {
+    const target = index + dir;
+    if (target < 0 || target >= builderSteps.length) return;
+    const temp = builderSteps[index];
+    builderSteps[index] = builderSteps[target];
+    builderSteps[target] = temp;
+    renderBuilderSteps();
+  }
+
+  function removeStep(index) {
+    if (builderSteps.length <= 1) return;
+    builderSteps.splice(index, 1);
+    renderBuilderSteps();
+  }
+
+  function addNewApprovalStep() {
+    const num = builderSteps.length + 1;
+    builderSteps.push({
+      order: num,
+      label: `Level ${num} Review`,
+      routingMethod: 'role_queue',
+      role: 'Finance Controller',
+      slaHours: 48,
+      required: true
+    });
+    renderBuilderSteps();
+    showToast(`Added Level ${num} approval tier`);
+  }
+
+  // Save & Deploy
+  function saveAndDeployWorkflow() {
+    const nameInput = document.getElementById('workflowNameInput');
+    const name = nameInput.value.trim();
+    if (!name) {
+      nameInput.classList.add('has-error');
+      document.getElementById('nameErrorText').classList.add('show');
+      nameInput.focus();
+      showToast('Please specify a flow name', true);
+      return;
+    }
+
+    const moduleKey = document.getElementById('targetAreaSelect').value;
+    const desc = document.getElementById('workflowDescInput').value.trim();
+    const isDefault = document.getElementById('toggleDefaultSwitch').classList.contains('on');
+    const isActive = document.getElementById('toggleActiveSwitch').classList.contains('on');
+
+    if (activeEditingWorkflow) {
+      activeEditingWorkflow.name = name;
+      activeEditingWorkflow.module = moduleKey;
+      activeEditingWorkflow.description = desc;
+      activeEditingWorkflow.policyType = isDefault ? 'default' : 'scoped';
+      activeEditingWorkflow.status = isActive ? 'active' : 'draft';
+      activeEditingWorkflow.steps = JSON.parse(JSON.stringify(builderSteps));
+      activeEditingWorkflow.lastModified = 'Just now';
+      showToast(`Updated "${name}" successfully`);
+    } else {
+      const newWf = {
+        id: 'wf_' + Date.now(),
+        name: name,
+        module: moduleKey,
+        policyType: isDefault ? 'default' : 'scoped',
+        status: isActive ? 'active' : 'draft',
+        description: desc || 'Configured approval workflow.',
+        steps: JSON.parse(JSON.stringify(builderSteps)),
+        inFlightCount: 0,
+        lastModified: 'Just now'
+      };
+      workflows.unshift(newWf);
+      showToast(`Deployed "${name}" successfully`);
+    }
+
+    renderWorkflows();
+    switchToListingView();
+  }
+
+  // ==========================================================================
+  // QUICK INSPECTION DRAWER
+  // ==========================================================================
+  function openQuickDrawer(id) {
+    const wf = workflows.find(w => w.id === id);
+    if (!wf) return;
+    const meta = MODULE_METADATA[wf.module] || { name: wf.module, icon: '📋' };
+
+    document.getElementById('drawerTitle').textContent = wf.name;
+    document.getElementById('drawerModule').textContent = `${meta.icon} ${meta.name} • ${wf.policyType === 'default' ? 'Default Fallback Policy' : 'Scoped Custom Rule'}`;
+
+    const body = document.getElementById('drawerBody');
+    body.innerHTML = `
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px; font-size: 13px;">
+        <div style="font-weight: 600; color: #1E293B; margin-bottom: 4px;">Policy Summary</div>
+        <p style="color: #64748B;">${wf.description || 'No description provided.'}</p>
+      </div>
+
+      <div style="font-size: 13px; font-weight: 700; color: #0F172A;">Sequential Approval Chain (${wf.steps.length} Tiers)</div>
+      
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        ${wf.steps.map(s => `
+          <div style="border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px; background: #FFFFFF;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px;">
+              <span style="font-weight: 700; color: #7C3AED;">Level ${s.order}: ${s.label}</span>
+              <span style="font-size: 11px; background: #F1F5F9; padding: 2px 6px; border-radius: 4px; color: #475569;">${s.slaHours || 48}h SLA</span>
+            </div>
+            <div style="font-size: 12px; color: #475569;">
+              Method: <strong>${getRoutingBadgeText(s.routingMethod)}</strong>
+              ${s.role ? ` • Role: <em>${s.role}</em>` : ''}
+              ${s.person ? ` • Person: <em>${s.person}</em>` : ''}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div style="margin-top: auto; display: flex; gap: 10px;">
+        <button class="btn-primary-purple" style="flex: 1; justify-content: center;" onclick="closeQuickDrawer(); editWorkflowById('${wf.id}')">
+          Edit This Flow
+        </button>
+      </div>
+    `;
+
+    document.getElementById('quickDrawer').classList.add('open');
+  }
+
+  function closeQuickDrawer() {
+    document.getElementById('quickDrawer').classList.remove('open');
+  }
+
+  // ==========================================================================
+  // MODALS: AI DRAFTER & SIMULATOR
+  // ==========================================================================
+  function openAiDrafterModal() {
+    document.getElementById('aiDrafterModal').classList.add('open');
+  }
+
+  function closeAiDrafterModal() {
+    document.getElementById('aiDrafterModal').classList.remove('open');
+  }
+
+  function applyTemplate(type) {
+    closeAiDrafterModal();
+    if (listingView.style.display !== 'none') {
+      switchToCreateView();
+    }
+
+    if (type === 'capex') {
+      document.getElementById('targetAreaSelect').value = 'expense';
+      document.getElementById('workflowNameInput').value = 'High-Value Capex Approval (> $2,000)';
+      document.getElementById('workflowDescInput').value = '3-tier sign-off for capital expenditure, enterprise hardware, and contracts.';
+      builderSteps = [
+        { order: 1, label: 'Direct Reporting Manager', routingMethod: 'direct_manager', hierarchyDepth: 1, slaHours: 24, required: true },
+        { order: 2, label: 'Finance Controller Queue', routingMethod: 'role_queue', role: 'Finance Controller', slaHours: 48, required: true },
+        { order: 3, label: 'Chief Financial Officer', routingMethod: 'specific_person', person: 'Priya Sharma (CFO)', slaHours: 72, required: true }
+      ];
+    } else if (type === 'sick_leave') {
+      document.getElementById('targetAreaSelect').value = 'leave';
+      document.getElementById('workflowNameInput').value = 'Fast-Track Sick Leave';
+      document.getElementById('workflowDescInput').value = 'Single-tier rapid approval with automatic approval fallback on SLA expiry.';
+      builderSteps = [
+        { order: 1, label: 'Immediate Supervisor', routingMethod: 'direct_manager', hierarchyDepth: 1, slaHours: 24, required: true }
+      ];
+    } else if (type === 'notice_period') {
+      document.getElementById('targetAreaSelect').value = 'notice_period';
+      document.getElementById('workflowNameInput').value = 'Resignation & Handover Clearance';
+      document.getElementById('workflowDescInput').value = 'Two-tier verification protocol coordinating exit timeline and asset handover.';
+      builderSteps = [
+        { order: 1, label: 'Department Head', routingMethod: 'direct_manager', hierarchyDepth: 2, slaHours: 48, required: true },
+        { order: 2, label: 'HR People Operations', routingMethod: 'role_queue', role: 'HR Operations', slaHours: 72, required: true }
+      ];
+    } else {
+      document.getElementById('targetAreaSelect').value = 'position';
+      document.getElementById('workflowNameInput').value = 'New Headcount Requisition Authorization';
+      document.getElementById('workflowDescInput').value = 'Full multi-stakeholder clearance before opening recruitment pipeline.';
+      builderSteps = [
+        { order: 1, label: 'Department Head', routingMethod: 'direct_manager', hierarchyDepth: 2, slaHours: 48, required: true },
+        { order: 2, label: 'Finance Controller', routingMethod: 'role_queue', role: 'Finance Controller', slaHours: 48, required: true }
+      ];
+    }
+
+    renderBuilderSteps();
+    showToast('Applied HyIQ Flow Blueprint');
+  }
+
+  function openSimulationModal() {
+    document.getElementById('simulatorModal').classList.add('open');
+    runSimulation();
+  }
+
+  function closeSimulationModal() {
+    document.getElementById('simulatorModal').classList.remove('open');
+  }
+
+  function runSimulation() {
+    const emp = document.getElementById('simEmployeeSelect').value;
+    const box = document.getElementById('simResultBox');
+    
+    let submitter = 'Rahul Verma (Senior Software Engineer)';
+    let manager = 'Vikram Singhania (VP Engineering)';
+    if (emp === 'neha') {
+      submitter = 'Neha Kapoor (Key Account Manager)';
+      manager = 'Siddharth Mehra (Head of Sales)';
+    } else if (emp === 'aarav') {
+      submitter = 'Aarav Patel (Guest Services Associate)';
+      manager = 'Kavita Chawla (Front Office Manager)';
+    } else if (emp === 'meera') {
+      submitter = 'Meera Krishnan (Finance Analyst)';
+      manager = 'Priya Sharma (CFO)';
+    }
+
+    box.innerHTML = `
+      <div style="font-size: 12px; color: #64748B; margin-bottom: 4px;">Simulated Evaluation for: <strong>${submitter}</strong></div>
+      <div class="sim-step-row">
+        <span>👤</span>
+        <span>Submitter: <strong>${submitter}</strong></span>
+      </div>
+      <div style="color: #94A3B8; padding-left: 20px;">↓</div>
+      ${builderSteps.map(s => `
+        <div class="sim-step-row">
+          <span style="background: #EDE9FE; color: #7C3AED; font-weight: 700; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-size: 11px;">${s.order}</span>
+          <span>${s.label} → Resolves to: <strong>${s.routingMethod === 'direct_manager' ? manager : (s.person || s.role || 'Designated Approver')}</strong></span>
+        </div>
+        <div style="color: #94A3B8; padding-left: 20px;">↓</div>
+      `).join('')}
+      <div class="sim-step-row" style="color: #15803D; font-weight: 700;">
+        <span>✓</span>
+        <span>Final Outcome: Approved & Logged</span>
+      </div>
+    `;
+  }
+
+  // Toast Helper
+  function showToast(msg, isError = false) {
+    const container = document.getElementById('toastContainer');
+    const pill = document.createElement('div');
+    pill.className = `toast-pill ${isError ? 'error' : ''}`;
+    pill.innerHTML = `<span>${isError ? '⚠️' : '✓'}</span> <span>${msg}</span>`;
+    container.appendChild(pill);
+    setTimeout(() => {
+      pill.style.opacity = '0';
+      pill.style.transform = 'translateY(8px)';
+      pill.style.transition = 'all 0.25s ease';
+      setTimeout(() => pill.remove(), 250);
+    }, 2800);
+  }
+
+  function scrollTabs(dir) {
+    const el = document.querySelector('.property-tabstrip');
+    el.scrollBy({ left: dir === 'left' ? -180 : 180, behavior: 'smooth' });
+  }
+
+  function navigateToHome() {
+    switchToListingView();
+    showToast('Navigated to Home Dashboard');
+  }
+</script>
+
+</body>
+</html>

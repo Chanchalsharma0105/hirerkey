@@ -1,0 +1,3224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey™ Offboarding Module — Complete Flow & Screen Guide</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+      --pri-50: #F5F3FF;
+      --pri-100: #EDE9FE;
+      --pri-200: #DDD6FE;
+      --pri-300: #C4B5FD;
+      --pri-500: #7C3AED;
+      --pri-600: #6D28D9;
+      --pri-700: #5B21B6;
+
+      --shell: #001741;
+      --ground: #F8FAFC;
+      --surface: #FFFFFF;
+      --surface-2: #F1F5F9;
+      --divider: #E5E7EF;
+      --divider-subtle: #EEF0F4;
+
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-sec: #64748B;
+      --text-muted: #94A3B8;
+
+      --table-head-bg: #EEEBFF;
+      --table-head-color: #7C3AED;
+      --tab-container-bg: #EEE9FD;
+
+      --warn-bg: #FEF3C7;
+      --warn-text: #92400E;
+      --warn-border: #FDE68A;
+
+      --bad-bg: #FEE2E2;
+      --bad-text: #DC2626;
+      --bad-border: #FCA5A5;
+
+      --ok-bg: #DCFCE7;
+      --ok-text: #16A34A;
+      --ok-border: #86EFAC;
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-inter);
+      background-color: var(--ground);
+      color: var(--text-body);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Banner Header */
+    .doc-header {
+      background: linear-gradient(135deg, #001741 0%, #0F172A 60%, #3B0764 100%);
+      color: #FFFFFF;
+      padding: 36px 40px 28px;
+      border-bottom: 3px solid var(--pri-500);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-lg);
+    }
+    .doc-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .doc-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .doc-logo {
+      background: var(--pri-500);
+      color: #FFF;
+      font-weight: 800;
+      font-size: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+    }
+    .doc-title-box h1 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .doc-badge {
+      background: rgba(124, 58, 237, 0.25);
+      border: 1px solid var(--pri-300);
+      color: #DDD6FE;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .doc-subtitle {
+      font-size: 13.5px;
+      color: #94A3B8;
+      max-width: 900px;
+      line-height: 1.4;
+    }
+    .doc-quick-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-quick-nav {
+      background: rgba(255,255,255,0.08);
+      color: #E2E8F0;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+    .btn-quick-nav:hover {
+      background: var(--pri-500);
+      color: #FFF;
+      border-color: var(--pri-500);
+    }
+
+    /* Scenario Sticky Selector Bar */
+    .scenario-nav-bar {
+      display: flex;
+      gap: 6px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      overflow-x: auto;
+    }
+    .scenario-nav-btn {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #CBD5E1;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .scenario-nav-btn:hover {
+      background: rgba(255,255,255,0.15);
+      color: #FFF;
+    }
+    .scenario-nav-btn.active {
+      background: var(--pri-500);
+      border-color: var(--pri-500);
+      color: #FFFFFF;
+      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.4);
+    }
+    .scenario-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .ind-resignation { background: #A78BFA; }
+    .ind-termination { background: #F87171; }
+    .ind-retirement { background: #FBBF24; }
+    .ind-death { background: #94A3B8; }
+
+    /* Main Container */
+    .doc-container {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 32px 40px 80px;
+    }
+
+    /* Section Cards */
+    .section-block {
+      background: #FFFFFF;
+      border: 1px solid var(--divider);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-sm);
+    }
+    .section-header {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--divider-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: var(--pri-100);
+      color: var(--pri-500);
+    }
+
+    /* Screen Mockup Frame */
+    .screen-frame {
+      background: #FFFFFF;
+      border: 1px solid var(--divider);
+      border-radius: 10px;
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    .screen-frame-bar {
+      background: #001741;
+      color: #FFFFFF;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .screen-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .screen-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #475569;
+    }
+    .screen-dot.r { background: #EF4444; }
+    .screen-dot.y { background: #F59E0B; }
+    .screen-dot.g { background: #10B981; }
+    .screen-title {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: #94A3B8;
+    }
+    .screen-live-label {
+      background: rgba(124, 58, 237, 0.3);
+      color: #DDD6FE;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      border: 1px solid rgba(124, 58, 237, 0.4);
+    }
+    .screen-body {
+      padding: 20px;
+      background: #F8FAFC;
+    }
+
+    /* HIRERKEY UI COMPONENTS */
+
+    /* Subheader bar */
+    .sub-header-bar {
+      background: #FFFFFF;
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      padding: 10px 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .sub-header-left-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-toolbar {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      border: 1px solid var(--divider);
+      background: #FFFFFF;
+      color: var(--text-body);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-toolbar:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+    }
+    .btn-toolbar.primary {
+      background: var(--pri-500);
+      color: #FFFFFF;
+      border-color: var(--pri-500);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(124, 58, 237, 0.2);
+    }
+    .btn-toolbar.primary:hover {
+      background: var(--pri-600);
+    }
+    .pulse-btn {
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
+    }
+
+    /* Table Meta Bar */
+    .table-meta-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      padding: 0 2px;
+      flex-wrap: wrap;
+    }
+    .record-count-text {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #334155;
+    }
+    .active-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 6px;
+      background: var(--pri-100);
+      color: var(--pri-500);
+      font-size: 11.5px;
+      font-weight: 500;
+      border: 1px solid var(--pri-200);
+    }
+
+    /* Authentic Hirerkey Table */
+    .table-container {
+      background: #FFFFFF;
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+    .hirerkey-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      text-align: left;
+    }
+    .hirerkey-table thead th {
+      background: var(--table-head-bg);
+      color: var(--table-head-color);
+      font-weight: 600;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--pri-200);
+      font-size: 11.5px;
+      letter-spacing: 0.02em;
+    }
+    .hirerkey-table tbody tr {
+      border-bottom: 1px solid var(--divider-subtle);
+      transition: background 0.15s ease;
+    }
+    .hirerkey-table tbody tr:hover {
+      background: #F8FAFC;
+    }
+    .hirerkey-table tbody tr.highlight-row {
+      background: #F5F3FF;
+      border-left: 3px solid var(--pri-500);
+    }
+    .hirerkey-table tbody td {
+      padding: 12px 14px;
+      color: var(--text-body);
+      vertical-align: middle;
+    }
+
+    /* Avatars and Monospace Seats */
+    .avatar-cell {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .avatar-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--pri-100);
+      color: var(--pri-500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .emp-name {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .seat-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      background: #F1F5F9;
+      color: #475569;
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid #E2E8F0;
+      display: inline-block;
+      margin-top: 2px;
+    }
+
+    /* Stage Badges */
+    .stage-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .stage-pill.warn {
+      background: var(--warn-bg);
+      color: var(--warn-text);
+      border: 1px solid var(--warn-border);
+    }
+    .stage-pill.pri {
+      background: var(--pri-100);
+      color: var(--pri-500);
+      border: 1px solid var(--pri-200);
+    }
+    .stage-pill.bad {
+      background: var(--bad-bg);
+      color: var(--bad-text);
+      border: 1px solid var(--bad-border);
+    }
+    .stage-pill.ok {
+      background: var(--ok-bg);
+      color: var(--ok-text);
+      border: 1px solid var(--ok-border);
+    }
+
+    /* Urgency Tone Chip */
+    .urgency-chip {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-left: 4px;
+    }
+    .urgency-chip.bad {
+      background: #FEE2E2;
+      color: #DC2626;
+      font-weight: 600;
+    }
+    .urgency-chip.neu {
+      background: #F1F5F9;
+      color: #64748B;
+    }
+
+    /* Modal Dialog Mockup */
+    .modal-mockup-wrap {
+      background: rgba(15, 23, 42, 0.6);
+      padding: 28px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-box {
+      background: #FFFFFF;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 580px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      border: 1px solid var(--divider);
+    }
+    .modal-box-header {
+      padding: 18px 24px 14px;
+      border-bottom: 1px solid var(--divider-subtle);
+      position: relative;
+    }
+    .modal-box-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .modal-box-subtitle {
+      font-size: 12px;
+      color: var(--text-sec);
+      margin-top: 2px;
+    }
+    .modal-box-close {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      color: #94A3B8;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .modal-box-body {
+      padding: 20px 24px;
+    }
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .form-control-input {
+      width: 100%;
+      height: 36px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 0 12px;
+      font-size: 12.5px;
+      font-family: var(--font-inter);
+      color: var(--text-main);
+      background: #FFFFFF;
+    }
+    .form-control-input:disabled {
+      background: #F1F5F9;
+      color: #64748B;
+      cursor: not-allowed;
+      border-color: #E2E8F0;
+    }
+
+    /* Reason Radio Cards */
+    .reason-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .reason-card {
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #FFFFFF;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .reason-card.selected {
+      border-color: var(--pri-500);
+      background: #FAF5FF;
+      box-shadow: 0 0 0 1px var(--pri-500);
+    }
+    .reason-card.danger-selected {
+      border-color: #DC2626;
+      background: #FEF2F2;
+      box-shadow: 0 0 0 1px #DC2626;
+    }
+    .reason-card-title {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .reason-card-desc {
+      font-size: 11px;
+      color: var(--text-sec);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    /* Modal Alert Box */
+    .modal-alert {
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+    .modal-alert.primary {
+      background: var(--pri-100);
+      border: 1px solid var(--pri-200);
+      color: var(--pri-700);
+    }
+    .modal-alert.danger {
+      background: var(--bad-bg);
+      border: 1px solid var(--bad-border);
+      color: #991B1B;
+    }
+    .modal-box-footer {
+      padding: 14px 24px;
+      background: #F8FAFC;
+      border-top: 1px solid var(--divider-subtle);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* Screen 2 Workspace Components */
+    .case-header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .case-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #64748B;
+    }
+    .case-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Profile Card */
+    .case-profile-card {
+      background: #FFFFFF;
+      border: 1px solid var(--divider);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .profile-avatar-lg {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--pri-100);
+      color: var(--pri-500);
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-info h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .profile-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--text-sec);
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+    .profile-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .profile-stat-box {
+      text-align: right;
+    }
+    .profile-stat-val {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--pri-500);
+    }
+    .profile-stat-lbl {
+      font-size: 11px;
+      color: var(--text-sec);
+    }
+
+    /* Tabs Bar */
+    .tab-bar-container {
+      background: var(--tab-container-bg);
+      padding: 6px;
+      border-radius: 8px;
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+      overflow-x: auto;
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #5B6173;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .tab-btn:hover {
+      background: rgba(124, 58, 237, 0.08);
+      color: var(--pri-600);
+    }
+    .tab-btn.active {
+      background: var(--pri-500);
+      color: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.3);
+    }
+    .tab-counter {
+      background: rgba(0, 0, 0, 0.15);
+      color: inherit;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 9999px;
+    }
+    .tab-btn.active .tab-counter {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFF;
+    }
+
+    /* Tab Content Grid */
+    .tab-content-panel {
+      background: #FFFFFF;
+      border: 1px solid var(--divider);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Overview Timeline */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 20px;
+    }
+    .timeline-card {
+      background: #F8FAFC;
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    .timeline-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+    .timeline-list {
+      position: relative;
+      padding-left: 28px;
+    }
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: #E2E8F0;
+    }
+    .timeline-step {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .timeline-step:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-bullet {
+      position: absolute;
+      left: -28px;
+      top: 2px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 2px solid #CBD5E1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #64748B;
+      z-index: 1;
+    }
+    .timeline-bullet.completed {
+      background: #10B981;
+      border-color: #10B981;
+      color: #FFFFFF;
+    }
+    .timeline-bullet.active {
+      background: var(--pri-500);
+      border-color: var(--pri-500);
+      color: #FFFFFF;
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+    }
+    .timeline-step-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .timeline-step-desc {
+      font-size: 11.5px;
+      color: var(--text-sec);
+      margin-top: 2px;
+    }
+
+    /* Handover List */
+    .handover-item {
+      background: #F8FAFC;
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .handover-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .handover-tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #E2E8F0;
+      color: #475569;
+    }
+
+    /* Clearance Sign-off Cards */
+    .clearance-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .clearance-card {
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      padding: 14px 16px;
+      background: #F8FAFC;
+    }
+    .clearance-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .clearance-dept-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+    .btn-signoff {
+      background: var(--pri-500);
+      color: #FFF;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-signoff.done {
+      background: #DCFCE7;
+      color: #16A34A;
+      border: 1px solid #86EFAC;
+    }
+
+    /* Financial Settlement Metric Cards */
+    .metrics-4-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .metric-card {
+      background: #F8FAFC;
+      border: 1px solid var(--divider);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .metric-card.highlight {
+      background: #FAF5FF;
+      border-color: var(--pri-200);
+    }
+    .metric-card-lbl {
+      font-size: 11.5px;
+      color: var(--text-sec);
+      margin-bottom: 4px;
+    }
+    .metric-card-val {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .metric-card-val.purple {
+      color: var(--pri-500);
+    }
+    .metric-card-val.red {
+      color: #DC2626;
+    }
+
+    /* Callout notice boxes */
+    .callout-box {
+      border-left: 4px solid var(--pri-500);
+      background: #F5F3FF;
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+    .callout-box.danger {
+      border-left-color: #DC2626;
+      background: #FEF2F2;
+    }
+    .callout-box.warn {
+      border-left-color: #D97706;
+      background: #FFFBEB;
+    }
+    .callout-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Scenario Flow Stepper */
+    .scenario-stepper {
+      display: flex;
+      margin-bottom: 24px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--divider);
+      background: #FFFFFF;
+    }
+    .stepper-item {
+      flex: 1;
+      padding: 12px 14px;
+      text-align: center;
+      border-right: 1px solid var(--divider);
+      font-size: 12px;
+      background: #F8FAFC;
+      color: #64748B;
+    }
+    .stepper-item:last-child {
+      border-right: none;
+    }
+    .stepper-item.current {
+      background: var(--pri-500);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+    .stepper-item.completed {
+      background: #ECFDF5;
+      color: #065F46;
+      font-weight: 500;
+    }
+
+    /* Comparison Table */
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin: 16px 0;
+    }
+    .comp-table th {
+      background: #001741;
+      color: #FFFFFF;
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .comp-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--divider);
+      vertical-align: top;
+    }
+    .comp-table tr:nth-child(even) {
+      background: #F8FAFC;
+    }
+
+    /* Utilities */
+    .text-mono { font-family: var(--font-mono); }
+    .flex-between { display: flex; justify-content: space-between; align-items: center; }
+    .mt-4 { margin-top: 16px; }
+    .mb-4 { margin-bottom: 16px; }
+    .cursor-pointer { cursor: pointer; }
+
+    @media print {
+      .doc-header { position: static; }
+      .scenario-section { page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="doc-header">
+    <div class="doc-header-top">
+      <div class="doc-brand">
+        <div class="doc-logo">H</div>
+        <div class="doc-title-box">
+          <h1>Hirerkey™ Offboarding Module — Complete Flow & Screen Guide</h1>
+          <div class="doc-subtitle">
+            Authoritative visual and functional walkthrough across all 4 operational exit scenarios: Voluntary Resignation, Involuntary Termination, Retirement, and Death in Service.
+          </div>
+        </div>
+      </div>
+      <div class="doc-quick-links">
+        <a class="btn-quick-nav" href="#matrix">Comparative Matrix</a>
+        <a class="btn-quick-nav" href="#workflow">Architecture Flow</a>
+        <button class="btn-quick-nav" onclick="window.print()">🖨️ Print / Save PDF</button>
+      </div>
+    </div>
+
+    <!-- Scenario Switcher Bar -->
+    <div class="scenario-nav-bar">
+      <button class="scenario-nav-btn active" onclick="switchScenario('resignation')">
+        <span class="scenario-indicator ind-resignation"></span>
+        Scenario 1: Voluntary Resignation (Sara Khan · FDM-01)
+      </button>
+      <button class="scenario-nav-btn" onclick="switchScenario('termination')">
+        <span class="scenario-indicator ind-termination"></span>
+        Scenario 2: Involuntary Termination (Aisha Noor · GR-04)
+      </button>
+      <button class="scenario-nav-btn" onclick="switchScenario('retirement')">
+        <span class="scenario-indicator ind-retirement"></span>
+        Scenario 3: Retirement (Leena Joseph · HKS-03)
+      </button>
+      <button class="scenario-nav-btn" onclick="switchScenario('death')">
+        <span class="scenario-indicator ind-death"></span>
+        Scenario 4: Death in Service (Tariq Abbasi · SO-04)
+      </button>
+      <button class="scenario-nav-btn" onclick="switchScenario('all')">
+        ⚡ View All 4 Scenarios Sequentially
+      </button>
+    </div>
+  </header>
+
+  <main class="doc-container">
+
+    <!-- EXECUTIVE ARCHITECTURE OVERVIEW -->
+    <section class="section-block" id="workflow">
+      <div class="section-header">
+        <div class="section-title">
+          <span>🏛️ Hirerkey Offboarding Engine Architecture</span>
+          <span class="section-tag">Core Lifecycle</span>
+        </div>
+        <div style="font-size: 12px; color: var(--text-sec);">
+          Standard UAE Labor Law (Federal Decree-Law No. 33 of 2021) Enterprise Parity
+        </div>
+      </div>
+
+      <div class="callout-box">
+        <div class="callout-title">📌 Executive Lifecycle Overview</div>
+        Every employee departure in Hirerkey follows an auditable 6-stage operational pipeline:
+        <strong>(1) Real-World Event / Email</strong> →
+        <strong>(2) HR Initiates in Screen 1 (+ Start Modal)</strong> →
+        <strong>(3) Operational Handover & Notice Tracking</strong> →
+        <strong>(4) 4-Way Departmental Clearance (IT, Admin, Finance, Line Manager)</strong> →
+        <strong>(5) Exit Interview & Statutory Settlement (AED)</strong> →
+        <strong>(6) Case Closed & Profile Archived to <code>Employees › Exit</code></strong>.
+      </div>
+
+      <!-- Comparative Matrix -->
+      <div id="matrix" style="margin-top: 20px;">
+        <h3 style="font-size: 14.5px; font-weight: 700; margin-bottom: 8px;">📊 4-Scenario Parameter Comparison Matrix</h3>
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Scenario 1: Resignation</th>
+              <th>Scenario 2: Terminated</th>
+              <th>Scenario 3: Retirement</th>
+              <th>Scenario 4: Death in Service</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Primary Trigger</strong></td>
+              <td>Employee email with 30-day resignation notice</td>
+              <td>Company termination letter / disciplinary action</td>
+              <td>Employee reaches retirement age (60+)</td>
+              <td>Formal death notification / police or hospital record</td>
+            </tr>
+            <tr>
+              <td><strong>Notice Period</strong></td>
+              <td>Standard (30 days or per contract)</td>
+              <td>Zero notice (Immediate exit / Pay in lieu)</td>
+              <td>Planned operational notice (30 days)</td>
+              <td>Zero notice (Immediate cessation)</td>
+            </tr>
+            <tr>
+              <td><strong>LWD in Modal</strong></td>
+              <td>Editable (default +30 days)</td>
+              <td><strong>Locked & disabled</strong> to today</td>
+              <td>Editable (planned retirement date)</td>
+              <td><strong>Locked & disabled</strong> to today</td>
+            </tr>
+            <tr>
+              <td><strong>Modal Alert Box</strong></td>
+              <td><span style="color:#7C3AED; font-weight:600;">Purple Primary</span>: Starts notice & handover</td>
+              <td><span style="color:#DC2626; font-weight:600;">Red Danger</span>: Immediate access revocation</td>
+              <td><span style="color:#7C3AED; font-weight:600;">Purple Primary</span>: Planned notice & Gratuity audit</td>
+              <td><span style="color:#DC2626; font-weight:600;">Red Danger</span>: Immediate suspension & death dues</td>
+            </tr>
+            <tr>
+              <td><strong>Initial Stage</strong></td>
+              <td><code>Stage 0: Notice initiated</code></td>
+              <td><code>Stage 2: Exited · clearing</code></td>
+              <td><code>Stage 0: Notice initiated</code></td>
+              <td><code>Stage 2: Exited · clearing</code></td>
+            </tr>
+            <tr>
+              <td><strong>Acknowledge Notice Btn</strong></td>
+              <td>Visible on Screen 2 (moves to Stage 1)</td>
+              <td><strong>Hidden</strong> (no notice served)</td>
+              <td>Visible on Screen 2 (moves to Stage 1)</td>
+              <td><strong>Hidden</strong> (no notice served)</td>
+            </tr>
+            <tr>
+              <td><strong>Handover Priority</strong></td>
+              <td>Successor shadow, shift keys, SOP handoff</td>
+              <td>Emergency account lock, seat marked vacant</td>
+              <td>Successor mentorship, master floor keys</td>
+              <td>Line manager assumes direct seat control</td>
+            </tr>
+            <tr>
+              <td><strong>IT Access Cutoff</strong></td>
+              <td>Scheduled on Last Working Day</td>
+              <td><strong>Immediate (Day 1)</strong> credentials cut</td>
+              <td>Scheduled on Last Working Day</td>
+              <td><strong>Immediate (Day 1)</strong> account archive</td>
+            </tr>
+            <tr>
+              <td><strong>Exit Interview</strong></td>
+              <td>Sent to personal inbox (12 questions)</td>
+              <td><strong>Skipped (Waived)</strong> in system</td>
+              <td>Completed (Legacy tribute & feedback)</td>
+              <td><strong>Skipped (Waived)</strong> permanently</td>
+            </tr>
+            <tr>
+              <td><strong>Statutory Settlement</strong></td>
+              <td>Leave encashment + deductions</td>
+              <td>Leave encashment + notice pay in lieu</td>
+              <td>Full UAE End-of-Service Gratuity (EOSG)</td>
+              <td>Full Gratuity + Death Benefits to Legal Heirs</td>
+            </tr>
+            <tr>
+              <td><strong>Case Closed Action</strong></td>
+              <td>Archived to <code>Employees › Exit</code></td>
+              <td>Archived to <code>Employees › Exit</code></td>
+              <td>Archived to <code>Employees › Exit</code></td>
+              <td>Archived to <code>Employees › Exit</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SCENARIO 1: VOLUNTARY RESIGNATION -->
+    <!-- ========================================================================= -->
+    <div class="scenario-section" id="sec-resignation">
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title">
+            <span style="color: #7C3AED;">🟣 Scenario 1: Voluntary Resignation</span>
+            <span class="section-tag">Standard Exit Flow</span>
+          </div>
+          <div style="font-size: 12.5px; font-weight: 600; color: #475569;">
+            Employee: <strong>Sara Khan (FDM-01)</strong> · Front Desk Manager
+          </div>
+        </div>
+
+        <!-- Stepper -->
+        <div class="scenario-stepper">
+          <div class="stepper-item completed">1. Email Resignation</div>
+          <div class="stepper-item">2. Screen 1: Departures List</div>
+          <div class="stepper-item current">3. Start Modal (Purple)</div>
+          <div class="stepper-item">4. Screen 2: Case Workspace</div>
+          <div class="stepper-item">5. 4-Way Clearance</div>
+          <div class="stepper-item">6. Exit Survey & Settlement</div>
+        </div>
+
+        <!-- Step 1 Narrative -->
+        <div class="callout-box">
+          <div class="callout-title">📩 Step 1: Real-World Business Trigger</div>
+          Sara Khan (Front Desk Manager, seat <code>FDM-01</code>) emails her 30-day resignation notice to HR and General Manager James Cole on <strong>14 Sep 2026</strong>. Her proposed Last Working Day is <strong>14 Oct 2026</strong>.
+        </div>
+
+        <!-- Step 2: Screen 1 Mockup -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 16px 0 8px;">🖥️ What HR Sees on Screen 1: Departures List</h4>
+        <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 10px;">
+          HR navigates to <strong>Employees › Off-boarding</strong>. The top SubHeader toolbar provides staged filters, sort, refresh, export, and the primary purple <strong>"+ Start offboarding"</strong> action button.
+        </p>
+
+        <div class="screen-frame">
+          <div class="screen-frame-bar">
+            <div class="screen-dots">
+              <span class="screen-dot r"></span>
+              <span class="screen-dot y"></span>
+              <span class="screen-dot g"></span>
+            </div>
+            <span class="screen-title">Hirerkey™ HRMS › Employees › Off-boarding (Departures List)</span>
+            <span class="screen-live-label">LIVE DASHBOARD</span>
+          </div>
+          <div class="screen-body">
+            
+            <!-- SubHeader Card -->
+            <div class="sub-header-bar">
+              <div class="sub-header-left-controls">
+                <button class="btn-toolbar">
+                  <span>⧩</span> Filter
+                </button>
+                <button class="btn-toolbar">
+                  <span>⇅</span> Sort: Last working day (Earliest) ▾
+                </button>
+                <button class="btn-toolbar">
+                  <span>↻</span> Refresh
+                </button>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-toolbar">
+                  <span>📥</span> Export
+                </button>
+                <button class="btn-toolbar primary pulse-btn" onclick="highlightModal('resignation')">
+                  <span>+</span> Start offboarding
+                </button>
+              </div>
+            </div>
+
+            <!-- Table Meta Bar -->
+            <div class="table-meta-bar">
+              <span class="record-count-text">5 records</span>
+              <span class="active-pill">Status: Serving notice ✕</span>
+              <span class="active-pill">Dept: Front Office ✕</span>
+            </div>
+
+            <!-- Table Mockup -->
+            <div class="table-container">
+              <table class="hirerkey-table">
+                <thead>
+                  <tr>
+                    <th style="width: 45px;">S.No</th>
+                    <th>Employee</th>
+                    <th>Position & Seat</th>
+                    <th>Department</th>
+                    <th>Departure Reason</th>
+                    <th>Last Working Day</th>
+                    <th>Stage</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="highlight-row">
+                    <td><strong>1</strong></td>
+                    <td>
+                      <div class="avatar-cell">
+                        <div class="avatar-circle">SK</div>
+                        <div>
+                          <div class="emp-name">Sara Khan</div>
+                          <span class="seat-badge">FDM-01</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="font-weight: 500;">Front Desk Manager</div>
+                      <div style="font-size: 11px; color: #7C3AED;">→ Omar Haddad</div>
+                    </td>
+                    <td>Front Office</td>
+                    <td><span class="stage-pill pri">Resigned (voluntary)</span></td>
+                    <td>
+                      <div>14 Oct 2026</div>
+                      <span class="urgency-chip neu">In 29 days</span>
+                    </td>
+                    <td><span class="stage-pill pri">● Serving notice</span></td>
+                    <td style="text-align: right; color: #94A3B8; font-weight: bold; cursor: pointer;">•••</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>
+                      <div class="avatar-cell">
+                        <div class="avatar-circle" style="background:#EDE9FE;">RM</div>
+                        <div>
+                          <div class="emp-name">Rahul Mehta</div>
+                          <span class="seat-badge">SC-02</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div>Sous Chef</div>
+                      <div style="font-size: 11px; color: #DC2626;">⚠ No successor</div>
+                    </td>
+                    <td>Kitchen</td>
+                    <td><span class="stage-pill pri">Resigned (voluntary)</span></td>
+                    <td>
+                      <div>02 Oct 2026</div>
+                      <span class="urgency-chip neu">In 17 days</span>
+                    </td>
+                    <td><span class="stage-pill warn">● Notice initiated</span></td>
+                    <td style="text-align: right; color: #94A3B8;">•••</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Step 3: Start Offboarding Modal Mockup -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 24px 0 8px;">📋 Step 3: What HR Sees in the Start Offboarding Modal</h4>
+        <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 10px;">
+          Clicking <strong>"+ Start offboarding"</strong> opens this interactive modal dialog. For voluntary resignation, the primary purple alert is displayed and Last Working Day defaults to 30 days out.
+        </p>
+
+        <div class="modal-mockup-wrap">
+          <div class="modal-box">
+            <div class="modal-box-header">
+              <div class="modal-box-title">Start Offboarding</div>
+              <div class="modal-box-subtitle">Initiate employee exit flow, calculate notice periods, and assign vacancy handovers.</div>
+              <div class="modal-box-close">✕</div>
+            </div>
+            <div class="modal-box-body">
+              <div class="form-group">
+                <label class="form-label">Employee & Position *</label>
+                <select class="form-control-input">
+                  <option selected>Sara Khan · Front Desk Manager (FDM-01)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Departure Reason *</label>
+                <div class="reason-grid">
+                  <div class="reason-card selected">
+                    <input type="radio" checked style="accent-color: #7C3AED;">
+                    <div>
+                      <div class="reason-card-title">Resigned (voluntary)</div>
+                      <div class="reason-card-desc">Notice received via email. Initiates 30-day notice period.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Retirement</div>
+                      <div class="reason-card-desc">Planned age of retirement & succession.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Terminated</div>
+                      <div class="reason-card-desc">Immediate company termination.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Death in service</div>
+                      <div class="reason-card-desc">Bereavement and statutory settlements.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DYNAMIC ALERT BOX (PURPLE) -->
+              <div class="modal-alert primary">
+                <span style="font-size: 16px;">ℹ️</span>
+                <div>
+                  <strong>Resignation notice received via email.</strong> HR initiation starts the notice period and handover tracking. Last working day defaults to 30 calendar days from notice date.
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-group">
+                <div>
+                  <label class="form-label">Notice Given Date</label>
+                  <input type="date" class="form-control-input" value="2026-09-14">
+                </div>
+                <div>
+                  <label class="form-label">Last Working Day (LWD)</label>
+                  <input type="date" class="form-control-input" value="2026-10-14">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Successor / Interim Cover</label>
+                <select class="form-control-input">
+                  <option selected>Omar Haddad · Assistant Front Desk Manager</option>
+                  <option>Leave seat open (Requires Vacancy Posting)</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-box-footer">
+              <button class="btn-toolbar">Cancel</button>
+              <button class="btn-toolbar primary">Submit & Start Notice</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Screen 2 Leaver Case Workspace Mockup -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 28px 0 8px;">💼 Step 4: Screen 2 — Leaver Case Workspace (Sara Khan)</h4>
+        <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 12px;">
+          HR is directed to Screen 2. HR can view the Profile Card, advance notice stages, and review all 5 Operational Lifecycle Tabs.
+        </p>
+
+        <div class="screen-frame">
+          <div class="screen-frame-bar">
+            <div class="screen-dots">
+              <span class="screen-dot r"></span>
+              <span class="screen-dot y"></span>
+              <span class="screen-dot g"></span>
+            </div>
+            <span class="screen-title">Hirerkey™ HRMS › Leaver Workspace › Sara Khan (FDM-01)</span>
+            <span class="screen-live-label">CASE WORKSPACE</span>
+          </div>
+          <div class="screen-body">
+
+            <!-- Breadcrumbs & Header Actions -->
+            <div class="case-header-nav">
+              <div class="case-breadcrumbs">
+                <button class="btn-toolbar" style="height: 28px; font-size: 11px;">← Back to departures</button>
+                <span>/</span>
+                <span>Employees</span>
+                <span>/</span>
+                <span>Off-boarding</span>
+                <span>/</span>
+                <strong>Sara Khan (FDM-01)</strong>
+              </div>
+              <div class="case-header-actions">
+                <button class="btn-toolbar primary" style="height: 30px; font-size: 11.5px;">✓ Acknowledge Notice Period</button>
+                <button class="btn-toolbar" style="height: 30px; font-size: 11.5px;">Simulate Last Day</button>
+                <button class="btn-toolbar" style="height: 30px; font-size: 11.5px; color: #DC2626;">Close Case</button>
+              </div>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="case-profile-card">
+              <div class="profile-avatar-lg">SK</div>
+              <div class="profile-info">
+                <h2>
+                  Sara Khan
+                  <span class="seat-badge">FDM-01</span>
+                  <span class="stage-pill pri">● Serving notice</span>
+                </h2>
+                <div class="profile-meta-row">
+                  <span class="profile-meta-item">💼 Front Desk Manager</span>
+                  <span class="profile-meta-item">🏢 Front Office</span>
+                  <span class="profile-meta-item">👤 Manager: James Cole</span>
+                  <span class="profile-meta-item">⏱️ Tenure: 5 yrs 6 mos</span>
+                  <span class="profile-meta-item">🔄 Successor: <strong style="color:#7C3AED;">Omar Haddad</strong></span>
+                </div>
+              </div>
+              <div class="profile-stat-box">
+                <div class="profile-stat-val">In 29 days</div>
+                <div class="profile-stat-lbl">Last Day: 14 Oct 2026</div>
+              </div>
+            </div>
+
+            <!-- Tab Container -->
+            <div class="tab-bar-container">
+              <button class="tab-btn active" onclick="switchCaseTab('res', 'overview')">Overview & Timeline</button>
+              <button class="tab-btn" onclick="switchCaseTab('res', 'handover')">Handover <span class="tab-counter">3 pending</span></button>
+              <button class="tab-btn" onclick="switchCaseTab('res', 'clearance')">Clearance <span class="tab-counter">2/4 done</span></button>
+              <button class="tab-btn" onclick="switchCaseTab('res', 'interview')">Exit Interview</button>
+              <button class="tab-btn" onclick="switchCaseTab('res', 'settlement')">Final Settlement</button>
+            </div>
+
+            <!-- Tab 1: Overview Panel -->
+            <div class="tab-content-panel" id="tab-res-overview">
+              <div class="overview-grid">
+                
+                <!-- Left: 6-Step Timeline -->
+                <div class="timeline-card">
+                  <div class="timeline-title">📍 Departure & Clearance Milestones</div>
+                  <div class="timeline-list">
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">1. Resignation Email Received</div>
+                      <div class="timeline-step-desc">Received 14 Sep 2026 · Formal 30-day notice period requested.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">2. HR Initiates Offboarding</div>
+                      <div class="timeline-step-desc">Case registered · Notice tracked · Seat marked in transition.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet active">3</div>
+                      <div class="timeline-step-title">3. Notice Period & Handover (Active)</div>
+                      <div class="timeline-step-desc">29 days remaining · Operational handover to Omar Haddad underway.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet">4</div>
+                      <div class="timeline-step-title">4. Exit Clearance & Settlement Audit</div>
+                      <div class="timeline-step-desc">Scheduled for 14 Oct 2026 · IT, Admin, Finance, & Manager sign-offs.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet">5</div>
+                      <div class="timeline-step-title">5. System Access Termination</div>
+                      <div class="timeline-step-desc">Opera PMS & card credentials cut off on 14 Oct 2026 at 18:00.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet">6</div>
+                      <div class="timeline-step-title">6. Case Closed & Archived</div>
+                      <div class="timeline-step-desc">Archived to Employees › Exit directory upon final sign-off.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right: At a Glance -->
+                <div>
+                  <div class="timeline-card" style="margin-bottom: 14px;">
+                    <div class="timeline-title">⚡ At a Glance</div>
+                    <div style="margin-bottom: 10px;">
+                      <div style="font-size: 11px; color: var(--text-sec);">SYSTEM ACCESS STATUS</div>
+                      <div style="font-size: 12.5px; font-weight: 600; color: #16A34A;">● Active until 14 Oct 2026</div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                      <div style="font-size: 11px; color: var(--text-sec);">SEAT SUCCESSION</div>
+                      <div style="font-size: 12.5px; font-weight: 600; color: #7C3AED;">Omar Haddad (Assigned Cover)</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 11px; color: var(--text-sec);">LEAVE BALANCE SNAPSHOT</div>
+                      <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 700; color: #7C3AED;">12.5 Days</div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-card">
+                    <div class="timeline-title">📊 Clearance Readiness</div>
+                    <div style="font-size: 12px; color: var(--text-sec); margin-bottom: 8px;">2 of 4 departments approved (50%)</div>
+                    <div style="width: 100%; height: 8px; background: #E2E8F0; border-radius: 4px; overflow: hidden; margin-bottom: 12px;">
+                      <div style="width: 50%; height: 100%; background: #7C3AED;"></div>
+                    </div>
+                    <button class="btn-toolbar" style="width: 100%; justify-content: center;" onclick="switchCaseTab('res', 'clearance')">
+                      View Departmental Sign-offs →
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Tab 2: Handover Panel -->
+            <div class="tab-content-panel" id="tab-res-handover" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">🤝 Operational Handover & Succession Tracking</h4>
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" style="accent-color: #7C3AED;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600;">Direct reports transfer</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">3 front desk agents reassigned to report to Omar Haddad</div>
+                  </div>
+                </div>
+                <span class="handover-tag">Team & Structure</span>
+              </div>
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" style="accent-color: #7C3AED;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600;">Opera Cloud PMS Admin privileges transfer</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Transfer supervisor override permissions to Omar Haddad</div>
+                  </div>
+                </div>
+                <span class="handover-tag">System Access</span>
+              </div>
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked style="accent-color: #7C3AED;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Master shift keys & safe access deposit</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Physical keys verified and deposited in front office master lock</div>
+                  </div>
+                </div>
+                <span class="stage-pill ok">✓ Completed</span>
+              </div>
+            </div>
+
+            <!-- Tab 3: Clearance Panel -->
+            <div class="tab-content-panel" id="tab-res-clearance" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">🏢 4-Way Departmental Clearance Sign-offs</h4>
+              <div class="clearance-grid">
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill">IT Department</span>
+                    <button class="btn-signoff">Sign off</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Laptop Dell Latitude 5440 & Opera PMS</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Approver: Zaid Al-Harbi · Access revocation pending LWD.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill">Admin & Facilities</span>
+                    <button class="btn-signoff">Sign off</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">ID Card, Locker 214 & Parking Access</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Approver: Tariq Mansoor · Locker clearance scheduled for 14 Oct.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Finance Department</span>
+                    <button class="btn-signoff done">✓ Signed off</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Corporate Petty Cash AED 1,200 Settled</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Approver: Amina El-Sayed · Verified zero outstanding cash advances.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Line Manager</span>
+                    <button class="btn-signoff done">✓ Signed off</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Operational Briefing & Key Handover</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Approver: James Cole · Operational briefings with Omar completed.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab 4: Exit Interview Panel -->
+            <div class="tab-content-panel" id="tab-res-interview" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">💬 Exit Interview & Employee Feedback</h4>
+              <div class="modal-alert primary" style="margin-bottom: 16px;">
+                <span style="font-size: 16px;">✉️</span>
+                <div>
+                  <strong>Exit Survey Dispatched:</strong> Comprehensive Hospitality Exit Survey sent to Sara Khan's personal email on 15 Sep 2026. Pending employee submission.
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-toolbar primary">✓ Mark Submitted Manually</button>
+                <button class="btn-toolbar">Resend Survey Link</button>
+                <button class="btn-toolbar" style="color: #64748B;">Skip with Reason</button>
+              </div>
+            </div>
+
+            <!-- Tab 5: Final Settlement Panel -->
+            <div class="tab-content-panel" id="tab-res-settlement" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">💰 Statutory Final Settlement (UAE Labor Law Parity)</h4>
+              <div class="metrics-4-grid">
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Leave Balance</div>
+                  <div class="metric-card-val">12.5 Days</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Leave Encashment</div>
+                  <div class="metric-card-val">AED 4,200</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Recoveries / Dues</div>
+                  <div class="metric-card-val red">- AED 350</div>
+                </div>
+                <div class="metric-card highlight">
+                  <div class="metric-card-lbl">Net Payable</div>
+                  <div class="metric-card-val purple">AED 3,850</div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--divider);">
+                <label style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 500;">
+                  <input type="checkbox" style="accent-color: #7C3AED;">
+                  Generate Experience & Relieving Certificates
+                </label>
+                <button class="btn-toolbar primary" style="background:#16A34A; border-color:#16A34A;">
+                  Close Case & Move to Employees › Exit
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCENARIO 2: INVOLUNTARY TERMINATION -->
+    <!-- ========================================================================= -->
+    <div class="scenario-section" id="sec-termination">
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title">
+            <span style="color: #DC2626;">🔴 Scenario 2: Involuntary Termination</span>
+            <span class="section-tag" style="background:#FEE2E2; color:#DC2626;">Immediate Company Exit</span>
+          </div>
+          <div style="font-size: 12.5px; font-weight: 600; color: #475569;">
+            Employee: <strong>Aisha Noor (GR-04)</strong> · Guest Relations Executive
+          </div>
+        </div>
+
+        <!-- Stepper -->
+        <div class="scenario-stepper">
+          <div class="stepper-item completed">1. Termination Decision</div>
+          <div class="stepper-item">2. Screen 1: Departures List</div>
+          <div class="stepper-item current" style="background:#DC2626;">3. Start Modal (Danger Red)</div>
+          <div class="stepper-item">4. Screen 2: Case Workspace</div>
+          <div class="stepper-item">5. Accelerated Clearance</div>
+          <div class="stepper-item">6. Severance & Archive</div>
+        </div>
+
+        <!-- Step 1 Narrative -->
+        <div class="callout-box danger">
+          <div class="callout-title">⚠️ Step 1: Real-World Business Trigger</div>
+          Management issues an immediate formal termination. In Hirerkey, termination takes effect <strong>immediately</strong>. Notice period is zero (or compensated in lieu). System credentials are cut off today and the seat is flagged for urgent vacancy posting.
+        </div>
+
+        <!-- Step 2: Screen 1 Mockup for Termination -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 20px 0 8px;">🖥️ Step 2: What HR Sees on Screen 1: Departures List (Involuntary Exit)</h4>
+        <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 10px;">
+          HR accesses <strong>Employees › Off-boarding</strong>. Aisha Noor's involuntary separation is marked with the red <code>Exited · clearing</code> badge and zero notice countdown.
+        </p>
+
+        <div class="screen-frame">
+          <div class="screen-frame-bar">
+            <div class="screen-dots">
+              <span class="screen-dot r"></span>
+              <span class="screen-dot y"></span>
+              <span class="screen-dot g"></span>
+            </div>
+            <span class="screen-title">Hirerkey™ HRMS › Employees › Off-boarding (Departures List — Involuntary Exit)</span>
+            <span class="screen-live-label" style="background: rgba(220, 38, 38, 0.2); color: #FCA5A5; border-color: rgba(220, 38, 38, 0.3);">IMMEDIATE ACTION</span>
+          </div>
+          <div class="screen-body">
+            
+            <div class="sub-header-bar">
+              <div class="sub-header-left-controls">
+                <button class="btn-toolbar"><span>⧩</span> Filter</button>
+                <button class="btn-toolbar"><span>⇅</span> Sort: Last working day (Earliest) ▾</button>
+                <button class="btn-toolbar"><span>↻</span> Refresh</button>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-toolbar"><span>📥</span> Export</button>
+                <button class="btn-toolbar primary" style="background:#DC2626; border-color:#DC2626;" onclick="highlightModal('termination')">
+                  <span>+</span> Start offboarding
+                </button>
+              </div>
+            </div>
+
+            <div class="table-meta-bar">
+              <span class="record-count-text">5 records</span>
+              <span class="active-pill" style="background:#FEE2E2; color:#DC2626; border-color:#FCA5A5;">Status: Exited · clearing ✕</span>
+              <span class="active-pill" style="background:#EDE9FE; color:#7C3AED; border-color:#DDD6FE;">Dept: Front Office ✕</span>
+            </div>
+
+            <div class="table-container">
+              <table class="hirerkey-table">
+                <thead>
+                  <tr>
+                    <th style="width: 45px;">S.No</th>
+                    <th>Employee</th>
+                    <th>Position & Seat</th>
+                    <th>Department</th>
+                    <th>Departure Reason</th>
+                    <th>Last Working Day</th>
+                    <th>Stage</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="highlight-row" style="background: #FFF5F5; border-left: 3px solid #DC2626;">
+                    <td><strong>3</strong></td>
+                    <td>
+                      <div class="avatar-cell">
+                        <div class="avatar-circle" style="background:#FEE2E2; color:#DC2626;">AN</div>
+                        <div>
+                          <div class="emp-name">Aisha Noor</div>
+                          <span class="seat-badge">GR-04</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="font-weight: 500;">Guest Relations Executive</div>
+                      <div style="font-size: 11px; color: #DC2626; font-weight: 600;">⚠ Vacant (Requisition created)</div>
+                    </td>
+                    <td>Front Office</td>
+                    <td><span class="stage-pill bad">Terminated</span></td>
+                    <td>
+                      <div>12 Sep 2026</div>
+                      <span class="urgency-chip neu">Left 3 days ago</span>
+                    </td>
+                    <td><span class="stage-pill bad">● Exited · clearing</span></td>
+                    <td style="text-align: right; color: #94A3B8; font-weight: bold; cursor: pointer;">•••</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Step 3: Start Modal with DANGER ALERT -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 20px 0 8px;">📋 Step 3: What HR Sees in the Start Offboarding Modal (Termination)</h4>
+        <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 10px;">
+          When HR selects <strong>"Terminated"</strong>, the dynamic alert box switches to <strong>Danger Red</strong>, and the Last Working Day input is <strong>automatically locked to Today and disabled</strong>.
+        </p>
+
+        <div class="modal-mockup-wrap">
+          <div class="modal-box">
+            <div class="modal-box-header" style="border-left: 4px solid #DC2626;">
+              <div class="modal-box-title">Start Offboarding — Involuntary Termination</div>
+              <div class="modal-box-subtitle">Initiate immediate employee termination and access lockdown protocol.</div>
+              <div class="modal-box-close">✕</div>
+            </div>
+            <div class="modal-box-body">
+              <div class="form-group">
+                <label class="form-label">Employee & Position *</label>
+                <select class="form-control-input">
+                  <option selected>Aisha Noor · Guest Relations Executive (GR-04)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Departure Reason *</label>
+                <div class="reason-grid">
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Resigned (voluntary)</div>
+                      <div class="reason-card-desc">Standard 30-day notice.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Retirement</div>
+                      <div class="reason-card-desc">Planned retirement flow.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card danger-selected">
+                    <input type="radio" checked style="accent-color: #DC2626;">
+                    <div>
+                      <div class="reason-card-title" style="color:#DC2626;">Terminated</div>
+                      <div class="reason-card-desc">Immediate exit. System access suspended today.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Death in service</div>
+                      <div class="reason-card-desc">Bereavement protocol.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- DYNAMIC DANGER ALERT BOX (RED) -->
+              <div class="modal-alert danger">
+                <span style="font-size: 16px;">🚨</span>
+                <div>
+                  <strong>Terminations take effect immediately.</strong> System access will be suspended today and position marked vacant. Operational notice period is bypassed and case transitions straight to Exit Clearance.
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-group">
+                <div>
+                  <label class="form-label">Notice Date</label>
+                  <input type="date" class="form-control-input" value="2026-09-12">
+                </div>
+                <div>
+                  <label class="form-label">Last Working Day (LWD) — Auto-Locked</label>
+                  <input type="date" class="form-control-input" value="2026-09-12" disabled>
+                  <div style="font-size: 10.5px; color: #DC2626; margin-top: 3px;">🔒 Disabled: Immediate exit date cannot be altered</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Successor / Interim Cover</label>
+                <select class="form-control-input">
+                  <option selected>Leave seat open (Requires Vacancy Posting)</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-box-footer">
+              <button class="btn-toolbar">Cancel</button>
+              <button class="btn-toolbar primary" style="background:#DC2626; border-color:#DC2626;">Confirm & Terminate Access</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Screen 2 Case Workspace Mockup (Termination) -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 28px 0 8px;">💼 Step 4: Screen 2 — Leaver Case Workspace (Aisha Noor)</h4>
+        <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 12px;">
+          The case opens in <code>Stage 2: Exited · clearing</code>. Notice period acknowledgment is hidden. IT deactivations are immediate, exit interviews are waived, and severance is routed to payroll.
+        </p>
+
+        <div class="screen-frame">
+          <div class="screen-frame-bar" style="background:#450A0A;">
+            <div class="screen-dots">
+              <span class="screen-dot r"></span>
+              <span class="screen-dot y"></span>
+              <span class="screen-dot g"></span>
+            </div>
+            <span class="screen-title">Hirerkey™ HRMS › Leaver Workspace › Aisha Noor (GR-04) — [TERMINATION]</span>
+            <span class="screen-live-label" style="background:#DC2626; color:#FFF; border-color:#EF4444;">IMMEDIATE EXIT</span>
+          </div>
+          <div class="screen-body">
+
+            <!-- Breadcrumbs & Header Actions -->
+            <div class="case-header-nav">
+              <div class="case-breadcrumbs">
+                <button class="btn-toolbar" style="height: 28px; font-size: 11px;">← Back to departures</button>
+                <span>/</span>
+                <span>Employees</span>
+                <span>/</span>
+                <span>Off-boarding</span>
+                <span>/</span>
+                <strong>Aisha Noor (GR-04)</strong>
+              </div>
+              <div class="case-header-actions">
+                <!-- Acknowledge Notice Button is NOT RENDERED in Termination -->
+                <button class="btn-toolbar" style="height: 30px; font-size: 11.5px;">Audit Payroll Settlement</button>
+                <button class="btn-toolbar primary" style="height: 30px; font-size: 11.5px; background:#16A34A; border-color:#16A34A;">Close Case & Archive</button>
+              </div>
+            </div>
+
+            <!-- Profile Card (Termination) -->
+            <div class="case-profile-card" style="border-left: 4px solid #DC2626;">
+              <div class="profile-avatar-lg" style="background:#FEE2E2; color:#DC2626;">AN</div>
+              <div class="profile-info">
+                <h2>
+                  Aisha Noor
+                  <span class="seat-badge">GR-04</span>
+                  <span class="stage-pill bad">● Exited · clearing</span>
+                </h2>
+                <div class="profile-meta-row">
+                  <span class="profile-meta-item">💼 Guest Relations Executive</span>
+                  <span class="profile-meta-item">🏢 Front Office</span>
+                  <span class="profile-meta-item">👤 Manager: Sara Khan</span>
+                  <span class="profile-meta-item">⏱️ Tenure: 1 yr 4 mos</span>
+                  <span class="profile-meta-item">⚠️ Successor: <strong style="color:#DC2626;">None (Vacant Seat)</strong></span>
+                </div>
+              </div>
+              <div class="profile-stat-box">
+                <div class="profile-stat-val" style="color:#DC2626;">Left 3 days ago</div>
+                <div class="profile-stat-lbl">LWD: 12 Sep 2026 (Immediate)</div>
+              </div>
+            </div>
+
+            <!-- Tab Container -->
+            <div class="tab-bar-container">
+              <button class="tab-btn active" onclick="switchCaseTab('term', 'overview')">Overview & Timeline</button>
+              <button class="tab-btn" onclick="switchCaseTab('term', 'handover')">Handover <span class="tab-counter">0 tasks</span></button>
+              <button class="tab-btn" onclick="switchCaseTab('term', 'clearance')">Clearance <span class="tab-counter" style="background:#16A34A;">4/4 complete</span></button>
+              <button class="tab-btn" onclick="switchCaseTab('term', 'interview')">Exit Interview <span class="tab-counter">Waived</span></button>
+              <button class="tab-btn" onclick="switchCaseTab('term', 'settlement')">Final Settlement</button>
+            </div>
+
+            <!-- Termination Overview Panel -->
+            <div class="tab-content-panel" id="tab-term-overview">
+              <div class="overview-grid">
+                
+                <div class="timeline-card">
+                  <div class="timeline-title">📍 Immediate Departure Lifecycle</div>
+                  <div class="timeline-list">
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">1. Termination Order Issued</div>
+                      <div class="timeline-step-desc">Company initiated termination on 12 Sep 2026.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">2. Immediate IT Lockdown</div>
+                      <div class="timeline-step-desc">Opera PMS & Guest Relations POS access cut off on 12 Sep 2026.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">3. Operational Notice Period Waived</div>
+                      <div class="timeline-step-desc">Standard handover bypassed; seat flagged for recruitment.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">4. Departmental Clearance (4/4 Completed)</div>
+                      <div class="timeline-step-desc">All assets retrieved; zero dues verified.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet active">5</div>
+                      <div class="timeline-step-title">5. Severance & Settlement Disbursed</div>
+                      <div class="timeline-step-desc">Final payment of AED 1,500 processed via WPS payroll.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet">6</div>
+                      <div class="timeline-step-title">6. Archived to Inactive Directory</div>
+                      <div class="timeline-step-desc">Ready to archive to Employees › Exit.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="timeline-card" style="margin-bottom: 14px;">
+                    <div class="timeline-title">🚨 Access & Security Status</div>
+                    <div style="margin-bottom: 10px;">
+                      <div style="font-size: 11px; color: var(--text-sec);">SYSTEM ACCESS</div>
+                      <div style="font-size: 12.5px; font-weight: 700; color: #DC2626;">🔒 Terminated & Revoked</div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                      <div style="font-size: 11px; color: var(--text-sec);">SEAT STATUS</div>
+                      <div style="font-size: 12.5px; font-weight: 700; color: #DC2626;">Vacant — Requisition Created</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 11px; color: var(--text-sec);">LEAVE ENCASHMENT</div>
+                      <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 700; color: #16A34A;">5.0 Days (AED 1,500)</div>
+                    </div>
+                  </div>
+
+                  <div class="timeline-card">
+                    <div class="timeline-title">📋 Exit Interview Treatment</div>
+                    <div class="stage-pill" style="background:#F1F5F9; color:#64748B; margin-bottom: 8px;">Skipped (Waived)</div>
+                    <div style="font-size: 11.5px; color: var(--text-sec);">
+                      Under Hirerkey policy, exit surveys are waived for involuntary departures to prevent contentious feedback.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Termination Handover Panel -->
+            <div class="tab-content-panel" id="tab-term-handover" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">🤝 Operational Handover & Succession Protocol (Bypassed)</h4>
+              <div class="modal-alert danger" style="margin-bottom: 16px;">
+                <span style="font-size: 16px;">🛡️</span>
+                <div>
+                  <strong>Operational Handover Bypassed:</strong> Under enterprise security protocols, leaver access and direct peer handover are bypassed in involuntary terminations to prevent data exfiltration and workplace conflict.
+                </div>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked disabled style="accent-color: #DC2626;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Immediate Guest Accounts Custody Reallocation</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Active VIP guest inquiries reassigned directly to Front Desk Manager Sara Khan (FDM-01)</div>
+                  </div>
+                </div>
+                <span class="stage-pill ok">✓ Reallocated by Manager</span>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked disabled style="accent-color: #DC2626;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Emergency Seat Requisition #REQ-089 Auto-Generated</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Seat GR-04 marked vacant; replacement position requisition posted to Hirerkey Recruitment</div>
+                  </div>
+                </div>
+                <span class="stage-pill pri">Requisition Active</span>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked disabled style="accent-color: #DC2626;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Direct Knowledge Transfer Waived</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Standard successor shadowing waived under immediate separation terms</div>
+                  </div>
+                </div>
+                <span class="stage-pill" style="background:#F1F5F9; color:#64748B;">Waived</span>
+              </div>
+            </div>
+
+            <!-- Termination Clearance Panel -->
+            <div class="tab-content-panel" id="tab-term-clearance" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">🏢 Accelerated Clearance Checklist (Completed)</h4>
+              <div class="clearance-grid">
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">IT</span>
+                    <button class="btn-signoff done">✓ Revoked</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">System Access Cutoff</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Revoked on 12 Sep by Zaid Al-Harbi.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Admin</span>
+                    <button class="btn-signoff done">✓ Returned</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Badge & Access Card</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Returned to security desk by Tariq Mansoor.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Finance</span>
+                    <button class="btn-signoff done">✓ Cleared</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Zero Dues & Salary Audit</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Audited & approved by Amina El-Sayed.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Line Manager</span>
+                    <button class="btn-signoff done">✓ Signed</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Operational Sign-off</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Signed by Sara Khan.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Termination Exit Interview Panel -->
+            <div class="tab-content-panel" id="tab-term-interview" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">💬 Exit Interview & Compliance Disposition</h4>
+              <div class="modal-alert primary" style="background:#F1F5F9; border: 1px solid #CBD5E1; color:#334155; margin-bottom: 16px;">
+                <span style="font-size: 16px;">📋</span>
+                <div>
+                  <strong>Exit Survey Waived (Compliance Action):</strong> Standard exit feedback surveys are permanently waived for company-initiated involuntary departures to avoid contentious or legally prejudicial disputes.
+                </div>
+              </div>
+
+              <div style="background: #FFFFFF; border: 1px solid var(--divider); border-radius: 8px; padding: 18px; margin-bottom: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Survey Status: <span class="stage-pill" style="background:#FEE2E2; color:#DC2626;">Skipped / Waived</span></div>
+                  <span style="font-size: 11px; color: var(--text-sec); font-family: var(--font-mono);">TIMESTAMP: 12 Sep 2026, 11:30 GST</span>
+                </div>
+                <div style="font-size: 12px; color: var(--text-body); line-height: 1.6;">
+                  <strong>Reason for Waiver:</strong> Involuntary departure due to company reorganization / performance separation. Standard survey skipped; formal severance terms and legal release executed.
+                </div>
+                <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--divider-subtle); display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-sec);">
+                  <span>✍️ Authorized by: <strong>Amina El-Sayed</strong> (Director of Human Resources)</span>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-toolbar" disabled style="opacity: 0.5; cursor: not-allowed;">Resend Survey (Disabled)</button>
+                <button class="btn-toolbar" onclick="switchCaseTab('term', 'settlement')">Proceed to Final Settlement →</button>
+              </div>
+            </div>
+
+            <!-- Termination Settlement Panel -->
+            <div class="tab-content-panel" id="tab-term-settlement" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">💰 Termination Final Settlement & Relieving Letters</h4>
+              <div class="metrics-4-grid">
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Leave Balance</div>
+                  <div class="metric-card-val">5.0 Days</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Encashment</div>
+                  <div class="metric-card-val">AED 1,500</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Deductions</div>
+                  <div class="metric-card-val">AED 0</div>
+                </div>
+                <div class="metric-card highlight">
+                  <div class="metric-card-lbl">Net Payable</div>
+                  <div class="metric-card-val" style="color:#16A34A;">AED 1,500</div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--divider);">
+                <span class="stage-pill ok" style="font-size: 12px; padding: 4px 10px;">
+                  ✓ Paid & Reconciled via Direct Bank Transfer
+                </span>
+                <button class="btn-toolbar primary" style="background:#16A34A; border-color:#16A34A;">
+                  Archive Case to Employees › Exit
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCENARIO 3: RETIREMENT -->
+    <!-- ========================================================================= -->
+    <div class="scenario-section" id="sec-retirement">
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title">
+            <span style="color: #D97706;">🟡 Scenario 3: Retirement (Planned Superannuation)</span>
+            <span class="section-tag" style="background:#FEF3C7; color:#B45309;">Succession & Mentorship Flow</span>
+          </div>
+          <div style="font-size: 12.5px; font-weight: 600; color: #475569;">
+            Employee: <strong>Leena Joseph (HKS-03)</strong> · Housekeeping Supervisor (7 yrs 2 mos service)
+          </div>
+        </div>
+
+        <div class="scenario-stepper">
+          <div class="stepper-item completed">1. Retirement Milestone</div>
+          <div class="stepper-item">2. Screen 1: Departures List</div>
+          <div class="stepper-item current" style="background:#D97706;">3. Start Modal (Planned)</div>
+          <div class="stepper-item">4. Screen 2: Case Workspace</div>
+          <div class="stepper-item">5. Mentorship & Gratuity</div>
+          <div class="stepper-item">6. Pension & Honor</div>
+        </div>
+
+        <div class="callout-box warn">
+          <div class="callout-title">🏅 Step 1: Real-World Business Trigger</div>
+          Leena Joseph reaches the retirement milestone after 7 years of loyal service. Retirement triggers a <strong>planned succession handover</strong> to junior supervisor Meera Das and extensive <strong>UAE Labor Law End-of-Service Gratuity (EOSG)</strong> calculations.
+        </div>
+
+        <!-- Step 2: Screen 1 Mockup for Retirement -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 20px 0 8px;">🖥️ Step 2: What HR Sees on Screen 1: Departures List (Retirement Flow)</h4>
+        <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 10px;">
+          HR monitors scheduled retirements in <strong>Employees › Off-boarding</strong>. Leena Joseph's case shows the planned handover to successor Meera Das with urgent milestone status.
+        </p>
+
+        <div class="screen-frame">
+          <div class="screen-frame-bar">
+            <div class="screen-dots">
+              <span class="screen-dot r"></span>
+              <span class="screen-dot y"></span>
+              <span class="screen-dot g"></span>
+            </div>
+            <span class="screen-title">Hirerkey™ HRMS › Employees › Off-boarding (Departures List — Planned Retirement)</span>
+            <span class="screen-live-label" style="background: rgba(217, 119, 6, 0.2); color: #FDE68A; border-color: rgba(217, 119, 6, 0.3);">SUPERANNUATION</span>
+          </div>
+          <div class="screen-body">
+            
+            <div class="sub-header-bar">
+              <div class="sub-header-left-controls">
+                <button class="btn-toolbar"><span>⧩</span> Filter</button>
+                <button class="btn-toolbar"><span>⇅</span> Sort: Last working day (Earliest) ▾</button>
+                <button class="btn-toolbar"><span>↻</span> Refresh</button>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-toolbar"><span>📥</span> Export</button>
+                <button class="btn-toolbar primary" style="background:#D97706; border-color:#D97706;" onclick="highlightModal('retirement')">
+                  <span>+</span> Start offboarding
+                </button>
+              </div>
+            </div>
+
+            <div class="table-meta-bar">
+              <span class="record-count-text">5 records</span>
+              <span class="active-pill" style="background:#FEF3C7; color:#92400E; border-color:#FDE68A;">Status: Serving notice ✕</span>
+              <span class="active-pill" style="background:#EDE9FE; color:#7C3AED; border-color:#DDD6FE;">Dept: Housekeeping ✕</span>
+            </div>
+
+            <div class="table-container">
+              <table class="hirerkey-table">
+                <thead>
+                  <tr>
+                    <th style="width: 45px;">S.No</th>
+                    <th>Employee</th>
+                    <th>Position & Seat</th>
+                    <th>Department</th>
+                    <th>Departure Reason</th>
+                    <th>Last Working Day</th>
+                    <th>Stage</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="highlight-row" style="background: #FFFBEB; border-left: 3px solid #D97706;">
+                    <td><strong>4</strong></td>
+                    <td>
+                      <div class="avatar-cell">
+                        <div class="avatar-circle" style="background:#FEF3C7; color:#B45309;">LJ</div>
+                        <div>
+                          <div class="emp-name">Leena Joseph</div>
+                          <span class="seat-badge">HKS-03</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="font-weight: 500;">Housekeeping Supervisor</div>
+                      <div style="font-size: 11px; color: #16A34A; font-weight: 600;">→ Meera Das (Successor)</div>
+                    </td>
+                    <td>Housekeeping</td>
+                    <td><span class="stage-pill warn">Retirement</span></td>
+                    <td>
+                      <div>15 Sep 2026</div>
+                      <span class="urgency-chip bad">Today</span>
+                    </td>
+                    <td><span class="stage-pill pri">● Serving notice</span></td>
+                    <td style="text-align: right; color: #94A3B8; font-weight: bold; cursor: pointer;">•••</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Start Modal for Retirement -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 20px 0 8px;">📋 Step 3: What HR Sees in the Start Offboarding Modal (Retirement)</h4>
+        
+        <div class="modal-mockup-wrap">
+          <div class="modal-box">
+            <div class="modal-box-header" style="border-left: 4px solid #D97706;">
+              <div class="modal-box-title">Start Offboarding — Retirement</div>
+              <div class="modal-box-subtitle">Initiate planned retirement, succession handover, and statutory gratuity calculation.</div>
+              <div class="modal-box-close">✕</div>
+            </div>
+            <div class="modal-box-body">
+              <div class="form-group">
+                <label class="form-label">Employee & Position *</label>
+                <select class="form-control-input">
+                  <option selected>Leena Joseph · Housekeeping Supervisor (HKS-03)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Departure Reason *</label>
+                <div class="reason-grid">
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Resigned (voluntary)</div>
+                      <div class="reason-card-desc">Standard resignation notice.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card selected">
+                    <input type="radio" checked style="accent-color: #7C3AED;">
+                    <div>
+                      <div class="reason-card-title">Retirement</div>
+                      <div class="reason-card-desc">Planned superannuation and succession handover.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Terminated</div>
+                      <div class="reason-card-desc">Immediate company termination.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Death in service</div>
+                      <div class="reason-card-desc">Bereavement protocol.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-alert primary">
+                <span style="font-size: 16px;">🎖️</span>
+                <div>
+                  <strong>Retirement initiated.</strong> Planned notice period and succession handover initialized. UAE Labor Law Gratuity & Pension documentation activated for 7+ years tenure.
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-group">
+                <div>
+                  <label class="form-label">Retirement Notice Date</label>
+                  <input type="date" class="form-control-input" value="2026-08-15">
+                </div>
+                <div>
+                  <label class="form-label">Planned Retirement Last Working Day</label>
+                  <input type="date" class="form-control-input" value="2026-09-15">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Designated Successor</label>
+                <select class="form-control-input">
+                  <option selected>Meera Das · Junior Housekeeping Lead (Promoted)</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-box-footer">
+              <button class="btn-toolbar">Cancel</button>
+              <button class="btn-toolbar primary">Submit & Plan Retirement</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 2 for Retirement -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 28px 0 8px;">💼 Step 3: Screen 2 — Leaver Case Workspace (Retirement)</h4>
+
+        <div class="screen-frame">
+          <div class="screen-frame-bar" style="background:#78350F;">
+            <div class="screen-dots">
+              <span class="screen-dot r"></span>
+              <span class="screen-dot y"></span>
+              <span class="screen-dot g"></span>
+            </div>
+            <span class="screen-title">Hirerkey™ HRMS › Leaver Workspace › Leena Joseph (HKS-03) — [RETIREMENT]</span>
+            <span class="screen-live-label" style="background:#F59E0B; color:#000;">7 YRS SERVICE</span>
+          </div>
+          <div class="screen-body">
+
+            <div class="case-header-nav">
+              <div class="case-breadcrumbs">
+                <button class="btn-toolbar" style="height: 28px; font-size: 11px;">← Back to departures</button>
+                <span>/</span>
+                <span>Employees</span>
+                <span>/</span>
+                <span>Off-boarding</span>
+                <span>/</span>
+                <strong>Leena Joseph (HKS-03)</strong>
+              </div>
+              <div class="case-header-actions">
+                <button class="btn-toolbar primary" style="height: 30px; font-size: 11.5px; background:#16A34A; border-color:#16A34A;">Close Case & Honor Retirement</button>
+              </div>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="case-profile-card">
+              <div class="profile-avatar-lg" style="background:#FEF3C7; color:#B45309;">LJ</div>
+              <div class="profile-info">
+                <h2>
+                  Leena Joseph
+                  <span class="seat-badge">HKS-03</span>
+                  <span class="stage-pill ok">● Serving notice (Final Day)</span>
+                </h2>
+                <div class="profile-meta-row">
+                  <span class="profile-meta-item">💼 Housekeeping Supervisor</span>
+                  <span class="profile-meta-item">🏢 Housekeeping</span>
+                  <span class="profile-meta-item">👤 Manager: Maria Santos</span>
+                  <span class="profile-meta-item">⏱️ Tenure: <strong>7 yrs 2 mos</strong></span>
+                  <span class="profile-meta-item">🔄 Successor: <strong style="color:#16A34A;">Meera Das</strong></span>
+                </div>
+              </div>
+              <div class="profile-stat-box">
+                <div class="profile-stat-val" style="color:#D97706;">Today</div>
+                <div class="profile-stat-lbl">Retirement Date: 15 Sep 2026</div>
+              </div>
+            </div>
+
+            <!-- Tab Container -->
+            <div class="tab-bar-container">
+              <button class="tab-btn active" onclick="switchCaseTab('ret', 'overview')">Overview & Succession</button>
+              <button class="tab-btn" onclick="switchCaseTab('ret', 'handover')">Mentorship Handover</button>
+              <button class="tab-btn" onclick="switchCaseTab('ret', 'clearance')">Clearance & Housing</button>
+              <button class="tab-btn" onclick="switchCaseTab('ret', 'interview')">Exit Legacy Interview</button>
+              <button class="tab-btn" onclick="switchCaseTab('ret', 'settlement')">Gratuity & Settlement</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content-panel" id="tab-ret-overview">
+              <div class="overview-grid">
+                <div class="timeline-card">
+                  <div class="timeline-title">📍 Retirement Milestones & Succession Mentorship</div>
+                  <div class="timeline-list">
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">1. Retirement Notice Submitted & Approved</div>
+                      <div class="timeline-step-desc">Approved on 15 Aug 2026 by GM and HR.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">2. Succession Mentorship of Meera Das</div>
+                      <div class="timeline-step-desc">30-day side-by-side floor supervisor mentoring completed.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">3. Departmental & Housing Clearance</div>
+                      <div class="timeline-step-desc">Staff accommodation room handed over in pristine condition.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">4. Statutory UAE Gratuity Audit (7 Yrs)</div>
+                      <div class="timeline-step-desc">Audited: 21 days basic for 1st 5 yrs + 30 days basic for remaining 2 yrs.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet active">5</div>
+                      <div class="timeline-step-title">5. Final Disbursement & Retirement Tribute</div>
+                      <div class="timeline-step-desc">Service plaque presentation & final settlement routing today.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="timeline-card" style="margin-bottom: 14px;">
+                    <div class="timeline-title">🏆 Retirement Highlights</div>
+                    <div style="margin-bottom: 10px;">
+                      <div style="font-size: 11px; color: var(--text-sec);">HONORABLE TENURE</div>
+                      <div style="font-size: 13px; font-weight: 700; color: #B45309;">7 Years 2 Months (2019–2026)</div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                      <div style="font-size: 11px; color: var(--text-sec);">SUCCESSOR STATUS</div>
+                      <div style="font-size: 12.5px; font-weight: 600; color: #16A34A;">✓ Meera Das Fully Certified</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 11px; color: var(--text-sec);">LEAVE BALANCE ENCASHMENT</div>
+                      <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 700; color: #7C3AED;">15.0 Days (AED 5,500)</div>
+                    </div>
+                  </div>
+                  <div class="timeline-card">
+                    <div class="timeline-title">🎖️ Exit Interview Feedback</div>
+                    <div style="font-size: 12px; color: #16A34A; font-weight: 600; margin-bottom: 4px;">⭐⭐⭐⭐⭐ 5.0 / 5.0 Rating</div>
+                    <div style="font-size: 11px; color: var(--text-sec); font-style: italic;">
+                      "Proud to have mentored the housekeeping team. Meera is ready to lead."
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Retirement Handover Panel -->
+            <div class="tab-content-panel" id="tab-ret-handover" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">🤝 Succession Mentorship & Leadership Handover (Leena → Meera Das)</h4>
+              
+              <div class="modal-alert primary" style="margin-bottom: 16px;">
+                <span style="font-size: 16px;">🎖️</span>
+                <div>
+                  <strong>30-Day Succession Mentorship:</strong> Structured leadership shadow program with designated successor Meera Das completed. All departmental duties successfully transferred.
+                </div>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked style="accent-color: #D97706;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Floor Master Keys & Access Card Custody Deposit</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Master floors 1–12 keys verified, tagged, and handed to Executive Housekeeper Maria Santos</div>
+                  </div>
+                </div>
+                <span class="stage-pill ok">✓ Completed</span>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked style="accent-color: #D97706;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">VIP Suites Standards & Chemical Safety Dossier</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Luxury suite inspection checklist & OSHA/HACCP chemical binder handed to Meera Das</div>
+                  </div>
+                </div>
+                <span class="stage-pill ok">✓ Completed</span>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked style="accent-color: #D97706;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Direct Reports Succession Reassignment</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">8 room attendants reassigned to report directly to Meera Das (effective 16 Sep 2026)</div>
+                  </div>
+                </div>
+                <span class="stage-pill ok">✓ Reassigned</span>
+              </div>
+            </div>
+
+            <!-- Retirement Clearance Panel -->
+            <div class="tab-content-panel" id="tab-ret-clearance" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">🏢 Departmental Clearance & Staff Housing Clearance (Completed)</h4>
+              <div class="clearance-grid">
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">IT</span>
+                    <button class="btn-signoff done">✓ Approved</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Two-Way Radio Comms Device Returned</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Motorola CP200 radio & charger tested and cleared by Zaid Al-Harbi.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Admin & Housing</span>
+                    <button class="btn-signoff done">✓ Approved</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Staff Accommodation Room 402 Vacated</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Room inspection pristine. Security deposit released by Tariq Mansoor.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Finance</span>
+                    <button class="btn-signoff done">✓ Approved</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">UAE EOS Gratuity Audit (7 Yrs 2 Mos)</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Statutory 170 days basic gratuity verified and approved by Amina El-Sayed.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Line Manager</span>
+                    <button class="btn-signoff done">✓ Approved</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Final Succession Sign-off</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Signed by Maria Santos. Successor Meera ready for solo supervision.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Retirement Exit Legacy Interview Panel -->
+            <div class="tab-content-panel" id="tab-ret-interview" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">💬 Retirement Legacy Debrief & Milestone Tribute</h4>
+              <div style="background:#FFFFFF; border:1px solid var(--divider); border-radius:10px; padding:20px; margin-bottom:16px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                  <div>
+                    <span style="font-size:16px; font-weight:700; color:#16A34A;">⭐⭐⭐⭐⭐ 5.0 / 5.0 Exceptional Rating</span>
+                    <div style="font-size:12px; color:var(--text-sec); margin-top:2px;">Legacy Interview recorded on 10 Sep 2026 by GM James Cole & HR Director Amina El-Sayed</div>
+                  </div>
+                  <span class="stage-pill ok" style="font-size:12px;">✓ Completed</span>
+                </div>
+                
+                <div style="background:#F8FAFC; border-left:3px solid #16A34A; padding:12px 16px; border-radius:4px; margin-bottom:14px; font-style:italic; font-size:12.5px; line-height:1.6; color:#334155;">
+                  "I am profoundly grateful for 7 wonderful years at Hirerkey Crowne Plaza. Mentoring Meera has been the highlight of my career, and I know the housekeeping team is in the safest hands. Thank you for treating me like family."
+                </div>
+
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:12px;">
+                  <div><strong>Would Recommend Organization:</strong> 10 / 10 (Promoter)</div>
+                  <div><strong>Management Support Score:</strong> 5.0 / 5.0</div>
+                  <div><strong>Succession Preparedness:</strong> 100% Ready</div>
+                  <div><strong>Retirement Plaque:</strong> Commissioned & Presented</div>
+                </div>
+              </div>
+
+              <div style="display:flex; gap:10px;">
+                <button class="btn-toolbar primary" onclick="switchCaseTab('ret', 'settlement')">View Gratuity & Settlement →</button>
+              </div>
+            </div>
+
+            <!-- Retirement Settlement Panel -->
+            <div class="tab-content-panel" id="tab-ret-settlement" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">💰 Statutory UAE Gratuity & Final Settlement</h4>
+              <div class="metrics-4-grid">
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Leave Balance</div>
+                  <div class="metric-card-val">15.0 Days</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Leave Encashment</div>
+                  <div class="metric-card-val">AED 5,500</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-card-lbl">EOS Gratuity (7 Yrs)</div>
+                  <div class="metric-card-val" style="color:#7C3AED;">Audited & Approved</div>
+                </div>
+                <div class="metric-card highlight">
+                  <div class="metric-card-lbl">Net Payable (Payroll)</div>
+                  <div class="metric-card-val" style="color:#16A34A;">AED 5,500</div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--divider);">
+                <label style="display: flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 600; color:#16A34A;">
+                  ✓ Relieving, Experience & Retirement Certificates Issued
+                </label>
+                <button class="btn-toolbar primary" style="background:#16A34A; border-color:#16A34A;">
+                  Complete Retirement & Move to Employees › Exit
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SCENARIO 4: DEATH IN SERVICE -->
+    <!-- ========================================================================= -->
+    <div class="scenario-section" id="sec-death">
+      <div class="section-block">
+        <div class="section-header">
+          <div class="section-title">
+            <span style="color: #475569;">⚪ Scenario 4: Death in Service (Bereavement Protocol)</span>
+            <span class="section-tag" style="background:#F1F5F9; color:#475569;">Compassionate Statutory Flow</span>
+          </div>
+          <div style="font-size: 12.5px; font-weight: 600; color: #475569;">
+            Employee: <strong>Tariq Abbasi (SO-04)</strong> · Security Supervisor
+          </div>
+        </div>
+
+        <div class="scenario-stepper">
+          <div class="stepper-item completed">1. Demise Notification</div>
+          <div class="stepper-item">2. Screen 1: Departures List</div>
+          <div class="stepper-item current" style="background:#334155;">3. Start Modal (Bereavement)</div>
+          <div class="stepper-item">4. Screen 2: Case Workspace</div>
+          <div class="stepper-item">5. Family Liaison Clearance</div>
+          <div class="stepper-item">6. Legal Heir Settlement</div>
+        </div>
+
+        <div class="callout-box" style="border-left-color: #334155; background: #F8FAFC;">
+          <div class="callout-title">🕊️ Step 1: Real-World Business Trigger</div>
+          Official notice of employee demise received by HR. Immediate compassionate protocol activates:
+          <strong>(1) Immediate IT lockdown</strong> to preserve security & privacy,
+          <strong>(2) Next-of-kin family liaison appointed</strong>,
+          <strong>(3) Exit interview permanently waived</strong>,
+          <strong>(4) Statutory death compensation, full month wages & leave encashment routed to legal heirs within 10 days</strong> under UAE Labor Law Article 53.
+        </div>
+
+        <!-- Step 2: Screen 1 Mockup for Death in Service -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 20px 0 8px;">🖥️ Step 2: What HR Sees on Screen 1: Departures List (Bereavement Case)</h4>
+        <p style="font-size: 12px; color: var(--text-sec); margin-bottom: 10px;">
+          HR accesses <strong>Employees › Off-boarding</strong>. Tariq Abbasi's record displays the dark bereavement indicator and emergency shift cover assignment.
+        </p>
+
+        <div class="screen-frame">
+          <div class="screen-frame-bar" style="background:#0F172A;">
+            <div class="screen-dots">
+              <span class="screen-dot r"></span>
+              <span class="screen-dot y"></span>
+              <span class="screen-dot g"></span>
+            </div>
+            <span class="screen-title">Hirerkey™ HRMS › Employees › Off-boarding (Departures List — Bereavement Flow)</span>
+            <span class="screen-live-label" style="background: rgba(148, 163, 184, 0.2); color: #E2E8F0; border-color: rgba(148, 163, 184, 0.3);">BEREAVEMENT PROTOCOL</span>
+          </div>
+          <div class="screen-body">
+            
+            <div class="sub-header-bar">
+              <div class="sub-header-left-controls">
+                <button class="btn-toolbar"><span>⧩</span> Filter</button>
+                <button class="btn-toolbar"><span>⇅</span> Sort: Last working day (Earliest) ▾</button>
+                <button class="btn-toolbar"><span>↻</span> Refresh</button>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-toolbar"><span>📥</span> Export</button>
+                <button class="btn-toolbar primary" style="background:#334155; border-color:#334155;" onclick="highlightModal('death')">
+                  <span>+</span> Start offboarding
+                </button>
+              </div>
+            </div>
+
+            <div class="table-meta-bar">
+              <span class="record-count-text">5 records</span>
+              <span class="active-pill" style="background:#F1F5F9; color:#475569; border-color:#CBD5E1;">Status: Exited · clearing ✕</span>
+              <span class="active-pill" style="background:#EDE9FE; color:#7C3AED; border-color:#DDD6FE;">Dept: Security ✕</span>
+            </div>
+
+            <div class="table-container">
+              <table class="hirerkey-table">
+                <thead>
+                  <tr>
+                    <th style="width: 45px;">S.No</th>
+                    <th>Employee</th>
+                    <th>Position & Seat</th>
+                    <th>Department</th>
+                    <th>Departure Reason</th>
+                    <th>Last Working Day</th>
+                    <th>Stage</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="highlight-row" style="background: #F8FAFC; border-left: 3px solid #334155;">
+                    <td><strong>5</strong></td>
+                    <td>
+                      <div class="avatar-cell">
+                        <div class="avatar-circle" style="background:#E2E8F0; color:#334155;">TA</div>
+                        <div>
+                          <div class="emp-name">Tariq Abbasi</div>
+                          <span class="seat-badge">SO-04</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div style="font-weight: 500;">Security Supervisor</div>
+                      <div style="font-size: 11px; color: #7C3AED; font-weight: 600;">→ Ravi Kumar (Emergency Cover)</div>
+                    </td>
+                    <td>Security</td>
+                    <td><span class="stage-pill" style="background:#F1F5F9; color:#475569;">Death in service</span></td>
+                    <td>
+                      <div>17 Sep 2026</div>
+                      <span class="urgency-chip" style="background:#E2E8F0; color:#334155;">Demised</span>
+                    </td>
+                    <td><span class="stage-pill bad">● Exited · clearing</span></td>
+                    <td style="text-align: right; color: #94A3B8; font-weight: bold; cursor: pointer;">•••</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Start Modal for Death in Service -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 20px 0 8px;">📋 Step 3: What HR Sees in the Start Offboarding Modal (Death in Service)</h4>
+        
+        <div class="modal-mockup-wrap">
+          <div class="modal-box">
+            <div class="modal-box-header" style="border-left: 4px solid #475569;">
+              <div class="modal-box-title">Start Offboarding — Death in Service</div>
+              <div class="modal-box-subtitle">Compassionate exit protocol, emergency succession, and statutory death benefits.</div>
+              <div class="modal-box-close">✕</div>
+            </div>
+            <div class="modal-box-body">
+              <div class="form-group">
+                <label class="form-label">Employee & Position *</label>
+                <select class="form-control-input">
+                  <option selected>Tariq Abbasi · Security Supervisor (SO-04)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Departure Reason *</label>
+                <div class="reason-grid">
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Resigned (voluntary)</div>
+                      <div class="reason-card-desc">Standard resignation notice.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Retirement</div>
+                      <div class="reason-card-desc">Superannuation flow.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card">
+                    <input type="radio" disabled>
+                    <div>
+                      <div class="reason-card-title">Terminated</div>
+                      <div class="reason-card-desc">Company termination.</div>
+                    </div>
+                  </div>
+                  <div class="reason-card danger-selected" style="border-color:#475569; background:#F8FAFC;">
+                    <input type="radio" checked style="accent-color: #334155;">
+                    <div>
+                      <div class="reason-card-title" style="color:#334155;">Death in service</div>
+                      <div class="reason-card-desc">Bereavement protocol & legal heir settlements.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal-alert danger" style="background:#F1F5F9; border-color:#CBD5E1; color:#1E293B;">
+                <span style="font-size: 16px;">🕊️</span>
+                <div>
+                  <strong>Death in service takes effect immediately.</strong> System access is suspended, seat opened for succession, and statutory final settlement workflow initialized for verified Next-of-Kin / Legal Heirs.
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="form-group">
+                <div>
+                  <label class="form-label">Date of Demise</label>
+                  <input type="date" class="form-control-input" value="2026-09-17">
+                </div>
+                <div>
+                  <label class="form-label">Last Working Day (LWD) — Auto-Locked</label>
+                  <input type="date" class="form-control-input" value="2026-09-17" disabled>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Emergency Shift Cover / Successor</label>
+                <select class="form-control-input">
+                  <option selected>Ravi Kumar · Security Lead (Emergency Shift Cover)</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-box-footer">
+              <button class="btn-toolbar">Cancel</button>
+              <button class="btn-toolbar primary" style="background:#334155; border-color:#334155;">Initialize Bereavement Protocol</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen 2 for Death in Service -->
+        <h4 style="font-size: 13.5px; font-weight: 700; margin: 28px 0 8px;">💼 Step 4: Screen 2 — Leaver Case Workspace (Death in Service)</h4>
+
+        <div class="screen-frame">
+          <div class="screen-frame-bar" style="background:#0F172A;">
+            <div class="screen-dots">
+              <span class="screen-dot r"></span>
+              <span class="screen-dot y"></span>
+              <span class="screen-dot g"></span>
+            </div>
+            <span class="screen-title">Hirerkey™ HRMS › Leaver Workspace › Tariq Abbasi (SO-04) — [BEREAVEMENT PROTOCOL]</span>
+            <span class="screen-live-label" style="background:#334155; color:#FFF;">FAMILY LIAISON ACTIVE</span>
+          </div>
+          <div class="screen-body">
+
+            <!-- Bereavement Banner -->
+            <div class="modal-alert primary" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; margin-bottom: 12px;">
+              <span style="font-size: 16px;">🕊️</span>
+              <div>
+                <strong>Bereavement Protocol Active:</strong> Direct contact suspended. All communications and documentation are routed strictly through HR Family Liaison Amina El-Sayed to the designated Next-of-Kin.
+              </div>
+            </div>
+
+            <div class="case-header-nav">
+              <div class="case-breadcrumbs">
+                <button class="btn-toolbar" style="height: 28px; font-size: 11px;">← Back to departures</button>
+                <span>/</span>
+                <span>Employees</span>
+                <span>/</span>
+                <span>Off-boarding</span>
+                <span>/</span>
+                <strong>Tariq Abbasi (SO-04)</strong>
+              </div>
+              <div class="case-header-actions">
+                <button class="btn-toolbar primary" style="height: 30px; font-size: 11.5px; background:#334155; border-color:#334155;">
+                  Disburse to Legal Heirs & Close Case
+                </button>
+              </div>
+            </div>
+
+            <!-- Profile Card -->
+            <div class="case-profile-card">
+              <div class="profile-avatar-lg" style="background:#E2E8F0; color:#334155;">TA</div>
+              <div class="profile-info">
+                <h2>
+                  Tariq Abbasi
+                  <span class="seat-badge">SO-04</span>
+                  <span class="stage-pill" style="background:#E2E8F0; color:#334155;">● Exited · clearing</span>
+                </h2>
+                <div class="profile-meta-row">
+                  <span class="profile-meta-item">💼 Security Supervisor</span>
+                  <span class="profile-meta-item">🏢 Security</span>
+                  <span class="profile-meta-item">👤 Manager: Capt. Tariq Al-Hashimi</span>
+                  <span class="profile-meta-item">⏱️ Tenure: 6 yrs 8 mos</span>
+                  <span class="profile-meta-item">🔄 Emergency Cover: <strong>Ravi Kumar</strong></span>
+                </div>
+              </div>
+              <div class="profile-stat-box">
+                <div class="profile-stat-val" style="color:#334155;">Demised</div>
+                <div class="profile-stat-lbl">17 Sep 2026</div>
+              </div>
+            </div>
+
+            <!-- Tab Container -->
+            <div class="tab-bar-container">
+              <button class="tab-btn active" onclick="switchCaseTab('death', 'overview')">Overview & Liaison</button>
+              <button class="tab-btn" onclick="switchCaseTab('death', 'handover')">Operational Assumption</button>
+              <button class="tab-btn" onclick="switchCaseTab('death', 'clearance')">Compassionate Clearance</button>
+              <button class="tab-btn" onclick="switchCaseTab('death', 'interview')">Exit Interview <span class="tab-counter">Waived</span></button>
+              <button class="tab-btn" onclick="switchCaseTab('death', 'settlement')">Legal Heir Settlement</button>
+            </div>
+
+            <!-- Overview -->
+            <div class="tab-content-panel" id="tab-death-overview">
+              <div class="overview-grid">
+                <div class="timeline-card">
+                  <div class="timeline-title">📍 Compassionate Bereavement Lifecycle</div>
+                  <div class="timeline-list">
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">1. Official Demise Notification Received</div>
+                      <div class="timeline-step-desc">Hospital and police documentation filed on 17 Sep 2026.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet completed">✓</div>
+                      <div class="timeline-step-title">2. Immediate IT Security Lockdown</div>
+                      <div class="timeline-step-desc">CCTV security credentials cut off; mailbox archived for privacy.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet active">3</div>
+                      <div class="timeline-step-title">3. Next-of-Kin Family Liaison Outreach (Active)</div>
+                      <div class="timeline-step-desc">Amina El-Sayed coordinating personal belongings & court succession documents.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet">4</div>
+                      <div class="timeline-step-title">4. Statutory Death Compensation & Gratuity Audit</div>
+                      <div class="timeline-step-desc">Calculation of 6.6 yrs gratuity + group life insurance + full month wages.</div>
+                    </div>
+                    <div class="timeline-step">
+                      <div class="timeline-bullet">5</div>
+                      <div class="timeline-step-title">5. Disbursement to Verified Legal Heirs</div>
+                      <div class="timeline-step-desc">Payment dispatched to court-verified estate account within statutory 10-day window.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="timeline-card" style="margin-bottom: 14px;">
+                    <div class="timeline-title">🕊️ Compassionate Metrics</div>
+                    <div style="margin-bottom: 10px;">
+                      <div style="font-size: 11px; color: var(--text-sec);">FAMILY LIAISON OFFICER</div>
+                      <div style="font-size: 12.5px; font-weight: 600; color: #7C3AED;">Amina El-Sayed (HR Director)</div>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                      <div style="font-size: 11px; color: var(--text-sec);">EXIT INTERVIEW</div>
+                      <div style="font-size: 12.5px; font-weight: 600; color: #64748B;">Permanently Waived</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 11px; color: var(--text-sec);">STATUTORY DEATH DUES (LEGAL HEIRS)</div>
+                      <div style="font-family: var(--font-mono); font-size: 16px; font-weight: 700; color: #16A34A;">AED 51,300</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Death in Service Handover Panel -->
+            <div class="tab-content-panel" id="tab-death-handover" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">🤝 Emergency Operational Assumption & Shift Coverage</h4>
+              
+              <div class="modal-alert primary" style="background:#F8FAFC; border:1px solid #CBD5E1; color:#334155; margin-bottom: 16px;">
+                <span style="font-size: 16px;">🛡️</span>
+                <div>
+                  <strong>Operational Post Assumption:</strong> Standard leaver handover replaced by emergency operational command assumption. Security post coverage maintained without disruption.
+                </div>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked disabled style="accent-color: #334155;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Emergency Shift Schedule Reassignment</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Security shift roster reassigned to Ravi Kumar (Security Lead) with zero post vacancy</div>
+                  </div>
+                </div>
+                <span class="stage-pill ok">✓ Shift Covered</span>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked disabled style="accent-color: #334155;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Armory Safe & Master Patrol Key Secure Transfer</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Armory combination and master gate keys surrendered directly to Security Head Capt. Tariq Al-Hashimi</div>
+                  </div>
+                </div>
+                <span class="stage-pill ok">✓ Secured</span>
+              </div>
+
+              <div class="handover-item">
+                <div class="handover-left">
+                  <input type="checkbox" checked disabled style="accent-color: #334155;">
+                  <div>
+                    <div style="font-size: 12.5px; font-weight: 600; text-decoration: line-through; color: #94A3B8;">Biometric Access Credentials Rotation</div>
+                    <div style="font-size: 11px; color: var(--text-sec);">Security control room access codes rotated immediately on 17 Sep 2026</div>
+                  </div>
+                </div>
+                <span class="stage-pill ok">✓ Rotated</span>
+              </div>
+            </div>
+
+            <!-- Death in Service Clearance Panel -->
+            <div class="tab-content-panel" id="tab-death-clearance" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">🏢 Compassionate Departmental Clearance (Executed with HR Liaison)</h4>
+              <div class="clearance-grid">
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">IT</span>
+                    <button class="btn-signoff done">✓ Archived</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">System Lockdown & Mailbox Archival</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">CCTV & access revoked; mailbox preserved for legal heir liaison.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Admin</span>
+                    <button class="btn-signoff done">✓ Inventory Done</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Locker Inventory with HR Witness</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Personal effects sealed in presence of HR liaison for handover to family.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Finance</span>
+                    <button class="btn-signoff done">✓ Audited</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Statutory Death Benefits Audit</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Gratuity, leave encashment & group life insurance audited under UAE Law Art. 53/144.</div>
+                </div>
+                <div class="clearance-card">
+                  <div class="clearance-card-top">
+                    <span class="clearance-dept-pill" style="background:#DCFCE7; color:#16A34A;">Line Manager</span>
+                    <button class="btn-signoff done">✓ Signed</button>
+                  </div>
+                  <div style="font-size: 12.5px; font-weight: 600;">Security Post Clearance</div>
+                  <div style="font-size: 11px; color: var(--text-sec); margin-top: 4px;">Capt. Tariq Al-Hashimi confirmed complete assumption of duties.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Death in Service Exit Interview Panel -->
+            <div class="tab-content-panel" id="tab-death-interview" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">💬 Exit Interview & Compassionate Protocol</h4>
+              
+              <div class="modal-alert primary" style="background:#F8FAFC; border: 1px solid #CBD5E1; color:#334155; margin-bottom: 16px;">
+                <span style="font-size: 16px;">🕊️</span>
+                <div>
+                  <strong>Exit Survey Permanently Waived:</strong> Exit interviews are not conducted for death in service. Company bereavement protocol and family liaison outreach active.
+                </div>
+              </div>
+
+              <div style="background: #FFFFFF; border: 1px solid var(--divider); border-radius: 8px; padding: 18px; margin-bottom: 14px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">Status: <span class="stage-pill" style="background:#E2E8F0; color:#334155;">Permanently Waived</span></div>
+                  <span style="font-size: 11px; color: var(--text-sec); font-family: var(--font-mono);">BEREAVEMENT RECORD</span>
+                </div>
+                <div style="font-size: 12px; color: var(--text-body); line-height: 1.6;">
+                  <strong>Action Taken:</strong> Official Letter of Condolence signed by CEO and HR Director dispatched to Next-of-Kin on 18 Sep 2026. Family Liaison Officer Amina El-Sayed coordinating court succession certificates and statutory dues disbursement.
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-toolbar primary" onclick="switchCaseTab('death', 'settlement')">View Legal Heir Settlement (AED 51,300) →</button>
+              </div>
+            </div>
+
+            <!-- Settlement -->
+            <div class="tab-content-panel" id="tab-death-settlement" style="display: none;">
+              <h4 style="font-size: 14px; font-weight: 700; margin-bottom: 14px;">💰 Statutory Death Benefits Payable to Legal Heirs (UAE Labor Law Article 53 & 144)</h4>
+              <div class="metrics-4-grid">
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Leave Balance (18 d)</div>
+                  <div class="metric-card-val">AED 6,300</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-card-lbl">Full Month Salary</div>
+                  <div class="metric-card-val">AED 8,500</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-card-lbl">EOS Gratuity + Insurance</div>
+                  <div class="metric-card-val" style="color:#7C3AED;">AED 36,500</div>
+                </div>
+                <div class="metric-card highlight">
+                  <div class="metric-card-lbl">Total Legal Heir Dues</div>
+                  <div class="metric-card-val" style="color:#16A34A;">AED 51,300</div>
+                </div>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--divider);">
+                <div style="font-size: 12px; color: var(--text-sec);">
+                  Official Letter of Condolence and Statement of Statutory Dues prepared for Next-of-Kin.
+                </div>
+                <button class="btn-toolbar primary" style="background:#334155; border-color:#334155;">
+                  Disburse to Court-Certified Estate & Close Case
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    function switchScenario(scenario) {
+      document.querySelectorAll('.scenario-nav-btn').forEach(btn => btn.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+
+      const sections = ['resignation', 'termination', 'retirement', 'death'];
+      if (scenario === 'all') {
+        sections.forEach(s => {
+          const el = document.getElementById('sec-' + s);
+          if (el) el.style.display = 'block';
+        });
+      } else {
+        sections.forEach(s => {
+          const el = document.getElementById('sec-' + s);
+          if (el) {
+            el.style.display = (s === scenario) ? 'block' : 'none';
+          }
+        });
+        const target = document.getElementById('sec-' + scenario);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function switchCaseTab(prefix, tabKey) {
+      const container = document.getElementById('sec-' + (prefix === 'res' ? 'resignation' : prefix === 'term' ? 'termination' : prefix === 'ret' ? 'retirement' : 'death'));
+      if (!container) return;
+
+      // Update tab buttons
+      container.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabKey)) {
+          btn.classList.add('active');
+        }
+      });
+
+      // Update tab panels
+      const panels = ['overview', 'handover', 'clearance', 'interview', 'settlement'];
+      panels.forEach(p => {
+        const panel = document.getElementById('tab-' + prefix + '-' + p);
+        if (panel) {
+          panel.style.display = (p === tabKey) ? 'block' : 'none';
+        }
+      });
+    }
+
+    function highlightModal(scenario) {
+      const el = document.getElementById('sec-' + scenario);
+      if (el) {
+        const modal = el.querySelector('.modal-mockup-wrap');
+        if (modal) {
+          modal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          modal.style.transition = 'all 0.3s ease';
+          modal.style.boxShadow = '0 0 0 4px #7C3AED';
+          setTimeout(() => { modal.style.boxShadow = 'none'; }, 1500);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
