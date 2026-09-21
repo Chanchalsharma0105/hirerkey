@@ -1838,22 +1838,13 @@
       border: 1px solid #E5E7EF;
       border-radius: 16px;
       padding: 24px 28px 22px;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 6px 20px -4px rgba(124, 58, 237, 0.06);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
       margin-bottom: 24px;
       position: relative;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: 20px;
-    }
-    .case-profile-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #7C3AED 0%, #8B5CF6 35%, #A78BFA 70%, #DDD6FE 100%);
     }
 
     /* Leaver Profile Top Identity Tier */
@@ -2078,6 +2069,9 @@
       .case-profile-top {
         flex-direction: column;
         align-items: flex-start;
+      }
+      .case-workspace-grid {
+        grid-template-columns: 1fr !important;
       }
     }
 
@@ -4007,287 +4001,86 @@
           </div>
         </div>
 
-        <!-- Operational Tabs Bar -->
-        <div class="case-tabs-bar">
-          <div class="case-tabs-list">
-            <button class="case-tab-item active" id="caseTab-overview" onclick="switchCaseTab('overview')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-              Overview & Timeline
-            </button>
-            <button class="case-tab-item" id="caseTab-handover" onclick="switchCaseTab('handover')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-6 6l7-7-3-3-7 7v3h3z"/><path d="M3 21l6-6"/><circle cx="12" cy="12" r="2"/></svg>
-              Handover & Succession <span class="count-pill" id="tabHandoverCount">3</span>
-            </button>
-            <button class="case-tab-item" id="caseTab-clearance" onclick="switchCaseTab('clearance')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Clearance Checklist <span class="count-pill" id="tabClearanceCount">2/4</span>
-            </button>
-            <button class="case-tab-item" id="caseTab-interview" onclick="switchCaseTab('interview')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-              Exit Interview
-            </button>
-            <button class="case-tab-item" id="caseTab-settlement" onclick="switchCaseTab('settlement')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-              Final Settlement
-            </button>
-          </div>
-          <div class="system-badge case-lifecycle-badge">
-            <span class="lifecycle-dot-spark"></span>
-            5 Operational Lifecycles
-          </div>
-        </div>
-
-        <!-- TAB PANEL 1: OVERVIEW -->
-        <div id="panel-overview" style="display:grid; grid-template-columns:1.25fr 1fr; gap:28px;">
-          <!-- Left: Vertical Timeline -->
-          <div>
-            <div class="purple-section-header">
-              <span>Departure & Clearance Timeline</span>
-              <span class="system-badge" style="background:rgba(255,255,255,0.25); color:#FFFFFF;">Step 3 of 6 Active</span>
-            </div>
-            <div class="purple-section-body">
-              <ul class="timeline-list">
-                <li class="timeline-item">
-                  <div class="timeline-marker-wrap">
-                    <div class="timeline-circle done">✓</div>
-                    <div class="timeline-line"></div>
-                  </div>
-                  <div class="timeline-content">
-                    <h4>1. Offboarding Initiated</h4>
-                    <p id="tlStep1">Recorded on 14 Sep 2026 &bull; Resignation received via email.</p>
-                  </div>
-                </li>
-                <li class="timeline-item">
-                  <div class="timeline-marker-wrap">
-                    <div class="timeline-circle done" id="tlStep2Marker">✓</div>
-                    <div class="timeline-line"></div>
-                  </div>
-                  <div class="timeline-content">
-                    <h4>2. Notice Period & Operational Handover</h4>
-                    <p id="tlStep2">Serving notice from 14 Sep 2026 to 14 Oct 2026 &bull; Operational handover in progress.</p>
-                  </div>
-                </li>
-                <li class="timeline-item">
-                  <div class="timeline-marker-wrap">
-                    <div class="timeline-circle active" id="tlStep3Marker">3</div>
-                    <div class="timeline-line"></div>
-                  </div>
-                  <div class="timeline-content">
-                    <h4 style="color:#7C3AED;">3. Serving Notice Period (Active)</h4>
-                    <p id="tlStep3">Active countdown until 14 Oct 2026 (In 29 days) &bull; Operational handover in progress.</p>
-                  </div>
-                </li>
-                <li class="timeline-item">
-                  <div class="timeline-marker-wrap">
-                    <div class="timeline-circle" id="tlStep4Marker">4</div>
-                    <div class="timeline-line"></div>
-                  </div>
-                  <div class="timeline-content">
-                    <h4>4. Last Working Day & Access Termination</h4>
-                    <p id="tlStep4">Scheduled for 14 Oct 2026 &bull; Crowne Plaza PMS, POS, and door card access revoked.</p>
-                  </div>
-                </li>
-                <li class="timeline-item">
-                  <div class="timeline-marker-wrap">
-                    <div class="timeline-circle" id="tlStep5Marker">5</div>
-                    <div class="timeline-line"></div>
-                  </div>
-                  <div class="timeline-content">
-                    <h4>5. Departmental Clearance & Settlement</h4>
-                    <p id="tlStep5">IT asset return, exit feedback, and leave encashment calculations.</p>
-                  </div>
-                </li>
-                <li class="timeline-item">
-                  <div class="timeline-marker-wrap">
-                    <div class="timeline-circle" id="tlStep6Marker">6</div>
-                  </div>
-                  <div class="timeline-content">
-                    <h4>6. Case Closed & Profile Archived</h4>
-                    <p id="tlStep6">Transferred to Employees &rsaquo; Exit &bull; Eligible for rehire noted.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Right: At a glance & Clearance progress -->
-          <div style="display:flex; flex-direction:column; gap:20px;">
-            <div>
-              <div class="purple-section-header">
-                <span>At a Glance</span>
+        <!-- Main 2-Column Case Workspace: Single Unified Checklist + Intelligence Sidebar -->
+        <div class="case-workspace-grid" style="display: grid; grid-template-columns: 1.45fr 1fr; gap: 24px; align-items: start; margin-top: 4px;">
+          
+          <!-- LEFT: The Single Unified Offboarding Checklist -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- Checklist Section Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 2px;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0;">Offboarding Checklist</h3>
+                  <span class="system-badge" id="caseChecklistBadge" style="background: #EDE9FE; color: #7C3AED; font-size: 11px; font-weight: 600; padding: 2px 8px;">
+                    3 Steps Active
+                  </span>
+                </div>
+                <p style="font-size: 12px; color: var(--text-secondary); margin: 3px 0 0 0;">
+                  Master clearance process defined in Property Settings for Crowne Plaza Dubai.
+                </p>
               </div>
-              <div class="purple-section-body" style="display:flex; flex-direction:column; gap:16px;">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
+              <button class="btn-secondary" onclick="switchToScreen('settings')" style="height: 30px; font-size: 11.5px; font-weight: 600; padding: 0 10px; display: inline-flex; align-items: center; gap: 5px; color: #64748B;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Configure in Settings
+              </button>
+            </div>
+
+            <!-- Single Unified Checklist Step Cards Container -->
+            <div id="caseUnifiedChecklistContainer" style="display: flex; flex-direction: column; gap: 14px;">
+              <!-- Dynamically populated via renderCaseUnifiedChecklist() -->
+            </div>
+          </div>
+
+          <!-- RIGHT: At a Glance + Clearance Readiness Sidebar -->
+          <div style="display: flex; flex-direction: column; gap: 20px; position: sticky; top: 20px;">
+            <!-- At a Glance Card -->
+            <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+              <div class="purple-section-header" style="padding: 13px 18px;">
+                <span style="font-weight: 700; font-size: 13.5px;">At a Glance</span>
+              </div>
+              <div style="padding: 18px; display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
                   <div>
-                    <div style="font-weight:600; color:var(--text-main); font-size:13px;">System Access & Security</div>
-                    <div style="font-size:11.5px; color:var(--text-secondary);">PMS, Keycards, POS, Email</div>
+                    <div style="font-weight: 600; color: var(--text-main); font-size: 13px;">System Access & Security</div>
+                    <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 1px;">PMS, Keycards, POS, Email</div>
                   </div>
                   <span class="stage-badge neu">Active until Last Day</span>
                 </div>
-                <hr style="border:0; border-top:1px solid var(--divider-subtle);" />
-                <div style="display:flex; justify-content:space-between; align-items:center;">
+                <hr style="border: 0; border-top: 1px solid #F1F5F9; margin: 0;" />
+                <div style="display: flex; justify-content: space-between; align-items: center;">
                   <div>
-                    <div style="font-weight:600; color:var(--text-main); font-size:13px;">Seat Succession</div>
-                    <div style="font-size:11.5px; color:var(--text-secondary);">Designated cover: <strong id="glanceSuccessor">Omar Haddad</strong></div>
+                    <div style="font-weight: 600; color: var(--text-main); font-size: 13px;">Seat Succession</div>
+                    <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 1px;">Designated cover: <strong id="glanceSuccessor">Omar Haddad</strong></div>
                   </div>
                   <span class="stage-badge pri" id="glanceSuccBadge">Handover in progress</span>
                 </div>
-                <hr style="border:0; border-top:1px solid var(--divider-subtle);" />
-                <div style="display:flex; justify-content:space-between; align-items:center;">
+                <hr style="border: 0; border-top: 1px solid #F1F5F9; margin: 0;" />
+                <div style="display: flex; justify-content: space-between; align-items: center;">
                   <div>
-                    <div style="font-weight:600; color:var(--text-main); font-size:13px;">Leave Balance Snapshot</div>
-                    <div style="font-size:11.5px; color:var(--text-secondary);">Synced from Leave module</div>
+                    <div style="font-weight: 600; color: var(--text-main); font-size: 13px;">Leave Balance Snapshot</div>
+                    <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 1px;">Synced from Leave module</div>
                   </div>
-                  <strong style="font-family:var(--font-mono); color:#7C3AED; font-size:15px;" id="glanceLeave">12.5 days</strong>
+                  <strong style="font-family: var(--font-mono); color: #7C3AED; font-size: 15px;" id="glanceLeave">12.5 days</strong>
                 </div>
               </div>
             </div>
 
-            <!-- Clearance Progress Card -->
-            <div class="card" style="background:#FFFFFF; border:1px solid var(--divider); border-radius:14px; padding:20px;">
-              <h3 style="font-size:14px; font-weight:700; color:var(--text-main); margin-bottom:6px;">Clearance Readiness</h3>
-              <p style="font-size:12.5px; color:var(--text-secondary); margin-bottom:14px;" id="glanceClearanceText">2 of 4 requirements completed.</p>
-              <div style="width:100%; height:8px; background:#F1F5F9; border-radius:4px; overflow:hidden; margin-bottom:16px;">
-                <div id="glanceProgressBar" style="width:50%; height:100%; background:#7C3AED; border-radius:4px; transition:width 0.3s ease;"></div>
+            <!-- Clearance Readiness Card -->
+            <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--text-main); margin: 0;">Clearance Readiness</h3>
+                <span class="stage-badge pri" id="glanceReadinessBadge" style="font-size: 11px;">In Progress</span>
               </div>
-              <button class="btn-secondary" style="width:100%; justify-content:center;" onclick="switchCaseTab('clearance')">
-                View Departmental Sign-offs
+              <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0 0 14px 0;" id="glanceClearanceText">
+                1 of 3 checklist steps completed
+              </p>
+              <div style="width: 100%; height: 8px; background: #F1F5F9; border-radius: 4px; overflow: hidden; margin-bottom: 16px;">
+                <div id="glanceProgressBar" style="width: 33%; height: 100%; background: #7C3AED; border-radius: 4px; transition: width 0.3s ease;"></div>
+              </div>
+              <button class="btn-primary" style="width: 100%; justify-content: center; background: #7C3AED; color: #FFF; border: none; font-weight: 600; height: 38px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;" onclick="handleCloseCase()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Verify Checklist & Close Case
               </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB PANEL 2: HANDOVER -->
-        <div id="panel-handover" style="display:none;">
-          <div class="purple-section-header">
-            <span>Operational Responsibilities & Knowledge Transfer</span>
-            <span class="system-badge" id="handoverBadge" style="background:rgba(255,255,255,0.25); color:#FFFFFF;">3 pending</span>
-          </div>
-          <div class="purple-section-body" id="handoverContainer" style="display:flex; flex-direction:column; gap:10px; padding:16px;">
-            <!-- Populated via JavaScript -->
-          </div>
-        </div>
-
-        <!-- TAB PANEL 3: CLEARANCE -->
-        <div id="panel-clearance" style="display:none;">
-          <div class="purple-section-header">
-            <span>Departmental Clearance Sign-offs</span>
-            <span class="system-badge" id="clearanceBadge" style="background:rgba(255,255,255,0.25); color:#FFFFFF;">2 of 4 signed</span>
-          </div>
-          <div class="purple-section-body">
-            <div class="table-scroll-shadow" style="border:1px solid var(--divider); border-radius:8px; overflow:auto;">
-              <table class="table-base">
-                <thead>
-                  <tr>
-                    <th style="width:42%;">Clearance Task</th>
-                    <th style="width:18%;">Department</th>
-                    <th style="width:22%;">Designated Approver</th>
-                    <th style="width:18%; text-align:right;">Sign-off Action</th>
-                  </tr>
-                </thead>
-                <tbody id="clearanceTableBody">
-                  <!-- Populated via JavaScript -->
-                </tbody>
-              </table>
-            </div>
-
-            <div style="margin-top:20px; background:#F8FAFC; border:1px solid var(--divider); border-radius:8px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; gap:16px;">
-              <span style="font-size:12.5px; color:var(--text-secondary);">Department heads review and sign off these operational clearances directly as part of exit clearance.</span>
-              <button class="btn-secondary" onclick="showToast('Filtering departmental clearance sign-offs...')">
-                Department Sign-offs
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB PANEL 4: EXIT INTERVIEW -->
-        <div id="panel-interview" style="display:none;">
-          <div class="purple-section-header">
-            <span>Exit Interview & Retention Feedback</span>
-          </div>
-          <div class="purple-section-body" style="display:flex; flex-direction:column; gap:20px;">
-            <div style="display:grid; grid-template-columns:1.5fr 1fr; gap:20px; align-items:center;">
-              <div>
-                <label class="form-label">Exit Survey Template</label>
-                <select class="form-control" style="max-width:380px;">
-                  <option>Comprehensive Hospitality Exit Survey (12 questions)</option>
-                  <option>Short Mobile Exit Form (5 key metrics)</option>
-                </select>
-                <p style="font-size:11.5px; color:var(--text-secondary); margin-top:4px;">Configured under Surveys &rsaquo; Exit Interview</p>
-              </div>
-              <div>
-                <label class="form-label">Submission Status</label>
-                <span class="stage-badge pri" id="interviewStatusBadge">Sent · Pending Employee Submission</span>
-              </div>
-            </div>
-
-            <hr style="border:0; border-top:1px solid var(--divider-subtle);" />
-
-            <div style="display:flex; gap:12px; align-items:center;" id="interviewActions">
-              <button class="btn-primary" onclick="handleSendExitSurvey()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-                Send exit survey email
-              </button>
-              <button class="btn-secondary" onclick="handleMarkSurveySubmitted()">
-                ✓ Mark submitted manually
-              </button>
-              <button class="btn-secondary" style="color:var(--text-tertiary);" onclick="handleSkipSurvey()">
-                Skip with reason
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB PANEL 5: FINAL SETTLEMENT -->
-        <div id="panel-settlement" style="display:none;">
-          <div class="purple-section-header">
-            <span>Statutory Final Settlement & Relieving Letters</span>
-            <span class="system-badge" id="settlementStatusBadge" style="background:rgba(255,255,255,0.25); color:#FFFFFF;">PENDING</span>
-          </div>
-          <div class="purple-section-body" style="display:flex; flex-direction:column; gap:22px;">
-            <!-- 4 Financial Metric Cards in AED -->
-            <div class="grid-4" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px;">
-              <div style="background:#F8FAFC; border:1px solid var(--divider); border-radius:10px; padding:16px;">
-                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--text-tertiary);">Leave Balance</div>
-                <div style="font-size:22px; font-weight:700; font-family:var(--font-mono); color:var(--text-main); margin-top:4px;" id="stlLeaveDays">12.5 d</div>
-                <div style="font-size:11.5px; color:var(--text-secondary); margin-top:2px;">Last day snapshot</div>
-              </div>
-              <div style="background:#F8FAFC; border:1px solid var(--divider); border-radius:10px; padding:16px;">
-                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--text-tertiary);">Leave Encashment</div>
-                <div style="font-size:22px; font-weight:700; font-family:var(--font-mono); color:var(--text-main); margin-top:4px;" id="stlEncashment">AED 4,200</div>
-                <div style="font-size:11.5px; color:var(--text-secondary); margin-top:2px;">Statutory leave payout</div>
-              </div>
-              <div style="background:#F8FAFC; border:1px solid var(--divider); border-radius:10px; padding:16px;">
-                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--text-tertiary);">Recoveries / Dues</div>
-                <div style="font-size:22px; font-weight:700; font-family:var(--font-mono); color:#DC2626; margin-top:4px;" id="stlRecoveries">- AED 350</div>
-                <div style="font-size:11.5px; color:var(--text-secondary); margin-top:2px;">Deductions & advances</div>
-              </div>
-              <div style="background:#F5F3FF; border:1.5px solid var(--primary-200); border-radius:10px; padding:16px;">
-                <div style="font-size:11px; font-weight:700; text-transform:uppercase; color:var(--primary-600);">Net Payable</div>
-                <div style="font-size:22px; font-weight:700; font-family:var(--font-mono); color:var(--primary-600); margin-top:4px;" id="stlNetPayable">AED 3,850</div>
-                <div style="font-size:11.5px; color:var(--primary-700); margin-top:2px;">Final statutory settlement</div>
-              </div>
-            </div>
-
-            <hr style="border:0; border-top:1px solid var(--divider-subtle);" />
-
-            <div class="grid-2">
-              <div>
-                <label class="form-label">Settlement Status</label>
-                <select class="form-control" id="settlementStatusSelect" onchange="handleSettlementChange()">
-                  <option value="pending">Pending Review & Calculation</option>
-                  <option value="in_progress">In Progress · Payroll Routing</option>
-                  <option value="paid">Paid & Reconciled</option>
-                  <option value="waived">Waived / Non-payable</option>
-                </select>
-              </div>
-              <div style="background:#F8FAFC; border:1px solid var(--divider); border-radius:8px; padding:12px 16px; display:flex; justify-content:space-between; align-items:center;">
-                <div>
-                  <div style="font-size:13px; font-weight:600; color:var(--text-main);">Relieving & Experience Letters</div>
-                  <div style="font-size:11.5px; color:var(--text-secondary);">Issued and handed over to employee</div>
-                </div>
-                <input type="checkbox" id="settlementLettersCheck" onchange="handleLettersToggle()" style="width:18px; height:18px; accent-color:#7C3AED;">
-              </div>
             </div>
           </div>
         </div>
@@ -5401,214 +5194,271 @@ function openCaseView(id) {
     btnApprove.style.display = (c.stage === 0) ? 'inline-flex' : 'none';
   }
 
-  // Render Tabs & Content
-  renderOverviewTab(c);
-  renderHandoverTab(c);
-  renderClearanceTab(c);
-  renderInterviewTab(c);
-  renderSettlementTab(c);
+  // Render At a Glance (preserved)
+  renderAtAGlance(c);
 
-  switchCaseTab('overview');
+  // Render The Single Unified Offboarding Checklist
+  renderCaseUnifiedChecklist(c);
+
   switchToScreen('case');
 }
 
-/* Tab Switching in Screen 2 */
-function switchCaseTab(tabKey) {
-  currentCaseTab = tabKey;
-  const tabs = ['overview', 'handover', 'clearance', 'interview', 'settlement'];
-  tabs.forEach(t => {
-    const btn = document.getElementById(`caseTab-${t}`);
-    const panel = document.getElementById(`panel-${t}`);
-    if (btn) btn.classList.toggle('active', t === tabKey);
-    if (panel) {
-      panel.style.display = (t === tabKey) ? (t === 'overview' ? 'grid' : 'block') : 'none';
-    }
-  });
-}
+/* Render At a Glance Section */
+function renderAtAGlance(c) {
+  const succEl = document.getElementById('glanceSuccessor');
+  if (succEl) succEl.textContent = c.successor || 'None';
 
-/* Render Overview Tab */
-function renderOverviewTab(c) {
-  const step2Marker = document.getElementById('tlStep2Marker');
-  const step2Text = document.getElementById('tlStep2');
-  if (step2Marker && step2Text) {
-    if (c.stage >= 1) {
-      step2Marker.className = 'timeline-circle done';
-      step2Marker.textContent = '✓';
-      step2Text.textContent = `Serving notice from ${c.noticeGivenDate || '14 Sep 2026'} to ${c.lwd} · Operational handover in progress.`;
-    } else {
-      step2Marker.className = 'timeline-circle active';
-      step2Marker.textContent = '2';
-      step2Text.textContent = `Notice initiated on ${c.noticeGivenDate || '14 Sep 2026'}. Awaiting notice confirmation.`;
-    }
-  }
-
-  const step3Text = document.getElementById('tlStep3');
-  if (step3Text) step3Text.textContent = `Active countdown until ${c.lwd} (${c.dueText}) &bull; Handover in progress.`;
-
-  const step4Text = document.getElementById('tlStep4');
-  if (step4Text) step4Text.textContent = `Scheduled for ${c.lwd} &bull; System access terminated on this date.`;
-
-  document.getElementById('glanceSuccessor').textContent = c.successor || 'None';
   const succBadge = document.getElementById('glanceSuccBadge');
   if (succBadge) {
     succBadge.textContent = c.successor ? 'Handover in progress' : 'Seat Vacant';
     succBadge.className = c.successor ? 'stage-badge pri' : 'stage-badge bad';
   }
 
-  document.getElementById('glanceLeave').textContent = `${c.leaveBalance || 12.5} days`;
-
-  const approvedClearance = (c.clearance || []).filter(i => i.done).length;
-  const totalClearance = (c.clearance || []).length;
-  const pct = totalClearance > 0 ? Math.round((approvedClearance / totalClearance) * 100) : 0;
-
-  document.getElementById('glanceClearanceText').textContent = `${approvedClearance} of ${totalClearance} requirements completed.`;
-  document.getElementById('glanceProgressBar').style.width = `${pct}%`;
+  const leaveEl = document.getElementById('glanceLeave');
+  if (leaveEl) leaveEl.textContent = `${c.leaveBalance || 12.5} days`;
 }
 
-/* Render Handover Tab */
-function renderHandoverTab(c) {
-  const items = c.handover || [];
-  const pending = items.filter(i => !i.done).length;
-  document.getElementById('tabHandoverCount').textContent = pending;
-  document.getElementById('handoverBadge').textContent = `${pending} pending`;
-
-  const container = document.getElementById('handoverContainer');
-  if (items.length === 0) {
-    container.innerHTML = '<div style="padding:24px; text-align:center; color:var(--text-tertiary);">No handover responsibilities recorded.</div>';
-    return;
+/* Render The Single Unified Checklist on Employee Case Workspace */
+function renderCaseUnifiedChecklist(c) {
+  if (!c) {
+    c = cases.find(item => item.id === currentCaseId) || cases[0];
   }
+  const container = document.getElementById('caseUnifiedChecklistContainer');
+  if (!container) return;
 
-  container.innerHTML = items.map((item, idx) => `
-    <div style="display:flex; justify-content:space-between; align-items:center; padding:14px 18px; border:1px solid var(--divider); border-radius:10px; background:${item.done ? '#F8FAFC' : '#FFFFFF'}; transition:all 0.2s;">
-      <div style="display:flex; align-items:center; gap:14px;">
-        <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleHandoverCheck(${idx})" style="width:19px; height:19px; accent-color:#7C3AED; cursor:pointer;" />
-        <div>
-          <div style="font-size:13.5px; font-weight:600; color:var(--text-main); text-decoration:${item.done ? 'line-through' : 'none'}; opacity:${item.done ? '0.65' : '1'};">
-            ${item.title}
+  const steps = settingsState.checklist || [];
+  const badge = document.getElementById('caseChecklistBadge');
+  if (badge) badge.textContent = `${steps.length} Steps Active`;
+
+  c.customSteps = c.customSteps || {};
+
+  let completedStepsCount = 0;
+
+  const html = steps.map((step, idx) => {
+    let isStepComplete = false;
+    let statusPillHtml = '';
+    let stepContentHtml = '';
+
+    if (step.id === 'step_handover') {
+      const items = c.handover || [];
+      const pending = items.filter(i => !i.done).length;
+      isStepComplete = items.length > 0 && pending === 0;
+      if (isStepComplete) {
+        completedStepsCount++;
+        statusPillHtml = `<span class="stage-badge ok" style="font-size: 11px; padding: 2px 8px;">✓ Step Complete</span>`;
+      } else {
+        statusPillHtml = `<span class="stage-badge pri" style="font-size: 11px; padding: 2px 8px;">${items.length - pending}/${items.length} Tasks Done</span>`;
+      }
+
+      stepContentHtml = `
+        <div style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+          ${items.map((item, hIdx) => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: ${item.done ? '#F8FAFC' : '#FFFFFF'}; border: 1px solid #E2E8F0; border-radius: 8px; transition: all 0.2s; gap: 12px;">
+              <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; flex: 1; margin: 0;">
+                <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleHandoverCheck(${hIdx})" style="width: 17px; height: 17px; accent-color: #7C3AED; cursor: pointer; margin-top: 2px;" />
+                <div>
+                  <div style="font-size: 13px; font-weight: 600; color: ${item.done ? '#64748B' : '#0F172A'}; text-decoration: ${item.done ? 'line-through' : 'none'};">
+                    ${item.title}
+                  </div>
+                  <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 1px;">
+                    ${item.subtitle}
+                  </div>
+                </div>
+              </label>
+              <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                <span class="system-badge" style="background: #F1F5F9; color: #475569; font-size: 11px; padding: 2px 8px;">${item.tag || 'Operations'}</span>
+                <span class="stage-badge ${item.done ? 'ok' : 'neu'}" style="font-size: 10.5px; padding: 2px 7px;">${item.done ? 'Completed' : 'Pending'}</span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else if (step.id === 'step_assets') {
+      const items = c.clearance || [];
+      const signed = items.filter(i => i.done).length;
+      isStepComplete = items.length > 0 && signed === items.length;
+      if (isStepComplete) {
+        completedStepsCount++;
+        statusPillHtml = `<span class="stage-badge ok" style="font-size: 11px; padding: 2px 8px;">✓ All Signed Off (${items.length}/${items.length})</span>`;
+      } else {
+        statusPillHtml = `<span class="stage-badge pri" style="font-size: 11px; padding: 2px 8px;">${signed}/${items.length} Cleared</span>`;
+      }
+
+      stepContentHtml = `
+        <div style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
+          ${items.map((item, clIdx) => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: ${item.done ? '#F8FAFC' : '#FFFFFF'}; border: 1px solid #E2E8F0; border-radius: 8px; gap: 14px; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 220px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+                  <span class="seat-badge" style="font-family: var(--font-sans); font-size: 11px; font-weight: 600; padding: 1px 7px; background: #EDE9FE; color: #7C3AED; border-color: #DDD6FE;">${item.dept}</span>
+                  <strong style="font-size: 13px; color: #0F172A;">${item.title}</strong>
+                </div>
+                ${item.notes ? `<div style="font-size: 11.5px; color: var(--text-secondary);">Approver: <strong>${item.approver}</strong> &bull; ${item.notes}</div>` : ''}
+              </div>
+              <button class="${item.done ? 'btn-secondary' : 'btn-primary'}" 
+                      style="height: 30px; font-size: 11.5px; padding: 0 12px; font-weight: 600; white-space: nowrap; ${item.done ? 'color:#15803D; border-color:#BBF7D0; background:#F0FDF4;' : 'background:#7C3AED; color:#FFF; border:none;'}" 
+                      onclick="toggleClearanceSignOff(${clIdx})">
+                ${item.done ? '✓ Signed Off' : 'Sign Off'}
+              </button>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    } else if (step.id === 'step_settlement') {
+      const s = c.settlement || { leaveDays: 12.5, encashmentAmount: '4,200', recoveriesAmount: '350', netPayable: '3,850', status: 'pending', lettersGenerated: false };
+      const isSettled = (s.status === 'paid' || s.status === 'waived') && s.lettersGenerated;
+      isStepComplete = isSettled;
+      if (isStepComplete) {
+        completedStepsCount++;
+        statusPillHtml = `<span class="stage-badge ok" style="font-size: 11px; padding: 2px 8px;">✓ Settlement Reconciled</span>`;
+      } else {
+        statusPillHtml = `<span class="stage-badge pri" style="font-size: 11px; padding: 2px 8px;">${(s.status || 'Pending').toUpperCase()}</span>`;
+      }
+
+      stepContentHtml = `
+        <div style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 12px; display: flex; flex-direction: column; gap: 12px;">
+          <!-- 4 Financial Metrics Grid -->
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 9px 12px;">
+              <div style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary);">Leave Days</div>
+              <div style="font-size: 15px; font-weight: 700; font-family: var(--font-mono); color: var(--text-main); margin-top: 2px;">${s.leaveDays || 12.5} d</div>
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 9px 12px;">
+              <div style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary);">Encashment</div>
+              <div style="font-size: 15px; font-weight: 700; font-family: var(--font-mono); color: var(--text-main); margin-top: 2px;">AED ${s.encashmentAmount || '4,200'}</div>
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 9px 12px;">
+              <div style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary);">Recoveries</div>
+              <div style="font-size: 15px; font-weight: 700; font-family: var(--font-mono); color: #DC2626; margin-top: 2px;">- AED ${s.recoveriesAmount || '350'}</div>
+            </div>
+            <div style="background: #F5F3FF; border: 1.5px solid #DDD6FE; border-radius: 8px; padding: 9px 12px;">
+              <div style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: #7C3AED;">Net Payable</div>
+              <div style="font-size: 15px; font-weight: 700; font-family: var(--font-mono); color: #7C3AED; margin-top: 2px;">AED ${s.netPayable || '3,850'}</div>
+            </div>
           </div>
-          <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">
-            ${item.subtitle}
+
+          <!-- Controls Row -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center;">
+            <div>
+              <label style="font-size: 11.5px; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">Settlement Status</label>
+              <select class="form-control" id="settlementStatusSelect" onchange="handleSettlementChange()" style="height: 34px; font-size: 12px;">
+                <option value="pending" ${s.status === 'pending' ? 'selected' : ''}>Pending Review & Calculation</option>
+                <option value="in_progress" ${s.status === 'in_progress' ? 'selected' : ''}>In Progress · Payroll Routing</option>
+                <option value="paid" ${s.status === 'paid' ? 'selected' : ''}>Paid & Reconciled</option>
+                <option value="waived" ${s.status === 'waived' ? 'selected' : ''}>Waived / Non-payable</option>
+              </select>
+            </div>
+            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 7px 12px; display: flex; justify-content: space-between; align-items: center; margin-top: 17px;">
+              <div>
+                <div style="font-size: 12px; font-weight: 600; color: var(--text-main);">Relieving & Experience Letters</div>
+                <div style="font-size: 10.5px; color: var(--text-secondary);">Issued and handed over</div>
+              </div>
+              <input type="checkbox" id="settlementLettersCheck" ${s.lettersGenerated ? 'checked' : ''} onchange="handleLettersToggle()" style="width: 17px; height: 17px; accent-color: #7C3AED; cursor: pointer;" />
+            </div>
           </div>
         </div>
+      `;
+    } else {
+      // Custom Step added from Property Settings
+      const isDone = !!c.customSteps[step.id];
+      isStepComplete = isDone;
+      if (isStepComplete) {
+        completedStepsCount++;
+        statusPillHtml = `<span class="stage-badge ok" style="font-size: 11px; padding: 2px 8px;">✓ Step Complete</span>`;
+      } else {
+        statusPillHtml = `<span class="stage-badge neu" style="font-size: 11px; padding: 2px 8px;">Action Pending</span>`;
+      }
+
+      stepContentHtml = `
+        <div style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin: 0;">
+            <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleCustomStepCheck('${step.id}')" style="width: 17px; height: 17px; accent-color: #7C3AED; cursor: pointer;" />
+            <span style="font-size: 13px; font-weight: 600; color: #0F172A;">Confirm completion of ${step.title}</span>
+          </label>
+          <span class="stage-badge ${isDone ? 'ok' : 'neu'}" style="font-size: 11px;">${isDone ? 'Completed' : 'Pending'}</span>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="unified-step-card" id="caseStepCard_${step.id}"
+           style="background: #FFFFFF; border: 1px solid ${isStepComplete ? '#D1FAE5' : '#E2E8F0'}; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s ease;">
+        
+        <!-- Step Header -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 14px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px; flex: 1;">
+            <!-- Circle Badge -->
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: ${isStepComplete ? '#DCFCE7' : (step.isDefault ? '#EEEBFF' : '#FEF3C7')}; color: ${isStepComplete ? '#15803D' : (step.isDefault ? '#7C3AED' : '#B45309')}; display: grid; place-items: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px;">
+              ${isStepComplete ? '✓' : (idx + 1)}
+            </div>
+
+            <!-- Details -->
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 15px; font-weight: 700; color: #0F172A;">${step.title}</span>
+                ${step.isDefault 
+                  ? `<span class="system-badge" style="background: #EDE9FE; color: #7C3AED; font-size: 11px; padding: 2px 7px; font-weight: 600;">Default</span>`
+                  : `<span class="system-badge" style="background: #FEF3C7; color: #92400E; font-size: 11px; padding: 2px 7px; font-weight: 600;">Custom</span>`
+                }
+                ${step.mandatory 
+                  ? `<span class="system-badge" style="background: #FEE2E2; color: #991B1B; font-size: 11px; padding: 2px 7px; font-weight: 600;">🔒 Mandatory Gate</span>`
+                  : `<span class="system-badge" style="background: #F1F5F9; color: #64748B; font-size: 11px; padding: 2px 7px;">Optional</span>`
+                }
+              </div>
+              <p style="font-size: 12.5px; color: #64748B; margin: 4px 0 0 0; line-height: 1.45;">
+                ${step.desc}
+              </p>
+            </div>
+          </div>
+
+          <!-- Step Status Pill -->
+          <div style="flex-shrink: 0;">
+            ${statusPillHtml}
+          </div>
+        </div>
+
+        <!-- Step Interactive Tasks / Body -->
+        ${stepContentHtml}
       </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <span class="system-badge" style="background:#F1F5F9; color:#475569;">${item.tag || 'Operations'}</span>
-        <span class="stage-badge ${item.done ? 'ok' : 'neu'}">${item.done ? 'Completed' : 'Pending'}</span>
-      </div>
-    </div>
-  `).join('');
-}
+    `;
+  }).join('');
 
-/* Render Clearance Tab */
-function renderClearanceTab(c) {
-  const items = c.clearance || [];
-  const approved = items.filter(i => i.done).length;
-  const total = items.length;
+  container.innerHTML = html;
 
-  document.getElementById('tabClearanceCount').textContent = `${approved}/${total}`;
-  document.getElementById('clearanceBadge').textContent = `${approved} of ${total} signed`;
+  // Update Clearance Readiness
+  const totalSteps = steps.length;
+  const pct = totalSteps > 0 ? Math.round((completedStepsCount / totalSteps) * 100) : 0;
 
-  const tbody = document.getElementById('clearanceTableBody');
-  if (items.length === 0) {
-    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:24px; color:var(--text-tertiary);">No clearance items assigned.</td></tr>';
-    return;
+  const textEl = document.getElementById('glanceClearanceText');
+  if (textEl) {
+    textEl.textContent = `${completedStepsCount} of ${totalSteps} checklist steps completed (${pct}%)`;
   }
 
-  tbody.innerHTML = items.map((item, idx) => `
-    <tr>
-      <td>
-        <strong style="color:var(--text-main);">${item.title}</strong>
-        ${item.notes ? `<div style="font-size:11.5px; color:var(--text-secondary); margin-top:2px;">${item.notes}</div>` : ''}
-      </td>
-      <td><span class="seat-badge" style="font-family:var(--font-sans);">${item.dept}</span></td>
-      <td><span style="font-size:12.5px; color:var(--text-secondary);">${item.approver || 'Dept Head'}</span></td>
-      <td style="text-align:right;">
-        <button class="${item.done ? 'btn-secondary' : 'btn-primary'}" style="height:32px; font-size:12px; padding:0 12px;" onclick="toggleClearanceSignOff(${idx})">
-          ${item.done ? '✓ Signed off' : 'Sign off'}
-        </button>
-      </td>
-    </tr>
-  `).join('');
-}
+  const barEl = document.getElementById('glanceProgressBar');
+  if (barEl) {
+    barEl.style.width = `${pct}%`;
+    barEl.style.background = pct === 100 ? '#16A34A' : '#7C3AED';
+  }
 
-/* Render Exit Interview Tab */
-function renderInterviewTab(c) {
-  const badge = document.getElementById('interviewStatusBadge');
-  const actions = document.getElementById('interviewActions');
-
-  if (c.exitInterviewStatus === 'completed') {
-    badge.textContent = 'Completed · Feedback Received';
-    badge.className = 'stage-badge ok';
-    actions.innerHTML = `
-      <button class="btn-secondary" onclick="showToast('Viewing confidential survey responses...')">
-        View feedback responses
-      </button>
-    `;
-  } else if (c.exitInterviewStatus === 'sent') {
-    badge.textContent = 'Sent · Pending Employee Submission';
-    badge.className = 'stage-badge pri';
-    actions.innerHTML = `
-      <button class="btn-primary" onclick="handleMarkSurveySubmitted()">
-        ✓ Mark submitted manually
-      </button>
-      <button class="btn-secondary" onclick="handleSendExitSurvey()">
-        Resend survey link email
-      </button>
-      <button class="btn-secondary" style="color:var(--text-tertiary);" onclick="handleSkipSurvey()">
-        Skip with reason
-      </button>
-    `;
-  } else if (c.exitInterviewStatus === 'skipped') {
-    badge.textContent = 'Skipped (Waived)';
-    badge.className = 'stage-badge neu';
-    actions.innerHTML = `
-      <button class="btn-secondary" onclick="handleSendExitSurvey()">
-        Send survey anyway
-      </button>
-    `;
-  } else {
-    badge.textContent = 'Survey Not Sent';
-    badge.className = 'stage-badge warn';
-    actions.innerHTML = `
-      <button class="btn-primary" onclick="handleSendExitSurvey()">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-        Send exit survey email
-      </button>
-      <button class="btn-secondary" onclick="handleSkipSurvey()">
-        Skip with reason
-      </button>
-    `;
+  const badgeEl = document.getElementById('glanceReadinessBadge');
+  if (badgeEl) {
+    if (completedStepsCount === totalSteps) {
+      badgeEl.textContent = 'Ready to Close';
+      badgeEl.className = 'stage-badge ok';
+    } else {
+      badgeEl.textContent = 'In Progress';
+      badgeEl.className = 'stage-badge pri';
+    }
   }
 }
 
-/* Render Final Settlement Tab */
-function renderSettlementTab(c) {
-  const s = c.settlement || { leaveDays: 12.5, encashmentAmount: '4,200', recoveriesAmount: '350', netPayable: '3,850', status: 'pending', lettersGenerated: false };
-  document.getElementById('stlLeaveDays').textContent = `${s.leaveDays} d`;
-  document.getElementById('stlEncashment').textContent = `AED ${s.encashmentAmount}`;
-  document.getElementById('stlRecoveries').textContent = `- AED ${s.recoveriesAmount}`;
-  document.getElementById('stlNetPayable').textContent = `AED ${s.netPayable}`;
-
-  const sel = document.getElementById('settlementStatusSelect');
-  if (sel) sel.value = s.status || 'pending';
-
-  const badge = document.getElementById('settlementStatusBadge');
-  if (badge) {
-    badge.textContent = (s.status || 'PENDING').toUpperCase();
-    badge.className = (s.status === 'paid') ? 'system-badge' : 'system-badge';
-  }
-
-  const check = document.getElementById('settlementLettersCheck');
-  if (check) check.checked = s.lettersGenerated || false;
-}
-
-/* Interactive Actions */
+/* Interactive Checklist Actions */
 function toggleHandoverCheck(idx) {
   const c = cases.find(item => item.id === currentCaseId);
   if (!c || !c.handover || !c.handover[idx]) return;
   c.handover[idx].done = !c.handover[idx].done;
-  renderHandoverTab(c);
-  showToast(`Handover item marked ${c.handover[idx].done ? 'completed' : 'pending'}.`);
+  renderCaseUnifiedChecklist(c);
+  showToast(`Handover task marked ${c.handover[idx].done ? 'completed' : 'pending'}.`);
 }
 
 function toggleClearanceSignOff(idx) {
@@ -5616,9 +5466,58 @@ function toggleClearanceSignOff(idx) {
   if (!c || !c.clearance || !c.clearance[idx]) return;
   c.clearance[idx].done = !c.clearance[idx].done;
   c.clearance[idx].status = c.clearance[idx].done ? 'approved' : 'pending';
-  renderClearanceTab(c);
-  renderOverviewTab(c);
+  renderCaseUnifiedChecklist(c);
   showToast(`${c.clearance[idx].dept} clearance sign-off ${c.clearance[idx].done ? 'recorded' : 'revoked'}.`);
+}
+
+function handleSettlementChange() {
+  const c = cases.find(item => item.id === currentCaseId);
+  if (!c) return;
+  const sel = document.getElementById('settlementStatusSelect');
+  if (!sel) return;
+  c.settlement = c.settlement || {};
+  c.settlement.status = sel.value;
+  renderCaseUnifiedChecklist(c);
+  showToast(`Settlement status updated to "${sel.options[sel.selectedIndex].text}".`);
+}
+
+function handleLettersToggle() {
+  const c = cases.find(item => item.id === currentCaseId);
+  if (!c) return;
+  const check = document.getElementById('settlementLettersCheck');
+  if (!check) return;
+  c.settlement = c.settlement || {};
+  c.settlement.lettersGenerated = check.checked;
+  renderCaseUnifiedChecklist(c);
+  showToast(check.checked ? 'Relieving & Experience Letters verified as issued.' : 'Relieving Letters status unmarked.');
+}
+
+function toggleCustomStepCheck(stepId) {
+  const c = cases.find(item => item.id === currentCaseId);
+  if (!c) return;
+  c.customSteps = c.customSteps || {};
+  c.customSteps[stepId] = !c.customSteps[stepId];
+  renderCaseUnifiedChecklist(c);
+  showToast(`Custom step "${stepId}" marked ${c.customSteps[stepId] ? 'completed' : 'pending'}.`);
+}
+
+/* Smooth Focus / Scroll Helper */
+function scrollToCaseStep(stepId) {
+  const el = document.getElementById(`caseStepCard_${stepId}`);
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    el.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+    el.style.borderColor = '#7C3AED';
+    el.style.boxShadow = '0 0 0 4px rgba(124, 58, 237, 0.2)';
+    setTimeout(() => {
+      el.style.borderColor = '#E2E8F0';
+      el.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04)';
+    }, 2500);
+  }
+}
+
+function switchCaseTab(tabKey) {
+  scrollToCaseStep(tabKey.startsWith('step_') ? tabKey : 'step_' + tabKey);
 }
 
 function handleAcknowledgeNotice() {
@@ -5638,6 +5537,7 @@ function handleSimulateLastDay() {
   showToast(`Simulating Last Day for ${c.name}: Access will terminate and settlement route to payroll.`);
 }
 
+/* Close Case Execution with Checklist Gate Enforcement */
 function handleCloseCase() {
   const c = cases.find(item => item.id === currentCaseId);
   if (!c) return;
@@ -5651,7 +5551,7 @@ function handleCloseCase() {
     const pendingHandovers = c.handover && c.handover.filter(h => !h.done);
     if (pendingHandovers && pendingHandovers.length > 0) {
       showToast(`⚠️ Closing Blocked: "${handoverStep.title}" has ${pendingHandovers.length} pending handover tasks (Enforced by Property Checklist).`);
-      switchCaseTab('handover');
+      scrollToCaseStep('step_handover');
       return;
     }
   }
@@ -5661,7 +5561,7 @@ function handleCloseCase() {
     const pendingClearance = c.clearance && c.clearance.filter(cl => !cl.done);
     if (pendingClearance && pendingClearance.length > 0) {
       showToast(`⚠️ Closing Blocked: "${assetsStep.title}" pending sign-offs across ${pendingClearance.length} departments (Enforced by Property Checklist).`);
-      switchCaseTab('clearance');
+      scrollToCaseStep('step_assets');
       return;
     }
   }
@@ -5669,24 +5569,27 @@ function handleCloseCase() {
   // 3. Final Settlement Gate (Step 3)
   if (settlementStep && settlementStep.mandatory) {
     if (!c.settlement || !c.settlement.lettersGenerated) {
-      showToast(`⚠️ Closing Blocked: "${settlementStep.title}" Relieving & Experience Letters must be issued and verified before closing case.`);
-      switchCaseTab('settlement');
-      const lettersCheck = document.getElementById('settlementLettersCheck');
-      if (lettersCheck) {
-        lettersCheck.focus();
-        lettersCheck.parentElement.style.borderColor = '#DC2626';
-        lettersCheck.parentElement.style.background = '#FEF2F2';
-        setTimeout(() => {
-          lettersCheck.parentElement.style.borderColor = 'var(--divider)';
-          lettersCheck.parentElement.style.background = '#F8FAFC';
-        }, 3500);
-      }
+      showToast(`⚠️ Closing Blocked: "${settlementStep.title}" Relieving & Experience Letters must be issued and verified.`);
+      scrollToCaseStep('step_settlement');
       return;
     }
     if (c.settlement && c.settlement.status !== 'paid' && c.settlement.status !== 'waived') {
       showToast(`⚠️ Closing Blocked: "${settlementStep.title}" status must be "Paid & Reconciled" or "Waived" prior to closure.`);
-      switchCaseTab('settlement');
+      scrollToCaseStep('step_settlement');
       return;
+    }
+  }
+
+  // 4. Custom Steps Mandatory Gates
+  const customSteps = settingsState.checklist.filter(s => !s.isDefault);
+  for (const cs of customSteps) {
+    if (cs.mandatory) {
+      c.customSteps = c.customSteps || {};
+      if (!c.customSteps[cs.id]) {
+        showToast(`⚠️ Closing Blocked: "${cs.title}" is mandatory and must be confirmed complete.`);
+        scrollToCaseStep(cs.id);
+        return;
+      }
     }
   }
 
@@ -5700,47 +5603,6 @@ function handleCloseCase() {
   showToast(`✓ Case successfully closed for ${c.name}. Profile moved to Employees › Exit.`);
   switchToScreen('list');
   switchScope('closed');
-}
-
-function handleSendExitSurvey() {
-  const c = cases.find(item => item.id === currentCaseId);
-  if (!c) return;
-  c.exitInterviewStatus = 'sent';
-  renderInterviewTab(c);
-  showToast(`Exit survey email dispatched to ${c.name}'s inbox.`);
-}
-
-function handleMarkSurveySubmitted() {
-  const c = cases.find(item => item.id === currentCaseId);
-  if (!c) return;
-  c.exitInterviewStatus = 'completed';
-  renderInterviewTab(c);
-  showToast(`Exit interview marked completed for ${c.name}.`);
-}
-
-function handleSkipSurvey() {
-  const c = cases.find(item => item.id === currentCaseId);
-  if (!c) return;
-  c.exitInterviewStatus = 'skipped';
-  renderInterviewTab(c);
-  showToast(`Exit interview waived for ${c.name}.`);
-}
-
-function handleSettlementChange() {
-  const c = cases.find(item => item.id === currentCaseId);
-  if (!c || !c.settlement) return;
-  const sel = document.getElementById('settlementStatusSelect');
-  c.settlement.status = sel.value;
-  renderSettlementTab(c);
-  showToast(`Settlement status updated to "${sel.value.replace('_', ' ')}".`);
-}
-
-function handleLettersToggle() {
-  const c = cases.find(item => item.id === currentCaseId);
-  if (!c || !c.settlement) return;
-  const check = document.getElementById('settlementLettersCheck');
-  c.settlement.lettersGenerated = check.checked;
-  showToast(`Relieving and experience letters marked ${check.checked ? 'issued' : 'pending'}.`);
 }
 
 function getDaysRemainingPreview(c) {
