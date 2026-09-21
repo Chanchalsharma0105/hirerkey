@@ -1723,6 +1723,15 @@
       margin-top: 22px;
     }
 
+    /* Unified Offboarding Checklist Styles */
+    .unified-step-card:hover {
+      border-color: #CBD5E1 !important;
+      box-shadow: 0 4px 14px rgba(0, 23, 65, 0.06);
+    }
+    .unified-step-card button:hover:not(:disabled) {
+      filter: brightness(0.96);
+    }
+
     /* ==========================================================================
        DRAWER COMPONENT (CASE QUICK VIEW)
        ========================================================================== */
@@ -4336,15 +4345,15 @@
               <div class="settings-title-group">
                 <h2>
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  Offboarding Configuration &amp; Governance
+                  Offboarding Process Checklist &amp; Governance
                 </h2>
                 <p>
-                  Configure modular exit process phases, clearance checklists, dynamic closing guardrails, and statutory final settlement calculations for <strong>Crowne Plaza Dubai</strong>. Policies configured here establish property defaults and apply to all new offboarding cases.
+                  Single unified offboarding checklist for <strong>Crowne Plaza Dubai</strong>. Configure the 3 default core steps, add custom organization steps, or edit step details to match your organization.
                 </p>
               </div>
 
               <div class="settings-action-btns">
-                <button class="btn-secondary" onclick="handleResetSettings()" title="Reset to standard defaults">
+                <button class="btn-secondary" onclick="handleResetSettings()" title="Reset to standard 3 defaults">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
                   Reset Defaults
                 </button>
@@ -4359,395 +4368,60 @@
           <!-- 4 Metric KPI Summary Tiles -->
           <div class="settings-kpi-grid">
             <div class="settings-kpi-card">
-              <div class="settings-kpi-label">Process Steps in Use</div>
-              <div class="settings-kpi-value" id="kpiStepsInUse">6</div>
-              <div class="settings-kpi-subtitle">Modular exit workflow phases</div>
+              <div class="settings-kpi-label">Checklist Steps in Use</div>
+              <div class="settings-kpi-value" id="kpiTotalSteps">3</div>
+              <div class="settings-kpi-subtitle">Active process steps</div>
             </div>
             <div class="settings-kpi-card">
-              <div class="settings-kpi-label">Clearance Checklist Items</div>
-              <div class="settings-kpi-value" id="kpiClearanceLines">4</div>
-              <div class="settings-kpi-subtitle">Standard departmental tasks</div>
+              <div class="settings-kpi-label">Default Core Steps</div>
+              <div class="settings-kpi-value" id="kpiDefaultSteps">3</div>
+              <div class="settings-kpi-subtitle">Standard system defaults</div>
             </div>
             <div class="settings-kpi-card">
-              <div class="settings-kpi-label">Notice Approvers</div>
-              <div class="settings-kpi-value" id="kpiNoticeApprovers">2</div>
-              <div class="settings-kpi-subtitle">Direct Mgr → HR Operations</div>
+              <div class="settings-kpi-label">Custom Organization Steps</div>
+              <div class="settings-kpi-value" id="kpiCustomSteps">0</div>
+              <div class="settings-kpi-subtitle">Added by your organization</div>
             </div>
             <div class="settings-kpi-card" style="border-color:#DDD6FE; background:#FAF8FF;">
-              <div class="settings-kpi-label" style="color:#7C3AED;">Active Closing Guardrails</div>
-              <div class="settings-kpi-value" id="kpiClosingRules" style="color:#7C3AED;">4</div>
-              <div class="settings-kpi-subtitle" style="color:#6D28D9;">Dynamic exit gates enforced</div>
+              <div class="settings-kpi-label" style="color:#7C3AED;">Mandatory Exit Gates</div>
+              <div class="settings-kpi-value" id="kpiMandatoryGates" style="color:#7C3AED;">3</div>
+              <div class="settings-kpi-subtitle" style="color:#6D28D9;">Required for case closure</div>
             </div>
           </div>
 
-          <!-- Dynamic Notice Approval Alert Banner -->
-          <div class="settings-alert-box" id="settingsNoticeAlert" style="display:none;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-            <div>
-              <strong>Notices will start without managerial approval.</strong> Notice approval has been excluded from the process steps. When HR records a resignation or retirement, the employee enters serving notice immediately without waiting for line manager sign-off.
-            </div>
-          </div>
-
-          <!-- SECTION 1: PROCESS STEPS CONFIGURATOR (Modular Phases) -->
-          <div class="settings-card">
-            <div class="settings-card-header">
-              <div class="settings-card-title-group">
-                <div class="settings-card-title">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
-                  Modular Process Steps
-                </div>
-                <div class="settings-card-subtitle">
-                  Define which stages a leaver traverses at Crowne Plaza Dubai. Built-in steps adapt dynamically; removing a step automatically updates linked closing rules.
-                </div>
-              </div>
-              <span class="system-badge" id="badgeTotalSteps">6 Steps Active</span>
-            </div>
-
-            <div class="settings-card-body">
-              <!-- Rendered dynamically by renderSettingsSteps() -->
-              <div id="settingsStepsContainer" style="display:flex; flex-direction:column; gap:16px;"></div>
-
-              <!-- Removed Steps Tray -->
-              <div class="removed-steps-tray" id="removedStepsTray" style="display:none;">
-                <span class="removed-steps-label">Removed Steps:</span>
-                <div id="removedStepsButtons" style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;"></div>
-              </div>
-
-              <!-- Mini Add-Step Box -->
-              <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:10px; padding:16px 20px; display:flex; flex-direction:column; gap:12px;">
-                <div style="font-size:13px; font-weight:700; color:var(--text-main); display:flex; align-items:center; gap:6px;">
-                  <span>➕</span> Add a Custom Step to Process
-                </div>
-                <div style="display:grid; grid-template-columns:2fr 1.5fr 1.5fr auto; gap:12px; align-items:end;">
-                  <div>
-                    <label class="form-label" style="font-size:11.5px;">Step Name</label>
-                    <input type="text" class="form-control" id="newStepName" placeholder="e.g. Knowledge transfer workshop" style="height:36px; font-size:13px;" />
+          <!-- THE SINGLE UNIFIED MASTER CHECKLIST CARD -->
+          <div class="settings-card" style="border: 1px solid #E5E7EF; border-radius: 12px; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow: hidden; margin-top: 20px;">
+            <div class="settings-card-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid #EEF0F4; background: #FFFFFF; flex-wrap: wrap; gap: 14px;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <div style="width: 32px; height: 32px; border-radius: 8px; background: #F5F3FF; display: grid; place-items: center; color: #7C3AED;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
                   </div>
-                  <div>
-                    <label class="form-label" style="font-size:11.5px;">When it happens</label>
-                    <select class="form-control" id="newStepPhase" style="height:36px; font-size:13px;">
-                      <option value="before">Before notice starts</option>
-                      <option value="during" selected>During notice</option>
-                      <option value="after">After last working day</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label class="form-label" style="font-size:11.5px;">Done by / Responsible</label>
-                    <input type="text" class="form-control" id="newStepOwner" placeholder="e.g. Line manager" style="height:36px; font-size:13px;" />
-                  </div>
-                  <button class="btn-primary" onclick="handleAddCustomStep()" style="height:36px; padding:0 16px; font-size:12.5px; white-space:nowrap; background:#7C3AED; color:#FFF; border:none; border-radius:8px; font-weight:600; cursor:pointer;">
-                    Add Step
-                  </button>
+                  <span style="font-size: 16px; font-weight: 700; color: #0F172A;">Master Offboarding Checklist</span>
+                  <span class="system-badge" id="badgeChecklistStepCount" style="background: #EEEBFF; color: #7C3AED; font-weight: 600;">3 Steps Active</span>
+                </div>
+                <div style="font-size: 12.5px; color: #64748B; margin: 4px 0 0 42px;">
+                  All departure workflow steps in one unified checklist. Use the Edit option on each step to customize it according to your organization.
                 </div>
               </div>
-            </div>
-          </div>
 
-          <!-- ====================================================================
-               SECTION 2: DYNAMIC CLOSING RULES (THE USER REQUESTED CORE FEATURE)
-               ==================================================================== -->
-          <div class="settings-card" id="cardClosingRules" style="border:1.5px solid #DDD6FE;">
-            <div class="settings-card-header" style="background:#FAF8FF;">
-              <div class="settings-card-title-group">
-                <div class="settings-card-title" style="color:#5B21B6;">
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                  Dynamic Closing Rules &amp; Exit Guardrails
-                </div>
-                <div class="settings-card-subtitle">
-                  Enforce operational compliance and legal prerequisites before an offboarding case can be marked closed or archived. These guardrails dynamically react and adapt based on the active process steps enabled above.
-                </div>
-              </div>
-              <span class="system-badge" id="closingRulesCountBadge" style="background:#7C3AED; color:#FFFFFF;">4 Active Guardrails</span>
+              <!-- Add Custom Step Action Button -->
+              <button class="btn-primary" onclick="openAddCustomStepModal()" style="background: #7C3AED; color: #FFFFFF; border: none; padding: 9px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(124,58,237,0.25);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add Custom Step
+              </button>
             </div>
 
-            <div class="settings-card-body">
-              <!-- Explanatory Governance Callout -->
-              <div style="background:#F5F3FF; border:1px solid #DDD6FE; border-radius:10px; padding:12px 16px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;">
-                <div style="display:flex; align-items:center; gap:10px;">
-                  <span style="font-size:18px;">⚡</span>
-                  <div style="font-size:12.5px; color:#5B21B6;">
-                    <strong>Reactive Dependency Engine:</strong> Closing rules tied to excluded process steps are automatically deactivated with clear explanations. Toggling process steps immediately updates guardrails.
-                  </div>
-                </div>
-                <span class="status-badge" style="background:#EDE9FE; color:#7C3AED; border:1px solid #C4B5FD; font-size:11px; font-weight:700;">LIVE VALIDATION</span>
-              </div>
-
-              <!-- Dynamic Closing Rules List -->
-              <div class="closing-rules-container" id="closingRulesListContainer">
-                <!-- Injected and updated reactively via renderClosingRules() -->
-              </div>
-            </div>
-          </div>
-
-          <!-- ====================================================================
-               SECTION 3: FINAL SETTLEMENT RULES (THE USER REQUESTED CORE FEATURE)
-               ==================================================================== -->
-          <div class="settings-card" id="cardSettlementRules">
-            <div class="settings-card-header">
-              <div class="settings-card-title-group">
-                <div class="settings-card-title">
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"></path><path d="M12 18V6"></path></svg>
-                  Final Settlement &amp; Relieving Policies
-                </div>
-                <div class="settings-card-subtitle">
-                  Configure property-wide statutory calculations, leave encashment formulas, End-of-Service Benefits (EOSB), asset deductions, and relieving certificate automation for Crowne Plaza Dubai.
-                </div>
-              </div>
-              <span class="system-badge">Statutory &amp; Payroll Policy</span>
-            </div>
-
-            <div class="settings-card-body">
-              <div class="settlement-sections-grid">
-                
-                <!-- Subcard 1: Base Currency & Payout SLA -->
-                <div class="settlement-subcard">
-                  <div class="settlement-subcard-title">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
-                    1. Currency &amp; Disbursement Channel
-                  </div>
-
-                  <div class="settlement-form-row">
-                    <label class="settlement-label">Operating Settlement Currency</label>
-                    <select class="form-control" id="ruleSetCurrency" onchange="handleSettlementConfigChange()" style="font-weight:600;">
-                      <option value="AED" selected>AED — United Arab Emirates Dirham (Default)</option>
-                      <option value="USD">USD — US Dollar</option>
-                      <option value="SAR">SAR — Saudi Riyal</option>
-                      <option value="INR">INR — Indian Rupee</option>
-                      <option value="EUR">EUR — Euro</option>
-                      <option value="GBP">GBP — British Pound</option>
-                    </select>
-                    <span class="settlement-helper">Currency displayed in leaver settlement cards and relieving documentation.</span>
-                  </div>
-
-                  <div class="settlement-form-row">
-                    <label class="settlement-label">Settlement Disbursement Channel</label>
-                    <select class="form-control" id="ruleSetChannel" onchange="handleSettlementConfigChange()">
-                      <option value="wps" selected>WPS (Wages Protection System) Direct Bank Transfer</option>
-                      <option value="cheque">Company Cheque Disbursement</option>
-                      <option value="cashier">Finance Cashier Direct Clearance</option>
-                    </select>
-                  </div>
-
-                  <div class="settlement-form-row">
-                    <label class="settlement-label">Statutory Payout SLA Window</label>
-                    <select class="form-control" id="ruleSetSla" onchange="handleSettlementConfigChange()">
-                      <option value="14" selected>Within 14 calendar days of Last Working Day (UAE Law Standard)</option>
-                      <option value="7">Within 7 business days of Last Working Day</option>
-                      <option value="0">Disburse on or before Last Working Day</option>
-                    </select>
-                  </div>
-                </div>
-
-                <!-- Subcard 2: Leave Encashment Rules -->
-                <div class="settlement-subcard">
-                  <div class="settlement-subcard-title">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    2. Unused Leave Encashment Policy
-                  </div>
-
-                  <div class="settlement-checkbox-row">
-                    <input type="checkbox" id="ruleLeaveEncashEnabled" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Pay Out Unused Annual Leave (Encashment Enabled)</div>
-                      <div class="settlement-checkbox-desc">Encash accrued unutilized vacation days into the employee's final payout.</div>
-                    </div>
-                  </div>
-
-                  <div class="settlement-form-row" id="wrapEncashFormula">
-                    <label class="settlement-label">Encashment Calculation Formula</label>
-                    <select class="form-control" id="ruleEncashFormula" onchange="handleSettlementConfigChange()">
-                      <option value="basic_30" selected>Basic Salary ÷ 30 days × Remaining Days (UAE Standard)</option>
-                      <option value="gross_30">Gross Salary ÷ 30 days × Remaining Days</option>
-                      <option value="basic_housing_26">(Basic + Housing Allowance) ÷ 26 days × Remaining Days</option>
-                    </select>
-                  </div>
-
-                  <div class="settlement-form-row" id="wrapEncashCap">
-                    <label class="settlement-label">Maximum Encashable Leave Days Cap</label>
-                    <select class="form-control" id="ruleEncashCap" onchange="handleSettlementConfigChange()">
-                      <option value="unlimited" selected>No Cap (Encash all remaining accrued balance)</option>
-                      <option value="30">30 Calendar Days Maximum Cap</option>
-                      <option value="60">60 Calendar Days Maximum Cap</option>
-                    </select>
-                  </div>
-
-                  <div class="settlement-checkbox-row">
-                    <input type="checkbox" id="ruleDeductNegativeLeave" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Recover Negative Leave Deficits</div>
-                      <div class="settlement-checkbox-desc">Deduct excess unearned leaves taken in advance from the final settlement salary.</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Subcard 3: Statutory Gratuity / EOSB Engine -->
-                <div class="settlement-subcard">
-                  <div class="settlement-subcard-title">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                    3. Statutory End-of-Service Gratuity (EOSB)
-                  </div>
-
-                  <div class="settlement-checkbox-row">
-                    <input type="checkbox" id="ruleGratuityEnabled" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Automated Statutory Gratuity Engine</div>
-                      <div class="settlement-checkbox-desc">Compliant with UAE Federal Decree-Law No. 33 of 2021 on Regulation of Labour Relations.</div>
-                    </div>
-                  </div>
-
-                  <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:8px; padding:10px 14px; font-size:12px; color:var(--text-body); line-height:1.5;">
-                    <div style="font-weight:700; color:#5B21B6; margin-bottom:4px;">Statutory Gratuity Sliding Scale:</div>
-                    <ul style="padding-left:16px; margin:0; display:flex; flex-direction:column; gap:3px;">
-                      <li><strong>1 to 5 years:</strong> 21 days' basic salary for each completed year.</li>
-                      <li><strong>Over 5 years:</strong> 30 days' basic salary for each additional year.</li>
-                      <li><strong>Minimum threshold:</strong> 1 full continuous year of service required.</li>
-                    </ul>
-                  </div>
-
-                  <div class="settlement-checkbox-row">
-                    <input type="checkbox" id="ruleProratePartialYear" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Prorate Partial Service Years</div>
-                      <div class="settlement-checkbox-desc">Calculate exact pro-rata gratuity on daily service fraction past completed years.</div>
-                    </div>
-                  </div>
-
-                  <div class="settlement-checkbox-row">
-                    <input type="checkbox" id="ruleCapGratuity" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Enforce Statutory 2-Year Salary Ceiling</div>
-                      <div class="settlement-checkbox-desc">Cap total gratuity payable at a maximum of 2 years' total remuneration per Article 51.</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Subcard 4: Deductions, Asset Recoveries & Notice Buyout -->
-                <div class="settlement-subcard">
-                  <div class="settlement-subcard-title">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    4. Deductions, Asset Recoveries &amp; Buyout
-                  </div>
-
-                  <div class="settlement-checkbox-row">
-                    <input type="checkbox" id="ruleDeductAssets" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Auto-Deduct Unreturned Company Assets</div>
-                      <div class="settlement-checkbox-desc">Deduct depreciated value of unreturned laptops, keys, or uniforms from final settlement.</div>
-                    </div>
-                  </div>
-
-                  <div class="settlement-checkbox-row">
-                    <input type="checkbox" id="ruleDeductAdvances" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Auto-Reconcile Salary Advances &amp; Loans</div>
-                      <div class="settlement-checkbox-desc">Deduct corporate loans, open travel expense balances, and housing advances.</div>
-                    </div>
-                  </div>
-
-                  <div class="settlement-checkbox-row">
-                    <input type="checkbox" id="ruleNoticeBuyout" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Notice Shortfall / Buyout Recovery</div>
-                      <div class="settlement-checkbox-desc">Deduct unserved notice days if an employee departs earlier than required without an approved waiver.</div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Subcard 5: Relieving & Experience Letters Policy -->
-                <div class="settlement-subcard" style="grid-column: span 2;">
-                  <div class="settlement-subcard-title">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                    5. Relieving Certificate &amp; Service Letter Automation
-                  </div>
-
-                  <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
-                    <div class="settlement-form-row">
-                      <label class="settlement-label">Document Generation Trigger</label>
-                      <select class="form-control" id="ruleLetterTrigger" onchange="handleSettlementConfigChange()">
-                        <option value="on_settlement" selected>Upon Final Settlement Approval</option>
-                        <option value="on_close">Upon Case Closure &amp; Archival</option>
-                        <option value="manual">Manual Generation Only</option>
-                      </select>
-                    </div>
-
-                    <div class="settlement-form-row">
-                      <label class="settlement-label">Default Certificate Template</label>
-                      <select class="form-control" id="ruleLetterTemplate" onchange="handleSettlementConfigChange()">
-                        <option value="uae_bilingual_standard" selected>UAE Standard Bilingual (English / Arabic)</option>
-                        <option value="corporate_executive">Executive Experience Certificate</option>
-                        <option value="hospitality_standard">Standard Luxury Hospitality Relieving Letter</option>
-                      </select>
-                    </div>
-
-                    <div class="settlement-form-row">
-                      <label class="settlement-label">Authorized Corporate Signatory</label>
-                      <input type="text" class="form-control" id="ruleLetterSignatory" value="James Cole (HR Director)" oninput="handleSettlementConfigChange()" />
-                    </div>
-                  </div>
-
-                  <div class="settlement-checkbox-row" style="margin-top:4px;">
-                    <input type="checkbox" id="ruleDigitalSeal" checked onchange="handleSettlementConfigChange()" />
-                    <div class="settlement-checkbox-info">
-                      <div class="settlement-checkbox-title">Affix Tamper-Proof Company E-Seal &amp; Dynamic Verification QR Code</div>
-                      <div class="settlement-checkbox-desc">Embeds a verifiable QR link to Hirerkey's public document validation portal for instant verification by embassies, visa authorities, and new employers.</div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-          <!-- SECTION 4: CLEARANCE CHECKLIST CONFIGURATOR -->
-          <div class="settings-card">
-            <div class="settings-card-header">
-              <div class="settings-card-title-group">
-                <div class="settings-card-title">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                  Clearance Checklist Configurator
-                </div>
-                <div class="settings-card-subtitle">
-                  Configure default sign-off tasks required from each department before exit.
-                </div>
-              </div>
-              <span class="system-badge" id="badgeClearanceCount">4 Tasks Configured</span>
-            </div>
-
-            <div class="settings-card-body">
-              <div class="table-responsive">
-                <table class="authentic-table" style="width:100%; border-collapse:collapse;" id="settingsClearanceTable">
-                  <thead>
-                    <tr style="background:#EEEBFF; color:#7C3AED;">
-                      <th style="padding:10px 14px; text-align:left; font-size:12px; font-weight:700;">TASK DESCRIPTION</th>
-                      <th style="padding:10px 14px; text-align:left; font-size:12px; font-weight:700; width:180px;">SIGNED OFF BY</th>
-                      <th style="padding:10px 14px; text-align:center; font-size:12px; font-weight:700; width:110px;">REQUIRED</th>
-                      <th style="padding:10px 14px; text-align:center; font-size:12px; font-weight:700; width:80px;">ACTION</th>
-                    </tr>
-                  </thead>
-                  <tbody id="settingsClearanceTbody">
-                    <!-- Rendered dynamically by renderClearanceTable() -->
-                  </tbody>
-                </table>
-              </div>
-
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-top:10px;">
-                <button class="btn-secondary" onclick="handleAddClearanceTask()" style="font-weight:600; font-size:12.5px; display:inline-flex; align-items:center; gap:6px;">
-                  <span>➕</span> Add Clearance Task
-                </button>
-                <div style="display:flex; align-items:center; gap:8px;">
-                  <input type="checkbox" id="settingsPullAssets" checked onchange="handleSettlementConfigChange()" style="accent-color:#7C3AED; width:16px; height:16px;" />
-                  <label for="settingsPullAssets" style="font-size:12.5px; color:var(--text-body); cursor:pointer; font-weight:500;">
-                    Automatically pull employee's assigned Profile Assets &amp; Equipment as return items
-                  </label>
-                </div>
-              </div>
+            <div class="settings-card-body" style="padding: 20px 24px;">
+              <!-- Dynamically populated via renderUnifiedChecklist() -->
+              <div id="unifiedChecklistContainer" style="display: flex; flex-direction: column; gap: 12px;"></div>
             </div>
           </div>
 
           <!-- Bottom Save Toolbar -->
-          <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:#FFFFFF; border:1px solid #E5E7EF; border-radius:12px; margin-bottom:40px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; padding:16px 20px; background:#FFFFFF; border:1px solid #E5E7EF; border-radius:12px; margin-top:24px; margin-bottom:40px;">
             <div style="font-size:13px; color:var(--text-secondary);">
-              Crowne Plaza Dubai · Property Settings v21.6.4
+              Crowne Plaza Dubai · Property Settings v21.7.0
             </div>
             <div style="display:flex; align-items:center; gap:12px;">
               <button class="btn-secondary" onclick="switchToScreen('list')">
@@ -4853,6 +4527,131 @@
       <div class="modal-footer">
         <button class="btn-secondary" onclick="closeStartModal()">Cancel</button>
         <button class="btn-primary" onclick="submitStartModal()">Submit & Start Notice</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     MODAL: ADD CUSTOM STEP (PROPERTY SETTINGS)
+     ========================================================================== -->
+<div class="modal-overlay" id="modalAddCustomStep">
+  <div class="modal-dialog" style="max-width: 520px;">
+    <div class="modal-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 18px;">➕</span>
+        <h3 class="modal-title">Add Custom Step</h3>
+      </div>
+      <button class="btn-modal-close" onclick="closeAddCustomStepModal()">✕</button>
+    </div>
+    <p class="modal-subtitle">Add a new organization-specific step to your offboarding process checklist.</p>
+
+    <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label">Step Name <span style="color: #DC2626;">*</span></label>
+        <input type="text" class="form-control" id="customStepNameInput" placeholder="e.g. Visa &amp; Labor Card Cancellation, Exit Interview" />
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Responsible Department / Role</label>
+          <input type="text" class="form-control" id="customStepOwnerInput" placeholder="e.g. HR Operations, PRO, IT" value="HR Operations" />
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">When it happens (Phase)</label>
+          <select class="form-control" id="customStepPhaseSelect">
+            <option value="Before notice starts">Before notice starts</option>
+            <option value="During notice period" selected>During notice period</option>
+            <option value="On last working day">On last working day</option>
+            <option value="Post-Separation (within 14 days)">Post-Separation (within 14 days)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label">Step Description &amp; Instructions</label>
+        <textarea class="form-control" id="customStepDescInput" rows="3" style="height: auto; padding: 8px 12px; resize: vertical;" placeholder="Describe what tasks, handovers, or sign-offs are required for this step..."></textarea>
+      </div>
+
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px;">
+        <input type="checkbox" id="customStepMandatoryInput" checked style="accent-color: #7C3AED; width: 17px; height: 17px; margin-top: 2px; cursor: pointer;" />
+        <div>
+          <label for="customStepMandatoryInput" style="font-size: 13px; font-weight: 600; color: var(--text-main); cursor: pointer;">Mandatory Exit Gate</label>
+          <p style="font-size: 11.5px; color: var(--text-secondary); margin: 2px 0 0 0;">If checked, offboarding cases cannot be closed or archived until this step is confirmed complete.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+      <button class="btn-secondary" onclick="closeAddCustomStepModal()">Cancel</button>
+      <button class="btn-primary" onclick="submitAddCustomStep()" style="background: #7C3AED; color: #FFF; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+        ➕ Add Step to Checklist
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================================================
+     MODAL: EDIT OFFBOARDING STEP (PROPERTY SETTINGS)
+     ========================================================================== -->
+<div class="modal-overlay" id="modalEditStep">
+  <div class="modal-dialog" style="max-width: 520px;">
+    <div class="modal-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 18px;">✏️</span>
+        <h3 class="modal-title" id="editStepModalTitle">Edit Offboarding Step</h3>
+      </div>
+      <button class="btn-modal-close" onclick="closeEditStepModal()">✕</button>
+    </div>
+    <p class="modal-subtitle">Customize this step's title, department ownership, and rules according to your organization.</p>
+
+    <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
+      <input type="hidden" id="editStepId" />
+
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label">Step Name <span style="color: #DC2626;">*</span></label>
+        <input type="text" class="form-control" id="editStepNameInput" />
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">Responsible Department / Role</label>
+          <input type="text" class="form-control" id="editStepOwnerInput" />
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label class="form-label">When it happens (Phase)</label>
+          <select class="form-control" id="editStepPhaseSelect">
+            <option value="Before notice starts">Before notice starts</option>
+            <option value="During notice period">During notice period</option>
+            <option value="On last working day">On last working day</option>
+            <option value="Post-Separation (within 14 days)">Post-Separation (within 14 days)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 0;">
+        <label class="form-label">Step Description &amp; Instructions</label>
+        <textarea class="form-control" id="editStepDescInput" rows="3" style="height: auto; padding: 8px 12px; resize: vertical;"></textarea>
+      </div>
+
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 12px 14px; display: flex; align-items: flex-start; gap: 10px;">
+        <input type="checkbox" id="editStepMandatoryInput" style="accent-color: #7C3AED; width: 17px; height: 17px; margin-top: 2px; cursor: pointer;" />
+        <div>
+          <label for="editStepMandatoryInput" style="font-size: 13px; font-weight: 600; color: var(--text-main); cursor: pointer;">Mandatory Exit Gate</label>
+          <p style="font-size: 11.5px; color: var(--text-secondary); margin: 2px 0 0 0;">If checked, offboarding cases cannot be closed or archived until this step is confirmed complete.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+      <div id="editStepDeleteContainer">
+        <!-- Delete button dynamically injected if custom step -->
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn-secondary" onclick="closeEditStepModal()">Cancel</button>
+        <button class="btn-primary" onclick="submitEditStep()" style="background: #7C3AED; color: #FFF; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+          ✓ Save Step Changes
+        </button>
       </div>
     </div>
   </div>
@@ -5280,57 +5079,41 @@ let currentCaseId = 1;
 let currentCaseTab = 'overview';
 
 /* ==========================================================================
-   PROPERTY SETTINGS › OFFBOARDING & EXIT RULES ENGINE (STATE & LOGIC)
+   PROPERTY SETTINGS › UNIFIED OFFBOARDING CHECKLIST ENGINE (STATE & LOGIC)
    ========================================================================== */
 const defaultSettingsState = {
-  processSteps: {
-    approval: true,    // Notice approval (Before notice)
-    handover: true,    // Handover & Knowledge Transfer (During notice)
-    interview: true,   // Exit interview (During notice)
-    lastday: true,     // Last working day (Fixed: On last day)
-    clearance: true,   // Clearance checklist (After last day)
-    settlement: true,  // Final settlement (After last day)
-    close: true        // Close case (Fixed: At the end)
-  },
-  customSteps: [
-    { id: 'c1', name: 'Knowledge transfer workshop', phase: 'during', owner: 'Line manager', required: true }
-  ],
-  // DYNAMIC CLOSING RULES (Dynamically link to process steps)
-  closingRules: {
-    lettersMandatory: true,      // Linked to: settlement
-    interviewJustifiedSkip: true, // Linked to: interview
-    handoverFullResolution: true,// Linked to: handover
-    clearanceStrictSignoff: true,// Linked to: clearance
-    noticeApprovalRequired: true,// Linked to: approval
-    settlementReconciled: true   // Linked to: settlement
-  },
-  // FINAL SETTLEMENT RULES & POLICIES
-  settlementRules: {
-    currency: 'AED',
-    channel: 'wps',
-    slaDays: 14,
-    leaveEncashEnabled: true,
-    encashFormula: 'basic_30',
-    encashCap: 'unlimited',
-    deductNegativeLeave: true,
-    gratuityEnabled: true,
-    proratePartialYear: true,
-    capGratuity: true,
-    deductAssets: true,
-    deductAdvances: true,
-    noticeBuyout: true,
-    letterTrigger: 'on_settlement',
-    letterTemplate: 'uae_bilingual_standard',
-    letterSignatory: 'James Cole (HR Director)',
-    digitalSeal: true
-  },
-  clearanceLines: [
-    { id: 1, task: 'Email and Opera PMS system accounts handed over', dept: 'IT', mandatory: true },
-    { id: 2, task: 'Uniform returned and exit gate pass issued', dept: 'Admin', mandatory: true },
-    { id: 3, task: 'No open salary advances or dues settled', dept: 'Finance', mandatory: true },
-    { id: 4, task: 'Operational handover notes verified', dept: 'Line manager', mandatory: false }
-  ],
-  pullAssets: true
+  checklist: [
+    {
+      id: 'step_handover',
+      title: 'Handover & Knowledge Transfer',
+      dept: 'Line Manager & Successor',
+      phase: 'During notice period',
+      desc: 'Operational duties transfer, direct reports reassignment, pending tasks handover, VIP client portfolios, and documented knowledge transfer.',
+      mandatory: true,
+      isDefault: true,
+      order: 1
+    },
+    {
+      id: 'step_assets',
+      title: 'Assets Clearance',
+      dept: 'IT, Admin & Facilities',
+      phase: 'On / Before last working day',
+      desc: 'Return of company hardware (laptops, monitors, mobile devices), staff accommodation room inspection, access keys retrieval, and accounts deprovisioning.',
+      mandatory: true,
+      isDefault: true,
+      order: 2
+    },
+    {
+      id: 'step_settlement',
+      title: 'Final Settlement',
+      dept: 'Finance & HR Payroll',
+      phase: 'Post-Separation (within 14 days)',
+      desc: 'Statutory End-of-Service Benefits (EOSB gratuity), annual leave encashment calculations, company asset deductions, WPS disbursement, and relieving letter issuance.',
+      mandatory: true,
+      isDefault: true,
+      order: 3
+    }
+  ]
 };
 
 let settingsState = JSON.parse(JSON.stringify(defaultSettingsState));
@@ -5380,7 +5163,7 @@ function switchToScreen(screen) {
     if (crumbSep) crumbSep.style.display = 'inline';
     if (crumbCase) {
       crumbCase.style.display = 'inline';
-      crumbCase.textContent = 'Offboarding Policies';
+      crumbCase.textContent = 'Offboarding Checklist';
     }
     renderSettingsView();
   }
@@ -5396,521 +5179,255 @@ function switchToScreen(screen) {
    RENDER SETTINGS VIEW ENGINE
    ========================================================================== */
 function renderSettingsView() {
-  // 1. Calculate and update summary KPIs
-  const activeStepsCount = Object.keys(settingsState.processSteps).filter(k => settingsState.processSteps[k]).length + settingsState.customSteps.length;
-  const kpiSteps = document.getElementById('kpiStepsInUse');
-  if (kpiSteps) kpiSteps.textContent = activeStepsCount;
+  const steps = settingsState.checklist || [];
+  const total = steps.length;
+  const defaultCount = steps.filter(s => s.isDefault).length;
+  const customCount = steps.filter(s => !s.isDefault).length;
+  const mandatoryCount = steps.filter(s => s.mandatory).length;
 
-  const kpiClearance = document.getElementById('kpiClearanceLines');
-  if (kpiClearance) kpiClearance.textContent = settingsState.clearanceLines.length;
+  const kpiTotal = document.getElementById('kpiTotalSteps');
+  if (kpiTotal) kpiTotal.textContent = total;
 
-  const kpiApprovers = document.getElementById('kpiNoticeApprovers');
-  if (kpiApprovers) {
-    kpiApprovers.textContent = settingsState.processSteps.approval ? '2 Tiers' : '0 (Bypassed)';
-    kpiApprovers.style.color = settingsState.processSteps.approval ? 'var(--text-main)' : '#DC2626';
-  }
+  const kpiDefault = document.getElementById('kpiDefaultSteps');
+  if (kpiDefault) kpiDefault.textContent = defaultCount;
 
-  // 2. Alert notice banner
-  const alertBanner = document.getElementById('settingsNoticeAlert');
-  if (alertBanner) {
-    alertBanner.style.display = settingsState.processSteps.approval ? 'none' : 'flex';
-  }
+  const kpiCustom = document.getElementById('kpiCustomSteps');
+  if (kpiCustom) kpiCustom.textContent = customCount;
 
-  const badgeSteps = document.getElementById('badgeTotalSteps');
-  if (badgeSteps) badgeSteps.textContent = `${activeStepsCount} Steps Active`;
+  const kpiMandatory = document.getElementById('kpiMandatoryGates');
+  if (kpiMandatory) kpiMandatory.textContent = mandatoryCount;
 
-  // 3. Render sub-components
-  renderSettingsSteps();
-  renderClosingRules();
-  renderSettlementControls();
-  renderClearanceTable();
+  const badgeSteps = document.getElementById('badgeChecklistStepCount');
+  if (badgeSteps) badgeSteps.textContent = `${total} Steps Active`;
+
+  renderUnifiedChecklist();
 }
 
-/* Render Modular Process Steps */
-function renderSettingsSteps() {
-  const container = document.getElementById('settingsStepsContainer');
+/* Render the Single Unified Checklist */
+function renderUnifiedChecklist() {
+  const container = document.getElementById('unifiedChecklistContainer');
   if (!container) return;
 
-  const phases = [
-    { id: 'before', label: 'Phase 1 · Before Notice Starts' },
-    { id: 'during', label: 'Phase 2 · During Notice Period' },
-    { id: 'last', label: 'Phase 3 · On the Last Working Day' },
-    { id: 'after', label: 'Phase 4 · After the Last Working Day' },
-    { id: 'close', label: 'Phase 5 · Case Archival & Closure' }
-  ];
-
-  const builtinSteps = [
-    { id: 'approval', name: 'Notice Approval Workflow', phase: 'before', desc: 'Routes resignation through Notice Period approval flow (Direct Manager → HR Operations)', fixed: false, chip: 'Approval Flows Engine' },
-    { id: 'handover', name: 'Handover & Knowledge Transfer', phase: 'during', desc: 'Direct reports reassignment, pending approvals handover, cover and appraisal reviews', fixed: false },
-    { id: 'interview', name: 'Exit Interview Survey', phase: 'during', desc: 'Dispatches chosen exit survey template 7 days prior to Last Working Day', fixed: false },
-    { id: 'lastday', name: 'Last Working Day Access Revocation', phase: 'last', desc: 'PMS & system credentials deactivated, physical badge handed over', fixed: true },
-    { id: 'clearance', name: 'Departmental Clearance Checklist', phase: 'after', desc: 'Mandatory sign-offs across IT, Admin, Finance, Security, and Line Manager in Approvals Inbox', fixed: false },
-    { id: 'settlement', name: 'Final Settlement & Relieving Letters', phase: 'after', desc: 'Leave encashment, statutory gratuity (EOSB), deductions, and relieving certificate issuance', fixed: false },
-    { id: 'close', name: 'Case Archival & Profile Transfer', phase: 'close', desc: 'Closes departure case and automatically transfers employee profile to Employees › Exit', fixed: true }
-  ];
-
-  let html = '';
-
-  phases.forEach(phase => {
-    // Collect active builtin steps for this phase
-    const activeBuiltin = builtinSteps.filter(b => b.phase === phase.id && (b.fixed || settingsState.processSteps[b.id]));
-    // Collect custom steps for this phase
-    const activeCustom = settingsState.customSteps.filter(c => c.phase === phase.id);
-
-    if (activeBuiltin.length === 0 && activeCustom.length === 0) return;
-
-    html += `
-      <div style="display:flex; flex-direction:column; gap:8px;">
-        <span class="step-phase-header">${phase.label}</span>
-        <div class="step-list-group">
-    `;
-
-    activeBuiltin.forEach(step => {
-      html += `
-        <div class="step-item-row">
-          <div class="step-item-left">
-            <div class="step-item-title">
-              <span>${step.name}</span>
-              ${step.chip ? `<span class="system-badge" style="background:#EDE9FE; color:#7C3AED; font-size:11px; padding:2px 8px;">${step.chip}</span>` : ''}
-              ${step.fixed ? `<span class="system-badge" style="background:#F1F5F9; color:#475569; font-size:11px; padding:2px 8px;">Always Included</span>` : ''}
-            </div>
-            <div class="step-item-desc">${step.desc}</div>
-          </div>
-          <div class="step-item-actions">
-            ${step.fixed 
-              ? `<span style="font-size:12px; color:var(--text-tertiary); font-style:italic;">Mandatory</span>`
-              : `<button class="btn-secondary" onclick="handleRemoveStep('${step.id}')" style="font-size:12px; padding:4px 10px; color:#DC2626; border-color:#FECACA; background:#FEF2F2;" title="Remove this step from process">✕ Remove</button>`
-            }
-          </div>
-        </div>
-      `;
-    });
-
-    activeCustom.forEach(c => {
-      html += `
-        <div class="step-item-row" style="border-left: 3px solid #7C3AED;">
-          <div class="step-item-left">
-            <div class="step-item-title">
-              <span>${c.name}</span>
-              <span class="system-badge" style="background:#FDF0E1; color:#9A5B13; font-size:11px; padding:2px 8px;">Custom Step</span>
-              <span class="system-badge" style="background:#F1F5F9; color:#475569; font-size:11px; padding:2px 8px;">Done by: ${c.owner}</span>
-            </div>
-            <div class="step-item-desc">Custom departmental offboarding procedure before exit.</div>
-          </div>
-          <div class="step-item-actions">
-            <button class="btn-secondary" onclick="handleDeleteCustomStep('${c.id}')" style="font-size:12px; padding:4px 10px; color:#DC2626; border-color:#FECACA; background:#FEF2F2;">✕ Remove</button>
-          </div>
-        </div>
-      `;
-    });
-
-    html += `
-        </div>
+  const steps = settingsState.checklist || [];
+  if (steps.length === 0) {
+    container.innerHTML = `
+      <div style="padding: 40px; text-align: center; color: var(--text-tertiary); background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 10px;">
+        No steps currently in checklist. Click <strong>"Add Custom Step"</strong> or <strong>"Reset Defaults"</strong> above.
       </div>
     `;
-  });
-
-  container.innerHTML = html;
-
-  // Render Removed Steps Tray
-  const removedBuiltin = builtinSteps.filter(b => !b.fixed && !settingsState.processSteps[b.id]);
-  const removedTray = document.getElementById('removedStepsTray');
-  const removedButtons = document.getElementById('removedStepsButtons');
-
-  if (removedBuiltin.length > 0) {
-    if (removedTray) removedTray.style.display = 'flex';
-    if (removedButtons) {
-      removedButtons.innerHTML = removedBuiltin.map(b => `
-        <button class="btn-addback" onclick="handleAddBackStep('${b.id}')">
-          <span>➕</span> Add back: ${b.name}
-        </button>
-      `).join('');
-    }
-  } else {
-    if (removedTray) removedTray.style.display = 'none';
+    return;
   }
+
+  container.innerHTML = steps.map((step, idx) => `
+    <div class="unified-step-card" 
+         style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; transition: all 0.2s ease;">
+      
+      <!-- Left: Step Number, Details & Badges -->
+      <div style="display: flex; align-items: flex-start; gap: 14px; flex: 1;">
+        <!-- Step Number Badge -->
+        <div style="width: 32px; height: 32px; border-radius: 50%; background: ${step.isDefault ? '#EEEBFF' : '#FEF3C7'}; color: ${step.isDefault ? '#7C3AED' : '#B45309'}; display: grid; place-items: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px;">
+          ${idx + 1}
+        </div>
+
+        <!-- Step Details -->
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 14.5px; font-weight: 700; color: #0F172A;">${step.title}</span>
+            ${step.isDefault 
+              ? `<span class="system-badge" style="background: #EDE9FE; color: #7C3AED; font-size: 11px; padding: 2px 8px; font-weight: 600;">Default Step</span>`
+              : `<span class="system-badge" style="background: #FEF3C7; color: #92400E; font-size: 11px; padding: 2px 8px; font-weight: 600;">Custom Step</span>`
+            }
+            <span class="system-badge" style="background: #F1F5F9; color: #475569; font-size: 11px; padding: 2px 8px;">
+              👤 ${step.dept}
+            </span>
+            <span class="system-badge" style="background: #F8FAFC; border: 1px solid #E2E8F0; color: #64748B; font-size: 11px; padding: 2px 8px;">
+              ⏱️ ${step.phase}
+            </span>
+            ${step.mandatory 
+              ? `<span class="system-badge" style="background: #FEE2E2; color: #991B1B; font-size: 11px; padding: 2px 8px; font-weight: 600;">🔒 Mandatory Gate</span>`
+              : `<span class="system-badge" style="background: #F1F5F9; color: #64748B; font-size: 11px; padding: 2px 8px;">Optional</span>`
+            }
+          </div>
+          
+          <p style="font-size: 12.5px; color: #64748B; margin: 6px 0 0 0; line-height: 1.5;">
+            ${step.desc}
+          </p>
+        </div>
+      </div>
+
+      <!-- Right: Actions (Reorder, Edit, Delete) -->
+      <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+        <!-- Move Up -->
+        <button onclick="handleMoveStep(${idx}, -1)" ${idx === 0 ? 'disabled style="opacity:0.35; cursor:not-allowed; width:28px; height:28px; border:1px solid #E2E8F0; border-radius:6px; background:#FFF; display:grid; place-items:center; color:#64748B;"' : 'style="width:28px; height:28px; border:1px solid #E2E8F0; border-radius:6px; background:#FFF; cursor:pointer; display:grid; place-items:center; color:#64748B;"'} title="Move step earlier in sequence">
+          ▲
+        </button>
+        <!-- Move Down -->
+        <button onclick="handleMoveStep(${idx}, 1)" ${idx === steps.length - 1 ? 'disabled style="opacity:0.35; cursor:not-allowed; width:28px; height:28px; border:1px solid #E2E8F0; border-radius:6px; background:#FFF; display:grid; place-items:center; color:#64748B;"' : 'style="width:28px; height:28px; border:1px solid #E2E8F0; border-radius:6px; background:#FFF; cursor:pointer; display:grid; place-items:center; color:#64748B;"'} title="Move step later in sequence">
+          ▼
+        </button>
+
+        <!-- Edit Option (User requested) -->
+        <button class="btn-secondary" onclick="openEditStepModal('${step.id}')" style="height: 32px; font-size: 12px; font-weight: 600; padding: 0 12px; display: inline-flex; align-items: center; gap: 5px; color: #475569; border-color: #CBD5E1;" title="Edit step according to your organization">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Edit
+        </button>
+
+        ${!step.isDefault ? `
+          <!-- Delete Custom Step -->
+          <button class="btn-secondary" onclick="handleDeleteStep('${step.id}')" style="height: 32px; font-size: 12px; padding: 0 10px; color: #DC2626; border-color: #FECACA; background: #FEF2F2;" title="Delete custom step">
+            ✕
+          </button>
+        ` : ''}
+      </div>
+    </div>
+  `).join('');
 }
 
-/* Step Removal Handler (Triggers Dynamic Closing Rules Reactivity) */
-function handleRemoveStep(stepId) {
-  settingsState.processSteps[stepId] = false;
+/* Reorder Step in Sequence */
+function handleMoveStep(idx, direction) {
+  const steps = settingsState.checklist;
+  const newIdx = idx + direction;
+  if (newIdx < 0 || newIdx >= steps.length) return;
+  const temp = steps[idx];
+  steps[idx] = steps[newIdx];
+  steps[newIdx] = temp;
   renderSettingsView();
-  showToast(`Step removed from offboarding process. Linked dynamic closing rules updated.`);
+  showToast('Step sequence updated.');
 }
 
-/* Step Restoration Handler */
-function handleAddBackStep(stepId) {
-  settingsState.processSteps[stepId] = true;
-  renderSettingsView();
-  showToast(`Step restored to process flow. Linked dynamic closing rules reactivated.`);
+/* Modal: Add Custom Step */
+function openAddCustomStepModal() {
+  const modal = document.getElementById('modalAddCustomStep');
+  if (!modal) return;
+  document.getElementById('customStepNameInput').value = '';
+  document.getElementById('customStepOwnerInput').value = 'HR Operations';
+  document.getElementById('customStepPhaseSelect').value = 'During notice period';
+  document.getElementById('customStepDescInput').value = '';
+  document.getElementById('customStepMandatoryInput').checked = true;
+  modal.classList.add('open');
 }
 
-/* Custom Step Handler */
-function handleAddCustomStep() {
-  const nameInput = document.getElementById('newStepName');
-  const phaseInput = document.getElementById('newStepPhase');
-  const ownerInput = document.getElementById('newStepOwner');
+function closeAddCustomStepModal() {
+  const modal = document.getElementById('modalAddCustomStep');
+  if (modal) modal.classList.remove('open');
+}
 
-  if (!nameInput || !nameInput.value.trim()) {
-    showToast('Please enter a name for the custom step.');
+function submitAddCustomStep() {
+  const name = document.getElementById('customStepNameInput').value.trim();
+  const owner = document.getElementById('customStepOwnerInput').value.trim() || 'HR Operations';
+  const phase = document.getElementById('customStepPhaseSelect').value;
+  const desc = document.getElementById('customStepDescInput').value.trim() || 'Organization custom offboarding procedure.';
+  const mandatory = document.getElementById('customStepMandatoryInput').checked;
+
+  if (!name) {
+    showToast('Please enter a step name.');
+    document.getElementById('customStepNameInput').focus();
     return;
   }
 
   const newStep = {
-    id: 'c_' + Date.now(),
-    name: nameInput.value.trim(),
-    phase: phaseInput ? phaseInput.value : 'during',
-    owner: ownerInput && ownerInput.value.trim() ? ownerInput.value.trim() : 'Line manager',
-    required: true
+    id: 'step_custom_' + Date.now(),
+    title: name,
+    dept: owner,
+    phase: phase,
+    desc: desc,
+    mandatory: mandatory,
+    isDefault: false,
+    order: settingsState.checklist.length + 1
   };
 
-  settingsState.customSteps.push(newStep);
-  nameInput.value = '';
-  if (ownerInput) ownerInput.value = '';
+  settingsState.checklist.push(newStep);
+  closeAddCustomStepModal();
   renderSettingsView();
-  showToast(`Custom step "${newStep.name}" added to process.`);
+  showToast(`Custom step "${name}" added to checklist.`);
 }
 
-function handleDeleteCustomStep(id) {
-  settingsState.customSteps = settingsState.customSteps.filter(c => c.id !== id);
-  renderSettingsView();
-  showToast('Custom step removed.');
-}
+/* Modal: Edit Step */
+function openEditStepModal(stepId) {
+  const step = settingsState.checklist.find(s => s.id === stepId);
+  if (!step) return;
 
-/* ==========================================================================
-   RENDER DYNAMIC CLOSING RULES (THE USER REQUESTED CORE SECTION)
-   ========================================================================== */
-function renderClosingRules() {
-  const container = document.getElementById('closingRulesListContainer');
-  if (!container) return;
+  const modal = document.getElementById('modalEditStep');
+  if (!modal) return;
 
-  // Definitions of the 6 dynamic exit guardrails
-  const rules = [
-    {
-      key: 'lettersMandatory',
-      title: 'Mandatory Relieving & Experience Letters Verification',
-      parentStep: 'settlement',
-      parentStepName: 'Final Settlement',
-      desc: 'Enforces that Relieving and Experience Certificates must be officially verified and issued in the leaver workspace before an HR Admin can close the case.',
-      enforcement: 'Blocks Case Closure in Screen 2'
-    },
-    {
-      key: 'interviewJustifiedSkip',
-      title: 'Documented Exit Interview Skip Justification',
-      parentStep: 'interview',
-      parentStepName: 'Exit Interview',
-      desc: 'Allows closing a case without survey submission only if HR records an authorized justification (e.g., sudden departure, employee unresponsive, medical release).',
-      enforcement: 'Enforces Audit Compliance'
-    },
-    {
-      key: 'handoverFullResolution',
-      title: 'Handover 100% Resolution Gate',
-      parentStep: 'handover',
-      parentStepName: 'Handover',
-      desc: 'Blocks Last Working Day access termination and final case closure until 100% of direct reports, pending approvals, and operational handovers are confirmed resolved.',
-      enforcement: 'Strict Departure Gate'
-    },
-    {
-      key: 'clearanceStrictSignoff',
-      title: 'Strict Departmental Clearance Sign-Off Gate',
-      parentStep: 'clearance',
-      parentStepName: 'Clearance Checklist',
-      desc: 'Requires every mandatory clearance item across IT, Admin, Finance, Security, and Line Manager to be approved in the central Approvals Inbox prior to case closure.',
-      enforcement: 'Multi-Department Security Gate'
-    },
-    {
-      key: 'noticeApprovalRequired',
-      title: 'Managerial Notice Approval Gate',
-      parentStep: 'approval',
-      parentStepName: 'Notice Approval',
-      desc: 'Requires formal sign-off from the reporting line manager in the Approvals Inbox before notice countdown starts and successor handover is initiated.',
-      enforcement: 'Workflow Entry Gate'
-    },
-    {
-      key: 'settlementReconciled',
-      title: 'Final Settlement Status Reconciliation Gate',
-      parentStep: 'settlement',
-      parentStepName: 'Final Settlement',
-      desc: 'Requires the statutory financial settlement to reach "Paid & Reconciled" or "Waived" status prior to final departure archival.',
-      enforcement: 'Statutory Payroll Gate'
-    }
-  ];
+  document.getElementById('editStepId').value = step.id;
+  document.getElementById('editStepModalTitle').textContent = `Edit: ${step.title}`;
+  document.getElementById('editStepNameInput').value = step.title;
+  document.getElementById('editStepOwnerInput').value = step.dept;
+  document.getElementById('editStepPhaseSelect').value = step.phase;
+  document.getElementById('editStepDescInput').value = step.desc;
+  document.getElementById('editStepMandatoryInput').checked = step.mandatory;
 
-  let activeRulesCount = 0;
-  let html = '';
-
-  rules.forEach(r => {
-    const isStepActive = settingsState.processSteps[r.parentStep];
-    const isRuleEnabled = settingsState.closingRules[r.key];
-
-    if (isStepActive && isRuleEnabled) {
-      activeRulesCount++;
-    }
-
-    const cardClass = isStepActive 
-      ? (isRuleEnabled ? 'dynamic-rule-card active-rule' : 'dynamic-rule-card')
-      : 'dynamic-rule-card deactivated-rule';
-
-    html += `
-      <div class="${cardClass}">
-        <div class="rule-meta-left">
-          <div class="rule-title-row">
-            <span class="rule-title-text">${r.title}</span>
-            ${isStepActive 
-              ? `<span class="rule-linked-pill">⚡ Linked to ${r.parentStepName}</span>` 
-              : `<span class="rule-deactivated-badge">⚠️ Deactivated — ${r.parentStepName} step is excluded from process</span>`
-            }
-          </div>
-          <div class="rule-desc-text">${r.desc}</div>
-          <div class="rule-enforcement-tag">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            <span>${r.enforcement}</span>
-          </div>
-        </div>
-
-        <label class="rule-switch" title="${isStepActive ? 'Toggle this closing rule' : 'Rule deactivated because parent step is excluded'}">
-          <input type="checkbox" 
-                 ${isRuleEnabled && isStepActive ? 'checked' : ''} 
-                 ${!isStepActive ? 'disabled' : ''} 
-                 onchange="handleToggleClosingRule('${r.key}')" />
-          <span class="rule-slider"></span>
-        </label>
-      </div>
-    `;
-  });
-
-  container.innerHTML = html;
-
-  // Update Badge Counter
-  const badge = document.getElementById('closingRulesCountBadge');
-  if (badge) badge.textContent = `${activeRulesCount} Active Guardrails`;
-
-  const kpiRules = document.getElementById('kpiClosingRules');
-  if (kpiRules) kpiRules.textContent = activeRulesCount;
-}
-
-/* Toggle Closing Rule */
-function handleToggleClosingRule(ruleKey) {
-  settingsState.closingRules[ruleKey] = !settingsState.closingRules[ruleKey];
-  renderClosingRules();
-  showToast(`Closing guardrail updated.`);
-}
-
-/* ==========================================================================
-   FINAL SETTLEMENT POLICIES (THE USER REQUESTED CORE SECTION)
-   ========================================================================== */
-function renderSettlementControls() {
-  const s = settingsState.settlementRules;
-
-  // 1. Currency
-  const selCur = document.getElementById('ruleSetCurrency');
-  if (selCur) selCur.value = s.currency || 'AED';
-
-  // 2. Channel & SLA
-  const selChan = document.getElementById('ruleSetChannel');
-  if (selChan) selChan.value = s.channel || 'wps';
-
-  const selSla = document.getElementById('ruleSetSla');
-  if (selSla) selSla.value = String(s.slaDays || 14);
-
-  // 3. Leave Encashment
-  const chkEnc = document.getElementById('ruleLeaveEncashEnabled');
-  if (chkEnc) chkEnc.checked = !!s.leaveEncashEnabled;
-
-  const selFormula = document.getElementById('ruleEncashFormula');
-  if (selFormula) selFormula.value = s.encashFormula || 'basic_30';
-
-  const selCap = document.getElementById('ruleEncashCap');
-  if (selCap) selCap.value = s.encashCap || 'unlimited';
-
-  const chkNeg = document.getElementById('ruleDeductNegativeLeave');
-  if (chkNeg) chkNeg.checked = !!s.deductNegativeLeave;
-
-  // 4. Gratuity / EOSB
-  const chkGrat = document.getElementById('ruleGratuityEnabled');
-  if (chkGrat) chkGrat.checked = !!s.gratuityEnabled;
-
-  const chkProrate = document.getElementById('ruleProratePartialYear');
-  if (chkProrate) chkProrate.checked = !!s.proratePartialYear;
-
-  const chkCapGrat = document.getElementById('ruleCapGratuity');
-  if (chkCapGrat) chkCapGrat.checked = !!s.capGratuity;
-
-  // 5. Deductions
-  const chkAssets = document.getElementById('ruleDeductAssets');
-  if (chkAssets) chkAssets.checked = !!s.deductAssets;
-
-  const chkAdv = document.getElementById('ruleDeductAdvances');
-  if (chkAdv) chkAdv.checked = !!s.deductAdvances;
-
-  const chkBuyout = document.getElementById('ruleNoticeBuyout');
-  if (chkBuyout) chkBuyout.checked = !!s.noticeBuyout;
-
-  // 6. Relieving Letters
-  const selTrig = document.getElementById('ruleLetterTrigger');
-  if (selTrig) selTrig.value = s.letterTrigger || 'on_settlement';
-
-  const selTpl = document.getElementById('ruleLetterTemplate');
-  if (selTpl) selTpl.value = s.letterTemplate || 'uae_bilingual_standard';
-
-  const inpSig = document.getElementById('ruleLetterSignatory');
-  if (inpSig) inpSig.value = s.letterSignatory || 'James Cole (HR Director)';
-
-  const chkSeal = document.getElementById('ruleDigitalSeal');
-  if (chkSeal) chkSeal.checked = !!s.digitalSeal;
-
-  const chkPull = document.getElementById('settingsPullAssets');
-  if (chkPull) chkPull.checked = !!settingsState.pullAssets;
-}
-
-/* Handle changes in Settlement Config controls */
-function handleSettlementConfigChange() {
-  const s = settingsState.settlementRules;
-
-  const selCur = document.getElementById('ruleSetCurrency');
-  if (selCur) {
-    s.currency = selCur.value;
-    // Also sync the currency to Sara Khan's live leaver workspace
-    const sara = cases.find(c => c.id === 1);
-    if (sara && sara.settlement) {
-      sara.settlement.currency = s.currency;
-      const encEl = document.getElementById('stlEncashment');
-      const recEl = document.getElementById('stlRecoveries');
-      const netEl = document.getElementById('stlNetPayable');
-      if (encEl) encEl.textContent = `${s.currency} 4,200`;
-      if (recEl) recEl.textContent = `- ${s.currency} 350`;
-      if (netEl) netEl.textContent = `${s.currency} 3,850`;
+  const delContainer = document.getElementById('editStepDeleteContainer');
+  if (delContainer) {
+    if (!step.isDefault) {
+      delContainer.innerHTML = `
+        <button class="btn-secondary" onclick="handleDeleteStep('${step.id}'); closeEditStepModal();" style="color: #DC2626; border-color: #FECACA; background: #FEF2F2; height: 32px; font-size: 12px; font-weight: 600;">
+          🗑️ Delete Step
+        </button>
+      `;
+    } else {
+      delContainer.innerHTML = `
+        <span style="font-size: 12px; color: var(--text-tertiary);">Default core step</span>
+      `;
     }
   }
 
-  const selChan = document.getElementById('ruleSetChannel');
-  if (selChan) s.channel = selChan.value;
-
-  const selSla = document.getElementById('ruleSetSla');
-  if (selSla) s.slaDays = parseInt(selSla.value, 10);
-
-  const chkEnc = document.getElementById('ruleLeaveEncashEnabled');
-  if (chkEnc) s.leaveEncashEnabled = chkEnc.checked;
-
-  const selFormula = document.getElementById('ruleEncashFormula');
-  if (selFormula) s.encashFormula = selFormula.value;
-
-  const selCap = document.getElementById('ruleEncashCap');
-  if (selCap) s.encashCap = selCap.value;
-
-  const chkNeg = document.getElementById('ruleDeductNegativeLeave');
-  if (chkNeg) s.deductNegativeLeave = chkNeg.checked;
-
-  const chkGrat = document.getElementById('ruleGratuityEnabled');
-  if (chkGrat) s.gratuityEnabled = chkGrat.checked;
-
-  const chkProrate = document.getElementById('ruleProratePartialYear');
-  if (chkProrate) s.proratePartialYear = chkProrate.checked;
-
-  const chkCapGrat = document.getElementById('ruleCapGratuity');
-  if (chkCapGrat) s.capGratuity = chkCapGrat.checked;
-
-  const chkAssets = document.getElementById('ruleDeductAssets');
-  if (chkAssets) s.deductAssets = chkAssets.checked;
-
-  const chkAdv = document.getElementById('ruleDeductAdvances');
-  if (chkAdv) s.deductAdvances = chkAdv.checked;
-
-  const chkBuyout = document.getElementById('ruleNoticeBuyout');
-  if (chkBuyout) s.noticeBuyout = chkBuyout.checked;
-
-  const selTrig = document.getElementById('ruleLetterTrigger');
-  if (selTrig) s.letterTrigger = selTrig.value;
-
-  const selTpl = document.getElementById('ruleLetterTemplate');
-  if (selTpl) s.letterTemplate = selTpl.value;
-
-  const inpSig = document.getElementById('ruleLetterSignatory');
-  if (inpSig) s.letterSignatory = inpSig.value;
-
-  const chkSeal = document.getElementById('ruleDigitalSeal');
-  if (chkSeal) s.digitalSeal = chkSeal.checked;
-
-  const chkPull = document.getElementById('settingsPullAssets');
-  if (chkPull) settingsState.pullAssets = chkPull.checked;
+  modal.classList.add('open');
 }
 
-/* ==========================================================================
-   CLEARANCE CHECKLIST TABLE CONFIGURATOR
-   ========================================================================== */
-function renderClearanceTable() {
-  const tbody = document.getElementById('settingsClearanceTbody');
-  if (!tbody) return;
-
-  const depts = ['IT', 'Admin', 'Finance', 'HR', 'Security', 'Line manager'];
-
-  let html = '';
-  settingsState.clearanceLines.forEach((line, idx) => {
-    html += `
-      <tr style="border-bottom:1px solid #EEF0F4;">
-        <td style="padding:10px 14px;">
-          <input type="text" class="form-control" value="${line.task}" 
-                 onchange="settingsState.clearanceLines[${idx}].task = this.value" 
-                 style="font-size:13px; height:34px;" />
-        </td>
-        <td style="padding:10px 14px;">
-          <select class="form-control" onchange="settingsState.clearanceLines[${idx}].dept = this.value" style="font-size:13px; height:34px;">
-            ${depts.map(d => `<option value="${d}" ${line.dept === d ? 'selected' : ''}>${d}</option>`).join('')}
-          </select>
-        </td>
-        <td style="padding:10px 14px; text-align:center;">
-          <input type="checkbox" ${line.mandatory ? 'checked' : ''} 
-                 onchange="settingsState.clearanceLines[${idx}].mandatory = this.checked" 
-                 style="accent-color:#7C3AED; width:16px; height:16px; cursor:pointer;" />
-        </td>
-        <td style="padding:10px 14px; text-align:center;">
-          <button class="btn-secondary" onclick="handleDeleteClearanceTask(${idx})" 
-                  style="padding:4px 8px; color:#DC2626; border-color:#FECACA; background:#FEF2F2;" title="Delete task">
-            ✕
-          </button>
-        </td>
-      </tr>
-    `;
-  });
-
-  tbody.innerHTML = html;
-
-  const badge = document.getElementById('badgeClearanceCount');
-  if (badge) badge.textContent = `${settingsState.clearanceLines.length} Tasks Configured`;
-
-  const kpiClearance = document.getElementById('kpiClearanceLines');
-  if (kpiClearance) kpiClearance.textContent = settingsState.clearanceLines.length;
+function closeEditStepModal() {
+  const modal = document.getElementById('modalEditStep');
+  if (modal) modal.classList.remove('open');
 }
 
-function handleAddClearanceTask() {
-  const newTask = {
-    id: Date.now(),
-    task: 'New departmental sign-off item',
-    dept: 'IT',
-    mandatory: true
-  };
-  settingsState.clearanceLines.push(newTask);
-  renderClearanceTable();
-  showToast('New clearance task added to checklist.');
+function submitEditStep() {
+  const id = document.getElementById('editStepId').value;
+  const step = settingsState.checklist.find(s => s.id === id);
+  if (!step) return;
+
+  const title = document.getElementById('editStepNameInput').value.trim();
+  const dept = document.getElementById('editStepOwnerInput').value.trim() || step.dept;
+  const phase = document.getElementById('editStepPhaseSelect').value;
+  const desc = document.getElementById('editStepDescInput').value.trim() || step.desc;
+  const mandatory = document.getElementById('editStepMandatoryInput').checked;
+
+  if (!title) {
+    showToast('Please enter a step name.');
+    document.getElementById('editStepNameInput').focus();
+    return;
+  }
+
+  step.title = title;
+  step.dept = dept;
+  step.phase = phase;
+  step.desc = desc;
+  step.mandatory = mandatory;
+
+  closeEditStepModal();
+  renderSettingsView();
+  showToast(`Step "${title}" updated for your organization.`);
 }
 
-function handleDeleteClearanceTask(idx) {
-  settingsState.clearanceLines.splice(idx, 1);
-  renderClearanceTable();
-  showToast('Clearance task removed.');
+/* Delete Custom Step */
+function handleDeleteStep(stepId) {
+  const step = settingsState.checklist.find(s => s.id === stepId);
+  const title = step ? step.title : 'Step';
+  settingsState.checklist = settingsState.checklist.filter(s => s.id !== stepId);
+  renderSettingsView();
+  showToast(`Step "${title}" removed from checklist.`);
 }
 
-/* Save Settings Action */
+/* Save Settings */
 function handleSaveSettings() {
-  handleSettlementConfigChange();
-  showToast('✓ Settings saved successfully. New offboarding cases at Crowne Plaza Dubai will follow these policies.');
+  showToast('✓ Offboarding checklist saved for Crowne Plaza Dubai.');
 }
 
 /* Reset Settings to Defaults */
 function handleResetSettings() {
   settingsState = JSON.parse(JSON.stringify(defaultSettingsState));
   renderSettingsView();
-  showToast('Settings restored to standard property defaults.');
+  showToast('Checklist restored to 3 standard default steps.');
 }
 
 /* Open Leaver Case Workspace (Screen 2) */
@@ -6220,10 +5737,34 @@ function handleCloseCase() {
   const c = cases.find(item => item.id === currentCaseId);
   if (!c) return;
 
-  // 1. Dynamic Closing Rule: Relieving & Experience Letters (Linked to Final Settlement)
-  if (settingsState.processSteps.settlement && settingsState.closingRules.lettersMandatory) {
+  const handoverStep = settingsState.checklist.find(s => s.id === 'step_handover');
+  const assetsStep = settingsState.checklist.find(s => s.id === 'step_assets');
+  const settlementStep = settingsState.checklist.find(s => s.id === 'step_settlement');
+
+  // 1. Handover & Knowledge Transfer Gate (Step 1)
+  if (handoverStep && handoverStep.mandatory) {
+    const pendingHandovers = c.handover && c.handover.filter(h => !h.done);
+    if (pendingHandovers && pendingHandovers.length > 0) {
+      showToast(`⚠️ Closing Blocked: "${handoverStep.title}" has ${pendingHandovers.length} pending handover tasks (Enforced by Property Checklist).`);
+      switchCaseTab('handover');
+      return;
+    }
+  }
+
+  // 2. Assets Clearance Gate (Step 2)
+  if (assetsStep && assetsStep.mandatory) {
+    const pendingClearance = c.clearance && c.clearance.filter(cl => !cl.done);
+    if (pendingClearance && pendingClearance.length > 0) {
+      showToast(`⚠️ Closing Blocked: "${assetsStep.title}" pending sign-offs across ${pendingClearance.length} departments (Enforced by Property Checklist).`);
+      switchCaseTab('clearance');
+      return;
+    }
+  }
+
+  // 3. Final Settlement Gate (Step 3)
+  if (settlementStep && settlementStep.mandatory) {
     if (!c.settlement || !c.settlement.lettersGenerated) {
-      showToast('⚠️ Closing Blocked: Relieving & Experience Letters must be issued and verified before closing case (Enforced by Property Settings Dynamic Closing Rules).');
+      showToast(`⚠️ Closing Blocked: "${settlementStep.title}" Relieving & Experience Letters must be issued and verified before closing case.`);
       switchCaseTab('settlement');
       const lettersCheck = document.getElementById('settlementLettersCheck');
       if (lettersCheck) {
@@ -6237,47 +5778,14 @@ function handleCloseCase() {
       }
       return;
     }
-  }
-
-  // 2. Dynamic Closing Rule: Handover Completion Gate (Linked to Handover)
-  if (settingsState.processSteps.handover && settingsState.closingRules.handoverFullResolution) {
-    const pendingHandovers = c.handover && c.handover.filter(h => !h.done);
-    if (pendingHandovers && pendingHandovers.length > 0) {
-      showToast(`⚠️ Closing Blocked: ${pendingHandovers.length} operational handover items remain unresolved (Enforced by Property Settings).`);
-      switchCaseTab('handover');
-      return;
-    }
-  }
-
-  // 3. Dynamic Closing Rule: Departmental Clearance Gate (Linked to Clearance)
-  if (settingsState.processSteps.clearance && settingsState.closingRules.clearanceStrictSignoff) {
-    const pendingClearance = c.clearance && c.clearance.filter(cl => !cl.done);
-    if (pendingClearance && pendingClearance.length > 0) {
-      showToast(`⚠️ Closing Blocked: Departmental clearance pending sign-off across ${pendingClearance.length} departments (Enforced by Property Settings).`);
-      switchCaseTab('clearance');
-      return;
-    }
-  }
-
-  // 4. Dynamic Closing Rule: Settlement Reconciled Gate (Linked to Final Settlement)
-  if (settingsState.processSteps.settlement && settingsState.closingRules.settlementReconciled) {
     if (c.settlement && c.settlement.status !== 'paid' && c.settlement.status !== 'waived') {
-      showToast('⚠️ Closing Blocked: Final settlement status must be "Paid & Reconciled" or "Waived" prior to closure (Enforced by Property Settings).');
+      showToast(`⚠️ Closing Blocked: "${settlementStep.title}" status must be "Paid & Reconciled" or "Waived" prior to closure.`);
       switchCaseTab('settlement');
       return;
     }
   }
 
-  // 5. Dynamic Closing Rule: Exit Interview Mandatory (Unless skipped with reason)
-  if (settingsState.processSteps.interview && !settingsState.closingRules.interviewJustifiedSkip) {
-    if (c.exitInterviewStatus === 'not_sent') {
-      showToast('⚠️ Closing Blocked: Exit interview survey must be dispatched or completed (Enforced by Property Settings).');
-      switchCaseTab('interview');
-      return;
-    }
-  }
-
-  // All active closing rules passed! Case closure succeeds
+  // All mandatory checklist steps passed! Case closure succeeds
   c.stage = 3;
   c.stageName = 'Closed';
   c.stageTone = 'ok';
@@ -6286,6 +5794,7 @@ function handleCloseCase() {
   renderTable();
   showToast(`✓ Case successfully closed for ${c.name}. Profile moved to Employees › Exit.`);
   switchToScreen('list');
+  switchScope('closed');
 }
 
 function handleSendExitSurvey() {
@@ -7104,6 +6613,8 @@ function closeAllMenus() {
 }
 
 document.addEventListener('click', (e) => {
+  if (e.target.id === 'modalAddCustomStep') closeAddCustomStepModal();
+  if (e.target.id === 'modalEditStep') closeEditStepModal();
   if (!e.target.closest('.filter-dropdown-anchor')) {
     closeFilterPopover();
   }
