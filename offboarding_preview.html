@@ -4365,30 +4365,6 @@
             </div>
           </div>
 
-          <!-- 4 Metric KPI Summary Tiles -->
-          <div class="settings-kpi-grid">
-            <div class="settings-kpi-card">
-              <div class="settings-kpi-label">Checklist Steps in Use</div>
-              <div class="settings-kpi-value" id="kpiTotalSteps">3</div>
-              <div class="settings-kpi-subtitle">Active process steps</div>
-            </div>
-            <div class="settings-kpi-card">
-              <div class="settings-kpi-label">Default Core Steps</div>
-              <div class="settings-kpi-value" id="kpiDefaultSteps">3</div>
-              <div class="settings-kpi-subtitle">Standard system defaults</div>
-            </div>
-            <div class="settings-kpi-card">
-              <div class="settings-kpi-label">Custom Organization Steps</div>
-              <div class="settings-kpi-value" id="kpiCustomSteps">0</div>
-              <div class="settings-kpi-subtitle">Added by your organization</div>
-            </div>
-            <div class="settings-kpi-card" style="border-color:#DDD6FE; background:#FAF8FF;">
-              <div class="settings-kpi-label" style="color:#7C3AED;">Mandatory Exit Gates</div>
-              <div class="settings-kpi-value" id="kpiMandatoryGates" style="color:#7C3AED;">3</div>
-              <div class="settings-kpi-subtitle" style="color:#6D28D9;">Required for case closure</div>
-            </div>
-          </div>
-
           <!-- THE SINGLE UNIFIED MASTER CHECKLIST CARD -->
           <div class="settings-card" style="border: 1px solid #E5E7EF; border-radius: 12px; background: #FFFFFF; box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow: hidden; margin-top: 20px;">
             <div class="settings-card-header" style="display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid #EEF0F4; background: #FFFFFF; flex-wrap: wrap; gap: 14px;">
@@ -4552,22 +4528,6 @@
         <input type="text" class="form-control" id="customStepNameInput" placeholder="e.g. Visa &amp; Labor Card Cancellation, Exit Interview" />
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <div class="form-group" style="margin-bottom: 0;">
-          <label class="form-label">Responsible Department / Role</label>
-          <input type="text" class="form-control" id="customStepOwnerInput" placeholder="e.g. HR Operations, PRO, IT" value="HR Operations" />
-        </div>
-        <div class="form-group" style="margin-bottom: 0;">
-          <label class="form-label">When it happens (Phase)</label>
-          <select class="form-control" id="customStepPhaseSelect">
-            <option value="Before notice starts">Before notice starts</option>
-            <option value="During notice period" selected>During notice period</option>
-            <option value="On last working day">On last working day</option>
-            <option value="Post-Separation (within 14 days)">Post-Separation (within 14 days)</option>
-          </select>
-        </div>
-      </div>
-
       <div class="form-group" style="margin-bottom: 0;">
         <label class="form-label">Step Description &amp; Instructions</label>
         <textarea class="form-control" id="customStepDescInput" rows="3" style="height: auto; padding: 8px 12px; resize: vertical;" placeholder="Describe what tasks, handovers, or sign-offs are required for this step..."></textarea>
@@ -4603,7 +4563,7 @@
       </div>
       <button class="btn-modal-close" onclick="closeEditStepModal()">✕</button>
     </div>
-    <p class="modal-subtitle">Customize this step's title, department ownership, and rules according to your organization.</p>
+    <p class="modal-subtitle">Customize this step's title, description, and mandatory status according to your organization.</p>
 
     <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
       <input type="hidden" id="editStepId" />
@@ -4611,22 +4571,6 @@
       <div class="form-group" style="margin-bottom: 0;">
         <label class="form-label">Step Name <span style="color: #DC2626;">*</span></label>
         <input type="text" class="form-control" id="editStepNameInput" />
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-        <div class="form-group" style="margin-bottom: 0;">
-          <label class="form-label">Responsible Department / Role</label>
-          <input type="text" class="form-control" id="editStepOwnerInput" />
-        </div>
-        <div class="form-group" style="margin-bottom: 0;">
-          <label class="form-label">When it happens (Phase)</label>
-          <select class="form-control" id="editStepPhaseSelect">
-            <option value="Before notice starts">Before notice starts</option>
-            <option value="During notice period">During notice period</option>
-            <option value="On last working day">On last working day</option>
-            <option value="Post-Separation (within 14 days)">Post-Separation (within 14 days)</option>
-          </select>
-        </div>
       </div>
 
       <div class="form-group" style="margin-bottom: 0;">
@@ -5086,8 +5030,6 @@ const defaultSettingsState = {
     {
       id: 'step_handover',
       title: 'Handover & Knowledge Transfer',
-      dept: 'Line Manager & Successor',
-      phase: 'During notice period',
       desc: 'Operational duties transfer, direct reports reassignment, pending tasks handover, VIP client portfolios, and documented knowledge transfer.',
       mandatory: true,
       isDefault: true,
@@ -5096,8 +5038,6 @@ const defaultSettingsState = {
     {
       id: 'step_assets',
       title: 'Assets Clearance',
-      dept: 'IT, Admin & Facilities',
-      phase: 'On / Before last working day',
       desc: 'Return of company hardware (laptops, monitors, mobile devices), staff accommodation room inspection, access keys retrieval, and accounts deprovisioning.',
       mandatory: true,
       isDefault: true,
@@ -5106,8 +5046,6 @@ const defaultSettingsState = {
     {
       id: 'step_settlement',
       title: 'Final Settlement',
-      dept: 'Finance & HR Payroll',
-      phase: 'Post-Separation (within 14 days)',
       desc: 'Statutory End-of-Service Benefits (EOSB gratuity), annual leave encashment calculations, company asset deductions, WPS disbursement, and relieving letter issuance.',
       mandatory: true,
       isDefault: true,
@@ -5181,21 +5119,6 @@ function switchToScreen(screen) {
 function renderSettingsView() {
   const steps = settingsState.checklist || [];
   const total = steps.length;
-  const defaultCount = steps.filter(s => s.isDefault).length;
-  const customCount = steps.filter(s => !s.isDefault).length;
-  const mandatoryCount = steps.filter(s => s.mandatory).length;
-
-  const kpiTotal = document.getElementById('kpiTotalSteps');
-  if (kpiTotal) kpiTotal.textContent = total;
-
-  const kpiDefault = document.getElementById('kpiDefaultSteps');
-  if (kpiDefault) kpiDefault.textContent = defaultCount;
-
-  const kpiCustom = document.getElementById('kpiCustomSteps');
-  if (kpiCustom) kpiCustom.textContent = customCount;
-
-  const kpiMandatory = document.getElementById('kpiMandatoryGates');
-  if (kpiMandatory) kpiMandatory.textContent = mandatoryCount;
 
   const badgeSteps = document.getElementById('badgeChecklistStepCount');
   if (badgeSteps) badgeSteps.textContent = `${total} Steps Active`;
@@ -5237,12 +5160,6 @@ function renderUnifiedChecklist() {
               ? `<span class="system-badge" style="background: #EDE9FE; color: #7C3AED; font-size: 11px; padding: 2px 8px; font-weight: 600;">Default Step</span>`
               : `<span class="system-badge" style="background: #FEF3C7; color: #92400E; font-size: 11px; padding: 2px 8px; font-weight: 600;">Custom Step</span>`
             }
-            <span class="system-badge" style="background: #F1F5F9; color: #475569; font-size: 11px; padding: 2px 8px;">
-              👤 ${step.dept}
-            </span>
-            <span class="system-badge" style="background: #F8FAFC; border: 1px solid #E2E8F0; color: #64748B; font-size: 11px; padding: 2px 8px;">
-              ⏱️ ${step.phase}
-            </span>
             ${step.mandatory 
               ? `<span class="system-badge" style="background: #FEE2E2; color: #991B1B; font-size: 11px; padding: 2px 8px; font-weight: 600;">🔒 Mandatory Gate</span>`
               : `<span class="system-badge" style="background: #F1F5F9; color: #64748B; font-size: 11px; padding: 2px 8px;">Optional</span>`
@@ -5300,8 +5217,6 @@ function openAddCustomStepModal() {
   const modal = document.getElementById('modalAddCustomStep');
   if (!modal) return;
   document.getElementById('customStepNameInput').value = '';
-  document.getElementById('customStepOwnerInput').value = 'HR Operations';
-  document.getElementById('customStepPhaseSelect').value = 'During notice period';
   document.getElementById('customStepDescInput').value = '';
   document.getElementById('customStepMandatoryInput').checked = true;
   modal.classList.add('open');
@@ -5314,8 +5229,6 @@ function closeAddCustomStepModal() {
 
 function submitAddCustomStep() {
   const name = document.getElementById('customStepNameInput').value.trim();
-  const owner = document.getElementById('customStepOwnerInput').value.trim() || 'HR Operations';
-  const phase = document.getElementById('customStepPhaseSelect').value;
   const desc = document.getElementById('customStepDescInput').value.trim() || 'Organization custom offboarding procedure.';
   const mandatory = document.getElementById('customStepMandatoryInput').checked;
 
@@ -5328,8 +5241,6 @@ function submitAddCustomStep() {
   const newStep = {
     id: 'step_custom_' + Date.now(),
     title: name,
-    dept: owner,
-    phase: phase,
     desc: desc,
     mandatory: mandatory,
     isDefault: false,
@@ -5353,8 +5264,6 @@ function openEditStepModal(stepId) {
   document.getElementById('editStepId').value = step.id;
   document.getElementById('editStepModalTitle').textContent = `Edit: ${step.title}`;
   document.getElementById('editStepNameInput').value = step.title;
-  document.getElementById('editStepOwnerInput').value = step.dept;
-  document.getElementById('editStepPhaseSelect').value = step.phase;
   document.getElementById('editStepDescInput').value = step.desc;
   document.getElementById('editStepMandatoryInput').checked = step.mandatory;
 
@@ -5387,8 +5296,6 @@ function submitEditStep() {
   if (!step) return;
 
   const title = document.getElementById('editStepNameInput').value.trim();
-  const dept = document.getElementById('editStepOwnerInput').value.trim() || step.dept;
-  const phase = document.getElementById('editStepPhaseSelect').value;
   const desc = document.getElementById('editStepDescInput').value.trim() || step.desc;
   const mandatory = document.getElementById('editStepMandatoryInput').checked;
 
@@ -5399,8 +5306,6 @@ function submitEditStep() {
   }
 
   step.title = title;
-  step.dept = dept;
-  step.phase = phase;
   step.desc = desc;
   step.mandatory = mandatory;
 
