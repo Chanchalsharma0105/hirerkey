@@ -1724,12 +1724,27 @@
     }
 
     /* Unified Offboarding Checklist Styles */
+    .unified-step-card {
+      transition: all 0.2s ease;
+    }
     .unified-step-card:hover {
-      border-color: #CBD5E1 !important;
       box-shadow: 0 4px 14px rgba(0, 23, 65, 0.06);
     }
-    .unified-step-card button:hover:not(:disabled) {
-      filter: brightness(0.96);
+    .step-status-select {
+      height: 32px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 0 28px 0 12px;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      outline: none;
+      font-family: var(--font-sans);
+      transition: all 0.2s ease;
+    }
+    .step-status-select:focus {
+      outline: 2px solid #DDD6FE;
     }
 
     /* ==========================================================================
@@ -3980,22 +3995,8 @@
           <!-- LEFT: The Single Unified Offboarding Checklist -->
           <div style="display: flex; flex-direction: column; gap: 16px;">
             <!-- Checklist Section Header -->
-            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 2px;">
-              <div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0;">Offboarding Checklist</h3>
-                  <span class="system-badge" id="caseChecklistBadge" style="background: #EDE9FE; color: #7C3AED; font-size: 11px; font-weight: 600; padding: 2px 8px;">
-                    3 Steps Active
-                  </span>
-                </div>
-                <p style="font-size: 12px; color: var(--text-secondary); margin: 3px 0 0 0;">
-                  Master clearance process defined in Property Settings for Crowne Plaza Dubai.
-                </p>
-              </div>
-              <button class="btn-secondary" onclick="switchToScreen('settings')" style="height: 30px; font-size: 11.5px; font-weight: 600; padding: 0 10px; display: inline-flex; align-items: center; gap: 5px; color: #64748B;">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-                Configure in Settings
-              </button>
+            <div style="margin-bottom: 4px;">
+              <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0;">Offboarding Checklist</h3>
             </div>
 
             <!-- Single Unified Checklist Step Cards Container -->
@@ -4584,6 +4585,11 @@ let cases = [
     stageName: 'Serving notice',
     stageTone: 'pri',
     successor: 'Omar Haddad',
+    stepStatus: {
+      'step_handover': 'not_completed',
+      'step_assets': 'completed',
+      'step_settlement': 'not_completed'
+    },
     handover: [
       { key: 'Direct reports', title: '3 people report to FDM-01', subtitle: 'They stay on seat and report to Omar Haddad from 15 Oct', done: false, tag: 'Team & Structure' },
       { key: 'Approvals', title: '2 leave requests waiting on Sara', subtitle: 'Reassign to Omar Haddad now', done: false, tag: 'Operations' },
@@ -5185,168 +5191,32 @@ function renderCaseUnifiedChecklist(c) {
   if (!container) return;
 
   const steps = settingsState.checklist || [];
-  const badge = document.getElementById('caseChecklistBadge');
-  if (badge) badge.textContent = `${steps.length} Steps Active`;
-
-  c.customSteps = c.customSteps || {};
+  c.stepStatus = c.stepStatus || {};
 
   let completedStepsCount = 0;
 
   const html = steps.map((step, idx) => {
-    let isStepComplete = false;
-    let statusPillHtml = '';
-    let stepContentHtml = '';
-
-    if (step.id === 'step_handover') {
-      const items = c.handover || [];
-      const pending = items.filter(i => !i.done).length;
-      isStepComplete = items.length > 0 && pending === 0;
-      if (isStepComplete) {
-        completedStepsCount++;
-        statusPillHtml = `<span class="stage-badge ok" style="font-size: 11px; padding: 2px 8px;">✓ Step Complete</span>`;
-      } else {
-        statusPillHtml = `<span class="stage-badge pri" style="font-size: 11px; padding: 2px 8px;">${items.length - pending}/${items.length} Tasks Done</span>`;
-      }
-
-      stepContentHtml = `
-        <div style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
-          ${items.map((item, hIdx) => `
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: ${item.done ? '#F8FAFC' : '#FFFFFF'}; border: 1px solid #E2E8F0; border-radius: 8px; transition: all 0.2s; gap: 12px;">
-              <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; flex: 1; margin: 0;">
-                <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleHandoverCheck(${hIdx})" style="width: 17px; height: 17px; accent-color: #7C3AED; cursor: pointer; margin-top: 2px;" />
-                <div>
-                  <div style="font-size: 13px; font-weight: 600; color: ${item.done ? '#64748B' : '#0F172A'}; text-decoration: ${item.done ? 'line-through' : 'none'};">
-                    ${item.title}
-                  </div>
-                  <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 1px;">
-                    ${item.subtitle}
-                  </div>
-                </div>
-              </label>
-              <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-                <span class="system-badge" style="background: #F1F5F9; color: #475569; font-size: 11px; padding: 2px 8px;">${item.tag || 'Operations'}</span>
-                <span class="stage-badge ${item.done ? 'ok' : 'neu'}" style="font-size: 10.5px; padding: 2px 7px;">${item.done ? 'Completed' : 'Pending'}</span>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    } else if (step.id === 'step_assets') {
-      const items = c.clearance || [];
-      const signed = items.filter(i => i.done).length;
-      isStepComplete = items.length > 0 && signed === items.length;
-      if (isStepComplete) {
-        completedStepsCount++;
-        statusPillHtml = `<span class="stage-badge ok" style="font-size: 11px; padding: 2px 8px;">✓ All Signed Off (${items.length}/${items.length})</span>`;
-      } else {
-        statusPillHtml = `<span class="stage-badge pri" style="font-size: 11px; padding: 2px 8px;">${signed}/${items.length} Cleared</span>`;
-      }
-
-      stepContentHtml = `
-        <div style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 12px; display: flex; flex-direction: column; gap: 8px;">
-          ${items.map((item, clIdx) => `
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: ${item.done ? '#F8FAFC' : '#FFFFFF'}; border: 1px solid #E2E8F0; border-radius: 8px; gap: 14px; flex-wrap: wrap;">
-              <div style="flex: 1; min-width: 220px;">
-                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
-                  <span class="seat-badge" style="font-family: var(--font-sans); font-size: 11px; font-weight: 600; padding: 1px 7px; background: #EDE9FE; color: #7C3AED; border-color: #DDD6FE;">${item.dept}</span>
-                  <strong style="font-size: 13px; color: #0F172A;">${item.title}</strong>
-                </div>
-                ${item.notes ? `<div style="font-size: 11.5px; color: var(--text-secondary);">Approver: <strong>${item.approver}</strong> &bull; ${item.notes}</div>` : ''}
-              </div>
-              <button class="${item.done ? 'btn-secondary' : 'btn-primary'}" 
-                      style="height: 30px; font-size: 11.5px; padding: 0 12px; font-weight: 600; white-space: nowrap; ${item.done ? 'color:#15803D; border-color:#BBF7D0; background:#F0FDF4;' : 'background:#7C3AED; color:#FFF; border:none;'}" 
-                      onclick="toggleClearanceSignOff(${clIdx})">
-                ${item.done ? '✓ Signed Off' : 'Sign Off'}
-              </button>
-            </div>
-          `).join('')}
-        </div>
-      `;
-    } else if (step.id === 'step_settlement') {
-      const s = c.settlement || { leaveDays: 12.5, encashmentAmount: '4,200', recoveriesAmount: '350', netPayable: '3,850', status: 'pending', lettersGenerated: false };
-      const isSettled = (s.status === 'paid' || s.status === 'waived') && s.lettersGenerated;
-      isStepComplete = isSettled;
-      if (isStepComplete) {
-        completedStepsCount++;
-        statusPillHtml = `<span class="stage-badge ok" style="font-size: 11px; padding: 2px 8px;">✓ Settlement Reconciled</span>`;
-      } else {
-        statusPillHtml = `<span class="stage-badge pri" style="font-size: 11px; padding: 2px 8px;">${(s.status || 'Pending').toUpperCase()}</span>`;
-      }
-
-      stepContentHtml = `
-        <div style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 12px; display: flex; flex-direction: column; gap: 12px;">
-          <!-- 4 Financial Metrics Grid -->
-          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 9px 12px;">
-              <div style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary);">Leave Days</div>
-              <div style="font-size: 15px; font-weight: 700; font-family: var(--font-mono); color: var(--text-main); margin-top: 2px;">${s.leaveDays || 12.5} d</div>
-            </div>
-            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 9px 12px;">
-              <div style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary);">Encashment</div>
-              <div style="font-size: 15px; font-weight: 700; font-family: var(--font-mono); color: var(--text-main); margin-top: 2px;">AED ${s.encashmentAmount || '4,200'}</div>
-            </div>
-            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 9px 12px;">
-              <div style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: var(--text-tertiary);">Recoveries</div>
-              <div style="font-size: 15px; font-weight: 700; font-family: var(--font-mono); color: #DC2626; margin-top: 2px;">- AED ${s.recoveriesAmount || '350'}</div>
-            </div>
-            <div style="background: #F5F3FF; border: 1.5px solid #DDD6FE; border-radius: 8px; padding: 9px 12px;">
-              <div style="font-size: 10.5px; font-weight: 700; text-transform: uppercase; color: #7C3AED;">Net Payable</div>
-              <div style="font-size: 15px; font-weight: 700; font-family: var(--font-mono); color: #7C3AED; margin-top: 2px;">AED ${s.netPayable || '3,850'}</div>
-            </div>
-          </div>
-
-          <!-- Controls Row -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: center;">
-            <div>
-              <label style="font-size: 11.5px; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 4px;">Settlement Status</label>
-              <select class="form-control" id="settlementStatusSelect" onchange="handleSettlementChange()" style="height: 34px; font-size: 12px;">
-                <option value="pending" ${s.status === 'pending' ? 'selected' : ''}>Pending Review & Calculation</option>
-                <option value="in_progress" ${s.status === 'in_progress' ? 'selected' : ''}>In Progress · Payroll Routing</option>
-                <option value="paid" ${s.status === 'paid' ? 'selected' : ''}>Paid & Reconciled</option>
-                <option value="waived" ${s.status === 'waived' ? 'selected' : ''}>Waived / Non-payable</option>
-              </select>
-            </div>
-            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 7px 12px; display: flex; justify-content: space-between; align-items: center; margin-top: 17px;">
-              <div>
-                <div style="font-size: 12px; font-weight: 600; color: var(--text-main);">Relieving & Experience Letters</div>
-                <div style="font-size: 10.5px; color: var(--text-secondary);">Issued and handed over</div>
-              </div>
-              <input type="checkbox" id="settlementLettersCheck" ${s.lettersGenerated ? 'checked' : ''} onchange="handleLettersToggle()" style="width: 17px; height: 17px; accent-color: #7C3AED; cursor: pointer;" />
-            </div>
-          </div>
-        </div>
-      `;
-    } else {
-      // Custom Step added from Property Settings
-      const isDone = !!c.customSteps[step.id];
-      isStepComplete = isDone;
-      if (isStepComplete) {
-        completedStepsCount++;
-        statusPillHtml = `<span class="stage-badge ok" style="font-size: 11px; padding: 2px 8px;">✓ Step Complete</span>`;
-      } else {
-        statusPillHtml = `<span class="stage-badge neu" style="font-size: 11px; padding: 2px 8px;">Action Pending</span>`;
-      }
-
-      stepContentHtml = `
-        <div style="margin-top: 14px; border-top: 1px solid #F1F5F9; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
-          <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; margin: 0;">
-            <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleCustomStepCheck('${step.id}')" style="width: 17px; height: 17px; accent-color: #7C3AED; cursor: pointer;" />
-            <span style="font-size: 13px; font-weight: 600; color: #0F172A;">Confirm completion of ${step.title}</span>
-          </label>
-          <span class="stage-badge ${isDone ? 'ok' : 'neu'}" style="font-size: 11px;">${isDone ? 'Completed' : 'Pending'}</span>
-        </div>
-      `;
+    const status = c.stepStatus[step.id] || 'not_completed';
+    const isStepComplete = (status === 'completed');
+    if (isStepComplete) {
+      completedStepsCount++;
     }
 
     return `
       <div class="unified-step-card" id="caseStepCard_${step.id}"
-           style="background: #FFFFFF; border: 1px solid ${isStepComplete ? '#D1FAE5' : '#E2E8F0'}; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s ease;">
+           style="background: #FFFFFF; border: 1px solid ${isStepComplete ? '#BBF7D0' : '#E2E8F0'}; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s ease;">
         
-        <!-- Step Header -->
+        <!-- Step Header Row -->
         <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 14px;">
+          <!-- Left: Step Number Avatar & Content -->
           <div style="display: flex; align-items: flex-start; gap: 12px; flex: 1;">
-            <!-- Circle Badge -->
-            <div style="width: 32px; height: 32px; border-radius: 50%; background: ${isStepComplete ? '#DCFCE7' : (step.isDefault ? '#EEEBFF' : '#FEF3C7')}; color: ${isStepComplete ? '#15803D' : (step.isDefault ? '#7C3AED' : '#B45309')}; display: grid; place-items: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px;">
+            <!-- Circle Badge (Click to toggle completion) -->
+            <div onclick="toggleStepCompleted('${step.id}')"
+                 title="Click to mark ${isStepComplete ? 'not completed' : 'completed'}"
+                 style="width: 32px; height: 32px; border-radius: 50%; cursor: pointer; transition: all 0.2s;
+                        background: ${isStepComplete ? '#DCFCE7' : (step.isDefault ? '#EEEBFF' : '#FEF3C7')}; 
+                        color: ${isStepComplete ? '#15803D' : (step.isDefault ? '#7C3AED' : '#B45309')}; 
+                        display: grid; place-items: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px;">
               ${isStepComplete ? '✓' : (idx + 1)}
             </div>
 
@@ -5369,21 +5239,31 @@ function renderCaseUnifiedChecklist(c) {
             </div>
           </div>
 
-          <!-- Step Status Pill -->
-          <div style="flex-shrink: 0;">
-            ${statusPillHtml}
+          <!-- Right: Completed or Not Option to mark the list done -->
+          <div style="flex-shrink: 0; display: flex; align-items: center; gap: 8px;">
+            <div style="position: relative;">
+              <select class="step-status-select" 
+                      onchange="handleStepStatusChange('${step.id}', this.value)" 
+                      style="background-color: ${isStepComplete ? '#ECFDF5' : '#F8FAFC'}; 
+                             color: ${isStepComplete ? '#047857' : '#475569'}; 
+                             border: 1px solid ${isStepComplete ? '#A7F3D0' : '#CBD5E1'};">
+                <option value="not_completed" ${!isStepComplete ? 'selected' : ''}>Not Completed</option>
+                <option value="completed" ${isStepComplete ? 'selected' : ''}>✓ Completed</option>
+              </select>
+              <div style="position: absolute; right: 9px; top: 50%; transform: translateY(-50%); pointer-events: none; color: ${isStepComplete ? '#047857' : '#64748B'}; display: flex; align-items: center;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Step Interactive Tasks / Body -->
-        ${stepContentHtml}
       </div>
     `;
   }).join('');
 
   container.innerHTML = html;
 
-  // Update Clearance Readiness
+  // Update Clearance Readiness in the Right Sidebar
   const totalSteps = steps.length;
   const pct = totalSteps > 0 ? Math.round((completedStepsCount / totalSteps) * 100) : 0;
 
@@ -5400,7 +5280,7 @@ function renderCaseUnifiedChecklist(c) {
 
   const badgeEl = document.getElementById('glanceReadinessBadge');
   if (badgeEl) {
-    if (completedStepsCount === totalSteps) {
+    if (completedStepsCount === totalSteps && totalSteps > 0) {
       badgeEl.textContent = 'Ready to Close';
       badgeEl.className = 'stage-badge ok';
     } else {
@@ -5410,53 +5290,29 @@ function renderCaseUnifiedChecklist(c) {
   }
 }
 
-/* Interactive Checklist Actions */
-function toggleHandoverCheck(idx) {
-  const c = cases.find(item => item.id === currentCaseId);
-  if (!c || !c.handover || !c.handover[idx]) return;
-  c.handover[idx].done = !c.handover[idx].done;
-  renderCaseUnifiedChecklist(c);
-  showToast(`Handover task marked ${c.handover[idx].done ? 'completed' : 'pending'}.`);
-}
-
-function toggleClearanceSignOff(idx) {
-  const c = cases.find(item => item.id === currentCaseId);
-  if (!c || !c.clearance || !c.clearance[idx]) return;
-  c.clearance[idx].done = !c.clearance[idx].done;
-  c.clearance[idx].status = c.clearance[idx].done ? 'approved' : 'pending';
-  renderCaseUnifiedChecklist(c);
-  showToast(`${c.clearance[idx].dept} clearance sign-off ${c.clearance[idx].done ? 'recorded' : 'revoked'}.`);
-}
-
-function handleSettlementChange() {
+/* Step Status Change Handler */
+function handleStepStatusChange(stepId, newStatus) {
   const c = cases.find(item => item.id === currentCaseId);
   if (!c) return;
-  const sel = document.getElementById('settlementStatusSelect');
-  if (!sel) return;
-  c.settlement = c.settlement || {};
-  c.settlement.status = sel.value;
+  c.stepStatus = c.stepStatus || {};
+  c.stepStatus[stepId] = newStatus;
+
+  const step = settingsState.checklist.find(s => s.id === stepId);
+  const stepName = step ? step.title : stepId;
+  const isDone = (newStatus === 'completed');
+
   renderCaseUnifiedChecklist(c);
-  showToast(`Settlement status updated to "${sel.options[sel.selectedIndex].text}".`);
+  showToast(`${isDone ? '✓ ' : ''}"${stepName}" marked as ${isDone ? 'Completed' : 'Not Completed'}.`);
 }
 
-function handleLettersToggle() {
+/* Quick Toggle Helper for Circle Avatar */
+function toggleStepCompleted(stepId) {
   const c = cases.find(item => item.id === currentCaseId);
   if (!c) return;
-  const check = document.getElementById('settlementLettersCheck');
-  if (!check) return;
-  c.settlement = c.settlement || {};
-  c.settlement.lettersGenerated = check.checked;
-  renderCaseUnifiedChecklist(c);
-  showToast(check.checked ? 'Relieving & Experience Letters verified as issued.' : 'Relieving Letters status unmarked.');
-}
-
-function toggleCustomStepCheck(stepId) {
-  const c = cases.find(item => item.id === currentCaseId);
-  if (!c) return;
-  c.customSteps = c.customSteps || {};
-  c.customSteps[stepId] = !c.customSteps[stepId];
-  renderCaseUnifiedChecklist(c);
-  showToast(`Custom step "${stepId}" marked ${c.customSteps[stepId] ? 'completed' : 'pending'}.`);
+  c.stepStatus = c.stepStatus || {};
+  const current = c.stepStatus[stepId] || 'not_completed';
+  const newStatus = (current === 'completed') ? 'not_completed' : 'completed';
+  handleStepStatusChange(stepId, newStatus);
 }
 
 /* Smooth Focus / Scroll Helper */
@@ -5468,7 +5324,9 @@ function scrollToCaseStep(stepId) {
     el.style.borderColor = '#7C3AED';
     el.style.boxShadow = '0 0 0 4px rgba(124, 58, 237, 0.2)';
     setTimeout(() => {
-      el.style.borderColor = '#E2E8F0';
+      const c = cases.find(item => item.id === currentCaseId);
+      const isDone = c && c.stepStatus && c.stepStatus[stepId] === 'completed';
+      el.style.borderColor = isDone ? '#BBF7D0' : '#E2E8F0';
       el.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04)';
     }, 2500);
   }
@@ -5500,54 +5358,14 @@ function handleCloseCase() {
   const c = cases.find(item => item.id === currentCaseId);
   if (!c) return;
 
-  const handoverStep = settingsState.checklist.find(s => s.id === 'step_handover');
-  const assetsStep = settingsState.checklist.find(s => s.id === 'step_assets');
-  const settlementStep = settingsState.checklist.find(s => s.id === 'step_settlement');
-
-  // 1. Handover & Knowledge Transfer Gate (Step 1)
-  if (handoverStep && handoverStep.mandatory) {
-    const pendingHandovers = c.handover && c.handover.filter(h => !h.done);
-    if (pendingHandovers && pendingHandovers.length > 0) {
-      showToast(`⚠️ Closing Blocked: "${handoverStep.title}" has ${pendingHandovers.length} pending handover tasks (Enforced by Property Checklist).`);
-      scrollToCaseStep('step_handover');
+  // Enforce all mandatory checklist steps
+  const mandatorySteps = settingsState.checklist.filter(s => s.mandatory);
+  for (const step of mandatorySteps) {
+    const isDone = c.stepStatus && c.stepStatus[step.id] === 'completed';
+    if (!isDone) {
+      showToast(`⚠️ Closing Blocked: "${step.title}" is mandatory and must be marked as Completed.`);
+      scrollToCaseStep(step.id);
       return;
-    }
-  }
-
-  // 2. Assets Clearance Gate (Step 2)
-  if (assetsStep && assetsStep.mandatory) {
-    const pendingClearance = c.clearance && c.clearance.filter(cl => !cl.done);
-    if (pendingClearance && pendingClearance.length > 0) {
-      showToast(`⚠️ Closing Blocked: "${assetsStep.title}" pending sign-offs across ${pendingClearance.length} departments (Enforced by Property Checklist).`);
-      scrollToCaseStep('step_assets');
-      return;
-    }
-  }
-
-  // 3. Final Settlement Gate (Step 3)
-  if (settlementStep && settlementStep.mandatory) {
-    if (!c.settlement || !c.settlement.lettersGenerated) {
-      showToast(`⚠️ Closing Blocked: "${settlementStep.title}" Relieving & Experience Letters must be issued and verified.`);
-      scrollToCaseStep('step_settlement');
-      return;
-    }
-    if (c.settlement && c.settlement.status !== 'paid' && c.settlement.status !== 'waived') {
-      showToast(`⚠️ Closing Blocked: "${settlementStep.title}" status must be "Paid & Reconciled" or "Waived" prior to closure.`);
-      scrollToCaseStep('step_settlement');
-      return;
-    }
-  }
-
-  // 4. Custom Steps Mandatory Gates
-  const customSteps = settingsState.checklist.filter(s => !s.isDefault);
-  for (const cs of customSteps) {
-    if (cs.mandatory) {
-      c.customSteps = c.customSteps || {};
-      if (!c.customSteps[cs.id]) {
-        showToast(`⚠️ Closing Blocked: "${cs.title}" is mandatory and must be confirmed complete.`);
-        scrollToCaseStep(cs.id);
-        return;
-      }
     }
   }
 
@@ -5557,6 +5375,14 @@ function handleCloseCase() {
   c.stageTone = 'ok';
   c.dueText = 'Closed & Archived';
   c.dueTone = 'ok';
+
+  const statusEl = document.getElementById('caseStage');
+  if (statusEl) {
+    statusEl.textContent = 'Closed';
+    statusEl.className = 'stage-badge ok case-stage-pill';
+  }
+
+  renderCaseUnifiedChecklist(c);
   renderTable();
   showToast(`✓ Case successfully closed for ${c.name}. Profile moved to Employees › Exit.`);
   switchToScreen('list');
