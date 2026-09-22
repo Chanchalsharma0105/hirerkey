@@ -107,6 +107,7 @@ export const OffboardingUserView: React.FC<OffboardingUserViewProps> = ({
               fontWeight: 700,
               color: '#0F172A',
               margin: 0,
+              lineHeight: '24px',
               fontFamily: 'Inter, system-ui, sans-serif',
             }}
           >
@@ -267,8 +268,8 @@ export const OffboardingUserView: React.FC<OffboardingUserViewProps> = ({
           </Box>
         </Box>
 
-        {/* RIGHT: Notice Countdown Widget */}
-        <Box sx={{ position: { lg: 'sticky' }, top: 20 }}>
+        {/* RIGHT: Notice Countdown Widget (Aligned with 1st Checklist Card) */}
+        <Box sx={{ position: { lg: 'sticky' }, top: 20, pt: { xs: 0, lg: '40px' } }}>
           <Card
             variant="outlined"
             sx={{
