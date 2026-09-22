@@ -5,3 +5,4 @@ export * from './OffboardingTable';
 export * from './OffboardingList';
 export * from './OffboardingCaseDetail';
 export * from './HirerkeyDashboardShell';
+export * from './OffboardingUserView';

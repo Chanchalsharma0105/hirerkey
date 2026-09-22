@@ -32,6 +32,7 @@ import {
 import { OffboardingListToolbar } from './OffboardingListToolbar';
 import { OffboardingTable } from './OffboardingTable';
 import { OffboardingCaseDetail } from './OffboardingCaseDetail';
+import { OffboardingUserView } from './OffboardingUserView';
 import { HirerkeyDashboardShell } from './HirerkeyDashboardShell';
 import { OffboardingCase, OffboardingScope, REASONS_LIST, STAGE_CONFIGS } from './types';
 import { INITIAL_OFFBOARDING_CASES } from './mockData';
@@ -63,8 +64,8 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
-  // Screen View State (Screen 1: List, Screen 2: Case Workspace)
-  const [currentView, setCurrentView] = useState<'list' | 'case'>('list');
+  // Screen View State (Screen 1: List, Screen 2: Case Workspace, Screen 4: User's View)
+  const [currentView, setCurrentView] = useState<'list' | 'case' | 'user'>('list');
   const [selectedCaseId, setSelectedCaseId] = useState<number>(1);
 
   // Modal & Drawer State
@@ -442,14 +443,115 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
 
   const activeCase = cases.find((c) => c.id === selectedCaseId) || cases[0];
 
-  const caseContent = (
-    <OffboardingCaseDetail
-      caseData={activeCase}
-      onBack={() => setCurrentView('list')}
-      onUpdateCase={(updated) => {
-        setCases((prev) => prev.map((c) => (c.id === updated.id ? updated : c)));
+  const renderScreenSwitcherBar = () => (
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        pb: 1.5,
+        borderBottom: '1px solid #E5E7EF',
+        gap: 1,
       }}
-    />
+    >
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Button
+          size="sm"
+          variant={currentView === 'list' ? 'solid' : 'plain'}
+          onClick={() => setCurrentView('list')}
+          sx={{
+            fontFamily: 'Inter, system-ui, sans-serif',
+            bgcolor: currentView === 'list' ? '#7C3AED' : 'transparent',
+            color: currentView === 'list' ? '#FFFFFF' : '#5B6173',
+            borderRadius: '8px',
+            fontWeight: 600,
+            fontSize: '12.5px',
+            '&:hover': {
+              bgcolor: currentView === 'list' ? '#6D28D9' : '#EDE9FE',
+              color: currentView === 'list' ? '#FFFFFF' : '#7C3AED',
+            },
+          }}
+        >
+          Screen 1: Offboarding List
+        </Button>
+        <Button
+          size="sm"
+          variant={currentView === 'case' ? 'solid' : 'plain'}
+          onClick={() => {
+            setSelectedCaseId(1);
+            setCurrentView('case');
+          }}
+          sx={{
+            fontFamily: 'Inter, system-ui, sans-serif',
+            bgcolor: currentView === 'case' ? '#7C3AED' : 'transparent',
+            color: currentView === 'case' ? '#FFFFFF' : '#5B6173',
+            borderRadius: '8px',
+            fontWeight: 600,
+            fontSize: '12.5px',
+            '&:hover': {
+              bgcolor: currentView === 'case' ? '#6D28D9' : '#EDE9FE',
+              color: currentView === 'case' ? '#FFFFFF' : '#7C3AED',
+            },
+          }}
+        >
+          Screen 2: Leaver Case Workspace (Sara Khan)
+        </Button>
+        <Button
+          size="sm"
+          variant={currentView === 'user' ? 'solid' : 'plain'}
+          onClick={() => setCurrentView('user')}
+          sx={{
+            fontFamily: 'Inter, system-ui, sans-serif',
+            bgcolor: currentView === 'user' ? '#7C3AED' : 'transparent',
+            color: currentView === 'user' ? '#FFFFFF' : '#5B6173',
+            borderRadius: '8px',
+            fontWeight: 600,
+            fontSize: '12.5px',
+            '&:hover': {
+              bgcolor: currentView === 'user' ? '#6D28D9' : '#EDE9FE',
+              color: currentView === 'user' ? '#FFFFFF' : '#7C3AED',
+            },
+          }}
+        >
+          Screen 4: User's View
+        </Button>
+      </Box>
+
+      <Chip
+        size="sm"
+        variant="soft"
+        color="primary"
+        sx={{ fontFamily: 'Inter, system-ui, sans-serif', fontWeight: 600 }}
+      >
+        Hirerkey Joy UI · Enterprise Suite
+      </Chip>
+    </Box>
+  );
+
+  const caseContent = (
+    <Box
+      sx={{
+        width: '100%',
+        minHeight: '100%',
+        bgcolor: '#F8FAFC',
+        borderRadius: '16px',
+        p: { xs: 2, md: 3 },
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2.5,
+        fontFamily: 'Inter, system-ui, sans-serif',
+      }}
+    >
+      {renderScreenSwitcherBar()}
+      <OffboardingCaseDetail
+        caseData={activeCase}
+        onBack={() => setCurrentView('list')}
+        onUpdateCase={(updated) => {
+          setCases((prev) => prev.map((c) => (c.id === updated.id ? updated : c)));
+        }}
+      />
+    </Box>
   );
 
   const listContent = (
@@ -467,62 +569,7 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
       }}
     >
       {/* Top Screen Switcher Bar */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          pb: 1.5,
-          borderBottom: '1px solid #E5E7EF',
-          gap: 1,
-        }}
-      >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Button
-            size="sm"
-            variant="solid"
-            sx={{
-              fontFamily: 'Inter, system-ui, sans-serif',
-              bgcolor: '#7C3AED',
-              color: '#FFFFFF',
-              borderRadius: '8px',
-              fontWeight: 600,
-              fontSize: '12.5px',
-              '&:hover': { bgcolor: '#6D28D9' },
-            }}
-          >
-            Screen 1: Offboarding List
-          </Button>
-          <Button
-            size="sm"
-            variant="plain"
-            onClick={() => {
-              setSelectedCaseId(1);
-              setCurrentView('case');
-            }}
-            sx={{
-              fontFamily: 'Inter, system-ui, sans-serif',
-              color: '#5B6173',
-              borderRadius: '8px',
-              fontWeight: 600,
-              fontSize: '12.5px',
-              '&:hover': { bgcolor: '#EDE9FE', color: '#7C3AED' },
-            }}
-          >
-            Screen 2: Leaver Case Workspace (Sara Khan)
-          </Button>
-        </Box>
-
-        <Chip
-          size="sm"
-          variant="soft"
-          color="primary"
-          sx={{ fontFamily: 'Inter, system-ui, sans-serif', fontWeight: 600 }}
-        >
-          Hirerkey Joy UI · Enterprise Suite
-        </Chip>
-      </Box>
+      {renderScreenSwitcherBar()}
       {/* 1. Header, KPIs & Operational Toolbar */}
       <OffboardingListToolbar
         cases={cases}
@@ -1160,13 +1207,42 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
     </Box>
   );
 
-  const currentContent = currentView === 'case' ? caseContent : listContent;
+  const userContent = (
+    <Box
+      sx={{
+        width: '100%',
+        minHeight: '100%',
+        bgcolor: '#F8FAFC',
+        borderRadius: '16px',
+        p: { xs: 2, md: 3 },
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2.5,
+        fontFamily: 'Inter, system-ui, sans-serif',
+      }}
+    >
+      {renderScreenSwitcherBar()}
+      <OffboardingUserView
+        caseData={cases.find((c) => c.name === 'Sara Khan') || cases[0]}
+        onBackToAdmin={() => setCurrentView('list')}
+      />
+    </Box>
+  );
+
+  const currentContent =
+    currentView === 'case' ? caseContent : currentView === 'user' ? userContent : listContent;
 
   if (withDashboardShell) {
     return (
       <HirerkeyDashboardShell
         activeMenuKey="offboarding"
-        caseName={currentView === 'case' ? `${activeCase.name} (${activeCase.seat})` : null}
+        caseName={
+          currentView === 'case'
+            ? `${activeCase.name} (${activeCase.seat})`
+            : currentView === 'user'
+            ? 'My Offboarding (Sara Khan)'
+            : null
+        }
         onBackToDepartures={() => setCurrentView('list')}
         searchQuery={searchQuery}
         onSearchChange={(val) => {
