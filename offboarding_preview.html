@@ -4617,207 +4617,51 @@
            SCREEN 4: USER'S VIEW (EMPLOYEE OFFBOARDING PORTAL)
            ==================================================================== -->
       <div id="screen-user" class="screen-view" style="display: none;">
-        <div class="user-view-container">
+        
+        <!-- Top Navigation / Breadcrumb Bar -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div class="breadcrumbs">
+            <a href="javascript:void(0)" onclick="openCaseView(1)" style="color:var(--text-secondary); text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-weight:600;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+              Back to HR Case Workspace
+            </a>
+            <span>/</span>
+            <span class="current">Employee View (Sara Khan)</span>
+          </div>
+        </div>
 
-          <!-- 1. Perspective Switcher & Context Ribbon -->
-          <div class="user-context-ribbon">
-            <div class="user-context-left">
-              <div class="user-badge-pulse"></div>
-              <span style="font-size: 13px; font-weight: 600; color: #374151;">
-                Viewing Employee Portal as <strong style="color: #7C3AED;">Sara Khan</strong> (Front Desk Manager · FDM-01) &bull; Self-Service Offboarding Experience
-              </span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <button class="btn-secondary" onclick="openCaseView(1)" style="font-size: 12px; padding: 6px 14px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                Switch to HR Case Workspace
-              </button>
+        <!-- Main 2-Column Layout: Left = Checklist, Right = Notice Countdown -->
+        <div class="user-page-grid" style="display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start;">
+          
+          <!-- LEFT: The Offboarding Checklist (Matching Uploaded Screenshot) -->
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <h2 style="font-size: 18px; font-weight: 700; color: #0F172A; margin: 0 0 4px 0;">Offboarding Checklist</h2>
+            
+            <div id="userChecklistContainer" style="display: flex; flex-direction: column; gap: 14px;">
+              <!-- Dynamically populated via renderUserChecklist() -->
             </div>
           </div>
 
-          <!-- 2. Leaver Status Hero Card -->
-          <div class="user-hero-card">
-            <div class="user-hero-top">
-              <div class="user-hero-identity">
-                <div class="user-hero-avatar">SK</div>
-                <div class="user-hero-titles">
-                  <h2>
-                    Sara Khan
-                    <span class="seat-badge" style="font-size: 12px; padding: 3px 9px;">FDM-01</span>
-                    <span class="user-hero-status-pill">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                      Serving notice · 29 days remaining
-                    </span>
-                  </h2>
-                  <div class="user-hero-meta">
-                    <span>Front Desk Manager</span>
-                    <span>&bull;</span>
-                    <span>Front Office</span>
-                    <span>&bull;</span>
-                    <span>Crowne Plaza Dubai</span>
-                    <span>&bull;</span>
-                    <span>Manager: <strong>James Cole (Hotel Manager)</strong></span>
-                    <span>&bull;</span>
-                    <span>Successor: <strong style="color: #15803D;">Omar Haddad</strong></span>
-                  </div>
-                </div>
+          <!-- RIGHT: Notice Countdown Widget -->
+          <div style="position: sticky; top: 20px;">
+            <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <span style="font-size: 14px; font-weight: 700; color: #0F172A;">Notice Countdown</span>
+                <span class="stage-badge neu" style="font-size: 11px;">Active Notice</span>
               </div>
-              <div style="display: flex; gap: 8px;">
-                <button class="btn-secondary" onclick="openMessageCoordinatorModal()" style="font-size: 12.5px; padding: 7px 14px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; font-weight: 600;">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                  Message HR Coordinator
-                </button>
+              <div style="text-align: center; padding: 16px 12px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; margin-bottom: 14px;">
+                <div style="font-family: var(--font-mono); font-size: 34px; font-weight: 800; color: #7C3AED; line-height: 1;">29</div>
+                <div style="font-size: 12px; font-weight: 600; color: #64748B; margin-top: 5px; text-transform: uppercase; letter-spacing: 0.05em;">Days Remaining</div>
+                <div style="font-size: 11.5px; color: #94A3B8; margin-top: 3px;">Last Day: Wednesday, 14 Oct 2026</div>
               </div>
-            </div>
-
-            <!-- Overall Progress Bar -->
-            <div class="user-progress-panel">
-              <div class="user-progress-header">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span style="font-size: 13px; font-weight: 700; color: #0F172A;">Departure Completion Progress</span>
-                  <span class="system-badge" id="userProgressStatusBadge" style="background: #DCFCE7; color: #15803D; font-size: 11px;">On Track</span>
-                </div>
-                <div style="font-size: 12.5px; font-weight: 600; color: #475569;" id="userProgressText">
-                  5 of 11 Tasks Completed (45%)
-                </div>
+              <div style="font-size: 12.5px; color: #64748B; line-height: 1.55;">
+                Your standard 30-day notice period commenced on <strong>14 Sep 2026</strong>. System access, email, and hotel credentials remain fully active until <strong>18:00 on 14 Oct 2026</strong>.
               </div>
-              <div class="user-progress-bar-track">
-                <div class="user-progress-bar-fill" id="userProgressBarFill" style="width: 45%;"></div>
-              </div>
-              <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #64748B;">
-                <span>Notice Initiated: 14 Sep 2026</span>
-                <span>Last Working Day: <strong style="color: #0F172A;">14 Oct 2026</strong></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. Departure Journey Stepper (5 Milestones) -->
-          <div class="user-stepper-card">
-            <div style="font-size: 13.5px; font-weight: 700; color: #0F172A; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              My Departure Journey Milestones
-            </div>
-            <div class="user-stepper-track" id="userStepperTrack">
-              <!-- Dynamically populated via renderUserStepper() -->
-            </div>
-          </div>
-
-          <!-- 4. Employee Tabs Bar -->
-          <div class="user-tabs-bar">
-            <button class="user-tab-btn active" id="userTab-checklist" onclick="switchUserTab('checklist')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-              My Offboarding Checklist
-              <span class="user-tab-badge" id="userTabBadgeChecklist">5/11</span>
-            </button>
-            <button class="user-tab-btn" id="userTab-survey" onclick="switchUserTab('survey')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-              Confidential Exit Survey
-              <span class="user-tab-badge" id="userTabBadgeSurvey" style="background:#FEF3C7; color:#B45309;">Pending</span>
-            </button>
-            <button class="user-tab-btn" id="userTab-settlement" onclick="switchUserTab('settlement')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-              Final Settlement &amp; Documents
-              <span class="user-tab-badge">AED 37,590</span>
-            </button>
-            <button class="user-tab-btn" id="userTab-faq" onclick="switchUserTab('faq')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-              Policies, Visa &amp; FAQ
-              <span class="user-tab-badge">UAE Law</span>
-            </button>
-          </div>
-
-          <!-- 5. Main 2-Column Content Grid -->
-          <div class="user-workspace-grid">
-            <!-- Left Side: Tab Panes -->
-            <div id="userTabContentArea">
-              <!-- Dynamically populated via renderUserTabContent() -->
-            </div>
-
-            <!-- Right Side: Persistent Support & Countdown Sidebar -->
-            <div style="display: flex; flex-direction: column; gap: 20px; position: sticky; top: 20px;">
-              
-              <!-- HR Coordinator Card -->
-              <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-                <div class="purple-section-header" style="padding: 13px 18px; display: flex; align-items: center; justify-content: space-between;">
-                  <span style="font-weight: 700; font-size: 13.5px;">Your HR Departure Specialist</span>
-                  <span class="system-badge" style="background: #DCFCE7; color: #15803D; font-size: 11px;">Assigned</span>
-                </div>
-                <div style="padding: 20px 18px; display: flex; flex-direction: column; gap: 16px;">
-                  <div style="display: flex; align-items: center; gap: 14px;">
-                    <div style="width: 46px; height: 46px; border-radius: 12px; background: #EDE9FE; color: #7C3AED; font-weight: 700; display: grid; place-items: center; font-size: 16px; border: 1px solid #DDD6FE;">
-                      MV
-                    </div>
-                    <div>
-                      <div style="font-size: 14px; font-weight: 700; color: #0F172A;">Mariam Vance</div>
-                      <div style="font-size: 12px; color: #64748B; margin-top: 1px;">Senior HR Operations Executive</div>
-                      <div style="font-size: 11.5px; color: #7C3AED; font-weight: 500; margin-top: 2px;">Crowne Plaza Dubai · HR Dept (2nd Floor)</div>
-                    </div>
-                  </div>
-
-                  <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: #475569;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                      <span>mariam.vance@crowneplaza-dubai.com</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                      <span>+971 4 331 1111 (Ext. 4012)</span>
-                    </div>
-                  </div>
-
-                  <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <button class="btn-primary" onclick="openMessageCoordinatorModal()" style="width: 100%; justify-content: center; background: #7C3AED; color: #FFF; border: none; font-weight: 600; height: 36px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                      Message Mariam
-                    </button>
-                    <button class="btn-secondary" onclick="showToast('📅 Exit meeting request sent to Mariam Vance for week of Oct 05.')" style="width: 100%; justify-content: center; height: 36px; font-weight: 600; border-radius: 8px;">
-                      Book In-Person Exit Meeting
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Notice Period Countdown Widget -->
-              <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                  <span style="font-size: 13.5px; font-weight: 700; color: #0F172A;">Notice Countdown</span>
-                  <span class="stage-badge neu" style="font-size: 11px;">Active Notice</span>
-                </div>
-                <div style="text-align: center; padding: 14px 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; margin-bottom: 12px;">
-                  <div style="font-family: var(--font-mono); font-size: 32px; font-weight: 800; color: #7C3AED; line-height: 1;">29</div>
-                  <div style="font-size: 12px; font-weight: 600; color: #64748B; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em;">Days Remaining</div>
-                  <div style="font-size: 11.5px; color: #94A3B8; margin-top: 2px;">Last Day: Wednesday, 14 Oct 2026</div>
-                </div>
-                <div style="font-size: 12px; color: #64748B; line-height: 1.5;">
-                  Your standard 30-day notice period commenced on <strong>14 Sep 2026</strong>. System access, email, and hotel credentials remain fully active until <strong>18:00 on 14 Oct 2026</strong>.
-                </div>
-              </div>
-
-              <!-- Helpful Downloads -->
-              <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-                <span style="font-size: 13px; font-weight: 700; color: #0F172A; display: block; margin-bottom: 12px;">Helpful Departure Resources</span>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                  <a href="javascript:void(0)" onclick="showToast('📥 Downloading Crowne Plaza Dubai Offboarding Guide (PDF)...')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; color: #1E293B; text-decoration: none; font-size: 12.5px; font-weight: 500;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                      <span>Offboarding Guide (PDF)</span>
-                    </div>
-                    <span style="font-size: 11px; color: #94A3B8;">1.4 MB</span>
-                  </a>
-                  <a href="javascript:void(0)" onclick="showToast('📥 Downloading UAE Residence Visa & Grace Period Guide (PDF)...')" style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; color: #1E293B; text-decoration: none; font-size: 12.5px; font-weight: 500;">
-                    <div style="display: flex; align-items: center; gap: 8px;">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                      <span>Visa &amp; Grace Period Guide</span>
-                    </div>
-                    <span style="font-size: 11px; color: #94A3B8;">420 KB</span>
-                  </a>
-                </div>
-              </div>
-
             </div>
           </div>
 
         </div>
+
       </div> <!-- end #screen-user -->
     </main>
   </div>
@@ -5056,95 +4900,6 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg>
         Confirm Withdrawal
       </button>
-    </div>
-  </div>
-</div>
-
-<!-- ==========================================================================
-     MODAL: MESSAGE HR COORDINATOR (SCREEN 4)
-     ========================================================================== -->
-<div class="modal-overlay" id="modalUserMessageCoordinator">
-  <div class="modal-dialog" style="max-width: 520px;">
-    <div class="modal-header">
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <div style="width: 36px; height: 36px; border-radius: 10px; background: #EDE9FE; color: #7C3AED; display: grid; place-items: center; font-weight: 700;">
-          MV
-        </div>
-        <div>
-          <h3 class="modal-title" style="font-size: 16px;">Message Mariam Vance</h3>
-          <p class="modal-subtitle" style="margin-top: 2px;">HR Departure Specialist &bull; Crowne Plaza Dubai</p>
-        </div>
-      </div>
-      <button class="btn-modal-close" onclick="closeMessageCoordinatorModal()">✕</button>
-    </div>
-
-    <div class="modal-body" style="display: flex; flex-direction: column; gap: 14px;">
-      <div class="form-group" style="margin-bottom: 0;">
-        <label class="form-label" style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Inquiry Subject</label>
-        <select class="form-control" id="userMessageSubject" style="height: 38px; font-size: 13px; border-radius: 8px;">
-          <option value="visa">UAE Residence Visa Cancellation &amp; Grace Period</option>
-          <option value="gratuity">Final Settlement &amp; Gratuity Calculation Inquiry</option>
-          <option value="insurance">Medical Insurance Continuity / Personal Coverage</option>
-          <option value="handover">Successor Handover Support (Omar Haddad)</option>
-          <option value="other">General Question / Exit Process Inquiry</option>
-        </select>
-      </div>
-
-      <div class="form-group" style="margin-bottom: 0;">
-        <label class="form-label" style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Your Message to HR</label>
-        <textarea class="form-control" id="userMessageBody" rows="4" style="height: auto; padding: 10px 12px; resize: vertical; font-size: 13px; border-radius: 8px;" placeholder="Write your question or request for Mariam Vance..."></textarea>
-      </div>
-
-      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 10px 12px; font-size: 11.5px; color: #64748B; display: flex; align-items: center; gap: 8px;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <span>Typical response time is within 1 business day. A copy will be sent to sara.khan.dxb@gmail.com.</span>
-      </div>
-    </div>
-
-    <div class="modal-footer" style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px;">
-      <button class="btn-secondary" onclick="closeMessageCoordinatorModal()">Cancel</button>
-      <button class="btn-primary" onclick="sendMessageToCoordinator()" style="background: #7C3AED; color: #FFF; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        Send Message
-      </button>
-    </div>
-  </div>
-</div>
-
-<!-- ==========================================================================
-     MODAL: USER DOCUMENT PREVIEW (SCREEN 4)
-     ========================================================================== -->
-<div class="modal-overlay" id="modalUserDocPreview">
-  <div class="modal-dialog" style="max-width: 680px;">
-    <div class="modal-header">
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <div style="width: 36px; height: 36px; border-radius: 10px; background: #EDE9FE; color: #7C3AED; display: grid; place-items: center;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        </div>
-        <div>
-          <h3 class="modal-title" id="userDocModalTitle" style="font-size: 16px;">Document Preview</h3>
-          <p class="modal-subtitle" id="userDocModalSubtitle" style="margin-top: 2px;">Official Crowne Plaza Dubai Employment Document</p>
-        </div>
-      </div>
-      <button class="btn-modal-close" onclick="closeUserDocPreviewModal()">✕</button>
-    </div>
-
-    <div class="modal-body" style="padding: 0;">
-      <!-- Letterhead Paper Container -->
-      <div id="userDocContentPaper" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 28px 32px; box-shadow: inset 0 0 0 1px #F1F5F9; font-family: var(--font-inter); color: #1E293B; line-height: 1.6;">
-        <!-- Dynamically injected via openUserDocPreview(type) -->
-      </div>
-    </div>
-
-    <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center; margin-top: 18px;">
-      <span style="font-size: 11.5px; color: #94A3B8;">Digital Document · Verified by Hirerkey HRMS</span>
-      <div style="display: flex; gap: 10px;">
-        <button class="btn-secondary" onclick="closeUserDocPreviewModal()">Close Preview</button>
-        <button class="btn-primary" onclick="showToast('📥 Downloading official PDF copy...'); closeUserDocPreviewModal();" style="background: #7C3AED; color: #FFF; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download PDF
-        </button>
-      </div>
     </div>
   </div>
 </div>
@@ -5684,778 +5439,75 @@ function switchToScreen(screen) {
 /* ==========================================================================
    SCREEN 4: USER'S VIEW (EMPLOYEE OFFBOARDING PORTAL) ENGINE
    ========================================================================== */
-let userViewState = {
-  activeTab: 'checklist',
-  surveySubmitted: false,
-  surveyData: {
-    reason: 'Career Growth / Senior Leadership Opportunity',
-    ratingExperience: 5,
-    ratingManagement: 5,
-    ratingCulture: 5,
-    likes: 'The incredible teamwork in the Front Office, mentoring from James Cole, and our wonderful guest relationships across Dubai.',
-    improvements: 'Faster digital check-in tablet deployment for the front desk.',
-    recommend: 'yes'
-  },
-  checklist: [
-    { id: 'u_1', category: 'handover', title: 'Front Desk Keycard & Night Audit Ledger Handover', desc: 'Transfer emergency master keys and safe deposit box inventory to Omar Haddad.', done: true, due: '18 Sep 2026', assignee: 'With Omar Haddad' },
-    { id: 'u_2', category: 'handover', title: 'VIP Guest Protocol & Opera PMS Walkthrough', desc: 'Conduct comprehensive session on IHG One Rewards VIP check-in standards.', done: true, due: '22 Sep 2026', assignee: 'With Omar Haddad' },
-    { id: 'u_3', category: 'handover', title: 'Shift Rota & Front Office Handover Briefing', desc: 'Brief Omar on weekly team scheduling, split-shift logistics, and OT approvals.', done: false, due: '05 Oct 2026', assignee: 'With Omar Haddad' },
-    { id: 'u_4', category: 'handover', title: 'Document Front Office SOPs & Escalation Matrix', desc: 'Finalize shared cloud documentation for night manager escalations and guest disputes.', done: false, due: '10 Oct 2026', assignee: 'Documentation' },
-    { id: 'u_5', category: 'assets', title: 'Return Hotel Master Keycard & RFID Staff Badge', desc: 'Hand over physical badge to Security Control Room on your last working day.', done: false, due: '14 Oct 2026 (18:00)', assignee: 'Security Dept' },
-    { id: 'u_6', category: 'assets', title: 'Return Crowne Plaza Uniform & Locker #14 Key', desc: 'Drop off dry-cleaned uniforms and locker key at Housekeeping Linen Room.', done: false, due: '14 Oct 2026 (17:00)', assignee: 'Housekeeping' },
-    { id: 'u_7', category: 'assets', title: 'Return Company Laptop (MacBook Pro 14") & Charger', desc: 'Hand over hardware to IT Office on Mezzanine Level. Backup personal files beforehand.', done: false, due: '13 Oct 2026', assignee: 'IT Support' },
-    { id: 'u_8', category: 'assets', title: 'Clear Personal Belongings from Station 1', desc: 'Ensure Front Desk workstation and personal desk drawers are completely cleared.', done: false, due: '14 Oct 2026', assignee: 'Self' },
-    { id: 'u_9', category: 'clearance', title: 'Finance Petty Cash & Credit Card Clearance', desc: 'Front Desk float reconciliation completed and verified by Chief Accountant.', done: true, due: '20 Sep 2026', assignee: 'Finance (Approved ✓)' },
-    { id: 'u_10', category: 'clearance', title: 'IT Systems & Accounts Deactivation Schedule', desc: 'Opera PMS, Micros POS, and email scheduled for automated deactivation at 18:00 on LWD.', done: false, due: '14 Oct 2026', assignee: 'IT (Scheduled)' },
-    { id: 'u_11', category: 'clearance', title: 'HR Visa & Medical Insurance Exit Briefing', desc: 'Attend 20-min exit briefing with Mariam Vance regarding visa grace period and health card.', done: false, due: '08 Oct 2026', assignee: 'HR Operations' },
-  ],
-  personalContact: {
-    email: 'sara.khan.dxb@gmail.com',
-    phone: '+971 50 892 4192',
-    address: 'Apartment 1402, Marina Promenade, Dubai Marina, Dubai, UAE'
-  },
-  faqOpen: {}
-};
-
 function renderUserView() {
-  renderUserProgress();
-  renderUserStepper();
-  renderUserTabContent();
+  renderUserChecklist();
 }
 
-function renderUserProgress() {
-  const doneCount = userViewState.checklist.filter(item => item.done).length;
-  const totalCount = userViewState.checklist.length;
-  const pct = Math.round((doneCount / totalCount) * 100);
-
-  const fillEl = document.getElementById('userProgressBarFill');
-  const textEl = document.getElementById('userProgressText');
-  const badgeEl = document.getElementById('userProgressStatusBadge');
-  const tabBadge = document.getElementById('userTabBadgeChecklist');
-
-  if (fillEl) fillEl.style.width = pct + '%';
-  if (textEl) textEl.textContent = `${doneCount} of ${totalCount} Tasks Completed (${pct}%)`;
-  if (tabBadge) tabBadge.textContent = `${doneCount}/${totalCount}`;
-  if (badgeEl) {
-    if (pct === 100) {
-      badgeEl.textContent = 'All Complete ✓';
-      badgeEl.style.background = '#DCFCE7';
-      badgeEl.style.color = '#15803D';
-    } else {
-      badgeEl.textContent = 'On Track';
-      badgeEl.style.background = '#DCFCE7';
-      badgeEl.style.color = '#15803D';
-    }
-  }
-
-  const surveyBadge = document.getElementById('userTabBadgeSurvey');
-  if (surveyBadge) {
-    if (userViewState.surveySubmitted) {
-      surveyBadge.textContent = 'Completed ✓';
-      surveyBadge.style.background = '#DCFCE7';
-      surveyBadge.style.color = '#15803D';
-    } else {
-      surveyBadge.textContent = 'Pending';
-      surveyBadge.style.background = '#FEF3C7';
-      surveyBadge.style.color = '#B45309';
-    }
-  }
-}
-
-function renderUserStepper() {
-  const container = document.getElementById('userStepperTrack');
+/* Render Employee View Checklist (Read-only, matches HR Case Checklist styling) */
+function renderUserChecklist() {
+  const container = document.getElementById('userChecklistContainer');
   if (!container) return;
 
-  const handoverDone = userViewState.checklist.filter(i => i.category === 'handover' && i.done).length;
-  const handoverTotal = userViewState.checklist.filter(i => i.category === 'handover').length;
+  const steps = settingsState.checklist || [];
+  const c = cases.find(item => item.id === 1) || cases[0];
+  c.stepStatus = c.stepStatus || {};
 
-  const steps = [
-    { title: 'Notice Acknowledged', date: '14 Sep 2026', status: 'done', icon: '✓' },
-    { title: 'Handover to Omar', date: `${handoverDone}/${handoverTotal} done`, status: handoverDone === handoverTotal ? 'done' : 'active', icon: handoverDone === handoverTotal ? '✓' : '⚡' },
-    { title: 'Asset Return', date: 'Due 13 Oct 2026', status: 'pending', icon: '3' },
-    { title: 'Exit Survey', date: userViewState.surveySubmitted ? 'Submitted ✓' : 'Ready to Complete', status: userViewState.surveySubmitted ? 'done' : 'active', icon: userViewState.surveySubmitted ? '✓' : '✍️' },
-    { title: 'Final Settlement', date: 'Ready 14 Oct 2026', status: 'pending', icon: '5' }
-  ];
+  container.innerHTML = steps.map((step, idx) => {
+    const status = c.stepStatus[step.id] || 'not_completed';
+    const isStepComplete = (status === 'completed');
 
-  container.innerHTML = steps.map((s) => `
-    <div class="user-step-node">
-      <div class="user-step-circle ${s.status}">
-        ${s.icon}
-      </div>
-      <div class="user-step-name">${s.title}</div>
-      <div class="user-step-date">${s.date}</div>
-    </div>
-  `).join('');
-}
-
-function switchUserTab(tab) {
-  userViewState.activeTab = tab;
-  document.querySelectorAll('.user-tab-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.id === `userTab-${tab}`);
-  });
-  renderUserTabContent();
-}
-
-function renderUserTabContent() {
-  const container = document.getElementById('userTabContentArea');
-  if (!container) return;
-
-  if (userViewState.activeTab === 'checklist') {
-    renderUserChecklistTab(container);
-  } else if (userViewState.activeTab === 'survey') {
-    renderUserSurveyTab(container);
-  } else if (userViewState.activeTab === 'settlement') {
-    renderUserSettlementTab(container);
-  } else if (userViewState.activeTab === 'faq') {
-    renderUserFaqTab(container);
-  }
-}
-
-function toggleUserTask(id) {
-  const item = userViewState.checklist.find(t => t.id === id);
-  if (!item) return;
-  item.done = !item.done;
-  renderUserProgress();
-  renderUserStepper();
-  renderUserTabContent();
-  showToast(item.done ? `✓ "${item.title}" marked as completed!` : `Item "${item.title}" marked as pending.`);
-}
-
-function renderUserChecklistTab(container) {
-  const handovers = userViewState.checklist.filter(i => i.category === 'handover');
-  const assets = userViewState.checklist.filter(i => i.category === 'assets');
-  const clearances = userViewState.checklist.filter(i => i.category === 'clearance');
-
-  container.innerHTML = `
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-      
-      <!-- Section 1: Handover Tasks -->
-      <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-        <div class="purple-section-header" style="padding: 13px 18px; display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span style="font-weight: 700; font-size: 13.5px;">1. Operational Handover to Successor (Omar Haddad)</span>
-          </div>
-          <span class="system-badge" style="background: #EDE9FE; color: #7C3AED; font-size: 11px;">${handovers.filter(i => i.done).length}/${handovers.length} Completed</span>
-        </div>
-        <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
-          ${handovers.map(item => `
-            <div class="user-task-item ${item.done ? 'completed' : ''}" onclick="toggleUserTask('${item.id}')">
-              <input type="checkbox" class="user-task-checkbox" ${item.done ? 'checked' : ''} onclick="event.stopPropagation(); toggleUserTask('${item.id}')" />
-              <div class="user-task-content">
-                <div class="user-task-header">
-                  <h4 class="user-task-title">${item.title}</h4>
-                  <span class="stage-badge ${item.done ? 'ok' : 'pri'}" style="font-size: 10.5px;">${item.done ? 'Completed ✓' : 'In Progress'}</span>
-                </div>
-                <p class="user-task-desc">${item.desc}</p>
-                <div class="user-task-meta">
-                  <span>📅 Due: <strong>${item.due}</strong></span>
-                  <span>&bull;</span>
-                  <span>👤 Assignee: <strong>${item.assignee}</strong></span>
-                </div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-      <!-- Section 2: Asset & Equipment Return -->
-      <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-        <div class="purple-section-header" style="padding: 13px 18px; display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <span style="font-weight: 700; font-size: 13.5px;">2. Company Assets &amp; Access Badges Return</span>
-          </div>
-          <span class="system-badge" style="background: #EDE9FE; color: #7C3AED; font-size: 11px;">${assets.filter(i => i.done).length}/${assets.length} Returned</span>
-        </div>
-        <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
-          ${assets.map(item => `
-            <div class="user-task-item ${item.done ? 'completed' : ''}" onclick="toggleUserTask('${item.id}')">
-              <input type="checkbox" class="user-task-checkbox" ${item.done ? 'checked' : ''} onclick="event.stopPropagation(); toggleUserTask('${item.id}')" />
-              <div class="user-task-content">
-                <div class="user-task-header">
-                  <h4 class="user-task-title">${item.title}</h4>
-                  <span class="stage-badge ${item.done ? 'ok' : 'neu'}" style="font-size: 10.5px;">${item.done ? 'Returned ✓' : 'Pending Drop-off'}</span>
-                </div>
-                <p class="user-task-desc">${item.desc}</p>
-                <div class="user-task-meta">
-                  <span>📅 Scheduled: <strong>${item.due}</strong></span>
-                  <span>&bull;</span>
-                  <span>📍 Return Location: <strong>${item.assignee}</strong></span>
-                </div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-      <!-- Section 3: Department Clearances Transparency -->
-      <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-        <div class="purple-section-header" style="padding: 13px 18px; display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span style="font-weight: 700; font-size: 13.5px;">3. Departmental Clearances Sign-Off Status</span>
-          </div>
-          <span class="system-badge" style="background: #DCFCE7; color: #15803D; font-size: 11px;">Live HR Tracker</span>
-        </div>
-        <div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 10px;">
-          ${clearances.map(item => `
-            <div class="user-task-item ${item.done ? 'completed' : ''}" style="cursor: default;">
-              <div style="width: 20px; height: 20px; border-radius: 50%; background: ${item.done ? '#DCFCE7' : '#EDE9FE'}; color: ${item.done ? '#16A34A' : '#7C3AED'}; display: grid; place-items: center; font-size: 11px; font-weight: 700; margin-top: 2px; flex-shrink: 0;">
-                ${item.done ? '✓' : '⏳'}
-              </div>
-              <div class="user-task-content">
-                <div class="user-task-header">
-                  <h4 class="user-task-title">${item.title}</h4>
-                  <span class="stage-badge ${item.done ? 'ok' : 'pri'}" style="font-size: 10.5px;">${item.assignee}</span>
-                </div>
-                <p class="user-task-desc">${item.desc}</p>
-                <div class="user-task-meta">
-                  <span>Target Date: <strong>${item.due}</strong></span>
-                </div>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-      </div>
-
-    </div>
-  `;
-}
-
-function renderUserSurveyTab(container) {
-  if (userViewState.surveySubmitted) {
-    container.innerHTML = `
-      <div class="user-survey-card" style="text-align: center; padding: 44px 32px;">
-        <div style="width: 58px; height: 58px; border-radius: 50%; background: #DCFCE7; color: #15803D; display: grid; place-items: center; margin: 0 auto 16px auto;">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h3 style="font-size: 20px; font-weight: 700; color: #0F172A; margin: 0 0 8px 0;">Thank You, Sara!</h3>
-        <p style="font-size: 13.5px; color: #64748B; max-width: 480px; margin: 0 auto 24px auto; line-height: 1.55;">
-          Your confidential exit survey has been received by HR Operations. Your valuable feedback supports continuous workplace improvements across Crowne Plaza Dubai.
-        </p>
-
-        <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 20px; text-align: left; max-width: 600px; margin: 0 auto 24px auto; display: flex; flex-direction: column; gap: 14px;">
-          <div>
-            <span style="font-size: 11.5px; font-weight: 600; color: #64748B; text-transform: uppercase;">Primary Reason for Leaving</span>
-            <div style="font-size: 13.5px; font-weight: 600; color: #0F172A; margin-top: 2px;">${userViewState.surveyData.reason}</div>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; border-top: 1px solid #EEF2F6; padding-top: 12px;">
-            <div>
-              <span style="font-size: 11.5px; font-weight: 600; color: #64748B;">Overall Experience</span>
-              <div style="color: #7C3AED; font-weight: 700; margin-top: 2px;">★★★★★ (${userViewState.surveyData.ratingExperience}/5)</div>
-            </div>
-            <div>
-              <span style="font-size: 11.5px; font-weight: 600; color: #64748B;">Manager Support</span>
-              <div style="color: #7C3AED; font-weight: 700; margin-top: 2px;">★★★★★ (${userViewState.surveyData.ratingManagement}/5)</div>
-            </div>
-            <div>
-              <span style="font-size: 11.5px; font-weight: 600; color: #64748B;">Culture &amp; Team</span>
-              <div style="color: #7C3AED; font-weight: 700; margin-top: 2px;">★★★★★ (${userViewState.surveyData.ratingCulture}/5)</div>
-            </div>
-          </div>
-          <div style="border-top: 1px solid #EEF2F6; padding-top: 12px;">
-            <span style="font-size: 11.5px; font-weight: 600; color: #64748B;">Key Highlights &amp; Reflections</span>
-            <div style="font-size: 13px; color: #334155; margin-top: 3px; line-height: 1.5;">"${userViewState.surveyData.likes}"</div>
-          </div>
-        </div>
-
-        <button class="btn-secondary" onclick="userViewState.surveySubmitted = false; renderUserSurveyTab(document.getElementById('userTabContentArea'));" style="font-size: 13px; font-weight: 600; padding: 8px 20px; border-radius: 8px;">
-          Edit Survey Responses
-        </button>
-      </div>
-    `;
-    return;
-  }
-
-  container.innerHTML = `
-    <div class="user-survey-card">
-      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; border-bottom: 1px solid #F1F5F9; padding-bottom: 16px;">
-        <div>
-          <h3 style="font-size: 17px; font-weight: 700; color: #0F172A; margin: 0;">Confidential Leaver Feedback Survey</h3>
-          <p style="font-size: 13px; color: #64748B; margin: 4px 0 0 0; line-height: 1.5;">
-            Your transparent feedback is directly reviewed by IHG Regional HR to improve leadership, culture, and operational support.
-          </p>
-        </div>
-        <span class="system-badge" style="background: #EDE9FE; color: #7C3AED; font-weight: 600;">100% Confidential</span>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 20px;">
+    return `
+      <div class="unified-step-card" id="userStepCard_${step.id}"
+           style="background: #FFFFFF; border: 1px solid ${isStepComplete ? '#BBF7D0' : '#E2E8F0'}; border-radius: 14px; padding: 20px 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s ease;">
         
-        <!-- Question 1: Reason -->
-        <div class="form-group" style="margin-bottom: 0;">
-          <label class="form-label" style="font-weight: 600; font-size: 13px; color: #0F172A; margin-bottom: 6px; display: block;">
-            1. Primary reason for your departure <span style="color: #DC2626;">*</span>
-          </label>
-          <select class="form-control" id="surveyReasonInput" style="height: 38px; font-size: 13px; border-radius: 8px;">
-            <option value="Career Growth / Senior Leadership Opportunity" selected>Career Growth / Senior Leadership Opportunity</option>
-            <option value="Compensation &amp; Total Rewards">Compensation &amp; Total Rewards</option>
-            <option value="Relocation / Moving Out of Dubai">Relocation / Moving Out of Dubai</option>
-            <option value="Personal / Family Reasons">Personal / Family Reasons</option>
-            <option value="Further Education / Professional Studies">Further Education / Professional Studies</option>
-            <option value="Change of Career Field">Change of Career Field</option>
-          </select>
-        </div>
+        <!-- Step Header Row -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+          <!-- Left: Step Number Avatar & Content -->
+          <div style="display: flex; align-items: flex-start; gap: 14px; flex: 1;">
+            <!-- Circle Badge (Read-only for employee: static number or green checkmark) -->
+            <div style="width: 36px; height: 36px; border-radius: 50%;
+                        background: ${isStepComplete ? '#DCFCE7' : (step.isDefault ? '#EEEBFF' : '#FEF3C7')}; 
+                        color: ${isStepComplete ? '#15803D' : (step.isDefault ? '#7C3AED' : '#B45309')}; 
+                        display: grid; place-items: center; font-size: 14px; font-weight: 700; flex-shrink: 0; margin-top: 1px; user-select: none;">
+              ${isStepComplete ? '✓' : (idx + 1)}
+            </div>
 
-        <!-- Question 2: Ratings -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 18px;">
-          <div>
-            <label style="font-weight: 600; font-size: 12.5px; color: #0F172A; display: block; margin-bottom: 8px;">Overall Experience</label>
-            <div class="rating-btn-group" id="ratingGroupExp">
-              ${[1,2,3,4,5].map(num => `
-                <button type="button" class="rating-pill-btn ${num === userViewState.surveyData.ratingExperience ? 'selected' : ''}" onclick="setUserSurveyRating('ratingExperience', ${num})">${num}</button>
-              `).join('')}
+            <!-- Details -->
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                <span style="font-size: 15px; font-weight: 700; color: #0F172A;">${step.title}</span>
+                ${step.isDefault 
+                  ? `<span class="system-badge" style="background: #EDE9FE; color: #7C3AED; font-size: 11px; padding: 2px 8px; font-weight: 600; border-radius: 6px;">Default</span>`
+                  : `<span class="system-badge" style="background: #FEF3C7; color: #92400E; font-size: 11px; padding: 2px 8px; font-weight: 600; border-radius: 6px;">Custom</span>`
+                }
+                ${step.mandatory 
+                  ? `<span class="system-badge" style="background: #FEE2E2; color: #991B1B; font-size: 11px; padding: 2px 8px; font-weight: 600; border-radius: 6px;">🔒 Mandatory Gate</span>`
+                  : `<span class="system-badge" style="background: #F1F5F9; color: #64748B; font-size: 11px; padding: 2px 8px; border-radius: 6px;">Optional</span>`
+                }
+              </div>
+              <p style="font-size: 13px; color: #64748B; margin: 6px 0 0 0; line-height: 1.5; max-width: 680px;">
+                ${step.desc}
+              </p>
             </div>
           </div>
-          <div>
-            <label style="font-weight: 600; font-size: 12.5px; color: #0F172A; display: block; margin-bottom: 8px;">Manager Support</label>
-            <div class="rating-btn-group" id="ratingGroupMgr">
-              ${[1,2,3,4,5].map(num => `
-                <button type="button" class="rating-pill-btn ${num === userViewState.surveyData.ratingManagement ? 'selected' : ''}" onclick="setUserSurveyRating('ratingManagement', ${num})">${num}</button>
-              `).join('')}
-            </div>
-          </div>
-          <div>
-            <label style="font-weight: 600; font-size: 12.5px; color: #0F172A; display: block; margin-bottom: 8px;">Hotel Team Culture</label>
-            <div class="rating-btn-group" id="ratingGroupCul">
-              ${[1,2,3,4,5].map(num => `
-                <button type="button" class="rating-pill-btn ${num === userViewState.surveyData.ratingCulture ? 'selected' : ''}" onclick="setUserSurveyRating('ratingCulture', ${num})">${num}</button>
-              `).join('')}
+
+          <!-- Right: Static Read-only Status Pill (No sign-off or completion option for employee) -->
+          <div style="flex-shrink: 0; display: flex; align-items: center;">
+            <div style="background-color: ${isStepComplete ? '#ECFDF5' : '#F8FAFC'}; 
+                        color: ${isStepComplete ? '#047857' : '#475569'}; 
+                        border: 1px solid ${isStepComplete ? '#A7F3D0' : '#CBD5E1'}; 
+                        border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; 
+                        user-select: none; pointer-events: none; display: inline-flex; align-items: center; gap: 6px;">
+              ${isStepComplete ? '✓ Completed' : 'Not Completed'}
             </div>
           </div>
         </div>
 
-        <!-- Question 3: Likes -->
-        <div class="form-group" style="margin-bottom: 0;">
-          <label class="form-label" style="font-weight: 600; font-size: 13px; color: #0F172A; margin-bottom: 6px; display: block;">
-            2. What did you enjoy most during your 5.5 years with Crowne Plaza Dubai?
-          </label>
-          <textarea class="form-control" id="surveyLikesInput" rows="3" style="height: auto; padding: 10px 12px; resize: vertical; font-size: 13px; border-radius: 8px;" placeholder="Share your favorite projects, team moments, or aspects of the role...">${userViewState.surveyData.likes}</textarea>
-        </div>
-
-        <!-- Question 4: Improvements -->
-        <div class="form-group" style="margin-bottom: 0;">
-          <label class="form-label" style="font-weight: 600; font-size: 13px; color: #0F172A; margin-bottom: 6px; display: block;">
-            3. What recommendations or changes would you suggest for the Front Office team?
-          </label>
-          <textarea class="form-control" id="surveyImprovementsInput" rows="3" style="height: auto; padding: 10px 12px; resize: vertical; font-size: 13px; border-radius: 8px;" placeholder="Process improvements, tools, training suggestions...">${userViewState.surveyData.improvements}</textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px;">
-          <button class="btn-primary" onclick="submitUserSurvey()" style="background: #7C3AED; color: #FFF; border: none; padding: 10px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg>
-            Submit Confidential Exit Survey
-          </button>
-        </div>
-
-      </div>
-    </div>
-  `;
-}
-
-function setUserSurveyRating(field, val) {
-  userViewState.surveyData[field] = val;
-  renderUserSurveyTab(document.getElementById('userTabContentArea'));
-}
-
-function submitUserSurvey() {
-  const reason = document.getElementById('surveyReasonInput')?.value;
-  const likes = document.getElementById('surveyLikesInput')?.value;
-  const improvements = document.getElementById('surveyImprovementsInput')?.value;
-
-  if (reason) userViewState.surveyData.reason = reason;
-  if (likes) userViewState.surveyData.likes = likes;
-  if (improvements) userViewState.surveyData.improvements = improvements;
-
-  userViewState.surveySubmitted = true;
-  renderUserProgress();
-  renderUserStepper();
-  renderUserSurveyTab(document.getElementById('userTabContentArea'));
-  showToast('✓ Thank you Sara! Your exit feedback has been submitted confidentially to HR Operations.');
-}
-
-function renderUserSettlementTab(container) {
-  container.innerHTML = `
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-      
-      <!-- 4 Financial Metric Cards -->
-      <div class="user-stat-grid">
-        <div class="user-stat-card">
-          <div class="user-stat-label">1. Unused Annual Leave Encashment</div>
-          <div class="user-stat-value">AED 3,850</div>
-          <div style="font-size: 11.5px; color: #64748B;">12.5 accrued balance days @ AED 308.00 / day</div>
-        </div>
-
-        <div class="user-stat-card">
-          <div class="user-stat-label">2. Statutory End-of-Service Gratuity (EOSB)</div>
-          <div class="user-stat-value">AED 24,500</div>
-          <div style="font-size: 11.5px; color: #64748B;">5 yrs 6 mos service (UAE Federal Decree-Law No. 33)</div>
-        </div>
-
-        <div class="user-stat-card">
-          <div class="user-stat-label">3. Notice Period Salary (Active Days)</div>
-          <div class="user-stat-value">AED 9,240</div>
-          <div style="font-size: 11.5px; color: #64748B;">Full final month pay through 14 Oct 2026</div>
-        </div>
-
-        <div class="user-stat-card highlight">
-          <div class="user-stat-label" style="color: #7C3AED;">4. Total Estimated Net Settlement</div>
-          <div class="user-stat-value">AED 37,590</div>
-          <div style="font-size: 11.5px; color: #7C3AED; font-weight: 500;">Disbursed via WPS Direct Bank Transfer</div>
-        </div>
-      </div>
-
-      <!-- Payout Details & Bank Info -->
-      <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-        <div style="font-size: 14px; font-weight: 700; color: #0F172A; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-          Disbursement Bank Channel &amp; Timeline
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px;">
-          <div>
-            <span style="font-size: 11.5px; color: #64748B; font-weight: 600;">Disbursement Channel</span>
-            <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-top: 2px;">WPS Direct Bank Transfer</div>
-          </div>
-          <div>
-            <span style="font-size: 11.5px; color: #64748B; font-weight: 600;">Target Bank Account</span>
-            <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-top: 2px;">Emirates NBD (····4821)</div>
-          </div>
-          <div>
-            <span style="font-size: 11.5px; color: #64748B; font-weight: 600;">Statutory Legal SLA</span>
-            <div style="font-size: 13px; font-weight: 700; color: #16A34A; margin-top: 2px;">Within 14 days of LWD</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Official Documents Preview & Download -->
-      <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-        <div style="font-size: 14px; font-weight: 700; color: #0F172A; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            <span>Official Leaver Documents</span>
-          </div>
-          <span class="system-badge" style="background: #DCFCE7; color: #15803D; font-size: 11px;">Signed &amp; Stamped</span>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;">
-          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
-            <div>
-              <div style="font-size: 13.5px; font-weight: 700; color: #0F172A;">Relieving Certificate</div>
-              <div style="font-size: 11.5px; color: #64748B; margin-top: 2px;">Official release letter on hotel letterhead</div>
-            </div>
-            <button class="btn-secondary" onclick="openUserDocPreview('relieving')" style="width: 100%; justify-content: center; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px;">
-              Preview Certificate
-            </button>
-          </div>
-
-          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
-            <div>
-              <div style="font-size: 13.5px; font-weight: 700; color: #0F172A;">Experience &amp; Service Letter</div>
-              <div style="font-size: 11.5px; color: #64748B; margin-top: 2px;">5.5 years Front Desk leadership record</div>
-            </div>
-            <button class="btn-secondary" onclick="openUserDocPreview('experience')" style="width: 100%; justify-content: center; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px;">
-              Preview Letter
-            </button>
-          </div>
-
-          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
-            <div>
-              <div style="font-size: 13.5px; font-weight: 700; color: #0F172A;">EOSB Benefits Statement</div>
-              <div style="font-size: 11.5px; color: #64748B; margin-top: 2px;">Itemized calculation in AED currency</div>
-            </div>
-            <button class="btn-secondary" onclick="openUserDocPreview('statement')" style="width: 100%; justify-content: center; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 6px;">
-              Preview Statement
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Forwarding Personal Contact Verification -->
-      <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-        <div style="font-size: 14px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">
-          Post-Departure Contact Information
-        </div>
-        <p style="font-size: 12px; color: #64748B; margin: 0 0 14px 0;">
-          Please ensure your personal contact details are current so HR Operations can dispatch tax slips, EOSB transfer receipts, and original hardcopy certificates.
-        </p>
-
-        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 12px;">
-          <div class="form-group" style="margin-bottom: 0;">
-            <label class="form-label" style="font-size: 12px; font-weight: 600; color: #0F172A;">Personal Email Address</label>
-            <input type="email" class="form-control" id="userContactEmail" value="${userViewState.personalContact.email}" style="height: 36px; font-size: 13px; border-radius: 8px;" />
-          </div>
-          <div class="form-group" style="margin-bottom: 0;">
-            <label class="form-label" style="font-size: 12px; font-weight: 600; color: #0F172A;">Personal Mobile Number</label>
-            <input type="text" class="form-control" id="userContactPhone" value="${userViewState.personalContact.phone}" style="height: 36px; font-size: 13px; border-radius: 8px;" />
-          </div>
-        </div>
-
-        <div class="form-group" style="margin-bottom: 14px;">
-          <label class="form-label" style="font-size: 12px; font-weight: 600; color: #0F172A;">Forwarding Postal Address</label>
-          <input type="text" class="form-control" id="userContactAddress" value="${userViewState.personalContact.address}" style="height: 36px; font-size: 13px; border-radius: 8px;" />
-        </div>
-
-        <div style="display: flex; justify-content: flex-end;">
-          <button class="btn-primary" onclick="saveUserContactInfo()" style="background: #7C3AED; color: #FFF; border: none; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 12.5px; cursor: pointer;">
-            ✓ Save Contact Information
-          </button>
-        </div>
-      </div>
-
-    </div>
-  `;
-}
-
-function saveUserContactInfo() {
-  const email = document.getElementById('userContactEmail')?.value;
-  const phone = document.getElementById('userContactPhone')?.value;
-  const addr = document.getElementById('userContactAddress')?.value;
-
-  if (email) userViewState.personalContact.email = email;
-  if (phone) userViewState.personalContact.phone = phone;
-  if (addr) userViewState.personalContact.address = addr;
-
-  showToast('✓ Contact details saved successfully for post-departure communications.');
-}
-
-function renderUserFaqTab(container) {
-  const faqs = [
-    {
-      id: 'faq_1',
-      q: '1. What is the timeline for UAE residence visa cancellation and grace period?',
-      a: 'Your residence visa cancellation will be initiated by HR on your Last Working Day (14 Oct 2026) upon completion of your asset returns. Once cancelled, the UAE Federal Authority for Identity, Citizenship, Customs and Port Security (ICP) provides a standard 30-day grace period to exit the country or transfer to a new sponsor.'
-    },
-    {
-      id: 'faq_2',
-      q: '2. What happens to my Crowne Plaza health insurance coverage?',
-      a: 'Your group medical insurance policy through Crowne Plaza Dubai remains active until 23:59 on your Last Working Day (14 Oct 2026). Our HR benefits specialist can assist you with an optional individual continuity plan at preferred corporate rates.'
-    },
-    {
-      id: 'faq_3',
-      q: '3. How is my End of Service Gratuity (EOSB) calculated?',
-      a: 'In accordance with UAE Federal Decree-Law No. 33 of 2021, employees completing more than 5 continuous years receive: 21 days basic salary for each of the first 5 years (105 days), plus 30 days basic salary for each additional fractional year (15 days for 6 months). Totaling 120 days @ AED 204.16 basic daily wage = AED 24,500.'
-    },
-    {
-      id: 'faq_4',
-      q: '4. When will my final settlement funds arrive in my bank account?',
-      a: 'Per UAE Labour Law Article 53, employers are legally required to disburse the full final settlement within 14 calendar days of employment termination. Your funds will be wired via the UAE Central Bank Wages Protection System (WPS) directly to your Emirates NBD account.'
-    },
-    {
-      id: 'faq_5',
-      q: '5. Am I eligible for future rehire or global transfer within IHG Hotels & Resorts?',
-      a: 'Yes! Sara, concluding your departure in positive standing means you are marked as "Eligible for Rehire" across IHG global properties worldwide. Your HR profile will remain in our Alumni Talent Network.'
-    }
-  ];
-
-  container.innerHTML = `
-    <div style="display: flex; flex-direction: column; gap: 12px;">
-      <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 18px 22px; margin-bottom: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-        <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0;">Frequently Asked Questions &bull; UAE Labour Policies</h3>
-        <p style="font-size: 12.5px; color: #64748B; margin: 4px 0 0 0; line-height: 1.5;">
-          Clear, authoritative answers regarding your legal rights, visa status, medical insurance, and settlement timeline at Crowne Plaza Dubai.
-        </p>
-      </div>
-
-      ${faqs.map(f => `
-        <div class="user-faq-item">
-          <div class="user-faq-question" onclick="toggleUserFaq('${f.id}')">
-            <span>${f.q}</span>
-            <span id="faqIcon-${f.id}" style="font-size: 16px; color: #7C3AED; font-weight: 700;">+</span>
-          </div>
-          <div class="user-faq-answer" id="faqAnswer-${f.id}" style="display: none;">
-            ${f.a}
-          </div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-}
-
-function toggleUserFaq(faqId) {
-  const ans = document.getElementById(`faqAnswer-${faqId}`);
-  const icon = document.getElementById(`faqIcon-${faqId}`);
-  if (!ans) return;
-  const isHidden = ans.style.display === 'none';
-  ans.style.display = isHidden ? 'block' : 'none';
-  if (icon) icon.textContent = isHidden ? '−' : '+';
-}
-
-function openMessageCoordinatorModal() {
-  const modal = document.getElementById('modalUserMessageCoordinator');
-  if (modal) modal.classList.add('open');
-}
-
-function closeMessageCoordinatorModal() {
-  const modal = document.getElementById('modalUserMessageCoordinator');
-  if (modal) modal.classList.remove('open');
-}
-
-function sendMessageToCoordinator() {
-  const msg = document.getElementById('userMessageBody')?.value;
-  if (!msg || !msg.trim()) {
-    alert('Please enter your message for Mariam Vance.');
-    return;
-  }
-  closeMessageCoordinatorModal();
-  showToast('✓ Message dispatched to Mariam Vance (HR). A copy was emailed to your personal inbox.');
-  if (document.getElementById('userMessageBody')) {
-    document.getElementById('userMessageBody').value = '';
-  }
-}
-
-function openUserDocPreview(docType) {
-  const modal = document.getElementById('modalUserDocPreview');
-  const paper = document.getElementById('userDocContentPaper');
-  const title = document.getElementById('userDocModalTitle');
-  if (!modal || !paper) return;
-
-  if (docType === 'relieving') {
-    if (title) title.textContent = 'Relieving Certificate Preview';
-    paper.innerHTML = `
-      <div style="text-align: center; border-bottom: 2px solid #7C3AED; padding-bottom: 16px; margin-bottom: 20px;">
-        <h2 style="font-size: 20px; font-weight: 800; color: #0F172A; letter-spacing: 0.05em; margin: 0;">CROWNE PLAZA DUBAI</h2>
-        <div style="font-size: 11px; color: #64748B; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em;">An InterContinental Hotels Group (IHG) Hotel</div>
-        <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">Sheikh Zayed Road, PO Box 23215, Dubai, United Arab Emirates</div>
-      </div>
-
-      <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748B; margin-bottom: 24px;">
-        <span>Ref: <strong>CPD-HR-REL-2026-089</strong></span>
-        <span>Date of Issue: <strong>14 October 2026</strong></span>
-      </div>
-
-      <h3 style="text-align: center; font-size: 16px; font-weight: 700; color: #0F172A; text-decoration: underline; margin-bottom: 20px;">
-        RELIEVING CERTIFICATE
-      </h3>
-
-      <p style="margin-bottom: 14px; font-size: 13.5px; line-height: 1.6;">
-        To Whom It May Concern,
-      </p>
-
-      <p style="margin-bottom: 14px; font-size: 13.5px; line-height: 1.6;">
-        This is to certify that <strong>Ms. Sara Khan</strong> (Employee ID: <strong>FDM-01</strong>) was employed with <strong>Crowne Plaza Dubai</strong> from <strong>14 April 2021</strong> to <strong>14 October 2026</strong>.
-      </p>
-
-      <p style="margin-bottom: 14px; font-size: 13.5px; line-height: 1.6;">
-        She is relieved of her responsibilities as <strong>Front Desk Manager</strong> in the <strong>Front Office Department</strong> at the close of business hours on <strong>14 October 2026</strong>, subsequent to the successful handover of her operational responsibilities.
-      </p>
-
-      <p style="margin-bottom: 24px; font-size: 13.5px; line-height: 1.6;">
-        During her tenure of 5 years and 6 months, she demonstrated high professional integrity and operational dedication. We wish her continued success in all her future endeavors.
-      </p>
-
-      <div style="display: flex; justify-content: space-between; margin-top: 40px; padding-top: 20px; border-top: 1px solid #E2E8F0;">
-        <div>
-          <div style="font-weight: 700; font-size: 13px; color: #0F172A;">James Cole</div>
-          <div style="font-size: 12px; color: #64748B;">Hotel Manager · Crowne Plaza Dubai</div>
-        </div>
-        <div style="text-align: right;">
-          <div style="font-weight: 700; font-size: 13px; color: #0F172A;">Mariam Vance</div>
-          <div style="font-size: 12px; color: #64748B;">Senior HR Operations Specialist</div>
-        </div>
       </div>
     `;
-  } else if (docType === 'experience') {
-    if (title) title.textContent = 'Experience & Service Letter Preview';
-    paper.innerHTML = `
-      <div style="text-align: center; border-bottom: 2px solid #7C3AED; padding-bottom: 16px; margin-bottom: 20px;">
-        <h2 style="font-size: 20px; font-weight: 800; color: #0F172A; letter-spacing: 0.05em; margin: 0;">CROWNE PLAZA DUBAI</h2>
-        <div style="font-size: 11px; color: #64748B; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em;">An InterContinental Hotels Group (IHG) Hotel</div>
-        <div style="font-size: 11px; color: #94A3B8; margin-top: 2px;">Sheikh Zayed Road, PO Box 23215, Dubai, United Arab Emirates</div>
-      </div>
-
-      <div style="display: flex; justify-content: space-between; font-size: 12px; color: #64748B; margin-bottom: 24px;">
-        <span>Ref: <strong>CPD-HR-EXP-2026-104</strong></span>
-        <span>Date: <strong>14 October 2026</strong></span>
-      </div>
-
-      <h3 style="text-align: center; font-size: 16px; font-weight: 700; color: #0F172A; text-decoration: underline; margin-bottom: 20px;">
-        EXPERIENCE &amp; SERVICE CERTIFICATE
-      </h3>
-
-      <p style="margin-bottom: 14px; font-size: 13.5px; line-height: 1.6;">
-        This letter certifies that <strong>Ms. Sara Khan</strong> was employed with Crowne Plaza Dubai as a full-time <strong>Front Desk Manager</strong> from 14 April 2021 through 14 October 2026.
-      </p>
-
-      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 14px; margin-bottom: 16px; font-size: 13px; line-height: 1.55;">
-        <strong>Key Areas of Responsibility &amp; Achievements:</strong>
-        <ul style="margin: 6px 0 0 18px; padding: 0;">
-          <li>Led a team of 18 front office shift leaders, night auditors, and receptionists.</li>
-          <li>Maintained an average Guest Satisfaction Index of 94% across luxury guest arrivals.</li>
-          <li>Championed IHG One Rewards loyalty enrollment and digital PMS upgrades.</li>
-        </ul>
-      </div>
-
-      <p style="margin-bottom: 24px; font-size: 13.5px; line-height: 1.6;">
-        Her conduct and character were exemplary throughout her employment. She leaves on voluntary resignation and is eligible for re-employment within IHG.
-      </p>
-
-      <div style="display: flex; justify-content: space-between; margin-top: 36px; padding-top: 20px; border-top: 1px solid #E2E8F0;">
-        <div>
-          <div style="font-weight: 700; font-size: 13px; color: #0F172A;">Director of Human Resources</div>
-          <div style="font-size: 12px; color: #64748B;">Crowne Plaza Dubai</div>
-        </div>
-        <div style="text-align: right;">
-          <div style="font-weight: 700; font-size: 13px; color: #7C3AED;">[Official Hotel Seal Attached]</div>
-        </div>
-      </div>
-    `;
-  } else if (docType === 'statement') {
-    if (title) title.textContent = 'End of Service Benefits Statement';
-    paper.innerHTML = `
-      <div style="text-align: center; border-bottom: 2px solid #7C3AED; padding-bottom: 16px; margin-bottom: 20px;">
-        <h2 style="font-size: 20px; font-weight: 800; color: #0F172A; margin: 0;">STATUTORY FINAL SETTLEMENT STATEMENT</h2>
-        <div style="font-size: 12px; color: #64748B; margin-top: 4px;">Crowne Plaza Dubai &bull; Employee: Sara Khan (FDM-01)</div>
-      </div>
-
-      <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 20px;">
-        <tr style="border-bottom: 1px solid #E2E8F0;">
-          <td style="padding: 8px 0; color: #64748B;">Date of Joining:</td>
-          <td style="padding: 8px 0; font-weight: 600; text-align: right;">14 April 2021</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #E2E8F0;">
-          <td style="padding: 8px 0; color: #64748B;">Last Working Day:</td>
-          <td style="padding: 8px 0; font-weight: 600; text-align: right;">14 October 2026</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #E2E8F0;">
-          <td style="padding: 8px 0; color: #64748B;">Length of Service:</td>
-          <td style="padding: 8px 0; font-weight: 600; text-align: right;">5 Years, 6 Months</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #E2E8F0;">
-          <td style="padding: 8px 0; color: #64748B;">Basic Salary (Monthly):</td>
-          <td style="padding: 8px 0; font-weight: 600; text-align: right;">AED 7,700.00</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #E2E8F0;">
-          <td style="padding: 8px 0; color: #64748B;">1. End of Service Gratuity (EOSB):</td>
-          <td style="padding: 8px 0; font-weight: 700; color: #0F172A; text-align: right;">AED 24,500.00</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #E2E8F0;">
-          <td style="padding: 8px 0; color: #64748B;">2. Annual Leave Encashment (12.5 Days):</td>
-          <td style="padding: 8px 0; font-weight: 700; color: #0F172A; text-align: right;">AED 3,850.00</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #E2E8F0;">
-          <td style="padding: 8px 0; color: #64748B;">3. Final Notice Month Wages:</td>
-          <td style="padding: 8px 0; font-weight: 700; color: #0F172A; text-align: right;">AED 9,240.00</td>
-        </tr>
-        <tr style="background: #FAF5FF; border-top: 2px solid #7C3AED;">
-          <td style="padding: 12px 10px; font-weight: 700; color: #7C3AED; font-size: 14px;">Total Net Payable to Employee:</td>
-          <td style="padding: 12px 10px; font-weight: 800; color: #7C3AED; font-size: 16px; text-align: right; font-family: var(--font-mono);">AED 37,590.00</td>
-        </tr>
-      </table>
-
-      <div style="font-size: 11.5px; color: #64748B; line-height: 1.5; background: #F8FAFC; padding: 10px 14px; border-radius: 8px;">
-        Payment will be credited via UAE Central Bank Wages Protection System (WPS) to Emirates NBD within 14 calendar days of 14 October 2026.
-      </div>
-    `;
-  }
-
-  modal.classList.add('open');
+  }).join('');
 }
 
-function closeUserDocPreviewModal() {
-  const modal = document.getElementById('modalUserDocPreview');
-  if (modal) modal.classList.remove('open');
-}
 
 /* ==========================================================================
    RENDER SETTINGS VIEW ENGINE
@@ -7793,8 +6845,6 @@ document.addEventListener('click', (e) => {
   if (e.target.id === 'modalAddCustomStep') closeAddCustomStepModal();
   if (e.target.id === 'modalEditStep') closeEditStepModal();
   if (e.target.id === 'modalWithdrawOffboarding') closeWithdrawModal();
-  if (e.target.id === 'modalUserMessageCoordinator') closeMessageCoordinatorModal();
-  if (e.target.id === 'modalUserDocPreview') closeUserDocPreviewModal();
   if (!e.target.closest('.filter-dropdown-anchor')) {
     closeFilterPopover();
   }
