@@ -3787,97 +3787,57 @@
     }
 
     /* ==========================================================================
-       SCREEN 5: EXIT INTERVIEW BUILDER & TEMPLATE STUDIO STYLES
+       SCREEN 5: EXIT INTERVIEW FORM STYLES (HIRERKEY MODERN FORM DESIGN)
        ========================================================================== */
-    .studio-shell {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .exit-form-wrapper {
+      max-width: 680px;
+      margin: 16px auto 40px auto;
+      width: 100%;
     }
-
-    /* Top Context & Action Bar */
-    .studio-topbar {
+    .exit-form-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 24px 28px;
+      box-shadow: 0 4px 20px rgba(0, 23, 65, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+    .exit-form-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 16px;
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 14px;
-      padding: 16px 20px;
-      box-shadow: 0 1px 3px rgba(0, 23, 65, 0.04);
+      padding-bottom: 16px;
+      border-bottom: 1px solid #F1F5F9;
+      margin-bottom: 20px;
+      gap: 12px;
     }
-    .studio-header-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .studio-title-main {
-      font-size: 17px;
+    .exit-form-title {
+      font-size: 18px;
       font-weight: 700;
       color: #0F172A;
       letter-spacing: -0.01em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
-    .studio-crumb-trail {
-      font-size: 12px;
+    .exit-form-subtitle {
+      font-size: 12.5px;
       color: #64748B;
-      margin-bottom: 2px;
+      margin-top: 3px;
     }
-    .studio-status-pill {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background: #F1F5F9;
-      color: #475569;
-    }
-    .studio-dept-pill {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 6px;
-      background: #EDE9FE;
-      color: #7C3AED;
-    }
-
-    /* Studio Mode Segmented Control */
-    .studio-segmented-ctrl {
-      display: flex;
-      align-items: center;
-      background: #F1F5F9;
-      border: 1px solid #E2E8F0;
+    .btn-form-close {
+      width: 32px;
+      height: 32px;
       border-radius: 8px;
-      padding: 3px;
-      gap: 2px;
-    }
-    .studio-seg-btn {
-      padding: 5px 12px;
-      border-radius: 6px;
-      border: none;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      background: transparent;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
       color: #64748B;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.15s ease;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.15s;
     }
-    .studio-seg-btn:hover {
+    .btn-form-close:hover {
+      background: #F1F5F9;
       color: #0F172A;
     }
-    .studio-seg-btn.active {
-      background: #FFFFFF;
-      color: #7C3AED;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    }
-
-    /* Archetype A: The Royal Aura AI Button */
     .hyiq-royal-btn {
       background: linear-gradient(135deg, #7C3AED 0%, #6366F1 55%, #4F46E5 100%);
       color: #FFFFFF;
@@ -3898,321 +3858,140 @@
       box-shadow: 0 6px 20px -2px rgba(124, 58, 237, 0.55), inset 0 1px 1.5px rgba(255, 255, 255, 0.55);
       background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 55%, #4338CA 100%);
     }
-
-    /* Main Studio Split Layout */
-    .studio-canvas {
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      position: relative;
-    }
-    .studio-left-pane {
-      flex: 1 1 58%;
-      max-width: 58%;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      transition: all 0.25s ease;
-    }
-    .studio-left-pane.full-width {
-      flex: 1 1 100%;
-      max-width: 100%;
-    }
-    .studio-right-pane {
-      flex: 1 1 42%;
-      max-width: 42%;
-      position: sticky;
-      top: 90px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      transition: all 0.25s ease;
-    }
-    .studio-right-pane.full-width {
-      flex: 1 1 100%;
-      max-width: 820px;
-      margin: 0 auto;
-      position: relative;
-      top: auto;
-    }
-
-    /* Studio Cards */
-    .studio-card {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 1px 3px rgba(0, 23, 65, 0.04);
-    }
-    .studio-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #F1F5F9;
-    }
-    .studio-card-title {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: #0F172A;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .studio-card-subtitle {
-      font-size: 12px;
-      color: #64748B;
-      margin-top: 2px;
-    }
-
-    /* Department Multi-Select Chips */
-    .dept-chips-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 8px;
-    }
-    .dept-chip {
-      padding: 5px 11px;
-      border-radius: 7px;
-      font-size: 12px;
+    .char-counter {
+      font-size: 11.5px;
       font-weight: 500;
-      cursor: pointer;
-      border: 1px solid #CBD5E1;
-      background: #FFFFFF;
-      color: #475569;
-      transition: all 0.15s;
+      color: #94A3B8;
+      font-family: 'Inter', system-ui, sans-serif;
     }
-    .dept-chip:hover {
-      background: #F8FAFC;
-      border-color: #94A3B8;
-    }
-    .dept-chip.active {
-      background: #7C3AED;
-      color: #FFFFFF;
-      border-color: #7C3AED;
-    }
-
-    /* HyIQ Quick Prompts Bar */
-    .hyiq-prompts-bar {
-      background: linear-gradient(135deg, #FAF5FF 0%, #FFFFFF 100%);
-      border: 1px solid #DDD6FE;
-      border-radius: 12px;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.05);
-    }
-    .hyiq-prompt-btn {
-      background: #FFFFFF;
-      border: 1px solid #C4B5FD;
-      border-radius: 7px;
-      padding: 4px 10px;
+    .btn-refine-hyiq {
+      background: none;
+      border: none;
       font-size: 11.5px;
       font-weight: 600;
-      color: #6D28D9;
+      color: #7C3AED;
       cursor: pointer;
-      transition: all 0.15s;
-    }
-    .hyiq-prompt-btn:hover {
-      background: #EDE9FE;
-      border-color: #7C3AED;
-    }
-
-    /* Modern Question Cards */
-    .qcard {
-      background: #FFFFFF;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 1px 3px rgba(0, 23, 65, 0.04);
-      transition: all 0.15s ease;
-      position: relative;
-    }
-    .qcard.active {
-      border-color: #7C3AED;
-      box-shadow: 0 4px 16px -2px rgba(124, 58, 237, 0.12);
-    }
-    .qcard-header-bar {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid #F1F5F9;
+      gap: 4px;
+      padding: 0;
+      transition: color 0.15s;
     }
-    .qcard-pill {
-      font-size: 12px;
-      font-weight: 700;
+    .btn-refine-hyiq:hover {
+      color: #6D28D9;
+      text-decoration: underline;
+    }
+    .badge-count {
+      font-size: 11px;
+      font-weight: 600;
       padding: 2px 8px;
       border-radius: 6px;
       background: #EDE9FE;
       color: #7C3AED;
     }
-    .qcard-tag-pill {
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 7px;
-      border-radius: 5px;
-      background: #F1F5F9;
-      color: #64748B;
+    .question-row-card {
+      background: #F8FAFC;
       border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 16px 18px;
+      transition: border-color 0.15s, box-shadow 0.15s;
     }
-    .qcard-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
+    .question-row-card:hover {
+      border-color: #CBD5E1;
     }
-    .qcard-action-btn {
+    .q-num-pill {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 700;
+      font-size: 11.5px;
+      display: grid;
+      place-items: center;
+    }
+    .form-sublabel {
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      margin-bottom: 5px;
+      display: block;
+    }
+    .btn-delete-q {
       width: 28px;
       height: 28px;
       border-radius: 6px;
       border: 1px solid transparent;
       background: transparent;
-      color: #64748B;
+      color: #94A3B8;
       display: grid;
       place-items: center;
       cursor: pointer;
       transition: all 0.15s;
     }
-    .qcard-action-btn:hover {
-      background: #F1F5F9;
-      color: #0F172A;
-    }
-    .qcard-action-btn.danger:hover {
+    .btn-delete-q:hover {
       background: #FEE2E2;
       color: #DC2626;
     }
-
-    /* Dynamic Option Rows */
-    .qcard-option-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    /* Add Question Dock */
-    .add-q-dock {
-      background: #FFFFFF;
-      border: 1.5px dashed #DDD6FE;
-      border-radius: 14px;
-      padding: 20px;
-      text-align: center;
-    }
-    .add-q-btn {
-      padding: 6px 12px;
-      border-radius: 7px;
-      border: 1px solid #DDD6FE;
-      background: #FAF5FF;
+    .btn-add-question {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1.5px dashed #C4B5FD;
+      background: #F5F3FF;
       color: #7C3AED;
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 5px;
+      justify-content: center;
+      gap: 7px;
       transition: all 0.15s;
     }
-    .add-q-btn:hover {
+    .btn-add-question:hover {
       background: #EDE9FE;
       border-color: #7C3AED;
     }
-
-    /* Right Preview Pane: Persona & Simulation Wrapper */
-    .preview-persona-strip {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 12px;
-      padding: 10px 14px;
+    .exit-form-footer {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 1px 3px rgba(0, 23, 65, 0.04);
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #F1F5F9;
     }
-    .preview-device-toggle {
-      display: flex;
-      background: #F1F5F9;
-      border-radius: 6px;
-      padding: 2px;
-    }
-    .preview-device-btn {
-      width: 26px;
-      height: 24px;
-      border: none;
-      background: transparent;
-      border-radius: 5px;
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      color: #64748B;
-    }
-    .preview-device-btn.active {
-      background: #FFFFFF;
-      color: #7C3AED;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
-    }
-    .preview-card-container {
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 4px 20px rgba(0, 23, 65, 0.08);
-      max-height: calc(100vh - 160px);
-      overflow-y: auto;
-    }
-    .preview-card-container.mobile-view {
-      max-width: 380px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-    .preview-hotel-hero {
-      background: linear-gradient(135deg, #001741 0%, #1E1B4B 100%);
-      border-radius: 12px;
-      padding: 18px;
-      color: #FFFFFF;
-      margin-bottom: 20px;
-    }
-    .preview-q-box {
-      background: #FAFAFD;
-      border: 1px solid #EEF0F4;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 14px;
-    }
-    .interactive-star {
-      cursor: pointer;
-      font-size: 22px;
-      transition: transform 0.1s;
-      user-select: none;
-    }
-    .interactive-star:hover {
-      transform: scale(1.15);
-    }
-    .interactive-scale-pill {
-      width: 30px;
-      height: 30px;
-      border-radius: 6px;
+    .exit-form-footer .btn-cancel {
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 8px;
       border: 1px solid #CBD5E1;
       background: #FFFFFF;
-      color: #334155;
-      font-weight: 700;
-      font-size: 12px;
-      display: inline-grid;
-      place-items: center;
+      color: #475569;
       cursor: pointer;
       transition: all 0.15s;
     }
-    .interactive-scale-pill:hover {
-      border-color: #7C3AED;
+    .exit-form-footer .btn-cancel:hover {
+      background: #F8FAFC;
+      color: #1E293B;
     }
-    .interactive-scale-pill.selected {
+    .exit-form-footer .btn-primary {
+      padding: 8px 22px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
       background: #7C3AED;
       color: #FFFFFF;
-      border-color: #7C3AED;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+      transition: all 0.15s;
+    }
+    .exit-form-footer .btn-primary:hover {
+      background: #6D28D9;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
     }
 </style>
 
@@ -4521,8 +4300,8 @@
           <button class="screen-tab" id="tab-screen-user" onclick="switchToScreen('user')">
             Screen 4: User's View
           </button>
-          <button class="screen-tab" id="tab-screen-builder" onclick="switchToScreen('builder')">
-            Screen 5: Exit Interview Builder &amp; Template Studio
+          <button class="screen-tab" id="tab-screen-builder" onclick="switchToScreen('form')">
+            Screen 5: Exit Interview Form
           </button>
         </div>
       </div>
@@ -5097,287 +4876,121 @@
       </div> <!-- end #screen-user -->
 
       <!-- ==========================================================================
-           SCREEN 5: EXIT INTERVIEW BUILDER & TEMPLATE STUDIO (ARCHETYPE A)
+           SCREEN 5: EXIT INTERVIEW FORM (HIRERKEY MODERN FORM DESIGN)
            ========================================================================== -->
-      <div id="screen-builder" class="screen-view" style="display: none;">
-        <div class="studio-shell">
-
-          <!-- 1. Studio Topbar with Breadcrumbs, Badges, View Toggle, and HyIQ Button -->
-          <div class="studio-topbar">
-            <!-- Left: Breadcrumbs & Status -->
-            <div class="studio-header-left">
+      <div id="screen-form" class="screen-view" style="display: none;">
+        <div class="exit-form-wrapper">
+          <div class="exit-form-card">
+            
+            <!-- Form Header: Archetype A (Title + HyIQ Royal Aura Action + Close Button) -->
+            <div class="exit-form-header">
               <div>
-                <div class="studio-crumb-trail">
-                  Offboarding › Templates &amp; Policy › <span style="color: #7C3AED; font-weight: 600;">Exit Interview Studio</span>
-                </div>
-                <div class="studio-title-main">
-                  <span>Exit Interview Builder &amp; Template Studio</span>
-                  <span class="studio-status-pill">● Draft Template</span>
-                  <span class="studio-dept-pill" id="studioDeptCountBadge">3 Depts Assigned</span>
-                  <span style="font-size: 11.5px; color: #94A3B8; font-weight: normal; margin-left: 4px;">Auto-saved 2m ago</span>
-                </div>
+                <div class="exit-form-title">Exit Interview</div>
+                <div class="exit-form-subtitle">Configure the exit interview questionnaire for departing employees</div>
               </div>
-            </div>
-
-            <!-- Center: View Switcher (Split, Builder Only, Preview Only) -->
-            <div class="studio-segmented-ctrl">
-              <button class="studio-seg-btn active" id="segBtnSplit" onclick="setExitViewMode('split')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>
-                Split Studio
-              </button>
-              <button class="studio-seg-btn" id="segBtnBuilder" onclick="setExitViewMode('builder')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                Builder Only
-              </button>
-              <button class="studio-seg-btn" id="segBtnPreview" onclick="setExitViewMode('preview')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                Live Preview
-              </button>
-            </div>
-
-            <!-- Right: Actions (HyIQ Royal Aura AI Button, Cancel, Save) -->
-            <div style="display: flex; align-items: center; gap: 10px;">
-              <!-- Archetype A AI Button -->
-              <button class="hyiq-royal-btn" onclick="applyExitAiPreset('core')" title="HyIQ AI Generator · Hospitality Survey Suite">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFFFFF"/>
-                </svg>
-                Draft with HyIQ
-              </button>
-
-              <button class="btn-cancel" onclick="switchToScreen('list')" style="padding: 7px 14px; font-size: 12.5px; border-radius: 8px; border: 1px solid #E2E8F0; background: #FFFFFF; color: #475569; cursor: pointer;">
-                Cancel
-              </button>
-
-              <button onclick="saveExitStudioTemplate()" style="padding: 7px 16px; font-size: 12.5px; font-weight: 600; border-radius: 8px; border: none; background: #7C3AED; color: #FFFFFF; cursor: pointer; display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                Save Template
-              </button>
-            </div>
-          </div>
-
-          <!-- 2. Main Studio Canvas -->
-          <div class="studio-canvas">
-
-            <!-- ==============================================================
-                 LEFT COLUMN: BUILDER CANVAS
-                 ============================================================== -->
-            <div class="studio-left-pane" id="studioLeftPane">
-
-              <!-- General Information & Department Targeting Card -->
-              <div class="studio-card">
-                <div class="studio-card-header">
-                  <div class="studio-card-title">
-                    <span style="font-size: 16px;">🏨</span>
-                    <span>General Information &amp; Department Targeting</span>
-                  </div>
-                  <span style="font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; background: #EDE9FE; color: #7C3AED;" id="studioQuestionCountPill">
-                    6 Questions Configured
-                  </span>
-                </div>
-
-                <!-- Department Selector Chips -->
-                <div style="margin-bottom: 18px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                    <label style="font-size: 12px; font-weight: 600; color: #334155;">
-                      Target Departments <span style="color: #DC2626;">*</span>
-                    </label>
-                    <span style="font-size: 11px; color: #94A3B8;" id="deptSelectedCount">3 selected</span>
-                  </div>
-                  <div class="dept-chips-wrapper" id="studioDeptChipsContainer">
-                    <!-- Populated dynamically via JS -->
-                  </div>
-                </div>
-
-                <!-- Survey Title Input -->
-                <div style="margin-bottom: 16px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                    <label style="font-size: 12px; font-weight: 600; color: #334155;">
-                      Survey Title <span style="color: #DC2626;">*</span>
-                    </label>
-                    <span style="font-size: 11px; color: #94A3B8;" id="surveyTitleCount">48/100</span>
-                  </div>
-                  <input type="text" class="form-control" id="surveyTitleInput"
-                    value="Hospitality Colleague Exit &amp; Experience Survey"
-                    maxlength="100"
-                    oninput="handleTitleInput(this.value)"
-                    style="font-size: 13.5px; font-weight: 600; border-radius: 8px; border: 1px solid #CBD5E1; padding: 8px 12px; width: 100%; box-sizing: border-box;" />
-                </div>
-
-                <!-- Survey Description & HyIQ Refine Trigger -->
-                <div style="margin-bottom: 16px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                    <label style="font-size: 12px; font-weight: 600; color: #334155;">
-                      Description &amp; Instructions
-                    </label>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                      <button onclick="refineDescriptionWithAi()" style="background: none; border: none; font-size: 11.5px; font-weight: 600; color: #7C3AED; cursor: pointer; display: flex; align-items: center; gap: 4px; padding: 0;">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#7C3AED"/></svg>
-                        Refine with HyIQ
-                      </button>
-                      <span style="font-size: 11px; color: #94A3B8;" id="surveyDescCount">172/250</span>
-                    </div>
-                  </div>
-                  <textarea class="form-control" id="surveyDescInput" rows="2" maxlength="250"
-                    oninput="handleDescInput(this.value)"
-                    style="font-size: 12.5px; line-height: 1.5; border-radius: 8px; border: 1px solid #CBD5E1; padding: 8px 12px; width: 100%; box-sizing: border-box; resize: vertical;">Your candid feedback helps Crowne Plaza Dubai foster a transparent workplace, improve operational leadership, and support ongoing staff development. All responses are confidential.</textarea>
-                </div>
-
-                <!-- Applicable Departure Categories -->
-                <div>
-                  <label style="font-size: 12px; font-weight: 600; color: #334155; margin-bottom: 6px; display: block;">
-                    Applicable Departure Triggers
-                  </label>
-                  <div style="display: flex; flex-wrap: wrap; gap: 8px;" id="studioTriggerChipsContainer">
-                    <!-- Populated dynamically via JS -->
-                  </div>
-                  <div style="font-size: 11px; color: #94A3B8; margin-top: 8px;">
-                    🔒 UAE Compliance Protocol: Involuntary terminations (immediate security clearance) and bereavement cases strictly bypass exit surveys.
-                  </div>
-                </div>
-              </div>
-
-              <!-- HyIQ AI Quick Prompts Bar -->
-              <div class="hyiq-prompts-bar">
-                <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <!-- Archetype A: The Royal Aura AI Action Button -->
+                <button type="button" class="hyiq-royal-btn" onclick="handleFormDraftHyIq()" title="Draft Questions with HyIQ">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#7C3AED"/>
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFFFFF"/>
                   </svg>
-                  <span style="font-size: 12px; font-weight: 700; color: #7C3AED;">HyIQ Accelerators:</span>
-                </div>
+                  Draft with HyIQ
+                </button>
+                <button type="button" class="btn-form-close" onclick="switchToScreen('list')" title="Back to Departures">✕</button>
+              </div>
+            </div>
 
-                <button class="hyiq-prompt-btn" onclick="applyExitAiPreset('core')">
-                  + Standard Hospitality Suite (6 Qs)
-                </button>
-                <button class="hyiq-prompt-btn" onclick="applyExitAiPreset('leadership')">
-                  + Leadership &amp; Culture Q
-                </button>
-                <button class="hyiq-prompt-btn" onclick="applyExitAiPreset('compensation')">
-                  + Gratuity &amp; Benefits Q
-                </button>
+            <!-- Form Body -->
+            <div class="exit-form-body">
+              
+              <!-- Department Select Field -->
+              <div class="form-group" style="margin-bottom: 18px;">
+                <label class="form-label" style="font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px; display: block;">
+                  Department <span style="color: #DC2626;">*</span>
+                </label>
+                <select class="form-control" id="formDeptSelect" onchange="exitFormData.department = this.value"
+                  style="width: 100%; height: 40px; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0 12px; font-size: 13px; font-family: Inter, system-ui, sans-serif; color: #1E293B; background: #FFFFFF;">
+                  <option value="All Departments">All Departments</option>
+                  <option value="Front Office" selected>Front Office</option>
+                  <option value="Food & Beverage">Food & Beverage</option>
+                  <option value="Housekeeping">Housekeeping</option>
+                  <option value="Kitchen / Culinary">Kitchen / Culinary</option>
+                  <option value="Engineering & Facilities">Engineering & Facilities</option>
+                  <option value="Sales & Marketing">Sales & Marketing</option>
+                  <option value="Human Resources">Human Resources</option>
+                  <option value="Security & Safety">Security & Safety</option>
+                </select>
               </div>
 
-              <!-- Question Cards Stack Container -->
-              <div id="exitQuestionsStack" style="display: flex; flex-direction: column; gap: 16px;">
-                <!-- Populated dynamically via renderExitQuestions() -->
+              <!-- Title Field with Character Counter (100 char limit) -->
+              <div class="form-group" style="margin-bottom: 18px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <label class="form-label" style="font-size: 13px; font-weight: 600; color: #334155; margin: 0;">
+                    Title <span style="color: #DC2626;">*</span>
+                  </label>
+                  <span class="char-counter" id="formTitleCount">31/100</span>
+                </div>
+                <input type="text" class="form-control" id="formTitleInput"
+                  value="Employee Exit Interview Survey"
+                  maxlength="100"
+                  placeholder="Enter survey title..."
+                  oninput="handleFormTitle(this.value)"
+                  style="width: 100%; height: 40px; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0 12px; font-size: 13px; font-family: Inter, system-ui, sans-serif; color: #1E293B; background: #FFFFFF; box-sizing: border-box;" />
               </div>
 
-              <!-- + Add Question Dock -->
-              <div class="add-q-dock">
-                <div style="font-size: 13.5px; font-weight: 700; color: #7C3AED; margin-bottom: 4px;">
-                  + Add Question to Survey Template
-                </div>
-                <div style="font-size: 12px; color: #64748B; margin-bottom: 14px;">
-                  Choose a format shortcut below to instantly append a configured card:
-                </div>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
-                  <button class="add-q-btn" onclick="addExitQuestion('rating_stars')">
-                    ⭐ 1-5 Star Rating
-                  </button>
-                  <button class="add-q-btn" onclick="addExitQuestion('single_select')">
-                    🔘 Single Select (Radio)
-                  </button>
-                  <button class="add-q-btn" onclick="addExitQuestion('multiple_choice')">
-                    ☑️ Multiple Choice (Checkboxes)
-                  </button>
-                  <button class="add-q-btn" onclick="addExitQuestion('number_scale')">
-                    🔢 1-10 Scale
-                  </button>
-                  <button class="add-q-btn" onclick="addExitQuestion('narrative_text')">
-                    📝 Open Narrative
-                  </button>
-                  <button class="add-q-btn" onclick="addExitQuestion('boolean_yes_no')">
-                    ⚖️ Yes / No
-                  </button>
-                </div>
-              </div>
-
-            </div> <!-- end #studioLeftPane -->
-
-
-            <!-- ==============================================================
-                 RIGHT COLUMN: LIVE EMPLOYEE INTERACTIVE PREVIEW
-                 ============================================================== -->
-            <div class="studio-right-pane" id="studioRightPane">
-
-              <!-- Persona Strip & Viewport Switcher -->
-              <div class="preview-persona-strip">
-                <div style="display: flex; align-items: center; gap: 9px;">
-                  <div style="width: 28px; height: 28px; border-radius: 50%; background: #EDE9FE; color: #7C3AED; font-weight: 700; font-size: 11px; display: grid; place-items: center;">
-                    SK
-                  </div>
-                  <div>
-                    <div style="font-size: 12px; font-weight: 700; color: #0F172A;">
-                      Previewing: Sara Khan
-                    </div>
-                    <div style="font-size: 11px; color: #64748B;">
-                      Front Desk Manager · FDM-01 · Front Office
-                    </div>
+              <!-- Description Field with Refine with HyIQ action and 250 limit -->
+              <div class="form-group" style="margin-bottom: 22px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                  <label class="form-label" style="font-size: 13px; font-weight: 600; color: #334155; margin: 0;">
+                    Description
+                  </label>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <button type="button" class="btn-refine-hyiq" onclick="handleFormRefineHyIq()">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#7C3AED"/></svg>
+                      Refine with HyIQ
+                    </button>
+                    <span class="char-counter" id="formDescCount">146/250</span>
                   </div>
                 </div>
+                <textarea class="form-control" id="formDescInput" rows="3" maxlength="250"
+                  placeholder="Enter description or instructions for the departing colleague..."
+                  oninput="handleFormDesc(this.value)"
+                  style="width: 100%; border: 1px solid #CBD5E1; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: Inter, system-ui, sans-serif; color: #1E293B; line-height: 1.5; background: #FFFFFF; box-sizing: border-box; resize: vertical;">Please share your honest feedback regarding your time at Crowne Plaza Dubai to help us improve leadership, culture, and employee experience.</textarea>
+              </div>
 
+              <!-- Questions Header -->
+              <div style="display: flex; justify-content: space-between; align-items: center; margin: 24px 0 12px 0;">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                  <div class="preview-device-toggle">
-                    <button class="preview-device-btn active" id="btnDeviceDesktop" onclick="setExitPreviewViewport('desktop')" title="Desktop Viewport">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    </button>
-                    <button class="preview-device-btn" id="btnDeviceMobile" onclick="setExitPreviewViewport('mobile')" title="Mobile Viewport">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                    </button>
-                  </div>
-
-                  <button onclick="resetExitPreviewAnswers()" title="Reset mock responses" style="border: 1px solid #E2E8F0; background: #FFFFFF; border-radius: 6px; width: 26px; height: 24px; cursor: pointer; color: #64748B; display: grid; place-items: center;">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-                  </button>
+                  <span style="font-size: 14px; font-weight: 700; color: #0F172A;">Questions</span>
+                  <span class="badge-count" id="formQuestionBadge">4 Questions</span>
                 </div>
+                <span style="font-size: 11.5px; color: #94A3B8;">Configured for leaver survey</span>
               </div>
 
-              <!-- Real Employee Simulation Container -->
-              <div class="preview-card-container" id="previewCardContainer">
+              <!-- Dynamic Questions List -->
+              <div id="formQuestionsContainer" style="display: flex; flex-direction: column; gap: 12px;">
+                <!-- Rendered dynamically via renderExitForm() -->
+              </div>
 
-                <!-- Crowne Plaza Dubai Hero Header -->
-                <div class="preview-hotel-hero">
-                  <div style="display: flex; align-items: center; gap: 7px; margin-bottom: 6px;">
-                    <span style="font-size: 15px;">🏨</span>
-                    <span style="font-size: 11.5px; font-weight: 700; color: #C4B5FD; letter-spacing: 0.05em;">
-                      CROWNE PLAZA DUBAI · IHG
-                    </span>
-                  </div>
-                  <div style="font-size: 15px; font-weight: 700; color: #FFFFFF; margin-bottom: 6px;" id="previewSurveyTitle">
-                    Hospitality Colleague Exit &amp; Experience Survey
-                  </div>
-                  <div style="font-size: 12px; color: #E2E8F0; line-height: 1.5; margin-bottom: 12px;" id="previewSurveyDesc">
-                    Your candid feedback helps Crowne Plaza Dubai foster a transparent workplace, improve operational leadership, and support ongoing staff development. All responses are confidential.
-                  </div>
-                  <div style="display: flex; align-items: center; gap: 14px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 11px; color: #93C5FD;">
-                    <span>🔒 Strictly Confidential</span>
-                    <span>⏱️ ~4 min completion</span>
-                  </div>
-                </div>
+              <!-- + Add Question Button -->
+              <div style="margin-top: 14px;">
+                <button type="button" class="btn-add-question" onclick="addFormQuestion()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add Question
+                </button>
+              </div>
 
-                <!-- Questions List in Preview -->
-                <div id="previewQuestionsContainer" style="display: flex; flex-direction: column; gap: 12px;">
-                  <!-- Populated dynamically via renderExitPreview() -->
-                </div>
+            </div>
 
-                <!-- Employee Submit Action -->
-                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid #E2E8F0;">
-                  <button onclick="showToast('Test submission received in preview mode.')" style="width: 100%; height: 42px; border: none; border-radius: 9px; background: #7C3AED; color: #FFFFFF; font-size: 13px; font-weight: 600; cursor: pointer; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);">
-                    Submit Exit Interview to HR
-                  </button>
-                  <div style="text-align: center; font-size: 11px; color: #94A3B8; margin-top: 8px;">
-                    Simulated employee view for Sara Khan · Submissions here do not alter live database.
-                  </div>
-                </div>
+            <!-- Form Actions Footer -->
+            <div class="exit-form-footer">
+              <button type="button" class="btn-cancel" onclick="switchToScreen('list')">Cancel</button>
+              <button type="button" class="btn-primary" onclick="saveExitForm()">Save Exit Interview</button>
+            </div>
 
-              </div> <!-- end #previewCardContainer -->
-
-            </div> <!-- end #studioRightPane -->
-
-          </div> <!-- end .studio-canvas -->
-
-        </div> <!-- end .studio-shell -->
-      </div> <!-- end #screen-builder -->
+          </div>
+        </div>
+      </div> <!-- end #screen-form -->
     </main>
   </div>
 </div>
@@ -6087,31 +5700,32 @@ function scrollSettingsTabs(dir) {
   container.scrollBy({ left: scrollAmt, behavior: 'smooth' });
 }
 
-/* Screen Switcher (Supports list, case, settings, and user) */
+/* Screen Switcher (Supports list, case, settings, user, and form) */
 function switchToScreen(screen) {
+  if (screen === 'builder') screen = 'form';
   currentScreen = screen;
   const listEl = document.getElementById('screen-list');
   const caseEl = document.getElementById('screen-case');
   const settingsEl = document.getElementById('screen-settings');
   const userEl = document.getElementById('screen-user');
-  const builderEl = document.getElementById('screen-builder');
+  const formEl = document.getElementById('screen-form') || document.getElementById('screen-builder');
   const tabList = document.getElementById('tab-screen-list');
   const tabCase = document.getElementById('tab-screen-case');
   const tabSettings = document.getElementById('tab-screen-settings');
   const tabUser = document.getElementById('tab-screen-user');
-  const tabBuilder = document.getElementById('tab-screen-builder');
+  const tabForm = document.getElementById('tab-screen-builder') || document.getElementById('tab-screen-form');
 
   if (listEl) listEl.style.display = (screen === 'list') ? 'block' : 'none';
   if (caseEl) caseEl.style.display = (screen === 'case') ? 'block' : 'none';
   if (settingsEl) settingsEl.style.display = (screen === 'settings') ? 'block' : 'none';
   if (userEl) userEl.style.display = (screen === 'user') ? 'block' : 'none';
-  if (builderEl) builderEl.style.display = (screen === 'builder') ? 'block' : 'none';
+  if (formEl) formEl.style.display = (screen === 'form') ? 'block' : 'none';
 
   if (tabList) tabList.classList.toggle('active', screen === 'list');
   if (tabCase) tabCase.classList.toggle('active', screen === 'case');
   if (tabSettings) tabSettings.classList.toggle('active', screen === 'settings');
   if (tabUser) tabUser.classList.toggle('active', screen === 'user');
-  if (tabBuilder) tabBuilder.classList.toggle('active', screen === 'builder');
+  if (tabForm) tabForm.classList.toggle('active', screen === 'form');
 
   // Sync Header Breadcrumbs
   const crumbSep = document.getElementById('headerCaseCrumbSep');
@@ -6146,14 +5760,14 @@ function switchToScreen(screen) {
       crumbCase.textContent = 'My Offboarding (Sara Khan)';
     }
     renderUserView();
-  } else if (screen === 'builder') {
-    if (crumbActive) crumbActive.textContent = 'Templates & Policy';
+  } else if (screen === 'form') {
+    if (crumbActive) crumbActive.textContent = 'Templates & Automation';
     if (crumbSep) crumbSep.style.display = 'inline';
     if (crumbCase) {
       crumbCase.style.display = 'inline';
-      crumbCase.textContent = 'Exit Interview Builder & Studio';
+      crumbCase.textContent = 'Exit Interview Form';
     }
-    renderExitStudio();
+    renderExitForm();
   }
 
   // Highlight Off-boarding in sidebar
@@ -7777,777 +7391,211 @@ renderTable();
 renderSettingsView();
 
 /* ==========================================================================
-   SCREEN 5: EXIT INTERVIEW BUILDER & TEMPLATE STUDIO ENGINE
+   SCREEN 5: EXIT INTERVIEW FORM ENGINE (HIRERKEY MODERN FORM DESIGN)
    ========================================================================== */
-let exitStudioData = {
-  metadata: {
-    title: 'Hospitality Colleague Exit & Experience Survey',
-    description: 'Your candid feedback helps Crowne Plaza Dubai foster a transparent workplace, improve operational leadership, and support ongoing staff development. All responses are confidential.',
-    departments: ['Front Office', 'Food & Beverage', 'Housekeeping'],
-    triggers: ['Voluntary Resignation', 'End of Fixed Contract'],
-    status: 'draft',
-    lastSaved: 'Auto-saved 2 mins ago'
-  },
-  availableDepts: [
-    'All Departments',
-    'Front Office',
-    'Food & Beverage',
-    'Housekeeping',
-    'Kitchen / Culinary',
-    'Engineering & Facilities',
-    'Sales & Marketing',
-    'Human Resources',
-    'Security & Safety'
-  ],
-  availableTriggers: [
-    'Voluntary Resignation',
-    'End of Fixed Contract',
-    'Mutual Separation',
-    'Retirement'
-  ],
+let exitFormData = {
+  department: 'Front Office',
+  title: 'Employee Exit Interview Survey',
+  description: 'Please share your honest feedback regarding your time at Crowne Plaza Dubai to help us improve leadership, culture, and employee experience.',
   questions: [
     {
       id: 'q1',
-      type: 'rating_stars',
-      title: 'How would you rate your overall working experience and culture at Crowne Plaza Dubai?',
-      subtitle: 'Considers operational camaraderie, workplace safety, and team support.',
-      required: true,
-      minLabel: 'Poor',
-      maxLabel: 'Exceptional',
-      categoryTag: 'Culture & Workplace'
+      title: 'What was the primary reason for deciding to leave?',
+      type: 'Single Select',
+      placeholder: 'e.g. Career growth, relocation, compensation...'
     },
     {
       id: 'q2',
-      type: 'single_select',
-      title: 'What was the primary factor that influenced your decision to leave?',
-      subtitle: 'Select the single most decisive reason.',
-      required: true,
-      categoryTag: 'Departure Reason',
-      options: [
-        { id: 'opt1', label: 'Career advancement & promotional growth limits' },
-        { id: 'opt2', label: 'Compensation, incentives, or gratuity benchmark' },
-        { id: 'opt3', label: 'Relocation / Family commitments outside UAE' },
-        { id: 'opt4', label: 'Shift schedule / Work-life balance in guest services' },
-        { id: 'opt5', label: 'Pursuing higher education or specialized hospitality certification' }
-      ]
+      title: 'How would you rate your overall work experience and environment?',
+      type: 'Rating',
+      placeholder: 'Rate from 1 to 5 stars'
     },
     {
       id: 'q3',
-      type: 'rating_stars',
-      title: 'How effectively did your direct Head of Department support your daily duties?',
-      subtitle: 'Evaluates communication, shift handovers, and managerial guidance.',
-      required: true,
-      minLabel: 'Needs Support',
-      maxLabel: 'Inspiring Leader',
-      categoryTag: 'Leadership & Management'
+      title: 'How was the support and communication from your direct manager?',
+      type: 'Rating',
+      placeholder: 'Rate managerial guidance and feedback'
     },
     {
       id: 'q4',
-      type: 'multiple_choice',
-      title: 'Which hotel benefits and operational resources met or exceeded your expectations?',
-      subtitle: 'Select all that apply to your tenure.',
-      required: false,
-      categoryTag: 'Benefits & Accommodation',
-      options: [
-        { id: 'b1', label: 'Colleague dining & duty meals at Crowne Cafe' },
-        { id: 'b2', label: 'Staff transportation & IHG accommodation facilities' },
-        { id: 'b3', label: 'Health insurance & annual flight ticket allowance' },
-        { id: 'b4', label: 'IHG Room & F&B colleague discount privileges' },
-        { id: 'b5', label: 'On-the-job training & guest service certifications' }
-      ]
-    },
-    {
-      id: 'q5',
-      type: 'number_scale',
-      title: 'How likely are you to recommend IHG / Crowne Plaza Dubai as a great workplace to peers?',
-      subtitle: 'Net Promoter Scale from 1 (Extremely Unlikely) to 10 (Extremely Likely).',
-      required: true,
-      minScale: 1,
-      maxScale: 10,
-      minLabel: 'Not likely at all',
-      maxLabel: 'Extremely likely',
-      categoryTag: 'NPS & Loyalty'
-    },
-    {
-      id: 'q6',
-      type: 'narrative_text',
-      title: 'What constructive advice would you give to the General Manager to make this hotel better?',
-      subtitle: 'Optional open remarks on systems, staffing ratios, or colleague well-being.',
-      required: false,
-      placeholder: 'Please share your transparent suggestions for our Executive Committee...',
-      categoryTag: 'Open Feedback'
+      title: 'What constructive suggestions do you have to improve our workplace?',
+      type: 'Paragraph Text',
+      placeholder: 'Share your candid suggestions for leadership...'
     }
-  ],
-  previewAnswers: {
-    q1: 4,
-    q2: 'opt1',
-    q3: 5,
-    q4: ['b1', 'b4'],
-    q5: 9,
-    q6: 'The team at Front Office is world-class. Providing dual monitors during high-occupancy check-ins would significantly reduce guest waiting times.'
-  },
-  viewMode: 'split',
-  previewViewport: 'desktop',
-  activeQId: 'q1'
+  ]
 };
 
-/* Render Entire Screen 5 */
-function renderExitStudio() {
-  renderExitDeptChips();
-  renderExitTriggerChips();
-  renderExitQuestions();
-  renderExitPreview();
-  syncExitStudioCounters();
-}
+function renderExitForm() {
+  const container = document.getElementById('formQuestionsContainer');
+  const badge = document.getElementById('formQuestionBadge');
+  const titleInput = document.getElementById('formTitleInput');
+  const descInput = document.getElementById('formDescInput');
+  const deptSelect = document.getElementById('formDeptSelect');
 
-/* Department chips render */
-function renderExitDeptChips() {
-  const container = document.getElementById('studioDeptChipsContainer');
+  if (badge) badge.textContent = `${exitFormData.questions.length} Questions`;
+  if (titleInput && titleInput.value !== exitFormData.title) {
+    titleInput.value = exitFormData.title;
+    handleFormTitle(exitFormData.title);
+  }
+  if (descInput && descInput.value !== exitFormData.description) {
+    descInput.value = exitFormData.description;
+    handleFormDesc(exitFormData.description);
+  }
+  if (deptSelect) deptSelect.value = exitFormData.department;
+
   if (!container) return;
-
-  container.innerHTML = exitStudioData.availableDepts.map(dept => {
-    const isSelected = exitStudioData.metadata.departments.includes(dept);
-    return `<div class="dept-chip ${isSelected ? 'active' : ''}" onclick="toggleExitDept('${dept}')">
-      ${isSelected ? '✓ ' : ''}${dept}
-    </div>`;
-  }).join('');
-
-  const countBadge = document.getElementById('studioDeptCountBadge');
-  const countLabel = document.getElementById('deptSelectedCount');
-  if (countBadge) countBadge.textContent = `${exitStudioData.metadata.departments.length} Depts Assigned`;
-  if (countLabel) countLabel.textContent = `${exitStudioData.metadata.departments.length} selected`;
-}
-
-function toggleExitDept(dept) {
-  if (dept === 'All Departments') {
-    if (exitStudioData.metadata.departments.includes('All Departments')) {
-      exitStudioData.metadata.departments = ['Front Office'];
-    } else {
-      exitStudioData.metadata.departments = ['All Departments'];
-    }
-    renderExitDeptChips();
-    return;
-  }
-
-  let depts = exitStudioData.metadata.departments.filter(d => d !== 'All Departments');
-  if (depts.includes(dept)) {
-    depts = depts.filter(d => d !== dept);
-    if (depts.length === 0) depts = ['Front Office'];
-  } else {
-    depts.push(dept);
-  }
-  exitStudioData.metadata.departments = depts;
-  renderExitDeptChips();
-}
-
-/* Triggers chips render */
-function renderExitTriggerChips() {
-  const container = document.getElementById('studioTriggerChipsContainer');
-  if (!container) return;
-
-  container.innerHTML = exitStudioData.availableTriggers.map(trig => {
-    const isSelected = exitStudioData.metadata.triggers.includes(trig);
-    return `<div class="dept-chip ${isSelected ? 'active' : ''}" onclick="toggleExitTrigger('${trig}')">
-      ${isSelected ? '✓ ' : ''}${trig}
-    </div>`;
-  }).join('');
-}
-
-function toggleExitTrigger(trig) {
-  let trigs = exitStudioData.metadata.triggers;
-  if (trigs.includes(trig)) {
-    trigs = trigs.filter(t => t !== trig);
-    if (trigs.length === 0) trigs = ['Voluntary Resignation'];
-  } else {
-    trigs.push(trig);
-  }
-  exitStudioData.metadata.triggers = trigs;
-  renderExitTriggerChips();
-}
-
-/* Counters and text inputs */
-function handleTitleInput(val) {
-  exitStudioData.metadata.title = val;
-  const countEl = document.getElementById('surveyTitleCount');
-  if (countEl) countEl.textContent = `${val.length}/100`;
-  const prevTitle = document.getElementById('previewSurveyTitle');
-  if (prevTitle) prevTitle.textContent = val || 'Colleague Exit Survey';
-}
-
-function handleDescInput(val) {
-  exitStudioData.metadata.description = val;
-  const countEl = document.getElementById('surveyDescCount');
-  if (countEl) countEl.textContent = `${val.length}/250`;
-  const prevDesc = document.getElementById('previewSurveyDesc');
-  if (prevDesc) prevDesc.textContent = val;
-}
-
-function syncExitStudioCounters() {
-  const titleInput = document.getElementById('surveyTitleInput');
-  if (titleInput) {
-    titleInput.value = exitStudioData.metadata.title;
-    handleTitleInput(titleInput.value);
-  }
-  const descInput = document.getElementById('surveyDescInput');
-  if (descInput) {
-    descInput.value = exitStudioData.metadata.description;
-    handleDescInput(descInput.value);
-  }
-  const qCountPill = document.getElementById('studioQuestionCountPill');
-  if (qCountPill) qCountPill.textContent = `${exitStudioData.questions.length} Questions Configured`;
-}
-
-function refineDescriptionWithAi() {
-  const refined = 'Your confidential feedback provides invaluable guidance to Crowne Plaza Dubai leadership to continuously refine operational excellence, staff well-being, and leadership practices.';
-  exitStudioData.metadata.description = refined;
-  const descInput = document.getElementById('surveyDescInput');
-  if (descInput) {
-    descInput.value = refined;
-    handleDescInput(refined);
-  }
-  showToast('HyIQ: Survey description refined to luxury hospitality standards.');
-}
-
-/* ==========================================================================
-   QUESTIONS STACK RENDERING (BUILDER CANVAS)
-   ========================================================================== */
-function renderExitQuestions() {
-  const stack = document.getElementById('exitQuestionsStack');
-  if (!stack) return;
 
   const typeOptions = [
-    { value: 'rating_stars', label: '⭐ 1 to 5 Star Rating' },
-    { value: 'number_scale', label: '🔢 Number Scale (1-10)' },
-    { value: 'single_select', label: '🔘 Single Select (Radio)' },
-    { value: 'multiple_choice', label: '☑️ Multiple Choice (Checkboxes)' },
-    { value: 'narrative_text', label: '📝 Open Narrative' },
-    { value: 'boolean_yes_no', label: '⚖️ Yes / No (Boolean)' }
+    'Single Select',
+    'Rating',
+    'Multiple Choice',
+    'Paragraph Text',
+    'Yes / No'
   ];
 
-  stack.innerHTML = exitStudioData.questions.map((q, idx) => {
-    const isActive = exitStudioData.activeQId === q.id;
-
-    // Render Type Dynamic Preview Inside Builder Card
-    let dynamicPreviewHtml = '';
-    if (q.type === 'rating_stars') {
-      dynamicPreviewHtml = `
-        <div style="font-size: 11.5px; color: #64748B; margin-bottom: 8px;">
-          Rating Scale Preview (1 = ${q.minLabel || 'Poor'}, 5 = ${q.maxLabel || 'Exceptional'}):
-        </div>
+  container.innerHTML = exitFormData.questions.map((q, idx) => `
+    <div class="question-row-card" id="form_q_${q.id}">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          ${[1, 2, 3, 4, 5].map(s => `
-            <div style="display: flex; align-items: center; gap: 4px; padding: 4px 8px; border-radius: 6px; background: #FFFFFF; border: 1px solid #E2E8F0; font-size: 12px; font-weight: 600; color: #334155;">
-              <span style="color: #F59E0B;">★</span> ${s}
-            </div>
-          `).join('')}
+          <span class="q-num-pill">${idx + 1}</span>
+          <span style="font-size: 13px; font-weight: 700; color: #1E293B;">Question ${idx + 1}</span>
         </div>
-      `;
-    } else if (q.type === 'number_scale') {
-      dynamicPreviewHtml = `
-        <div style="font-size: 11.5px; color: #64748B; margin-bottom: 8px;">
-          Likelihood Range Preview (1 to 10):
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-          ${[1,2,3,4,5,6,7,8,9,10].map(n => `
-            <div style="width: 28px; height: 28px; border-radius: 6px; border: 1px solid ${n >= 9 ? '#C4B5FD' : '#CBD5E1'}; background: ${n >= 9 ? '#EDE9FE' : '#FFFFFF'}; color: ${n >= 9 ? '#7C3AED' : '#334155'}; display: grid; place-items: center; font-weight: 700; font-size: 12px;">
-              ${n}
-            </div>
-          `).join('')}
-        </div>
-      `;
-    } else if (q.type === 'single_select' || q.type === 'multiple_choice') {
-      const isRadio = q.type === 'single_select';
-      dynamicPreviewHtml = `
-        <div style="font-size: 11.5px; font-weight: 600; color: #475569; margin-bottom: 8px;">
-          Configured Option Rows (${q.options ? q.options.length : 0}):
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px;">
-          ${(q.options || []).map((opt, optIdx) => `
-            <div class="qcard-option-row">
-              <span style="font-size: 11.5px; color: #94A3B8; width: 18px;">${optIdx + 1}.</span>
-              <span style="color: #7C3AED; font-size: 13px;">${isRadio ? '○' : '□'}</span>
-              <input type="text" class="form-control" value="${opt.label}"
-                oninput="updateExitOption('${q.id}', '${opt.id}', this.value)"
-                style="flex: 1; padding: 5px 9px; font-size: 12px; border-radius: 6px; border: 1px solid #CBD5E1; background: #FFFFFF;" />
-              <button class="qcard-action-btn danger" onclick="deleteExitOption('${q.id}', '${opt.id}')" title="Delete Option">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-              </button>
-            </div>
-          `).join('')}
-        </div>
-        <button onclick="addExitOption('${q.id}')" style="background: none; border: none; font-size: 11.5px; font-weight: 600; color: #7C3AED; cursor: pointer; padding: 0;">
-          + Add Option Row
+        <button type="button" class="btn-delete-q" onclick="deleteFormQuestion('${q.id}')" title="Delete Question">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
         </button>
-      `;
-    } else if (q.type === 'narrative_text') {
-      dynamicPreviewHtml = `
-        <div style="font-size: 11.5px; color: #64748B; margin-bottom: 6px;">Textarea Preview:</div>
-        <textarea disabled rows="2" style="width: 100%; border-radius: 6px; border: 1px solid #CBD5E1; background: #FFFFFF; font-size: 12px; padding: 6px 10px; box-sizing: border-box;" placeholder="${q.placeholder || 'Colleague feedback will be entered here...'}"></textarea>
-      `;
-    } else if (q.type === 'boolean_yes_no') {
-      dynamicPreviewHtml = `
-        <div style="font-size: 11.5px; color: #64748B; margin-bottom: 6px;">Toggle Options:</div>
-        <div style="display: flex; gap: 8px;">
-          <button style="padding: 4px 14px; border-radius: 6px; border: 1px solid #7C3AED; background: #EDE9FE; color: #7C3AED; font-size: 12px; font-weight: 600;">Yes</button>
-          <button style="padding: 4px 14px; border-radius: 6px; border: 1px solid #CBD5E1; background: #FFFFFF; color: #475569; font-size: 12px;">No</button>
-        </div>
-      `;
-    }
+      </div>
 
-    return `
-      <div class="qcard ${isActive ? 'active' : ''}" id="qcard_${q.id}" onclick="setExitActiveQuestion('${q.id}')">
-        <!-- Header Bar: Drag Handle, Q Number, Required, Move, Duplicate, Delete -->
-        <div class="qcard-header-bar">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span style="color: #94A3B8; cursor: grab; display: flex; align-items: center;" title="Drag to reorder">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="1"/><circle cx="9" cy="5" r="1"/><circle cx="9" cy="19" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="5" r="1"/><circle cx="15" cy="19" r="1"/></svg>
-            </span>
-            <span class="qcard-pill">Q${idx + 1}</span>
-            ${q.categoryTag ? `<span class="qcard-tag-pill">${q.categoryTag}</span>` : ''}
-          </div>
-
-          <div class="qcard-actions">
-            <label style="display: flex; align-items: center; gap: 6px; margin-right: 6px; cursor: pointer; font-size: 12px; color: #475569;">
-              <input type="checkbox" ${q.required ? 'checked' : ''} onchange="updateExitQuestion('${q.id}', 'required', this.checked)" />
-              Required
-            </label>
-
-            <button class="qcard-action-btn" onclick="moveExitQuestion(${idx}, 'up')" ${idx === 0 ? 'disabled style="opacity:0.3;"' : ''} title="Move Up">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-            </button>
-            <button class="qcard-action-btn" onclick="moveExitQuestion(${idx}, 'down')" ${idx === exitStudioData.questions.length - 1 ? 'disabled style="opacity:0.3;"' : ''} title="Move Down">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-            </button>
-            <button class="qcard-action-btn" onclick="duplicateExitQuestion('${q.id}')" title="Duplicate Question">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
-            <button class="qcard-action-btn danger" onclick="deleteExitQuestion('${q.id}')" title="Delete Question">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- Question Prompt & Type Row -->
-        <div style="display: flex; gap: 14px; margin-bottom: 12px; flex-wrap: wrap;">
-          <div style="flex: 1 1 64%;">
-            <label style="font-size: 11.5px; font-weight: 600; color: #334155; margin-bottom: 4px; display: block;">
-              Question Title Prompt <span style="color: #DC2626;">*</span>
-            </label>
-            <input type="text" class="form-control" value="${q.title}"
-              oninput="updateExitQuestion('${q.id}', 'title', this.value)"
-              placeholder="e.g. How would you rate your team culture?"
-              style="width: 100%; font-size: 13px; font-weight: 600; border-radius: 7px; border: 1px solid #CBD5E1; padding: 7px 10px; box-sizing: border-box;" />
-          </div>
-
-          <div style="flex: 1 1 30%; min-width: 170px;">
-            <label style="font-size: 11.5px; font-weight: 600; color: #334155; margin-bottom: 4px; display: block;">
-              Question Type
-            </label>
-            <select class="form-control" onchange="changeExitQuestionType('${q.id}', this.value)"
-              style="width: 100%; font-size: 12.5px; border-radius: 7px; border: 1px solid #CBD5E1; padding: 7px 10px; box-sizing: border-box; background: #FFFFFF;">
-              ${typeOptions.map(opt => `<option value="${opt.value}" ${q.type === opt.value ? 'selected' : ''}>${opt.label}</option>`).join('')}
-            </select>
-          </div>
-        </div>
-
-        <!-- Subtitle/Helper Row -->
-        <div style="margin-bottom: 14px;">
-          <label style="font-size: 11.5px; font-weight: 500; color: #64748B; margin-bottom: 4px; display: block;">
-            Context / Subtitle for Employee (Optional)
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px;">
+        <div>
+          <label class="form-sublabel">
+            Title <span style="color:#DC2626;">*</span>
           </label>
-          <input type="text" class="form-control" value="${q.subtitle || ''}"
-            oninput="updateExitQuestion('${q.id}', 'subtitle', this.value)"
-            placeholder="Helpful context or criteria..."
-            style="width: 100%; font-size: 12px; border-radius: 7px; border: 1px solid #E2E8F0; padding: 6px 10px; box-sizing: border-box;" />
+          <input type="text" class="form-control" value="${escapeHtml(q.title)}" placeholder="Enter question..."
+            oninput="updateFormQuestion('${q.id}', 'title', this.value)"
+            style="width: 100%; height: 38px; border: 1px solid #CBD5E1; border-radius: 7px; padding: 0 11px; font-size: 12.5px; background: #FFFFFF; box-sizing: border-box;" />
         </div>
-
-        <!-- In-Card Dynamic Preview Box -->
-        <div style="background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 9px; padding: 12px 14px;">
-          ${dynamicPreviewHtml}
+        <div>
+          <label class="form-sublabel">
+            Type <span style="color:#DC2626;">*</span>
+          </label>
+          <select class="form-control" onchange="updateFormQuestion('${q.id}', 'type', this.value)"
+            style="width: 100%; height: 38px; border: 1px solid #CBD5E1; border-radius: 7px; padding: 0 11px; font-size: 12.5px; background: #FFFFFF; box-sizing: border-box;">
+            ${typeOptions.map(t => `<option value="${t}" ${q.type === t ? 'selected' : ''}>${t}</option>`).join('')}
+          </select>
         </div>
       </div>
-    `;
-  }).join('');
+
+      <div>
+        <label class="form-sublabel">Placeholder</label>
+        <input type="text" class="form-control" value="${escapeHtml(q.placeholder || '')}" placeholder="Optional field placeholder for colleague..."
+          oninput="updateFormQuestion('${q.id}', 'placeholder', this.value)"
+          style="width: 100%; height: 38px; border: 1px solid #CBD5E1; border-radius: 7px; padding: 0 11px; font-size: 12.5px; background: #FFFFFF; box-sizing: border-box;" />
+      </div>
+    </div>
+  `).join('');
 }
 
-function setExitActiveQuestion(id) {
-  exitStudioData.activeQId = id;
-  const cards = document.querySelectorAll('.qcard');
-  cards.forEach(c => c.classList.remove('active'));
-  const target = document.getElementById(`qcard_${id}`);
-  if (target) target.classList.add('active');
+function handleFormTitle(val) {
+  exitFormData.title = val;
+  const countEl = document.getElementById('formTitleCount');
+  if (countEl) countEl.textContent = `${val.length}/100`;
 }
 
-function updateExitQuestion(id, field, val) {
-  const q = exitStudioData.questions.find(item => item.id === id);
-  if (!q) return;
-  q[field] = val;
-  renderExitPreview();
+function handleFormDesc(val) {
+  exitFormData.description = val;
+  const countEl = document.getElementById('formDescCount');
+  if (countEl) countEl.textContent = `${val.length}/250`;
 }
 
-function changeExitQuestionType(id, newType) {
-  const q = exitStudioData.questions.find(item => item.id === id);
-  if (!q) return;
-  q.type = newType;
-  if ((newType === 'single_select' || newType === 'multiple_choice') && (!q.options || q.options.length === 0)) {
-    q.options = [
-      { id: `${id}_opt1`, label: 'Option 1' },
-      { id: `${id}_opt2`, label: 'Option 2' },
-      { id: `${id}_opt3`, label: 'Option 3' }
-    ];
-  }
-  renderExitQuestions();
-  renderExitPreview();
+function handleFormDraftHyIq() {
+  exitFormData.title = 'Colleague Experience & Exit Survey';
+  exitFormData.department = 'Front Office';
+  exitFormData.description = 'Your candid insights help Crowne Plaza Dubai leadership continuously elevate guest service excellence, team well-being, and managerial support.';
+  exitFormData.questions = [
+    {
+      id: 'q_' + Date.now() + '_1',
+      title: 'What was the decisive factor in your departure?',
+      type: 'Single Select',
+      placeholder: 'Select primary departure driver'
+    },
+    {
+      id: 'q_' + Date.now() + '_2',
+      title: 'How would you rate team camaraderie and departmental cooperation?',
+      type: 'Rating',
+      placeholder: 'Rate from 1 to 5 stars'
+    },
+    {
+      id: 'q_' + Date.now() + '_3',
+      title: 'Did your Line Manager provide constructive shift feedback and support?',
+      type: 'Rating',
+      placeholder: 'Rate managerial leadership'
+    },
+    {
+      id: 'q_' + Date.now() + '_4',
+      title: 'What should our leadership team change or prioritize going forward?',
+      type: 'Paragraph Text',
+      placeholder: 'Provide honest suggestions for executive management...'
+    }
+  ];
+
+  const titleInput = document.getElementById('formTitleInput');
+  const descInput = document.getElementById('formDescInput');
+  const deptSelect = document.getElementById('formDeptSelect');
+  if (titleInput) titleInput.value = exitFormData.title;
+  if (descInput) descInput.value = exitFormData.description;
+  if (deptSelect) deptSelect.value = exitFormData.department;
+
+  handleFormTitle(exitFormData.title);
+  handleFormDesc(exitFormData.description);
+  renderExitForm();
+  showToast('HyIQ: Exit Interview Form drafted with 4 hospitality questions.');
 }
 
-function addExitOption(qId) {
-  const q = exitStudioData.questions.find(item => item.id === qId);
-  if (!q) return;
-  if (!q.options) q.options = [];
-  const nextIdx = q.options.length + 1;
-  q.options.push({
-    id: `${qId}_opt_${Date.now()}`,
-    label: `Option ${nextIdx}`
-  });
-  renderExitQuestions();
-  renderExitPreview();
+function handleFormRefineHyIq() {
+  const refined = 'Your confidential feedback provides invaluable guidance to Crowne Plaza Dubai leadership to continuously refine operational excellence, staff well-being, and leadership practices.';
+  exitFormData.description = refined;
+  const descInput = document.getElementById('formDescInput');
+  if (descInput) descInput.value = refined;
+  handleFormDesc(refined);
+  showToast('HyIQ: Survey description refined to professional standard.');
 }
 
-function deleteExitOption(qId, optId) {
-  const q = exitStudioData.questions.find(item => item.id === qId);
-  if (!q || !q.options) return;
-  if (q.options.length <= 2) {
-    showToast('Multiple choice questions require at least 2 options.');
-    return;
-  }
-  q.options = q.options.filter(o => o.id !== optId);
-  renderExitQuestions();
-  renderExitPreview();
-}
-
-function updateExitOption(qId, optId, val) {
-  const q = exitStudioData.questions.find(item => item.id === qId);
-  if (!q || !q.options) return;
-  const opt = q.options.find(o => o.id === optId);
-  if (opt) opt.label = val;
-  renderExitPreview();
-}
-
-function addExitQuestion(type = 'rating_stars') {
-  const newId = 'q_' + Date.now().toString(36);
+function addFormQuestion() {
   const newQ = {
-    id: newId,
-    type: type,
-    title: 'New Hospitality Question',
-    subtitle: 'Provide feedback instructions for departing colleague.',
-    required: true,
-    categoryTag: 'General Feedback',
-    minLabel: 'Poor',
-    maxLabel: 'Exceptional',
-    options: (type === 'single_select' || type === 'multiple_choice') ? [
-      { id: `${newId}_1`, label: 'Option 1' },
-      { id: `${newId}_2`, label: 'Option 2' },
-      { id: `${newId}_3`, label: 'Option 3' }
-    ] : undefined
+    id: 'q_' + Date.now(),
+    title: '',
+    type: 'Rating',
+    placeholder: ''
   };
-  exitStudioData.questions.push(newQ);
-  exitStudioData.activeQId = newId;
-  renderExitQuestions();
-  renderExitPreview();
-  syncExitStudioCounters();
-  showToast(`Added new ${type.replace('_', ' ')} question.`);
+  exitFormData.questions.push(newQ);
+  renderExitForm();
+  showToast('Question added.');
 }
 
-function duplicateExitQuestion(id) {
-  const target = exitStudioData.questions.find(q => q.id === id);
-  if (!target) return;
-  const newId = 'q_' + Date.now().toString(36);
-  const clone = JSON.parse(JSON.stringify(target));
-  clone.id = newId;
-  clone.title = `${target.title} (Copy)`;
-  const idx = exitStudioData.questions.findIndex(q => q.id === id);
-  exitStudioData.questions.splice(idx + 1, 0, clone);
-  exitStudioData.activeQId = newId;
-  renderExitQuestions();
-  renderExitPreview();
-  syncExitStudioCounters();
-  showToast('Question duplicated.');
-}
-
-function deleteExitQuestion(id) {
-  if (exitStudioData.questions.length <= 1) {
-    showToast('Survey template must retain at least one question.');
+function deleteFormQuestion(id) {
+  if (exitFormData.questions.length <= 1) {
+    showToast('Survey requires at least one question.');
     return;
   }
-  exitStudioData.questions = exitStudioData.questions.filter(q => q.id !== id);
-  renderExitQuestions();
-  renderExitPreview();
-  syncExitStudioCounters();
-  showToast('Question deleted from template.');
+  exitFormData.questions = exitFormData.questions.filter(q => q.id !== id);
+  renderExitForm();
+  showToast('Question deleted.');
 }
 
-function moveExitQuestion(idx, dir) {
-  const targetIdx = dir === 'up' ? idx - 1 : idx + 1;
-  if (targetIdx < 0 || targetIdx >= exitStudioData.questions.length) return;
-  const [moved] = exitStudioData.questions.splice(idx, 1);
-  exitStudioData.questions.splice(targetIdx, 0, moved);
-  renderExitQuestions();
-  renderExitPreview();
-}
-
-/* HyIQ Presets */
-function applyExitAiPreset(preset) {
-  if (preset === 'core') {
-    showToast('HyIQ: Applied Standard Hospitality Exit Suite (6 Questions).');
-    renderExitStudio();
-  } else if (preset === 'leadership') {
-    const leadQ = {
-      id: 'q_lead_' + Date.now().toString(36),
-      type: 'rating_stars',
-      title: 'Did you receive clear, regular feedback from your Department Head regarding guest service standards?',
-      subtitle: 'Evaluates monthly debriefs, shift briefings, and managerial recognition.',
-      required: true,
-      categoryTag: 'Leadership Communication',
-      minLabel: 'Rarely',
-      maxLabel: 'Consistent & Inspiring'
-    };
-    exitStudioData.questions.push(leadQ);
-    renderExitQuestions();
-    renderExitPreview();
-    syncExitStudioCounters();
-    showToast('HyIQ: Appended Leadership & Culture Question.');
-  } else if (preset === 'compensation') {
-    const compQ = {
-      id: 'q_comp_' + Date.now().toString(36),
-      type: 'boolean_yes_no',
-      title: 'Were your service charge allocations, overtime records, and statutory leave encashment clearly explained?',
-      subtitle: 'Audit confirmation prior to final settlement disbursement.',
-      required: true,
-      categoryTag: 'Payroll & Gratuity'
-    };
-    exitStudioData.questions.push(compQ);
-    renderExitQuestions();
-    renderExitPreview();
-    syncExitStudioCounters();
-    showToast('HyIQ: Appended Compensation Transparency Question.');
+function updateFormQuestion(id, field, val) {
+  const q = exitFormData.questions.find(item => item.id === id);
+  if (q) {
+    q[field] = val;
   }
 }
 
-/* ==========================================================================
-   LIVE EMPLOYEE PREVIEW ENGINE (SARA KHAN SIMULATION)
-   ========================================================================== */
-function renderExitPreview() {
-  const container = document.getElementById('previewQuestionsContainer');
-  if (!container) return;
-
-  container.innerHTML = exitStudioData.questions.map((q, idx) => {
-    let answerWidgetHtml = '';
-
-    // A. 1-5 Star Rating
-    if (q.type === 'rating_stars') {
-      const currentVal = exitStudioData.previewAnswers[q.id] || 0;
-      answerWidgetHtml = `
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-          ${[1, 2, 3, 4, 5].map(starVal => {
-            const isFilled = currentVal >= starVal;
-            return `
-              <span class="interactive-star" onclick="ratePreviewStar('${q.id}', ${starVal})" style="color: ${isFilled ? '#F59E0B' : '#CBD5E1'};">
-                ★
-              </span>
-            `;
-          }).join('')}
-        </div>
-        <div style="font-size: 11px; font-weight: 600; color: #7C3AED;">
-          ${currentVal > 0 ? `Selected: ${currentVal} / 5 Stars` : 'Tap a star to rate'}
-        </div>
-      `;
-    }
-
-    // B. Number Scale 1-10
-    else if (q.type === 'number_scale') {
-      const currentScale = exitStudioData.previewAnswers[q.id];
-      answerWidgetHtml = `
-        <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 4px;">
-          ${[1,2,3,4,5,6,7,8,9,10].map(val => `
-            <button class="interactive-scale-pill ${currentScale === val ? 'selected' : ''}" onclick="selectPreviewScale('${q.id}', ${val})">
-              ${val}
-            </button>
-          `).join('')}
-        </div>
-        <div style="display: flex; justify-content: space-between; font-size: 10.5px; color: #94A3B8;">
-          <span>${q.minLabel || 'Not likely'}</span>
-          <span>${q.maxLabel || 'Extremely likely'}</span>
-        </div>
-      `;
-    }
-
-    // C. Single Select (Radio)
-    else if (q.type === 'single_select') {
-      const currentPick = exitStudioData.previewAnswers[q.id];
-      answerWidgetHtml = `
-        <div style="display: flex; flex-direction: column; gap: 7px;">
-          ${(q.options || []).map(opt => `
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: #334155; cursor: pointer;">
-              <input type="radio" name="prev_${q.id}" value="${opt.id}" ${currentPick === opt.id ? 'checked' : ''}
-                onchange="selectPreviewOption('${q.id}', '${opt.id}')" style="margin-top: 2px;" />
-              <span>${opt.label}</span>
-            </label>
-          `).join('')}
-        </div>
-      `;
-    }
-
-    // D. Multiple Choice (Checkboxes)
-    else if (q.type === 'multiple_choice') {
-      const selectedList = exitStudioData.previewAnswers[q.id] || [];
-      answerWidgetHtml = `
-        <div style="display: flex; flex-direction: column; gap: 7px;">
-          ${(q.options || []).map(opt => {
-            const isChecked = selectedList.includes(opt.id);
-            return `
-              <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; color: #334155; cursor: pointer;">
-                <input type="checkbox" value="${opt.id}" ${isChecked ? 'checked' : ''}
-                  onchange="togglePreviewCheckbox('${q.id}', '${opt.id}', this.checked)" style="margin-top: 2px;" />
-                <span>${opt.label}</span>
-              </label>
-            `;
-          }).join('')}
-        </div>
-      `;
-    }
-
-    // E. Narrative Text
-    else if (q.type === 'narrative_text') {
-      const currentText = exitStudioData.previewAnswers[q.id] || '';
-      answerWidgetHtml = `
-        <textarea rows="3" oninput="updatePreviewText('${q.id}', this.value)"
-          placeholder="${q.placeholder || 'Type here...'}"
-          style="width: 100%; border-radius: 8px; border: 1px solid #CBD5E1; padding: 8px 10px; font-size: 12px; box-sizing: border-box; resize: vertical;">${currentText}</textarea>
-      `;
-    }
-
-    // F. Boolean Yes / No
-    else if (q.type === 'boolean_yes_no') {
-      const currentChoice = exitStudioData.previewAnswers[q.id];
-      answerWidgetHtml = `
-        <div style="display: flex; gap: 8px;">
-          ${['Yes', 'No'].map(choice => `
-            <button onclick="selectPreviewOption('${q.id}', '${choice}')"
-              style="padding: 5px 16px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; border: 1px solid ${currentChoice === choice ? '#7C3AED' : '#CBD5E1'}; background: ${currentChoice === choice ? '#7C3AED' : '#FFFFFF'}; color: ${currentChoice === choice ? '#FFFFFF' : '#475569'};">
-              ${choice}
-            </button>
-          `).join('')}
-        </div>
-      `;
-    }
-
-    return `
-      <div class="preview-q-box">
-        <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 4px;">
-          <span style="color: #7C3AED;">${idx + 1}.</span> ${q.title}
-          ${q.required ? '<span style="color: #DC2626;">*</span>' : ''}
-        </div>
-        ${q.subtitle ? `<div style="font-size: 11.5px; color: #64748B; margin-bottom: 10px;">${q.subtitle}</div>` : ''}
-        ${answerWidgetHtml}
-      </div>
-    `;
-  }).join('');
-}
-
-function ratePreviewStar(qId, val) {
-  exitStudioData.previewAnswers[qId] = val;
-  renderExitPreview();
-}
-
-function selectPreviewScale(qId, val) {
-  exitStudioData.previewAnswers[qId] = val;
-  renderExitPreview();
-}
-
-function selectPreviewOption(qId, optId) {
-  exitStudioData.previewAnswers[qId] = optId;
-  renderExitPreview();
-}
-
-function togglePreviewCheckbox(qId, optId, isChecked) {
-  let list = exitStudioData.previewAnswers[qId] || [];
-  if (isChecked) {
-    if (!list.includes(optId)) list.push(optId);
-  } else {
-    list = list.filter(id => id !== optId);
+function saveExitForm() {
+  if (!exitFormData.title.trim()) {
+    showToast('Please enter a survey title.');
+    return;
   }
-  exitStudioData.previewAnswers[qId] = list;
-}
-
-function updatePreviewText(qId, val) {
-  exitStudioData.previewAnswers[qId] = val;
-}
-
-function resetExitPreviewAnswers() {
-  exitStudioData.previewAnswers = {};
-  renderExitPreview();
-  showToast('Preview simulator answers reset.');
-}
-
-/* View Mode Switcher (Split, Builder, Preview) */
-function setExitViewMode(mode) {
-  exitStudioData.viewMode = mode;
-
-  const btnSplit = document.getElementById('segBtnSplit');
-  const btnBuilder = document.getElementById('segBtnBuilder');
-  const btnPreview = document.getElementById('segBtnPreview');
-  const leftPane = document.getElementById('studioLeftPane');
-  const rightPane = document.getElementById('studioRightPane');
-
-  if (btnSplit) btnSplit.classList.toggle('active', mode === 'split');
-  if (btnBuilder) btnBuilder.classList.toggle('active', mode === 'builder');
-  if (btnPreview) btnPreview.classList.toggle('active', mode === 'preview');
-
-  if (mode === 'split') {
-    if (leftPane) {
-      leftPane.style.display = 'flex';
-      leftPane.classList.remove('full-width');
-    }
-    if (rightPane) {
-      rightPane.style.display = 'flex';
-      rightPane.classList.remove('full-width');
-    }
-  } else if (mode === 'builder') {
-    if (leftPane) {
-      leftPane.style.display = 'flex';
-      leftPane.classList.add('full-width');
-    }
-    if (rightPane) {
-      rightPane.style.display = 'none';
-    }
-  } else if (mode === 'preview') {
-    if (leftPane) {
-      leftPane.style.display = 'none';
-    }
-    if (rightPane) {
-      rightPane.style.display = 'flex';
-      rightPane.classList.add('full-width');
-    }
-  }
-}
-
-/* Device Viewport Switcher */
-function setExitPreviewViewport(vp) {
-  exitStudioData.previewViewport = vp;
-  const btnDesktop = document.getElementById('btnDeviceDesktop');
-  const btnMobile = document.getElementById('btnDeviceMobile');
-  const cardContainer = document.getElementById('previewCardContainer');
-
-  if (btnDesktop) btnDesktop.classList.toggle('active', vp === 'desktop');
-  if (btnMobile) btnMobile.classList.toggle('active', vp === 'mobile');
-  if (cardContainer) {
-    if (vp === 'mobile') cardContainer.classList.add('mobile-view');
-    else cardContainer.classList.remove('mobile-view');
-  }
-}
-
-function saveExitStudioTemplate() {
-  showToast('Exit Interview Survey Template published & saved.');
+  showToast('Exit Interview Form saved successfully!');
+  switchToScreen('list');
 }
 </script>
 

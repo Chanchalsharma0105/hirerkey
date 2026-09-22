@@ -6,4 +6,4 @@ export * from './OffboardingList';
 export * from './OffboardingCaseDetail';
 export * from './HirerkeyDashboardShell';
 export * from './OffboardingUserView';
-export * from './ExitInterviewBuilder';
+export * from './ExitInterviewForm';

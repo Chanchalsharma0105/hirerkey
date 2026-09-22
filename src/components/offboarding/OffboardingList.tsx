@@ -33,7 +33,7 @@ import { OffboardingListToolbar } from './OffboardingListToolbar';
 import { OffboardingTable } from './OffboardingTable';
 import { OffboardingCaseDetail } from './OffboardingCaseDetail';
 import { OffboardingUserView } from './OffboardingUserView';
-import { ExitInterviewBuilder } from './ExitInterviewBuilder';
+import { ExitInterviewForm } from './ExitInterviewForm';
 import { HirerkeyDashboardShell } from './HirerkeyDashboardShell';
 import { OffboardingCase, OffboardingScope, REASONS_LIST, STAGE_CONFIGS } from './types';
 import { INITIAL_OFFBOARDING_CASES } from './mockData';
@@ -65,8 +65,8 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
-  // Screen View State (Screen 1: List, Screen 2: Case Workspace, Screen 4: User's View, Screen 5: Exit Interview Studio)
-  const [currentView, setCurrentView] = useState<'list' | 'case' | 'user' | 'builder'>('list');
+  // Screen View State (Screen 1: List, Screen 2: Case Workspace, Screen 4: User's View, Screen 5: Exit Interview Form)
+  const [currentView, setCurrentView] = useState<'list' | 'case' | 'user' | 'form'>('list');
   const [selectedCaseId, setSelectedCaseId] = useState<number>(1);
 
   // Modal & Drawer State
@@ -519,22 +519,22 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
         </Button>
         <Button
           size="sm"
-          variant={currentView === 'builder' ? 'solid' : 'plain'}
-          onClick={() => setCurrentView('builder')}
+          variant={currentView === 'form' ? 'solid' : 'plain'}
+          onClick={() => setCurrentView('form')}
           sx={{
             fontFamily: 'Inter, system-ui, sans-serif',
-            bgcolor: currentView === 'builder' ? '#7C3AED' : 'transparent',
-            color: currentView === 'builder' ? '#FFFFFF' : '#5B6173',
+            bgcolor: currentView === 'form' ? '#7C3AED' : 'transparent',
+            color: currentView === 'form' ? '#FFFFFF' : '#5B6173',
             borderRadius: '8px',
             fontWeight: 600,
             fontSize: '12.5px',
             '&:hover': {
-              bgcolor: currentView === 'builder' ? '#6D28D9' : '#EDE9FE',
-              color: currentView === 'builder' ? '#FFFFFF' : '#7C3AED',
+              bgcolor: currentView === 'form' ? '#6D28D9' : '#EDE9FE',
+              color: currentView === 'form' ? '#FFFFFF' : '#7C3AED',
             },
           }}
         >
-          Screen 5: Exit Interview Studio
+          Screen 5: Exit Interview Form
         </Button>
       </Box>
     </Box>
@@ -1240,7 +1240,7 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
     </Box>
   );
 
-  const builderContent = (
+  const formContent = (
     <Box
       sx={{
         width: '100%',
@@ -1255,7 +1255,7 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
       }}
     >
       {renderScreenSwitcherBar()}
-      <ExitInterviewBuilder onBack={() => setCurrentView('list')} />
+      <ExitInterviewForm onBack={() => setCurrentView('list')} />
     </Box>
   );
 
@@ -1264,8 +1264,8 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
       ? caseContent
       : currentView === 'user'
       ? userContent
-      : currentView === 'builder'
-      ? builderContent
+      : currentView === 'form'
+      ? formContent
       : listContent;
 
   if (withDashboardShell) {
@@ -1277,8 +1277,8 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
             ? `${activeCase.name} (${activeCase.seat})`
             : currentView === 'user'
             ? 'My Offboarding (Sara Khan)'
-            : currentView === 'builder'
-            ? 'Exit Interview Builder & Studio'
+            : currentView === 'form'
+            ? 'Exit Interview Form'
             : null
         }
         onBackToDepartures={() => setCurrentView('list')}
