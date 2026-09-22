@@ -517,15 +517,6 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
           Screen 4: User's View
         </Button>
       </Box>
-
-      <Chip
-        size="sm"
-        variant="soft"
-        color="primary"
-        sx={{ fontFamily: 'Inter, system-ui, sans-serif', fontWeight: 600 }}
-      >
-        Hirerkey Joy UI · Enterprise Suite
-      </Chip>
     </Box>
   );
 
