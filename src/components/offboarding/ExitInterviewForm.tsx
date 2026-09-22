@@ -20,6 +20,7 @@ export interface ExitQuestionItem {
   title: string;
   type: string;
   placeholder?: string;
+  options?: string[];
 }
 
 export interface ExitInterviewFormProps {
@@ -36,26 +37,34 @@ const INITIAL_QUESTIONS: ExitQuestionItem[] = [
   {
     id: 'q1',
     title: 'What was the primary reason for deciding to leave?',
-    type: 'Single Select',
-    placeholder: 'e.g. Career growth, relocation, compensation...',
+    type: 'single_select',
+    placeholder: 'Select primary departure driver',
+    options: [
+      'Career advancement',
+      'Higher compensation',
+      'Work-life balance',
+      'Relocation / Family',
+      'Leadership & management',
+      'Other',
+    ],
   },
   {
     id: 'q2',
     title: 'How would you rate your overall work experience and environment?',
-    type: 'Rating',
+    type: 'rating',
     placeholder: 'Rate from 1 to 5 stars',
   },
   {
     id: 'q3',
-    title: 'How was the support and communication from your direct manager?',
-    type: 'Rating',
-    placeholder: 'Rate managerial guidance and feedback',
+    title: 'Did your direct line manager provide regular support and guidance?',
+    type: 'rating',
+    placeholder: 'Rate managerial support',
   },
   {
     id: 'q4',
-    title: 'What constructive suggestions do you have to improve our workplace?',
-    type: 'Paragraph Text',
-    placeholder: 'Share your candid suggestions for leadership...',
+    title: 'What constructive suggestions do you have for leadership to improve?',
+    type: 'text',
+    placeholder: 'Share your candid suggestions for executive leadership...',
   },
 ];
 
@@ -86,25 +95,32 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
       {
         id: `q_${Date.now()}_1`,
         title: 'What was the decisive factor in your departure?',
-        type: 'Single Select',
+        type: 'single_select',
         placeholder: 'Select primary departure driver',
+        options: [
+          'Better opportunity',
+          'Compensation & benefits',
+          'Career change',
+          'Relocation / Family',
+          'Work environment',
+        ],
       },
       {
         id: `q_${Date.now()}_2`,
         title: 'How would you rate team camaraderie and departmental cooperation?',
-        type: 'Rating',
+        type: 'rating',
         placeholder: 'Rate from 1 to 5 stars',
       },
       {
         id: `q_${Date.now()}_3`,
         title: 'Did your Line Manager provide constructive shift feedback and support?',
-        type: 'Rating',
+        type: 'rating',
         placeholder: 'Rate managerial leadership',
       },
       {
         id: `q_${Date.now()}_4`,
         title: 'What should our leadership team change or prioritize going forward?',
-        type: 'Paragraph Text',
+        type: 'text',
         placeholder: 'Provide honest suggestions for executive management...',
       },
     ]);
@@ -122,10 +138,12 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
     const newQ: ExitQuestionItem = {
       id: `q_${Date.now()}`,
       title: '',
-      type: 'Rating',
-      placeholder: '',
+      type: 'rating',
+      placeholder: 'Enter Placeholder',
+      options: ['Option 1', 'Option 2'],
     };
-    setQuestions([...questions, newQ]);
+    setQuestions((prev) => [...prev, newQ]);
+    showToast(`Question ${questions.length + 1} added.`);
   };
 
   const handleDeleteQuestion = (id: string) => {
@@ -133,16 +151,64 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
       showToast('Survey requires at least one question.');
       return;
     }
-    setQuestions(questions.filter((q) => q.id !== id));
+    setQuestions((prev) => prev.filter((q) => q.id !== id));
+    showToast('Question deleted.');
   };
 
   const handleUpdateQuestion = (
     id: string,
     field: keyof ExitQuestionItem,
-    val: string
+    val: any
   ) => {
-    setQuestions(
-      questions.map((q) => (q.id === id ? { ...q, [field]: val } : q))
+    setQuestions((prev) =>
+      prev.map((q) => {
+        if (q.id !== id) return q;
+        const updated = { ...q, [field]: val };
+        if (
+          field === 'type' &&
+          (val === 'single_select' || val === 'multi_select') &&
+          (!updated.options || updated.options.length === 0)
+        ) {
+          updated.options = ['Option 1', 'Option 2'];
+        }
+        return updated;
+      })
+    );
+  };
+
+  const handleAddOption = (qId: string) => {
+    setQuestions((prev) =>
+      prev.map((q) => {
+        if (q.id !== qId) return q;
+        const opts = q.options ? [...q.options] : [];
+        opts.push(`Option ${opts.length + 1}`);
+        return { ...q, options: opts };
+      })
+    );
+  };
+
+  const handleUpdateOption = (qId: string, optIdx: number, val: string) => {
+    setQuestions((prev) =>
+      prev.map((q) => {
+        if (q.id !== qId || !q.options) return q;
+        const opts = [...q.options];
+        opts[optIdx] = val;
+        return { ...q, options: opts };
+      })
+    );
+  };
+
+  const handleDeleteOption = (qId: string, optIdx: number) => {
+    setQuestions((prev) =>
+      prev.map((q) => {
+        if (q.id !== qId || !q.options) return q;
+        if (q.options.length <= 1) {
+          showToast('Select question requires at least one option.');
+          return q;
+        }
+        const opts = q.options.filter((_, i) => i !== optIdx);
+        return { ...q, options: opts };
+      })
     );
   };
 
@@ -154,7 +220,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
     if (onSave) {
       onSave({ department, title, description, questions });
     }
-    showToast('Exit Interview Form saved successfully!');
+    showToast(`✓ Exit Interview Form saved with ${questions.length} questions!`);
     if (onBack) onBack();
   };
 
@@ -422,21 +488,11 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
             </Typography>
           </Box>
 
-          {/* Questions List */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+          {/* Questions List Matching Screenshot media_1790069447703.png */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
             {questions.map((q, idx) => (
-              <Box
-                key={q.id}
-                sx={{
-                  bgcolor: '#F8FAFC',
-                  border: '1px solid #E2E8F0',
-                  borderRadius: '12px',
-                  p: 2,
-                  transition: 'border-color 0.15s',
-                  '&:hover': { borderColor: '#CBD5E1' },
-                }}
-              >
-                {/* Question Row Top Bar */}
+              <Box key={q.id}>
+                {/* Header: Question N + Delete & Grip */}
                 <Box
                   sx={{
                     display: 'flex',
@@ -445,175 +501,299 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                     mb: 1.5,
                   }}
                 >
+                  <Typography
+                    level="title-sm"
+                    sx={{ fontWeight: 700, color: '#1E293B', fontSize: '15px' }}
+                  >
+                    Question {idx + 1}
+                  </Typography>
+
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                    <Box
+                    <IconButton
+                      size="sm"
+                      variant="plain"
+                      onClick={() => handleDeleteQuestion(q.id)}
+                      title="Delete Question"
                       sx={{
-                        width: 22,
-                        height: 22,
-                        borderRadius: '50%',
-                        bgcolor: '#EDE9FE',
-                        color: '#7C3AED',
-                        fontWeight: 700,
-                        fontSize: '11.5px',
-                        display: 'grid',
-                        placeItems: 'center',
+                        width: 28,
+                        height: 28,
+                        color: '#94A3B8',
+                        borderRadius: '6px',
+                        '&:hover': { bgcolor: '#FEE2E2', color: '#DC2626' },
                       }}
                     >
-                      {idx + 1}
-                    </Box>
-                    <Typography level="title-sm" sx={{ fontWeight: 700, color: '#1E293B', fontSize: '13px' }}>
-                      Question {idx + 1}
-                    </Typography>
-                  </Box>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="9" />
+                        <line x1="8" y1="12" x2="16" y2="12" />
+                      </svg>
+                    </IconButton>
 
-                  <IconButton
-                    size="sm"
-                    variant="plain"
-                    color="danger"
-                    onClick={() => handleDeleteQuestion(q.id)}
-                    sx={{
-                      borderRadius: '6px',
-                      '&:hover': { bgcolor: '#FEE2E2', color: '#DC2626' },
-                    }}
-                  >
-                    <FiTrash2 size={14} />
-                  </IconButton>
+                    <Box
+                      title="Reorder Question"
+                      sx={{
+                        width: 26,
+                        height: 26,
+                        display: 'grid',
+                        placeItems: 'center',
+                        color: '#94A3B8',
+                        cursor: 'grab',
+                        borderRadius: '4px',
+                        '&:hover': { color: '#475569', bgcolor: '#F1F5F9' },
+                      }}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="9" cy="5" r="1.5" />
+                        <circle cx="15" cy="5" r="1.5" />
+                        <circle cx="9" cy="12" r="1.5" />
+                        <circle cx="15" cy="12" r="1.5" />
+                        <circle cx="9" cy="19" r="1.5" />
+                        <circle cx="15" cy="19" r="1.5" />
+                      </svg>
+                    </Box>
+                  </Box>
                 </Box>
 
-                {/* Question Inputs */}
+                {/* Row 1: Title * and Type * */}
                 <Box
                   sx={{
                     display: 'grid',
                     gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-                    gap: 1.5,
-                    mb: 1.5,
+                    gap: 2,
+                    mb: 1.75,
                   }}
                 >
                   <FormControl required>
-                    <FormLabel sx={{ fontSize: '12px', fontWeight: 600, color: '#475569', mb: 0.5 }}>
-                      Title
+                    <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', mb: 0.5 }}>
+                      Title <span style={{ color: '#DC2626' }}>*</span>
                     </FormLabel>
                     <Input
                       value={q.title}
                       onChange={(e) => handleUpdateQuestion(q.id, 'title', e.target.value)}
-                      placeholder="Enter question..."
+                      placeholder={`Question ${idx + 1}`}
                       sx={{
-                        borderRadius: '7px',
-                        borderColor: '#CBD5E1',
-                        fontSize: '12.5px',
-                        height: '38px',
+                        borderRadius: '8px',
+                        borderColor: '#E2E8F0',
+                        fontSize: '13.5px',
+                        height: '42px',
                         bgcolor: '#FFFFFF',
+                        '&:focus-within': { borderColor: '#7C3AED' },
                       }}
                     />
                   </FormControl>
 
                   <FormControl required>
-                    <FormLabel sx={{ fontSize: '12px', fontWeight: 600, color: '#475569', mb: 0.5 }}>
-                      Type
+                    <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', mb: 0.5 }}>
+                      Type <span style={{ color: '#DC2626' }}>*</span>
                     </FormLabel>
                     <Select
                       value={q.type}
                       onChange={(_, val) => val && handleUpdateQuestion(q.id, 'type', val)}
                       sx={{
-                        borderRadius: '7px',
-                        borderColor: '#CBD5E1',
-                        fontSize: '12.5px',
-                        height: '38px',
+                        borderRadius: '8px',
+                        borderColor: '#E2E8F0',
+                        fontSize: '13.5px',
+                        height: '42px',
                         bgcolor: '#FFFFFF',
+                        '&:focus-within': { borderColor: '#7C3AED' },
                       }}
                     >
-                      <Option value="Single Select">Single Select</Option>
-                      <Option value="Rating">Rating (1-5 Stars)</Option>
-                      <Option value="Multiple Choice">Multiple Choice</Option>
-                      <Option value="Paragraph Text">Paragraph Text</Option>
-                      <Option value="Yes / No">Yes / No</Option>
+                      <Option value="rating">rating</Option>
+                      <Option value="text">text</Option>
+                      <Option value="single_select">single_select</Option>
+                      <Option value="multi_select">multi_select</Option>
+                      <Option value="scale">scale</Option>
+                      <Option value="yes_no">yes_no</Option>
                     </Select>
                   </FormControl>
                 </Box>
 
-                <FormControl>
-                  <FormLabel sx={{ fontSize: '12px', fontWeight: 600, color: '#475569', mb: 0.5 }}>
-                    Placeholder
-                  </FormLabel>
-                  <Input
-                    value={q.placeholder || ''}
-                    onChange={(e) => handleUpdateQuestion(q.id, 'placeholder', e.target.value)}
-                    placeholder="Optional field placeholder for colleague..."
+                {/* Row 2: Placeholder (Matches Title width) */}
+                <Box
+                  sx={{
+                    display: 'grid',
+                    gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
+                    gap: 2,
+                    mb: 1.5,
+                  }}
+                >
+                  <FormControl>
+                    <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', mb: 0.5 }}>
+                      Placeholder
+                    </FormLabel>
+                    <Input
+                      value={q.placeholder || ''}
+                      onChange={(e) => handleUpdateQuestion(q.id, 'placeholder', e.target.value)}
+                      placeholder="Enter Placeholder"
+                      sx={{
+                        borderRadius: '8px',
+                        borderColor: '#E2E8F0',
+                        fontSize: '13.5px',
+                        height: '42px',
+                        bgcolor: '#FFFFFF',
+                        '&:focus-within': { borderColor: '#7C3AED' },
+                      }}
+                    />
+                  </FormControl>
+                </Box>
+
+                {/* Options Builder for Select Questions */}
+                {(q.type === 'single_select' || q.type === 'multi_select') && (
+                  <Box
                     sx={{
-                      borderRadius: '7px',
-                      borderColor: '#CBD5E1',
-                      fontSize: '12.5px',
-                      height: '38px',
-                      bgcolor: '#FFFFFF',
+                      mt: 1,
+                      mb: 1.5,
+                      p: 1.5,
+                      bgcolor: '#F8FAFC',
+                      border: '1px dashed #CBD5E1',
+                      borderRadius: '8px',
                     }}
-                  />
-                </FormControl>
+                  >
+                    <Typography
+                      level="body-xs"
+                      sx={{ fontWeight: 600, color: '#475569', mb: 1 }}
+                    >
+                      Options / Choices
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      {(q.options || ['Option 1', 'Option 2']).map((opt, optIdx) => (
+                        <Box
+                          key={optIdx}
+                          sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+                        >
+                          <Input
+                            value={opt}
+                            onChange={(e) => handleUpdateOption(q.id, optIdx, e.target.value)}
+                            placeholder={`Option ${optIdx + 1}`}
+                            sx={{
+                              height: '36px',
+                              fontSize: '12.5px',
+                              borderRadius: '6px',
+                              borderColor: '#CBD5E1',
+                              flex: 1,
+                            }}
+                          />
+                          <IconButton
+                            size="sm"
+                            variant="plain"
+                            onClick={() => handleDeleteOption(q.id, optIdx)}
+                            title="Remove option"
+                            sx={{
+                              width: 28,
+                              height: 28,
+                              color: '#94A3B8',
+                              '&:hover': { color: '#DC2626', bgcolor: '#FEE2E2' },
+                            }}
+                          >
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <circle cx="12" cy="12" r="9" />
+                              <line x1="8" y1="12" x2="16" y2="12" />
+                            </svg>
+                          </IconButton>
+                        </Box>
+                      ))}
+                    </Box>
+                    <Button
+                      size="sm"
+                      variant="plain"
+                      onClick={() => handleAddOption(q.id)}
+                      sx={{
+                        mt: 1,
+                        p: 0,
+                        color: '#7C3AED',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        minHeight: 0,
+                        '&:hover': { bgcolor: 'transparent', color: '#6D28D9' },
+                      }}
+                    >
+                      + Add Option
+                    </Button>
+                  </Box>
+                )}
+
+                {/* Question Divider */}
+                {idx < questions.length - 1 && (
+                  <Divider sx={{ my: 2, borderColor: '#F1F5F9' }} />
+                )}
               </Box>
             ))}
           </Box>
 
-          {/* Add Question Button */}
-          <Button
-            variant="outlined"
-            onClick={handleAddQuestion}
-            startDecorator={<FiPlus />}
-            sx={{
-              borderStyle: 'dashed',
-              borderColor: '#C4B5FD',
-              bgcolor: '#F5F3FF',
-              color: '#7C3AED',
-              fontWeight: 600,
-              fontSize: '13px',
-              borderRadius: '10px',
-              py: 1.25,
-              '&:hover': {
-                bgcolor: '#EDE9FE',
-                borderColor: '#7C3AED',
-              },
-            }}
-          >
-            Add Question
-          </Button>
-        </Box>
+          {/* Divider above + Add Question */}
+          <Divider sx={{ my: 0.5, borderColor: '#E2E8F0' }} />
 
-        {/* Footer Actions */}
-        <Divider sx={{ my: 3 }} />
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1.5 }}>
-          {onBack && (
+          {/* Right-aligned + Add Question pill button */}
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', my: 0.5 }}>
             <Button
-              variant="outlined"
-              color="neutral"
-              onClick={onBack}
+              variant="plain"
+              onClick={handleAddQuestion}
               sx={{
-                fontWeight: 500,
-                fontSize: '13px',
+                bgcolor: '#F5F3FF',
+                color: '#7C3AED',
+                fontWeight: 600,
+                fontSize: '13.5px',
                 borderRadius: '8px',
-                borderColor: '#CBD5E1',
-                color: '#475569',
+                border: '1px solid #EDE9FE',
+                py: 1,
                 px: 2.25,
+                '&:hover': {
+                  bgcolor: '#EDE9FE',
+                  color: '#6D28D9',
+                },
               }}
             >
-              Cancel
+              + Add Question
             </Button>
-          )}
-          <Button
-            onClick={handleSave}
+          </Box>
+
+          {/* Divider below + Add Question */}
+          <Divider sx={{ my: 0.5, borderColor: '#E2E8F0' }} />
+
+          {/* Footer Actions: Cancel and Add */}
+          <Box
             sx={{
-              fontWeight: 600,
-              fontSize: '13px',
-              borderRadius: '8px',
-              bgcolor: '#7C3AED',
-              color: '#FFFFFF',
-              px: 2.75,
-              boxShadow: '0 2px 8px rgba(124, 58, 237, 0.25)',
-              '&:hover': {
-                bgcolor: '#6D28D9',
-                boxShadow: '0 4px 12px rgba(124, 58, 237, 0.35)',
-              },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
+              gap: 2,
+              pt: 0.5,
             }}
           >
-            Save Exit Interview
-          </Button>
+            {onBack && (
+              <Button
+                variant="plain"
+                onClick={onBack}
+                sx={{
+                  color: '#1E293B',
+                  fontWeight: 600,
+                  fontSize: '14px',
+                  p: 1,
+                  '&:hover': { bgcolor: '#F1F5F9', color: '#475569' },
+                }}
+              >
+                Cancel
+              </Button>
+            )}
+            <Button
+              onClick={handleSave}
+              sx={{
+                fontWeight: 600,
+                fontSize: '14px',
+                borderRadius: '8px',
+                bgcolor: '#7C3AED',
+                color: '#FFFFFF',
+                px: 3,
+                py: 1,
+                boxShadow: '0 2px 6px rgba(124, 58, 237, 0.28)',
+                '&:hover': {
+                  bgcolor: '#6D28D9',
+                  boxShadow: '0 4px 12px rgba(124, 58, 237, 0.38)',
+                },
+              }}
+            >
+              Add
+            </Button>
+          </Box>
         </Box>
       </Card>
     </Box>

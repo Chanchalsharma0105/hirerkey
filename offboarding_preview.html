@@ -3889,109 +3889,160 @@
       background: #EDE9FE;
       color: #7C3AED;
     }
-    .question-row-card {
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      border-radius: 12px;
-      padding: 16px 18px;
-      transition: border-color 0.15s, box-shadow 0.15s;
+    .question-block {
+      background: #FFFFFF;
+      transition: all 0.15s;
     }
-    .question-row-card:hover {
-      border-color: #CBD5E1;
-    }
-    .q-num-pill {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: #EDE9FE;
-      color: #7C3AED;
-      font-weight: 700;
-      font-size: 11.5px;
-      display: grid;
-      place-items: center;
-    }
-    .form-sublabel {
-      font-size: 12px;
+    .form-field-label {
+      font-size: 13px;
       font-weight: 600;
-      color: #475569;
-      margin-bottom: 5px;
+      color: #1E293B;
+      margin-bottom: 6px;
       display: block;
     }
-    .btn-delete-q {
+    .form-field-input {
+      width: 100%;
+      height: 42px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 0 14px;
+      font-size: 13.5px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1E293B;
+      background: #FFFFFF;
+      box-sizing: border-box;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-field-input:focus {
+      outline: none;
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+    .form-field-input::placeholder {
+      color: #94A3B8;
+    }
+    .custom-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    .form-field-select {
+      width: 100%;
+      height: 42px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 0 34px 0 14px;
+      font-size: 13.5px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1E293B;
+      background: #FFFFFF;
+      appearance: none;
+      -webkit-appearance: none;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-field-select:focus {
+      outline: none;
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+    .select-caret {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+    .btn-icon-minus {
       width: 28px;
       height: 28px;
       border-radius: 6px;
-      border: 1px solid transparent;
+      border: none;
       background: transparent;
       color: #94A3B8;
       display: grid;
       place-items: center;
       cursor: pointer;
+      padding: 0;
       transition: all 0.15s;
     }
-    .btn-delete-q:hover {
+    .btn-icon-minus:hover {
       background: #FEE2E2;
       color: #DC2626;
     }
-    .btn-add-question {
-      width: 100%;
-      padding: 10px 16px;
-      border-radius: 10px;
-      border: 1.5px dashed #C4B5FD;
+    .btn-icon-minus:hover svg {
+      stroke: #DC2626;
+    }
+    .drag-handle-dots {
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      color: #94A3B8;
+      cursor: grab;
+      border-radius: 4px;
+      transition: all 0.15s;
+    }
+    .drag-handle-dots:hover {
+      color: #475569;
+      background: #F1F5F9;
+    }
+    .form-divider {
+      border: 0;
+      border-top: 1px solid #E2E8F0;
+      margin: 18px 0;
+    }
+    .btn-add-question-screenshot {
       background: #F5F3FF;
       color: #7C3AED;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      transition: all 0.15s;
-    }
-    .btn-add-question:hover {
-      background: #EDE9FE;
-      border-color: #7C3AED;
-    }
-    .exit-form-footer {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 12px;
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid #F1F5F9;
-    }
-    .exit-form-footer .btn-cancel {
       padding: 8px 18px;
-      font-size: 13px;
-      font-weight: 500;
       border-radius: 8px;
-      border: 1px solid #CBD5E1;
-      background: #FFFFFF;
-      color: #475569;
+      border: 1px solid #EDE9FE;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       transition: all 0.15s;
+      font-family: 'Inter', system-ui, sans-serif;
     }
-    .exit-form-footer .btn-cancel:hover {
-      background: #F8FAFC;
-      color: #1E293B;
+    .btn-add-question-screenshot:hover {
+      background: #EDE9FE;
+      color: #6D28D9;
     }
-    .exit-form-footer .btn-primary {
-      padding: 8px 22px;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 8px;
+    .btn-cancel-plain {
+      background: none;
       border: none;
+      color: #1E293B;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-family: 'Inter', system-ui, sans-serif;
+      transition: color 0.15s, background 0.15s;
+    }
+    .btn-cancel-plain:hover {
+      color: #475569;
+      background: #F1F5F9;
+    }
+    .btn-add-solid {
       background: #7C3AED;
       color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 8px 24px;
+      border-radius: 8px;
+      border: none;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+      font-family: 'Inter', system-ui, sans-serif;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.28);
       transition: all 0.15s;
     }
-    .exit-form-footer .btn-primary:hover {
+    .btn-add-solid:hover {
       background: #6D28D9;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.38);
     }
 </style>
 
@@ -4959,7 +5010,7 @@
               </div>
 
               <!-- Questions Header -->
-              <div style="display: flex; justify-content: space-between; align-items: center; margin: 24px 0 12px 0;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin: 24px 0 14px 0;">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span style="font-size: 14px; font-weight: 700; color: #0F172A;">Questions</span>
                   <span class="badge-count" id="formQuestionBadge">4 Questions</span>
@@ -4967,25 +5018,29 @@
                 <span style="font-size: 11.5px; color: #94A3B8;">Configured for leaver survey</span>
               </div>
 
-              <!-- Dynamic Questions List -->
-              <div id="formQuestionsContainer" style="display: flex; flex-direction: column; gap: 12px;">
-                <!-- Rendered dynamically via renderExitForm() -->
+              <!-- Dynamic Questions List (Rendered dynamically via renderExitForm()) -->
+              <div id="formQuestionsContainer" style="display: flex; flex-direction: column; gap: 18px;">
               </div>
 
-              <!-- + Add Question Button -->
-              <div style="margin-top: 14px;">
-                <button type="button" class="btn-add-question" onclick="addFormQuestion()">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                  Add Question
+              <!-- Divider Line above + Add Question -->
+              <hr class="form-divider" />
+
+              <!-- Right-aligned + Add Question pill button -->
+              <div style="display: flex; justify-content: flex-end; margin: 4px 0;">
+                <button type="button" class="btn-add-question-screenshot" onclick="addFormQuestion()">
+                  + Add Question
                 </button>
               </div>
 
-            </div>
+              <!-- Divider Line below + Add Question -->
+              <hr class="form-divider" />
 
-            <!-- Form Actions Footer -->
-            <div class="exit-form-footer">
-              <button type="button" class="btn-cancel" onclick="switchToScreen('list')">Cancel</button>
-              <button type="button" class="btn-primary" onclick="saveExitForm()">Save Exit Interview</button>
+              <!-- Form Actions Footer -->
+              <div style="display: flex; align-items: center; justify-content: flex-end; gap: 16px; margin-top: 10px;">
+                <button type="button" class="btn-cancel-plain" onclick="switchToScreen('list')">Cancel</button>
+                <button type="button" class="btn-add-solid" onclick="saveExitForm()">Add</button>
+              </div>
+
             </div>
 
           </div>
@@ -7393,6 +7448,17 @@ renderSettingsView();
 /* ==========================================================================
    SCREEN 5: EXIT INTERVIEW FORM ENGINE (HIRERKEY MODERN FORM DESIGN)
    ========================================================================== */
+
+function escapeHtml(str) {
+  if (str === undefined || str === null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
 let exitFormData = {
   department: 'Front Office',
   title: 'Employee Exit Interview Survey',
@@ -7401,26 +7467,27 @@ let exitFormData = {
     {
       id: 'q1',
       title: 'What was the primary reason for deciding to leave?',
-      type: 'Single Select',
-      placeholder: 'e.g. Career growth, relocation, compensation...'
+      type: 'single_select',
+      placeholder: 'Select primary departure driver',
+      options: ['Career advancement', 'Higher compensation', 'Work-life balance', 'Relocation / Family', 'Leadership & management', 'Other']
     },
     {
       id: 'q2',
       title: 'How would you rate your overall work experience and environment?',
-      type: 'Rating',
+      type: 'rating',
       placeholder: 'Rate from 1 to 5 stars'
     },
     {
       id: 'q3',
-      title: 'How was the support and communication from your direct manager?',
-      type: 'Rating',
-      placeholder: 'Rate managerial guidance and feedback'
+      title: 'Did your direct line manager provide regular support and guidance?',
+      type: 'rating',
+      placeholder: 'Rate managerial support'
     },
     {
       id: 'q4',
-      title: 'What constructive suggestions do you have to improve our workplace?',
-      type: 'Paragraph Text',
-      placeholder: 'Share your candid suggestions for leadership...'
+      title: 'What constructive suggestions do you have for leadership to improve?',
+      type: 'text',
+      placeholder: 'Share your candid suggestions for executive leadership...'
     }
   ]
 };
@@ -7445,52 +7512,84 @@ function renderExitForm() {
 
   if (!container) return;
 
-  const typeOptions = [
-    'Single Select',
-    'Rating',
-    'Multiple Choice',
-    'Paragraph Text',
-    'Yes / No'
-  ];
-
   container.innerHTML = exitFormData.questions.map((q, idx) => `
-    <div class="question-row-card" id="form_q_${q.id}">
+    <div class="question-block" id="form_q_${q.id}">
       <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+        <span style="font-size: 15px; font-weight: 700; color: #1E293B;">Question ${idx + 1}</span>
         <div style="display: flex; align-items: center; gap: 8px;">
-          <span class="q-num-pill">${idx + 1}</span>
-          <span style="font-size: 13px; font-weight: 700; color: #1E293B;">Question ${idx + 1}</span>
-        </div>
-        <button type="button" class="btn-delete-q" onclick="deleteFormQuestion('${q.id}')" title="Delete Question">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-        </button>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 12px;">
-        <div>
-          <label class="form-sublabel">
-            Title <span style="color:#DC2626;">*</span>
-          </label>
-          <input type="text" class="form-control" value="${escapeHtml(q.title)}" placeholder="Enter question..."
-            oninput="updateFormQuestion('${q.id}', 'title', this.value)"
-            style="width: 100%; height: 38px; border: 1px solid #CBD5E1; border-radius: 7px; padding: 0 11px; font-size: 12.5px; background: #FFFFFF; box-sizing: border-box;" />
-        </div>
-        <div>
-          <label class="form-sublabel">
-            Type <span style="color:#DC2626;">*</span>
-          </label>
-          <select class="form-control" onchange="updateFormQuestion('${q.id}', 'type', this.value)"
-            style="width: 100%; height: 38px; border: 1px solid #CBD5E1; border-radius: 7px; padding: 0 11px; font-size: 12.5px; background: #FFFFFF; box-sizing: border-box;">
-            ${typeOptions.map(t => `<option value="${t}" ${q.type === t ? 'selected' : ''}>${t}</option>`).join('')}
-          </select>
+          <button type="button" class="btn-icon-minus" onclick="deleteFormQuestion('${q.id}')" title="Delete Question">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/>
+              <line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+          </button>
+          <div class="drag-handle-dots" title="Reorder Question (${idx > 0 ? 'Click to move up' : 'Click to move down'})" onclick="moveFormQuestion('${q.id}', ${idx > 0 ? "'up'" : "'down'"})">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#94A3B8">
+              <circle cx="9" cy="5" r="1.5"/>
+              <circle cx="15" cy="5" r="1.5"/>
+              <circle cx="9" cy="12" r="1.5"/>
+              <circle cx="15" cy="12" r="1.5"/>
+              <circle cx="9" cy="19" r="1.5"/>
+              <circle cx="15" cy="19" r="1.5"/>
+            </svg>
+          </div>
         </div>
       </div>
 
-      <div>
-        <label class="form-sublabel">Placeholder</label>
-        <input type="text" class="form-control" value="${escapeHtml(q.placeholder || '')}" placeholder="Optional field placeholder for colleague..."
-          oninput="updateFormQuestion('${q.id}', 'placeholder', this.value)"
-          style="width: 100%; height: 38px; border: 1px solid #CBD5E1; border-radius: 7px; padding: 0 11px; font-size: 12.5px; background: #FFFFFF; box-sizing: border-box;" />
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px;">
+        <div>
+          <label class="form-field-label">Title <span style="color: #DC2626;">*</span></label>
+          <input type="text" class="form-field-input" value="${escapeHtml(q.title)}" placeholder="Question ${idx + 1}"
+            oninput="updateFormQuestion('${q.id}', 'title', this.value)" />
+        </div>
+        <div>
+          <label class="form-field-label">Type <span style="color: #DC2626;">*</span></label>
+          <div class="custom-select-wrapper">
+            <select class="form-field-select" onchange="updateFormQuestion('${q.id}', 'type', this.value)">
+              <option value="rating" ${q.type === 'rating' ? 'selected' : ''}>rating</option>
+              <option value="text" ${q.type === 'text' ? 'selected' : ''}>text</option>
+              <option value="single_select" ${q.type === 'single_select' ? 'selected' : ''}>single_select</option>
+              <option value="multi_select" ${q.type === 'multi_select' ? 'selected' : ''}>multi_select</option>
+              <option value="scale" ${q.type === 'scale' ? 'selected' : ''}>scale</option>
+              <option value="yes_no" ${q.type === 'yes_no' ? 'selected' : ''}>yes_no</option>
+            </select>
+            <svg class="select-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2">
+              <polyline points="7 15 12 20 17 15"/>
+              <polyline points="7 9 12 4 17 9"/>
+            </svg>
+          </div>
+        </div>
       </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px;">
+        <div>
+          <label class="form-field-label">Placeholder</label>
+          <input type="text" class="form-field-input" value="${escapeHtml(q.placeholder || '')}" placeholder="Enter Placeholder"
+            oninput="updateFormQuestion('${q.id}', 'placeholder', this.value)" />
+        </div>
+      </div>
+
+      ${(q.type === 'single_select' || q.type === 'multi_select') ? `
+        <div style="margin-top: 6px; margin-bottom: 14px; padding: 12px 14px; background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 8px;">
+          <div style="font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 8px;">Options / Choices</div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            ${(q.options || ['Option 1', 'Option 2']).map((opt, optIdx) => `
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <input type="text" class="form-field-input" style="height: 36px; font-size: 12.5px;" value="${escapeHtml(opt)}" placeholder="Option ${optIdx + 1}"
+                  oninput="updateFormOption('${q.id}', ${optIdx}, this.value)" />
+                <button type="button" class="btn-icon-minus" onclick="deleteFormOption('${q.id}', ${optIdx})" title="Remove option" style="width: 28px; height: 28px;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                </button>
+              </div>
+            `).join('')}
+          </div>
+          <button type="button" onclick="addFormOption('${q.id}')" style="margin-top: 8px; background: none; border: none; color: #7C3AED; font-size: 12px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 0;">
+            + Add Option
+          </button>
+        </div>
+      ` : ''}
+
+      ${idx < exitFormData.questions.length - 1 ? '<hr class="form-divider" style="margin: 18px 0;" />' : ''}
     </div>
   `).join('');
 }
@@ -7515,25 +7614,26 @@ function handleFormDraftHyIq() {
     {
       id: 'q_' + Date.now() + '_1',
       title: 'What was the decisive factor in your departure?',
-      type: 'Single Select',
-      placeholder: 'Select primary departure driver'
+      type: 'single_select',
+      placeholder: 'Select primary departure driver',
+      options: ['Better opportunity', 'Compensation & benefits', 'Career change', 'Relocation / Family', 'Work environment']
     },
     {
       id: 'q_' + Date.now() + '_2',
       title: 'How would you rate team camaraderie and departmental cooperation?',
-      type: 'Rating',
+      type: 'rating',
       placeholder: 'Rate from 1 to 5 stars'
     },
     {
       id: 'q_' + Date.now() + '_3',
       title: 'Did your Line Manager provide constructive shift feedback and support?',
-      type: 'Rating',
+      type: 'rating',
       placeholder: 'Rate managerial leadership'
     },
     {
       id: 'q_' + Date.now() + '_4',
       title: 'What should our leadership team change or prioritize going forward?',
-      type: 'Paragraph Text',
+      type: 'text',
       placeholder: 'Provide honest suggestions for executive management...'
     }
   ];
@@ -7561,15 +7661,27 @@ function handleFormRefineHyIq() {
 }
 
 function addFormQuestion() {
+  const newNum = exitFormData.questions.length + 1;
   const newQ = {
     id: 'q_' + Date.now(),
     title: '',
-    type: 'Rating',
-    placeholder: ''
+    type: 'rating',
+    placeholder: 'Enter Placeholder',
+    options: ['Option 1', 'Option 2']
   };
   exitFormData.questions.push(newQ);
   renderExitForm();
-  showToast('Question added.');
+  showToast(`Question ${newNum} added.`);
+
+  // Focus newly added question title input
+  setTimeout(() => {
+    const el = document.getElementById(`form_q_${newQ.id}`);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const input = el.querySelector('input');
+      if (input) input.focus();
+    }
+  }, 80);
 }
 
 function deleteFormQuestion(id) {
@@ -7582,19 +7694,65 @@ function deleteFormQuestion(id) {
   showToast('Question deleted.');
 }
 
+function moveFormQuestion(id, direction) {
+  const idx = exitFormData.questions.findIndex(q => q.id === id);
+  if (idx === -1) return;
+  const targetIdx = direction === 'up' ? idx - 1 : idx + 1;
+  if (targetIdx < 0 || targetIdx >= exitFormData.questions.length) return;
+  const item = exitFormData.questions.splice(idx, 1)[0];
+  exitFormData.questions.splice(targetIdx, 0, item);
+  renderExitForm();
+  showToast(`Question moved ${direction}.`);
+}
+
 function updateFormQuestion(id, field, val) {
   const q = exitFormData.questions.find(item => item.id === id);
+  if (!q) return;
+  q[field] = val;
+  if (field === 'type') {
+    if ((val === 'single_select' || val === 'multi_select') && (!q.options || q.options.length === 0)) {
+      q.options = ['Option 1', 'Option 2'];
+    }
+    renderExitForm();
+  }
+}
+
+function addFormOption(qId) {
+  const q = exitFormData.questions.find(item => item.id === qId);
   if (q) {
-    q[field] = val;
+    if (!q.options) q.options = [];
+    q.options.push(`Option ${q.options.length + 1}`);
+    renderExitForm();
+  }
+}
+
+function updateFormOption(qId, optIdx, val) {
+  const q = exitFormData.questions.find(item => item.id === qId);
+  if (q && q.options && q.options[optIdx] !== undefined) {
+    q.options[optIdx] = val;
+  }
+}
+
+function deleteFormOption(qId, optIdx) {
+  const q = exitFormData.questions.find(item => item.id === qId);
+  if (q && q.options) {
+    if (q.options.length <= 1) {
+      showToast('Select question requires at least one option.');
+      return;
+    }
+    q.options.splice(optIdx, 1);
+    renderExitForm();
   }
 }
 
 function saveExitForm() {
   if (!exitFormData.title.trim()) {
     showToast('Please enter a survey title.');
+    const titleInput = document.getElementById('formTitleInput');
+    if (titleInput) titleInput.focus();
     return;
   }
-  showToast('Exit Interview Form saved successfully!');
+  showToast(`✓ Exit Interview Form saved with ${exitFormData.questions.length} questions!`);
   switchToScreen('list');
 }
 </script>
