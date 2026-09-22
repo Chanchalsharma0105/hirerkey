@@ -3790,25 +3790,35 @@
        SCREEN 5: EXIT INTERVIEW FORM STYLES (HIRERKEY MODERN FORM DESIGN)
        ========================================================================== */
     .exit-form-wrapper {
-      max-width: 680px;
+      max-width: 700px;
       margin: 16px auto 40px auto;
       width: 100%;
     }
     .exit-form-card {
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 24px 28px;
-      box-shadow: 0 4px 20px rgba(0, 23, 65, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02);
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
     }
     .exit-form-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-bottom: 16px;
+      padding-bottom: 18px;
       border-bottom: 1px solid #F1F5F9;
       margin-bottom: 20px;
-      gap: 12px;
+      gap: 14px;
+    }
+    .header-icon-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #EDE9FE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
     .exit-form-title {
       font-size: 18px;
@@ -3825,38 +3835,65 @@
       width: 32px;
       height: 32px;
       border-radius: 8px;
-      border: 1px solid #E2E8F0;
-      background: #FFFFFF;
+      border: none;
+      background: transparent;
       color: #64748B;
       display: grid;
       place-items: center;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 16px;
       transition: all 0.15s;
     }
     .btn-form-close:hover {
       background: #F1F5F9;
       color: #0F172A;
     }
-    .hyiq-royal-btn {
-      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 55%, #4F46E5 100%);
-      color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 8px;
-      padding: 7px 14px;
-      font-size: 12.5px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
+    /* AI Banner Matching User Theme (media_1790073342868.png) */
+    .ai-fill-banner {
+      display: flex;
       align-items: center;
-      gap: 7px;
-      box-shadow: 0 4px 14px -2px rgba(124, 58, 237, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.4);
-      transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+      justify-content: space-between;
+      background: #FAF5FF;
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: all 0.18s;
     }
-    .hyiq-royal-btn:hover {
-      transform: translateY(-1.5px);
-      box-shadow: 0 6px 20px -2px rgba(124, 58, 237, 0.55), inset 0 1px 1.5px rgba(255, 255, 255, 0.55);
-      background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 55%, #4338CA 100%);
+    .ai-fill-banner:hover {
+      background: #F5EEFF;
+      border-color: #DDD6FE;
+      transform: translateY(-1px);
+    }
+    .ai-fill-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ai-fill-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #EDE9FE;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .ai-fill-btn-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      border: none;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .ai-fill-btn-circle:hover {
+      background: #DDD6FE;
     }
     .char-counter {
       font-size: 11.5px;
@@ -3889,9 +3926,29 @@
       background: #EDE9FE;
       color: #7C3AED;
     }
-    .question-block {
+    /* Contained Question Box Theme */
+    .question-box {
       background: #FFFFFF;
-      transition: all 0.15s;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .question-box:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .q-badge-pill {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 700;
+      font-size: 11px;
+      display: grid;
+      place-items: center;
     }
     .form-field-label {
       font-size: 13px;
@@ -4011,38 +4068,50 @@
       background: #EDE9FE;
       color: #6D28D9;
     }
-    .btn-cancel-plain {
-      background: none;
-      border: none;
-      color: #1E293B;
-      font-size: 14px;
+    .exit-form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid #F1F5F9;
+    }
+    .exit-form-footer .btn-cancel {
+      padding: 9px 20px;
+      font-size: 13px;
       font-weight: 600;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #1E293B;
       cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 6px;
       font-family: 'Inter', system-ui, sans-serif;
-      transition: color 0.15s, background 0.15s;
+      transition: all 0.15s;
     }
-    .btn-cancel-plain:hover {
-      color: #475569;
-      background: #F1F5F9;
+    .exit-form-footer .btn-cancel:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
     }
-    .btn-add-solid {
+    .exit-form-footer .btn-submit {
       background: #7C3AED;
       color: #FFFFFF;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
-      padding: 8px 24px;
+      padding: 9px 22px;
       border-radius: 8px;
       border: none;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-family: 'Inter', system-ui, sans-serif;
-      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.28);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.28);
       transition: all 0.15s;
     }
-    .btn-add-solid:hover {
+    .exit-form-footer .btn-submit:hover {
       background: #6D28D9;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.38);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.38);
     }
 </style>
 
@@ -4933,66 +5002,91 @@
         <div class="exit-form-wrapper">
           <div class="exit-form-card">
             
-            <!-- Form Header: Archetype A (Title + HyIQ Royal Aura Action + Close Button) -->
+            <!-- Form Header Matching Theme (media_1790073342868.png) -->
             <div class="exit-form-header">
-              <div>
-                <div class="exit-form-title">Exit Interview</div>
-                <div class="exit-form-subtitle">Configure the exit interview questionnaire for departing employees</div>
-              </div>
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <!-- Archetype A: The Royal Aura AI Action Button -->
-                <button type="button" class="hyiq-royal-btn" onclick="handleFormDraftHyIq()" title="Draft Questions with HyIQ">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFFFFF"/>
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div class="header-icon-badge">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
                   </svg>
-                  Draft with HyIQ
-                </button>
-                <button type="button" class="btn-form-close" onclick="switchToScreen('list')" title="Back to Departures">✕</button>
+                </div>
+                <div>
+                  <div class="exit-form-title">Exit Interview</div>
+                  <div class="exit-form-subtitle">Describe the questions and our support team will handle collection.</div>
+                </div>
               </div>
+              <button type="button" class="btn-form-close" onclick="switchToScreen('list')" title="Back to Departures">✕</button>
             </div>
 
             <!-- Form Body -->
             <div class="exit-form-body">
               
-              <!-- Department Select Field -->
-              <div class="form-group" style="margin-bottom: 18px;">
-                <label class="form-label" style="font-size: 13px; font-weight: 600; color: #334155; margin-bottom: 6px; display: block;">
-                  Department <span style="color: #DC2626;">*</span>
-                </label>
-                <select class="form-control" id="formDeptSelect" onchange="exitFormData.department = this.value"
-                  style="width: 100%; height: 40px; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0 12px; font-size: 13px; font-family: Inter, system-ui, sans-serif; color: #1E293B; background: #FFFFFF;">
-                  <option value="All Departments">All Departments</option>
-                  <option value="Front Office" selected>Front Office</option>
-                  <option value="Food & Beverage">Food & Beverage</option>
-                  <option value="Housekeeping">Housekeeping</option>
-                  <option value="Kitchen / Culinary">Kitchen / Culinary</option>
-                  <option value="Engineering & Facilities">Engineering & Facilities</option>
-                  <option value="Sales & Marketing">Sales & Marketing</option>
-                  <option value="Human Resources">Human Resources</option>
-                  <option value="Security & Safety">Security & Safety</option>
-                </select>
+              <!-- AI Fill Banner Matching Theme (media_1790073342868.png) -->
+              <div class="ai-fill-banner" onclick="handleFormDraftHyIq()" title="Click to auto-draft questions with AI">
+                <div class="ai-fill-left">
+                  <div class="ai-fill-badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#7C3AED"/>
+                    </svg>
+                  </div>
+                  <span style="font-size: 13.5px; color: #334155;">
+                    Describe it and let <strong style="color: #7C3AED;">AI fill this in</strong>
+                  </span>
+                </div>
+                <button type="button" class="ai-fill-btn-circle" title="Draft with AI">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                  </svg>
+                </button>
               </div>
 
-              <!-- Title Field with Character Counter (100 char limit) -->
+              <!-- Department Select Field -->
+              <div class="form-group" style="margin-bottom: 18px;">
+                <label class="form-field-label">
+                  Department <span style="color: #DC2626;">*</span>
+                </label>
+                <div class="custom-select-wrapper">
+                  <select class="form-field-select" id="formDeptSelect" onchange="exitFormData.department = this.value">
+                    <option value="All Departments">All Departments</option>
+                    <option value="Front Office" selected>Front Office</option>
+                    <option value="Food & Beverage">Food & Beverage</option>
+                    <option value="Housekeeping">Housekeeping</option>
+                    <option value="Kitchen / Culinary">Kitchen / Culinary</option>
+                    <option value="Engineering & Facilities">Engineering & Facilities</option>
+                    <option value="Sales & Marketing">Sales & Marketing</option>
+                    <option value="Human Resources">Human Resources</option>
+                    <option value="Security & Safety">Security & Safety</option>
+                  </select>
+                  <svg class="select-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Survey Title Field with Character Counter (100 char limit) -->
               <div class="form-group" style="margin-bottom: 18px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                  <label class="form-label" style="font-size: 13px; font-weight: 600; color: #334155; margin: 0;">
-                    Title <span style="color: #DC2626;">*</span>
+                  <label class="form-field-label" style="margin: 0;">
+                    Survey Title <span style="color: #DC2626;">*</span>
                   </label>
                   <span class="char-counter" id="formTitleCount">31/100</span>
                 </div>
-                <input type="text" class="form-control" id="formTitleInput"
+                <input type="text" class="form-field-input" id="formTitleInput"
                   value="Employee Exit Interview Survey"
                   maxlength="100"
                   placeholder="Enter survey title..."
-                  oninput="handleFormTitle(this.value)"
-                  style="width: 100%; height: 40px; border: 1px solid #CBD5E1; border-radius: 8px; padding: 0 12px; font-size: 13px; font-family: Inter, system-ui, sans-serif; color: #1E293B; background: #FFFFFF; box-sizing: border-box;" />
+                  oninput="handleFormTitle(this.value)" />
               </div>
 
               <!-- Description Field with Refine with HyIQ action and 250 limit -->
               <div class="form-group" style="margin-bottom: 22px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                  <label class="form-label" style="font-size: 13px; font-weight: 600; color: #334155; margin: 0;">
+                  <label class="form-field-label" style="margin: 0;">
                     Description
                   </label>
                   <div style="display: flex; align-items: center; gap: 8px;">
@@ -5003,10 +5097,10 @@
                     <span class="char-counter" id="formDescCount">146/250</span>
                   </div>
                 </div>
-                <textarea class="form-control" id="formDescInput" rows="3" maxlength="250"
+                <textarea class="form-field-input" id="formDescInput" rows="3" maxlength="250"
                   placeholder="Enter description or instructions for the departing colleague..."
                   oninput="handleFormDesc(this.value)"
-                  style="width: 100%; border: 1px solid #CBD5E1; border-radius: 8px; padding: 10px 12px; font-size: 13px; font-family: Inter, system-ui, sans-serif; color: #1E293B; line-height: 1.5; background: #FFFFFF; box-sizing: border-box; resize: vertical;">Please share your honest feedback regarding your time at Crowne Plaza Dubai to help us improve leadership, culture, and employee experience.</textarea>
+                  style="height: auto; min-height: 80px; padding: 10px 14px; line-height: 1.5; resize: vertical;">Please share your honest feedback regarding your time at Crowne Plaza Dubai to help us improve leadership, culture, and employee experience.</textarea>
               </div>
 
               <!-- Questions Header -->
@@ -5015,30 +5109,34 @@
                   <span style="font-size: 14px; font-weight: 700; color: #0F172A;">Questions</span>
                   <span class="badge-count" id="formQuestionBadge">4 Questions</span>
                 </div>
-                <span style="font-size: 11.5px; color: #94A3B8;">Configured for leaver survey</span>
+                <span style="font-size: 11.5px; color: #94A3B8;">Configured in individual boxes</span>
               </div>
 
-              <!-- Dynamic Questions List (Rendered dynamically via renderExitForm()) -->
-              <div id="formQuestionsContainer" style="display: flex; flex-direction: column; gap: 18px;">
+              <!-- Dynamic Questions List (Rendered dynamically in boxes via renderExitForm()) -->
+              <div id="formQuestionsContainer" style="display: flex; flex-direction: column; gap: 16px;">
               </div>
-
-              <!-- Divider Line above + Add Question -->
-              <hr class="form-divider" />
 
               <!-- Right-aligned + Add Question pill button -->
-              <div style="display: flex; justify-content: flex-end; margin: 4px 0;">
+              <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
                 <button type="button" class="btn-add-question-screenshot" onclick="addFormQuestion()">
-                  + Add Question
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add Question
                 </button>
               </div>
 
-              <!-- Divider Line below + Add Question -->
-              <hr class="form-divider" />
-
-              <!-- Form Actions Footer -->
-              <div style="display: flex; align-items: center; justify-content: flex-end; gap: 16px; margin-top: 10px;">
-                <button type="button" class="btn-cancel-plain" onclick="switchToScreen('list')">Cancel</button>
-                <button type="button" class="btn-add-solid" onclick="saveExitForm()">Add</button>
+              <!-- Form Actions Footer Matching Theme (media_1790073342860.png) -->
+              <div class="exit-form-footer">
+                <span style="font-size: 12px; color: #64748B;">* Survey title and questions are required</span>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <button type="button" class="btn-cancel" onclick="switchToScreen('list')">Cancel</button>
+                  <button type="button" class="btn-submit" onclick="saveExitForm()">
+                    <span>Save Exit Interview</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
 
             </div>
@@ -7513,9 +7611,12 @@ function renderExitForm() {
   if (!container) return;
 
   container.innerHTML = exitFormData.questions.map((q, idx) => `
-    <div class="question-block" id="form_q_${q.id}">
-      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-        <span style="font-size: 15px; font-weight: 700; color: #1E293B;">Question ${idx + 1}</span>
+    <div class="question-box" id="form_q_${q.id}">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span class="q-badge-pill">${idx + 1}</span>
+          <span style="font-size: 14.5px; font-weight: 700; color: #0F172A;">Question ${idx + 1}</span>
+        </div>
         <div style="display: flex; align-items: center; gap: 8px;">
           <button type="button" class="btn-icon-minus" onclick="deleteFormQuestion('${q.id}')" title="Delete Question">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -7536,12 +7637,15 @@ function renderExitForm() {
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px;">
-        <div>
-          <label class="form-field-label">Title <span style="color: #DC2626;">*</span></label>
-          <input type="text" class="form-field-input" value="${escapeHtml(q.title)}" placeholder="Question ${idx + 1}"
-            oninput="updateFormQuestion('${q.id}', 'title', this.value)" />
-        </div>
+      <!-- Row 1: Question * (FULL WIDTH) -->
+      <div style="margin-bottom: 14px;">
+        <label class="form-field-label">Question <span style="color: #DC2626;">*</span></label>
+        <input type="text" class="form-field-input" value="${escapeHtml(q.title)}" placeholder="Enter question..."
+          oninput="updateFormQuestion('${q.id}', 'title', this.value)" />
+      </div>
+
+      <!-- Row 2: Type * and Placeholder (SIDE BY SIDE ON ONE LINE) -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: ${(q.type === 'single_select' || q.type === 'multi_select') ? '14px' : '0'};">
         <div>
           <label class="form-field-label">Type <span style="color: #DC2626;">*</span></label>
           <div class="custom-select-wrapper">
@@ -7554,14 +7658,10 @@ function renderExitForm() {
               <option value="yes_no" ${q.type === 'yes_no' ? 'selected' : ''}>yes_no</option>
             </select>
             <svg class="select-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2">
-              <polyline points="7 15 12 20 17 15"/>
-              <polyline points="7 9 12 4 17 9"/>
+              <polyline points="6 9 12 15 18 9"/>
             </svg>
           </div>
         </div>
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 14px;">
         <div>
           <label class="form-field-label">Placeholder</label>
           <input type="text" class="form-field-input" value="${escapeHtml(q.placeholder || '')}" placeholder="Enter Placeholder"
@@ -7569,8 +7669,9 @@ function renderExitForm() {
         </div>
       </div>
 
+      <!-- Row 3: Options / Choices for Choice Types -->
       ${(q.type === 'single_select' || q.type === 'multi_select') ? `
-        <div style="margin-top: 6px; margin-bottom: 14px; padding: 12px 14px; background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 8px;">
+        <div style="margin-top: 4px; padding: 12px 14px; background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 8px;">
           <div style="font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 8px;">Options / Choices</div>
           <div style="display: flex; flex-direction: column; gap: 8px;">
             ${(q.options || ['Option 1', 'Option 2']).map((opt, optIdx) => `
@@ -7588,8 +7689,6 @@ function renderExitForm() {
           </button>
         </div>
       ` : ''}
-
-      ${idx < exitFormData.questions.length - 1 ? '<hr class="form-divider" style="margin: 18px 0;" />' : ''}
     </div>
   `).join('');
 }

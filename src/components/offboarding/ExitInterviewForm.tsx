@@ -11,9 +11,8 @@ import {
   Option,
   FormControl,
   FormLabel,
-  Divider,
 } from '@mui/joy';
-import { FiPlus, FiTrash2, FiX, FiSparkles } from 'react-icons/fi';
+import { FiPlus, FiX, FiSparkles } from 'react-icons/fi';
 
 export interface ExitQuestionItem {
   id: string;
@@ -212,6 +211,19 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
     );
   };
 
+  const handleMoveQuestion = (id: string, direction: 'up' | 'down') => {
+    setQuestions((prev) => {
+      const idx = prev.findIndex((q) => q.id === id);
+      if (idx === -1) return prev;
+      const targetIdx = direction === 'up' ? idx - 1 : idx + 1;
+      if (targetIdx < 0 || targetIdx >= prev.length) return prev;
+      const next = [...prev];
+      const [moved] = next.splice(idx, 1);
+      next.splice(targetIdx, 0, moved);
+      return next;
+    });
+  };
+
   const handleSave = () => {
     if (!title.trim()) {
       showToast('Please enter a survey title.');
@@ -270,7 +282,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
             '0 4px 20px rgba(0, 23, 65, 0.05), 0 1px 3px rgba(0, 0, 0, 0.02)',
         }}
       >
-        {/* Form Header: Archetype A */}
+        {/* Form Header Matching Theme (media_1790073342868.png) */}
         <Box
           sx={{
             display: 'flex',
@@ -279,75 +291,135 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
             pb: 2,
             borderBottom: '1px solid #F1F5F9',
             mb: 2.5,
-            gap: 1.5,
           }}
         >
-          <Box>
-            <Typography
-              level="title-lg"
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.75 }}>
+            <Box
               sx={{
-                fontWeight: 700,
-                color: '#0F172A',
-                fontSize: '18px',
-                letterSpacing: '-0.01em',
+                width: 44,
+                height: 44,
+                borderRadius: '12px',
+                bgcolor: '#EDE9FE',
+                display: 'grid',
+                placeItems: 'center',
+                flexShrink: 0,
               }}
             >
-              Exit Interview
-            </Typography>
-            <Typography
-              level="body-xs"
-              sx={{ color: '#64748B', mt: 0.25, fontSize: '12.5px' }}
-            >
-              Configure the exit interview questionnaire for departing employees
-            </Typography>
-          </Box>
-
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
-            <Button
-              size="sm"
-              onClick={handleDraftHyIq}
-              startDecorator={<FiSparkles />}
-              sx={{
-                background:
-                  'linear-gradient(135deg, #7C3AED 0%, #6366F1 55%, #4F46E5 100%)',
-                color: '#FFFFFF',
-                borderRadius: '8px',
-                fontWeight: 600,
-                fontSize: '12px',
-                px: 1.75,
-                py: 0.75,
-                border: '1px solid rgba(255,255,255,0.25)',
-                boxShadow:
-                  '0 4px 14px -2px rgba(124, 58, 237, 0.42), inset 0 1px 1px rgba(255, 255, 255, 0.4)',
-                '&:hover': {
-                  background:
-                    'linear-gradient(135deg, #8B5CF6 0%, #6D28D9 55%, #4338CA 100%)',
-                },
-              }}
-            >
-              Draft with HyIQ
-            </Button>
-
-            {onBack && (
-              <IconButton
-                size="sm"
-                variant="outlined"
-                onClick={onBack}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+            </Box>
+            <Box>
+              <Typography
+                level="title-lg"
                 sx={{
-                  color: '#64748B',
-                  borderColor: '#E2E8F0',
-                  borderRadius: '8px',
-                  '&:hover': { bgcolor: '#F1F5F9', color: '#0F172A' },
+                  fontWeight: 700,
+                  color: '#0F172A',
+                  fontSize: '18px',
+                  letterSpacing: '-0.01em',
                 }}
               >
-                <FiX />
-              </IconButton>
-            )}
+                Exit Interview
+              </Typography>
+              <Typography
+                level="body-xs"
+                sx={{ color: '#64748B', mt: 0.25, fontSize: '13px' }}
+              >
+                Describe the questions and our support team will handle collection.
+              </Typography>
+            </Box>
           </Box>
+
+          {onBack && (
+            <IconButton
+              size="sm"
+              variant="outlined"
+              onClick={onBack}
+              title="Back to Departures"
+              sx={{
+                width: 34,
+                height: 34,
+                color: '#64748B',
+                borderColor: '#E2E8F0',
+                borderRadius: '8px',
+                '&:hover': { bgcolor: '#F1F5F9', color: '#0F172A' },
+              }}
+            >
+              <FiX size={18} />
+            </IconButton>
+          )}
         </Box>
 
         {/* Form Body */}
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.25 }}>
+          {/* AI Fill Banner Matching Theme (media_1790073342868.png) */}
+          <Box
+            onClick={handleDraftHyIq}
+            title="Click to auto-draft questions with AI"
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              bgcolor: '#FAF5FF',
+              border: '1px solid #EDE9FE',
+              borderRadius: '12px',
+              p: '10px 14px',
+              cursor: 'pointer',
+              transition: 'all 0.18s ease',
+              '&:hover': {
+                bgcolor: '#F5EEFF',
+                borderColor: '#DDD6FE',
+                transform: 'translateY(-1px)',
+              },
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box
+                sx={{
+                  width: 34,
+                  height: 34,
+                  borderRadius: '10px',
+                  bgcolor: '#EDE9FE',
+                  display: 'grid',
+                  placeItems: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#7C3AED"/>
+                </svg>
+              </Box>
+              <Typography sx={{ fontSize: '13.5px', color: '#334155' }}>
+                Describe it and let{' '}
+                <strong style={{ color: '#7C3AED' }}>AI fill this in</strong>
+              </Typography>
+            </Box>
+
+            <Box
+              title="Draft with AI"
+              sx={{
+                width: 32,
+                height: 32,
+                borderRadius: '50%',
+                bgcolor: '#EDE9FE',
+                display: 'grid',
+                placeItems: 'center',
+                flexShrink: 0,
+                transition: 'background 0.15s',
+                '&:hover': { bgcolor: '#DDD6FE' },
+              }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </Box>
+          </Box>
+
           {/* Department */}
           <FormControl required>
             <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#334155' }}>
@@ -375,7 +447,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
             </Select>
           </FormControl>
 
-          {/* Title with Character Counter */}
+          {/* Survey Title with Character Counter */}
           <FormControl required>
             <Box
               sx={{
@@ -386,7 +458,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
               }}
             >
               <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#334155', m: 0 }}>
-                Title
+                Survey Title <span style={{ color: '#DC2626' }}>*</span>
               </FormLabel>
               <Typography level="body-xs" sx={{ color: '#94A3B8', fontSize: '11.5px' }}>
                 {title.length}/100
@@ -484,29 +556,60 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
               </Typography>
             </Box>
             <Typography level="body-xs" sx={{ color: '#94A3B8', fontSize: '11.5px' }}>
-              Configured for leaver survey
+              Configured in individual boxes
             </Typography>
           </Box>
 
-          {/* Questions List Matching Screenshot media_1790069447703.png */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+          {/* Contained Questions List Matching Theme */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             {questions.map((q, idx) => (
-              <Box key={q.id}>
+              <Box
+                key={q.id}
+                sx={{
+                  bgcolor: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '14px',
+                  p: { xs: 2, sm: 2.5 },
+                  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.02)',
+                  transition: 'border-color 0.15s, box-shadow 0.15s',
+                  '&:hover': {
+                    borderColor: '#CBD5E1',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
+                  },
+                }}
+              >
                 {/* Header: Question N + Delete & Grip */}
                 <Box
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    mb: 1.5,
+                    mb: 2,
                   }}
                 >
-                  <Typography
-                    level="title-sm"
-                    sx={{ fontWeight: 700, color: '#1E293B', fontSize: '15px' }}
-                  >
-                    Question {idx + 1}
-                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box
+                      sx={{
+                        width: 22,
+                        height: 22,
+                        borderRadius: '50%',
+                        bgcolor: '#EDE9FE',
+                        color: '#7C3AED',
+                        fontWeight: 700,
+                        fontSize: '11px',
+                        display: 'grid',
+                        placeItems: 'center',
+                      }}
+                    >
+                      {idx + 1}
+                    </Box>
+                    <Typography
+                      level="title-sm"
+                      sx={{ fontWeight: 700, color: '#0F172A', fontSize: '14.5px' }}
+                    >
+                      Question {idx + 1}
+                    </Typography>
+                  </Box>
 
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                     <IconButton
@@ -529,14 +632,15 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                     </IconButton>
 
                     <Box
-                      title="Reorder Question"
+                      title={`Reorder Question (${idx > 0 ? 'Click to move up' : 'Click to move down'})`}
+                      onClick={() => handleMoveQuestion(q.id, idx > 0 ? 'up' : 'down')}
                       sx={{
                         width: 26,
                         height: 26,
                         display: 'grid',
                         placeItems: 'center',
                         color: '#94A3B8',
-                        cursor: 'grab',
+                        cursor: 'pointer',
                         borderRadius: '4px',
                         '&:hover': { color: '#475569', bgcolor: '#F1F5F9' },
                       }}
@@ -553,34 +657,36 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                   </Box>
                 </Box>
 
-                {/* Row 1: Title * and Type * */}
+                {/* Row 1: Question * (FULL WIDTH) */}
+                <FormControl required sx={{ mb: 2 }}>
+                  <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', mb: 0.5 }}>
+                    Question <span style={{ color: '#DC2626' }}>*</span>
+                  </FormLabel>
+                  <Input
+                    value={q.title}
+                    onChange={(e) => handleUpdateQuestion(q.id, 'title', e.target.value)}
+                    placeholder="Enter question..."
+                    sx={{
+                      width: '100%',
+                      borderRadius: '8px',
+                      borderColor: '#E2E8F0',
+                      fontSize: '13.5px',
+                      height: '42px',
+                      bgcolor: '#FFFFFF',
+                      '&:focus-within': { borderColor: '#7C3AED' },
+                    }}
+                  />
+                </FormControl>
+
+                {/* Row 2: Type * and Placeholder (SIDE BY SIDE ON ONE LINE) */}
                 <Box
                   sx={{
                     display: 'grid',
                     gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-                    gap: 2,
-                    mb: 1.75,
+                    gap: 1.75,
+                    mb: (q.type === 'single_select' || q.type === 'multi_select') ? 2 : 0,
                   }}
                 >
-                  <FormControl required>
-                    <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', mb: 0.5 }}>
-                      Title <span style={{ color: '#DC2626' }}>*</span>
-                    </FormLabel>
-                    <Input
-                      value={q.title}
-                      onChange={(e) => handleUpdateQuestion(q.id, 'title', e.target.value)}
-                      placeholder={`Question ${idx + 1}`}
-                      sx={{
-                        borderRadius: '8px',
-                        borderColor: '#E2E8F0',
-                        fontSize: '13.5px',
-                        height: '42px',
-                        bgcolor: '#FFFFFF',
-                        '&:focus-within': { borderColor: '#7C3AED' },
-                      }}
-                    />
-                  </FormControl>
-
                   <FormControl required>
                     <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', mb: 0.5 }}>
                       Type <span style={{ color: '#DC2626' }}>*</span>
@@ -605,17 +711,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                       <Option value="yes_no">yes_no</Option>
                     </Select>
                   </FormControl>
-                </Box>
 
-                {/* Row 2: Placeholder (Matches Title width) */}
-                <Box
-                  sx={{
-                    display: 'grid',
-                    gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
-                    gap: 2,
-                    mb: 1.5,
-                  }}
-                >
                   <FormControl>
                     <FormLabel sx={{ fontSize: '13px', fontWeight: 600, color: '#1E293B', mb: 0.5 }}>
                       Placeholder
@@ -636,12 +732,11 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                   </FormControl>
                 </Box>
 
-                {/* Options Builder for Select Questions */}
+                {/* Row 3: Options / Choices for Select Questions */}
                 {(q.type === 'single_select' || q.type === 'multi_select') && (
                   <Box
                     sx={{
-                      mt: 1,
-                      mb: 1.5,
+                      mt: 1.5,
                       p: 1.5,
                       bgcolor: '#F8FAFC',
                       border: '1px dashed #CBD5E1',
@@ -684,7 +779,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                               '&:hover': { color: '#DC2626', bgcolor: '#FEE2E2' },
                             }}
                           >
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2">
                               <circle cx="12" cy="12" r="9" />
                               <line x1="8" y1="12" x2="16" y2="12" />
                             </svg>
@@ -710,20 +805,12 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                     </Button>
                   </Box>
                 )}
-
-                {/* Question Divider */}
-                {idx < questions.length - 1 && (
-                  <Divider sx={{ my: 2, borderColor: '#F1F5F9' }} />
-                )}
               </Box>
             ))}
           </Box>
 
-          {/* Divider above + Add Question */}
-          <Divider sx={{ my: 0.5, borderColor: '#E2E8F0' }} />
-
           {/* Right-aligned + Add Question pill button */}
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end', my: 0.5 }}>
+          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
             <Button
               variant="plain"
               onClick={handleAddQuestion}
@@ -736,63 +823,82 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                 border: '1px solid #EDE9FE',
                 py: 1,
                 px: 2.25,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 0.75,
                 '&:hover': {
                   bgcolor: '#EDE9FE',
                   color: '#6D28D9',
                 },
               }}
             >
-              + Add Question
+              <FiPlus size={15} />
+              Add Question
             </Button>
           </Box>
 
-          {/* Divider below + Add Question */}
-          <Divider sx={{ my: 0.5, borderColor: '#E2E8F0' }} />
-
-          {/* Footer Actions: Cancel and Add */}
+          {/* Form Actions Footer Matching Theme (media_1790073342860.png) */}
           <Box
             sx={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'flex-end',
+              justifyContent: 'space-between',
               gap: 2,
-              pt: 0.5,
+              mt: 2,
+              pt: 2.5,
+              borderTop: '1px solid #F1F5F9',
             }}
           >
-            {onBack && (
+            <Typography level="body-xs" sx={{ color: '#64748B', fontSize: '12px' }}>
+              * Survey title and questions are required
+            </Typography>
+
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              {onBack && (
+                <Button
+                  variant="outlined"
+                  onClick={onBack}
+                  sx={{
+                    borderColor: '#E2E8F0',
+                    bgcolor: '#FFFFFF',
+                    color: '#1E293B',
+                    fontWeight: 600,
+                    fontSize: '13px',
+                    borderRadius: '8px',
+                    px: 2.5,
+                    py: 1,
+                    '&:hover': { bgcolor: '#F8FAFC', borderColor: '#CBD5E1' },
+                  }}
+                >
+                  Cancel
+                </Button>
+              )}
               <Button
-                variant="plain"
-                onClick={onBack}
+                onClick={handleSave}
+                endDecorator={
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  </svg>
+                }
                 sx={{
-                  color: '#1E293B',
                   fontWeight: 600,
-                  fontSize: '14px',
-                  p: 1,
-                  '&:hover': { bgcolor: '#F1F5F9', color: '#475569' },
+                  fontSize: '13.5px',
+                  borderRadius: '8px',
+                  bgcolor: '#7C3AED',
+                  color: '#FFFFFF',
+                  px: 3,
+                  py: 1,
+                  boxShadow: '0 2px 6px rgba(124, 58, 237, 0.28)',
+                  '&:hover': {
+                    bgcolor: '#6D28D9',
+                    boxShadow: '0 4px 12px rgba(124, 58, 237, 0.38)',
+                  },
                 }}
               >
-                Cancel
+                Save Exit Interview
               </Button>
-            )}
-            <Button
-              onClick={handleSave}
-              sx={{
-                fontWeight: 600,
-                fontSize: '14px',
-                borderRadius: '8px',
-                bgcolor: '#7C3AED',
-                color: '#FFFFFF',
-                px: 3,
-                py: 1,
-                boxShadow: '0 2px 6px rgba(124, 58, 237, 0.28)',
-                '&:hover': {
-                  bgcolor: '#6D28D9',
-                  boxShadow: '0 4px 12px rgba(124, 58, 237, 0.38)',
-                },
-              }}
-            >
-              Add
-            </Button>
+            </Box>
           </Box>
         </Box>
       </Card>
