@@ -2115,6 +2115,9 @@
       .case-workspace-grid {
         grid-template-columns: 1fr !important;
       }
+      .case-sidebar-col {
+        padding-top: 0 !important;
+      }
     }
 
     /* Signature Operational Tab Bar */
@@ -4457,9 +4460,7 @@
           <!-- LEFT: The Single Unified Offboarding Checklist -->
           <div style="display: flex; flex-direction: column; gap: 16px;">
             <!-- Checklist Section Header -->
-            <div style="margin-bottom: 4px;">
-              <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0;">Offboarding Checklist</h3>
-            </div>
+            <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0; line-height: 24px;">Offboarding Checklist</h3>
 
             <!-- Single Unified Checklist Step Cards Container -->
             <div id="caseUnifiedChecklistContainer" style="display: flex; flex-direction: column; gap: 14px;">
@@ -4467,8 +4468,8 @@
             </div>
           </div>
 
-          <!-- RIGHT: At a Glance + Clearance Readiness Sidebar -->
-          <div style="display: flex; flex-direction: column; gap: 20px; position: sticky; top: 20px;">
+          <!-- RIGHT: At a Glance + Clearance Readiness Sidebar (Aligned with 1st Checklist Card) -->
+          <div class="case-sidebar-col" style="display: flex; flex-direction: column; gap: 20px; position: sticky; top: 20px; padding-top: 40px;">
             <!-- At a Glance Card -->
             <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
               <div class="purple-section-header" style="padding: 13px 18px;">
