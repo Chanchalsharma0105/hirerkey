@@ -253,7 +253,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
         </Alert>
       )}
 
-      {/* Top Header & Breadcrumb Bar */}
+      {/* Top Header Bar */}
       <Box
         sx={{
           display: 'flex',
@@ -264,28 +264,8 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
         }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-          <Button
-            variant="plain"
-            size="sm"
-            onClick={onBack}
-            startDecorator={<FiArrowLeft />}
-            sx={{
-              color: '#5B6173',
-              fontWeight: 600,
-              fontSize: '13px',
-              px: 1.2,
-              borderRadius: '8px',
-              '&:hover': { bgcolor: '#EDE9FE', color: '#7C3AED' },
-            }}
-          >
-            Back to departures
-          </Button>
-          <Divider orientation="vertical" sx={{ height: 20 }} />
-          <Typography level="body-xs" sx={{ color: '#8A90A2', fontWeight: 500 }}>
-            Employees &rsaquo; Offboarding &rsaquo;{' '}
-            <strong style={{ color: '#111827' }}>
-              {caseItem.name} ({caseItem.seat})
-            </strong>
+          <Typography level="title-md" sx={{ color: '#0F172A', fontWeight: 700, fontSize: '16px' }}>
+            {caseItem.name} ({caseItem.seat}) · Case Workspace
           </Typography>
         </Box>
 
@@ -1032,7 +1012,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', lg: '1.25fr 1fr' },
+            gridTemplateColumns: '1fr',
             gap: 3.5,
           }}
         >
@@ -1257,141 +1237,6 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
               </Box>
             </Box>
           </Card>
-
-          {/* Right Column: At a Glance Status Cards & Clearance Progress */}
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-            {/* Status Cards */}
-            <Card
-              variant="outlined"
-              sx={{
-                bgcolor: '#FFFFFF',
-                borderColor: '#E5E7EF',
-                borderRadius: '16px',
-                overflow: 'hidden',
-                p: 0,
-              }}
-            >
-              <Box
-                sx={{
-                  bgcolor: '#EEEBFF',
-                  px: 2.5,
-                  py: 1.5,
-                  borderBottom: '1px solid #DDD6FE',
-                }}
-              >
-                <Typography level="title-sm" sx={{ fontWeight: 700, color: '#7C3AED' }}>
-                  At a Glance
-                </Typography>
-              </Box>
-
-              <Box sx={{ p: 2.5, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Box>
-                    <Typography level="title-sm" sx={{ fontWeight: 600, color: '#111827' }}>
-                      System Access & Security
-                    </Typography>
-                    <Typography level="body-xs" sx={{ color: '#5B6173' }}>
-                      Opera Cloud PMS, POS, keycard locks & email
-                    </Typography>
-                  </Box>
-                  <Chip size="sm" variant="soft" color="neutral" sx={{ fontWeight: 600 }}>
-                    Active until Last Day
-                  </Chip>
-                </Box>
-
-                <Divider />
-
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Box>
-                    <Typography level="title-sm" sx={{ fontWeight: 600, color: '#111827' }}>
-                      Seat {caseItem.seat} Succession
-                    </Typography>
-                    <Typography level="body-xs" sx={{ color: '#5B6173' }}>
-                      Designated cover: <strong>{caseItem.successor || 'None'}</strong>
-                    </Typography>
-                  </Box>
-                  <Chip
-                    size="sm"
-                    variant="soft"
-                    color={caseItem.successor ? 'primary' : 'danger'}
-                    sx={{ fontWeight: 600 }}
-                  >
-                    {caseItem.successor ? 'Handover in progress' : 'Seat Vacant'}
-                  </Chip>
-                </Box>
-
-                <Divider />
-
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Box>
-                    <Typography level="title-sm" sx={{ fontWeight: 600, color: '#111827' }}>
-                      Leave Balance Snapshot
-                    </Typography>
-                    <Typography level="body-xs" sx={{ color: '#5B6173' }}>
-                      Synced automatically from Leave module
-                    </Typography>
-                  </Box>
-                  <Typography
-                    level="title-md"
-                    sx={{
-                      fontFamily: 'JetBrains Mono, monospace',
-                      fontWeight: 700,
-                      color: '#7C3AED',
-                    }}
-                  >
-                    {caseItem.leaveBalance || 12.5} days
-                  </Typography>
-                </Box>
-              </Box>
-            </Card>
-
-            {/* Clearance Readiness Card */}
-            <Card
-              variant="outlined"
-              sx={{
-                bgcolor: '#FFFFFF',
-                borderColor: '#E5E7EF',
-                borderRadius: '16px',
-                p: 2.5,
-              }}
-            >
-              <Typography level="title-sm" sx={{ fontWeight: 700, color: '#111827' }}>
-                Clearance Readiness
-              </Typography>
-              <Typography level="body-xs" sx={{ color: '#5B6173', mt: 0.5, mb: 1.5 }}>
-                {approvedClearanceCount} of {totalClearanceCount} departmental sign-offs completed.
-              </Typography>
-
-              <LinearProgress
-                determinate
-                value={clearancePct}
-                sx={{
-                  color: '#7C3AED',
-                  bgcolor: '#F1F5F9',
-                  borderRadius: '6px',
-                  height: 10,
-                  mb: 2,
-                }}
-              />
-
-              <Button
-                variant="outlined"
-                fullWidth
-                onClick={() => setActiveTab('clearance')}
-                endDecorator={<FiExternalLink />}
-                sx={{
-                  borderColor: '#DDD6FE',
-                  color: '#7C3AED',
-                  fontWeight: 600,
-                  borderRadius: '10px',
-                  fontSize: '13px',
-                  '&:hover': { bgcolor: '#F5F3FF' },
-                }}
-              >
-                View Departmental Sign-offs
-              </Button>
-            </Card>
-          </Box>
         </Box>
       )}
 

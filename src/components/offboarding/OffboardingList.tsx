@@ -65,9 +65,12 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
 
-  // Screen View State (Screen 1: List, Screen 2: Case Workspace, Screen 4: User's View, Screen 5: Exit Interview Form)
-  const [currentView, setCurrentView] = useState<'list' | 'case' | 'user' | 'form'>('list');
+  // Screen View State (Screen 1: List, Screen 4: User's View, Screen 5: Exit Interview Form)
+  const [currentView, setCurrentView] = useState<'list' | 'user' | 'form'>('list');
   const [selectedCaseId, setSelectedCaseId] = useState<number>(1);
+
+  // Case Workspace Modal State
+  const [isCaseModalOpen, setIsCaseModalOpen] = useState<boolean>(false);
 
   // Modal & Drawer State
   const [isStartModalOpen, setIsStartModalOpen] = useState<boolean>(false);
@@ -286,7 +289,7 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
   // Action handlers
   const handleOpenCase = (caseId: number) => {
     setSelectedCaseId(caseId);
-    setCurrentView('case');
+    setIsCaseModalOpen(true);
     const target = cases.find((c) => c.id === caseId);
     if (target) {
       setSelectedCaseForDrawer(target);
@@ -478,21 +481,21 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
         </Button>
         <Button
           size="sm"
-          variant={currentView === 'case' ? 'solid' : 'plain'}
+          variant={isCaseModalOpen ? 'solid' : 'plain'}
           onClick={() => {
             setSelectedCaseId(1);
-            setCurrentView('case');
+            setIsCaseModalOpen(true);
           }}
           sx={{
             fontFamily: 'Inter, system-ui, sans-serif',
-            bgcolor: currentView === 'case' ? '#7C3AED' : 'transparent',
-            color: currentView === 'case' ? '#FFFFFF' : '#5B6173',
+            bgcolor: isCaseModalOpen ? '#7C3AED' : 'transparent',
+            color: isCaseModalOpen ? '#FFFFFF' : '#5B6173',
             borderRadius: '8px',
             fontWeight: 600,
             fontSize: '12.5px',
             '&:hover': {
-              bgcolor: currentView === 'case' ? '#6D28D9' : '#EDE9FE',
-              color: currentView === 'case' ? '#FFFFFF' : '#7C3AED',
+              bgcolor: isCaseModalOpen ? '#6D28D9' : '#EDE9FE',
+              color: isCaseModalOpen ? '#FFFFFF' : '#7C3AED',
             },
           }}
         >
@@ -540,29 +543,51 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
     </Box>
   );
 
-  const caseContent = (
-    <Box
+  const caseModal = (
+    <Modal
+      open={isCaseModalOpen}
+      onClose={() => setIsCaseModalOpen(false)}
       sx={{
-        width: '100%',
-        minHeight: '100%',
-        bgcolor: '#F8FAFC',
-        borderRadius: '16px',
-        p: { xs: 2, md: 3 },
         display: 'flex',
-        flexDirection: 'column',
-        gap: 2.5,
-        fontFamily: 'Inter, system-ui, sans-serif',
+        alignItems: 'center',
+        justifyContent: 'center',
+        p: { xs: 1, md: 3 },
       }}
     >
-      {renderScreenSwitcherBar()}
-      <OffboardingCaseDetail
-        caseData={activeCase}
-        onBack={() => setCurrentView('list')}
-        onUpdateCase={(updated) => {
-          setCases((prev) => prev.map((c) => (c.id === updated.id ? updated : c)));
+      <ModalDialog
+        variant="outlined"
+        sx={{
+          width: '100%',
+          maxWidth: '1140px',
+          maxHeight: 'calc(100vh - 48px)',
+          overflow: 'auto',
+          borderRadius: '16px',
+          borderColor: '#E2E8F0',
+          bgcolor: '#F8FAFC',
+          boxShadow: '0 24px 56px -12px rgba(0, 23, 65, 0.28)',
+          p: { xs: 2, md: 3 },
+          fontFamily: 'Inter, system-ui, sans-serif',
         }}
-      />
-    </Box>
+      >
+        <ModalClose
+          sx={{
+            top: 16,
+            right: 16,
+            zIndex: 10,
+            borderRadius: '8px',
+            color: '#64748B',
+            '&:hover': { bgcolor: '#F1F5F9', color: '#0F172A' },
+          }}
+        />
+        <OffboardingCaseDetail
+          caseData={activeCase}
+          onBack={() => setIsCaseModalOpen(false)}
+          onUpdateCase={(updated) => {
+            setCases((prev) => prev.map((c) => (c.id === updated.id ? updated : c)));
+          }}
+        />
+      </ModalDialog>
+    </Modal>
   );
 
   const listContent = (
@@ -1260,9 +1285,7 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
   );
 
   const currentContent =
-    currentView === 'case'
-      ? caseContent
-      : currentView === 'user'
+    currentView === 'user'
       ? userContent
       : currentView === 'form'
       ? formContent
@@ -1273,9 +1296,7 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
       <HirerkeyDashboardShell
         activeMenuKey="offboarding"
         caseName={
-          currentView === 'case'
-            ? `${activeCase.name} (${activeCase.seat})`
-            : currentView === 'user'
+          currentView === 'user'
             ? 'My Offboarding (Sara Khan)'
             : currentView === 'form'
             ? 'Exit Interview Form'
@@ -1289,9 +1310,15 @@ export const OffboardingList: React.FC<OffboardingListProps> = ({
         }}
       >
         {currentContent}
+        {caseModal}
       </HirerkeyDashboardShell>
     );
   }
 
-  return currentContent;
+  return (
+    <>
+      {currentContent}
+      {caseModal}
+    </>
+  );
 };

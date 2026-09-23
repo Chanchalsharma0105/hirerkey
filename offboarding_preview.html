@@ -1553,6 +1553,21 @@
       display: flex !important;
     }
 
+    /* Case Workspace Modal - wider than standard modal */
+    .case-modal-dialog {
+      background: var(--surface);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 1140px;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      margin: auto;
+      border: 1px solid var(--divider);
+      box-shadow: 0 24px 56px -12px rgba(0, 23, 65, 0.28);
+      padding: 0;
+      animation: modalSlide 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
     .modal-dialog {
       background: var(--surface);
       border-radius: 16px;
@@ -3966,13 +3981,17 @@
       font-size: 13.5px;
       font-family: 'Inter', system-ui, sans-serif;
       color: #1E293B;
-      background: #FFFFFF;
+      background: #F9FAFB;
       box-sizing: border-box;
       transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .form-field-input:hover {
+      border-color: #CBD5E1;
     }
     .form-field-input:focus {
       outline: none;
       border-color: #7C3AED;
+      background: #F9FAFB;
       box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
     }
     .form-field-input::placeholder {
@@ -3991,16 +4010,20 @@
       font-size: 13.5px;
       font-family: 'Inter', system-ui, sans-serif;
       color: #1E293B;
-      background: #FFFFFF;
+      background: #F9FAFB;
       appearance: none;
       -webkit-appearance: none;
       box-sizing: border-box;
       cursor: pointer;
       transition: border-color 0.15s, box-shadow 0.15s;
     }
+    .form-field-select:hover {
+      border-color: #CBD5E1;
+    }
     .form-field-select:focus {
       outline: none;
       border-color: #7C3AED;
+      background: #F9FAFB;
       box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
     }
     .select-caret {
@@ -4043,6 +4066,142 @@
     .drag-handle-dots:hover {
       color: #475569;
       background: #F1F5F9;
+    }
+    /* Define Rating Labels Builder matching screenshot */
+    .rating-builder-container {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px dashed #E2E8F0;
+    }
+    .rating-builder-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .rating-builder-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .rating-builder-info {
+      color: #94A3B8;
+      display: inline-flex;
+      cursor: help;
+      vertical-align: middle;
+    }
+    .rating-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .rating-grip-btn {
+      width: 42px;
+      height: 42px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94A3B8;
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 0;
+      transition: all 0.15s;
+    }
+    .rating-grip-btn:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #64748B;
+    }
+    .rating-input-wrapper {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      height: 42px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      background: #FFFFFF;
+      padding: 0 14px;
+      box-sizing: border-box;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .rating-input-wrapper:hover {
+      border-color: #CBD5E1;
+    }
+    .rating-input-wrapper:focus-within {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+    .rating-color-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-right: 12px;
+    }
+    .rating-text-input {
+      flex: 1;
+      height: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 13.5px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1E293B;
+      padding: 0;
+    }
+    .rating-del-btn {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: transparent;
+      border-radius: 6px;
+      color: #94A3B8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-left: 8px;
+      padding: 0;
+      transition: all 0.15s;
+    }
+    .rating-del-btn:hover {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+    .btn-add-rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 36px;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: #FAF5FF;
+      border: 1px solid #E9D5FF;
+      color: #7C3AED;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', system-ui, sans-serif;
+      transition: all 0.15s;
+    }
+    .btn-add-rating:hover {
+      background: #F3E8FF;
+      border-color: #DDD6FE;
+      color: #6D28D9;
     }
     .form-divider {
       border: 0;
@@ -4682,176 +4841,66 @@
       <!-- ======================================================================
            SCREEN 2 VIEW: LEAVER CASE WORKSPACE
            ====================================================================== -->
-      <div id="screen-case" class="screen-view" style="display: none;">
-        <!-- Header & Breadcrumbs Bar -->
-        <section class="page-header" style="margin-bottom: 28px;">
+<!-- Case Workspace Modal Overlay -->
+<div class="modal-overlay" id="caseModal">
+  <div class="case-modal-dialog">
+    <div style="padding: 24px 28px;">
+      
+      <!-- Clean Modal Header (Replaces old page-header and bulky profile card) -->
+      <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #E2E8F0; margin-bottom: 22px; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div class="case-profile-avatar" id="caseAvatar" style="width: 44px; height: 44px; font-size: 16px; border-radius: 12px; background: #EDE9FE; color: #7C3AED; font-weight: 700; display: grid; place-items: center; flex-shrink: 0;">SK</div>
           <div>
-            <div class="breadcrumbs">
-              <a href="javascript:void(0)" onclick="switchToScreen('list')" style="color:var(--text-secondary); text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-weight:600;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
-                Back to departures
-              </a>
-              <span>/</span>
-              <a href="javascript:void(0)" onclick="switchToScreen('list')">Offboarding</a>
-              <span>/</span>
-              <span class="current" id="caseBreadcrumb">Sara Khan (FDM-01)</span>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <h2 style="font-size: 17px; font-weight: 700; color: #0F172A; margin: 0;" id="caseName">Sara Khan</h2>
+              <span class="seat-badge case-seat-badge" id="caseSeat" style="background: #F1F5F9; color: #334155; font-size: 11.5px; padding: 2px 7px; border-radius: 6px; font-family: monospace; font-weight: 600;">FDM-01</span>
+              <span class="stage-badge pri case-stage-pill" id="caseStage">Serving notice</span>
+              <span class="stage-badge neu countdown-chip" id="caseUrgency" style="font-size: 11px;">In 29 days</span>
             </div>
-            <h1 class="page-title" id="caseTitle">Sara Khan · Case Workspace</h1>
-            <p class="page-desc" id="caseSub">Front Desk Manager &bull; Front Office &bull; Crowne Plaza Dubai</p>
-          </div>
-
-          <!-- Quick Action Buttons -->
-          <div class="header-actions" id="caseHeaderActions">
-            <button class="btn-primary" id="btnNoticeApprove" onclick="handleAcknowledgeNotice()" style="display:none;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              Acknowledge notice period
-            </button>
-          </div>
-        </section>
-
-        <!-- Leaver Profile Card -->
-        <div class="case-profile-card">
-          <!-- Top Tier: Leaver Identity -->
-          <div class="case-profile-top">
-            <div class="case-profile-avatar" id="caseAvatar">SK</div>
-            <div class="case-profile-details">
-              <div class="case-profile-title-row">
-                <h2 id="caseName">Sara Khan</h2>
-                <span class="seat-badge case-seat-badge" id="caseSeat">FDM-01</span>
-                <span class="stage-badge pri case-stage-pill" id="caseStage">Serving notice</span>
-              </div>
-              <div id="caseMeta" class="case-profile-meta">
-                <span>Front Desk Manager</span>
-                <span class="meta-divider">&bull;</span>
-                <span>Front Office</span>
-                <span class="meta-divider">&bull;</span>
-                <span class="meta-reason-tag">Resigned (voluntary)</span>
-                <span class="meta-divider">&bull;</span>
-                <span>Last working day: <strong class="lwd-highlight">14 Oct 2026</strong></span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom Tier: 4 Modern Mini-Metric Cards -->
-          <div class="case-metrics-grid">
-            <!-- Card 1: Line Manager -->
-            <div class="metric-mini-card">
-              <div class="metric-card-header">
-                <span class="metric-card-label">Line Manager</span>
-                <svg class="metric-card-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
-              </div>
-              <div class="metric-card-content">
-                <div class="metric-card-value" id="caseManager">James Cole · Hotel Manager</div>
-              </div>
-            </div>
-
-            <!-- Card 2: Service Length -->
-            <div class="metric-mini-card">
-              <div class="metric-card-header">
-                <span class="metric-card-label">Service Length</span>
-                <svg class="metric-card-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
-              </div>
-              <div class="metric-card-content">
-                <div class="metric-card-value mono" id="caseTenure">5 yrs 6 mos</div>
-              </div>
-            </div>
-
-            <!-- Card 3: Successor Cover -->
-            <div class="metric-mini-card">
-              <div class="metric-card-header">
-                <span class="metric-card-label">Successor Cover</span>
-                <svg class="metric-card-icon" id="caseSuccessorIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-              </div>
-              <div class="metric-card-content">
-                <div class="metric-card-value" style="color:#15803D; font-weight:700;" id="caseSuccessor">Omar Haddad</div>
-                <span class="successor-status-chip success" id="caseSuccessorBadge">
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  Assigned
-                </span>
-              </div>
-            </div>
-
-            <!-- Card 4: Notice Countdown -->
-            <div class="metric-mini-card">
-              <div class="metric-card-header">
-                <span class="metric-card-label">Notice Countdown</span>
-                <svg class="metric-card-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
-              </div>
-              <div class="metric-card-content">
-                <span class="stage-badge neu countdown-chip" id="caseUrgency">In 29 days</span>
-              </div>
+            <div id="caseMeta" class="case-profile-meta" style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #64748B; margin-top: 4px; flex-wrap: wrap;">
+              <span>Front Desk Manager</span>
+              <span class="meta-divider">&bull;</span>
+              <span>Front Office</span>
+              <span class="meta-divider">&bull;</span>
+              <span class="meta-reason-tag">Resigned (voluntary)</span>
+              <span class="meta-divider">&bull;</span>
+              <span>Last working day: <strong class="lwd-highlight">14 Oct 2026</strong></span>
             </div>
           </div>
         </div>
 
-        <!-- Main 2-Column Case Workspace: Single Unified Checklist + Intelligence Sidebar -->
-        <div class="case-workspace-grid" style="display: grid; grid-template-columns: 1.45fr 1fr; gap: 24px; align-items: start; margin-top: 4px;">
-          
-          <!-- LEFT: The Single Unified Offboarding Checklist -->
-          <div style="display: flex; flex-direction: column; gap: 16px;">
-            <!-- Checklist Section Header -->
-            <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin: 0; line-height: 24px;">Offboarding Checklist</h3>
-
-            <!-- Single Unified Checklist Step Cards Container -->
-            <div id="caseUnifiedChecklistContainer" style="display: flex; flex-direction: column; gap: 14px;">
-              <!-- Dynamically populated via renderCaseUnifiedChecklist() -->
-            </div>
-          </div>
-
-          <!-- RIGHT: At a Glance + Clearance Readiness Sidebar (Aligned with 1st Checklist Card) -->
-          <div class="case-sidebar-col" style="display: flex; flex-direction: column; gap: 20px; position: sticky; top: 20px; padding-top: 40px;">
-            <!-- At a Glance Card -->
-            <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-              <div class="purple-section-header" style="padding: 13px 18px;">
-                <span style="font-weight: 700; font-size: 13.5px;">At a Glance</span>
-              </div>
-              <div style="padding: 18px; display: flex; flex-direction: column; gap: 16px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <div>
-                    <div style="font-weight: 600; color: var(--text-main); font-size: 13px;">System Access & Security</div>
-                    <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 1px;">PMS, Keycards, POS, Email</div>
-                  </div>
-                  <span class="stage-badge neu">Active until Last Day</span>
-                </div>
-                <hr style="border: 0; border-top: 1px solid #F1F5F9; margin: 0;" />
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <div>
-                    <div style="font-weight: 600; color: var(--text-main); font-size: 13px;">Seat Succession</div>
-                    <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 1px;">Designated cover: <strong id="glanceSuccessor">Omar Haddad</strong></div>
-                  </div>
-                  <span class="stage-badge pri" id="glanceSuccBadge">Handover in progress</span>
-                </div>
-                <hr style="border: 0; border-top: 1px solid #F1F5F9; margin: 0;" />
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <div>
-                    <div style="font-weight: 600; color: var(--text-main); font-size: 13px;">Leave Balance Snapshot</div>
-                    <div style="font-size: 11.5px; color: var(--text-secondary); margin-top: 1px;">Synced from Leave module</div>
-                  </div>
-                  <strong style="font-family: var(--font-mono); color: #7C3AED; font-size: 15px;" id="glanceLeave">12.5 days</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- Clearance Readiness Card -->
-            <div class="card" style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <h3 style="font-size: 14px; font-weight: 700; color: var(--text-main); margin: 0;">Clearance Readiness</h3>
-                <span class="stage-badge pri" id="glanceReadinessBadge" style="font-size: 11px;">In Progress</span>
-              </div>
-              <p style="font-size: 12.5px; color: var(--text-secondary); margin: 0 0 14px 0;" id="glanceClearanceText">
-                1 of 3 checklist steps completed
-              </p>
-              <div style="width: 100%; height: 8px; background: #F1F5F9; border-radius: 4px; overflow: hidden; margin-bottom: 16px;">
-                <div id="glanceProgressBar" style="width: 33%; height: 100%; background: #7C3AED; border-radius: 4px; transition: width 0.3s ease;"></div>
-              </div>
-              <button class="btn-primary" style="width: 100%; justify-content: center; background: #7C3AED; color: #FFF; border: none; font-weight: 600; height: 38px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px;" onclick="handleCloseCase()">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                Verify Checklist & Close Case
-              </button>
-            </div>
-          </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button class="btn-primary" id="btnNoticeApprove" onclick="handleAcknowledgeNotice()" style="display:none; font-size: 12px; height: 34px; padding: 0 12px; border-radius: 8px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Acknowledge notice
+          </button>
+          <button type="button" class="btn-modal-close" onclick="closeCaseModal()" title="Close Modal">✕</button>
         </div>
-      </div> <!-- end #screen-case -->
+      </div>
+
+      <!-- Offboarding Checklist Section (Full Width, No Sidebar) -->
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h3 style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0;">Offboarding Checklist</h3>
+          <span style="font-size: 12px; color: #64748B;">Unified departure tasks and departmental gates</span>
+        </div>
+
+        <!-- Single Unified Checklist Step Cards Container -->
+        <div id="caseUnifiedChecklistContainer" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Dynamically populated via renderCaseUnifiedChecklist() -->
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px; padding-top: 18px; border-top: 1px solid #F1F5F9;">
+        <button type="button" class="btn-secondary" onclick="closeCaseModal()" style="height: 38px; padding: 0 20px; border-radius: 8px; border: 1px solid #E2E8F0; background: #FFFFFF; font-weight: 600; font-size: 13px; cursor: pointer; color: #334155; transition: all 0.15s;">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div> <!-- end #caseModal -->
 
       <!-- ====================================================================
            SCREEN 3: PROPERTY SETTINGS › OFFBOARDING & EXIT RULES ENGINE
@@ -5854,11 +5903,15 @@ function scrollSettingsTabs(dir) {
 }
 
 /* Screen Switcher (Supports list, case, settings, user, and form) */
+/* Screen Switcher (Supports list, settings, user, and form; case opens as modal) */
 function switchToScreen(screen) {
   if (screen === 'builder') screen = 'form';
+  if (screen === 'case') {
+    openCaseView(currentCaseId || 1);
+    return;
+  }
   currentScreen = screen;
   const listEl = document.getElementById('screen-list');
-  const caseEl = document.getElementById('screen-case');
   const settingsEl = document.getElementById('screen-settings');
   const userEl = document.getElementById('screen-user');
   const formEl = document.getElementById('screen-form') || document.getElementById('screen-builder');
@@ -5869,13 +5922,12 @@ function switchToScreen(screen) {
   const tabForm = document.getElementById('tab-screen-builder') || document.getElementById('tab-screen-form');
 
   if (listEl) listEl.style.display = (screen === 'list') ? 'block' : 'none';
-  if (caseEl) caseEl.style.display = (screen === 'case') ? 'block' : 'none';
   if (settingsEl) settingsEl.style.display = (screen === 'settings') ? 'block' : 'none';
   if (userEl) userEl.style.display = (screen === 'user') ? 'block' : 'none';
   if (formEl) formEl.style.display = (screen === 'form') ? 'block' : 'none';
 
   if (tabList) tabList.classList.toggle('active', screen === 'list');
-  if (tabCase) tabCase.classList.toggle('active', screen === 'case');
+  if (tabCase) tabCase.classList.remove('active');
   if (tabSettings) tabSettings.classList.toggle('active', screen === 'settings');
   if (tabUser) tabUser.classList.toggle('active', screen === 'user');
   if (tabForm) tabForm.classList.toggle('active', screen === 'form');
@@ -5890,13 +5942,6 @@ function switchToScreen(screen) {
     if (crumbSep) crumbSep.style.display = 'none';
     if (crumbCase) crumbCase.style.display = 'none';
     if (crumbActive) crumbActive.style.fontWeight = '600';
-  } else if (screen === 'case') {
-    if (crumbActive) crumbActive.textContent = 'Offboarding';
-    if (crumbSep) crumbSep.style.display = 'inline';
-    if (crumbCase) {
-      crumbCase.style.display = 'inline';
-      crumbCase.textContent = 'Sara Khan (Case Workspace)';
-    }
   } else if (screen === 'settings') {
     if (crumbActive) crumbActive.textContent = 'Property Settings';
     if (crumbSep) crumbSep.style.display = 'inline';
@@ -6271,65 +6316,44 @@ function handleResetSettings() {
   showToast('Checklist restored to 3 standard default steps.');
 }
 
-/* Open Leaver Case Workspace (Screen 2) */
+/* Open Leaver Case Workspace Modal (Screen 2) */
 function openCaseView(id) {
   currentCaseId = id;
   const c = cases.find(item => item.id === id) || cases[0];
 
-  // Header & Identity
-  document.getElementById('caseBreadcrumb').textContent = `${c.name} (${c.seat})`;
-  const topCaseCrumb = document.getElementById('headerCaseCrumbName');
-  if (topCaseCrumb) topCaseCrumb.textContent = `${c.name} (${c.seat})`;
-  document.getElementById('caseTitle').textContent = `${c.name} · Case Workspace`;
-  document.getElementById('caseSub').innerHTML = `${c.title} &bull; ${c.dept} &bull; Crowne Plaza Dubai`;
+  const caseAvatar = document.getElementById('caseAvatar');
+  if (caseAvatar) caseAvatar.textContent = c.ini;
 
-  document.getElementById('caseAvatar').textContent = c.ini;
-  document.getElementById('caseName').textContent = c.name;
-  document.getElementById('caseSeat').textContent = c.seat;
+  const caseName = document.getElementById('caseName');
+  if (caseName) caseName.textContent = c.name;
+
+  const caseSeat = document.getElementById('caseSeat');
+  if (caseSeat) caseSeat.textContent = c.seat;
 
   const stageEl = document.getElementById('caseStage');
-  stageEl.textContent = c.stageName;
-  stageEl.className = `stage-badge ${c.stageTone} case-stage-pill`;
+  if (stageEl) {
+    stageEl.textContent = c.stageName;
+    stageEl.className = `stage-badge ${c.stageTone} case-stage-pill`;
+  }
 
-  document.getElementById('caseMeta').innerHTML = `
-    <span>${c.title}</span>
-    <span class="meta-divider">&bull;</span>
-    <span>${c.dept}</span>
-    <span class="meta-divider">&bull;</span>
-    <span class="meta-reason-tag">${c.reason}</span>
-    <span class="meta-divider">&bull;</span>
-    <span>Last working day: <strong class="lwd-highlight">${c.lwd}</strong></span>
-  `;
-
-  document.getElementById('caseManager').textContent = c.manager || 'James Cole · Hotel Manager';
-  document.getElementById('caseTenure').textContent = c.tenure || '3 yrs';
-
-  const succEl = document.getElementById('caseSuccessor');
-  const succBadge = document.getElementById('caseSuccessorBadge');
-  const succIcon = document.getElementById('caseSuccessorIcon');
-  if (c.successor) {
-    succEl.textContent = c.successor;
-    succEl.style.color = '#15803D';
-    if (succIcon) succIcon.setAttribute('stroke', '#16A34A');
-    if (succBadge) {
-      succBadge.style.display = 'inline-flex';
-      succBadge.className = 'successor-status-chip success';
-      succBadge.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Assigned`;
-    }
-  } else {
-    succEl.textContent = 'No successor';
-    succEl.style.color = '#DC2626';
-    if (succIcon) succIcon.setAttribute('stroke', '#DC2626');
-    if (succBadge) {
-      succBadge.style.display = 'inline-flex';
-      succBadge.className = 'successor-status-chip vacant';
-      succBadge.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Vacant`;
-    }
+  const caseMeta = document.getElementById('caseMeta');
+  if (caseMeta) {
+    caseMeta.innerHTML = `
+      <span>${c.title}</span>
+      <span class="meta-divider">&bull;</span>
+      <span>${c.dept}</span>
+      <span class="meta-divider">&bull;</span>
+      <span class="meta-reason-tag">${c.reason}</span>
+      <span class="meta-divider">&bull;</span>
+      <span>Last working day: <strong class="lwd-highlight">${c.lwd}</strong></span>
+    `;
   }
 
   const urgEl = document.getElementById('caseUrgency');
-  urgEl.textContent = c.dueText;
-  urgEl.className = `stage-badge ${c.dueTone} countdown-chip`;
+  if (urgEl) {
+    urgEl.textContent = c.dueText;
+    urgEl.className = `stage-badge ${c.dueTone} countdown-chip`;
+  }
 
   // Notice Approve Button
   const btnApprove = document.getElementById('btnNoticeApprove');
@@ -6337,14 +6361,28 @@ function openCaseView(id) {
     btnApprove.style.display = (c.stage === 0) ? 'inline-flex' : 'none';
   }
 
-  // Render At a Glance (preserved)
-  renderAtAGlance(c);
-
   // Render The Single Unified Offboarding Checklist
   renderCaseUnifiedChecklist(c);
 
-  switchToScreen('case');
+  // Open the case modal
+  const caseModal = document.getElementById('caseModal');
+  if (caseModal) caseModal.classList.add('open');
 }
+
+function closeCaseModal() {
+  const caseModal = document.getElementById('caseModal');
+  if (caseModal) caseModal.classList.remove('open');
+}
+
+// Close case modal when clicking the overlay background
+document.addEventListener('DOMContentLoaded', function() {
+  const caseModal = document.getElementById('caseModal');
+  if (caseModal) {
+    caseModal.addEventListener('click', function(e) {
+      if (e.target === caseModal) closeCaseModal();
+    });
+  }
+});
 
 /* Render At a Glance Section */
 function renderAtAGlance(c) {
@@ -7557,6 +7595,29 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+const DEFAULT_RATING_LABELS = [
+  { id: 'r1', label: 'Very Bad', color: '#22C55E' },
+  { id: 'r2', label: 'Bad', color: '#EF4444' },
+  { id: 'r3', label: 'Medium', color: '#3B82F6' },
+  { id: 'r4', label: 'Good', color: '#F59E0B' },
+  { id: 'r5', label: 'Very Good', color: '#8B5CF6' }
+];
+
+const RATING_PALETTE = ['#22C55E', '#EF4444', '#3B82F6', '#F59E0B', '#8B5CF6', '#EC4899', '#14B8A6', '#6366F1', '#E11D48', '#06B6D4'];
+
+function getRatingLabels(q) {
+  if (!q.ratingLabels || !q.ratingLabels.length) {
+    q.ratingLabels = [
+      { id: 'r1', label: 'Very Bad', color: '#22C55E' },
+      { id: 'r2', label: 'Bad', color: '#EF4444' },
+      { id: 'r3', label: 'Medium', color: '#3B82F6' },
+      { id: 'r4', label: 'Good', color: '#F59E0B' },
+      { id: 'r5', label: 'Very Good', color: '#8B5CF6' }
+    ];
+  }
+  return q.ratingLabels;
+}
+
 let exitFormData = {
   department: 'Front Office',
   title: 'Employee Exit Interview Survey',
@@ -7565,21 +7626,34 @@ let exitFormData = {
     {
       id: 'q1',
       title: 'What was the primary reason for deciding to leave?',
-      type: 'single_select',
-      placeholder: 'Select primary departure driver',
-      options: ['Career advancement', 'Higher compensation', 'Work-life balance', 'Relocation / Family', 'Leadership & management', 'Other']
+      type: 'text',
+      placeholder: 'Share your primary reasons for departing...'
     },
     {
       id: 'q2',
       title: 'How would you rate your overall work experience and environment?',
       type: 'rating',
-      placeholder: 'Rate from 1 to 5 stars'
+      placeholder: 'Rate from 1 to 5 stars',
+      ratingLabels: [
+        { id: 'r2_1', label: 'Very Bad', color: '#22C55E' },
+        { id: 'r2_2', label: 'Bad', color: '#EF4444' },
+        { id: 'r2_3', label: 'Medium', color: '#3B82F6' },
+        { id: 'r2_4', label: 'Good', color: '#F59E0B' },
+        { id: 'r2_5', label: 'Very Good', color: '#8B5CF6' }
+      ]
     },
     {
       id: 'q3',
       title: 'Did your direct line manager provide regular support and guidance?',
       type: 'rating',
-      placeholder: 'Rate managerial support'
+      placeholder: 'Rate managerial support',
+      ratingLabels: [
+        { id: 'r3_1', label: 'Very Bad', color: '#22C55E' },
+        { id: 'r3_2', label: 'Bad', color: '#EF4444' },
+        { id: 'r3_3', label: 'Medium', color: '#3B82F6' },
+        { id: 'r3_4', label: 'Good', color: '#F59E0B' },
+        { id: 'r3_5', label: 'Very Good', color: '#8B5CF6' }
+      ]
     },
     {
       id: 'q4',
@@ -7645,17 +7719,13 @@ function renderExitForm() {
       </div>
 
       <!-- Row 2: Type * and Placeholder (SIDE BY SIDE ON ONE LINE) -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: ${(q.type === 'single_select' || q.type === 'multi_select') ? '14px' : '0'};">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
         <div>
           <label class="form-field-label">Type <span style="color: #DC2626;">*</span></label>
           <div class="custom-select-wrapper">
             <select class="form-field-select" onchange="updateFormQuestion('${q.id}', 'type', this.value)">
-              <option value="rating" ${q.type === 'rating' ? 'selected' : ''}>rating</option>
               <option value="text" ${q.type === 'text' ? 'selected' : ''}>text</option>
-              <option value="single_select" ${q.type === 'single_select' ? 'selected' : ''}>single_select</option>
-              <option value="multi_select" ${q.type === 'multi_select' ? 'selected' : ''}>multi_select</option>
-              <option value="scale" ${q.type === 'scale' ? 'selected' : ''}>scale</option>
-              <option value="yes_no" ${q.type === 'yes_no' ? 'selected' : ''}>yes_no</option>
+              <option value="rating" ${q.type === 'rating' ? 'selected' : ''}>rating</option>
             </select>
             <svg class="select-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2">
               <polyline points="6 9 12 15 18 9"/>
@@ -7669,23 +7739,73 @@ function renderExitForm() {
         </div>
       </div>
 
-      <!-- Row 3: Options / Choices for Choice Types -->
-      ${(q.type === 'single_select' || q.type === 'multi_select') ? `
-        <div style="margin-top: 4px; padding: 12px 14px; background: #F8FAFC; border: 1px dashed #CBD5E1; border-radius: 8px;">
-          <div style="font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 8px;">Options / Choices</div>
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            ${(q.options || ['Option 1', 'Option 2']).map((opt, optIdx) => `
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <input type="text" class="form-field-input" style="height: 36px; font-size: 12.5px;" value="${escapeHtml(opt)}" placeholder="Option ${optIdx + 1}"
-                  oninput="updateFormOption('${q.id}', ${optIdx}, this.value)" />
-                <button type="button" class="btn-icon-minus" onclick="deleteFormOption('${q.id}', ${optIdx})" title="Remove option" style="width: 28px; height: 28px;">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="12" cy="12" r="9"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+      ${q.type === 'rating' ? `
+        <!-- Define Rating Labels Section matching screenshot (media_1790144297394.png) -->
+        <div class="rating-builder-container">
+          <div class="rating-builder-header">
+            <div class="rating-builder-title">
+              Define Rating Labels
+              <span class="rating-builder-info" title="Configure rating scale levels and descriptive labels for the departing colleague.">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+              </span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 12px; color: #64748B; font-weight: 500;">Scale:</span>
+              <div class="custom-select-wrapper" style="width: auto;">
+                <select class="form-field-select" style="height: 32px; padding: 0 26px 0 10px; font-size: 12px; border-radius: 6px; width: 105px; background-color: #FFFFFF;" onchange="handleSetRatingCount('${q.id}', parseInt(this.value))">
+                  ${[2, 3, 4, 5, 6, 7, 10].map(cnt => `
+                    <option value="${cnt}" ${getRatingLabels(q).length === cnt ? 'selected' : ''}>${cnt} Levels</option>
+                  `).join('')}
+                  ${![2, 3, 4, 5, 6, 7, 10].includes(getRatingLabels(q).length) ? `
+                    <option value="${getRatingLabels(q).length}" selected>${getRatingLabels(q).length} Levels</option>
+                  ` : ''}
+                </select>
+                <svg class="select-caret" style="right: 8px;" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="rating-list-container" id="rating_list_${q.id}">
+            ${getRatingLabels(q).map((r, rIdx, arr) => `
+              <div class="rating-row" id="rating_${q.id}_${rIdx}">
+                <button type="button" class="rating-grip-btn" title="Reorder rating (${rIdx > 0 ? 'Click to move up' : 'Click to move down'})" onclick="moveRatingLabel('${q.id}', ${rIdx}, ${rIdx > 0 ? "'up'" : "'down'"})">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="#94A3B8">
+                    <circle cx="9" cy="5" r="1.5"/>
+                    <circle cx="15" cy="5" r="1.5"/>
+                    <circle cx="9" cy="12" r="1.5"/>
+                    <circle cx="15" cy="12" r="1.5"/>
+                    <circle cx="9" cy="19" r="1.5"/>
+                    <circle cx="15" cy="19" r="1.5"/>
+                  </svg>
                 </button>
+                <div class="rating-input-wrapper">
+                  <span class="rating-color-dot" style="background-color: ${r.color || '#3B82F6'};"></span>
+                  <input type="text" class="rating-text-input" value="${escapeHtml(r.label)}" placeholder="Enter rating label" oninput="updateRatingLabelText('${q.id}', ${rIdx}, this.value)" />
+                  ${arr.length > 2 ? `
+                    <button type="button" class="rating-del-btn" onclick="deleteRatingLabel('${q.id}', ${rIdx})" title="Delete Rating Level">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                      </svg>
+                    </button>
+                  ` : ''}
+                </div>
               </div>
             `).join('')}
           </div>
-          <button type="button" onclick="addFormOption('${q.id}')" style="margin-top: 8px; background: none; border: none; color: #7C3AED; font-size: 12px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; padding: 0;">
-            + Add Option
+
+          <button type="button" class="btn-add-rating" onclick="addRatingLabel('${q.id}')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Add Rating
           </button>
         </div>
       ` : ''}
@@ -7713,21 +7833,34 @@ function handleFormDraftHyIq() {
     {
       id: 'q_' + Date.now() + '_1',
       title: 'What was the decisive factor in your departure?',
-      type: 'single_select',
-      placeholder: 'Select primary departure driver',
-      options: ['Better opportunity', 'Compensation & benefits', 'Career change', 'Relocation / Family', 'Work environment']
+      type: 'text',
+      placeholder: 'Share the decisive factors in your departure...'
     },
     {
       id: 'q_' + Date.now() + '_2',
       title: 'How would you rate team camaraderie and departmental cooperation?',
       type: 'rating',
-      placeholder: 'Rate from 1 to 5 stars'
+      placeholder: 'Rate from 1 to 5 stars',
+      ratingLabels: [
+        { id: 'r1', label: 'Very Bad', color: '#22C55E' },
+        { id: 'r2', label: 'Bad', color: '#EF4444' },
+        { id: 'r3', label: 'Medium', color: '#3B82F6' },
+        { id: 'r4', label: 'Good', color: '#F59E0B' },
+        { id: 'r5', label: 'Very Good', color: '#8B5CF6' }
+      ]
     },
     {
       id: 'q_' + Date.now() + '_3',
       title: 'Did your Line Manager provide constructive shift feedback and support?',
       type: 'rating',
-      placeholder: 'Rate managerial leadership'
+      placeholder: 'Rate managerial leadership',
+      ratingLabels: [
+        { id: 'r1', label: 'Very Bad', color: '#22C55E' },
+        { id: 'r2', label: 'Bad', color: '#EF4444' },
+        { id: 'r3', label: 'Medium', color: '#3B82F6' },
+        { id: 'r4', label: 'Good', color: '#F59E0B' },
+        { id: 'r5', label: 'Very Good', color: '#8B5CF6' }
+      ]
     },
     {
       id: 'q_' + Date.now() + '_4',
@@ -7764,9 +7897,8 @@ function addFormQuestion() {
   const newQ = {
     id: 'q_' + Date.now(),
     title: '',
-    type: 'rating',
-    placeholder: 'Enter Placeholder',
-    options: ['Option 1', 'Option 2']
+    type: 'text',
+    placeholder: 'Enter Placeholder'
   };
   exitFormData.questions.push(newQ);
   renderExitForm();
@@ -7809,11 +7941,78 @@ function updateFormQuestion(id, field, val) {
   if (!q) return;
   q[field] = val;
   if (field === 'type') {
-    if ((val === 'single_select' || val === 'multi_select') && (!q.options || q.options.length === 0)) {
-      q.options = ['Option 1', 'Option 2'];
+    if (val === 'rating') {
+      getRatingLabels(q);
     }
     renderExitForm();
   }
+}
+
+function updateRatingLabelText(qId, rIdx, val) {
+  const q = exitFormData.questions.find(item => item.id === qId);
+  if (q && q.ratingLabels && q.ratingLabels[rIdx]) {
+    q.ratingLabels[rIdx].label = val;
+  }
+}
+
+function handleSetRatingCount(qId, targetCount) {
+  const q = exitFormData.questions.find(item => item.id === qId);
+  if (!q) return;
+  const current = getRatingLabels(q);
+  if (targetCount === current.length) return;
+  if (targetCount < current.length) {
+    q.ratingLabels = current.slice(0, targetCount);
+  } else {
+    for (let i = current.length; i < targetCount; i++) {
+      const color = RATING_PALETTE[i % RATING_PALETTE.length];
+      const defaultName = DEFAULT_RATING_LABELS[i] ? DEFAULT_RATING_LABELS[i].label : `Level ${i + 1}`;
+      q.ratingLabels.push({
+        id: 'r_' + Date.now() + '_' + i,
+        label: defaultName,
+        color: color
+      });
+    }
+  }
+  renderExitForm();
+  showToast(`Rating scale updated to ${targetCount} levels.`);
+}
+
+function addRatingLabel(qId) {
+  const q = exitFormData.questions.find(item => item.id === qId);
+  if (!q) return;
+  const current = getRatingLabels(q);
+  const nextIdx = current.length;
+  const color = RATING_PALETTE[nextIdx % RATING_PALETTE.length];
+  const defaultName = DEFAULT_RATING_LABELS[nextIdx] ? DEFAULT_RATING_LABELS[nextIdx].label : `Level ${nextIdx + 1}`;
+  current.push({
+    id: 'r_' + Date.now() + '_' + nextIdx,
+    label: defaultName,
+    color: color
+  });
+  renderExitForm();
+  showToast(`Rating level ${current.length} added.`);
+}
+
+function deleteRatingLabel(qId, rIdx) {
+  const q = exitFormData.questions.find(item => item.id === qId);
+  if (!q || !q.ratingLabels) return;
+  if (q.ratingLabels.length <= 2) {
+    showToast('Rating question requires at least 2 levels.');
+    return;
+  }
+  q.ratingLabels.splice(rIdx, 1);
+  renderExitForm();
+  showToast('Rating level removed.');
+}
+
+function moveRatingLabel(qId, rIdx, dir) {
+  const q = exitFormData.questions.find(item => item.id === qId);
+  if (!q || !q.ratingLabels) return;
+  const targetIdx = dir === 'up' ? rIdx - 1 : rIdx + 1;
+  if (targetIdx < 0 || targetIdx >= q.ratingLabels.length) return;
+  const item = q.ratingLabels.splice(rIdx, 1)[0];
+  q.ratingLabels.splice(targetIdx, 0, item);
+  renderExitForm();
 }
 
 function addFormOption(qId) {

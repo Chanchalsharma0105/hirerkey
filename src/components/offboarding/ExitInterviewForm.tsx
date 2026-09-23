@@ -14,12 +14,19 @@ import {
 } from '@mui/joy';
 import { FiPlus, FiX, FiSparkles } from 'react-icons/fi';
 
+export interface RatingLevel {
+  id: string;
+  label: string;
+  color: string;
+}
+
 export interface ExitQuestionItem {
   id: string;
   title: string;
   type: string;
   placeholder?: string;
   options?: string[];
+  ratingLabels?: RatingLevel[];
 }
 
 export interface ExitInterviewFormProps {
@@ -32,32 +39,59 @@ export interface ExitInterviewFormProps {
   }) => void;
 }
 
+export const DEFAULT_RATING_LABELS: RatingLevel[] = [
+  { id: 'r1', label: 'Very Bad', color: '#22C55E' },
+  { id: 'r2', label: 'Bad', color: '#EF4444' },
+  { id: 'r3', label: 'Medium', color: '#3B82F6' },
+  { id: 'r4', label: 'Good', color: '#F59E0B' },
+  { id: 'r5', label: 'Very Good', color: '#8B5CF6' },
+];
+
+export const RATING_PALETTE = [
+  '#22C55E',
+  '#EF4444',
+  '#3B82F6',
+  '#F59E0B',
+  '#8B5CF6',
+  '#EC4899',
+  '#14B8A6',
+  '#6366F1',
+  '#E11D48',
+  '#06B6D4',
+];
+
 const INITIAL_QUESTIONS: ExitQuestionItem[] = [
   {
     id: 'q1',
     title: 'What was the primary reason for deciding to leave?',
-    type: 'single_select',
-    placeholder: 'Select primary departure driver',
-    options: [
-      'Career advancement',
-      'Higher compensation',
-      'Work-life balance',
-      'Relocation / Family',
-      'Leadership & management',
-      'Other',
-    ],
+    type: 'text',
+    placeholder: 'Share your primary reasons for departing...',
   },
   {
     id: 'q2',
     title: 'How would you rate your overall work experience and environment?',
     type: 'rating',
     placeholder: 'Rate from 1 to 5 stars',
+    ratingLabels: [
+      { id: 'r2_1', label: 'Very Bad', color: '#22C55E' },
+      { id: 'r2_2', label: 'Bad', color: '#EF4444' },
+      { id: 'r2_3', label: 'Medium', color: '#3B82F6' },
+      { id: 'r2_4', label: 'Good', color: '#F59E0B' },
+      { id: 'r2_5', label: 'Very Good', color: '#8B5CF6' },
+    ],
   },
   {
     id: 'q3',
     title: 'Did your direct line manager provide regular support and guidance?',
     type: 'rating',
     placeholder: 'Rate managerial support',
+    ratingLabels: [
+      { id: 'r3_1', label: 'Very Bad', color: '#22C55E' },
+      { id: 'r3_2', label: 'Bad', color: '#EF4444' },
+      { id: 'r3_3', label: 'Medium', color: '#3B82F6' },
+      { id: 'r3_4', label: 'Good', color: '#F59E0B' },
+      { id: 'r3_5', label: 'Very Good', color: '#8B5CF6' },
+    ],
   },
   {
     id: 'q4',
@@ -94,27 +128,34 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
       {
         id: `q_${Date.now()}_1`,
         title: 'What was the decisive factor in your departure?',
-        type: 'single_select',
-        placeholder: 'Select primary departure driver',
-        options: [
-          'Better opportunity',
-          'Compensation & benefits',
-          'Career change',
-          'Relocation / Family',
-          'Work environment',
-        ],
+        type: 'text',
+        placeholder: 'Share the decisive factors in your departure...',
       },
       {
         id: `q_${Date.now()}_2`,
         title: 'How would you rate team camaraderie and departmental cooperation?',
         type: 'rating',
         placeholder: 'Rate from 1 to 5 stars',
+        ratingLabels: [
+          { id: 'r1', label: 'Very Bad', color: '#22C55E' },
+          { id: 'r2', label: 'Bad', color: '#EF4444' },
+          { id: 'r3', label: 'Medium', color: '#3B82F6' },
+          { id: 'r4', label: 'Good', color: '#F59E0B' },
+          { id: 'r5', label: 'Very Good', color: '#8B5CF6' },
+        ],
       },
       {
         id: `q_${Date.now()}_3`,
         title: 'Did your Line Manager provide constructive shift feedback and support?',
         type: 'rating',
         placeholder: 'Rate managerial leadership',
+        ratingLabels: [
+          { id: 'r1', label: 'Very Bad', color: '#22C55E' },
+          { id: 'r2', label: 'Bad', color: '#EF4444' },
+          { id: 'r3', label: 'Medium', color: '#3B82F6' },
+          { id: 'r4', label: 'Good', color: '#F59E0B' },
+          { id: 'r5', label: 'Very Good', color: '#8B5CF6' },
+        ],
       },
       {
         id: `q_${Date.now()}_4`,
@@ -137,9 +178,8 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
     const newQ: ExitQuestionItem = {
       id: `q_${Date.now()}`,
       title: '',
-      type: 'rating',
+      type: 'text',
       placeholder: 'Enter Placeholder',
-      options: ['Option 1', 'Option 2'],
     };
     setQuestions((prev) => [...prev, newQ]);
     showToast(`Question ${questions.length + 1} added.`);
@@ -163,50 +203,105 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
       prev.map((q) => {
         if (q.id !== id) return q;
         const updated = { ...q, [field]: val };
-        if (
-          field === 'type' &&
-          (val === 'single_select' || val === 'multi_select') &&
-          (!updated.options || updated.options.length === 0)
-        ) {
-          updated.options = ['Option 1', 'Option 2'];
+        if (field === 'type' && val === 'rating' && (!updated.ratingLabels || updated.ratingLabels.length === 0)) {
+          updated.ratingLabels = [...DEFAULT_RATING_LABELS];
         }
         return updated;
       })
     );
   };
 
-  const handleAddOption = (qId: string) => {
+  const handleSetRatingCount = (qId: string, targetCount: number) => {
     setQuestions((prev) =>
       prev.map((q) => {
         if (q.id !== qId) return q;
-        const opts = q.options ? [...q.options] : [];
-        opts.push(`Option ${opts.length + 1}`);
-        return { ...q, options: opts };
+        const current = q.ratingLabels && q.ratingLabels.length > 0 ? [...q.ratingLabels] : [...DEFAULT_RATING_LABELS];
+        if (targetCount === current.length) return q;
+        let nextLabels: RatingLevel[];
+        if (targetCount < current.length) {
+          nextLabels = current.slice(0, targetCount);
+        } else {
+          nextLabels = [...current];
+          for (let i = current.length; i < targetCount; i++) {
+            const color = RATING_PALETTE[i % RATING_PALETTE.length];
+            const defaultName = DEFAULT_RATING_LABELS[i] ? DEFAULT_RATING_LABELS[i].label : `Level ${i + 1}`;
+            nextLabels.push({
+              id: `r_${Date.now()}_${i}`,
+              label: defaultName,
+              color,
+            });
+          }
+        }
+        return { ...q, ratingLabels: nextLabels };
+      })
+    );
+    showToast(`Rating scale updated to ${targetCount} levels.`);
+  };
+
+  const handleUpdateRatingLabelText = (qId: string, rIdx: number, val: string) => {
+    setQuestions((prev) =>
+      prev.map((q) => {
+        if (q.id !== qId) return q;
+        const current = q.ratingLabels && q.ratingLabels.length > 0 ? [...q.ratingLabels] : [...DEFAULT_RATING_LABELS];
+        if (!current[rIdx]) return q;
+        current[rIdx] = { ...current[rIdx], label: val };
+        return { ...q, ratingLabels: current };
       })
     );
   };
 
-  const handleUpdateOption = (qId: string, optIdx: number, val: string) => {
+  const handleAddRatingLabel = (qId: string) => {
     setQuestions((prev) =>
       prev.map((q) => {
-        if (q.id !== qId || !q.options) return q;
-        const opts = [...q.options];
-        opts[optIdx] = val;
-        return { ...q, options: opts };
+        if (q.id !== qId) return q;
+        const current = q.ratingLabels && q.ratingLabels.length > 0 ? [...q.ratingLabels] : [...DEFAULT_RATING_LABELS];
+        const nextIdx = current.length;
+        const color = RATING_PALETTE[nextIdx % RATING_PALETTE.length];
+        const defaultName = DEFAULT_RATING_LABELS[nextIdx] ? DEFAULT_RATING_LABELS[nextIdx].label : `Level ${nextIdx + 1}`;
+        const nextLabels = [
+          ...current,
+          {
+            id: `r_${Date.now()}_${nextIdx}`,
+            label: defaultName,
+            color,
+          },
+        ];
+        return { ...q, ratingLabels: nextLabels };
       })
     );
+    showToast('Rating level added.');
   };
 
-  const handleDeleteOption = (qId: string, optIdx: number) => {
+  const handleDeleteRatingLabel = (qId: string, rIdx: number) => {
     setQuestions((prev) =>
       prev.map((q) => {
-        if (q.id !== qId || !q.options) return q;
-        if (q.options.length <= 1) {
-          showToast('Select question requires at least one option.');
+        if (q.id !== qId) return q;
+        const current = q.ratingLabels && q.ratingLabels.length > 0 ? [...q.ratingLabels] : [...DEFAULT_RATING_LABELS];
+        if (current.length <= 2) {
+          showToast('Rating question requires at least 2 levels.');
           return q;
         }
-        const opts = q.options.filter((_, i) => i !== optIdx);
-        return { ...q, options: opts };
+        current.splice(rIdx, 1);
+        return { ...q, ratingLabels: current };
+      })
+    );
+    showToast('Rating level removed.');
+  };
+
+  const handleMoveRatingLabel = (
+    qId: string,
+    rIdx: number,
+    direction: 'up' | 'down'
+  ) => {
+    setQuestions((prev) =>
+      prev.map((q) => {
+        if (q.id !== qId) return q;
+        const current = q.ratingLabels && q.ratingLabels.length > 0 ? [...q.ratingLabels] : [...DEFAULT_RATING_LABELS];
+        const targetIdx = direction === 'up' ? rIdx - 1 : rIdx + 1;
+        if (targetIdx < 0 || targetIdx >= current.length) return q;
+        const item = current.splice(rIdx, 1)[0];
+        current.splice(targetIdx, 0, item);
+        return { ...q, ratingLabels: current };
       })
     );
   };
@@ -433,6 +528,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                 borderColor: '#CBD5E1',
                 fontSize: '13px',
                 height: '40px',
+                bgcolor: '#F9FAFB',
               }}
             >
               <Option value="All Departments">All Departments</Option>
@@ -473,6 +569,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                 borderColor: '#CBD5E1',
                 fontSize: '13px',
                 height: '40px',
+                bgcolor: '#F9FAFB',
               }}
             />
           </FormControl>
@@ -523,6 +620,7 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                 borderColor: '#CBD5E1',
                 fontSize: '13px',
                 lineHeight: 1.5,
+                bgcolor: '#F9FAFB',
               }}
             />
           </FormControl>
@@ -672,7 +770,8 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                       borderColor: '#E2E8F0',
                       fontSize: '13.5px',
                       height: '42px',
-                      bgcolor: '#FFFFFF',
+                      bgcolor: '#F9FAFB',
+                      '&:hover': { borderColor: '#CBD5E1' },
                       '&:focus-within': { borderColor: '#7C3AED' },
                     }}
                   />
@@ -684,7 +783,6 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                     display: 'grid',
                     gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' },
                     gap: 1.75,
-                    mb: (q.type === 'single_select' || q.type === 'multi_select') ? 2 : 0,
                   }}
                 >
                   <FormControl required>
@@ -699,16 +797,13 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                         borderColor: '#E2E8F0',
                         fontSize: '13.5px',
                         height: '42px',
-                        bgcolor: '#FFFFFF',
+                        bgcolor: '#F9FAFB',
+                        '&:hover': { borderColor: '#CBD5E1' },
                         '&:focus-within': { borderColor: '#7C3AED' },
                       }}
                     >
-                      <Option value="rating">rating</Option>
                       <Option value="text">text</Option>
-                      <Option value="single_select">single_select</Option>
-                      <Option value="multi_select">multi_select</Option>
-                      <Option value="scale">scale</Option>
-                      <Option value="yes_no">yes_no</Option>
+                      <Option value="rating">rating</Option>
                     </Select>
                   </FormControl>
 
@@ -725,83 +820,240 @@ export const ExitInterviewForm: React.FC<ExitInterviewFormProps> = ({
                         borderColor: '#E2E8F0',
                         fontSize: '13.5px',
                         height: '42px',
-                        bgcolor: '#FFFFFF',
+                        bgcolor: '#F9FAFB',
+                        '&:hover': { borderColor: '#CBD5E1' },
                         '&:focus-within': { borderColor: '#7C3AED' },
                       }}
                     />
                   </FormControl>
                 </Box>
 
-                {/* Row 3: Options / Choices for Select Questions */}
-                {(q.type === 'single_select' || q.type === 'multi_select') && (
+                {/* Rating Labels Builder matching screenshot (media_1790144297394.png) */}
+                {q.type === 'rating' && (
                   <Box
                     sx={{
-                      mt: 1.5,
-                      p: 1.5,
-                      bgcolor: '#F8FAFC',
-                      border: '1px dashed #CBD5E1',
-                      borderRadius: '8px',
+                      mt: 2,
+                      pt: 2,
+                      borderTop: '1px dashed #E2E8F0',
                     }}
                   >
-                    <Typography
-                      level="body-xs"
-                      sx={{ fontWeight: 600, color: '#475569', mb: 1 }}
+                    {/* Header: Define Rating Labels ⓘ + Scale Selector */}
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        mb: 1.5,
+                      }}
                     >
-                      Options / Choices
-                    </Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                      {(q.options || ['Option 1', 'Option 2']).map((opt, optIdx) => (
-                        <Box
-                          key={optIdx}
-                          sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                        <Typography
+                          sx={{
+                            fontSize: '13.5px',
+                            fontWeight: 600,
+                            color: '#1E293B',
+                          }}
                         >
-                          <Input
-                            value={opt}
-                            onChange={(e) => handleUpdateOption(q.id, optIdx, e.target.value)}
-                            placeholder={`Option ${optIdx + 1}`}
-                            sx={{
-                              height: '36px',
-                              fontSize: '12.5px',
-                              borderRadius: '6px',
-                              borderColor: '#CBD5E1',
-                              flex: 1,
-                            }}
-                          />
+                          Define Rating Labels
+                        </Typography>
+                        <Box
+                          title="Configure rating scale levels and descriptive labels for the departing colleague."
+                          sx={{
+                            color: '#94A3B8',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            cursor: 'help',
+                          }}
+                        >
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="16" x2="12" y2="12" />
+                            <line x1="12" y1="8" x2="12.01" y2="8" />
+                          </svg>
+                        </Box>
+                      </Box>
+
+                      {/* Scale Selector */}
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Typography level="body-xs" sx={{ fontSize: '12px', color: '#64748B', fontWeight: 500 }}>
+                          Scale:
+                        </Typography>
+                        <Select
+                          size="sm"
+                          value={(q.ratingLabels || DEFAULT_RATING_LABELS).length}
+                          onChange={(_, val) => val && handleSetRatingCount(q.id, Number(val))}
+                          sx={{
+                            height: '32px',
+                            minHeight: '32px',
+                            fontSize: '12px',
+                            borderRadius: '6px',
+                            borderColor: '#E2E8F0',
+                            bgcolor: '#FFFFFF',
+                            width: '105px',
+                          }}
+                        >
+                          {[2, 3, 4, 5, 6, 7, 10].map((cnt) => (
+                            <Option key={cnt} value={cnt} sx={{ fontSize: '12px' }}>
+                              {cnt} Levels
+                            </Option>
+                          ))}
+                          {![2, 3, 4, 5, 6, 7, 10].includes((q.ratingLabels || DEFAULT_RATING_LABELS).length) && (
+                            <Option value={(q.ratingLabels || DEFAULT_RATING_LABELS).length} sx={{ fontSize: '12px' }}>
+                              {(q.ratingLabels || DEFAULT_RATING_LABELS).length} Levels
+                            </Option>
+                          )}
+                        </Select>
+                      </Box>
+                    </Box>
+
+                    {/* Dynamic Rating List Rows matching screenshot 1:1 */}
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.25, mb: 1.5 }}>
+                      {(q.ratingLabels || DEFAULT_RATING_LABELS).map((r, rIdx, arr) => (
+                        <Box
+                          key={r.id || `r_${rIdx}`}
+                          sx={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                          }}
+                        >
+                          {/* 6-dot drag grip handle square button */}
                           <IconButton
                             size="sm"
-                            variant="plain"
-                            onClick={() => handleDeleteOption(q.id, optIdx)}
-                            title="Remove option"
+                            variant="outlined"
+                            title={`Reorder rating (${rIdx > 0 ? 'Click to move up' : 'Click to move down'})`}
+                            onClick={() => handleMoveRatingLabel(q.id, rIdx, rIdx > 0 ? 'up' : 'down')}
                             sx={{
-                              width: 28,
-                              height: 28,
+                              width: 42,
+                              height: 42,
+                              borderRadius: '8px',
+                              borderColor: '#E2E8F0',
+                              bgcolor: '#FFFFFF',
                               color: '#94A3B8',
-                              '&:hover': { color: '#DC2626', bgcolor: '#FEE2E2' },
+                              flexShrink: 0,
+                              '&:hover': {
+                                bgcolor: '#F8FAFC',
+                                borderColor: '#CBD5E1',
+                                color: '#64748B',
+                              },
                             }}
                           >
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" strokeWidth="2">
-                              <circle cx="12" cy="12" r="9" />
-                              <line x1="8" y1="12" x2="16" y2="12" />
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                              <circle cx="9" cy="5" r="1.5" />
+                              <circle cx="15" cy="5" r="1.5" />
+                              <circle cx="9" cy="12" r="1.5" />
+                              <circle cx="15" cy="12" r="1.5" />
+                              <circle cx="9" cy="19" r="1.5" />
+                              <circle cx="15" cy="19" r="1.5" />
                             </svg>
                           </IconButton>
+
+                          {/* Input field with colored bullet dot on the left */}
+                          <Box
+                            sx={{
+                              flex: 1,
+                              display: 'flex',
+                              alignItems: 'center',
+                              height: 42,
+                              border: '1px solid #E2E8F0',
+                              borderRadius: '8px',
+                              bgcolor: '#FFFFFF',
+                              px: 1.75,
+                              transition: 'border-color 0.15s, box-shadow 0.15s',
+                              '&:hover': { borderColor: '#CBD5E1' },
+                              '&:focus-within': {
+                                borderColor: '#7C3AED',
+                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.12)',
+                              },
+                            }}
+                          >
+                            {/* Colored bullet dot */}
+                            <Box
+                              sx={{
+                                width: 8,
+                                height: 8,
+                                borderRadius: '50%',
+                                bgcolor: r.color || '#3B82F6',
+                                mr: 1.5,
+                                flexShrink: 0,
+                              }}
+                            />
+                            {/* Input text */}
+                            <input
+                              type="text"
+                              value={r.label}
+                              onChange={(e) =>
+                                handleUpdateRatingLabelText(q.id, rIdx, e.target.value)
+                              }
+                              placeholder="Enter rating label"
+                              style={{
+                                flex: 1,
+                                height: '100%',
+                                border: 'none',
+                                outline: 'none',
+                                background: 'transparent',
+                                fontSize: '13.5px',
+                                fontFamily: 'Inter, system-ui, sans-serif',
+                                color: '#1E293B',
+                                padding: 0,
+                              }}
+                            />
+                            {arr.length > 2 && (
+                              <IconButton
+                                size="sm"
+                                variant="plain"
+                                title="Delete Rating Level"
+                                onClick={() => handleDeleteRatingLabel(q.id, rIdx)}
+                                sx={{
+                                  width: 28,
+                                  height: 28,
+                                  borderRadius: '6px',
+                                  color: '#94A3B8',
+                                  ml: 1,
+                                  '&:hover': {
+                                    bgcolor: '#FEE2E2',
+                                    color: '#DC2626',
+                                  },
+                                }}
+                              >
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <line x1="18" y1="6" x2="6" y2="18" />
+                                  <line x1="6" y1="6" x2="18" y2="18" />
+                                </svg>
+                              </IconButton>
+                            )}
+                          </Box>
                         </Box>
                       ))}
                     </Box>
+
+                    {/* + Add Rating pill button matching screenshot */}
                     <Button
-                      size="sm"
                       variant="plain"
-                      onClick={() => handleAddOption(q.id)}
+                      onClick={() => handleAddRatingLabel(q.id)}
+                      startDecorator={
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <line x1="12" y1="5" x2="12" y2="19" />
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                      }
                       sx={{
-                        mt: 1,
-                        p: 0,
+                        height: 36,
+                        px: 2,
+                        borderRadius: '8px',
+                        bgcolor: '#FAF5FF',
+                        border: '1px solid #E9D5FF',
                         color: '#7C3AED',
-                        fontSize: '12px',
+                        fontSize: '13px',
                         fontWeight: 600,
-                        minHeight: 0,
-                        '&:hover': { bgcolor: 'transparent', color: '#6D28D9' },
+                        '&:hover': {
+                          bgcolor: '#F3E8FF',
+                          borderColor: '#DDD6FE',
+                          color: '#6D28D9',
+                        },
                       }}
                     >
-                      + Add Option
+                      Add Rating
                     </Button>
                   </Box>
                 )}
