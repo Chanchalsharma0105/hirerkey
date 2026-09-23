@@ -1626,7 +1626,666 @@
       pointer-events: auto;
       transform: translateY(0);
     }
-  </style>
+  
+    /* ==========================================================================
+       APPROVAL WORKFLOWS (MATCHING media_1790159590328.png)
+       ========================================================================== */
+    .wf-status-filter-group {
+      display: inline-flex;
+      align-items: center;
+      background: #F8FAFC;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .wf-filter-pill {
+      border: none;
+      background: transparent;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .wf-filter-pill:hover {
+      color: var(--primary);
+    }
+
+    .wf-filter-pill.active {
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 600;
+    }
+
+    .btn-filter-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 12px;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      background: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-filter-trigger:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: var(--primary);
+    }
+
+    .badge-default-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .badge-module-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .badge-module-pill.leave {
+      background: #F3E8FF;
+      color: #7C3AED;
+      border: 1px solid #E9D5FF;
+    }
+
+    .badge-module-pill.expense {
+      background: #DCFCE7;
+      color: #16A34A;
+      border: 1px solid #BBF7D0;
+    }
+
+    .wf-chain-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .wf-step-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    .wf-step-pill svg {
+      color: #64748B;
+      flex-shrink: 0;
+    }
+
+    .wf-arrow {
+      color: #94A3B8;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .wf-status-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .wf-toggle-switch {
+      position: relative;
+      width: 32px;
+      height: 18px;
+      border-radius: 9999px;
+      background: #CBD5E1;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .wf-toggle-switch.is-active {
+      background: #10B981;
+    }
+
+    .wf-toggle-knob {
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .wf-toggle-switch.is-active .wf-toggle-knob {
+      transform: translateX(14px);
+    }
+
+    .wf-status-label {
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .wf-status-label.active {
+      color: #10B981;
+    }
+
+    .wf-status-label.draft {
+      color: #64748B;
+    }
+
+    /* ==========================================================================
+       BUSINESS CARD CONFIGURATOR (MATCHING media_1790159590338.png)
+       ========================================================================== */
+    .bc-master-pills-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .bc-master-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: #EDE9FE;
+      color: #6D28D9;
+      border: 1px solid #DDD6FE;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .bc-master-pill:hover {
+      background: #DDD6FE;
+    }
+
+    .bc-master-pill.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+    }
+
+    .bc-master-default-badge {
+      background: #10B981;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      line-height: 1.2;
+    }
+
+    .bc-dots-icon {
+      font-size: 14px;
+      color: inherit;
+      opacity: 0.8;
+      margin-left: 2px;
+    }
+
+    .bc-master-pill-new {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: #F5F3FF;
+      border: 1.5px dashed #A78BFA;
+      color: #7C3AED;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .bc-master-pill-new:hover {
+      background: #EDE9FE;
+      border-color: #7C3AED;
+    }
+
+    /* 2-Column Grid Layout */
+    .bc-config-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .bc-config-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .bc-form-card {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .bc-form-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .bc-form-icon-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: #EDE9FE;
+      color: #7C3AED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .bc-form-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #1E293B;
+      letter-spacing: -0.01em;
+    }
+
+    .bc-form-subtitle {
+      font-size: 12.5px;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .bc-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .bc-field-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1E293B;
+    }
+
+    .bc-input {
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      font-family: inherit;
+      font-size: 13px;
+      color: #1E293B;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .bc-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .bc-two-col-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .bc-color-picker-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+    }
+
+    .bc-color-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    .bc-color-input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: #1E293B;
+      width: 100%;
+    }
+
+    .bc-select {
+      height: 38px;
+      padding: 0 12px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      font-family: inherit;
+      font-size: 13px;
+      color: #1E293B;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .bc-select:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .bc-subcard {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .bc-subcard-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #6D28D9;
+    }
+
+    .bc-slider-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+
+    .bc-range-slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #E2E8F0;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .bc-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #7C3AED;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.4);
+      transition: transform 0.1s ease;
+    }
+
+    .bc-range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    /* Right Preview Column */
+    .bc-preview-card {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bc-preview-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #1E293B;
+      margin-bottom: 14px;
+    }
+
+    .bc-orient-pill-group {
+      display: inline-flex;
+      align-items: center;
+      background: #F1F5F9;
+      border-radius: 8px;
+      padding: 3px;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+
+    .bc-orient-pill {
+      border: none;
+      background: transparent;
+      padding: 7px 32px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .bc-orient-pill.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.3);
+    }
+
+    .bc-notice-banner {
+      width: 100%;
+      background: #F3E8FF;
+      border: 1px solid #E9D5FF;
+      border-radius: 8px;
+      padding: 9px 16px;
+      font-size: 12px;
+      color: #6D28D9;
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    /* Physical Print Canvas with Bleed / Trim / Safe Guidelines */
+    .bc-canvas-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 10px 0;
+    }
+
+    .bc-guide-bleed {
+      position: relative;
+      border: 1px dashed #EF4444;
+      border-radius: 6px;
+      padding: 12px;
+      background: #FFFFFF;
+    }
+
+    .bc-guide-cut {
+      position: relative;
+      border: 1px dashed #3B82F6;
+      border-radius: 4px;
+      padding: 8px;
+    }
+
+    .bc-guide-safe {
+      position: relative;
+      border: 1px dashed #10B981;
+      border-radius: 2px;
+      padding: 6px;
+    }
+
+    .bc-guide-tag {
+      position: absolute;
+      top: -9px;
+      font-size: 9px;
+      font-weight: 700;
+      padding: 1px 4px;
+      background: #FFFFFF;
+      line-height: 1;
+      border-radius: 2px;
+    }
+
+    .bc-guide-tag.red {
+      left: 12px;
+      color: #EF4444;
+      border: 1px solid #EF4444;
+    }
+
+    .bc-guide-tag.blue {
+      left: 30px;
+      color: #3B82F6;
+      border: 1px solid #3B82F6;
+    }
+
+    .bc-guide-tag.green {
+      left: 45px;
+      color: #10B981;
+      border: 1px solid #10B981;
+    }
+
+    /* Printed Business Card Face (Exact 1:1 match to screenshot) */
+    .bc-card-face {
+      width: 440px;
+      height: 250px;
+      background: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      display: flex;
+      justify-content: space-between;
+      padding: 24px 26px;
+      box-sizing: border-box;
+      transition: all 0.25s ease;
+    }
+
+    .bc-card-face.vertical {
+      width: 250px;
+      height: 440px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .bc-card-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex: 1;
+    }
+
+    .bc-card-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1E293B;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .bc-card-designation {
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 2px;
+      margin-bottom: 26px;
+    }
+
+    .bc-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .bc-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10.5px;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .bc-contact-icon {
+      width: 12px;
+      height: 12px;
+      color: #64748B;
+      flex-shrink: 0;
+    }
+
+    .bc-card-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding-left: 14px;
+    }
+
+    .bc-card-logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.15s ease, height 0.15s ease;
+    }
+
+    .bc-qr-box {
+      background: #FFFFFF;
+      padding: 4px;
+      border: 1px solid #F1F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.15s ease, height 0.15s ease;
+    }
+</style>
 </head>
 <body>
 
@@ -2659,24 +3318,530 @@
 
           </div>
 
-          <!-- VIEW 5: APPROVAL FLOWS -->
-          <div class="settings-card setting-panel" id="panel_approval_flows" style="display: none;">
-            <div class="settings-card-header">
-              <h2>Approval Flows</h2>
-              <button class="btn-edit-action" onclick="showToast('Configure workflow')">+ New Flow</button>
-            </div>
-            <div class="settings-card-body">
-              <div class="card-table-wrap">
-                <table class="card-table">
-                  <thead><tr><th>Workflow Trigger</th><th>Routing Logic</th><th>SLA</th><th>Status</th></tr></thead>
-                  <tbody>
-                    <tr><td><strong>Notice Resignation Approval</strong></td><td>Reporting Line Manager</td><td>48h</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
-                    <tr><td><strong>Departmental Clearance</strong></td><td>Parallel Multi-Dept (IT, Admin, Fin, HR)</td><td>5d</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
-                    <tr><td><strong>Final Settlement Sign-off</strong></td><td>Sequential Finance Approvers</td><td>24h</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
-                  </tbody>
-                </table>
+          <!-- VIEW 5: APPROVAL FLOWS (EXACT MATCH TO media_1790159590328.png) -->
+          <div class="setting-panel" id="panel_approval_flows" style="display: none;">
+            
+            <!-- Top Action Bar (Refresh Left, Add Workflow Right) -->
+            <div class="table-action-topbar">
+              <button class="btn-refresh-icon" onclick="showToast('Refreshing approval workflows...')" title="Refresh">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+              </button>
+
+              <div class="table-top-actions-right">
+                <button class="btn-add-primary" onclick="showToast('Open Add Workflow Modal')">
+                  + Add Workflow
+                </button>
               </div>
             </div>
+
+            <!-- Sub-Header: Item Count & Filtering Tools -->
+            <div class="table-meta-bar" style="margin-bottom: 12px;">
+              <div class="table-count-label" id="wfCountLabel">11 Approval Workflows</div>
+
+              <div class="table-tools-right" style="gap: 10px;">
+                <!-- Status Pills: All (11), Active (10), Draft (1) -->
+                <div class="wf-status-filter-group">
+                  <button class="wf-filter-pill active" id="btnWfAll" onclick="filterWfStatus('all')">All (11)</button>
+                  <button class="wf-filter-pill" id="btnWfActive" onclick="filterWfStatus('active')">Active (10)</button>
+                  <button class="wf-filter-pill" id="btnWfDraft" onclick="filterWfStatus('draft')">Draft (1)</button>
+                </div>
+
+                <!-- Tools -->
+                <button class="btn-tool-icon" title="Grid Layout" onclick="showToast('Grid View toggled')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </button>
+                <button class="btn-tool-icon" title="Column Visibility" onclick="showToast('Customize Columns')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="12" y1="3" x2="12" y2="21"/>
+                  </svg>
+                </button>
+                <button class="btn-tool-icon" title="Sort Workflows" onclick="showToast('Sort Workflows')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/>
+                  </svg>
+                </button>
+                <button class="btn-filter-trigger" onclick="showToast('Filter Workflows panel')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                  </svg>
+                  <span>Filters</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Authentic Hirerkey Table Card with Lavender Header (#F0EBFE) -->
+            <div class="hk-data-table-card">
+              <table class="hk-data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 60px;">S. No</th>
+                    <th>Workflow</th>
+                    <th style="width: 120px;">Module</th>
+                    <th>Approval Chain</th>
+                    <th style="text-align: center; width: 80px;">Levels</th>
+                    <th style="width: 110px;">Status</th>
+                    <th style="width: 110px;">Last Up</th>
+                    <th style="text-align: center; width: 70px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="wfTableBody">
+                  <!-- Row 1: Leave-3 (Default) -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>1</td>
+                    <td>
+                      <div style="display: inline-flex; align-items: center; gap: 8px;">
+                        <strong>Leave-3</strong>
+                        <span class="badge-default-pill">Default</span>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge-module-pill leave">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Leave
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L21 10.5l-5.4 4.5 1.8 7-5.4-4-5.4 4 1.8-7L3 10.5l6.6-1.3z"/></svg>
+                          1. Manager
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">1</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>24-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: Leave-3')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 2: attendance -2 -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>2</td>
+                    <td><strong>attendance -2</strong></td>
+                    <td>
+                      <span class="badge-module-pill leave">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Leave
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          1. Uneet
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          2. Subhadeep
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">2</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>07-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: attendance -2')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 3: attendance -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>3</td>
+                    <td><strong>attendance</strong></td>
+                    <td>
+                      <span class="badge-module-pill expense">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                        Expense
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          1. uneet
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          2. subho
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">2</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>07-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: attendance')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 4: testing approval workflow -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>4</td>
+                    <td><strong>testing approval workflow</strong></td>
+                    <td>
+                      <span class="badge-module-pill expense">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                        Expense
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L21 10.5l-5.4 4.5 1.8 7-5.4-4-5.4 4 1.8-7L3 10.5l6.6-1.3z"/></svg>
+                          1. step 1
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          2. step 2
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          3. step 3
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          4. step 4
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">4</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>22-05-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: testing approval workflow')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 5: Designation Flow Testing (Default) -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>5</td>
+                    <td>
+                      <div style="display: inline-flex; align-items: center; gap: 8px;">
+                        <strong>Designation Flow Testing</strong>
+                        <span class="badge-default-pill">Default</span>
+                      </div>
+                    </td>
+                    <td>
+                      <span class="badge-module-pill expense">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                        Expense
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          1. Chanchal
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          2. Sonumathur
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          3. Anupam
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">3</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>22-05-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: Designation Flow Testing')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 6: New Testing workflow -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>6</td>
+                    <td><strong>New Testing workflow</strong></td>
+                    <td>
+                      <span class="badge-module-pill expense">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                        Expense
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          1. Subhodeep's
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          2. Chanchal
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          3. Sonu
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L21 10.5l-5.4 4.5 1.8 7-5.4-4-5.4 4 1.8-7L3 10.5l6.6-1.3z"/></svg>
+                          4. Manager
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">4</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>20-04-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: New Testing workflow')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 7: Chanchal Reimbursement -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>7</td>
+                    <td><strong>Chanchal Reimbursement</strong></td>
+                    <td>
+                      <span class="badge-module-pill expense">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                        Expense
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L21 10.5l-5.4 4.5 1.8 7-5.4-4-5.4 4 1.8-7L3 10.5l6.6-1.3z"/></svg>
+                          1. Manager's Approval
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          2. HR approval
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">2</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>13-04-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: Chanchal Reimbursement')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 8: Sonu Test (MANAGER) - Draft -->
+                  <tr class="wf-row wf-draft" data-page="1">
+                    <td>8</td>
+                    <td><strong>Sonu Test (MANAGER)</strong></td>
+                    <td>
+                      <span class="badge-module-pill expense">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                        Expense
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          1. Manager
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">1</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label draft">Draft</span>
+                      </div>
+                    </td>
+                    <td>15-04-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: Sonu Test')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 9: Vendor Invoice Clearance -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>9</td>
+                    <td><strong>Vendor Invoice Clearance</strong></td>
+                    <td>
+                      <span class="badge-module-pill expense">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                        Expense
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          1. Procurement
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          2. Finance Head
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">2</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>10-04-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: Vendor Invoice Clearance')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 10: Executive Travel Request -->
+                  <tr class="wf-row wf-active" data-page="1">
+                    <td>10</td>
+                    <td><strong>Executive Travel Request</strong></td>
+                    <td>
+                      <span class="badge-module-pill leave">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Leave
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2L21 10.5l-5.4 4.5 1.8 7-5.4-4-5.4 4 1.8-7L3 10.5l6.6-1.3z"/></svg>
+                          1. Line Manager
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          2. VP Operations
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">2</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>02-04-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: Executive Travel Request')">•••</button>
+                    </td>
+                  </tr>
+
+                  <!-- Row 11: Asset Procurement Sign-off (Page 2) -->
+                  <tr class="wf-row wf-active" data-page="2" style="display: none;">
+                    <td>11</td>
+                    <td><strong>Asset Procurement Sign-off</strong></td>
+                    <td>
+                      <span class="badge-module-pill expense">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg>
+                        Expense
+                      </span>
+                    </td>
+                    <td>
+                      <div class="wf-chain-wrap">
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          1. IT Lead
+                        </span>
+                        <span class="wf-arrow">›</span>
+                        <span class="wf-step-pill">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                          2. COO
+                        </span>
+                      </div>
+                    </td>
+                    <td style="text-align: center;">2</td>
+                    <td>
+                      <div class="wf-status-toggle">
+                        <div class="wf-toggle-switch is-active" onclick="toggleWfStatus(this)"><span class="wf-toggle-knob"></span></div>
+                        <span class="wf-status-label active">Active</span>
+                      </div>
+                    </td>
+                    <td>28-03-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Workflow actions: Asset Procurement Sign-off')">•••</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Interactive Pagination -->
+              <div class="hk-table-pagination">
+                <div class="hk-pag-left">
+                  <span>Rows per page:</span>
+                  <select class="hk-pag-select" onchange="showToast('Rows per page: ' + this.value)">
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+
+                <div class="hk-pag-center">
+                  <button class="hk-pag-btn" id="wfPagPrev" disabled onclick="switchWfPage(1)" title="Previous page">‹</button>
+                  <button class="hk-pag-btn active" id="wfPag1" onclick="switchWfPage(1)">1</button>
+                  <button class="hk-pag-btn" id="wfPag2" onclick="switchWfPage(2)">2</button>
+                  <button class="hk-pag-btn" id="wfPagNext" onclick="switchWfPage(2)" title="Next page">›</button>
+                </div>
+
+                <div class="hk-pag-right" id="wfPagInfo">
+                  Showing 1-10 of 11
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
           <!-- VIEW 6: OFFBOARDING & RULES -->
@@ -2703,20 +3868,300 @@
             </div>
           </div>
 
-          <!-- VIEW 7: BUSINESS CARD -->
-          <div class="settings-card setting-panel" id="panel_business_card" style="display: none;">
-            <div class="settings-card-header">
-              <h2>Business Card Configurator</h2>
-              <button class="btn-edit-action" onclick="showToast('Business Card Template saved')">Save Template</button>
+          <!-- VIEW 7: BUSINESS CARD CONFIGURATOR (EXACT MATCH TO media_1790159590338.png) -->
+          <div class="setting-panel" id="panel_business_card" style="display: none;">
+            
+            <!-- Master Cards Pill Selector Bar -->
+            <div class="bc-master-pills-row">
+              <button class="bc-master-pill active" onclick="selectBcMaster('noisiv', this)">
+                <span>Noisiv Consulting</span>
+                <span class="bc-master-default-badge">Default</span>
+                <span class="bc-dots-icon">⋮</span>
+              </button>
+              <button class="bc-master-pill" onclick="selectBcMaster('hirerkey', this)">
+                <span>Hirerkey Card</span>
+                <span class="bc-dots-icon">⋮</span>
+              </button>
+              <button class="bc-master-pill" onclick="selectBcMaster('apple', this)">
+                <span>Apple Card</span>
+                <span class="bc-dots-icon">⋮</span>
+              </button>
+              <button class="bc-master-pill" onclick="selectBcMaster('neo', this)">
+                <span>Neo Tech Test</span>
+                <span class="bc-dots-icon">⋮</span>
+              </button>
+              <button class="bc-master-pill" onclick="selectBcMaster('master5', this)">
+                <span>Master Card 5</span>
+                <span class="bc-dots-icon">⋮</span>
+              </button>
+              <button class="bc-master-pill-new" onclick="showToast('Create new master card template')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                <span>New Master</span>
+              </button>
             </div>
-            <div class="settings-card-body">
-              <div style="padding: 20px; border-radius: 12px; background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); color: #FFF; width: 340px; box-shadow: 0 10px 24px rgba(0,0,0,0.2);">
-                <div style="font-weight: 800; font-size: 15px;">Noisiv Consulting</div>
-                <div style="font-size: 17px; font-weight: 700; margin-top: 24px;">Chanchal Sharma</div>
-                <div style="font-size: 12px; color: #A78BFA;">System Administrator</div>
-                <div style="font-size: 11px; color: #94A3B8; margin-top: 20px;">+971 4 800 2769 · info@noisivconsulting.com</div>
+
+            <!-- 2-Column Grid Layout: Form Left, Live Preview Right -->
+            <div class="bc-config-grid">
+              
+              <!-- Left Column: Settings Form -->
+              <div class="bc-form-card">
+                <div class="bc-form-header">
+                  <div class="bc-form-icon-box">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="1" y="4" width="22" height="16" rx="2"></rect>
+                      <line x1="1" y1="10" x2="23" y2="10"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="bc-form-title">Business Card Configurator</h3>
+                    <p class="bc-form-subtitle">Configure the default template for all business cards</p>
+                  </div>
+                </div>
+
+                <!-- Template Name Field -->
+                <div class="bc-field-group">
+                  <label class="bc-field-label">Template Name</label>
+                  <input type="text" class="bc-input" id="bcInputTemplateName" value="Noisiv Consulting" oninput="updateLiveCard()">
+                </div>
+
+                <!-- Primary Color & Theme (2 columns) -->
+                <div class="bc-two-col-row">
+                  <div class="bc-field-group">
+                    <label class="bc-field-label">Primary Color</label>
+                    <div class="bc-color-picker-box">
+                      <div class="bc-color-swatch" id="bcColorSwatch" style="background: #461e67;" onclick="document.getElementById('bcNativeColorPicker').click()"></div>
+                      <input type="color" id="bcNativeColorPicker" style="display:none;" value="#461e67" onchange="updateLiveCardColor(this.value)">
+                      <input type="text" class="bc-color-input" id="bcInputColor" value="#461e67" oninput="updateLiveCardColor(this.value)">
+                    </div>
+                  </div>
+                  <div class="bc-field-group">
+                    <label class="bc-field-label">Theme</label>
+                    <select class="bc-select" id="bcSelectTheme" onchange="showToast('Theme updated: ' + this.value)">
+                      <option value="Classic Red" selected>Classic Red</option>
+                      <option value="Executive Purple">Executive Purple</option>
+                      <option value="Modern Slate">Modern Slate</option>
+                      <option value="Minimalist Light">Minimalist Light</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Subcard 1: QR Code Behavior -->
+                <div class="bc-subcard">
+                  <div class="bc-subcard-header">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="3" y="3" width="7" height="7"></rect>
+                      <rect x="14" y="3" width="7" height="7"></rect>
+                      <rect x="3" y="14" width="7" height="7"></rect>
+                      <rect x="14" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>QR Code Behavior</span>
+                  </div>
+                  <div class="bc-two-col-row">
+                    <div class="bc-field-group">
+                      <label class="bc-field-label">Desktop QR Type</label>
+                      <select class="bc-select" id="bcDesktopQr" onchange="showToast('Desktop QR: ' + this.value)">
+                        <option value="Dynamic Web Profile" selected>Dynamic Web Profile</option>
+                        <option value="Static vCard">Static vCard</option>
+                        <option value="Company Directory Link">Company Directory Link</option>
+                      </select>
+                    </div>
+                    <div class="bc-field-group">
+                      <label class="bc-field-label">Mobile QR Type</label>
+                      <select class="bc-select" id="bcMobileQr" onchange="showToast('Mobile QR: ' + this.value)">
+                        <option value="VCF File Download" selected>VCF File Download</option>
+                        <option value="Direct Contact Save">Direct Contact Save</option>
+                        <option value="Deep Link App">Deep Link App</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Subcard 2: Size & Layout Control -->
+                <div class="bc-subcard">
+                  <div class="bc-subcard-header">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                      <line x1="9" y1="20" x2="15" y2="20"></line>
+                      <line x1="12" y1="4" x2="12" y2="20"></line>
+                    </svg>
+                    <span>Size &amp; Layout Control</span>
+                  </div>
+                  <div class="bc-two-col-row">
+                    <div class="bc-field-group">
+                      <div class="bc-slider-label-row">
+                        <span style="display:flex; align-items:center; gap:6px;">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                          Logo Size (<span id="lblLogoSize">75px</span>)
+                        </span>
+                      </div>
+                      <input type="range" min="45" max="110" value="75" class="bc-range-slider" id="rngLogoSize" oninput="updateLogoSize(this.value)">
+                    </div>
+
+                    <div class="bc-field-group">
+                      <div class="bc-slider-label-row">
+                        <span style="display:flex; align-items:center; gap:6px;">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                          QR Size (<span id="lblQrSize">95px</span>)
+                        </span>
+                      </div>
+                      <input type="range" min="65" max="135" value="95" class="bc-range-slider" id="rngQrSize" oninput="updateQrSize(this.value)">
+                    </div>
+                  </div>
+                </div>
+
               </div>
+
+              <!-- Right Column: Live Preview Card -->
+              <div class="bc-preview-card">
+                <h3 class="bc-preview-title">Live Preview</h3>
+
+                <!-- Orientation Toggle: Horizontal / Vertical -->
+                <div class="bc-orient-pill-group">
+                  <button class="bc-orient-pill active" id="btnOrientHoriz" onclick="setCardOrientation('horizontal')">Horizontal</button>
+                  <button class="bc-orient-pill" id="btnOrientVert" onclick="setCardOrientation('vertical')">Vertical</button>
+                </div>
+
+                <!-- Notification Notice -->
+                <div class="bc-notice-banner">
+                  This is a preview with sample data. Actual cards will show employee details.
+                </div>
+
+                <!-- Print Canvas with Bleed / Trim / Safe Guidelines -->
+                <div class="bc-canvas-wrapper" id="bcCanvasWrapper">
+                  <div class="bc-guide-bleed">
+                    <span class="bc-guide-tag red">Bleed Area</span>
+
+                    <div class="bc-guide-cut">
+                      <span class="bc-guide-tag blue">Cut Area (Trim Area)</span>
+
+                      <div class="bc-guide-safe">
+                        <span class="bc-guide-tag green">Safe Area</span>
+
+                        <!-- Authentic Business Card Face -->
+                        <div class="bc-card-face" id="bcCardFace">
+                          
+                          <!-- Left Content: Employee Info -->
+                          <div class="bc-card-left">
+                            <div class="bc-card-name" id="bcCardName">Chanchal Sharma</div>
+                            <div class="bc-card-designation" id="bcCardTitle">UI UX Designer</div>
+
+                            <div class="bc-contact-list">
+                              <div class="bc-contact-item">
+                                <svg class="bc-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                <span>chanchalsharma0105@gmail.com</span>
+                              </div>
+
+                              <div class="bc-contact-item">
+                                <svg class="bc-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                <span>8800847765 | 8800847777</span>
+                              </div>
+
+                              <div class="bc-contact-item">
+                                <svg class="bc-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                                <span id="bcCardWebsite">www.noisivconsulting.com</span>
+                              </div>
+
+                              <div class="bc-contact-item">
+                                <svg class="bc-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                <span>Building 656, Lane 4, Westend Marg, New Delhi - 110030 🇮🇳</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- Right Content: Stylized 'N' Monogram & Realistic QR -->
+                          <div class="bc-card-right">
+                            <div class="bc-card-logo-wrap" id="bcLogoWrap" style="width: 75px; height: 75px;">
+                              <svg viewBox="0 0 100 100" width="100%" height="100%" fill="none" stroke="#461e67" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" id="bcLogoSvg">
+                                <line x1="24" y1="18" x2="24" y2="82"/>
+                                <line x1="24" y1="18" x2="76" y2="82"/>
+                                <line x1="76" y1="18" x2="76" y2="82"/>
+                              </svg>
+                            </div>
+
+                            <div class="bc-qr-box" id="bcQrBox" style="width: 95px; height: 95px;">
+                              <!-- Authentic QR Pattern matching screenshot -->
+                              <svg viewBox="0 0 100 100" width="100%" height="100%">
+                                <rect width="100" height="100" fill="#FFFFFF"/>
+                                <!-- Top-Left Finder -->
+                                <rect x="5" y="5" width="28" height="28" fill="#1E293B" rx="2"/>
+                                <rect x="9" y="9" width="20" height="20" fill="#FFFFFF" rx="1"/>
+                                <rect x="13" y="13" width="12" height="12" fill="#1E293B" rx="1"/>
+
+                                <!-- Top-Right Finder -->
+                                <rect x="67" y="5" width="28" height="28" fill="#1E293B" rx="2"/>
+                                <rect x="71" y="9" width="20" height="20" fill="#FFFFFF" rx="1"/>
+                                <rect x="75" y="13" width="12" height="12" fill="#1E293B" rx="1"/>
+
+                                <!-- Bottom-Left Finder -->
+                                <rect x="5" y="67" width="28" height="28" fill="#1E293B" rx="2"/>
+                                <rect x="9" y="71" width="20" height="20" fill="#FFFFFF" rx="1"/>
+                                <rect x="13" y="75" width="12" height="12" fill="#1E293B" rx="1"/>
+
+                                <!-- QR Matrix Dots / Patterns -->
+                                <rect x="38" y="7" width="5" height="5" fill="#1E293B"/>
+                                <rect x="48" y="7" width="5" height="5" fill="#1E293B"/>
+                                <rect x="58" y="7" width="5" height="5" fill="#1E293B"/>
+                                <rect x="38" y="17" width="5" height="5" fill="#1E293B"/>
+                                <rect x="48" y="17" width="5" height="5" fill="#1E293B"/>
+                                <rect x="58" y="17" width="5" height="5" fill="#1E293B"/>
+                                <rect x="38" y="27" width="5" height="5" fill="#1E293B"/>
+                                <rect x="48" y="27" width="5" height="5" fill="#1E293B"/>
+
+                                <rect x="7" y="38" width="5" height="5" fill="#1E293B"/>
+                                <rect x="17" y="38" width="5" height="5" fill="#1E293B"/>
+                                <rect x="27" y="38" width="5" height="5" fill="#1E293B"/>
+                                <rect x="38" y="38" width="5" height="5" fill="#1E293B"/>
+                                <rect x="48" y="38" width="5" height="5" fill="#1E293B"/>
+                                <rect x="58" y="38" width="5" height="5" fill="#1E293B"/>
+                                <rect x="68" y="38" width="5" height="5" fill="#1E293B"/>
+                                <rect x="78" y="38" width="5" height="5" fill="#1E293B"/>
+                                <rect x="88" y="38" width="5" height="5" fill="#1E293B"/>
+
+                                <rect x="7" y="48" width="5" height="5" fill="#1E293B"/>
+                                <rect x="22" y="48" width="5" height="5" fill="#1E293B"/>
+                                <rect x="38" y="48" width="5" height="5" fill="#1E293B"/>
+                                <rect x="53" y="48" width="5" height="5" fill="#1E293B"/>
+                                <rect x="68" y="48" width="5" height="5" fill="#1E293B"/>
+                                <rect x="83" y="48" width="5" height="5" fill="#1E293B"/>
+
+                                <rect x="7" y="58" width="5" height="5" fill="#1E293B"/>
+                                <rect x="17" y="58" width="5" height="5" fill="#1E293B"/>
+                                <rect x="38" y="58" width="5" height="5" fill="#1E293B"/>
+                                <rect x="48" y="58" width="5" height="5" fill="#1E293B"/>
+                                <rect x="63" y="58" width="5" height="5" fill="#1E293B"/>
+                                <rect x="78" y="58" width="5" height="5" fill="#1E293B"/>
+                                <rect x="88" y="58" width="5" height="5" fill="#1E293B"/>
+
+                                <rect x="38" y="68" width="5" height="5" fill="#1E293B"/>
+                                <rect x="53" y="68" width="5" height="5" fill="#1E293B"/>
+                                <rect x="68" y="68" width="5" height="5" fill="#1E293B"/>
+                                <rect x="83" y="68" width="5" height="5" fill="#1E293B"/>
+
+                                <rect x="38" y="78" width="5" height="5" fill="#1E293B"/>
+                                <rect x="48" y="78" width="5" height="5" fill="#1E293B"/>
+                                <rect x="58" y="78" width="5" height="5" fill="#1E293B"/>
+                                <rect x="73" y="78" width="5" height="5" fill="#1E293B"/>
+                                <rect x="88" y="78" width="5" height="5" fill="#1E293B"/>
+
+                                <rect x="38" y="88" width="5" height="5" fill="#1E293B"/>
+                                <rect x="53" y="88" width="5" height="5" fill="#1E293B"/>
+                                <rect x="68" y="88" width="5" height="5" fill="#1E293B"/>
+                                <rect x="83" y="88" width="5" height="5" fill="#1E293B"/>
+                              </svg>
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
             </div>
+
           </div>
 
           <!-- VIEW 8: ATTENDANCE & GEOFENCE -->
@@ -3168,6 +4613,192 @@
         if (btnNext) btnNext.disabled = true;
         if (info) info.textContent = 'Showing 11 of 11';
       }
+    }
+
+
+    // ==========================================
+    // APPROVAL WORKFLOWS CONTROLLER
+    // ==========================================
+    let currentWfFilter = 'all';
+    let currentWfPage = 1;
+
+    function filterWfStatus(filter) {
+      currentWfFilter = filter;
+      document.querySelectorAll('.wf-filter-pill').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById(filter === 'all' ? 'btnWfAll' : (filter === 'active' ? 'btnWfActive' : 'btnWfDraft'));
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const rows = document.querySelectorAll('#wfTableBody tr.wf-row');
+      let visibleCount = 0;
+
+      rows.forEach(r => {
+        const isActive = r.classList.contains('wf-active');
+        const isDraft = r.classList.contains('wf-draft');
+        let matches = true;
+
+        if (filter === 'active') matches = isActive;
+        if (filter === 'draft') matches = isDraft;
+
+        if (matches) {
+          // If all or active, respect pagination (rows 1-10 on page 1, row 11 on page 2)
+          const page = r.getAttribute('data-page');
+          if (filter === 'draft') {
+            r.style.display = '';
+            visibleCount++;
+          } else {
+            if (page == currentWfPage) {
+              r.style.display = '';
+              visibleCount++;
+            } else {
+              r.style.display = 'none';
+            }
+          }
+        } else {
+          r.style.display = 'none';
+        }
+      });
+
+      const countLbl = document.getElementById('wfCountLabel');
+      if (countLbl) {
+        if (filter === 'all') countLbl.textContent = '11 Approval Workflows';
+        if (filter === 'active') countLbl.textContent = '10 Active Approval Workflows';
+        if (filter === 'draft') countLbl.textContent = '1 Draft Approval Workflow';
+      }
+
+      showToast(`Filter: ${filter.toUpperCase()} workflows`);
+    }
+
+    function switchWfPage(page) {
+      currentWfPage = page;
+      const rows = document.querySelectorAll('#wfTableBody tr.wf-row');
+      const btnPrev = document.getElementById('wfPagPrev');
+      const btnNext = document.getElementById('wfPagNext');
+      const btn1 = document.getElementById('wfPag1');
+      const btn2 = document.getElementById('wfPag2');
+      const info = document.getElementById('wfPagInfo');
+
+      rows.forEach(r => {
+        const p = r.getAttribute('data-page');
+        if (currentWfFilter === 'draft') return;
+        r.style.display = (p == page) ? '' : 'none';
+      });
+
+      if (page === 1) {
+        if (btn1) btn1.classList.add('active');
+        if (btn2) btn2.classList.remove('active');
+        if (btnPrev) btnPrev.disabled = true;
+        if (btnNext) btnNext.disabled = false;
+        if (info) info.textContent = 'Showing 1-10 of 11';
+      } else {
+        if (btn1) btn1.classList.remove('active');
+        if (btn2) btn2.classList.add('active');
+        if (btnPrev) btnPrev.disabled = false;
+        if (btnNext) btnNext.disabled = true;
+        if (info) info.textContent = 'Showing 11 of 11';
+      }
+    }
+
+    function toggleWfStatus(elem) {
+      const isCurrentlyActive = elem.classList.contains('is-active');
+      elem.classList.toggle('is-active', !isCurrentlyActive);
+      const label = elem.nextElementSibling;
+      if (label) {
+        if (!isCurrentlyActive) {
+          label.textContent = 'Active';
+          label.className = 'wf-status-label active';
+        } else {
+          label.textContent = 'Draft';
+          label.className = 'wf-status-label draft';
+        }
+      }
+      showToast(`Workflow status updated to ${!isCurrentlyActive ? 'Active' : 'Draft'}`);
+    }
+
+    // ==========================================
+    // BUSINESS CARD CONFIGURATOR CONTROLLER
+    // ==========================================
+    function selectBcMaster(name, btn) {
+      document.querySelectorAll('.bc-master-pill').forEach(p => p.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const tmplInput = document.getElementById('bcInputTemplateName');
+      if (name === 'noisiv') {
+        if (tmplInput) tmplInput.value = 'Noisiv Consulting';
+        updateLiveCardColor('#461e67');
+      } else if (name === 'hirerkey') {
+        if (tmplInput) tmplInput.value = 'Hirerkey Card';
+        updateLiveCardColor('#7C3AED');
+      } else if (name === 'apple') {
+        if (tmplInput) tmplInput.value = 'Apple Card';
+        updateLiveCardColor('#000000');
+      } else if (name === 'neo') {
+        if (tmplInput) tmplInput.value = 'Neo Tech Test';
+        updateLiveCardColor('#2563EB');
+      } else if (name === 'master5') {
+        if (tmplInput) tmplInput.value = 'Master Card 5';
+        updateLiveCardColor('#D97706');
+      }
+      updateLiveCard();
+      showToast(`Master template selected: ${tmplInput ? tmplInput.value : name}`);
+    }
+
+    function updateLiveCard() {
+      const tmplName = document.getElementById('bcInputTemplateName').value;
+      const webSpan = document.getElementById('bcCardWebsite');
+      if (webSpan && tmplName) {
+        const cleanName = tmplName.toLowerCase().replace(/[^a-z0-9]/g, '');
+        webSpan.textContent = `www.${cleanName || 'company'}.com`;
+      }
+    }
+
+    function updateLiveCardColor(color) {
+      const swatch = document.getElementById('bcColorSwatch');
+      const textInput = document.getElementById('bcInputColor');
+      const logoSvg = document.getElementById('bcLogoSvg');
+
+      if (swatch) swatch.style.background = color;
+      if (textInput && textInput.value !== color) textInput.value = color;
+      if (logoSvg) logoSvg.setAttribute('stroke', color);
+    }
+
+    function updateLogoSize(val) {
+      const lbl = document.getElementById('lblLogoSize');
+      const wrap = document.getElementById('bcLogoWrap');
+      if (lbl) lbl.textContent = `${val}px`;
+      if (wrap) {
+        wrap.style.width = `${val}px`;
+        wrap.style.height = `${val}px`;
+      }
+    }
+
+    function updateQrSize(val) {
+      const lbl = document.getElementById('lblQrSize');
+      const box = document.getElementById('bcQrBox');
+      if (lbl) lbl.textContent = `${val}px`;
+      if (box) {
+        box.style.width = `${val}px`;
+        box.style.height = `${val}px`;
+      }
+    }
+
+    function setCardOrientation(mode) {
+      const btnH = document.getElementById('btnOrientHoriz');
+      const btnV = document.getElementById('btnOrientVert');
+      const face = document.getElementById('bcCardFace');
+
+      if (btnH) btnH.classList.toggle('active', mode === 'horizontal');
+      if (btnV) btnV.classList.toggle('active', mode === 'vertical');
+
+      if (face) {
+        if (mode === 'vertical') {
+          face.classList.remove('horizontal');
+          face.classList.add('vertical');
+        } else {
+          face.classList.remove('vertical');
+          face.classList.add('horizontal');
+        }
+      }
+      showToast(`Card preview oriented: ${mode}`);
     }
 
     // Init
