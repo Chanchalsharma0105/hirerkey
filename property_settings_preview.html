@@ -2285,6 +2285,178 @@
       justify-content: center;
       transition: width 0.15s ease, height 0.15s ease;
     }
+
+    /* ==========================================================================
+       SCREEN SWITCHER BAR (TABS VIEW 1, VIEW 2, VIEW 3 - MATCHING OFFBOARDING)
+       ========================================================================== */
+    .screen-switcher-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 16px;
+      margin-bottom: 22px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .screen-tab {
+      padding: 7px 16px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #64748B;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .screen-tab:hover {
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .screen-tab.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+    }
+
+    .system-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #EDE9FE;
+      color: #7C3AED;
+      letter-spacing: -0.01em;
+    }
+
+    /* ==========================================================================
+       VIEW 2: SLIM ICON RAIL WITH HOVER TOOLTIPS
+       ========================================================================== */
+    .slim-icon-rail {
+      width: 54px;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 8px 5px;
+      display: none; /* Shown in View 2 */
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      z-index: 100;
+    }
+
+    .slim-rail-item {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #64748B;
+      background: transparent;
+      transition: all 0.16s ease;
+    }
+
+    .slim-rail-item:hover {
+      background: #F3E8FF;
+      color: #7C3AED;
+      transform: translateY(-1px);
+    }
+
+    .slim-rail-item.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.32);
+    }
+
+    .slim-rail-item svg {
+      width: 17px;
+      height: 17px;
+      transition: stroke 0.15s ease;
+    }
+
+    /* Hover Tooltip (Dark Floating Pill with Caret) */
+    .slim-rail-item .slim-tooltip {
+      position: absolute;
+      left: calc(100% + 12px);
+      top: 50%;
+      transform: translateY(-50%) translateX(-4px);
+      background: #0F172A;
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      padding: 6px 12px;
+      border-radius: 6px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.16s ease;
+      z-index: 1000;
+    }
+
+    /* Caret pointing back to icon */
+    .slim-rail-item .slim-tooltip::before {
+      content: "";
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent #0F172A transparent transparent;
+    }
+
+    .slim-rail-item:hover .slim-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-50%) translateX(0);
+    }
+
+    /* View 2 Dedicated Header */
+    .view2-header {
+      display: none;
+      margin-bottom: 20px;
+    }
+
+    .view2-breadcrumb {
+      font-size: 12px;
+      color: #64748B;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .view2-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1E293B;
+      letter-spacing: -0.02em;
+    }
+
+    .view2-subtitle {
+      font-size: 13px;
+      color: #64748B;
+      margin-top: 3px;
+    }
 </style>
 </head>
 <body>
@@ -2506,6 +2678,24 @@
          Solving the top horizontal scroll issue with Lead UX/UI architecture
          ======================================================================== -->
     <main class="page-content-wrapper">
+      <!-- Screen Switcher Bar (Tabs: View 1, View 2, View 3 - Matching Offboarding Pattern) -->
+      <div class="screen-switcher-bar">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="screen-tab active" id="tab-view-1" onclick="switchMainScreenView(1)">
+            View 1: Chip Dropdown (Current)
+          </button>
+          <button class="screen-tab" id="tab-view-2" onclick="switchMainScreenView(2)">
+            View 2: Slim Icon Rail (Hover Tooltips)
+          </button>
+          <button class="screen-tab" id="tab-view-3" onclick="switchMainScreenView(3)">
+            View 3: Full In-Page Rail
+          </button>
+        </div>
+        <div class="system-badge">Property Settings Experience Modes</div>
+      </div>
+
+      
+
       
       <!-- In-Page Header Row (Chip on Top-Left, Heading Property Settings Below the Chip) -->
       <div class="page-header-row">
@@ -2652,25 +2842,7 @@
 
         </div>
 
-        <!-- Lead UX/UI Architect Layout Mode Switcher -->
-        <div class="architect-layout-toggle">
-          <button class="toggle-opt-btn active" id="btnOptChip" onclick="switchArchitectLayout('chip')" title="Recommended Full-Canvas Mode with Top-Left Chip Dropdown">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/></svg>
-            Chip Dropdown (Full Canvas)
-          </button>
-          <button class="toggle-opt-btn" id="btnOptRail" onclick="switchArchitectLayout('rail')" title="Enterprise Split View with Side Rail">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
-            In-Page Rail
-          </button>
-          <button class="toggle-opt-btn" id="btnOptTwoTier" onclick="switchArchitectLayout('twotier')" title="Zero-Scroll Categorized Top Bar">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
-            Two-Tier Tabs
-          </button>
-          <button class="toggle-opt-btn" id="btnOptGrid" onclick="switchArchitectLayout('grid')" title="Visual Cards Hub">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            Hub Grid
-          </button>
-        </div>
+        
       </div><!-- Mode 2 Container: Two-Tier Categorized Top Bar (Shown only in TwoTier mode) -->
       <div id="twoTierBarContainer" class="twotier-container" style="display: none;">
         <div class="tier1-bar" id="twoTierLevel1">
@@ -2685,6 +2857,59 @@
       <div class="inpage-split-container" id="inpageSplitContainer">
         
         <!-- IN-PAGE SETTINGS RAIL (Categorized & 100% Discoverable) -->
+                <!-- VIEW 2: SLIM ICON-ONLY RAIL WITH HOVER TOOLTIPS -->
+        <aside class="slim-icon-rail" id="slimIconRail">
+          <div class="slim-rail-item active" id="slim_details" onclick="selectSettingMenu('details')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>
+            <div class="slim-tooltip">Property Details</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_departments" onclick="selectSettingMenu('departments')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <div class="slim-tooltip">Departments</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_grades" onclick="selectSettingMenu('grades')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            <div class="slim-tooltip">Grades</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_designations" onclick="selectSettingMenu('designations')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+            <div class="slim-tooltip">Designations</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_approval_flows" onclick="selectSettingMenu('approval_flows')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg>
+            <div class="slim-tooltip">Approval Flows</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_offboarding" onclick="selectSettingMenu('offboarding')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            <div class="slim-tooltip">Offboarding &amp; Rules</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_business_card" onclick="selectSettingMenu('business_card')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <div class="slim-tooltip">Business Card Configurator</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_attendance" onclick="selectSettingMenu('attendance')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div class="slim-tooltip">Attendance &amp; Geofence</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_leave_types" onclick="selectSettingMenu('leave_types')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <div class="slim-tooltip">Leave Types</div>
+          </div>
+
+          <div class="slim-rail-item" id="slim_appraisal" onclick="selectSettingMenu('appraisal')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            <div class="slim-tooltip">Appraisals</div>
+          </div>
+        </aside>
+
         <aside class="inpage-settings-rail" id="inpageSettingsRail">
           <div class="rail-filter-box">
             <svg class="rail-filter-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -2783,6 +3008,18 @@
 
         <!-- MAIN SETTINGS VIEW CANVAS -->
         <section class="inpage-settings-canvas" id="inpageSettingsCanvas">
+
+          <!-- View 2 Dedicated Content Header (Active in View 2 & View 3) -->
+      <div class="view2-header" id="view2Header">
+        <div class="view2-breadcrumb">
+          <span>Property Settings</span>
+          <span>›</span>
+          <span style="color: #7C3AED; font-weight: 600;" id="v2Breadcrumb">Property Details</span>
+        </div>
+        <h1 class="view2-title" id="v2Title">Property Details</h1>
+        <p class="view2-subtitle" id="v2Subtitle">Hotel profile, brand logo, legal address, and operational registration details.</p>
+      </div>
+
 
           <!-- ================================================================
                VIEW 1: PROPERTY DETAILS (EXACT MATCH TO media_1790150709253.png)
@@ -4275,7 +4512,72 @@
       website: 'www.noisivconsulting.com'
     };
 
-    function selectSettingMenu(menuId) {
+    
+    // ==========================================================================
+    // SCREEN SWITCHER CONTROLLER (VIEW 1, VIEW 2, VIEW 3)
+    // ==========================================================================
+    let currentMainScreenView = 1;
+
+    function switchMainScreenView(viewNum) {
+      currentMainScreenView = viewNum;
+      
+      const tab1 = document.getElementById('tab-view-1');
+      const tab2 = document.getElementById('tab-view-2');
+      const tab3 = document.getElementById('tab-view-3');
+
+      if (tab1) tab1.classList.toggle('active', viewNum === 1);
+      if (tab2) tab2.classList.toggle('active', viewNum === 2);
+      if (tab3) tab3.classList.toggle('active', viewNum === 3);
+
+      const v1Header = document.querySelector('.page-header-row');
+      const v2Header = document.getElementById('view2Header');
+      const slimRail = document.getElementById('slimIconRail');
+      const fullRail = document.getElementById('inpageSettingsRail');
+      const splitContainer = document.getElementById('inpageSplitContainer');
+
+      if (viewNum === 1) {
+        // VIEW 1: CHIP DROPDOWN (FULL CANVAS)
+        if (v1Header) v1Header.style.display = 'flex';
+        if (v2Header) v2Header.style.display = 'none';
+        if (slimRail) slimRail.style.display = 'none';
+        if (fullRail) fullRail.style.display = 'none';
+        if (splitContainer) splitContainer.style.display = 'flex';
+        showToast('Switched to View 1: Chip Dropdown (Current)');
+      } else if (viewNum === 2) {
+        // VIEW 2: SLIM ICON RAIL WITH HOVER TOOLTIPS
+        if (v1Header) v1Header.style.display = 'none';
+        if (v2Header) v2Header.style.display = 'block';
+        if (slimRail) slimRail.style.display = 'flex';
+        if (fullRail) fullRail.style.display = 'none';
+        if (splitContainer) splitContainer.style.display = 'flex';
+        updateView2Header(activeMenuId);
+        showToast('Switched to View 2: Slim Icon Rail (Hover Tooltips)');
+      } else if (viewNum === 3) {
+        // VIEW 3: FULL IN-PAGE RAIL
+        if (v1Header) v1Header.style.display = 'none';
+        if (v2Header) v2Header.style.display = 'block';
+        if (slimRail) slimRail.style.display = 'none';
+        if (fullRail) fullRail.style.display = 'block';
+        if (splitContainer) splitContainer.style.display = 'flex';
+        updateView2Header(activeMenuId);
+        showToast('Switched to View 3: Full In-Page Rail');
+      }
+
+      selectSettingMenu(activeMenuId, true);
+    }
+
+    function updateView2Header(menuId) {
+      const mod = MENU_MODULES.find(m => m.id === menuId);
+      if (!mod) return;
+      const crumb = document.getElementById('v2Breadcrumb');
+      const title = document.getElementById('v2Title');
+      const desc = document.getElementById('v2Subtitle');
+      if (crumb) crumb.textContent = mod.name;
+      if (title) title.textContent = mod.name;
+      if (desc) desc.textContent = mod.desc;
+    }
+
+    function selectSettingMenu(menuId, silent = false) {
       activeMenuId = menuId;
       const mod = MENU_MODULES.find(m => m.id === menuId);
       if (!mod) return;
@@ -4304,6 +4606,14 @@
       const railEl = document.getElementById(`rail_${menuId}`);
       if (railEl) railEl.classList.add('active');
 
+      // Update Slim Rail Items (View 2)
+      document.querySelectorAll('.slim-rail-item').forEach(el => el.classList.remove('active'));
+      const slimEl = document.getElementById(`slim_${menuId}`);
+      if (slimEl) slimEl.classList.add('active');
+
+      // Update View 2 Header Info
+      updateView2Header(menuId);
+
       // Update TwoTier pills if active
       document.querySelectorAll('.tier2-pill').forEach(el => el.classList.remove('active'));
       const t2El = document.getElementById(`t2_${menuId}`);
@@ -4324,7 +4634,7 @@
       }
 
       closeSettingsDropdown();
-      showToast(`Switched to ${mod.name}`);
+      if (!silent) showToast(`Switched to ${mod.name}`);
     }
 
     // Lead UX/UI Architect Layout Switcher
@@ -4803,7 +5113,7 @@
 
     // Init
     window.addEventListener('DOMContentLoaded', () => {
-      switchArchitectLayout('chip');
+      switchMainScreenView(1);
       selectSettingMenu('details');
     });
   </script>
