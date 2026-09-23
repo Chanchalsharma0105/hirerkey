@@ -682,13 +682,22 @@
     }
 
     /* ==========================================================================
-       TOP-LEFT ROUNDED CHIP WITH EVIDENT DROPDOWN ARROW
+       TOP-LEFT ROUNDED CHIP & PROPERTY SETTINGS LAYOUT (MATCHING SCREENSHOTS)
        ========================================================================== */
-    .page-header-left-cluster {
+    .page-header-row {
       display: flex;
-      align-items: center;
-      gap: 16px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 22px;
       flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .page-header-vertical-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
     }
 
     .hk-dropdown-wrapper {
@@ -699,14 +708,14 @@
       z-index: 120;
     }
 
-    /* Beautiful Rounded Full-Pill Chip */
+    /* Beautiful Rounded Full-Pill Chip (Clean SVG icon, no emoji, evident arrow) */
     .hk-property-chip {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      height: 40px;
-      padding: 4px 14px 4px 7px;
-      background: linear-gradient(135deg, #FFFFFF 0%, #FAF8FF 100%);
+      height: 38px;
+      padding: 4px 14px 4px 8px;
+      background: #FFFFFF;
       border: 1.5px solid var(--primary-border);
       border-radius: 9999px;
       box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08), 0 0 0 1px rgba(221, 214, 254, 0.4);
@@ -718,7 +727,7 @@
     .hk-property-chip:hover {
       background: var(--primary-light);
       border-color: #C4B5FD;
-      box-shadow: 0 4px 14px -2px rgba(124, 58, 237, 0.18), 0 1px 3px rgba(15, 23, 42, 0.06);
+      box-shadow: 0 4px 14px -2px rgba(124, 58, 237, 0.18);
       transform: translateY(-1px);
     }
 
@@ -739,7 +748,7 @@
 
     .hk-property-chip:focus-visible {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25), 0 1px 2px rgba(15, 23, 42, 0.05);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25);
       border-color: var(--primary);
     }
 
@@ -747,7 +756,7 @@
     .hk-dropdown-wrapper.is-open .hk-property-chip {
       background: var(--primary-tint);
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 4px 14px rgba(124, 58, 237, 0.15);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
     }
 
     .hk-dropdown-wrapper.is-open .hk-chip-label {
@@ -759,50 +768,36 @@
       color: var(--primary);
     }
 
-    .hk-dropdown-wrapper.is-open .hk-chip-icon-box {
-      background-color: #DDD6FE;
-      transform: scale(1.06);
-    }
-
-    /* Prefix Icon Bubble */
+    /* Prefix Icon Bubble (Clean SVG Icon Container) */
     .hk-chip-icon-box {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: var(--primary-tint);
       color: var(--primary);
       display: grid;
       place-items: center;
-      font-size: 14px;
       flex-shrink: 0;
       transition: background-color 160ms ease, transform 160ms ease;
+    }
+
+    .hk-chip-icon-box svg {
+      width: 14px;
+      height: 14px;
     }
 
     /* Chip Label */
     .hk-chip-label {
       font-family: var(--font-sans);
       font-size: 13.5px;
-      font-weight: 700;
+      font-weight: 600;
       color: var(--text-main);
       white-space: nowrap;
       letter-spacing: -0.01em;
       transition: color 160ms ease;
     }
 
-    /* Chip Badge */
-    .hk-chip-badge {
-      font-size: 10.5px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 9999px;
-      background: var(--primary-light);
-      color: var(--primary);
-      border: 1px solid var(--primary-tint);
-      white-space: nowrap;
-      transition: all 160ms ease;
-    }
-
-    /* Evident Dropdown Arrow (Chevron) */
+    /* Evident Dropdown Arrow */
     .hk-chip-arrow {
       display: flex;
       align-items: center;
@@ -813,32 +808,21 @@
       flex-shrink: 0;
     }
 
-    /* ==========================================================================
-       SETTINGS DROPDOWN POPOVER
-       ========================================================================== */
+    /* Simple One-List Dropdown Popover (No search, no groups, pure items list) */
     .hk-popover {
       position: absolute;
       top: calc(100% + 8px);
       left: 0;
-      width: 360px;
-      max-height: 500px;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(226, 232, 240, 0.95);
-      border-radius: 16px;
-      box-shadow: 
-        0 4px 6px -1px rgba(15, 23, 42, 0.04),
-        0 14px 28px -4px rgba(124, 58, 237, 0.12),
-        0 24px 48px -8px rgba(15, 23, 42, 0.14),
-        inset 0 1px 0 rgba(255, 255, 255, 1);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
+      width: 255px;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12), 0 1px 3px rgba(0, 0, 0, 0.05);
+      padding: 6px;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transform: translateY(-8px) scale(0.97);
+      transform: translateY(-6px) scale(0.98);
       transition: opacity 160ms cubic-bezier(0.16, 1, 0.3, 1),
                   transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
                   visibility 160ms ease;
@@ -852,281 +836,343 @@
       transform: translateY(0) scale(1);
     }
 
-    .hk-popover-header {
+    .hk-simple-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .hk-simple-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.14s ease;
     }
 
-    .hk-header-left {
+    .hk-simple-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hk-simple-item-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748B;
+      flex-shrink: 0;
+      transition: color 0.14s ease;
+    }
+
+    .hk-simple-item-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .hk-simple-item:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .hk-simple-item:hover .hk-simple-item-icon {
+      color: var(--primary);
+    }
+
+    .hk-simple-item.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .hk-simple-item.active .hk-simple-item-icon {
+      color: var(--primary);
+    }
+
+    .hk-simple-item .hk-item-check {
+      color: var(--primary);
+      display: none;
+    }
+
+    .hk-simple-item.active .hk-item-check {
+      display: block;
+    }
+
+    /* ==========================================================================
+       AUTHENTIC SCREENSHOT STYLES FOR DEPARTMENTS, GRADES, AND DESIGNATIONS
+       (Matches media_1790157222436.png, media_1790157222412.png, media_1790157222411.png)
+       ========================================================================== */
+    .table-action-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .btn-refresh-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: #FFFFFF;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-refresh-icon:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+    }
+
+    .table-top-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-export-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: #FFFFFF;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-export-icon:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+    }
+
+    .btn-add-primary {
+      height: 36px;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.25);
+      transition: background 0.15s ease;
+    }
+
+    .btn-add-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .table-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .table-count-label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .table-tools-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-tool-icon {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: transparent;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-tool-icon:hover {
+      background: var(--primary-light);
+    }
+
+    /* Authentic Hirerkey Table Card */
+    .hk-data-table-card {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .hk-data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .hk-data-table thead tr {
+      background: #F0EBFE;
+    }
+
+    .hk-data-table th {
+      padding: 14px 18px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #7C3AED;
+      letter-spacing: -0.01em;
+      border-bottom: 1px solid #E9D5FF;
+      white-space: nowrap;
+    }
+
+    .hk-data-table td {
+      padding: 15px 18px;
+      font-size: 13px;
+      color: #1E293B;
+      border-bottom: 1px solid #F1F5F9;
+      vertical-align: middle;
+    }
+
+    .hk-data-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .hk-data-table tbody tr:hover {
+      background: #FAFAFF;
+    }
+
+    /* Assigned Employees Pill Badge */
+    .hk-emp-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 6px;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      color: #7C3AED;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Action Three-Dots Button */
+    .hk-action-dots-btn {
+      width: 34px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: #FFFFFF;
+      color: #64748B;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .hk-action-dots-btn:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    /* Pagination Bar (from Designations screenshot) */
+    .hk-table-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: #FFFFFF;
+      border-top: 1px solid #F1F5F9;
+      font-size: 12.5px;
+      color: #64748B;
+    }
+
+    .hk-pag-left {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    .hk-header-title {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #64748B;
-    }
-
-    .hk-header-badge {
-      font-size: 10.5px;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 9999px;
-      background-color: var(--primary-light);
-      color: var(--primary);
-    }
-
-    .hk-kbd-hint {
-      font-size: 10.5px;
-      font-weight: 600;
-      color: #94A3B8;
-      background: #F1F5F9;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    .hk-search-box {
-      position: relative;
-      margin: 0 12px 8px;
-    }
-
-    .hk-search-icon {
-      position: absolute;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #94A3B8;
-      pointer-events: none;
-    }
-
-    .hk-search-box input {
-      width: 100%;
-      height: 34px;
-      padding: 0 12px 0 32px;
-      font-family: var(--font-sans);
-      font-size: 12.5px;
-      color: var(--text-main);
-      background: #F8FAFC;
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      outline: none;
-      box-sizing: border-box;
-      transition: all 160ms ease;
-    }
-
-    .hk-search-box input:focus {
-      background: #FFFFFF;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
-    }
-
-    .hk-search-box input::placeholder {
-      color: #94A3B8;
-    }
-
-    .hk-popover-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 4px 6px 8px;
-      max-height: 340px;
-    }
-
-    .hk-popover-body::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .hk-popover-body::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .hk-popover-body::-webkit-scrollbar-thumb {
-      background: #CBD5E1;
-      border-radius: 9999px;
-    }
-
-    .hk-popover-body::-webkit-scrollbar-thumb:hover {
-      background: #94A3B8;
-    }
-
-    .hk-group-label {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #94A3B8;
-      padding: 8px 10px 4px;
-    }
-
-    .hk-divider {
-      height: 1px;
-      background-color: #F1F5F9;
-      margin: 6px 8px;
-    }
-
-    .hk-menu-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 10px;
-      margin: 2px 4px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 140ms ease, transform 140ms cubic-bezier(0.2, 0, 0, 1);
-      position: relative;
-    }
-
-    .hk-item-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .hk-item-icon-box {
-      width: 28px;
+    .hk-pag-select {
       height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #F8FAFC;
-      border: 1px solid #F1F5F9;
-      border-radius: 8px;
-      font-size: 14px;
-      flex-shrink: 0;
-      transition: all 140ms ease;
+      padding: 0 8px;
+      border-radius: 6px;
+      border: 1px solid var(--card-border);
+      background: #FFFFFF;
+      font-size: 12px;
+      font-family: inherit;
+      color: #1E293B;
+      outline: none;
+      cursor: pointer;
     }
 
-    .hk-item-icon-box.active {
-      background-color: var(--primary-tint);
-      border-color: var(--primary-border);
-    }
-
-    .hk-item-text {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .hk-item-title {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text-main);
-      line-height: 16px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: color 140ms ease;
-    }
-
-    .hk-item-desc {
-      font-size: 11px;
-      font-weight: 400;
-      color: #94A3B8;
-      line-height: 14px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      margin-top: 2px;
-    }
-
-    .hk-item-right {
+    .hk-pag-center {
       display: flex;
       align-items: center;
       gap: 6px;
-      flex-shrink: 0;
-      margin-left: 8px;
     }
 
-    .hk-badge {
-      font-size: 10px;
-      font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 6px;
-      background-color: #F1F5F9;
-      color: #475569;
-      white-space: nowrap;
-    }
-
-    .hk-badge-active {
-      background-color: #ECFDF5;
-      color: #059669;
-    }
-
-    .hk-badge-live {
-      background-color: #FEF3C7;
-      color: #B45309;
-    }
-
-    .hk-check-icon {
-      color: var(--primary);
-      flex-shrink: 0;
-      display: none;
-    }
-
-    .hk-menu-item.is-active .hk-check-icon {
-      display: block;
-    }
-
-    .hk-menu-item:hover {
-      background-color: var(--primary-light);
-      transform: translateX(2px);
-    }
-
-    .hk-menu-item:hover .hk-item-title {
-      color: var(--primary-hover);
-    }
-
-    .hk-menu-item:hover .hk-item-icon-box {
-      background-color: #FFFFFF;
-      border-color: var(--primary-border);
-    }
-
-    .hk-menu-item.is-active {
-      background-color: var(--primary-light);
-      border-left: 3.5px solid var(--primary);
-    }
-
-    .hk-menu-item.is-active .hk-item-title {
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .hk-empty-state {
-      padding: 24px 16px;
-      text-align: center;
-      color: #94A3B8;
+    .hk-pag-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: #64748B;
       font-size: 12.5px;
-    }
-
-    .hk-popover-footer {
-      padding: 8px 14px;
-      background: #F8FAFC;
-      border-top: 1px solid #F1F5F9;
-      font-size: 11px;
-      color: #94A3B8;
+      font-weight: 600;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      transition: all 0.15s ease;
     }
 
-    .hk-popover-footer kbd {
-      background: #FFFFFF;
-      border: 1px solid var(--card-border);
-      border-radius: 4px;
-      padding: 1px 4px;
-      font-family: inherit;
-      font-size: 10px;
-      margin: 0 2px;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    .hk-pag-btn:hover:not(:disabled) {
+      background: #F1F5F9;
+      color: #0F172A;
     }
 
+    .hk-pag-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+    }
 
+    .hk-pag-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .hk-pag-right {
+      font-size: 12.5px;
+      color: #64748B;
+    }
     /* --------------------------------------------------------------------------
        LEAD UX/UI ARCHITECT PATTERN 1: IN-PAGE SETTINGS RAIL (RECOMMENDED)
        Zero horizontal scrolling forever!
@@ -1802,14 +1848,13 @@
          ======================================================================== -->
     <main class="page-content-wrapper">
       
-      <!-- In-Page Header Row with Top-Left Rounded Chip Selector -->
+      <!-- In-Page Header Row (Chip on Top-Left, Heading Property Settings Below the Chip) -->
       <div class="page-header-row">
-        <div class="page-header-left-cluster">
+        
+        <!-- Left Column: Chip on Top, Heading Below -->
+        <div class="page-header-vertical-group">
           
-          <!-- ================================================================
-               THE BEAUTIFUL ROUNDED CHIP WITH EVIDENT DROPDOWN ARROW
-               (Lead UX/UI Architect & Senior Product Designer Pattern)
-               ================================================================ -->
+          <!-- Top-Left Rounded Chip with Evident Dropdown Arrow -->
           <div class="hk-dropdown-wrapper" id="hkPropertyDetailsDropdown">
             <button 
               type="button" 
@@ -1819,260 +1864,133 @@
               aria-haspopup="true" 
               aria-expanded="false" 
               aria-controls="hkSettingsPopover"
-              title="Click to view all 10 property settings">
-              <span class="hk-chip-icon-box" id="hkChipIcon">🏢</span>
+              title="Click to switch property settings">
+              <span class="hk-chip-icon-box" id="hkChipIcon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>
+              </span>
               <span class="hk-chip-label" id="hkChipLabel">Property Details</span>
-              <span class="hk-chip-badge" id="hkChipBadge">Active</span>
               <span class="hk-chip-arrow" id="hkChipArrow" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </span>
             </button>
 
-            <!-- Dropdown Popover: High Elevation, Instant Filter, Categorized 10 Settings -->
+            <!-- Simple One-List Dropdown Popover (No Search, No Categories, Only Items) -->
             <div class="hk-popover" id="hkSettingsPopover" role="menu" aria-labelledby="hkChipTrigger">
-              
-              <!-- Popover Header -->
-              <div class="hk-popover-header">
-                <div class="hk-header-left">
-                  <span class="hk-header-title">Property Settings</span>
-                  <span class="hk-header-badge">10 Modules</span>
-                </div>
-                <span class="hk-kbd-hint">ESC</span>
-              </div>
-
-              <!-- Quick Search Filter -->
-              <div class="hk-search-box">
-                <svg class="hk-search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
-                </svg>
-                <input 
-                  type="text" 
-                  id="hkSearchInput" 
-                  placeholder="Filter 10 settings..." 
-                  oninput="filterDropdownSettings(this.value)"
-                  onclick="event.stopPropagation()"
-                  autocomplete="off"
-                  spellcheck="false" />
-              </div>
-
-              <!-- Scrollable Module Items List -->
-              <div class="hk-popover-body" id="hkSettingsList" tabindex="-1">
+              <div class="hk-simple-list">
                 
-                <!-- Group 1: Organization & Structure -->
-                <div class="hk-item-group" data-group="org">
-                  <div class="hk-group-label">Organization &amp; Structure</div>
-                  
-                  <!-- Item: Property Details (Active Default) -->
-                  <div class="hk-menu-item is-active" role="menuitem" data-id="details" data-name="Property Details" data-desc="Profile, brand logo & legal address" onclick="selectSettingMenu('details')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box active">🏢</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Property Details</span>
-                        <span class="hk-item-desc">Profile, brand logo &amp; legal address</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge hk-badge-active">Active</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
+                <div class="hk-simple-item active" data-id="details" onclick="selectSettingMenu('details')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>
+                    </span>
+                    <span>Property Details</span>
                   </div>
-
-                  <!-- Item: Departments -->
-                  <div class="hk-menu-item" role="menuitem" data-id="departments" data-name="Departments" data-desc="Hierarchy, cost centers & leadership" onclick="selectSettingMenu('departments')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">🏬</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Departments</span>
-                        <span class="hk-item-desc">Hierarchy, cost centers &amp; leadership</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge">9 Active</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <!-- Item: Grades -->
-                  <div class="hk-menu-item" role="menuitem" data-id="grades" data-name="Grades" data-desc="Notice ladder & probation rules" onclick="selectSettingMenu('grades')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">🎓</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Grades</span>
-                        <span class="hk-item-desc">Notice ladder &amp; probation rules</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge">5 Bands</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <!-- Item: Designations -->
-                  <div class="hk-menu-item" role="menuitem" data-id="designations" data-name="Designations" data-desc="Job catalog across departments" onclick="selectSettingMenu('designations')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">🪪</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Designations</span>
-                        <span class="hk-item-desc">Job catalog across departments</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge">38 Titles</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
 
-                <div class="hk-divider"></div>
-
-                <!-- Group 2: Workflows & Rules -->
-                <div class="hk-item-group" data-group="workflow">
-                  <div class="hk-group-label">Governance &amp; Workflows</div>
-                  
-                  <!-- Item: Approval Flows -->
-                  <div class="hk-menu-item" role="menuitem" data-id="approval_flows" data-name="Approval Flows" data-desc="Multi-tier decision routes" onclick="selectSettingMenu('approval_flows')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">🔀</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Approval Flows</span>
-                        <span class="hk-item-desc">Multi-tier decision routes</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge">6 Flows</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
+                <div class="hk-simple-item" data-id="departments" onclick="selectSettingMenu('departments')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </span>
+                    <span>Departments</span>
                   </div>
-
-                  <!-- Item: Offboarding -->
-                  <div class="hk-menu-item" role="menuitem" data-id="offboarding" data-name="Offboarding & Rules" data-desc="Checklists, relieving letters & exit" onclick="selectSettingMenu('offboarding')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">🚪</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Offboarding &amp; Rules</span>
-                        <span class="hk-item-desc">Checklists, relieving letters &amp; exit</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge">3 Steps</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <!-- Item: Business Card -->
-                  <div class="hk-menu-item" role="menuitem" data-id="business_card" data-name="Business Card" data-desc="Digital vCards & QR generation" onclick="selectSettingMenu('business_card')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">💳</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Business Card</span>
-                        <span class="hk-item-desc">Digital vCards &amp; QR generation</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge">Digital</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
 
-                <div class="hk-divider"></div>
-
-                <!-- Group 3: Operations & Compliance -->
-                <div class="hk-item-group" data-group="ops">
-                  <div class="hk-group-label">Operations &amp; Compliance</div>
-                  
-                  <!-- Item: Attendance -->
-                  <div class="hk-menu-item" role="menuitem" data-id="attendance" data-name="Attendance & Geofence" data-desc="GPS radius & WiFi whitelist" onclick="selectSettingMenu('attendance')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">⏱️</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Attendance &amp; Geofence</span>
-                        <span class="hk-item-desc">GPS radius &amp; WiFi whitelist</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge hk-badge-live">Live</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
+                <div class="hk-simple-item" data-id="grades" onclick="selectSettingMenu('grades')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+                    </span>
+                    <span>Grades</span>
                   </div>
-
-                  <!-- Item: Leave Types -->
-                  <div class="hk-menu-item" role="menuitem" data-id="leave_types" data-name="Leave Types" data-desc="Statutory limits & carry-overs" onclick="selectSettingMenu('leave_types')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">🏖️</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Leave Types</span>
-                        <span class="hk-item-desc">Statutory limits &amp; carry-overs</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge">5 Types</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <!-- Item: Appraisals -->
-                  <div class="hk-menu-item" role="menuitem" data-id="appraisal" data-name="Appraisals" data-desc="Annual performance cadence" onclick="selectSettingMenu('appraisal')">
-                    <div class="hk-item-left">
-                      <span class="hk-item-icon-box">📈</span>
-                      <div class="hk-item-text">
-                        <span class="hk-item-title">Appraisals</span>
-                        <span class="hk-item-desc">Annual performance cadence</span>
-                      </div>
-                    </div>
-                    <div class="hk-item-right">
-                      <span class="hk-badge">Annual</span>
-                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
 
-                <!-- Empty state when search yields no matches -->
-                <div class="hk-empty-state" id="hkEmptyState" style="display: none;">
-                  <span>No matching settings found</span>
+                <div class="hk-simple-item" data-id="designations" onclick="selectSettingMenu('designations')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                    </span>
+                    <span>Designations</span>
+                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+
+                <div class="hk-simple-item" data-id="approval_flows" onclick="selectSettingMenu('approval_flows')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg>
+                    </span>
+                    <span>Approval Flows</span>
+                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+
+                <div class="hk-simple-item" data-id="business_card" onclick="selectSettingMenu('business_card')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                    </span>
+                    <span>Business Card</span>
+                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+
+                <div class="hk-simple-item" data-id="attendance" onclick="selectSettingMenu('attendance')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </span>
+                    <span>Attendance &amp; Geofence</span>
+                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+
+                <div class="hk-simple-item" data-id="leave_types" onclick="selectSettingMenu('leave_types')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </span>
+                    <span>Leave Types</span>
+                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+
+                <div class="hk-simple-item" data-id="appraisal" onclick="selectSettingMenu('appraisal')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    </span>
+                    <span>Appraisals</span>
+                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                </div>
+
+                <div class="hk-simple-item" data-id="offboarding" onclick="selectSettingMenu('offboarding')">
+                  <div class="hk-simple-item-left">
+                    <span class="hk-simple-item-icon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    </span>
+                    <span>Offboarding &amp; Rules</span>
+                  </div>
+                  <svg class="hk-item-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 </div>
 
               </div>
-
-              <!-- Popover Footer -->
-              <div class="hk-popover-footer">
-                <span><kbd>↑</kbd><kbd>↓</kbd> Navigate · <kbd>↵</kbd> Select</span>
-                <span>ESC to close</span>
-              </div>
-
             </div>
 
           </div>
 
+          <!-- Heading Property Settings Below the Chip -->
           <div class="page-title-group">
-            <h1>
-              Property Settings
-              <span class="menus-count-badge">10 Menus</span>
-            </h1>
+            <h1>Property Settings</h1>
             <p>Manage organizational hierarchy, workflows, leave policies, and master parameters for Noisiv Consulting.</p>
           </div>
+
         </div>
 
         <!-- Lead UX/UI Architect Layout Mode Switcher -->
@@ -2094,9 +2012,7 @@
             Hub Grid
           </button>
         </div>
-      </div>
-
-      <!-- Mode 2 Container: Two-Tier Categorized Top Bar (Shown only in TwoTier mode) -->
+      </div><!-- Mode 2 Container: Two-Tier Categorized Top Bar (Shown only in TwoTier mode) -->
       <div id="twoTierBarContainer" class="twotier-container" style="display: none;">
         <div class="tier1-bar" id="twoTierLevel1">
           <!-- Rendered dynamically -->
@@ -2122,28 +2038,28 @@
             <ul class="rail-menu-list">
               <li class="rail-menu-item active" id="rail_details" onclick="selectSettingMenu('details')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">🏢</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg></span>
                   <span>Property Details</span>
                 </div>
                 <span class="rail-badge">Active</span>
               </li>
               <li class="rail-menu-item" id="rail_departments" onclick="selectSettingMenu('departments')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">🏬</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
                   <span>Departments</span>
                 </div>
                 <span class="rail-badge">9</span>
               </li>
               <li class="rail-menu-item" id="rail_grades" onclick="selectSettingMenu('grades')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">🎓</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
                   <span>Grades</span>
                 </div>
                 <span class="rail-badge">5</span>
               </li>
               <li class="rail-menu-item" id="rail_designations" onclick="selectSettingMenu('designations')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">🪪</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
                   <span>Designations</span>
                 </div>
                 <span class="rail-badge">38</span>
@@ -2157,21 +2073,21 @@
             <ul class="rail-menu-list">
               <li class="rail-menu-item" id="rail_approval_flows" onclick="selectSettingMenu('approval_flows')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">🔀</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg></span>
                   <span>Approval Flows</span>
                 </div>
                 <span class="rail-badge">6</span>
               </li>
               <li class="rail-menu-item" id="rail_offboarding" onclick="selectSettingMenu('offboarding')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">🚪</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>
                   <span>Offboarding &amp; Rules</span>
                 </div>
                 <span class="rail-badge">3</span>
               </li>
               <li class="rail-menu-item" id="rail_business_card" onclick="selectSettingMenu('business_card')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">💳</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
                   <span>Business Card</span>
                 </div>
               </li>
@@ -2184,21 +2100,21 @@
             <ul class="rail-menu-list">
               <li class="rail-menu-item" id="rail_attendance" onclick="selectSettingMenu('attendance')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">⏱️</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
                   <span>Attendance &amp; Geofence</span>
                 </div>
                 <span class="rail-badge">Live</span>
               </li>
               <li class="rail-menu-item" id="rail_leave_types" onclick="selectSettingMenu('leave_types')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">🏖️</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
                   <span>Leave Types</span>
                 </div>
                 <span class="rail-badge">5</span>
               </li>
               <li class="rail-menu-item" id="rail_appraisal" onclick="selectSettingMenu('appraisal')">
                 <div class="rail-menu-item-left">
-                  <span class="rail-menu-icon">📈</span>
+                  <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
                   <span>Appraisals</span>
                 </div>
               </li>
@@ -2271,72 +2187,476 @@
             </div>
           </div>
 
-          <!-- VIEW 2: DEPARTMENTS -->
-          <div class="settings-card setting-panel" id="panel_departments" style="display: none;">
-            <div class="settings-card-header">
-              <h2>Departments</h2>
-              <button class="btn-edit-action" onclick="showToast('Add department dialog')">+ Add Department</button>
-            </div>
-            <div class="settings-card-body">
-              <div class="card-table-wrap">
-                <table class="card-table">
-                  <thead>
-                    <tr><th>Department</th><th>Code</th><th>Lead</th><th>Headcount</th><th>Status</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td><strong>Front Office</strong></td><td><code>FO-01</code></td><td>Sara Khan</td><td>28 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
-                    <tr><td><strong>Food &amp; Beverage</strong></td><td><code>FB-02</code></td><td>Marcus Vance</td><td>64 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
-                    <tr><td><strong>Housekeeping</strong></td><td><code>HK-03</code></td><td>Elena Rostova</td><td>52 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
-                    <tr><td><strong>Kitchen / Culinary</strong></td><td><code>KC-04</code></td><td>Chef Jean-Luc</td><td>41 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
-                    <tr><td><strong>Human Resources</strong></td><td><code>HR-06</code></td><td>Chanchal Sharma</td><td>12 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
-                  </tbody>
-                </table>
+          <!-- VIEW 2: DEPARTMENTS (EXACT MATCH TO media_1790157222436.png) -->
+          <div class="setting-panel" id="panel_departments" style="display: none;">
+            
+            <!-- Top Action Bar (Refresh Left, Export + Add Departments Right) -->
+            <div class="table-action-topbar">
+              <button class="btn-refresh-icon" onclick="showToast('Refreshing departments data...')" title="Refresh">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+              </button>
+
+              <div class="table-top-actions-right">
+                <button class="btn-export-icon" onclick="showToast('Exporting Departments CSV...')" title="Download / Export">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                </button>
+                <button class="btn-add-primary" onclick="showToast('Open Add Department Dialog')">
+                  + Add Departments
+                </button>
               </div>
             </div>
+
+            <!-- Sub-Header: Item Count & Tools -->
+            <div class="table-meta-bar">
+              <div class="table-count-label">6 Departments</div>
+              <div class="table-tools-right">
+                <button class="btn-tool-icon" title="Sort Departments" onclick="showToast('Sort Departments')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/>
+                  </svg>
+                </button>
+                <button class="btn-tool-icon" title="Column Visibility" onclick="showToast('Customize Columns')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="12" y1="3" x2="12" y2="21"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Hirerkey Table Card with Lavender Header (#F0EBFE) -->
+            <div class="hk-data-table-card">
+              <table class="hk-data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 70px;">S. No</th>
+                    <th>Department</th>
+                    <th>Description</th>
+                    <th style="text-align: center; width: 150px;">Assigned Employees</th>
+                    <th style="width: 130px;">Created On</th>
+                    <th style="width: 130px;">Last Updated</th>
+                    <th style="text-align: center; width: 80px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><strong>People &amp; Culture</strong></td>
+                    <td>People &amp; Culture</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">2</span></td>
+                    <td>29-10-2025</td>
+                    <td>30-10-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Department actions: People & Culture')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><strong>Human Resources</strong></td>
+                    <td>Only for CHRO and HRs</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">0</span></td>
+                    <td>15-08-2025</td>
+                    <td>15-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Department actions: Human Resources')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><strong>Executive/Corporate Leadership</strong></td>
+                    <td>For CEO, Chairman and Director...</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">2</span></td>
+                    <td>11-08-2025</td>
+                    <td>11-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Department actions: Executive/Corporate Leadership')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><strong>UI &amp; UX Department</strong></td>
+                    <td>UI &amp; UX Department</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">2</span></td>
+                    <td>08-08-2025</td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Department actions: UI & UX Department')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><strong>Sales &amp; Marketing</strong></td>
+                    <td>Sales &amp; Marketing Department</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">5</span></td>
+                    <td>08-08-2025</td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Department actions: Sales & Marketing')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><strong>Technology &amp; Engineering</strong></td>
+                    <td>Department of Technology &amp; Eng...</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">5</span></td>
+                    <td>08-08-2025</td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Department actions: Technology & Engineering')">•••</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
           </div>
 
-          <!-- VIEW 3: GRADES -->
-          <div class="settings-card setting-panel" id="panel_grades" style="display: none;">
-            <div class="settings-card-header">
-              <h2>Corporate Grades &amp; Notice Periods</h2>
-              <button class="btn-edit-action" onclick="showToast('Add grade band')">+ Add Grade</button>
-            </div>
-            <div class="settings-card-body">
-              <div class="card-table-wrap">
-                <table class="card-table">
-                  <thead>
-                    <tr><th>Grade Band</th><th>Notice Period</th><th>Probation</th><th>Statutory Leave</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td><strong>Band 1 — Executive C-Suite</strong></td><td>90 Calendar Days</td><td>None</td><td>45 Days</td></tr>
-                    <tr><td><strong>Band 2 — Senior Management</strong></td><td>60 Calendar Days</td><td>3 Months</td><td>35 Days</td></tr>
-                    <tr><td><strong>Band 3 — Middle Management</strong></td><td>30 Calendar Days</td><td>6 Months</td><td>30 Days</td></tr>
-                    <tr><td><strong>Band 4 — Supervisory</strong></td><td>30 Calendar Days</td><td>6 Months</td><td>30 Days</td></tr>
-                    <tr><td><strong>Band 5 — Operational Associates</strong></td><td>30 Calendar Days</td><td>6 Months</td><td>30 Days</td></tr>
-                  </tbody>
-                </table>
+          <!-- VIEW 3: GRADES (EXACT MATCH TO media_1790157222412.png) -->
+          <div class="setting-panel" id="panel_grades" style="display: none;">
+            
+            <!-- Top Action Bar (Refresh Left, Export + Add Grades Right) -->
+            <div class="table-action-topbar">
+              <button class="btn-refresh-icon" onclick="showToast('Refreshing grades data...')" title="Refresh">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+              </button>
+
+              <div class="table-top-actions-right">
+                <button class="btn-export-icon" onclick="showToast('Exporting Grades CSV...')" title="Download / Export">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                </button>
+                <button class="btn-add-primary" onclick="showToast('Open Add Grade Dialog')">
+                  + Add Grades
+                </button>
               </div>
             </div>
+
+            <!-- Sub-Header: Item Count & Tools -->
+            <div class="table-meta-bar">
+              <div class="table-count-label">6 Grades</div>
+              <div class="table-tools-right">
+                <button class="btn-tool-icon" title="Sort Grades" onclick="showToast('Sort Grades')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/>
+                  </svg>
+                </button>
+                <button class="btn-tool-icon" title="Column Visibility" onclick="showToast('Customize Columns')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="12" y1="3" x2="12" y2="21"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Hirerkey Table Card with Lavender Header (#F0EBFE) -->
+            <div class="hk-data-table-card">
+              <table class="hk-data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 70px;">S. No.</th>
+                    <th style="width: 120px;">Grade</th>
+                    <th>Position</th>
+                    <th style="text-align: center; width: 150px;">Assigned Employees</th>
+                    <th style="width: 130px;">Created On</th>
+                    <th style="width: 130px;">Last Updated</th>
+                    <th style="text-align: center; width: 80px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td><strong>L7</strong></td>
+                    <td>Grade 7</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">0</span></td>
+                    <td>29-10-2025</td>
+                    <td>30-10-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Grade actions: L7')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><strong>Grade 8</strong></td>
+                    <td>For Senior level HR ...</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">0</span></td>
+                    <td>15-08-2025</td>
+                    <td>15-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Grade actions: Grade 8')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><strong>Grade 4</strong></td>
+                    <td>Grade 4 (Intern Leve...</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">4</span></td>
+                    <td>08-08-2025</td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Grade actions: Grade 4')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><strong>Grade 3</strong></td>
+                    <td>Employees</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">5</span></td>
+                    <td>08-08-2025</td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Grade actions: Grade 3')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><strong>Grade 2</strong></td>
+                    <td>Grade 2 Level (Depar...</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">2</span></td>
+                    <td>08-08-2025</td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Grade actions: Grade 2')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><strong>Grade 1</strong></td>
+                    <td>Grade 1 (CXO)</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">5</span></td>
+                    <td>08-08-2025</td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Grade actions: Grade 1')">•••</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
           </div>
 
-          <!-- VIEW 4: DESIGNATIONS -->
-          <div class="settings-card setting-panel" id="panel_designations" style="display: none;">
-            <div class="settings-card-header">
-              <h2>Designations Catalog</h2>
-              <button class="btn-edit-action" onclick="showToast('Create designation')">+ New Designation</button>
-            </div>
-            <div class="settings-card-body">
-              <div class="card-table-wrap">
-                <table class="card-table">
-                  <thead><tr><th>Title</th><th>Department</th><th>Grade</th><th>Colleagues</th></tr></thead>
-                  <tbody>
-                    <tr><td><strong>General Manager</strong></td><td>Executive Office</td><td>Band 1</td><td>1</td></tr>
-                    <tr><td><strong>Front Desk Manager</strong></td><td>Front Office</td><td>Band 3</td><td>3</td></tr>
-                    <tr><td><strong>Executive Chef</strong></td><td>Kitchen</td><td>Band 2</td><td>1</td></tr>
-                  </tbody>
-                </table>
+          <!-- VIEW 4: DESIGNATIONS (EXACT MATCH TO media_1790157222411.png) -->
+          <div class="setting-panel" id="panel_designations" style="display: none;">
+            
+            <!-- Top Action Bar (Refresh Left, Export + Add Designations Right) -->
+            <div class="table-action-topbar">
+              <button class="btn-refresh-icon" onclick="showToast('Refreshing designations data...')" title="Refresh">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                </svg>
+              </button>
+
+              <div class="table-top-actions-right">
+                <button class="btn-export-icon" onclick="showToast('Exporting Designations CSV...')" title="Download / Export">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                </button>
+                <button class="btn-add-primary" onclick="showToast('Open Add Designation Dialog')">
+                  + Add Designations
+                </button>
               </div>
             </div>
+
+            <!-- Sub-Header: Item Count & Tools -->
+            <div class="table-meta-bar">
+              <div class="table-count-label">11 Designations</div>
+              <div class="table-tools-right">
+                <button class="btn-tool-icon" title="Sort Designations" onclick="showToast('Sort Designations')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/>
+                  </svg>
+                </button>
+                <button class="btn-tool-icon" title="Column Visibility" onclick="showToast('Customize Columns')">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="12" y1="3" x2="12" y2="21"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Hirerkey Table Card with Lavender Header (#F0EBFE) -->
+            <div class="hk-data-table-card">
+              <table class="hk-data-table">
+                <thead>
+                  <tr>
+                    <th style="width: 70px;">S. No.</th>
+                    <th>Designation</th>
+                    <th style="width: 120px;">Grade</th>
+                    <th>Description</th>
+                    <th style="text-align: center; width: 150px;">Assigned Employees</th>
+                    <th style="width: 130px;">Created On</th>
+                    <th style="text-align: center; width: 80px;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="designationsTbody">
+                  <tr>
+                    <td>1</td>
+                    <td><strong>Business Head</strong></td>
+                    <td>Grade 1</td>
+                    <td>The Business Head oversees com...</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">3</span></td>
+                    <td>14-10-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Business Head')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td><strong>Tech Support Team</strong></td>
+                    <td>Grade 4</td>
+                    <td>Tech Support Team</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">3</span></td>
+                    <td>27-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Tech Support Team')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td><strong>Marketing Intern</strong></td>
+                    <td>Grade 8</td>
+                    <td>trainee role for students or r...</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">0</span></td>
+                    <td>27-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Marketing Intern')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td><strong>Chief People Officer</strong></td>
+                    <td>L7</td>
+                    <td>HR Department</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">0</span></td>
+                    <td>15-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Chief People Officer')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td><strong>Digital Marketing Executive</strong></td>
+                    <td>Grade 3</td>
+                    <td>Digital Marketing Team</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">4</span></td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Digital Marketing Executive')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td><strong>Marketing Manager</strong></td>
+                    <td>Grade 2</td>
+                    <td>Marketing Manager</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">1</span></td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Marketing Manager')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>7</td>
+                    <td><strong>Technology Lead</strong></td>
+                    <td>Grade 2</td>
+                    <td>Technology Lead</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">1</span></td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Technology Lead')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>8</td>
+                    <td><strong>UI/UX Intern</strong></td>
+                    <td>Grade 4</td>
+                    <td>UI/UX intern</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">1</span></td>
+                    <td>08-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: UI/UX Intern')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>9</td>
+                    <td><strong>Lead Frontend Engineer</strong></td>
+                    <td>Grade 3</td>
+                    <td>Web &amp; Frontend Systems</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">2</span></td>
+                    <td>05-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Lead Frontend Engineer')">•••</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>10</td>
+                    <td><strong>Operations Coordinator</strong></td>
+                    <td>Grade 4</td>
+                    <td>Facilities and Operations</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">1</span></td>
+                    <td>01-08-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Operations Coordinator')">•••</button>
+                    </td>
+                  </tr>
+                  <tr class="desig-row-page-2" style="display: none;">
+                    <td>11</td>
+                    <td><strong>Finance Manager</strong></td>
+                    <td>Grade 3</td>
+                    <td>Accounts &amp; Financial Planning</td>
+                    <td style="text-align: center;"><span class="hk-emp-badge">1</span></td>
+                    <td>28-07-2025</td>
+                    <td style="text-align: center;">
+                      <button class="hk-action-dots-btn" title="Actions" onclick="showToast('Designation actions: Finance Manager')">•••</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Pagination (Exact Match to Screenshot) -->
+              <div class="hk-table-pagination">
+                <div class="hk-pag-left">
+                  <span>Rows per page:</span>
+                  <select class="hk-pag-select" onchange="showToast('Rows per page: ' + this.value)">
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+
+                <div class="hk-pag-center">
+                  <button class="hk-pag-btn" id="desigPagPrev" disabled onclick="switchDesignationsPage(1)" title="Previous page">‹</button>
+                  <button class="hk-pag-btn active" id="desigPag1" onclick="switchDesignationsPage(1)">1</button>
+                  <button class="hk-pag-btn" id="desigPag2" onclick="switchDesignationsPage(2)">2</button>
+                  <button class="hk-pag-btn" id="desigPagNext" onclick="switchDesignationsPage(2)" title="Next page">›</button>
+                </div>
+
+                <div class="hk-pag-right" id="desigPagInfo">
+                  Showing 1-10 of 11
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
           <!-- VIEW 5: APPROVAL FLOWS -->
@@ -2466,28 +2786,41 @@
 
   <!-- Scripts -->
   <script>
+    const SVG_MAP = {
+      details: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>`,
+      departments: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+      grades: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>`,
+      designations: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>`,
+      approval_flows: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg>`,
+      business_card: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>`,
+      attendance: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>`,
+      leave_types: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+      appraisal: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+      offboarding: `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>`
+    };
+
     const MENU_MODULES = [
-      { id: 'details', name: 'Property Details', category: 'org', catName: 'Organization', badge: 'Active', icon: '🏢', desc: 'Hotel profile, brand logo, legal address, and operational registration details.' },
-      { id: 'departments', name: 'Departments', category: 'org', catName: 'Organization', badge: '9 Active', icon: '🏬', desc: 'Department hierarchy, cost centers, leadership assignment, and headcounts.' },
-      { id: 'grades', name: 'Grades', category: 'org', catName: 'Organization', badge: '5 Bands', icon: '🎓', desc: 'Corporate grade ladder with statutory notice periods and probation periods.' },
-      { id: 'designations', name: 'Designations', category: 'org', catName: 'Organization', badge: '38 Titles', icon: '🪪', desc: 'Job catalog mapped across departments, reporting relationships, and grades.' },
-      { id: 'approval_flows', name: 'Approval Flows', category: 'workflow', catName: 'Workflows', badge: '6 Flows', icon: '🔀', desc: 'Multi-stage decision routing for resignations, clearances, and financial payouts.' },
-      { id: 'offboarding', name: 'Offboarding & Rules', category: 'workflow', catName: 'Workflows', badge: '3 Steps', icon: '🚪', desc: 'Checklist steps, statutory relieving letters, and exit guardrails.' },
-      { id: 'business_card', name: 'Business Card', category: 'workflow', catName: 'Workflows', badge: 'Digital', icon: '💳', desc: 'Digital employee vCards with dynamic QR codes and printable layouts.' },
-      { id: 'attendance', name: 'Attendance & Geofence', category: 'ops', catName: 'Operations', badge: 'Live', icon: '⏱️', desc: 'GPS radius parameters, shift grace periods, and WiFi whitelist.' },
-      { id: 'leave_types', name: 'Leave Types', category: 'ops', catName: 'Operations', badge: '5 Types', icon: '🏖️', desc: 'Statutory leave categories, encashment formula, and carry-over limits.' },
-      { id: 'appraisal', name: 'Appraisals', category: 'ops', catName: 'Operations', badge: 'Annual', icon: '📈', desc: 'Performance review cadence, rating matrices, and evaluation criteria.' }
+      { id: 'details', name: 'Property Details', category: 'org', catName: 'Organization', badge: 'Active', desc: 'Hotel profile, brand logo, legal address, and operational registration details.' },
+      { id: 'departments', name: 'Departments', category: 'org', catName: 'Organization', badge: '6 Active', desc: 'Department hierarchy, cost centers, leadership assignment, and headcounts.' },
+      { id: 'grades', name: 'Grades', category: 'org', catName: 'Organization', badge: '6 Bands', desc: 'Corporate grade ladder with statutory notice periods and probation periods.' },
+      { id: 'designations', name: 'Designations', category: 'org', catName: 'Organization', badge: '11 Titles', desc: 'Job catalog mapped across departments, reporting relationships, and grades.' },
+      { id: 'approval_flows', name: 'Approval Flows', category: 'workflow', catName: 'Workflows', badge: '6 Flows', desc: 'Multi-stage decision routing for resignations, clearances, and financial payouts.' },
+      { id: 'business_card', name: 'Business Card', category: 'workflow', catName: 'Workflows', badge: 'Digital', desc: 'Digital employee vCards with dynamic QR codes and printable layouts.' },
+      { id: 'attendance', name: 'Attendance & Geofence', category: 'ops', catName: 'Operations', badge: 'Live', desc: 'GPS radius parameters, shift grace periods, and WiFi whitelist.' },
+      { id: 'leave_types', name: 'Leave Types', category: 'ops', catName: 'Operations', badge: '5 Types', desc: 'Statutory leave categories, encashment formula, and carry-over limits.' },
+      { id: 'appraisal', name: 'Appraisals', category: 'ops', catName: 'Operations', badge: 'Annual', desc: 'Performance review cadence, rating matrices, and evaluation criteria.' },
+      { id: 'offboarding', name: 'Offboarding & Rules', category: 'workflow', catName: 'Workflows', badge: '3 Steps', desc: 'Checklist steps, statutory relieving letters, and exit guardrails.' }
     ];
 
     const CAT_GROUPS = [
-      { id: 'org', name: 'Organization & Structure', icon: '🏢' },
-      { id: 'workflow', name: 'Governance & Workflows', icon: '🔀' },
-      { id: 'ops', name: 'Operations & Compliance', icon: '⏱️' }
+      { id: 'org', name: 'Organization & Structure' },
+      { id: 'workflow', name: 'Governance & Workflows' },
+      { id: 'ops', name: 'Operations & Compliance' }
     ];
 
     let activeMenuId = 'details';
     let activeTier1Cat = 'org';
-    let currentArchitectLayout = 'chip'; // 'rail' | 'twotier' | 'grid'
+    let currentArchitectLayout = 'chip'; // 'chip' | 'rail' | 'twotier' | 'grid'
     let isEditingProperty = false;
 
     let propData = {
@@ -2506,23 +2839,22 @@
       const topCrumb = document.getElementById('topActiveCrumb');
       if (topCrumb) topCrumb.textContent = mod.name;
 
-      // Update Top-Left Rounded Chip
+      // Update Top-Left Rounded Chip (SVG Icon, No Emojis)
       const chipLabel = document.getElementById('hkChipLabel');
       if (chipLabel) chipLabel.textContent = mod.name;
 
       const chipIcon = document.getElementById('hkChipIcon');
-      if (chipIcon) chipIcon.textContent = mod.icon;
-
-      const chipBadge = document.getElementById('hkChipBadge');
-      if (chipBadge) chipBadge.textContent = mod.badge;
+      if (chipIcon && SVG_MAP[menuId]) {
+        chipIcon.innerHTML = SVG_MAP[menuId];
+      }
 
       // Update Popover Active Checkmarks & Rows
-      document.querySelectorAll('.hk-menu-item').forEach(el => {
+      document.querySelectorAll('.hk-simple-item').forEach(el => {
         const isMatch = el.getAttribute('data-id') === menuId;
-        el.classList.toggle('is-active', isMatch);
+        el.classList.toggle('active', isMatch);
       });
 
-      // Update Rail Items
+      // Update Rail Items if shown
       document.querySelectorAll('.rail-menu-item').forEach(el => el.classList.remove('active'));
       const railEl = document.getElementById(`rail_${menuId}`);
       if (railEl) railEl.classList.add('active');
@@ -2599,12 +2931,11 @@
       }
     }
 
-    // Dropdown Popover Controller
+    // Dropdown Popover Controller (Simple One-List, Outside Click, Escape)
     function toggleSettingsDropdown(e) {
       if (e) e.stopPropagation();
       const wrapper = document.getElementById('hkPropertyDetailsDropdown');
       const trigger = document.getElementById('hkChipTrigger');
-      const searchInp = document.getElementById('hkSearchInput');
       if (!wrapper) return;
 
       const isOpen = wrapper.classList.contains('is-open');
@@ -2613,11 +2944,6 @@
       } else {
         wrapper.classList.add('is-open');
         if (trigger) trigger.setAttribute('aria-expanded', 'true');
-        if (searchInp) {
-          searchInp.value = '';
-          filterDropdownSettings('');
-          setTimeout(() => searchInp.focus(), 60);
-        }
       }
     }
 
@@ -2627,33 +2953,6 @@
       if (!wrapper) return;
       wrapper.classList.remove('is-open');
       if (trigger) trigger.setAttribute('aria-expanded', 'false');
-    }
-
-    function filterDropdownSettings(query) {
-      const q = query.toLowerCase().trim();
-      const items = document.querySelectorAll('.hk-menu-item');
-      const groups = document.querySelectorAll('.hk-item-group');
-      const empty = document.getElementById('hkEmptyState');
-      let visibleCount = 0;
-
-      items.forEach(item => {
-        const name = (item.getAttribute('data-name') || '').toLowerCase();
-        const desc = (item.getAttribute('data-desc') || '').toLowerCase();
-        const matches = !q || name.includes(q) || desc.includes(q);
-        item.style.display = matches ? 'flex' : 'none';
-        if (matches) visibleCount++;
-      });
-
-      groups.forEach(group => {
-        const hasVisible = Array.from(group.querySelectorAll('.hk-menu-item')).some(el => el.style.display !== 'none');
-        group.style.display = hasVisible ? 'block' : 'none';
-        const divider = group.nextElementSibling;
-        if (divider && divider.classList.contains('hk-divider')) {
-          divider.style.display = hasVisible ? 'block' : 'none';
-        }
-      });
-
-      if (empty) empty.style.display = visibleCount === 0 ? 'block' : 'none';
     }
 
     // Dismiss on click outside
@@ -2838,6 +3137,37 @@
       toast.classList.add('show');
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Designation Interactive Pagination
+    let currentDesigPage = 1;
+    function switchDesignationsPage(page) {
+      currentDesigPage = page;
+      const page1Rows = document.querySelectorAll('#designationsTbody tr:not(.desig-row-page-2)');
+      const page2Rows = document.querySelectorAll('.desig-row-page-2');
+      const btnPrev = document.getElementById('desigPagPrev');
+      const btnNext = document.getElementById('desigPagNext');
+      const btn1 = document.getElementById('desigPag1');
+      const btn2 = document.getElementById('desigPag2');
+      const info = document.getElementById('desigPagInfo');
+
+      if (page === 1) {
+        page1Rows.forEach(r => r.style.display = '');
+        page2Rows.forEach(r => r.style.display = 'none');
+        if (btn1) btn1.classList.add('active');
+        if (btn2) btn2.classList.remove('active');
+        if (btnPrev) btnPrev.disabled = true;
+        if (btnNext) btnNext.disabled = false;
+        if (info) info.textContent = 'Showing 1-10 of 11';
+      } else {
+        page1Rows.forEach(r => r.style.display = 'none');
+        page2Rows.forEach(r => r.style.display = '');
+        if (btn1) btn1.classList.remove('active');
+        if (btn2) btn2.classList.add('active');
+        if (btnPrev) btnPrev.disabled = false;
+        if (btnNext) btnNext.disabled = true;
+        if (info) info.textContent = 'Showing 11 of 11';
+      }
     }
 
     // Init
