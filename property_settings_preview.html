@@ -1,0 +1,2851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Settings — Hirerkey™ Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       HIRERKEY™ DESIGN SYSTEM TOKENS & RESET
+       ========================================================================== */
+    :root {
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Primary Brand Tokens */
+      --primary: #7C3AED;
+      --primary-hover: #6D28D9;
+      --primary-light: #F5F3FF;
+      --primary-tint: #EDE9FE;
+      --primary-border: #DDD6FE;
+
+      /* Surfaces */
+      --ground: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --card-border: #E2E8F0;
+      --card-border-hover: #CBD5E1;
+      --divider: #F1F5F9;
+
+      /* Sidebar & Shell */
+      --sidebar-bg: #061229;
+      --sidebar-width: 240px;
+      --sidebar-collapsed-width: 70px;
+      --topbar-height: 56px;
+
+      /* Text */
+      --text-main: #0F172A;
+      --text-secondary: #475569;
+      --text-muted: #94A3B8;
+
+      /* Status */
+      --success: #10B981;
+      --success-light: #ECFDF5;
+      --warning: #F59E0B;
+      --warning-light: #FFFBEB;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--ground);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* ==========================================================================
+       1. AUTHENTIC HIRERKEY DASHBOARD LEFT SIDEBAR (media_1790152354052.png)
+       ========================================================================== */
+    .dashboard-sidebar {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      background-color: var(--sidebar-bg);
+      color: #94A3B8;
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      z-index: 100;
+      transition: width 0.25s cubic-bezier(0.2, 0, 0, 1), min-width 0.25s cubic-bezier(0.2, 0, 0, 1);
+      user-select: none;
+      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.15);
+      flex-shrink: 0;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .dashboard-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .dashboard-sidebar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
+    }
+
+    .dashboard-sidebar.collapsed {
+      width: var(--sidebar-collapsed-width);
+      min-width: var(--sidebar-collapsed-width);
+    }
+
+    /* Sidebar Brand Header */
+    .sidebar-header {
+      height: var(--topbar-height);
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .brand-squircle {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.45);
+    }
+
+    .brand-text {
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .sidebar-collapse-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .sidebar-collapse-btn:hover {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    .dashboard-sidebar.collapsed .brand-text,
+    .dashboard-sidebar.collapsed .sidebar-collapse-btn,
+    .dashboard-sidebar.collapsed .nav-item-title,
+    .dashboard-sidebar.collapsed .nav-item-chevron,
+    .dashboard-sidebar.collapsed .nav-sublist,
+    .dashboard-sidebar.collapsed .badge-pill-counter,
+    .dashboard-sidebar.collapsed .sidebar-section-title {
+      display: none !important;
+    }
+
+    /* Sidebar Navigation List */
+    .sidebar-nav {
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .sidebar-section-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748B;
+      padding: 14px 10px 4px 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: #94A3B8;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+
+    .nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #FFFFFF;
+    }
+
+    .nav-item:hover .nav-icon {
+      color: #FFFFFF;
+    }
+
+    .nav-item.active {
+      background: #6D28D9;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .nav-item.active .nav-icon {
+      color: #FFFFFF;
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 16px;
+      border-radius: 4px;
+      background: #FFFFFF;
+    }
+
+    .badge-pill-counter {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+    }
+
+    .nav-item-chevron {
+      color: #64748B;
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+
+    .nav-item.open .nav-item-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Submenus */
+    .nav-sublist {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 38px;
+      padding-top: 2px;
+      padding-bottom: 4px;
+    }
+
+    .nav-subitem {
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      color: #94A3B8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.15s;
+      position: relative;
+    }
+
+    .nav-subitem:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #FFFFFF;
+    }
+
+    .nav-subitem.active {
+      background: #6D28D9;
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .nav-subitem.active::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 14px;
+      border-radius: 4px;
+      background: #FFFFFF;
+    }
+
+    /* ==========================================================================
+       2. AUTHENTIC HIRERKEY DASHBOARD TOPBAR (media_1790152354049.png)
+       ========================================================================== */
+    .dashboard-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 100vh;
+    }
+
+    .dashboard-topbar {
+      height: var(--topbar-height);
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      gap: 16px;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    /* Sidebar toggle button [|] */
+    .btn-toggle-sidebar {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: #FFFFFF;
+      color: #475569;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .btn-toggle-sidebar:hover {
+      background: #F8FAFC;
+      border-color: var(--card-border-hover);
+      color: var(--text-main);
+    }
+
+    /* Search input box with ⌘K */
+    .search-input-pill {
+      position: relative;
+      width: 220px;
+    }
+
+    .search-input-pill input {
+      width: 100%;
+      height: 34px;
+      background: #F8FAFC;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0 36px 0 32px;
+      font-size: 13px;
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.15s;
+    }
+
+    .search-input-pill input:focus {
+      background: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      width: 260px;
+    }
+
+    .search-icon-svg {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .search-kbd-chip {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #E2E8F0;
+      color: #64748B;
+      font-size: 10.5px;
+      font-family: var(--font-mono);
+      padding: 2px 5px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .breadcrumb-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: #64748B;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .breadcrumb-item:hover {
+      color: var(--primary);
+    }
+
+    .breadcrumb-active {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Topbar Right items */
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    /* Ask HyIQ Pill */
+    .btn-ask-hyiq {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 34px;
+      padding: 0 12px;
+      border-radius: 20px;
+      background: #FAF5FF;
+      border: 1px solid #EDE9FE;
+      color: #334155;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-ask-hyiq:hover {
+      background: #F3E8FF;
+      border-color: #DDD6FE;
+    }
+
+    .hyiq-star-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8B5CF6 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+    }
+
+    .hyiq-shortcut-chip {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      background: #EDE9FE;
+      color: #7C3AED;
+      padding: 1px 6px;
+      border-radius: 10px;
+    }
+
+    /* Clock-In Status Pill */
+    .clock-in-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 34px;
+      padding: 0 12px;
+      border-radius: 20px;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      color: #334155;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .clock-in-pill:hover {
+      background: #F8FAFC;
+    }
+
+    .clock-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Notification Bell */
+    .btn-bell-notif {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      background: #FFFFFF;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-bell-notif:hover {
+      background: #F8FAFC;
+      color: var(--text-main);
+    }
+
+    .bell-badge {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: #8B5CF6;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 2px solid #FFFFFF;
+    }
+
+    /* User Profile Pill */
+    .user-profile-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 34px;
+      padding: 3px 10px 3px 3px;
+      border-radius: 20px;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .user-profile-btn:hover {
+      background: #F8FAFC;
+    }
+
+    .user-avatar-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #7C3AED;
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+    }
+
+    .user-profile-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* ==========================================================================
+       3. PROPERTY SETTINGS IN-PAGE WORKSPACE (SOLVING THE TOP SCROLL)
+       ========================================================================== */
+    .page-content-wrapper {
+      padding: 24px;
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Page Header inside Dashboard */
+    .page-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .page-title-group h1 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-title-group p {
+      font-size: 13px;
+      color: #64748B;
+      margin-top: 3px;
+    }
+
+    .menus-count-badge {
+      font-size: 11.5px;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 3px 9px;
+      border-radius: 12px;
+      border: 1px solid var(--primary-tint);
+    }
+
+    /* Lead UX/UI Architect Layout Switcher */
+    .architect-layout-toggle {
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .toggle-opt-btn {
+      border: none;
+      background: transparent;
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .toggle-opt-btn:hover {
+      color: var(--text-main);
+    }
+
+    .toggle-opt-btn.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ==========================================================================
+       TOP-LEFT ROUNDED CHIP WITH EVIDENT DROPDOWN ARROW
+       ========================================================================== */
+    .page-header-left-cluster {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hk-dropdown-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+      z-index: 120;
+    }
+
+    /* Beautiful Rounded Full-Pill Chip */
+    .hk-property-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 40px;
+      padding: 4px 14px 4px 7px;
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAF8FF 100%);
+      border: 1.5px solid var(--primary-border);
+      border-radius: 9999px;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08), 0 0 0 1px rgba(221, 214, 254, 0.4);
+      cursor: pointer;
+      outline: none;
+      transition: all 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hk-property-chip:hover {
+      background: var(--primary-light);
+      border-color: #C4B5FD;
+      box-shadow: 0 4px 14px -2px rgba(124, 58, 237, 0.18), 0 1px 3px rgba(15, 23, 42, 0.06);
+      transform: translateY(-1px);
+    }
+
+    .hk-property-chip:hover .hk-chip-label {
+      color: var(--primary-hover);
+    }
+
+    .hk-property-chip:hover .hk-chip-arrow {
+      color: var(--primary-hover);
+      transform: translateY(1px);
+    }
+
+    .hk-property-chip:active {
+      background: var(--primary-tint);
+      border-color: var(--primary);
+      transform: scale(0.98);
+    }
+
+    .hk-property-chip:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.25), 0 1px 2px rgba(15, 23, 42, 0.05);
+      border-color: var(--primary);
+    }
+
+    /* Open State */
+    .hk-dropdown-wrapper.is-open .hk-property-chip {
+      background: var(--primary-tint);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2), 0 4px 14px rgba(124, 58, 237, 0.15);
+    }
+
+    .hk-dropdown-wrapper.is-open .hk-chip-label {
+      color: var(--primary);
+    }
+
+    .hk-dropdown-wrapper.is-open .hk-chip-arrow {
+      transform: rotate(180deg);
+      color: var(--primary);
+    }
+
+    .hk-dropdown-wrapper.is-open .hk-chip-icon-box {
+      background-color: #DDD6FE;
+      transform: scale(1.06);
+    }
+
+    /* Prefix Icon Bubble */
+    .hk-chip-icon-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary-tint);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: background-color 160ms ease, transform 160ms ease;
+    }
+
+    /* Chip Label */
+    .hk-chip-label {
+      font-family: var(--font-sans);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+      transition: color 160ms ease;
+    }
+
+    /* Chip Badge */
+    .hk-chip-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      background: var(--primary-light);
+      color: var(--primary);
+      border: 1px solid var(--primary-tint);
+      white-space: nowrap;
+      transition: all 160ms ease;
+    }
+
+    /* Evident Dropdown Arrow (Chevron) */
+    .hk-chip-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 2px;
+      color: var(--primary);
+      transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1), color 160ms ease;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       SETTINGS DROPDOWN POPOVER
+       ========================================================================== */
+    .hk-popover {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 360px;
+      max-height: 500px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 16px;
+      box-shadow: 
+        0 4px 6px -1px rgba(15, 23, 42, 0.04),
+        0 14px 28px -4px rgba(124, 58, 237, 0.12),
+        0 24px 48px -8px rgba(15, 23, 42, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px) scale(0.97);
+      transition: opacity 160ms cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 160ms cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 160ms ease;
+      z-index: 1000;
+    }
+
+    .hk-dropdown-wrapper.is-open .hk-popover {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .hk-popover-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px 8px;
+    }
+
+    .hk-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hk-header-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748B;
+    }
+
+    .hk-header-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      background-color: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .hk-kbd-hint {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #94A3B8;
+      background: #F1F5F9;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .hk-search-box {
+      position: relative;
+      margin: 0 12px 8px;
+    }
+
+    .hk-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .hk-search-box input {
+      width: 100%;
+      height: 34px;
+      padding: 0 12px 0 32px;
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      color: var(--text-main);
+      background: #F8FAFC;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      outline: none;
+      box-sizing: border-box;
+      transition: all 160ms ease;
+    }
+
+    .hk-search-box input:focus {
+      background: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    .hk-search-box input::placeholder {
+      color: #94A3B8;
+    }
+
+    .hk-popover-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 6px 8px;
+      max-height: 340px;
+    }
+
+    .hk-popover-body::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .hk-popover-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .hk-popover-body::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+
+    .hk-popover-body::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    .hk-group-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94A3B8;
+      padding: 8px 10px 4px;
+    }
+
+    .hk-divider {
+      height: 1px;
+      background-color: #F1F5F9;
+      margin: 6px 8px;
+    }
+
+    .hk-menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      margin: 2px 4px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 140ms ease, transform 140ms cubic-bezier(0.2, 0, 0, 1);
+      position: relative;
+    }
+
+    .hk-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .hk-item-icon-box {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #F8FAFC;
+      border: 1px solid #F1F5F9;
+      border-radius: 8px;
+      font-size: 14px;
+      flex-shrink: 0;
+      transition: all 140ms ease;
+    }
+
+    .hk-item-icon-box.active {
+      background-color: var(--primary-tint);
+      border-color: var(--primary-border);
+    }
+
+    .hk-item-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .hk-item-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-main);
+      line-height: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 140ms ease;
+    }
+
+    .hk-item-desc {
+      font-size: 11px;
+      font-weight: 400;
+      color: #94A3B8;
+      line-height: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .hk-item-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      margin-left: 8px;
+    }
+
+    .hk-badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background-color: #F1F5F9;
+      color: #475569;
+      white-space: nowrap;
+    }
+
+    .hk-badge-active {
+      background-color: #ECFDF5;
+      color: #059669;
+    }
+
+    .hk-badge-live {
+      background-color: #FEF3C7;
+      color: #B45309;
+    }
+
+    .hk-check-icon {
+      color: var(--primary);
+      flex-shrink: 0;
+      display: none;
+    }
+
+    .hk-menu-item.is-active .hk-check-icon {
+      display: block;
+    }
+
+    .hk-menu-item:hover {
+      background-color: var(--primary-light);
+      transform: translateX(2px);
+    }
+
+    .hk-menu-item:hover .hk-item-title {
+      color: var(--primary-hover);
+    }
+
+    .hk-menu-item:hover .hk-item-icon-box {
+      background-color: #FFFFFF;
+      border-color: var(--primary-border);
+    }
+
+    .hk-menu-item.is-active {
+      background-color: var(--primary-light);
+      border-left: 3.5px solid var(--primary);
+    }
+
+    .hk-menu-item.is-active .hk-item-title {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .hk-empty-state {
+      padding: 24px 16px;
+      text-align: center;
+      color: #94A3B8;
+      font-size: 12.5px;
+    }
+
+    .hk-popover-footer {
+      padding: 8px 14px;
+      background: #F8FAFC;
+      border-top: 1px solid #F1F5F9;
+      font-size: 11px;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hk-popover-footer kbd {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      padding: 1px 4px;
+      font-family: inherit;
+      font-size: 10px;
+      margin: 0 2px;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.05);
+    }
+
+
+    /* --------------------------------------------------------------------------
+       LEAD UX/UI ARCHITECT PATTERN 1: IN-PAGE SETTINGS RAIL (RECOMMENDED)
+       Zero horizontal scrolling forever!
+       -------------------------------------------------------------------------- */
+    .inpage-split-container {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .inpage-settings-rail {
+      width: 250px;
+      flex-shrink: 0;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .rail-filter-box {
+      position: relative;
+      margin-bottom: 14px;
+    }
+
+    .rail-filter-box input {
+      width: 100%;
+      height: 34px;
+      background: #F8FAFC;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 0 10px 0 30px;
+      font-size: 12.5px;
+      font-family: var(--font-sans);
+      outline: none;
+      transition: all 0.15s;
+    }
+
+    .rail-filter-box input:focus {
+      background: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    .rail-filter-icon {
+      position: absolute;
+      left: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .rail-category-group {
+      margin-bottom: 16px;
+    }
+
+    .rail-category-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .rail-category-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #94A3B8;
+      margin-bottom: 5px;
+      padding-left: 8px;
+    }
+
+    .rail-menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .rail-menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .rail-menu-item-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .rail-menu-icon {
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .rail-menu-item:hover {
+      background: #F8FAFC;
+      color: var(--text-main);
+    }
+
+    .rail-menu-item.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      border: 1px solid var(--primary-tint);
+    }
+
+    .rail-badge {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: #F1F5F9;
+      color: #64748B;
+    }
+
+    .rail-menu-item.active .rail-badge {
+      background: #FFFFFF;
+      color: var(--primary);
+    }
+
+    /* Main Settings View Canvas (Right side) */
+    .inpage-settings-canvas {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* --------------------------------------------------------------------------
+       LEAD UX/UI ARCHITECT PATTERN 2: TWO-TIER CATEGORIZED TABS (ZERO SCROLL)
+       -------------------------------------------------------------------------- */
+    .twotier-container {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+
+    .tier1-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--divider);
+      flex-wrap: wrap;
+    }
+
+    .tier1-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 16px;
+      border-radius: 20px;
+      background: #F1F5F9;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tier1-btn:hover {
+      background: #E2E8F0;
+      color: var(--text-main);
+    }
+
+    .tier1-btn.active {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+    }
+
+    .tier2-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tier2-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      color: #475569;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .tier2-pill:hover {
+      border-color: var(--card-border-hover);
+      color: var(--text-main);
+      background: #F8FAFC;
+    }
+
+    .tier2-pill.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      border-color: var(--primary-tint);
+      font-weight: 700;
+    }
+
+    /* --------------------------------------------------------------------------
+       LEAD UX/UI ARCHITECT PATTERN 3: SETTINGS HUB GRID
+       -------------------------------------------------------------------------- */
+    .hub-overview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 18px;
+    }
+
+    .hub-module-card {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hub-module-card:hover {
+      border-color: var(--primary-border);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       PROPERTY DETAILS CARD (MATCHING media_1790150709253.png 1:1)
+       ========================================================================== */
+    .settings-card {
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+    }
+
+    .settings-card-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--divider);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .settings-card-header h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .btn-edit-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+      transition: all 0.15s;
+    }
+
+    .btn-edit-action:hover {
+      background: var(--primary-hover);
+    }
+
+    .settings-card-body {
+      padding: 24px;
+    }
+
+    /* Form Layout from screenshot */
+    .prop-details-layout {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .prop-logo-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #130924 0%, #2A104E 100%);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      box-shadow: 0 6px 18px rgba(19, 9, 36, 0.35);
+      border: 3px solid #FFFFFF;
+      outline: 1px solid #E2E8F0;
+    }
+
+    .prop-logo-letter {
+      font-size: 56px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: -2px;
+    }
+
+    .prop-fields-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .prop-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .prop-field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .prop-input-box {
+      width: 100%;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #64748B;
+      background: #FFFFFF;
+      font-family: var(--font-sans);
+      transition: all 0.15s;
+    }
+
+    .prop-input-box.editable {
+      color: var(--text-main);
+      background: #F8FAFC;
+    }
+
+    .prop-input-box.editable:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .prop-textarea-box {
+      width: 100%;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #64748B;
+      background: #FFFFFF;
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      min-height: 70px;
+      resize: vertical;
+      transition: all 0.15s;
+    }
+
+    .prop-textarea-box.editable {
+      color: var(--text-main);
+      background: #F8FAFC;
+    }
+
+    .prop-textarea-box.editable:focus {
+      outline: none;
+      background: #FFFFFF;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    /* Common Table Styling */
+    .card-table-wrap {
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .card-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .card-table th {
+      background: #F8FAFC;
+      padding: 10px 16px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .card-table td {
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .card-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Toast */
+    .toast-popup {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast-popup.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. AUTHENTIC HIRERKEY DASHBOARD LEFT SIDEBAR (media_1790152354052.png)
+       ========================================================================== -->
+  <aside class="dashboard-sidebar" id="mainSidebar">
+    
+    <!-- Sidebar Header with Brand Mark -->
+    <div class="sidebar-header">
+      <a href="javascript:void(0)" class="brand-wrap" onclick="showToast('hirerkey™ Dashboard')">
+        <div class="brand-squircle">hy</div>
+        <span class="brand-text">hirerkey</span>
+      </a>
+      <button class="sidebar-collapse-btn" onclick="toggleSidebarCollapse()" title="Collapse Sidebar">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+    </div>
+
+    <!-- Navigation List Matching Screenshot 1:1 -->
+    <nav class="sidebar-nav">
+      
+      <!-- 1. Dashboard -->
+      <div class="nav-item" onclick="showToast('Navigating to Dashboard...')">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </span>
+          <span class="nav-item-title">Dashboard</span>
+        </div>
+      </div>
+
+      <!-- 2. Onboarding (Accordion) -->
+      <div class="nav-item" onclick="toggleNavAccordion(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+          </span>
+          <span class="nav-item-title">Onboarding</span>
+        </div>
+        <span class="nav-item-chevron">⌄</span>
+      </div>
+
+      <!-- 3. Employees (OPEN BY DEFAULT - media_1790152354052.png) -->
+      <div class="nav-item open" onclick="toggleNavAccordion(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <span class="nav-item-title" style="color: #FFFFFF; font-weight: 600;">Employees</span>
+        </div>
+        <span class="nav-item-chevron">⌃</span>
+      </div>
+      <div class="nav-sublist">
+        <div class="nav-subitem" onclick="showToast('Viewing Active Employees...')">Active</div>
+        <div class="nav-subitem" onclick="showToast('Viewing Pre-boarding Employees...')">Pre-boarding</div>
+        <div class="nav-subitem active" onclick="showToast('Viewing Off-boarding Cases...')">
+          <span>Off-boarding</span>
+          <span class="badge-pill-counter">4</span>
+        </div>
+      </div>
+
+      <!-- 4. Performance Tools -->
+      <div class="nav-item" onclick="toggleNavAccordion(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </span>
+          <span class="nav-item-title">Performance Tools</span>
+        </div>
+        <span class="nav-item-chevron">⌄</span>
+      </div>
+
+      <!-- 5. Appraisal -->
+      <div class="nav-item" onclick="toggleNavAccordion(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </span>
+          <span class="nav-item-title">Appraisal</span>
+        </div>
+        <span class="nav-item-chevron">⌄</span>
+      </div>
+
+      <!-- 6. Workflows -->
+      <div class="nav-item" onclick="toggleNavAccordion(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          </span>
+          <span class="nav-item-title">Workflows</span>
+        </div>
+        <span class="nav-item-chevron">⌄</span>
+      </div>
+
+      <!-- 7. Pulse Surveys -->
+      <div class="nav-item" onclick="toggleNavAccordion(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </span>
+          <span class="nav-item-title">Pulse Surveys</span>
+        </div>
+        <span class="nav-item-chevron">⌄</span>
+      </div>
+
+      <!-- 8. Intelligence -->
+      <div class="nav-item" onclick="toggleNavAccordion(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </span>
+          <span class="nav-item-title">Intelligence</span>
+        </div>
+        <span class="nav-item-chevron">⌄</span>
+      </div>
+
+      <!-- 9. Workplace -->
+      <div class="nav-item" onclick="toggleNavAccordion(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </span>
+          <span class="nav-item-title">Workplace</span>
+        </div>
+        <span class="nav-item-chevron">⌄</span>
+      </div>
+
+      <!-- Section: System & Settings -->
+      <div class="sidebar-section-title">System Settings</div>
+      <div class="nav-item active" style="background: rgba(124, 58, 237, 0.25); color: #C4B5FD;" onclick="showToast('Active Page: Property Settings')">
+        <div class="nav-item-left">
+          <span class="nav-icon" style="color: #A78BFA;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06-.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </span>
+          <span class="nav-item-title" style="color: #FFFFFF; font-weight: 700;">Property Settings</span>
+        </div>
+        <span class="badge-pill-counter" style="background: #7C3AED;">10</span>
+      </div>
+
+    </nav>
+  </aside>
+
+  <!-- ==========================================================================
+       2. AUTHENTIC HIRERKEY DASHBOARD MAIN VIEWPORT
+       ========================================================================== -->
+  <div class="dashboard-main">
+
+    <!-- TOPBAR (media_1790152354049.png) -->
+    <header class="dashboard-topbar">
+      
+      <!-- Left: Toggle [|] + Search ⌘K + Breadcrumbs -->
+      <div class="topbar-left">
+        <button class="btn-toggle-sidebar" onclick="toggleSidebarCollapse()" title="Toggle Sidebar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <line x1="9" y1="3" x2="9" y2="21"/>
+          </svg>
+        </button>
+
+        <div class="search-input-pill">
+          <svg class="search-icon-svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+          </svg>
+          <input type="text" placeholder="Search..." oninput="handleQuickSearch(this.value)">
+          <span class="search-kbd-chip">⌘K</span>
+        </div>
+
+        <div class="breadcrumbs-wrap">
+          <a href="javascript:void(0)" class="breadcrumb-item" onclick="showToast('Navigating to Home...')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Home
+          </a>
+          <span>›</span>
+          <span class="breadcrumb-item" onclick="showToast('Property Settings')">Property Settings</span>
+          <span>›</span>
+          <span class="breadcrumb-active" id="topActiveCrumb">Property Details</span>
+        </div>
+      </div>
+
+      <!-- Right: Ask HyIQ + Clocked In + Bell + User Profile -->
+      <div class="topbar-right">
+        
+        <!-- Ask HyIQ Pill -->
+        <button class="btn-ask-hyiq" onclick="showToast('Ask HyIQ: Ask anything about your property settings')">
+          <div class="hyiq-star-icon">★</div>
+          <span>Ask HyIQ</span>
+          <span class="hyiq-shortcut-chip">⌘⇧Space</span>
+        </button>
+
+        <!-- Attendance Pill -->
+        <div class="clock-in-pill" onclick="toggleClockStatus()" title="Click to toggle attendance">
+          <span class="clock-dot" id="liveClockDot"></span>
+          <span id="liveClockText">Clocked In · 09:15 AM</span>
+        </div>
+
+        <!-- Notification Bell with 3 badge -->
+        <button class="btn-bell-notif" onclick="showToast('3 unread system notifications')" title="Notifications">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+          </svg>
+          <span class="bell-badge">3</span>
+        </button>
+
+        <!-- User Profile Pill -->
+        <div class="user-profile-btn" onclick="showToast('Chanchal Sharma · System Administrator')">
+          <div class="user-avatar-circle">CS</div>
+          <span class="user-profile-name">Chanchal Sharma</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ========================================================================
+         3. PROPERTY SETTINGS IN-PAGE WORKSPACE
+         Solving the top horizontal scroll issue with Lead UX/UI architecture
+         ======================================================================== -->
+    <main class="page-content-wrapper">
+      
+      <!-- In-Page Header Row with Top-Left Rounded Chip Selector -->
+      <div class="page-header-row">
+        <div class="page-header-left-cluster">
+          
+          <!-- ================================================================
+               THE BEAUTIFUL ROUNDED CHIP WITH EVIDENT DROPDOWN ARROW
+               (Lead UX/UI Architect & Senior Product Designer Pattern)
+               ================================================================ -->
+          <div class="hk-dropdown-wrapper" id="hkPropertyDetailsDropdown">
+            <button 
+              type="button" 
+              class="hk-property-chip" 
+              id="hkChipTrigger" 
+              onclick="toggleSettingsDropdown(event)"
+              aria-haspopup="true" 
+              aria-expanded="false" 
+              aria-controls="hkSettingsPopover"
+              title="Click to view all 10 property settings">
+              <span class="hk-chip-icon-box" id="hkChipIcon">🏢</span>
+              <span class="hk-chip-label" id="hkChipLabel">Property Details</span>
+              <span class="hk-chip-badge" id="hkChipBadge">Active</span>
+              <span class="hk-chip-arrow" id="hkChipArrow" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </span>
+            </button>
+
+            <!-- Dropdown Popover: High Elevation, Instant Filter, Categorized 10 Settings -->
+            <div class="hk-popover" id="hkSettingsPopover" role="menu" aria-labelledby="hkChipTrigger">
+              
+              <!-- Popover Header -->
+              <div class="hk-popover-header">
+                <div class="hk-header-left">
+                  <span class="hk-header-title">Property Settings</span>
+                  <span class="hk-header-badge">10 Modules</span>
+                </div>
+                <span class="hk-kbd-hint">ESC</span>
+              </div>
+
+              <!-- Quick Search Filter -->
+              <div class="hk-search-box">
+                <svg class="hk-search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>
+                </svg>
+                <input 
+                  type="text" 
+                  id="hkSearchInput" 
+                  placeholder="Filter 10 settings..." 
+                  oninput="filterDropdownSettings(this.value)"
+                  onclick="event.stopPropagation()"
+                  autocomplete="off"
+                  spellcheck="false" />
+              </div>
+
+              <!-- Scrollable Module Items List -->
+              <div class="hk-popover-body" id="hkSettingsList" tabindex="-1">
+                
+                <!-- Group 1: Organization & Structure -->
+                <div class="hk-item-group" data-group="org">
+                  <div class="hk-group-label">Organization &amp; Structure</div>
+                  
+                  <!-- Item: Property Details (Active Default) -->
+                  <div class="hk-menu-item is-active" role="menuitem" data-id="details" data-name="Property Details" data-desc="Profile, brand logo & legal address" onclick="selectSettingMenu('details')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box active">🏢</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Property Details</span>
+                        <span class="hk-item-desc">Profile, brand logo &amp; legal address</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge hk-badge-active">Active</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Item: Departments -->
+                  <div class="hk-menu-item" role="menuitem" data-id="departments" data-name="Departments" data-desc="Hierarchy, cost centers & leadership" onclick="selectSettingMenu('departments')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">🏬</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Departments</span>
+                        <span class="hk-item-desc">Hierarchy, cost centers &amp; leadership</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge">9 Active</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Item: Grades -->
+                  <div class="hk-menu-item" role="menuitem" data-id="grades" data-name="Grades" data-desc="Notice ladder & probation rules" onclick="selectSettingMenu('grades')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">🎓</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Grades</span>
+                        <span class="hk-item-desc">Notice ladder &amp; probation rules</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge">5 Bands</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Item: Designations -->
+                  <div class="hk-menu-item" role="menuitem" data-id="designations" data-name="Designations" data-desc="Job catalog across departments" onclick="selectSettingMenu('designations')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">🪪</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Designations</span>
+                        <span class="hk-item-desc">Job catalog across departments</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge">38 Titles</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hk-divider"></div>
+
+                <!-- Group 2: Workflows & Rules -->
+                <div class="hk-item-group" data-group="workflow">
+                  <div class="hk-group-label">Governance &amp; Workflows</div>
+                  
+                  <!-- Item: Approval Flows -->
+                  <div class="hk-menu-item" role="menuitem" data-id="approval_flows" data-name="Approval Flows" data-desc="Multi-tier decision routes" onclick="selectSettingMenu('approval_flows')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">🔀</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Approval Flows</span>
+                        <span class="hk-item-desc">Multi-tier decision routes</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge">6 Flows</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Item: Offboarding -->
+                  <div class="hk-menu-item" role="menuitem" data-id="offboarding" data-name="Offboarding & Rules" data-desc="Checklists, relieving letters & exit" onclick="selectSettingMenu('offboarding')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">🚪</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Offboarding &amp; Rules</span>
+                        <span class="hk-item-desc">Checklists, relieving letters &amp; exit</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge">3 Steps</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Item: Business Card -->
+                  <div class="hk-menu-item" role="menuitem" data-id="business_card" data-name="Business Card" data-desc="Digital vCards & QR generation" onclick="selectSettingMenu('business_card')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">💳</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Business Card</span>
+                        <span class="hk-item-desc">Digital vCards &amp; QR generation</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge">Digital</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="hk-divider"></div>
+
+                <!-- Group 3: Operations & Compliance -->
+                <div class="hk-item-group" data-group="ops">
+                  <div class="hk-group-label">Operations &amp; Compliance</div>
+                  
+                  <!-- Item: Attendance -->
+                  <div class="hk-menu-item" role="menuitem" data-id="attendance" data-name="Attendance & Geofence" data-desc="GPS radius & WiFi whitelist" onclick="selectSettingMenu('attendance')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">⏱️</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Attendance &amp; Geofence</span>
+                        <span class="hk-item-desc">GPS radius &amp; WiFi whitelist</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge hk-badge-live">Live</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Item: Leave Types -->
+                  <div class="hk-menu-item" role="menuitem" data-id="leave_types" data-name="Leave Types" data-desc="Statutory limits & carry-overs" onclick="selectSettingMenu('leave_types')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">🏖️</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Leave Types</span>
+                        <span class="hk-item-desc">Statutory limits &amp; carry-overs</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge">5 Types</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Item: Appraisals -->
+                  <div class="hk-menu-item" role="menuitem" data-id="appraisal" data-name="Appraisals" data-desc="Annual performance cadence" onclick="selectSettingMenu('appraisal')">
+                    <div class="hk-item-left">
+                      <span class="hk-item-icon-box">📈</span>
+                      <div class="hk-item-text">
+                        <span class="hk-item-title">Appraisals</span>
+                        <span class="hk-item-desc">Annual performance cadence</span>
+                      </div>
+                    </div>
+                    <div class="hk-item-right">
+                      <span class="hk-badge">Annual</span>
+                      <svg class="hk-check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Empty state when search yields no matches -->
+                <div class="hk-empty-state" id="hkEmptyState" style="display: none;">
+                  <span>No matching settings found</span>
+                </div>
+
+              </div>
+
+              <!-- Popover Footer -->
+              <div class="hk-popover-footer">
+                <span><kbd>↑</kbd><kbd>↓</kbd> Navigate · <kbd>↵</kbd> Select</span>
+                <span>ESC to close</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="page-title-group">
+            <h1>
+              Property Settings
+              <span class="menus-count-badge">10 Menus</span>
+            </h1>
+            <p>Manage organizational hierarchy, workflows, leave policies, and master parameters for Noisiv Consulting.</p>
+          </div>
+        </div>
+
+        <!-- Lead UX/UI Architect Layout Mode Switcher -->
+        <div class="architect-layout-toggle">
+          <button class="toggle-opt-btn active" id="btnOptChip" onclick="switchArchitectLayout('chip')" title="Recommended Full-Canvas Mode with Top-Left Chip Dropdown">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="8 12 12 16 16 12"/></svg>
+            Chip Dropdown (Full Canvas)
+          </button>
+          <button class="toggle-opt-btn" id="btnOptRail" onclick="switchArchitectLayout('rail')" title="Enterprise Split View with Side Rail">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+            In-Page Rail
+          </button>
+          <button class="toggle-opt-btn" id="btnOptTwoTier" onclick="switchArchitectLayout('twotier')" title="Zero-Scroll Categorized Top Bar">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+            Two-Tier Tabs
+          </button>
+          <button class="toggle-opt-btn" id="btnOptGrid" onclick="switchArchitectLayout('grid')" title="Visual Cards Hub">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Hub Grid
+          </button>
+        </div>
+      </div>
+
+      <!-- Mode 2 Container: Two-Tier Categorized Top Bar (Shown only in TwoTier mode) -->
+      <div id="twoTierBarContainer" class="twotier-container" style="display: none;">
+        <div class="tier1-bar" id="twoTierLevel1">
+          <!-- Rendered dynamically -->
+        </div>
+        <div class="tier2-bar" id="twoTierLevel2">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Main In-Page Split Layout: Rail + Canvas -->
+      <div class="inpage-split-container" id="inpageSplitContainer">
+        
+        <!-- IN-PAGE SETTINGS RAIL (Categorized & 100% Discoverable) -->
+        <aside class="inpage-settings-rail" id="inpageSettingsRail">
+          <div class="rail-filter-box">
+            <svg class="rail-filter-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input type="text" placeholder="Filter settings..." oninput="filterInpageRail(this.value)">
+          </div>
+
+          <!-- Category 1: Organization & Structure -->
+          <div class="rail-category-group" data-group="org">
+            <div class="rail-category-title">Organization &amp; Structure</div>
+            <ul class="rail-menu-list">
+              <li class="rail-menu-item active" id="rail_details" onclick="selectSettingMenu('details')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">🏢</span>
+                  <span>Property Details</span>
+                </div>
+                <span class="rail-badge">Active</span>
+              </li>
+              <li class="rail-menu-item" id="rail_departments" onclick="selectSettingMenu('departments')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">🏬</span>
+                  <span>Departments</span>
+                </div>
+                <span class="rail-badge">9</span>
+              </li>
+              <li class="rail-menu-item" id="rail_grades" onclick="selectSettingMenu('grades')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">🎓</span>
+                  <span>Grades</span>
+                </div>
+                <span class="rail-badge">5</span>
+              </li>
+              <li class="rail-menu-item" id="rail_designations" onclick="selectSettingMenu('designations')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">🪪</span>
+                  <span>Designations</span>
+                </div>
+                <span class="rail-badge">38</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 2: Governance & Workflows -->
+          <div class="rail-category-group" data-group="workflow">
+            <div class="rail-category-title">Governance &amp; Workflows</div>
+            <ul class="rail-menu-list">
+              <li class="rail-menu-item" id="rail_approval_flows" onclick="selectSettingMenu('approval_flows')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">🔀</span>
+                  <span>Approval Flows</span>
+                </div>
+                <span class="rail-badge">6</span>
+              </li>
+              <li class="rail-menu-item" id="rail_offboarding" onclick="selectSettingMenu('offboarding')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">🚪</span>
+                  <span>Offboarding &amp; Rules</span>
+                </div>
+                <span class="rail-badge">3</span>
+              </li>
+              <li class="rail-menu-item" id="rail_business_card" onclick="selectSettingMenu('business_card')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">💳</span>
+                  <span>Business Card</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 3: Operations & Compliance -->
+          <div class="rail-category-group" data-group="ops">
+            <div class="rail-category-title">Operations &amp; Compliance</div>
+            <ul class="rail-menu-list">
+              <li class="rail-menu-item" id="rail_attendance" onclick="selectSettingMenu('attendance')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">⏱️</span>
+                  <span>Attendance &amp; Geofence</span>
+                </div>
+                <span class="rail-badge">Live</span>
+              </li>
+              <li class="rail-menu-item" id="rail_leave_types" onclick="selectSettingMenu('leave_types')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">🏖️</span>
+                  <span>Leave Types</span>
+                </div>
+                <span class="rail-badge">5</span>
+              </li>
+              <li class="rail-menu-item" id="rail_appraisal" onclick="selectSettingMenu('appraisal')">
+                <div class="rail-menu-item-left">
+                  <span class="rail-menu-icon">📈</span>
+                  <span>Appraisals</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- MAIN SETTINGS VIEW CANVAS -->
+        <section class="inpage-settings-canvas" id="inpageSettingsCanvas">
+
+          <!-- ================================================================
+               VIEW 1: PROPERTY DETAILS (EXACT MATCH TO media_1790150709253.png)
+               ================================================================ -->
+          <div class="settings-card setting-panel" id="panel_details">
+            <div class="settings-card-header">
+              <h2>Property Details</h2>
+              <div id="detailsEditBtnWrapper">
+                <button class="btn-edit-action" id="btnToggleEdit" onclick="togglePropertyEdit(true)">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  Edit
+                </button>
+              </div>
+            </div>
+
+            <div class="settings-card-body">
+              <div class="prop-details-layout">
+                
+                <!-- Left: Circular Brand Logo -->
+                <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+                  <div class="prop-logo-circle" id="propLogoCanvas">
+                    <span class="prop-logo-letter" id="propLogoLetter">N</span>
+                  </div>
+                  <button type="button" id="btnChangeAvatar" style="display:none; font-size:11.5px; padding:4px 10px; border-radius:6px; border:1px solid #DDD6FE; background:#FAF5FF; color:#7C3AED; cursor:pointer;" onclick="document.getElementById('avatarUploader').click()">
+                    Change Logo
+                  </button>
+                  <input type="file" id="avatarUploader" style="display:none;" accept="image/*" onchange="previewNewLogo(event)">
+                </div>
+
+                <!-- Right: Form Fields matching media_1790150709253.png -->
+                <div class="prop-fields-stack">
+                  
+                  <div class="prop-field-group">
+                    <label class="prop-field-label">Property Name</label>
+                    <input type="text" class="prop-input-box" id="inpPropName" value="(TEST) Noisiv Consulting" readonly>
+                  </div>
+
+                  <div class="prop-field-group">
+                    <label class="prop-field-label">Property Description</label>
+                    <textarea class="prop-textarea-box" id="inpPropDesc" readonly>Noisiv Consulting is a brand owned by KSM Cognitive Works Pvt Ltd. Recognized by Ministry of Corporate Affairs as an MSME, Noisiv Consulting aims to work on the value of Trust, before anything else.</textarea>
+                  </div>
+
+                  <div class="prop-field-group">
+                    <label class="prop-field-label">Property Address</label>
+                    <input type="text" class="prop-input-box" id="inpPropAddress" value="Building 656, Lane 4, Westend Marg, New Delhi - 110030 🇮🇳" readonly>
+                  </div>
+
+                  <div class="prop-field-group">
+                    <label class="prop-field-label">Property Website</label>
+                    <input type="text" class="prop-input-box" id="inpPropWebsite" value="www.noisivconsulting.com" readonly>
+                  </div>
+
+                  <!-- Save / Cancel Actions in Edit Mode -->
+                  <div id="detailsEditControls" style="display: none; align-items: center; justify-content: flex-end; gap: 10px; margin-top: 8px; pt: 14px; border-top: 1px solid var(--divider);">
+                    <button type="button" style="padding: 7px 16px; border-radius: 7px; border: 1px solid #CBD5E1; background: #FFFFFF; font-size: 13px; font-weight: 600; cursor: pointer;" onclick="togglePropertyEdit(false)">Cancel</button>
+                    <button type="button" class="btn-edit-action" style="padding: 7px 18px;" onclick="savePropertyChanges()">Save Details</button>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 2: DEPARTMENTS -->
+          <div class="settings-card setting-panel" id="panel_departments" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Departments</h2>
+              <button class="btn-edit-action" onclick="showToast('Add department dialog')">+ Add Department</button>
+            </div>
+            <div class="settings-card-body">
+              <div class="card-table-wrap">
+                <table class="card-table">
+                  <thead>
+                    <tr><th>Department</th><th>Code</th><th>Lead</th><th>Headcount</th><th>Status</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Front Office</strong></td><td><code>FO-01</code></td><td>Sara Khan</td><td>28 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
+                    <tr><td><strong>Food &amp; Beverage</strong></td><td><code>FB-02</code></td><td>Marcus Vance</td><td>64 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
+                    <tr><td><strong>Housekeeping</strong></td><td><code>HK-03</code></td><td>Elena Rostova</td><td>52 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
+                    <tr><td><strong>Kitchen / Culinary</strong></td><td><code>KC-04</code></td><td>Chef Jean-Luc</td><td>41 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
+                    <tr><td><strong>Human Resources</strong></td><td><code>HR-06</code></td><td>Chanchal Sharma</td><td>12 Colleagues</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 3: GRADES -->
+          <div class="settings-card setting-panel" id="panel_grades" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Corporate Grades &amp; Notice Periods</h2>
+              <button class="btn-edit-action" onclick="showToast('Add grade band')">+ Add Grade</button>
+            </div>
+            <div class="settings-card-body">
+              <div class="card-table-wrap">
+                <table class="card-table">
+                  <thead>
+                    <tr><th>Grade Band</th><th>Notice Period</th><th>Probation</th><th>Statutory Leave</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><strong>Band 1 — Executive C-Suite</strong></td><td>90 Calendar Days</td><td>None</td><td>45 Days</td></tr>
+                    <tr><td><strong>Band 2 — Senior Management</strong></td><td>60 Calendar Days</td><td>3 Months</td><td>35 Days</td></tr>
+                    <tr><td><strong>Band 3 — Middle Management</strong></td><td>30 Calendar Days</td><td>6 Months</td><td>30 Days</td></tr>
+                    <tr><td><strong>Band 4 — Supervisory</strong></td><td>30 Calendar Days</td><td>6 Months</td><td>30 Days</td></tr>
+                    <tr><td><strong>Band 5 — Operational Associates</strong></td><td>30 Calendar Days</td><td>6 Months</td><td>30 Days</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 4: DESIGNATIONS -->
+          <div class="settings-card setting-panel" id="panel_designations" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Designations Catalog</h2>
+              <button class="btn-edit-action" onclick="showToast('Create designation')">+ New Designation</button>
+            </div>
+            <div class="settings-card-body">
+              <div class="card-table-wrap">
+                <table class="card-table">
+                  <thead><tr><th>Title</th><th>Department</th><th>Grade</th><th>Colleagues</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>General Manager</strong></td><td>Executive Office</td><td>Band 1</td><td>1</td></tr>
+                    <tr><td><strong>Front Desk Manager</strong></td><td>Front Office</td><td>Band 3</td><td>3</td></tr>
+                    <tr><td><strong>Executive Chef</strong></td><td>Kitchen</td><td>Band 2</td><td>1</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 5: APPROVAL FLOWS -->
+          <div class="settings-card setting-panel" id="panel_approval_flows" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Approval Flows</h2>
+              <button class="btn-edit-action" onclick="showToast('Configure workflow')">+ New Flow</button>
+            </div>
+            <div class="settings-card-body">
+              <div class="card-table-wrap">
+                <table class="card-table">
+                  <thead><tr><th>Workflow Trigger</th><th>Routing Logic</th><th>SLA</th><th>Status</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Notice Resignation Approval</strong></td><td>Reporting Line Manager</td><td>48h</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
+                    <tr><td><strong>Departmental Clearance</strong></td><td>Parallel Multi-Dept (IT, Admin, Fin, HR)</td><td>5d</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
+                    <tr><td><strong>Final Settlement Sign-off</strong></td><td>Sequential Finance Approvers</td><td>24h</td><td><span style="color:#10B981; font-weight:600;">Active</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 6: OFFBOARDING & RULES -->
+          <div class="settings-card setting-panel" id="panel_offboarding" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Offboarding Process &amp; Governance</h2>
+              <button class="btn-edit-action" onclick="showToast('Offboarding rules saved')">Save Rules</button>
+            </div>
+            <div class="settings-card-body">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="padding: 14px; border: 1px solid var(--card-border); border-radius: 8px;">
+                  <strong style="color: #0F172A;">1. Handover Checklist &amp; Operational Transition</strong>
+                  <p style="font-size: 12.5px; color: #64748B; margin-top: 3px;">Mandatory delegation of direct reports, tasks, and system ownership.</p>
+                </div>
+                <div style="padding: 14px; border: 1px solid var(--card-border); border-radius: 8px;">
+                  <strong style="color: #0F172A;">2. Departmental Clearances</strong>
+                  <p style="font-size: 12.5px; color: #64748B; margin-top: 3px;">IT assets return, security badges, finance reconciliation.</p>
+                </div>
+                <div style="padding: 14px; border: 1px solid var(--card-border); border-radius: 8px;">
+                  <strong style="color: #0F172A;">3. Final Settlement &amp; Statutory Letters</strong>
+                  <p style="font-size: 12.5px; color: #64748B; margin-top: 3px;">EOSB gratuity calculation, leave encashment, and relieving letters.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 7: BUSINESS CARD -->
+          <div class="settings-card setting-panel" id="panel_business_card" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Business Card Configurator</h2>
+              <button class="btn-edit-action" onclick="showToast('Business Card Template saved')">Save Template</button>
+            </div>
+            <div class="settings-card-body">
+              <div style="padding: 20px; border-radius: 12px; background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); color: #FFF; width: 340px; box-shadow: 0 10px 24px rgba(0,0,0,0.2);">
+                <div style="font-weight: 800; font-size: 15px;">Noisiv Consulting</div>
+                <div style="font-size: 17px; font-weight: 700; margin-top: 24px;">Chanchal Sharma</div>
+                <div style="font-size: 12px; color: #A78BFA;">System Administrator</div>
+                <div style="font-size: 11px; color: #94A3B8; margin-top: 20px;">+971 4 800 2769 · info@noisivconsulting.com</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 8: ATTENDANCE & GEOFENCE -->
+          <div class="settings-card setting-panel" id="panel_attendance" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Attendance &amp; Geofence Parameters</h2>
+              <button class="btn-edit-action" onclick="showToast('Geofence coordinates saved')">Update</button>
+            </div>
+            <div class="settings-card-body">
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 12px;">Office Perimeter: 250m radius around Crowne Plaza Dubai.</p>
+              <div class="prop-field-group">
+                <label class="prop-field-label">Grace Period (Minutes)</label>
+                <input type="text" class="prop-input-box editable" value="15 Minutes">
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 9: LEAVE TYPES -->
+          <div class="settings-card setting-panel" id="panel_leave_types" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Leave Types &amp; Policies</h2>
+              <button class="btn-edit-action" onclick="showToast('Add leave type')">+ Add Leave</button>
+            </div>
+            <div class="settings-card-body">
+              <div class="card-table-wrap">
+                <table class="card-table">
+                  <thead><tr><th>Leave Type</th><th>Days</th><th>Pay Status</th><th>Encashable</th></tr></thead>
+                  <tbody>
+                    <tr><td><strong>Annual Leave</strong></td><td>30 Days</td><td>100% Paid</td><td>Yes</td></tr>
+                    <tr><td><strong>Sick Leave</strong></td><td>15 Full / 30 Half</td><td>Graduated</td><td>No</td></tr>
+                    <tr><td><strong>Maternity Leave</strong></td><td>60 Days</td><td>Paid</td><td>No</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIEW 10: APPRAISAL -->
+          <div class="settings-card setting-panel" id="panel_appraisal" style="display: none;">
+            <div class="settings-card-header">
+              <h2>Appraisal Configurator</h2>
+              <button class="btn-edit-action" onclick="showToast('Appraisal setup saved')">Save</button>
+            </div>
+            <div class="settings-card-body">
+              <div class="prop-field-group">
+                <label class="prop-field-label">Review Cadence</label>
+                <input type="text" class="prop-input-box editable" value="Annual Review (January - December)">
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+
+      <!-- Mode 3 Container: Hub Grid (Shown only in Grid mode) -->
+      <div id="hubGridOverview" class="hub-overview-grid" style="display: none;">
+        <!-- Populated via script -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-popup" id="dashboardToast">
+    <span id="toastContentText">Action completed</span>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const MENU_MODULES = [
+      { id: 'details', name: 'Property Details', category: 'org', catName: 'Organization', badge: 'Active', icon: '🏢', desc: 'Hotel profile, brand logo, legal address, and operational registration details.' },
+      { id: 'departments', name: 'Departments', category: 'org', catName: 'Organization', badge: '9 Active', icon: '🏬', desc: 'Department hierarchy, cost centers, leadership assignment, and headcounts.' },
+      { id: 'grades', name: 'Grades', category: 'org', catName: 'Organization', badge: '5 Bands', icon: '🎓', desc: 'Corporate grade ladder with statutory notice periods and probation periods.' },
+      { id: 'designations', name: 'Designations', category: 'org', catName: 'Organization', badge: '38 Titles', icon: '🪪', desc: 'Job catalog mapped across departments, reporting relationships, and grades.' },
+      { id: 'approval_flows', name: 'Approval Flows', category: 'workflow', catName: 'Workflows', badge: '6 Flows', icon: '🔀', desc: 'Multi-stage decision routing for resignations, clearances, and financial payouts.' },
+      { id: 'offboarding', name: 'Offboarding & Rules', category: 'workflow', catName: 'Workflows', badge: '3 Steps', icon: '🚪', desc: 'Checklist steps, statutory relieving letters, and exit guardrails.' },
+      { id: 'business_card', name: 'Business Card', category: 'workflow', catName: 'Workflows', badge: 'Digital', icon: '💳', desc: 'Digital employee vCards with dynamic QR codes and printable layouts.' },
+      { id: 'attendance', name: 'Attendance & Geofence', category: 'ops', catName: 'Operations', badge: 'Live', icon: '⏱️', desc: 'GPS radius parameters, shift grace periods, and WiFi whitelist.' },
+      { id: 'leave_types', name: 'Leave Types', category: 'ops', catName: 'Operations', badge: '5 Types', icon: '🏖️', desc: 'Statutory leave categories, encashment formula, and carry-over limits.' },
+      { id: 'appraisal', name: 'Appraisals', category: 'ops', catName: 'Operations', badge: 'Annual', icon: '📈', desc: 'Performance review cadence, rating matrices, and evaluation criteria.' }
+    ];
+
+    const CAT_GROUPS = [
+      { id: 'org', name: 'Organization & Structure', icon: '🏢' },
+      { id: 'workflow', name: 'Governance & Workflows', icon: '🔀' },
+      { id: 'ops', name: 'Operations & Compliance', icon: '⏱️' }
+    ];
+
+    let activeMenuId = 'details';
+    let activeTier1Cat = 'org';
+    let currentArchitectLayout = 'chip'; // 'rail' | 'twotier' | 'grid'
+    let isEditingProperty = false;
+
+    let propData = {
+      name: '(TEST) Noisiv Consulting',
+      desc: 'Noisiv Consulting is a brand owned by KSM Cognitive Works Pvt Ltd. Recognized by Ministry of Corporate Affairs as an MSME, Noisiv Consulting aims to work on the value of Trust, before anything else.',
+      address: 'Building 656, Lane 4, Westend Marg, New Delhi - 110030 🇮🇳',
+      website: 'www.noisivconsulting.com'
+    };
+
+    function selectSettingMenu(menuId) {
+      activeMenuId = menuId;
+      const mod = MENU_MODULES.find(m => m.id === menuId);
+      if (!mod) return;
+
+      // Update Top Breadcrumb
+      const topCrumb = document.getElementById('topActiveCrumb');
+      if (topCrumb) topCrumb.textContent = mod.name;
+
+      // Update Top-Left Rounded Chip
+      const chipLabel = document.getElementById('hkChipLabel');
+      if (chipLabel) chipLabel.textContent = mod.name;
+
+      const chipIcon = document.getElementById('hkChipIcon');
+      if (chipIcon) chipIcon.textContent = mod.icon;
+
+      const chipBadge = document.getElementById('hkChipBadge');
+      if (chipBadge) chipBadge.textContent = mod.badge;
+
+      // Update Popover Active Checkmarks & Rows
+      document.querySelectorAll('.hk-menu-item').forEach(el => {
+        const isMatch = el.getAttribute('data-id') === menuId;
+        el.classList.toggle('is-active', isMatch);
+      });
+
+      // Update Rail Items
+      document.querySelectorAll('.rail-menu-item').forEach(el => el.classList.remove('active'));
+      const railEl = document.getElementById(`rail_${menuId}`);
+      if (railEl) railEl.classList.add('active');
+
+      // Update TwoTier pills if active
+      document.querySelectorAll('.tier2-pill').forEach(el => el.classList.remove('active'));
+      const t2El = document.getElementById(`t2_${menuId}`);
+      if (t2El) t2El.classList.add('active');
+
+      activeTier1Cat = mod.category;
+      renderTwoTierHeader();
+
+      // Switch panels
+      document.querySelectorAll('.setting-panel').forEach(p => p.style.display = 'none');
+      const targetPanel = document.getElementById(`panel_${menuId}`);
+      if (targetPanel) targetPanel.style.display = 'block';
+
+      if (currentArchitectLayout === 'grid') {
+        document.getElementById('hubGridOverview').style.display = 'none';
+        document.getElementById('inpageSplitContainer').style.display = 'flex';
+        document.getElementById('inpageSettingsRail').style.display = 'none';
+      }
+
+      closeSettingsDropdown();
+      showToast(`Switched to ${mod.name}`);
+    }
+
+    // Lead UX/UI Architect Layout Switcher
+    function switchArchitectLayout(mode) {
+      currentArchitectLayout = mode;
+      const btnChip = document.getElementById('btnOptChip');
+      const btnRail = document.getElementById('btnOptRail');
+      const btnTwoTier = document.getElementById('btnOptTwoTier');
+      const btnGrid = document.getElementById('btnOptGrid');
+
+      if (btnChip) btnChip.classList.toggle('active', mode === 'chip');
+      if (btnRail) btnRail.classList.toggle('active', mode === 'rail');
+      if (btnTwoTier) btnTwoTier.classList.toggle('active', mode === 'twotier');
+      if (btnGrid) btnGrid.classList.toggle('active', mode === 'grid');
+
+      const split = document.getElementById('inpageSplitContainer');
+      const rail = document.getElementById('inpageSettingsRail');
+      const twoTier = document.getElementById('twoTierBarContainer');
+      const grid = document.getElementById('hubGridOverview');
+
+      if (mode === 'chip') {
+        if (twoTier) twoTier.style.display = 'none';
+        if (grid) grid.style.display = 'none';
+        if (split) split.style.display = 'flex';
+        if (rail) rail.style.display = 'none';
+        selectSettingMenu(activeMenuId);
+        showToast('Switched to Chip Dropdown (100% Full Canvas)');
+      } else if (mode === 'rail') {
+        if (twoTier) twoTier.style.display = 'none';
+        if (grid) grid.style.display = 'none';
+        if (split) split.style.display = 'flex';
+        if (rail) rail.style.display = 'block';
+        selectSettingMenu(activeMenuId);
+        showToast('Switched to In-Page Settings Rail');
+      } else if (mode === 'twotier') {
+        if (grid) grid.style.display = 'none';
+        if (split) split.style.display = 'flex';
+        if (rail) rail.style.display = 'none';
+        if (twoTier) twoTier.style.display = 'block';
+        renderTwoTierHeader();
+        selectSettingMenu(activeMenuId);
+        showToast('Switched to Two-Tier Categorized Header (Zero Scroll)');
+      } else if (mode === 'grid') {
+        if (twoTier) twoTier.style.display = 'none';
+        if (split) split.style.display = 'none';
+        if (grid) grid.style.display = 'grid';
+        renderHubOverviewGrid();
+        showToast('Switched to Settings Hub Grid');
+      }
+    }
+
+    // Dropdown Popover Controller
+    function toggleSettingsDropdown(e) {
+      if (e) e.stopPropagation();
+      const wrapper = document.getElementById('hkPropertyDetailsDropdown');
+      const trigger = document.getElementById('hkChipTrigger');
+      const searchInp = document.getElementById('hkSearchInput');
+      if (!wrapper) return;
+
+      const isOpen = wrapper.classList.contains('is-open');
+      if (isOpen) {
+        closeSettingsDropdown();
+      } else {
+        wrapper.classList.add('is-open');
+        if (trigger) trigger.setAttribute('aria-expanded', 'true');
+        if (searchInp) {
+          searchInp.value = '';
+          filterDropdownSettings('');
+          setTimeout(() => searchInp.focus(), 60);
+        }
+      }
+    }
+
+    function closeSettingsDropdown() {
+      const wrapper = document.getElementById('hkPropertyDetailsDropdown');
+      const trigger = document.getElementById('hkChipTrigger');
+      if (!wrapper) return;
+      wrapper.classList.remove('is-open');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    function filterDropdownSettings(query) {
+      const q = query.toLowerCase().trim();
+      const items = document.querySelectorAll('.hk-menu-item');
+      const groups = document.querySelectorAll('.hk-item-group');
+      const empty = document.getElementById('hkEmptyState');
+      let visibleCount = 0;
+
+      items.forEach(item => {
+        const name = (item.getAttribute('data-name') || '').toLowerCase();
+        const desc = (item.getAttribute('data-desc') || '').toLowerCase();
+        const matches = !q || name.includes(q) || desc.includes(q);
+        item.style.display = matches ? 'flex' : 'none';
+        if (matches) visibleCount++;
+      });
+
+      groups.forEach(group => {
+        const hasVisible = Array.from(group.querySelectorAll('.hk-menu-item')).some(el => el.style.display !== 'none');
+        group.style.display = hasVisible ? 'block' : 'none';
+        const divider = group.nextElementSibling;
+        if (divider && divider.classList.contains('hk-divider')) {
+          divider.style.display = hasVisible ? 'block' : 'none';
+        }
+      });
+
+      if (empty) empty.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    // Dismiss on click outside
+    document.addEventListener('click', (e) => {
+      const wrapper = document.getElementById('hkPropertyDetailsDropdown');
+      if (wrapper && !wrapper.contains(e.target)) {
+        closeSettingsDropdown();
+      }
+    });
+
+    // Dismiss on Escape key
+    document.addEventListener('keydown', (e) => {
+      const wrapper = document.getElementById('hkPropertyDetailsDropdown');
+      if (e.key === 'Escape' && wrapper && wrapper.classList.contains('is-open')) {
+        closeSettingsDropdown();
+        const trigger = document.getElementById('hkChipTrigger');
+        if (trigger) trigger.focus();
+      }
+    });
+
+    function renderTwoTierHeader() {
+      const l1 = document.getElementById('twoTierLevel1');
+      const l2 = document.getElementById('twoTierLevel2');
+
+      l1.innerHTML = CAT_GROUPS.map(cat => `
+        <button class="tier1-btn ${activeTier1Cat === cat.id ? 'active' : ''}" onclick="selectTier1Cat('${cat.id}')">
+          <span>${cat.icon}</span>
+          <span>${cat.name}</span>
+        </button>
+      `).join('');
+
+      const filtered = MENU_MODULES.filter(m => m.category === activeTier1Cat);
+      l2.innerHTML = filtered.map(m => `
+        <button class="tier2-pill ${activeMenuId === m.id ? 'active' : ''}" id="t2_${m.id}" onclick="selectSettingMenu('${m.id}')">
+          <span>${m.icon}</span>
+          <span>${m.name}</span>
+        </button>
+      `).join('');
+    }
+
+    function selectTier1Cat(catId) {
+      activeTier1Cat = catId;
+      const first = MENU_MODULES.find(m => m.category === catId);
+      if (first) selectSettingMenu(first.id);
+      renderTwoTierHeader();
+    }
+
+    // Render Mode 3: Grid
+    function renderHubOverviewGrid() {
+      const grid = document.getElementById('hubGridOverview');
+      grid.innerHTML = MENU_MODULES.map(m => `
+        <div class="hub-module-card" onclick="openMenuFromHub('${m.id}')">
+          <div>
+            <div style="display:flex; align-items:flex-start; gap:12px; margin-bottom:10px;">
+              <span style="font-size:24px;">${m.icon}</span>
+              <div>
+                <strong style="font-size:15px; color:#0F172A;">${m.name}</strong>
+                <div style="font-size:11px; color:#7C3AED; font-weight:600;">${m.catName}</div>
+              </div>
+            </div>
+            <p style="font-size:12.5px; color:#64748B; line-height:1.5;">${m.desc}</p>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; pt:12px; margin-top:14px; border-top:1px solid var(--divider);">
+            <span style="font-size:11.5px; color:#7C3AED; font-weight:600;">● ${m.badge}</span>
+            <span style="font-size:12px; color:#64748B; font-weight:600;">Configure →</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openMenuFromHub(menuId) {
+      switchArchitectLayout('rail');
+      selectSettingMenu(menuId);
+    }
+
+    // Search filter on in-page rail
+    function filterInpageRail(query) {
+      const q = query.toLowerCase().trim();
+      document.querySelectorAll('.rail-category-group').forEach(group => {
+        let hasMatch = false;
+        group.querySelectorAll('.rail-menu-item').forEach(item => {
+          const text = item.textContent.toLowerCase();
+          if (text.includes(q)) {
+            item.style.display = 'flex';
+            hasMatch = true;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        group.style.display = hasMatch ? 'block' : 'none';
+      });
+    }
+
+    // Global Search ⌘K
+    function handleQuickSearch(val) {
+      if (!val.trim()) return;
+      const match = MENU_MODULES.find(m => m.name.toLowerCase().includes(val.toLowerCase()));
+      if (match) selectSettingMenu(match.id);
+    }
+
+    // Property Details Edit Toggle (media_1790150709253.png)
+    function togglePropertyEdit(state) {
+      isEditingProperty = state;
+      ['inpPropName', 'inpPropDesc', 'inpPropAddress', 'inpPropWebsite'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.readOnly = !state;
+          el.classList.toggle('editable', state);
+        }
+      });
+
+      document.getElementById('btnToggleEdit').style.display = state ? 'none' : 'inline-flex';
+      document.getElementById('detailsEditControls').style.display = state ? 'flex' : 'none';
+      document.getElementById('btnChangeAvatar').style.display = state ? 'inline-block' : 'none';
+
+      if (!state) {
+        document.getElementById('inpPropName').value = propData.name;
+        document.getElementById('inpPropDesc').value = propData.desc;
+        document.getElementById('inpPropAddress').value = propData.address;
+        document.getElementById('inpPropWebsite').value = propData.website;
+      }
+    }
+
+    function savePropertyChanges() {
+      propData.name = document.getElementById('inpPropName').value;
+      propData.desc = document.getElementById('inpPropDesc').value;
+      propData.address = document.getElementById('inpPropAddress').value;
+      propData.website = document.getElementById('inpPropWebsite').value;
+
+      togglePropertyEdit(false);
+      showToast('✓ Property Details saved successfully!');
+    }
+
+    function previewNewLogo(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const circle = document.getElementById('propLogoCanvas');
+          circle.style.backgroundImage = `url(${e.target.result})`;
+          circle.style.backgroundSize = 'cover';
+          circle.style.backgroundPosition = 'center';
+          document.getElementById('propLogoLetter').style.display = 'none';
+          showToast('✓ Brand logo updated!');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Sidebar Accordion
+    function toggleNavAccordion(el) {
+      el.classList.toggle('open');
+      const sublist = el.nextElementSibling;
+      if (sublist && sublist.classList.contains('nav-sublist')) {
+        sublist.style.display = el.classList.contains('open') ? 'flex' : 'none';
+      }
+    }
+
+    // Sidebar Collapse
+    function toggleSidebarCollapse() {
+      const sb = document.getElementById('mainSidebar');
+      sb.classList.toggle('collapsed');
+      showToast(sb.classList.contains('collapsed') ? 'Sidebar collapsed' : 'Sidebar expanded');
+    }
+
+    // Clock Status Toggle
+    let isClocked = true;
+    function toggleClockStatus() {
+      isClocked = !isClocked;
+      document.getElementById('liveClockText').textContent = isClocked ? 'Clocked In · 09:15 AM' : 'Clocked Out';
+      document.getElementById('liveClockDot').style.background = isClocked ? '#10B981' : '#F59E0B';
+      showToast(isClocked ? 'Clocked In recorded' : 'Clocked Out recorded');
+    }
+
+    // Toast
+    let toastTimer;
+    function showToast(text) {
+      const toast = document.getElementById('dashboardToast');
+      const label = document.getElementById('toastContentText');
+      if (!toast || !label) return;
+      label.textContent = text;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Init
+    window.addEventListener('DOMContentLoaded', () => {
+      switchArchitectLayout('chip');
+      selectSettingMenu('details');
+    });
+  </script>
+
+</body>
+</html>
