@@ -2578,20 +2578,20 @@
     .v5-fixed-flyout-drawer {
       position: fixed;
       right: 0;
-      top: 236px; /* Aligned with Departments top actions bar / + Add Departments button */
-      transform: translateX(270px);
+      top: 50%;
+      transform: translateY(-50%) translateX(270px);
       display: none; /* Shown in View 5 */
-      align-items: flex-start;
+      align-items: center;
       z-index: 1000;
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
     }
 
-    /* Half-curved button on very right edge of screen, aligned with + Add Departments */
+    /* Half-curved button on very right edge of screen */
     .v5-docked-chip {
       width: 36px;
-      height: 44px;
-      border-radius: 22px 0 0 22px;
+      height: 56px;
+      border-radius: 28px 0 0 28px;
       background: #0B132B;
       border: 1.5px solid rgba(255, 255, 255, 0.18);
       border-right: none;
@@ -2603,7 +2603,6 @@
       box-shadow: -4px 4px 18px rgba(11, 19, 43, 0.28);
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       flex-shrink: 0;
-      margin-top: 0;
     }
 
     .v5-chip-chevron {
@@ -2613,7 +2612,7 @@
     /* Hovering on the chip or drawer slides the menu out from the right side */
     .v5-fixed-flyout-drawer:hover:not(.force-closed),
     .v5-fixed-flyout-drawer.is-open:not(.force-closed) {
-      transform: translateX(0);
+      transform: translateY(-50%) translateX(0);
     }
 
     .v5-fixed-flyout-drawer:hover:not(.force-closed) .v5-docked-chip,
@@ -2632,7 +2631,7 @@
 
     /* Force closed immediately when item is selected */
     .v5-fixed-flyout-drawer.force-closed {
-      transform: translateX(270px) !important;
+      transform: translateY(-50%) translateX(270px) !important;
     }
 
     /* Flyout panel coming from right side of screen */
@@ -2645,7 +2644,7 @@
       padding: 10px;
       box-shadow: -14px 0 38px rgba(15, 23, 42, 0.18), -3px 0 12px rgba(0, 0, 0, 0.06);
       flex-shrink: 0;
-      max-height: calc(100vh - 250px);
+      max-height: calc(100vh - 60px);
       overflow-y: auto;
     }
 
@@ -5015,7 +5014,6 @@
         if (splitContainer) splitContainer.style.display = 'flex';
         updateView2Header(activeMenuId);
         showToast('Switched to View 5: Fixed Right-Edge Drawer (Hover Slide-Out)');
-        setTimeout(alignV5DrawerWithDepartments, 50);
       }
 
       selectSettingMenu(activeMenuId, true);
@@ -5035,28 +5033,6 @@
       if (drawer) {
         drawer.classList.remove('force-closed');
       }
-    }
-
-    function alignV5DrawerWithDepartments() {
-      const drawer = document.getElementById('v5FlyoutDrawer');
-      if (!drawer) return;
-      
-      // Find visible action button or topbar (e.g. + Add Departments)
-      const btn = document.querySelector('.setting-panel:not([style*="display: none"]) .btn-add-primary') ||
-                  document.querySelector('.setting-panel:not([style*="display: none"]) .table-action-topbar') ||
-                  document.querySelector('.btn-add-primary') ||
-                  document.querySelector('.table-action-topbar');
-
-      if (btn) {
-        const rect = btn.getBoundingClientRect();
-        // Align center of chip with center of button (chip height = 44px)
-        const targetTop = Math.round(rect.top + (rect.height / 2) - 22);
-        if (targetTop > 120 && targetTop < window.innerHeight - 150) {
-          drawer.style.top = `${targetTop}px`;
-          return;
-        }
-      }
-      drawer.style.top = '236px';
     }
 
     // View 5 Fixed Flyout Drawer Controller
@@ -5161,7 +5137,6 @@
       document.querySelectorAll('.setting-panel').forEach(p => p.style.display = 'none');
       const targetPanel = document.getElementById(`panel_${menuId}`);
       if (targetPanel) targetPanel.style.display = 'block';
-      if (currentMainScreenView === 5) setTimeout(alignV5DrawerWithDepartments, 50);
 
       if (currentArchitectLayout === 'grid') {
         document.getElementById('hubGridOverview').style.display = 'none';
@@ -5247,7 +5222,6 @@
     }
 
     // Dismiss on click outside
-    window.addEventListener('resize', () => { if (currentMainScreenView === 5) alignV5DrawerWithDepartments(); });
     document.addEventListener('click', (e) => {
       const wrapper = document.getElementById('hkPropertyDetailsDropdown');
       if (wrapper && !wrapper.contains(e.target)) {
