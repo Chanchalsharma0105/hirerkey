@@ -2578,20 +2578,20 @@
     .v5-fixed-flyout-drawer {
       position: fixed;
       right: 0;
-      top: 50%;
-      transform: translateY(-50%) translateX(270px);
+      top: 164px; /* Aligned horizontally with Property Setting Heading (media_1790239219008.png) */
+      transform: translateX(270px);
       display: none; /* Shown in View 5 */
-      align-items: center;
+      align-items: flex-start;
       z-index: 1000;
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       user-select: none;
     }
 
-    /* Half-curved button on very right edge of screen */
+    /* Half-curved button on very right edge of screen, aligned with Property Setting heading */
     .v5-docked-chip {
       width: 36px;
-      height: 56px;
-      border-radius: 28px 0 0 28px;
+      height: 48px;
+      border-radius: 24px 0 0 24px;
       background: #0B132B;
       border: 1.5px solid rgba(255, 255, 255, 0.18);
       border-right: none;
@@ -2603,6 +2603,7 @@
       box-shadow: -4px 4px 18px rgba(11, 19, 43, 0.28);
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       flex-shrink: 0;
+      margin-top: 0;
     }
 
     .v5-chip-chevron {
@@ -2612,7 +2613,7 @@
     /* Hovering on the chip or drawer slides the menu out from the right side */
     .v5-fixed-flyout-drawer:hover:not(.force-closed),
     .v5-fixed-flyout-drawer.is-open:not(.force-closed) {
-      transform: translateY(-50%) translateX(0);
+      transform: translateX(0);
     }
 
     .v5-fixed-flyout-drawer:hover:not(.force-closed) .v5-docked-chip,
@@ -2631,7 +2632,7 @@
 
     /* Force closed immediately when item is selected */
     .v5-fixed-flyout-drawer.force-closed {
-      transform: translateY(-50%) translateX(270px) !important;
+      transform: translateX(270px) !important;
     }
 
     /* Flyout panel coming from right side of screen */
@@ -2644,7 +2645,7 @@
       padding: 10px;
       box-shadow: -14px 0 38px rgba(15, 23, 42, 0.18), -3px 0 12px rgba(0, 0, 0, 0.06);
       flex-shrink: 0;
-      max-height: calc(100vh - 60px);
+      max-height: calc(100vh - 180px);
       overflow-y: auto;
     }
 
@@ -5014,6 +5015,7 @@
         if (splitContainer) splitContainer.style.display = 'flex';
         updateView2Header(activeMenuId);
         showToast('Switched to View 5: Fixed Right-Edge Drawer (Hover Slide-Out)');
+        setTimeout(alignV5DrawerWithHeading, 30);
       }
 
       selectSettingMenu(activeMenuId, true);
@@ -5033,6 +5035,26 @@
       if (drawer) {
         drawer.classList.remove('force-closed');
       }
+    }
+
+    function alignV5DrawerWithHeading() {
+      const drawer = document.getElementById('v5FlyoutDrawer');
+      if (!drawer) return;
+      
+      // Match exact vertical center of Property Setting heading (v2Title / view2Header)
+      const heading = document.getElementById('v2Title') || document.getElementById('view2Header');
+      if (heading && heading.offsetParent !== null) {
+        const rect = heading.getBoundingClientRect();
+        const chip = document.getElementById('v5DockedChip');
+        const chipHeight = chip ? chip.offsetHeight : 48;
+        // Align center of the curved arrow chip with the center of the heading text
+        const targetTop = Math.round(rect.top + (rect.height / 2) - (chipHeight / 2));
+        if (targetTop > 60 && targetTop < window.innerHeight - 100) {
+          drawer.style.top = `${targetTop}px`;
+          return;
+        }
+      }
+      drawer.style.top = '164px';
     }
 
     // View 5 Fixed Flyout Drawer Controller
@@ -5137,6 +5159,7 @@
       document.querySelectorAll('.setting-panel').forEach(p => p.style.display = 'none');
       const targetPanel = document.getElementById(`panel_${menuId}`);
       if (targetPanel) targetPanel.style.display = 'block';
+      if (currentMainScreenView === 5) setTimeout(alignV5DrawerWithHeading, 30);
 
       if (currentArchitectLayout === 'grid') {
         document.getElementById('hubGridOverview').style.display = 'none';
@@ -5222,6 +5245,7 @@
     }
 
     // Dismiss on click outside
+    window.addEventListener('resize', () => { if (currentMainScreenView === 5) alignV5DrawerWithHeading(); });
     document.addEventListener('click', (e) => {
       const wrapper = document.getElementById('hkPropertyDetailsDropdown');
       if (wrapper && !wrapper.contains(e.target)) {
