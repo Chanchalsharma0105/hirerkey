@@ -2571,111 +2571,85 @@
 
 
     /* ==========================================================================
-       VIEW 5: RIGHT-CORNER TOGGLE ICON (MATCHING media_1790237566067.png)
-       WITH HOVER OVERLAY MENU (SCREEN 3 STYLE) & AUTO-CLOSE ON SELECT
+       VIEW 5: FIXED RIGHT-EDGE DOCKED CHIP & SLIDE-OUT MENU OVERLAY
+       Half-curved button fixed on very right edge of screen.
+       Hover slides menu in from right side; hover out or item click closes it.
        ========================================================================== */
-    .view2-header-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 16px;
-      width: 100%;
-    }
-
-    .v5-trigger-container {
-      position: relative;
-      display: none; /* Active only in View 5 */
-      align-self: flex-start;
-      z-index: 120;
-    }
-
-    /* Subtle hover bridge below the button */
-    .v5-trigger-container::after {
-      content: '';
-      position: absolute;
-      top: 100%;
+    .v5-fixed-flyout-drawer {
+      position: fixed;
       right: 0;
-      width: 100%;
-      height: 12px;
-      background: transparent;
+      top: 50%;
+      transform: translateY(-50%) translateX(270px);
+      display: none; /* Shown in View 5 */
+      align-items: center;
+      z-index: 1000;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
     }
 
-    .v5-trigger-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+    /* Half-curved button on very right edge of screen */
+    .v5-docked-chip {
+      width: 36px;
+      height: 56px;
+      border-radius: 28px 0 0 28px;
       background: #0B132B;
-      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      border-right: none;
       color: #94A3B8;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(11, 19, 43, 0.22);
+      box-shadow: -4px 4px 18px rgba(11, 19, 43, 0.28);
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
-      user-select: none;
+      flex-shrink: 0;
     }
 
-    .v5-trigger-btn svg {
-      width: 16px;
-      height: 16px;
-      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.18s ease;
+    .v5-chip-chevron {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.18s ease;
     }
 
-    .v5-trigger-container:hover:not(.force-closed) .v5-trigger-btn,
-    .v5-trigger-container.is-open:not(.force-closed) .v5-trigger-btn {
+    /* Hovering on the chip or drawer slides the menu out from the right side */
+    .v5-fixed-flyout-drawer:hover:not(.force-closed),
+    .v5-fixed-flyout-drawer.is-open:not(.force-closed) {
+      transform: translateY(-50%) translateX(0);
+    }
+
+    .v5-fixed-flyout-drawer:hover:not(.force-closed) .v5-docked-chip,
+    .v5-fixed-flyout-drawer.is-open:not(.force-closed) .v5-docked-chip {
       background: #7C3AED;
       border-color: #A78BFA;
       color: #FFFFFF;
-      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
-      transform: scale(1.04);
+      box-shadow: -6px 4px 22px rgba(124, 58, 237, 0.45);
     }
 
-    .v5-trigger-container:hover:not(.force-closed) .v5-trigger-btn svg,
-    .v5-trigger-container.is-open:not(.force-closed) .v5-trigger-btn svg {
+    .v5-fixed-flyout-drawer:hover:not(.force-closed) .v5-chip-chevron,
+    .v5-fixed-flyout-drawer.is-open:not(.force-closed) .v5-chip-chevron {
       stroke: #FFFFFF;
-      transform: rotate(-90deg);
+      transform: rotate(180deg);
     }
 
-    /* Overlay Menu (Screen 3 style) */
-    .v5-overlay-menu {
-      position: absolute;
-      top: calc(100% + 8px);
-      right: 0;
-      width: 260px;
+    /* Force closed immediately when item is selected */
+    .v5-fixed-flyout-drawer.force-closed {
+      transform: translateY(-50%) translateX(270px) !important;
+    }
+
+    /* Flyout panel coming from right side of screen */
+    .v5-flyout-panel {
+      width: 270px;
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: 18px;
-      padding: 8px;
-      box-shadow: 0 18px 45px -8px rgba(15, 23, 42, 0.2), 0 4px 16px rgba(124, 58, 237, 0.08);
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translateY(-8px) scale(0.96);
-      transform-origin: top right;
-      transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.18s;
-      z-index: 130;
+      border-right: none;
+      border-radius: 18px 0 0 18px;
+      padding: 10px;
+      box-shadow: -14px 0 38px rgba(15, 23, 42, 0.18), -3px 0 12px rgba(0, 0, 0, 0.06);
+      flex-shrink: 0;
+      max-height: calc(100vh - 60px);
+      overflow-y: auto;
     }
 
-    .v5-trigger-container:hover:not(.force-closed) .v5-overlay-menu,
-    .v5-trigger-container.is-open:not(.force-closed) .v5-overlay-menu {
-      opacity: 1;
-      visibility: visible;
-      pointer-events: auto;
-      transform: translateY(0) scale(1);
-    }
-
-    /* Force closed on click of menu item */
-    .v5-trigger-container.force-closed .v5-overlay-menu {
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-      transform: translateY(-8px) scale(0.96) !important;
-    }
-
-    .v5-menu-card-header {
-      padding: 8px 10px 10px 10px;
+    .v5-flyout-header {
+      padding: 6px 10px 10px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -2683,7 +2657,7 @@
       margin-bottom: 4px;
     }
 
-    .v5-menu-card-title {
+    .v5-flyout-title {
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
@@ -2691,7 +2665,7 @@
       color: #94A3B8;
     }
 
-    .v5-menu-card-badge {
+    .v5-flyout-count {
       font-size: 11px;
       font-weight: 600;
       padding: 2px 7px;
@@ -2993,7 +2967,7 @@
             View 4: Expandable Hover Rail (Overlay)
           </button>
           <button class="screen-tab" id="tab-view-5" onclick="switchMainScreenView(5)">
-            View 5: Right-Corner Toggle Icon (Hover Overlay)
+            View 5: Fixed Right-Edge Drawer (Hover Slide-Out)
           </button>
         </div>
       </div>
@@ -3371,97 +3345,99 @@
 
           <!-- View 2 Dedicated Content Header (Active in View 2 & View 3) -->
       <div class="view2-header" id="view2Header">
-        <div class="view2-header-top-row">
-          <div class="view2-header-titles">
-            <div class="view2-breadcrumb">
-              <span>Property Settings</span>
-              <span>›</span>
-              <span style="color: #7C3AED; font-weight: 600;" id="v2Breadcrumb">Property Details</span>
-            </div>
-            <h1 class="view2-title" id="v2Title">Property Details</h1>
-            <p class="view2-subtitle" id="v2Subtitle">Hotel profile, brand logo, legal address, and operational registration details.</p>
-          </div>
-
-          <!-- VIEW 5 TRIGGER: CIRCULAR CHEVRON BUTTON IN RIGHT CORNER (MATCHING media_1790237566067.png) -->
-          <div class="v5-trigger-container" id="v5TriggerContainer" onmouseleave="handleV5MouseLeave()">
-            <button class="v5-trigger-btn" id="v5TriggerBtn" onclick="toggleV5Menu(event)" title="Settings Navigation (Hover to expand)">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-
-            <!-- FULL MENU LIKE SCREEN 3 OVERLAY -->
-            <div class="v5-overlay-menu" id="v5OverlayMenu">
-              <div class="v5-menu-card-header">
-                <span class="v5-menu-card-title">Property Settings</span>
-                <span class="v5-menu-card-badge">10 Sections</span>
-              </div>
-              <ul class="v5-menu-list">
-                <li class="v5-menu-item active" id="v5_details" onclick="selectV5Menu('details')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg></span>
-                    <span>Property Details</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_departments" onclick="selectV5Menu('departments')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
-                    <span>Departments</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_grades" onclick="selectV5Menu('grades')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
-                    <span>Grades</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_designations" onclick="selectV5Menu('designations')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
-                    <span>Designations</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_approval_flows" onclick="selectV5Menu('approval_flows')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg></span>
-                    <span>Approval Flows</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_offboarding" onclick="selectV5Menu('offboarding')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>
-                    <span>Offboarding &amp; Rules</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_business_card" onclick="selectV5Menu('business_card')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
-                    <span>Business Card</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_attendance" onclick="selectV5Menu('attendance')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
-                    <span>Attendance &amp; Geofence</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_leave_types" onclick="selectV5Menu('leave_types')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-                    <span>Leave Types</span>
-                  </div>
-                </li>
-                <li class="v5-menu-item" id="v5_appraisal" onclick="selectV5Menu('appraisal')">
-                  <div class="v5-menu-item-left">
-                    <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
-                    <span>Appraisals</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+        <div class="view2-breadcrumb">
+          <span>Property Settings</span>
+          <span>›</span>
+          <span style="color: #7C3AED; font-weight: 600;" id="v2Breadcrumb">Property Details</span>
         </div>
+        <h1 class="view2-title" id="v2Title">Property Details</h1>
+        <p class="view2-subtitle" id="v2Subtitle">Hotel profile, brand logo, legal address, and operational registration details.</p>
       </div>
+    <!-- ==========================================================================
+         VIEW 5: FIXED RIGHT-EDGE DOCKED CHIP WITH SLIDE-OUT MENU OVERLAY
+         Half-curved button fixed on very right edge of screen.
+         Hover slides menu in from right side; hover out or item click closes it.
+         ========================================================================== -->
+    <div class="v5-fixed-flyout-drawer" id="v5FlyoutDrawer" onmouseleave="handleV5MouseLeave()">
+      
+      <!-- Docked Half-Curved Chip on Very Right of Screen -->
+      <div class="v5-docked-chip" id="v5DockedChip" onclick="toggleV5Menu(event)" title="Settings Menu (Hover to open)">
+        <svg class="v5-chip-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </div>
+
+      <!-- Slide-Out Menu Panel Coming from Right Side of Screen -->
+      <div class="v5-flyout-panel" id="v5FlyoutPanel">
+        <div class="v5-flyout-header">
+          <span class="v5-flyout-title">Property Settings</span>
+          <span class="v5-flyout-count">10 Sections</span>
+        </div>
+
+        <ul class="v5-menu-list">
+          <li class="v5-menu-item active" id="v5_details" onclick="selectV5Menu('details')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg></span>
+              <span>Property Details</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_departments" onclick="selectV5Menu('departments')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+              <span>Departments</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_grades" onclick="selectV5Menu('grades')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+              <span>Grades</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_designations" onclick="selectV5Menu('designations')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+              <span>Designations</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_approval_flows" onclick="selectV5Menu('approval_flows')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg></span>
+              <span>Approval Flows</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_offboarding" onclick="selectV5Menu('offboarding')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>
+              <span>Offboarding &amp; Rules</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_business_card" onclick="selectV5Menu('business_card')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
+              <span>Business Card</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_attendance" onclick="selectV5Menu('attendance')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+              <span>Attendance &amp; Geofence</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_leave_types" onclick="selectV5Menu('leave_types')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+              <span>Leave Types</span>
+            </div>
+          </li>
+          <li class="v5-menu-item" id="v5_appraisal" onclick="selectV5Menu('appraisal')">
+            <div class="v5-menu-item-left">
+              <span class="v5-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+              <span>Appraisals</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
 
           <!-- ================================================================
@@ -4981,7 +4957,7 @@
       const slimRail = document.getElementById('slimIconRail');
       const fullRail = document.getElementById('inpageSettingsRail');
       const v4Anchor = document.getElementById('v4RailAnchor');
-      const v5Trigger = document.getElementById('v5TriggerContainer');
+      const v5Drawer = document.getElementById('v5FlyoutDrawer');
       const splitContainer = document.getElementById('inpageSplitContainer');
 
       if (viewNum === 1) {
@@ -4991,7 +4967,7 @@
         if (slimRail) slimRail.style.display = 'none';
         if (fullRail) fullRail.style.display = 'none';
         if (v4Anchor) v4Anchor.style.display = 'none';
-        if (v5Trigger) v5Trigger.style.display = 'none';
+        if (v5Drawer) v5Drawer.style.display = 'none';
         if (splitContainer) splitContainer.style.display = 'flex';
         showToast('Switched to View 1: Chip Dropdown (Current)');
       } else if (viewNum === 2) {
@@ -5001,7 +4977,7 @@
         if (slimRail) slimRail.style.display = 'flex';
         if (fullRail) fullRail.style.display = 'none';
         if (v4Anchor) v4Anchor.style.display = 'none';
-        if (v5Trigger) v5Trigger.style.display = 'none';
+        if (v5Drawer) v5Drawer.style.display = 'none';
         if (splitContainer) splitContainer.style.display = 'flex';
         updateView2Header(activeMenuId);
         showToast('Switched to View 2: Slim Icon Rail (Hover Tooltips)');
@@ -5012,7 +4988,7 @@
         if (slimRail) slimRail.style.display = 'none';
         if (fullRail) fullRail.style.display = 'block';
         if (v4Anchor) v4Anchor.style.display = 'none';
-        if (v5Trigger) v5Trigger.style.display = 'none';
+        if (v5Drawer) v5Drawer.style.display = 'none';
         if (splitContainer) splitContainer.style.display = 'flex';
         updateView2Header(activeMenuId);
         showToast('Switched to View 3: Full In-Page Rail');
@@ -5023,7 +4999,7 @@
         if (slimRail) slimRail.style.display = 'none';
         if (fullRail) fullRail.style.display = 'none';
         if (v4Anchor) v4Anchor.style.display = 'block';
-        if (v5Trigger) v5Trigger.style.display = 'none';
+        if (v5Drawer) v5Drawer.style.display = 'none';
         if (splitContainer) splitContainer.style.display = 'flex';
         updateView2Header(activeMenuId);
         showToast('Switched to View 4: Expandable Hover Rail (Overlay)');
@@ -5034,10 +5010,10 @@
         if (slimRail) slimRail.style.display = 'none';
         if (fullRail) fullRail.style.display = 'none';
         if (v4Anchor) v4Anchor.style.display = 'none';
-        if (v5Trigger) v5Trigger.style.display = 'flex';
+        if (v5Drawer) v5Drawer.style.display = 'flex';
         if (splitContainer) splitContainer.style.display = 'flex';
         updateView2Header(activeMenuId);
-        showToast('Switched to View 5: Right-Corner Toggle Icon (Hover Menu)');
+        showToast('Switched to View 5: Fixed Right-Edge Drawer (Hover Slide-Out)');
       }
 
       selectSettingMenu(activeMenuId, true);
@@ -5059,34 +5035,34 @@
       }
     }
 
-    // View 5 Overlay Controller
+    // View 5 Fixed Flyout Drawer Controller
     function selectV5Menu(menuId) {
-      const container = document.getElementById('v5TriggerContainer');
-      if (container) {
-        container.classList.add('force-closed');
-        container.classList.remove('is-open');
+      const drawer = document.getElementById('v5FlyoutDrawer');
+      if (drawer) {
+        drawer.classList.add('force-closed');
+        drawer.classList.remove('is-open');
       }
       selectSettingMenu(menuId);
     }
 
     function handleV5MouseLeave() {
-      const container = document.getElementById('v5TriggerContainer');
-      if (container) {
-        container.classList.remove('force-closed');
-        container.classList.remove('is-open');
+      const drawer = document.getElementById('v5FlyoutDrawer');
+      if (drawer) {
+        drawer.classList.remove('force-closed');
+        drawer.classList.remove('is-open');
       }
     }
 
     function toggleV5Menu(event) {
       if (event) event.stopPropagation();
-      const container = document.getElementById('v5TriggerContainer');
-      if (container) {
-        if (container.classList.contains('is-open')) {
-          container.classList.remove('is-open');
-          container.classList.add('force-closed');
+      const drawer = document.getElementById('v5FlyoutDrawer');
+      if (drawer) {
+        if (drawer.classList.contains('is-open')) {
+          drawer.classList.remove('is-open');
+          drawer.classList.add('force-closed');
         } else {
-          container.classList.remove('force-closed');
-          container.classList.add('is-open');
+          drawer.classList.remove('force-closed');
+          drawer.classList.add('is-open');
         }
       }
     }
@@ -5251,9 +5227,9 @@
       if (wrapper && !wrapper.contains(e.target)) {
         closeSettingsDropdown();
       }
-      const v5Container = document.getElementById('v5TriggerContainer');
-      if (v5Container && !v5Container.contains(e.target)) {
-        v5Container.classList.remove('is-open');
+      const v5Drawer = document.getElementById('v5FlyoutDrawer');
+      if (v5Drawer && !v5Drawer.contains(e.target)) {
+        v5Drawer.classList.remove('is-open');
       }
     });
 
