@@ -190,7 +190,7 @@
     .nav-item {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding: 8px 10px;
       border-radius: 8px;
       color: #94A3B8;
@@ -845,7 +845,7 @@
     .hk-simple-item {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding: 8px 10px;
       border-radius: 8px;
       font-size: 13px;
@@ -1253,7 +1253,7 @@
     .rail-menu-item {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       padding: 8px 10px;
       border-radius: 8px;
       color: #475569;
@@ -1288,19 +1288,6 @@
       border: 1px solid var(--primary-tint);
     }
 
-    .rail-badge {
-      font-size: 10.5px;
-      font-weight: 600;
-      padding: 1px 6px;
-      border-radius: 10px;
-      background: #F1F5F9;
-      color: #64748B;
-    }
-
-    .rail-menu-item.active .rail-badge {
-      background: #FFFFFF;
-      color: var(--primary);
-    }
 
     /* Main Settings View Canvas (Right side) */
     .inpage-settings-canvas {
@@ -2505,8 +2492,7 @@
       padding: 10px 6px !important;
     }
 
-    .v4-expandable-drawer.force-closed .v4-item-label,
-    .v4-expandable-drawer.force-closed .v4-item-badge {
+    .v4-expandable-drawer.force-closed .v4-item-label {
       opacity: 0 !important;
       pointer-events: none !important;
     }
@@ -2563,6 +2549,7 @@
 
     .v4-item-label {
       font-size: 13px;
+      white-space: nowrap;
       font-weight: 500;
       margin-left: 8px;
       color: #1E293B;
@@ -2582,28 +2569,6 @@
       pointer-events: auto;
     }
 
-    .v4-item-badge {
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 7px;
-      border-radius: 6px;
-      background: #F1F5F9;
-      color: #64748B;
-      opacity: 0;
-      pointer-events: none;
-      margin-right: 6px;
-      transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1) 0.04s;
-    }
-
-    .v4-menu-item.active .v4-item-badge {
-      background: #EDE9FE;
-      color: #7C3AED;
-    }
-
-    .v4-expandable-drawer:hover:not(.force-closed) .v4-item-badge {
-      opacity: 1;
-      pointer-events: auto;
-    }
 </style>
 </head>
 <body>
@@ -3069,7 +3034,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>
               </div>
               <span class="v4-item-label">Property Details</span>
-              <span class="v4-item-badge">Active</span>
             </div>
 
             <!-- 2. Departments -->
@@ -3078,7 +3042,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
               </div>
               <span class="v4-item-label">Departments</span>
-              <span class="v4-item-badge">6 Active</span>
             </div>
 
             <!-- 3. Grades -->
@@ -3087,7 +3050,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
               </div>
               <span class="v4-item-label">Grades</span>
-              <span class="v4-item-badge">6 Bands</span>
             </div>
 
             <!-- 4. Designations -->
@@ -3096,7 +3058,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
               </div>
               <span class="v4-item-label">Designations</span>
-              <span class="v4-item-badge">11 Titles</span>
             </div>
 
             <!-- 5. Approval Flows -->
@@ -3105,7 +3066,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg>
               </div>
               <span class="v4-item-label">Approval Flows</span>
-              <span class="v4-item-badge">11 Flows</span>
             </div>
 
             <!-- 6. Offboarding & Rules -->
@@ -3114,7 +3074,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
               </div>
               <span class="v4-item-label">Offboarding &amp; Rules</span>
-              <span class="v4-item-badge">3 Steps</span>
             </div>
 
             <!-- 7. Business Card Configurator -->
@@ -3123,7 +3082,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
               </div>
               <span class="v4-item-label">Business Card</span>
-              <span class="v4-item-badge">5 Masters</span>
             </div>
 
             <!-- 8. Attendance & Geofence -->
@@ -3132,7 +3090,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
               </div>
               <span class="v4-item-label">Attendance &amp; Geofence</span>
-              <span class="v4-item-badge">Live</span>
             </div>
 
             <!-- 9. Leave Types -->
@@ -3141,7 +3098,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
               </div>
               <span class="v4-item-label">Leave Types</span>
-              <span class="v4-item-badge">5 Types</span>
             </div>
 
             <!-- 10. Appraisals -->
@@ -3150,7 +3106,6 @@
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
               </div>
               <span class="v4-item-label">Appraisals</span>
-              <span class="v4-item-badge">Annual</span>
             </div>
 
           </div>
@@ -3163,70 +3118,60 @@
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg></span>
                 <span>Property Details</span>
               </div>
-              <span class="rail-badge">Active</span>
             </li>
             <li class="rail-menu-item" id="rail_departments" onclick="selectSettingMenu('departments')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
                 <span>Departments</span>
               </div>
-              <span class="rail-badge">6</span>
             </li>
             <li class="rail-menu-item" id="rail_grades" onclick="selectSettingMenu('grades')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
                 <span>Grades</span>
               </div>
-              <span class="rail-badge">6</span>
             </li>
             <li class="rail-menu-item" id="rail_designations" onclick="selectSettingMenu('designations')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
                 <span>Designations</span>
               </div>
-              <span class="rail-badge">11</span>
             </li>
             <li class="rail-menu-item" id="rail_approval_flows" onclick="selectSettingMenu('approval_flows')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg></span>
                 <span>Approval Flows</span>
               </div>
-              <span class="rail-badge">11</span>
             </li>
             <li class="rail-menu-item" id="rail_offboarding" onclick="selectSettingMenu('offboarding')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></span>
                 <span>Offboarding &amp; Rules</span>
               </div>
-              <span class="rail-badge">3</span>
             </li>
             <li class="rail-menu-item" id="rail_business_card" onclick="selectSettingMenu('business_card')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>
                 <span>Business Card</span>
               </div>
-              <span class="rail-badge">5</span>
             </li>
             <li class="rail-menu-item" id="rail_attendance" onclick="selectSettingMenu('attendance')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
                 <span>Attendance &amp; Geofence</span>
               </div>
-              <span class="rail-badge">Live</span>
             </li>
             <li class="rail-menu-item" id="rail_leave_types" onclick="selectSettingMenu('leave_types')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
                 <span>Leave Types</span>
               </div>
-              <span class="rail-badge">5</span>
             </li>
             <li class="rail-menu-item" id="rail_appraisal" onclick="selectSettingMenu('appraisal')">
               <div class="rail-menu-item-left">
                 <span class="rail-menu-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
                 <span>Appraisals</span>
               </div>
-              <span class="rail-badge">Annual</span>
             </li>
           </ul>
         </aside>
