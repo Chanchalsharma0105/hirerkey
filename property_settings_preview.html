@@ -2457,6 +2457,195 @@
       color: #64748B;
       margin-top: 3px;
     }
+
+    /* ==========================================================================
+       VIEW 4: EXPANDABLE HOVER RAIL (OVERLAY)
+       ========================================================================== */
+    .v4-rail-anchor {
+      position: relative;
+      width: 54px;
+      flex-shrink: 0;
+      display: none; /* Shown in View 4 */
+      min-height: 520px;
+    }
+
+    .v4-expandable-drawer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 54px;
+      background: #FFFFFF;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 8px 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      overflow: hidden;
+      white-space: nowrap;
+      transition: width 240ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 240ms ease, padding 240ms ease;
+      z-index: 500;
+    }
+
+    /* Expanding Hover State (Overlapping over side content) */
+    .v4-expandable-drawer:hover:not(.force-closed) {
+      width: 260px;
+      box-shadow: 0 16px 42px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.25);
+      padding: 10px 8px;
+    }
+
+    /* Force closed on item selection */
+    .v4-expandable-drawer.force-closed {
+      width: 54px !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+      padding: 8px 5px !important;
+    }
+
+    .v4-expandable-drawer.force-closed .v4-item-label,
+    .v4-expandable-drawer.force-closed .v4-item-badge,
+    .v4-expandable-drawer.force-closed .v4-category-title,
+    .v4-expandable-drawer.force-closed .v4-drawer-topbar {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    .v4-drawer-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 6px 10px;
+      border-bottom: 1px solid #F1F5F9;
+      margin-bottom: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .v4-expandable-drawer:hover:not(.force-closed) .v4-drawer-topbar {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .v4-drawer-topbar-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .v4-drawer-topbar-hint {
+      font-size: 10px;
+      color: #94A3B8;
+      background: #F1F5F9;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .v4-category-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94A3B8;
+      padding: 8px 8px 4px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .v4-expandable-drawer:hover:not(.force-closed) .v4-category-title {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .v4-menu-item {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      border-radius: 9px;
+      padding: 0 5px;
+      cursor: pointer;
+      color: #64748B;
+      background: transparent;
+      transition: all 0.16s ease;
+      margin-bottom: 3px;
+      user-select: none;
+    }
+
+    .v4-menu-item:hover {
+      background: #F3E8FF;
+      color: #7C3AED;
+    }
+
+    .v4-menu-item.active {
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 600;
+    }
+
+    .v4-item-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .v4-menu-item.active .v4-item-icon {
+      background: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+    }
+
+    .v4-item-icon svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .v4-item-label {
+      font-size: 13px;
+      font-weight: 500;
+      margin-left: 9px;
+      color: #1E293B;
+      flex: 1;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1) 0.04s;
+    }
+
+    .v4-menu-item.active .v4-item-label {
+      color: #7C3AED;
+      font-weight: 600;
+    }
+
+    .v4-expandable-drawer:hover:not(.force-closed) .v4-item-label {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .v4-item-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: #F1F5F9;
+      color: #64748B;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1) 0.04s;
+    }
+
+    .v4-menu-item.active .v4-item-badge {
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .v4-expandable-drawer:hover:not(.force-closed) .v4-item-badge {
+      opacity: 1;
+      pointer-events: auto;
+    }
 </style>
 </head>
 <body>
@@ -2690,6 +2879,9 @@
           <button class="screen-tab" id="tab-view-3" onclick="switchMainScreenView(3)">
             View 3: Full In-Page Rail
           </button>
+          <button class="screen-tab" id="tab-view-4" onclick="switchMainScreenView(4)">
+            View 4: Expandable Hover Rail (Overlay)
+          </button>
         </div>
       </div>
 
@@ -2908,6 +3100,108 @@
             <div class="slim-tooltip">Appraisals</div>
           </div>
         </aside>
+
+                <!-- VIEW 4: EXPANDABLE HOVER RAIL (OVERLAY COMBINATION OF VIEW 2 & VIEW 3) -->
+        <div class="v4-rail-anchor" id="v4RailAnchor">
+          <div class="v4-expandable-drawer" id="v4ExpandableDrawer" onmouseleave="handleV4MouseLeave()">
+            
+            <!-- Top Drawer Bar -->
+            <div class="v4-drawer-topbar">
+              <span class="v4-drawer-topbar-title">Settings Navigation</span>
+              <span class="v4-drawer-topbar-hint">Overlay Mode</span>
+            </div>
+
+            <!-- Group 1: Organization & Structure -->
+            <div class="v4-category-title">Organization &amp; Structure</div>
+            
+            <div class="v4-menu-item active" id="v4_details" onclick="selectV4Menu('details')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1"/></svg>
+              </div>
+              <span class="v4-item-label">Property Details</span>
+              <span class="v4-item-badge">Active</span>
+            </div>
+
+            <div class="v4-menu-item" id="v4_departments" onclick="selectV4Menu('departments')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+              </div>
+              <span class="v4-item-label">Departments</span>
+              <span class="v4-item-badge">6 Active</span>
+            </div>
+
+            <div class="v4-menu-item" id="v4_grades" onclick="selectV4Menu('grades')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              </div>
+              <span class="v4-item-label">Grades</span>
+              <span class="v4-item-badge">6 Bands</span>
+            </div>
+
+            <div class="v4-menu-item" id="v4_designations" onclick="selectV4Menu('designations')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              </div>
+              <span class="v4-item-label">Designations</span>
+              <span class="v4-item-badge">11 Titles</span>
+            </div>
+
+            <!-- Group 2: Governance & Workflows -->
+            <div class="v4-category-title">Governance &amp; Workflows</div>
+
+            <div class="v4-menu-item" id="v4_approval_flows" onclick="selectV4Menu('approval_flows')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v3a2 2 0 0 1-2 2H8"/><path d="M6 9v12"/></svg>
+              </div>
+              <span class="v4-item-label">Approval Flows</span>
+              <span class="v4-item-badge">11 Flows</span>
+            </div>
+
+            <div class="v4-menu-item" id="v4_offboarding" onclick="selectV4Menu('offboarding')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              </div>
+              <span class="v4-item-label">Offboarding &amp; Rules</span>
+              <span class="v4-item-badge">3 Steps</span>
+            </div>
+
+            <div class="v4-menu-item" id="v4_business_card" onclick="selectV4Menu('business_card')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </div>
+              <span class="v4-item-label">Business Card</span>
+              <span class="v4-item-badge">5 Masters</span>
+            </div>
+
+            <!-- Group 3: Operations & Compliance -->
+            <div class="v4-category-title">Operations &amp; Compliance</div>
+
+            <div class="v4-menu-item" id="v4_attendance" onclick="selectV4Menu('attendance')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <span class="v4-item-label">Attendance &amp; Geofence</span>
+              <span class="v4-item-badge">Live</span>
+            </div>
+
+            <div class="v4-menu-item" id="v4_leave_types" onclick="selectV4Menu('leave_types')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <span class="v4-item-label">Leave Types</span>
+              <span class="v4-item-badge">5 Types</span>
+            </div>
+
+            <div class="v4-menu-item" id="v4_appraisal" onclick="selectV4Menu('appraisal')">
+              <div class="v4-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <span class="v4-item-label">Appraisals</span>
+              <span class="v4-item-badge">Annual</span>
+            </div>
+
+          </div>
+        </div>
 
         <aside class="inpage-settings-rail" id="inpageSettingsRail">
           <div class="rail-filter-box">
@@ -4523,15 +4817,18 @@
       const tab1 = document.getElementById('tab-view-1');
       const tab2 = document.getElementById('tab-view-2');
       const tab3 = document.getElementById('tab-view-3');
+      const tab4 = document.getElementById('tab-view-4');
 
       if (tab1) tab1.classList.toggle('active', viewNum === 1);
       if (tab2) tab2.classList.toggle('active', viewNum === 2);
       if (tab3) tab3.classList.toggle('active', viewNum === 3);
+      if (tab4) tab4.classList.toggle('active', viewNum === 4);
 
       const v1Header = document.querySelector('.page-header-row');
       const v2Header = document.getElementById('view2Header');
       const slimRail = document.getElementById('slimIconRail');
       const fullRail = document.getElementById('inpageSettingsRail');
+      const v4Anchor = document.getElementById('v4RailAnchor');
       const splitContainer = document.getElementById('inpageSplitContainer');
 
       if (viewNum === 1) {
@@ -4540,6 +4837,7 @@
         if (v2Header) v2Header.style.display = 'none';
         if (slimRail) slimRail.style.display = 'none';
         if (fullRail) fullRail.style.display = 'none';
+        if (v4Anchor) v4Anchor.style.display = 'none';
         if (splitContainer) splitContainer.style.display = 'flex';
         showToast('Switched to View 1: Chip Dropdown (Current)');
       } else if (viewNum === 2) {
@@ -4548,6 +4846,7 @@
         if (v2Header) v2Header.style.display = 'block';
         if (slimRail) slimRail.style.display = 'flex';
         if (fullRail) fullRail.style.display = 'none';
+        if (v4Anchor) v4Anchor.style.display = 'none';
         if (splitContainer) splitContainer.style.display = 'flex';
         updateView2Header(activeMenuId);
         showToast('Switched to View 2: Slim Icon Rail (Hover Tooltips)');
@@ -4557,12 +4856,39 @@
         if (v2Header) v2Header.style.display = 'block';
         if (slimRail) slimRail.style.display = 'none';
         if (fullRail) fullRail.style.display = 'block';
+        if (v4Anchor) v4Anchor.style.display = 'none';
         if (splitContainer) splitContainer.style.display = 'flex';
         updateView2Header(activeMenuId);
         showToast('Switched to View 3: Full In-Page Rail');
+      } else if (viewNum === 4) {
+        // VIEW 4: EXPANDABLE HOVER RAIL (OVERLAY)
+        if (v1Header) v1Header.style.display = 'none';
+        if (v2Header) v2Header.style.display = 'block';
+        if (slimRail) slimRail.style.display = 'none';
+        if (fullRail) fullRail.style.display = 'none';
+        if (v4Anchor) v4Anchor.style.display = 'block';
+        if (splitContainer) splitContainer.style.display = 'flex';
+        updateView2Header(activeMenuId);
+        showToast('Switched to View 4: Expandable Hover Rail (Overlay)');
       }
 
       selectSettingMenu(activeMenuId, true);
+    }
+
+    // View 4 Overlay Controller
+    function selectV4Menu(menuId) {
+      const drawer = document.getElementById('v4ExpandableDrawer');
+      if (drawer) {
+        drawer.classList.add('force-closed');
+      }
+      selectSettingMenu(menuId);
+    }
+
+    function handleV4MouseLeave() {
+      const drawer = document.getElementById('v4ExpandableDrawer');
+      if (drawer) {
+        drawer.classList.remove('force-closed');
+      }
     }
 
     function updateView2Header(menuId) {
@@ -4609,6 +4935,11 @@
       document.querySelectorAll('.slim-rail-item').forEach(el => el.classList.remove('active'));
       const slimEl = document.getElementById(`slim_${menuId}`);
       if (slimEl) slimEl.classList.add('active');
+
+      // Update View 4 Overlay Rail Items
+      document.querySelectorAll('.v4-menu-item').forEach(el => el.classList.remove('active'));
+      const v4El = document.getElementById(`v4_${menuId}`);
+      if (v4El) v4El.classList.add('active');
 
       // Update View 2 Header Info
       updateView2Header(menuId);
