@@ -105,6 +105,7 @@ export interface OffboardingCase {
   clearance?: ClearanceItem[];
   exitInterviewStatus?: 'not_sent' | 'sent' | 'completed' | 'skipped';
   settlement?: SettlementRecord;
+  internalNotes?: string;
 }
 
 export type OffboardingScope = 'progress' | 'closed';

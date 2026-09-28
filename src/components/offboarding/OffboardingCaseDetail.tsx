@@ -15,6 +15,16 @@ import {
   Option,
   Switch,
   Alert,
+  Modal,
+  ModalDialog,
+  ModalClose,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  FormControl,
+  FormLabel,
+  Input,
+  Textarea,
 } from '@mui/joy';
 import {
   FiArrowLeft,
@@ -30,31 +40,144 @@ import {
   FiEdit3,
   FiLayers,
   FiCheck,
+  FiCornerUpLeft,
+  FiZap,
+  FiCheckSquare,
 } from 'react-icons/fi';
-import { OffboardingCase, CaseTabKey, ClearanceItem, HandoverItem } from './types';
+import { OffboardingCase, CaseTabKey, ClearanceItem, HandoverItem, OffboardingReasonType } from './types';
 
 export interface OffboardingCaseDetailProps {
   caseData: OffboardingCase;
   onBack: () => void;
   onUpdateCase?: (updatedCase: OffboardingCase) => void;
+  onWithdraw?: (caseItem: OffboardingCase) => void;
+  onEdit?: (caseItem: OffboardingCase) => void;
 }
 
 export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
   caseData: initialCase,
   onBack,
   onUpdateCase,
+  onWithdraw,
+  onEdit,
 }) => {
   const [activeTab, setActiveTab] = useState<CaseTabKey>('overview');
   const [caseItem, setCaseItem] = useState<OffboardingCase>(initialCase);
   const [toastMsg, setToastMsg] = useState<string | null>(null);
 
+  // State for Withdraw & Edit dialogs
+  const [isWithdrawOpen, setIsWithdrawOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [withdrawReason, setWithdrawReason] = useState('');
+  const [editLwd, setEditLwd] = useState(initialCase.lastWorkingDay || '');
+  const [editReason, setEditReason] = useState<OffboardingReasonType>(initialCase.reason || 'resignation');
+  const [editSuccessor, setEditSuccessor] = useState(initialCase.successor || '');
+  const [editManager, setEditManager] = useState(initialCase.manager || '');
+  const [editNotes, setEditNotes] = useState(initialCase.internalNotes || '');
+
   useEffect(() => {
     setCaseItem(initialCase);
+    setEditLwd(initialCase.lastWorkingDay || '');
+    setEditReason(initialCase.reason || 'resignation');
+    setEditSuccessor(initialCase.successor || '');
+    setEditManager(initialCase.manager || '');
+    setEditNotes(initialCase.internalNotes || '');
   }, [initialCase]);
 
   const showToast = (msg: string) => {
     setToastMsg(msg);
     setTimeout(() => setToastMsg(null), 3500);
+  };
+
+  // 1. Action Handler: Withdraw Offboarding Case
+  const handleOpenWithdrawModal = () => {
+    setWithdrawReason('');
+    setIsWithdrawOpen(true);
+  };
+
+  const handleConfirmWithdraw = () => {
+    setIsWithdrawOpen(false);
+    if (onWithdraw) {
+      onWithdraw(caseItem);
+    } else {
+      const updated: OffboardingCase = {
+        ...caseItem,
+        stage: 3,
+        dueText: 'Withdrawn & Reinstated',
+        dueTone: 'ok',
+      };
+      setCaseItem(updated);
+      onUpdateCase?.(updated);
+      showToast('Offboarding case withdrawn for ' + caseItem.name + '. Employee record reinstated.');
+      onBack();
+    }
+  };
+
+  // 2. Action Handler: Edit Departure Parameters
+  const handleOpenEditModal = () => {
+    if (onEdit) {
+      onEdit(caseItem);
+      return;
+    }
+    setEditLwd(caseItem.lastWorkingDay || '');
+    setEditReason(caseItem.reason || 'resignation');
+    setEditSuccessor(caseItem.successor || '');
+    setEditManager(caseItem.manager || '');
+    setEditNotes(caseItem.internalNotes || '');
+    setIsEditOpen(true);
+  };
+
+  const handleSaveEdit = () => {
+    const updated: OffboardingCase = {
+      ...caseItem,
+      lastWorkingDay: editLwd.trim() || caseItem.lastWorkingDay,
+      reason: editReason,
+      successor: editSuccessor.trim() ? editSuccessor.trim() : null,
+      manager: editManager.trim() || caseItem.manager,
+      internalNotes: editNotes.trim(),
+    };
+    setCaseItem(updated);
+    onUpdateCase?.(updated);
+    setIsEditOpen(false);
+    showToast('Departure parameters successfully updated for ' + caseItem.name + '.');
+  };
+
+  // 3. Action Handler: Exit Now (Immediate Departure Acceleration)
+  const handleExitNow = () => {
+    const today = new Date();
+    const dayStr = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    const updated: OffboardingCase = {
+      ...caseItem,
+      lastWorkingDay: dayStr + ' (Immediate)',
+      dueText: 'Exited today',
+      dueTone: 'warn',
+      stage: 2,
+    };
+    setCaseItem(updated);
+    onUpdateCase?.(updated);
+    showToast('Immediate exit executed for ' + caseItem.name + '. Access revoked & clearance active.');
+  };
+
+  // 4. Action Handler: Complete Clearance (Bulk Sign-off)
+  const handleCompleteAllClearance = () => {
+    const updatedClearance = (caseItem.clearance || []).map((item) => ({
+      ...item,
+      done: true,
+      status: 'approved' as const,
+    }));
+    const updatedHandover = (caseItem.handover || []).map((item) => ({
+      ...item,
+      done: true,
+    }));
+    const updated: OffboardingCase = {
+      ...caseItem,
+      clearance: updatedClearance,
+      handover: updatedHandover,
+      stage: caseItem.stage < 2 ? 2 : caseItem.stage,
+    };
+    setCaseItem(updated);
+    onUpdateCase?.(updated);
+    showToast('All clearance gates & handover tasks marked Completed for ' + caseItem.name + '.');
   };
 
   // Handover Toggle
@@ -741,6 +864,97 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                 {caseItem.dueText}
               </Chip>
             </Box>
+          </Box>
+        </Box>
+
+        {/* Integrated Action Toolbar: Withdraw, Edit, Exit Now, Complete Clearance */}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 1.5,
+            pt: 2,
+            borderTop: '1px solid #F1F5F9',
+            flexWrap: 'wrap',
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Button
+              size="sm"
+              variant="outlined"
+              color="danger"
+              onClick={handleOpenWithdrawModal}
+              startDecorator={<FiCornerUpLeft size={13} />}
+              sx={{
+                bgcolor: '#FEF2F2',
+                borderColor: '#FECACA',
+                color: '#DC2626',
+                borderRadius: '8px',
+                fontWeight: 600,
+                fontSize: '12.5px',
+                px: 1.5,
+                '&:hover': { bgcolor: '#FEE2E2', borderColor: '#FCA5A5' },
+              }}
+            >
+              Withdraw
+            </Button>
+            <Button
+              size="sm"
+              variant="outlined"
+              onClick={handleOpenEditModal}
+              startDecorator={<FiEdit3 size={13} />}
+              sx={{
+                bgcolor: '#FFFFFF',
+                borderColor: '#E2E8F0',
+                color: '#475569',
+                borderRadius: '8px',
+                fontWeight: 600,
+                fontSize: '12.5px',
+                px: 1.5,
+                '&:hover': { bgcolor: '#F8FAFC', borderColor: '#CBD5E1', color: '#0F172A' },
+              }}
+            >
+              Edit
+            </Button>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Button
+              size="sm"
+              variant="outlined"
+              onClick={handleExitNow}
+              startDecorator={<FiZap size={13} />}
+              sx={{
+                bgcolor: '#FFFBEB',
+                borderColor: '#FDE68A',
+                color: '#B45309',
+                borderRadius: '8px',
+                fontWeight: 600,
+                fontSize: '12.5px',
+                px: 1.5,
+                '&:hover': { bgcolor: '#FEF3C7', borderColor: '#FCD34D' },
+              }}
+            >
+              Exit Now
+            </Button>
+            <Button
+              size="sm"
+              variant="solid"
+              onClick={handleCompleteAllClearance}
+              startDecorator={<FiCheckSquare size={13} />}
+              sx={{
+                bgcolor: '#7C3AED',
+                color: '#FFFFFF',
+                borderRadius: '8px',
+                fontWeight: 600,
+                fontSize: '12.5px',
+                px: 1.75,
+                boxShadow: '0 2px 6px rgba(124, 58, 237, 0.25)',
+                '&:hover': { bgcolor: '#6D28D9' },
+              }}
+            >
+              Complete Clearance
+            </Button>
           </Box>
         </Box>
       </Card>
@@ -1902,6 +2116,255 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
           </Box>
         </Card>
       )}
+      {/* Modal / Workspace Footer: Mirrored 4 Actions for Convenient Post-Scroll Access */}
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          mt: 2,
+          pt: 2.25,
+          borderTop: '1px solid #E2E8F0',
+          gap: 1.5,
+          flexWrap: 'wrap',
+        }}
+      >
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Button
+            size="sm"
+            variant="outlined"
+            color="danger"
+            onClick={handleOpenWithdrawModal}
+            startDecorator={<FiCornerUpLeft size={13} />}
+            sx={{
+              bgcolor: '#FEF2F2',
+              borderColor: '#FECACA',
+              color: '#DC2626',
+              borderRadius: '8px',
+              fontWeight: 600,
+              fontSize: '12.5px',
+              px: 1.5,
+              '&:hover': { bgcolor: '#FEE2E2', borderColor: '#FCA5A5' },
+            }}
+          >
+            Withdraw
+          </Button>
+          <Button
+            size="sm"
+            variant="outlined"
+            onClick={handleOpenEditModal}
+            startDecorator={<FiEdit3 size={13} />}
+            sx={{
+              bgcolor: '#FFFFFF',
+              borderColor: '#E2E8F0',
+              color: '#475569',
+              borderRadius: '8px',
+              fontWeight: 600,
+              fontSize: '12.5px',
+              px: 1.5,
+              '&:hover': { bgcolor: '#F8FAFC', borderColor: '#CBD5E1', color: '#0F172A' },
+            }}
+          >
+            Edit
+          </Button>
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Button
+            size="sm"
+            variant="outlined"
+            onClick={handleExitNow}
+            startDecorator={<FiZap size={13} />}
+            sx={{
+              bgcolor: '#FFFBEB',
+              borderColor: '#FDE68A',
+              color: '#B45309',
+              borderRadius: '8px',
+              fontWeight: 600,
+              fontSize: '12.5px',
+              px: 1.5,
+              '&:hover': { bgcolor: '#FEF3C7', borderColor: '#FCD34D' },
+            }}
+          >
+            Exit Now
+          </Button>
+          <Button
+            size="sm"
+            variant="solid"
+            onClick={handleCompleteAllClearance}
+            startDecorator={<FiCheckSquare size={13} />}
+            sx={{
+              bgcolor: '#7C3AED',
+              color: '#FFFFFF',
+              borderRadius: '8px',
+              fontWeight: 600,
+              fontSize: '12.5px',
+              px: 1.75,
+              boxShadow: '0 2px 6px rgba(124, 58, 237, 0.25)',
+              '&:hover': { bgcolor: '#6D28D9' },
+            }}
+          >
+            Complete Clearance
+          </Button>
+          <Button
+            size="sm"
+            variant="plain"
+            onClick={onBack}
+            sx={{
+              borderRadius: '8px',
+              fontWeight: 600,
+              fontSize: '12.5px',
+              color: '#64748B',
+              '&:hover': { bgcolor: '#F1F5F9', color: '#0F172A' },
+            }}
+          >
+            Close
+          </Button>
+        </Box>
+      </Box>
+
+      {/* Withdraw Offboarding Confirmation Modal */}
+      <Modal open={isWithdrawOpen} onClose={() => setIsWithdrawOpen(false)}>
+        <ModalDialog
+          variant="outlined"
+          sx={{
+            maxWidth: 480,
+            width: '100%',
+            borderRadius: '16px',
+            p: 3,
+            fontFamily: 'Inter, system-ui, sans-serif',
+            boxShadow: '0 24px 56px -12px rgba(0, 23, 65, 0.28)',
+            borderColor: '#E5E7EF',
+          }}
+        >
+          <ModalClose sx={{ borderRadius: '8px' }} />
+          <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1.5, fontSize: '17px', fontWeight: 700, color: '#0F172A' }}>
+            <Box sx={{ width: 36, height: 36, borderRadius: '10px', bgcolor: '#FEE2E2', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#DC2626' }}>
+              <FiCornerUpLeft size={18} />
+            </Box>
+            Withdraw Offboarding Case
+          </DialogTitle>
+          <DialogContent sx={{ mt: 1 }}>
+            <Typography sx={{ fontSize: '13.5px', color: '#475569', lineHeight: 1.5 }}>
+              Are you sure you want to withdraw the departure workflow for <strong>{caseItem.name}</strong> ({caseItem.seat})?
+            </Typography>
+            <Typography sx={{ fontSize: '12.5px', color: '#64748B', mt: 1 }}>
+              This will cancel any pending clearance tasks, retain active system credentials, and reinstate their active employee record.
+            </Typography>
+            <FormControl sx={{ mt: 2 }}>
+              <FormLabel sx={{ fontSize: '12.5px', fontWeight: 600 }}>Reason for withdrawal (optional)</FormLabel>
+              <Textarea
+                minRows={2}
+                placeholder="e.g. Resignation revoked, retention offer accepted..."
+                value={withdrawReason}
+                onChange={(e) => setWithdrawReason(e.target.value)}
+                sx={{ borderRadius: '8px', fontSize: '13px' }}
+              />
+            </FormControl>
+          </DialogContent>
+          <DialogActions sx={{ mt: 2.5, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+            <Button variant="outlined" color="neutral" onClick={() => setIsWithdrawOpen(false)} sx={{ borderRadius: '8px' }}>
+              Cancel
+            </Button>
+            <Button variant="solid" color="danger" onClick={handleConfirmWithdraw} sx={{ borderRadius: '8px', bgcolor: '#DC2626', '&:hover': { bgcolor: '#B91C1C' } }}>
+              Confirm Withdrawal
+            </Button>
+          </DialogActions>
+        </ModalDialog>
+      </Modal>
+
+      {/* Edit Departure Details Modal */}
+      <Modal open={isEditOpen} onClose={() => setIsEditOpen(false)}>
+        <ModalDialog
+          variant="outlined"
+          sx={{
+            maxWidth: 540,
+            width: '100%',
+            borderRadius: '16px',
+            p: 3,
+            fontFamily: 'Inter, system-ui, sans-serif',
+            boxShadow: '0 24px 56px -12px rgba(0, 23, 65, 0.28)',
+            borderColor: '#E5E7EF',
+            maxHeight: 'calc(100vh - 60px)',
+            overflowY: 'auto',
+          }}
+        >
+          <ModalClose sx={{ borderRadius: '8px' }} />
+          <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1.5, fontSize: '17px', fontWeight: 700, color: '#0F172A' }}>
+            <Box sx={{ width: 36, height: 36, borderRadius: '10px', bgcolor: '#EDE9FE', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7C3AED' }}>
+              <FiEdit3 size={18} />
+            </Box>
+            Edit Departure Details · {caseItem.name}
+          </DialogTitle>
+          <DialogContent sx={{ mt: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Typography sx={{ fontSize: '13px', color: '#64748B' }}>
+              Update operational parameters for seat <strong>{caseItem.seat}</strong> ({caseItem.department}).
+            </Typography>
+
+            <FormControl required>
+              <FormLabel sx={{ fontSize: '12.5px', fontWeight: 600 }}>Last Working Day</FormLabel>
+              <Input
+                value={editLwd}
+                onChange={(e) => setEditLwd(e.target.value)}
+                placeholder="e.g. 14 Oct 2026"
+                sx={{ borderRadius: '8px', fontSize: '13px' }}
+              />
+            </FormControl>
+
+            <FormControl required>
+              <FormLabel sx={{ fontSize: '12.5px', fontWeight: 600 }}>Departure Reason</FormLabel>
+              <Select
+                value={editReason}
+                onChange={(_, val) => val && setEditReason(val as OffboardingReasonType)}
+                sx={{ borderRadius: '8px', fontSize: '13px' }}
+              >
+                <Option value="resignation">Resigned (voluntary)</Option>
+                <Option value="retirement">Retirement</Option>
+                <Option value="termination">Terminated</Option>
+                <Option value="death_in_service">Death in service</Option>
+              </Select>
+            </FormControl>
+
+            <FormControl>
+              <FormLabel sx={{ fontSize: '12.5px', fontWeight: 600 }}>Successor Coverage</FormLabel>
+              <Input
+                value={editSuccessor}
+                onChange={(e) => setEditSuccessor(e.target.value)}
+                placeholder="e.g. Omar Haddad (Asst. Front Office Manager) or leave blank"
+                sx={{ borderRadius: '8px', fontSize: '13px' }}
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel sx={{ fontSize: '12.5px', fontWeight: 600 }}>Line Manager</FormLabel>
+              <Input
+                value={editManager}
+                onChange={(e) => setEditManager(e.target.value)}
+                placeholder="e.g. James Cole · Hotel Manager"
+                sx={{ borderRadius: '8px', fontSize: '13px' }}
+              />
+            </FormControl>
+
+            <FormControl>
+              <FormLabel sx={{ fontSize: '12.5px', fontWeight: 600 }}>Internal HR Notes</FormLabel>
+              <Textarea
+                minRows={2}
+                value={editNotes}
+                onChange={(e) => setEditNotes(e.target.value)}
+                placeholder="Private notes visible only to HR operations..."
+                sx={{ borderRadius: '8px', fontSize: '13px' }}
+              />
+            </FormControl>
+          </DialogContent>
+          <DialogActions sx={{ mt: 2.5, display: 'flex', justifyContent: 'flex-end', gap: 1 }}>
+            <Button variant="outlined" color="neutral" onClick={() => setIsEditOpen(false)} sx={{ borderRadius: '8px' }}>
+              Cancel
+            </Button>
+            <Button variant="solid" onClick={handleSaveEdit} sx={{ borderRadius: '8px', bgcolor: '#7C3AED', '&:hover': { bgcolor: '#6D28D9' } }}>
+              Save Changes
+            </Button>
+          </DialogActions>
+        </ModalDialog>
+      </Modal>
     </Box>
   );
 };
