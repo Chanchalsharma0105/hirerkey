@@ -2075,78 +2075,79 @@
       border-radius: 5px;
     }
 
-    /* 4-Card Responsive Grid */
-    .leaver-metrics-grid {
+    /* Compact Leaver Metadata Section */
+    .leaver-metadata-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      padding-top: 16px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      padding-top: 14px;
       border-top: 1px solid #F1F5F9;
+      align-items: flex-start;
     }
 
     @media (max-width: 900px) {
-      .leaver-metrics-grid {
+      .leaver-metadata-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
       }
     }
 
     @media (max-width: 540px) {
-      .leaver-metrics-grid {
+      .leaver-metadata-grid {
         grid-template-columns: 1fr;
+        gap: 12px;
       }
     }
 
-    .leaver-metric-card {
-      background: #FAF8FF;
-      border: 1px solid #EDE9FE;
-      border-radius: 10px;
-      padding: 11px 14px;
+    .leaver-meta-item {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 8px;
-      transition: all 0.18s ease;
+      gap: 6px;
+      min-width: 0;
     }
 
-    .leaver-metric-card:hover {
-      background: #F5F3FF;
-      border-color: #DDD6FE;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.06);
-    }
-
-    .metric-card-header-clean {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 10.5px;
+    .leaver-meta-label {
+      font-size: 11px;
       font-weight: 700;
       color: #64748B;
       text-transform: uppercase;
       letter-spacing: 0.04em;
+      line-height: 1;
     }
 
-    .metric-card-header-clean svg {
-      color: #8B5CF6;
-      flex-shrink: 0;
-    }
-
-    .metric-card-value-clean {
-      font-size: 13.5px;
+    .leaver-meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 5px 11px;
+      font-size: 12.5px;
       font-weight: 600;
       color: #0F172A;
       line-height: 1.3;
+      width: fit-content;
+      max-width: 100%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      transition: all 0.15s ease;
     }
 
-    .metric-card-value-row-clean {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      min-height: 24px;
+    .leaver-meta-chip svg {
+      flex-shrink: 0;
+    }
+
+    .leaver-meta-chip.mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      letter-spacing: -0.01em;
+    }
+
+    .leaver-meta-chip.successor {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
     }
 
     .badge-successor-clean {
@@ -2154,6 +2155,7 @@
       font-weight: 600;
       padding: 1.5px 6px;
       border-radius: 4px;
+      flex-shrink: 0;
     }
 
     .badge-successor-clean.assigned {
@@ -2256,15 +2258,18 @@
     }
 
     .badge-countdown-clean {
-      font-size: 11.5px;
-      font-weight: 600;
-      padding: 2px 8px;
-      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      padding: 5px 11px;
+      border-radius: 8px;
       background: #FEF3C7;
       color: #B45309;
       border: 1px solid #FDE68A;
       display: inline-flex;
       align-items: center;
+      width: fit-content;
+      letter-spacing: -0.01em;
     }
 
     .case-profile-avatar {
@@ -5248,93 +5253,36 @@
           </div>
         </div>
 
-        <!-- Bottom Row: 4 Metric Cards Grid (Matching media_1790578760333.png) -->
-        <div class="leaver-metrics-grid">
-          <!-- Card 1: Line Manager -->
-          <div class="leaver-metric-card">
-            <div class="metric-card-header-clean">
-              <span>LINE MANAGER</span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="8.5" cy="7" r="4"></circle>
-                <polyline points="17 11 19 13 23 9"></polyline>
-              </svg>
-            </div>
-            <div class="metric-card-value-clean" id="cardLineManager">James Cole &bull; Hotel Manager</div>
+        <!-- Bottom Row: Compact Leaver Metadata Section -->
+        <div class="leaver-metadata-grid">
+          <!-- Item 1: Line Manager -->
+          <div class="leaver-meta-item">
+            <span class="leaver-meta-label">LINE MANAGER</span>
+            <div class="leaver-meta-chip" id="cardLineManager">James Cole &bull; Hotel Manager</div>
           </div>
 
-          <!-- Card 2: Service Length -->
-          <div class="leaver-metric-card">
-            <div class="metric-card-header-clean">
-              <span>SERVICE LENGTH</span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-            </div>
-            <div class="metric-card-value-clean" id="cardServiceLength">5 yrs 6 mos</div>
+          <!-- Item 2: Service Length -->
+          <div class="leaver-meta-item">
+            <span class="leaver-meta-label">SERVICE LENGTH</span>
+            <div class="leaver-meta-chip mono" id="cardServiceLength">5 yrs 6 mos</div>
           </div>
 
-          <!-- Card 3: Successor Cover -->
-          <div class="leaver-metric-card">
-            <div class="metric-card-header-clean">
-              <span>SUCCESSOR COVER</span>
-              <svg id="cardSuccessorIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Item 3: Successor Cover -->
+          <div class="leaver-meta-item">
+            <span class="leaver-meta-label">SUCCESSOR COVER</span>
+            <div class="leaver-meta-chip successor" id="cardSuccessorChip">
+              <svg id="cardSuccessorIcon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
               </svg>
-            </div>
-            <div class="metric-card-value-row-clean">
-              <span id="cardSuccessorName" style="color: #0F172A; font-weight: 600; font-size: 13px;">Omar Haddad</span>
+              <span id="cardSuccessorName" style="color: #0F172A; font-weight: 600;">Omar Haddad</span>
               <span class="badge-successor-clean assigned" id="cardSuccessorBadge">Assigned</span>
             </div>
           </div>
 
-          <!-- Card 4: Notice Countdown -->
-          <div class="leaver-metric-card">
-            <div class="metric-card-header-clean">
-              <span>NOTICE COUNTDOWN</span>
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-            </div>
-            <div class="metric-card-value-row-clean">
-              <span class="badge-countdown-clean" id="cardCountdown">In 29 days</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Integrated Action Toolbar: Withdraw, Edit, Exit Now, Complete Clearance -->
-        <div class="leaver-actions-toolbar">
-          <div class="leaver-actions-left">
-            <button type="button" class="btn-action-leaver danger" onclick="handleWithdrawFromModal()" title="Cancel departure and reinstate active employee">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                <path d="M3 3v5h5"/>
-              </svg>
-              Withdraw
-            </button>
-            <button type="button" class="btn-action-leaver neutral" onclick="handleEditCaseFromModal()" title="Edit departure parameters, last working day, reason, or coverage">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 20h9"/>
-                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-              </svg>
-              Edit
-            </button>
-          </div>
-          <div class="leaver-actions-right">
-            <button type="button" class="btn-action-leaver amber" onclick="handleExitNow()" title="Accelerate departure to today and revoke access">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-              </svg>
-              Exit Now
-            </button>
-            <button type="button" class="btn-action-leaver primary" onclick="handleCompleteAllClearance()" title="Mark all departmental clearance tasks as completed">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
-              Complete Clearance
-            </button>
+          <!-- Item 4: Notice Countdown -->
+          <div class="leaver-meta-item">
+            <span class="leaver-meta-label">NOTICE COUNTDOWN</span>
+            <div class="leaver-meta-chip badge-countdown-clean" id="cardCountdown">In 29 days</div>
           </div>
         </div>
 

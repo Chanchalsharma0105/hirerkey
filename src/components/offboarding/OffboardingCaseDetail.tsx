@@ -33,7 +33,6 @@ import {
   FiAlertTriangle,
   FiFileText,
   FiSend,
-  FiUserCheck,
   FiShield,
   FiDollarSign,
   FiExternalLink,
@@ -467,13 +466,13 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
           bgcolor: '#FFFFFF',
           borderColor: '#E5E7EF',
           borderRadius: '16px',
-          p: { xs: 2.5, md: '24px 28px 22px' },
+          p: { xs: 2, md: '20px 24px 18px' },
           boxShadow: '0 1px 3px rgba(15, 23, 42, 0.04), 0 6px 20px -4px rgba(124, 58, 237, 0.06)',
           position: 'relative',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          gap: 2.5,
+          gap: 2,
         }}
       >
         {/* Top Accent Gradient Line */}
@@ -666,171 +665,177 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
           </Box>
         </Box>
 
-        {/* Bottom Tier: 4 Modern Mini-Metric Cards */}
+        {/* Compact Metadata Row: Line Manager, Service Length, Successor Cover, Notice Countdown */}
         <Box
           sx={{
             display: 'grid',
             gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' },
-            gap: 1.75,
-            pt: 2.25,
+            gap: { xs: 1.5, sm: 2 },
+            pt: 1.75,
             borderTop: '1px solid #F1F5F9',
+            alignItems: 'flex-start',
           }}
         >
-          {/* Card 1: Line Manager */}
-          <Box
-            sx={{
-              bgcolor: '#FAF8FF',
-              border: '1px solid #EDE9FE',
-              borderRadius: '12px',
-              p: '12px 16px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: 1,
-              minWidth: 0,
-              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-              '&:hover': {
-                bgcolor: '#F5F3FF',
-                borderColor: '#DDD6FE',
-                transform: 'translateY(-1px)',
-                boxShadow: '0 4px 12px rgba(124, 58, 237, 0.08)',
-              },
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
-              <Typography sx={{ fontSize: '11px', fontWeight: 600, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Line Manager
-              </Typography>
-              <FiUserCheck size={13} color="#8B5CF6" />
-            </Box>
-            <Box sx={{ minHeight: 28, display: 'flex', alignItems: 'center' }}>
-              <Typography sx={{ fontSize: '13.5px', fontWeight: 600, color: '#0F172A', lineHeight: 1.3, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {caseItem.manager || 'James Cole · Hotel Manager'}
-              </Typography>
-            </Box>
-          </Box>
-
-          {/* Card 2: Service Length */}
-          <Box
-            sx={{
-              bgcolor: '#FAF8FF',
-              border: '1px solid #EDE9FE',
-              borderRadius: '12px',
-              p: '12px 16px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: 1,
-              minWidth: 0,
-              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-              '&:hover': {
-                bgcolor: '#F5F3FF',
-                borderColor: '#DDD6FE',
-                transform: 'translateY(-1px)',
-                boxShadow: '0 4px 12px rgba(124, 58, 237, 0.08)',
-              },
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
-              <Typography sx={{ fontSize: '11px', fontWeight: 600, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Service Length
-              </Typography>
-              <FiClock size={13} color="#8B5CF6" />
-            </Box>
-            <Box sx={{ minHeight: 28, display: 'flex', alignItems: 'center' }}>
-              <Typography sx={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '14px', fontWeight: 700, color: '#0F172A', lineHeight: 1.3 }}>
-                {caseItem.serviceLength || '5 yrs 6 mos'}
-              </Typography>
-            </Box>
-          </Box>
-
-          {/* Card 3: Successor Cover */}
-          <Box
-            sx={{
-              bgcolor: '#FAF8FF',
-              border: '1px solid #EDE9FE',
-              borderRadius: '12px',
-              p: '12px 16px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: 1,
-              minWidth: 0,
-              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-              '&:hover': {
-                bgcolor: '#F5F3FF',
-                borderColor: '#DDD6FE',
-                transform: 'translateY(-1px)',
-                boxShadow: '0 4px 12px rgba(124, 58, 237, 0.08)',
-              },
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
-              <Typography sx={{ fontSize: '11px', fontWeight: 600, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Successor Cover
-              </Typography>
-              <FiShield size={13} color={caseItem.successor ? '#16A34A' : '#DC2626'} />
-            </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1, minWidth: 0, minHeight: 28 }}>
-              <Typography
+          {/* Item 1: Line Manager */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75, minWidth: 0 }}>
+            <Typography
+              sx={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#64748B',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
+                lineHeight: 1,
+              }}
+            >
+              Line Manager
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box
                 sx={{
-                  fontSize: '13.5px',
-                  fontWeight: 700,
-                  color: caseItem.successor ? '#15803D' : '#DC2626',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  bgcolor: '#F8FAFC',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '8px',
+                  px: 1.35,
+                  py: 0.5,
+                  maxWidth: '100%',
                 }}
               >
-                {caseItem.successor || 'No successor'}
-              </Typography>
-              <Chip
-                size="sm"
-                variant="soft"
-                color={caseItem.successor ? 'success' : 'danger'}
-                startDecorator={caseItem.successor ? <FiCheck size={11} /> : <FiAlertTriangle size={11} />}
-                sx={{
-                  fontWeight: 600,
-                  fontSize: '11px',
-                  px: 0.9,
-                  py: 0.2,
-                  borderRadius: '999px',
-                  flexShrink: 0,
-                }}
-              >
-                {caseItem.successor ? 'Assigned' : 'Vacant'}
-              </Chip>
+                <Typography
+                  sx={{
+                    fontSize: '12.5px',
+                    fontWeight: 600,
+                    color: '#0F172A',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {caseItem.manager || 'James Cole · Hotel Manager'}
+                </Typography>
+              </Box>
             </Box>
           </Box>
 
-          {/* Card 4: Notice Countdown */}
-          <Box
-            sx={{
-              bgcolor: '#FAF8FF',
-              border: '1px solid #EDE9FE',
-              borderRadius: '12px',
-              p: '12px 16px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              gap: 1,
-              minWidth: 0,
-              transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-              '&:hover': {
-                bgcolor: '#F5F3FF',
-                borderColor: '#DDD6FE',
-                transform: 'translateY(-1px)',
-                boxShadow: '0 4px 12px rgba(124, 58, 237, 0.08)',
-              },
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 1 }}>
-              <Typography sx={{ fontSize: '11px', fontWeight: 600, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                Notice Countdown
-              </Typography>
-              <FiClock size={13} color="#8B5CF6" />
+          {/* Item 2: Service Length */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75, minWidth: 0 }}>
+            <Typography
+              sx={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#64748B',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
+                lineHeight: 1,
+              }}
+            >
+              Service Length
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  bgcolor: '#F8FAFC',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '8px',
+                  px: 1.35,
+                  py: 0.5,
+                }}
+              >
+                <Typography
+                  sx={{
+                    fontFamily: 'JetBrains Mono, monospace',
+                    fontSize: '12.5px',
+                    fontWeight: 600,
+                    color: '#0F172A',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  {caseItem.serviceLength || '5 yrs 6 mos'}
+                </Typography>
+              </Box>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', minHeight: 28 }}>
+          </Box>
+
+          {/* Item 3: Successor Cover */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75, minWidth: 0 }}>
+            <Typography
+              sx={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#64748B',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
+                lineHeight: 1,
+              }}
+            >
+              Successor Cover
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box
+                sx={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 0.75,
+                  bgcolor: '#F8FAFC',
+                  border: '1px solid #E2E8F0',
+                  borderRadius: '8px',
+                  px: 1.2,
+                  py: 0.4,
+                  maxWidth: '100%',
+                }}
+              >
+                <FiShield size={12} color={caseItem.successor ? '#16A34A' : '#DC2626'} />
+                <Typography
+                  sx={{
+                    fontSize: '12.5px',
+                    fontWeight: 600,
+                    color: caseItem.successor ? '#0F172A' : '#DC2626',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {caseItem.successor || 'No successor'}
+                </Typography>
+                <Chip
+                  size="sm"
+                  variant="soft"
+                  color={caseItem.successor ? 'success' : 'danger'}
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: '10.5px',
+                    px: 0.75,
+                    py: 0.1,
+                    borderRadius: '4px',
+                    flexShrink: 0,
+                    minHeight: 'unset',
+                  }}
+                >
+                  {caseItem.successor ? 'Assigned' : 'Vacant'}
+                </Chip>
+              </Box>
+            </Box>
+          </Box>
+
+          {/* Item 4: Notice Countdown */}
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.75, minWidth: 0 }}>
+            <Typography
+              sx={{
+                fontSize: '11px',
+                fontWeight: 700,
+                color: '#64748B',
+                textTransform: 'uppercase',
+                letterSpacing: '0.04em',
+                lineHeight: 1,
+              }}
+            >
+              Notice Countdown
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Chip
                 size="sm"
                 variant="soft"
@@ -855,8 +860,8 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                   fontFamily: 'JetBrains Mono, monospace',
                   fontWeight: 700,
                   fontSize: '12px',
-                  px: 1.25,
-                  py: 0.4,
+                  px: 1.35,
+                  py: 0.5,
                   borderRadius: '8px',
                   letterSpacing: '-0.01em',
                 }}
@@ -864,97 +869,6 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                 {caseItem.dueText}
               </Chip>
             </Box>
-          </Box>
-        </Box>
-
-        {/* Integrated Action Toolbar: Withdraw, Edit, Exit Now, Complete Clearance */}
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 1.5,
-            pt: 2,
-            borderTop: '1px solid #F1F5F9',
-            flexWrap: 'wrap',
-          }}
-        >
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Button
-              size="sm"
-              variant="outlined"
-              color="danger"
-              onClick={handleOpenWithdrawModal}
-              startDecorator={<FiCornerUpLeft size={13} />}
-              sx={{
-                bgcolor: '#FEF2F2',
-                borderColor: '#FECACA',
-                color: '#DC2626',
-                borderRadius: '8px',
-                fontWeight: 600,
-                fontSize: '12.5px',
-                px: 1.5,
-                '&:hover': { bgcolor: '#FEE2E2', borderColor: '#FCA5A5' },
-              }}
-            >
-              Withdraw
-            </Button>
-            <Button
-              size="sm"
-              variant="outlined"
-              onClick={handleOpenEditModal}
-              startDecorator={<FiEdit3 size={13} />}
-              sx={{
-                bgcolor: '#FFFFFF',
-                borderColor: '#E2E8F0',
-                color: '#475569',
-                borderRadius: '8px',
-                fontWeight: 600,
-                fontSize: '12.5px',
-                px: 1.5,
-                '&:hover': { bgcolor: '#F8FAFC', borderColor: '#CBD5E1', color: '#0F172A' },
-              }}
-            >
-              Edit
-            </Button>
-          </Box>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <Button
-              size="sm"
-              variant="outlined"
-              onClick={handleExitNow}
-              startDecorator={<FiZap size={13} />}
-              sx={{
-                bgcolor: '#FFFBEB',
-                borderColor: '#FDE68A',
-                color: '#B45309',
-                borderRadius: '8px',
-                fontWeight: 600,
-                fontSize: '12.5px',
-                px: 1.5,
-                '&:hover': { bgcolor: '#FEF3C7', borderColor: '#FCD34D' },
-              }}
-            >
-              Exit Now
-            </Button>
-            <Button
-              size="sm"
-              variant="solid"
-              onClick={handleCompleteAllClearance}
-              startDecorator={<FiCheckSquare size={13} />}
-              sx={{
-                bgcolor: '#7C3AED',
-                color: '#FFFFFF',
-                borderRadius: '8px',
-                fontWeight: 600,
-                fontSize: '12.5px',
-                px: 1.75,
-                boxShadow: '0 2px 6px rgba(124, 58, 237, 0.25)',
-                '&:hover': { bgcolor: '#6D28D9' },
-              }}
-            >
-              Complete Clearance
-            </Button>
           </Box>
         </Box>
       </Card>
