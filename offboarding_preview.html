@@ -2263,13 +2263,24 @@
       font-family: 'JetBrains Mono', monospace;
       padding: 5px 11px;
       border-radius: 8px;
-      background: #FEF3C7;
-      color: #B45309;
-      border: 1px solid #FDE68A;
+      background: #F1F5F9;
+      color: #475569;
+      border: 1px solid #E2E8F0;
       display: inline-flex;
       align-items: center;
       width: fit-content;
       letter-spacing: -0.01em;
+    }
+
+    .badge-countdown-clean::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: currentColor;
+      margin-right: 6px;
+      flex-shrink: 0;
     }
 
     .case-profile-avatar {
@@ -6921,8 +6932,9 @@ function openCaseView(id) {
   // Card 4: Notice Countdown
   const cdEl = document.getElementById('cardCountdown');
   if (cdEl) {
-    cdEl.textContent = c.dueText || 'In 29 days';
-    if (c.dueTone === 'bad' || c.dueText.includes('Overdue') || c.dueText.includes('Today')) {
+    const dueTextStr = c.dueText || 'In 29 days';
+    cdEl.textContent = dueTextStr;
+    if (c.dueTone === 'bad' || dueTextStr.includes('Overdue') || dueTextStr.includes('Today')) {
       cdEl.style.background = '#FEE2E2';
       cdEl.style.color = '#DC2626';
       cdEl.style.borderColor = '#FECACA';
@@ -6930,10 +6942,14 @@ function openCaseView(id) {
       cdEl.style.background = '#FEF3C7';
       cdEl.style.color = '#B45309';
       cdEl.style.borderColor = '#FDE68A';
+    } else if (c.dueTone === 'ok') {
+      cdEl.style.background = '#DCFCE7';
+      cdEl.style.color = '#15803D';
+      cdEl.style.borderColor = '#BBF7D0';
     } else {
-      cdEl.style.background = '#FFFBEB';
-      cdEl.style.color = '#B45309';
-      cdEl.style.borderColor = '#FDE68A';
+      cdEl.style.background = '#F1F5F9';
+      cdEl.style.color = '#475569';
+      cdEl.style.borderColor = '#E2E8F0';
     }
   }
 

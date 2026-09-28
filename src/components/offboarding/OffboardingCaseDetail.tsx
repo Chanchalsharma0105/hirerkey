@@ -669,7 +669,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' },
+            gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' },
             gap: { xs: 1.5, sm: 2 },
             pt: 1.75,
             borderTop: '1px solid #F1F5F9',
@@ -688,7 +688,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                 lineHeight: 1,
               }}
             >
-              Line Manager
+              LINE MANAGER
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box
@@ -731,7 +731,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                 lineHeight: 1,
               }}
             >
-              Service Length
+              SERVICE LENGTH
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box
@@ -743,6 +743,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                   borderRadius: '8px',
                   px: 1.35,
                   py: 0.5,
+                  maxWidth: '100%',
                 }}
               >
                 <Typography
@@ -752,6 +753,9 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                     fontWeight: 600,
                     color: '#0F172A',
                     letterSpacing: '-0.01em',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
                   }}
                 >
                   {caseItem.serviceLength || '5 yrs 6 mos'}
@@ -772,7 +776,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                 lineHeight: 1,
               }}
             >
-              Successor Cover
+              SUCCESSOR COVER
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Box
@@ -788,7 +792,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                   maxWidth: '100%',
                 }}
               >
-                <FiShield size={12} color={caseItem.successor ? '#16A34A' : '#DC2626'} />
+                <FiShield size={12} color={caseItem.successor ? '#16A34A' : '#DC2626'} style={{ flexShrink: 0 }} />
                 <Typography
                   sx={{
                     fontSize: '12.5px',
@@ -833,7 +837,7 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                 lineHeight: 1,
               }}
             >
-              Notice Countdown
+              NOTICE COUNTDOWN
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
               <Chip
@@ -844,6 +848,8 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                     ? 'danger'
                     : caseItem.dueTone === 'warn'
                     ? 'warning'
+                    : caseItem.dueTone === 'ok'
+                    ? 'success'
                     : 'neutral'
                 }
                 startDecorator={
