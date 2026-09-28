@@ -1910,6 +1910,276 @@
       align-items: center;
       gap: 20px;
     }
+
+    /* ==========================================================================
+       AUTHENTIC LEAVER PROFILE CARD (Matching media_1790578760333.png)
+       Removes excessive chips, introduces clean typography, exit survey block,
+       and 4 structured mini-metric cards.
+       ========================================================================== */
+    .leaver-profile-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 20px 22px 18px 22px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .leaver-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .leaver-identity-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .leaver-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 700;
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1.5px solid #DDD6FE;
+    }
+
+    .leaver-identity-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .leaver-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .leaver-title-row h2 {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #0F172A;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .leaver-seat-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 1.5px 7px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 4px;
+      color: #475569;
+    }
+
+    /* Clean Status Pill - NO dot, soft lavender */
+    .leaver-stage-pill {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 2px 9px;
+      border-radius: 6px;
+      background: #EDE9FE;
+      color: #7C3AED;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid transparent;
+    }
+
+    .leaver-stage-pill.warn {
+      background: #FEF3C7;
+      color: #B45309;
+      border-color: #FDE68A;
+    }
+    .leaver-stage-pill.bad {
+      background: #FEE2E2;
+      color: #DC2626;
+      border-color: #FECACA;
+    }
+    .leaver-stage-pill.good {
+      background: #DCFCE7;
+      color: #15803D;
+      border-color: #BBF7D0;
+    }
+
+    .leaver-sub-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #475569;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+
+    .leaver-reason-tag {
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 1.5px 7px;
+      border-radius: 4px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #475569;
+      margin-left: 4px;
+    }
+
+    .leaver-audit-row {
+      font-size: 12px;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .leaver-card-top-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .exit-survey-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+
+    .exit-survey-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .exit-survey-badge {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #475569;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      padding: 2px 8px;
+      border-radius: 5px;
+    }
+
+    /* 4-Card Responsive Grid */
+    .leaver-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid #F1F5F9;
+    }
+
+    @media (max-width: 900px) {
+      .leaver-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 540px) {
+      .leaver-metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .leaver-metric-card {
+      background: #FAF8FF;
+      border: 1px solid #EDE9FE;
+      border-radius: 10px;
+      padding: 11px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      transition: all 0.18s ease;
+    }
+
+    .leaver-metric-card:hover {
+      background: #F5F3FF;
+      border-color: #DDD6FE;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.06);
+    }
+
+    .metric-card-header-clean {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-card-header-clean svg {
+      color: #8B5CF6;
+      flex-shrink: 0;
+    }
+
+    .metric-card-value-clean {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0F172A;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .metric-card-value-row-clean {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 24px;
+    }
+
+    .badge-successor-clean {
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 1.5px 6px;
+      border-radius: 4px;
+    }
+
+    .badge-successor-clean.assigned {
+      background: #DCFCE7;
+      color: #15803D;
+      border: 1px solid #BBF7D0;
+    }
+
+    .badge-successor-clean.vacant {
+      background: #FEE2E2;
+      color: #DC2626;
+      border: 1px solid #FECACA;
+    }
+
+    .badge-countdown-clean {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: #FEF3C7;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+      display: inline-flex;
+      align-items: center;
+    }
+
     .case-profile-avatar {
       width: 60px;
       height: 60px;
@@ -4846,36 +5116,107 @@
   <div class="case-modal-dialog">
     <div style="padding: 24px 28px;">
       
-      <!-- Clean Modal Header (Replaces old page-header and bulky profile card) -->
-      <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #E2E8F0; margin-bottom: 22px; gap: 16px;">
-        <div style="display: flex; align-items: center; gap: 14px;">
-          <div class="case-profile-avatar" id="caseAvatar" style="width: 44px; height: 44px; font-size: 16px; border-radius: 12px; background: #EDE9FE; color: #7C3AED; font-weight: 700; display: grid; place-items: center; flex-shrink: 0;">SK</div>
-          <div>
-            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-              <h2 style="font-size: 17px; font-weight: 700; color: #0F172A; margin: 0;" id="caseName">Sara Khan</h2>
-              <span class="seat-badge case-seat-badge" id="caseSeat" style="background: #F1F5F9; color: #334155; font-size: 11.5px; padding: 2px 7px; border-radius: 6px; font-family: monospace; font-weight: 600;">FDM-01</span>
-              <span class="stage-badge pri case-stage-pill" id="caseStage">Serving notice</span>
-              <span class="stage-badge neu countdown-chip" id="caseUrgency" style="font-size: 11px;">In 29 days</span>
+      <!-- Authentic Leaver Profile Card (Matches Screenshot 2 media_1790578760333.png) -->
+      <div class="leaver-profile-card" id="leaverProfileCard">
+        
+        <!-- Top Row: Identity, Metadata, Exit Survey & Actions -->
+        <div class="leaver-card-top">
+          <div class="leaver-identity-left">
+            <div class="leaver-avatar" id="caseAvatar">SK</div>
+            <div class="leaver-identity-info">
+              <!-- Name + Seat + Status Pill (NO dot) -->
+              <div class="leaver-title-row">
+                <h2 id="caseName">Sara Khan</h2>
+                <span class="leaver-seat-tag" id="caseSeat">FDM-01</span>
+                <span class="leaver-stage-pill" id="caseStage">Serving notice</span>
+              </div>
+              
+              <!-- Role • Dept + Exit Reason Tag -->
+              <div class="leaver-sub-row" id="caseMeta">
+                <span id="caseRoleDept">Front Desk Manager &bull; Front Office</span>
+                <span class="leaver-reason-tag" id="caseReason">Resigned (voluntary)</span>
+              </div>
+
+              <!-- Audit Line: Offboarding started by... -->
+              <div class="leaver-audit-row" id="caseAudit">
+                Offboarding started by Chanchal Sharma on Sep 14, 2026, 09:30 AM
+              </div>
             </div>
-            <div id="caseMeta" class="case-profile-meta" style="display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: #64748B; margin-top: 4px; flex-wrap: wrap;">
-              <span>Front Desk Manager</span>
-              <span class="meta-divider">&bull;</span>
-              <span>Front Office</span>
-              <span class="meta-divider">&bull;</span>
-              <span class="meta-reason-tag">Resigned (voluntary)</span>
-              <span class="meta-divider">&bull;</span>
-              <span>Last working day: <strong class="lwd-highlight">14 Oct 2026</strong></span>
+          </div>
+
+          <!-- Top Right: Exit Survey Block & Modal Close -->
+          <div class="leaver-card-top-right">
+            <div class="exit-survey-block" id="caseExitSurveyBlock">
+              <span class="exit-survey-label">EXIT SURVEY</span>
+              <span class="exit-survey-badge" id="caseExitSurveyBadge">Not scheduled</span>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button class="btn-primary" id="btnNoticeApprove" onclick="handleAcknowledgeNotice()" style="display:none; font-size: 12px; height: 32px; padding: 0 12px; border-radius: 8px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Acknowledge notice
+              </button>
+              <button type="button" class="btn-modal-close" onclick="closeCaseModal()" title="Close Modal" style="font-size: 15px; width: 32px; height: 32px; border-radius: 8px; border: 1px solid #E2E8F0; background: #FFFFFF; color: #64748B; cursor: pointer; display: grid; place-items: center;">✕</button>
             </div>
           </div>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <button class="btn-primary" id="btnNoticeApprove" onclick="handleAcknowledgeNotice()" style="display:none; font-size: 12px; height: 34px; padding: 0 12px; border-radius: 8px;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            Acknowledge notice
-          </button>
-          <button type="button" class="btn-modal-close" onclick="closeCaseModal()" title="Close Modal">✕</button>
+        <!-- Bottom Row: 4 Metric Cards Grid (Matching media_1790578760333.png) -->
+        <div class="leaver-metrics-grid">
+          <!-- Card 1: Line Manager -->
+          <div class="leaver-metric-card">
+            <div class="metric-card-header-clean">
+              <span>LINE MANAGER</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <polyline points="17 11 19 13 23 9"></polyline>
+              </svg>
+            </div>
+            <div class="metric-card-value-clean" id="cardLineManager">James Cole &bull; Hotel Manager</div>
+          </div>
+
+          <!-- Card 2: Service Length -->
+          <div class="leaver-metric-card">
+            <div class="metric-card-header-clean">
+              <span>SERVICE LENGTH</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="metric-card-value-clean" id="cardServiceLength">5 yrs 6 mos</div>
+          </div>
+
+          <!-- Card 3: Successor Cover -->
+          <div class="leaver-metric-card">
+            <div class="metric-card-header-clean">
+              <span>SUCCESSOR COVER</span>
+              <svg id="cardSuccessorIcon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <div class="metric-card-value-row-clean">
+              <span id="cardSuccessorName" style="color: #0F172A; font-weight: 600; font-size: 13px;">Omar Haddad</span>
+              <span class="badge-successor-clean assigned" id="cardSuccessorBadge">Assigned</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Notice Countdown -->
+          <div class="leaver-metric-card">
+            <div class="metric-card-header-clean">
+              <span>NOTICE COUNTDOWN</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="metric-card-value-row-clean">
+              <span class="badge-countdown-clean" id="cardCountdown">In 29 days</span>
+            </div>
+          </div>
         </div>
+
       </div>
 
       <!-- Offboarding Checklist Section (Full Width, No Sidebar) -->
@@ -6321,38 +6662,109 @@ function openCaseView(id) {
   currentCaseId = id;
   const c = cases.find(item => item.id === id) || cases[0];
 
+  // Avatar initials
   const caseAvatar = document.getElementById('caseAvatar');
   if (caseAvatar) caseAvatar.textContent = c.ini;
 
+  // Name
   const caseName = document.getElementById('caseName');
   if (caseName) caseName.textContent = c.name;
 
+  // Seat
   const caseSeat = document.getElementById('caseSeat');
   if (caseSeat) caseSeat.textContent = c.seat;
 
+  // Stage Pill (Clean without bullet dot)
   const stageEl = document.getElementById('caseStage');
   if (stageEl) {
     stageEl.textContent = c.stageName;
-    stageEl.className = `stage-badge ${c.stageTone} case-stage-pill`;
+    stageEl.className = 'leaver-stage-pill';
+    if (c.stage === 0) stageEl.classList.add('warn');
+    else if (c.stage === 2) stageEl.classList.add('bad');
+    else if (c.stage === 3) stageEl.classList.add('good');
   }
 
-  const caseMeta = document.getElementById('caseMeta');
-  if (caseMeta) {
-    caseMeta.innerHTML = `
-      <span>${c.title}</span>
-      <span class="meta-divider">&bull;</span>
-      <span>${c.dept}</span>
-      <span class="meta-divider">&bull;</span>
-      <span class="meta-reason-tag">${c.reason}</span>
-      <span class="meta-divider">&bull;</span>
-      <span>Last working day: <strong class="lwd-highlight">${c.lwd}</strong></span>
-    `;
+  // Role and Department
+  const roleDeptEl = document.getElementById('caseRoleDept');
+  if (roleDeptEl) roleDeptEl.innerHTML = `${c.title} &bull; ${c.dept}`;
+
+  // Departure Reason Tag
+  const reasonEl = document.getElementById('caseReason');
+  if (reasonEl) reasonEl.textContent = c.reason;
+
+  // Audit line
+  const auditEl = document.getElementById('caseAudit');
+  if (auditEl) {
+    const auditDate = c.noticeGivenDate || c.startDate || 'Sep 14, 2026';
+    auditEl.textContent = `Offboarding started by Chanchal Sharma on ${auditDate}, 09:30 AM`;
   }
 
-  const urgEl = document.getElementById('caseUrgency');
-  if (urgEl) {
-    urgEl.textContent = c.dueText;
-    urgEl.className = `stage-badge ${c.dueTone} countdown-chip`;
+  // Exit Survey status badge
+  const surveyBadge = document.getElementById('caseExitSurveyBadge');
+  if (surveyBadge) {
+    if (c.exitInterviewStatus === 'completed') {
+      surveyBadge.textContent = 'Completed';
+      surveyBadge.style.background = '#DCFCE7';
+      surveyBadge.style.color = '#15803D';
+      surveyBadge.style.borderColor = '#BBF7D0';
+    } else if (c.exitInterviewStatus === 'sent') {
+      surveyBadge.textContent = 'Sent / Pending';
+      surveyBadge.style.background = '#EDE9FE';
+      surveyBadge.style.color = '#7C3AED';
+      surveyBadge.style.borderColor = '#DDD6FE';
+    } else {
+      surveyBadge.textContent = 'Not scheduled';
+      surveyBadge.style.background = '#F1F5F9';
+      surveyBadge.style.color = '#475569';
+      surveyBadge.style.borderColor = '#E2E8F0';
+    }
+  }
+
+  // Card 1: Line Manager
+  const lmEl = document.getElementById('cardLineManager');
+  if (lmEl) lmEl.textContent = c.manager || 'James Cole · Hotel Manager';
+
+  // Card 2: Service Length
+  const slEl = document.getElementById('cardServiceLength');
+  if (slEl) slEl.textContent = c.tenure || '--';
+
+  // Card 3: Successor Cover
+  const succNameEl = document.getElementById('cardSuccessorName');
+  const succBadgeEl = document.getElementById('cardSuccessorBadge');
+  const succIcon = document.getElementById('cardSuccessorIcon');
+  if (succNameEl && succBadgeEl) {
+    if (c.successor) {
+      succNameEl.textContent = c.successor;
+      succNameEl.style.color = '#0F172A';
+      succBadgeEl.textContent = 'Assigned';
+      succBadgeEl.className = 'badge-successor-clean assigned';
+      if (succIcon) succIcon.setAttribute('stroke', '#16A34A');
+    } else {
+      succNameEl.textContent = 'No successor';
+      succNameEl.style.color = '#DC2626';
+      succBadgeEl.textContent = 'Vacant';
+      succBadgeEl.className = 'badge-successor-clean vacant';
+      if (succIcon) succIcon.setAttribute('stroke', '#DC2626');
+    }
+  }
+
+  // Card 4: Notice Countdown
+  const cdEl = document.getElementById('cardCountdown');
+  if (cdEl) {
+    cdEl.textContent = c.dueText || 'In 29 days';
+    if (c.dueTone === 'bad' || c.dueText.includes('Overdue') || c.dueText.includes('Today')) {
+      cdEl.style.background = '#FEE2E2';
+      cdEl.style.color = '#DC2626';
+      cdEl.style.borderColor = '#FECACA';
+    } else if (c.dueTone === 'warn') {
+      cdEl.style.background = '#FEF3C7';
+      cdEl.style.color = '#B45309';
+      cdEl.style.borderColor = '#FDE68A';
+    } else {
+      cdEl.style.background = '#FFFBEB';
+      cdEl.style.color = '#B45309';
+      cdEl.style.borderColor = '#FDE68A';
+    }
   }
 
   // Notice Approve Button

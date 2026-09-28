@@ -365,20 +365,30 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
           }}
         />
 
-        {/* Top Tier: Leaver Identity */}
+        {/* Top Tier: Leaver Identity (Matches Screenshot 2 media_1790578760333.png) */}
         <Box
           sx={{
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
             gap: 2.5,
             flexWrap: { xs: 'wrap', sm: 'nowrap' },
           }}
         >
           <Box
             sx={{
-              width: 60,
-              height: 60,
-              borderRadius: '16px',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 2.5,
+              minWidth: 0,
+              flex: 1,
+            }}
+          >
+          <Box
+            sx={{
+              width: 52,
+              height: 52,
+              borderRadius: '50%',
               background: 'linear-gradient(135deg, #FAF5FF 0%, #EDE9FE 100%)',
               color: '#6D28D9',
               fontFamily: 'Inter, system-ui, sans-serif',
@@ -429,22 +439,12 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                     ? 'danger'
                     : 'success'
                 }
-                startDecorator={
-                  <Box
-                    sx={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: '50%',
-                      bgcolor: 'currentColor',
-                    }}
-                  />
-                }
                 sx={{
                   fontWeight: 600,
-                  fontSize: '12px',
-                  px: 1.4,
-                  py: 0.4,
-                  borderRadius: '999px',
+                  fontSize: '11.5px',
+                  px: 1.2,
+                  py: 0.3,
+                  borderRadius: '6px',
                 }}
               >
                 {caseItem.stage === 1
@@ -498,6 +498,48 @@ export const OffboardingCaseDetail: React.FC<OffboardingCaseDetailProps> = ({
                 Last working day: <strong style={{ color: '#0F172A' }}>{caseItem.lastWorkingDay}</strong>
               </span>
             </Typography>
+            <Typography
+              level="body-xs"
+              sx={{
+                color: '#64748B',
+                mt: 0.6,
+                fontSize: '12px',
+              }}
+            >
+              Offboarding started by Chanchal Sharma on {caseItem.noticeGivenDate || 'Sep 28, 2026, 12:28 PM'}
+            </Typography>
+          </Box>
+          </Box>
+
+          {/* Top Right: Exit Survey Block (Matches Screenshot 2 media_1790578760333.png) */}
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: { xs: 'flex-start', sm: 'flex-end' },
+              gap: 0.5,
+              flexShrink: 0,
+            }}
+          >
+            <Typography sx={{ fontSize: '10.5px', fontWeight: 700, color: '#64748B', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              EXIT SURVEY
+            </Typography>
+            <Chip
+              size="sm"
+              variant="outlined"
+              sx={{
+                fontWeight: 600,
+                fontSize: '11px',
+                bgcolor: '#F1F5F9',
+                borderColor: '#E2E8F0',
+                color: '#475569',
+                borderRadius: '5px',
+                px: 1,
+                py: 0.2,
+              }}
+            >
+              Not scheduled
+            </Chip>
           </Box>
         </Box>
 
