@@ -4219,10 +4219,10 @@
       <!-- 2. Right Content Area (Soft Grey Surface with Floating White Cards) -->
       <main class="donezo-content-area">
 
-        <!-- Topbar Row in View 2: Full width across content area with breathable center -->
+        <!-- Topbar Row in View 2: Exactly matching Screenshot 1 (media_1790698218455.png) -->
         <div class="donezo-topbar-row">
-          <!-- Left Topbar Group: Toggle & Search -->
-          <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="topbar-left">
+            <!-- Sidebar Hide/Show Toggle Button -->
             <button class="menu-toggle-btn" id="view2SidebarToggle" onclick="toggleView2Sidebar()" title="Toggle Side Menu (Hide / Show)" aria-label="Toggle Side Menu">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="3" width="18" height="18" rx="3"></rect>
@@ -4230,42 +4230,130 @@
               </svg>
             </button>
 
-            <!-- Search Header -->
-            <div class="donezo-search-header">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-              <input type="text" placeholder="Search task, employee, or doc... (⌘F)">
+            <!-- Search Bar with light square icon container -->
+            <div class="topbar-search">
+              <div class="search-icon-box">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
+              <input type="text" placeholder="Search" id="view2HeaderSearch" autocomplete="off" spellcheck="false">
             </div>
           </div>
 
-          <!-- Topbar Right Actions -->
-          <div class="donezo-top-actions">
-            <!-- HyIQ Voice Shortcut -->
-            <button class="btn-hyiq" onclick="openModal('hyiqModal')" title="Ask HyIQ AI Assistant">
-              <div class="hyiq-robot-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="3.5" y="6" width="17" height="15" rx="7.5" fill="#7C3AED"/>
-                  <circle cx="8.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
-                  <circle cx="15.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
-                  <path d="M9.5 15.8C10.5 17.2 13.5 17.2 14.5 15.8" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+          <!-- Right Topbar Actions (Exact Match to Screenshot 1) -->
+          <div class="topbar-right">
+            <!-- Pill 1: Ask HyIQ | HyIQ Voice [⌘ ⇧ Space] -->
+            <div class="header-hyiq-pill">
+              <button class="btn-hyiq" id="view2AskHyiqBtn" onclick="openModal('hyiqModal')" title="Ask HyIQ AI Assistant">
+                <div class="hyiq-robot-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6.5 6.5L4.5 4" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
+                    <circle cx="4" cy="3.5" r="1.2" fill="#7C3AED"/>
+                    <path d="M17.5 6.5L19.5 4" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
+                    <circle cx="20" cy="3.5" r="1.2" fill="#7C3AED"/>
+                    <rect x="3.5" y="6" width="17" height="15" rx="7.5" fill="#7C3AED"/>
+                    <circle cx="8.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
+                    <circle cx="15.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
+                    <path d="M9.5 15.8C10.5 17.2 13.5 17.2 14.5 15.8" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <span class="btn-hyiq-text">Ask HyIQ</span>
+              </button>
+
+              <div class="header-pill-divider"></div>
+
+              <button class="btn-hyiq-voice" id="view2HyiqVoiceBtn" onclick="openModal('voiceModal')" title="HyIQ Voice Command (⌘ ⇧ Space)">
+                <div class="voice-bars">
+                  <div class="voice-bar voice-bar-1"></div>
+                  <div class="voice-bar voice-bar-2"></div>
+                  <div class="voice-bar voice-bar-3"></div>
+                  <div class="voice-bar voice-bar-4"></div>
+                </div>
+                <span class="btn-voice-text">HyIQ Voice</span>
+                <kbd class="voice-shortcut">⌘ ⇧ Space</kbd>
+              </button>
+            </div>
+
+            <!-- Pill 2: v22.2.0 | Notification Bell with Badge 17 -->
+            <div style="position: relative;">
+              <div class="header-version-notif-pill">
+                <span class="version-label">v22.2.0</span>
+                <div class="header-pill-divider"></div>
+                <button class="notification-btn" id="view2NotificationBtn" title="Notifications (17 unread)">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                  </svg>
+                  <span class="notification-count" id="view2NotificationBadge">17</span>
+                </button>
+              </div>
+
+              <!-- Notification Popover -->
+              <div class="popover-menu" id="view2NotificationsPopover" style="width: 320px; right: 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--border-subtle);">
+                  <span style="font-size: 13.5px; font-weight: 700; color: var(--text-heading);">Notifications (17)</span>
+                  <button style="font-size: 11.5px; color: var(--brand-primary); font-weight: 600;" onclick="clearAllNotifications()">Mark all read</button>
+                </div>
+                <div style="max-height: 280px; overflow-y: auto; padding: 6px;">
+                  <div class="popover-item">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; flex-shrink: 0;"></span>
+                    <div style="flex: 1;">
+                      <div style="font-weight: 600; font-size: 12.5px;">5 Pending Approvals</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">Leave & expense requests pending sign-off</div>
+                    </div>
+                  </div>
+                  <div class="popover-item">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #7C3AED; flex-shrink: 0;"></span>
+                    <div style="flex: 1;">
+                      <div style="font-weight: 600; font-size: 12.5px;">HR Final Review Cycle</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">Appraisal cycle deadline in 3 days</div>
+                    </div>
+                  </div>
+                  <div class="popover-item">
+                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #3B82F6; flex-shrink: 0;"></span>
+                    <div style="flex: 1;">
+                      <div style="font-weight: 600; font-size: 12.5px;">Uneet Kumar posted video</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">New broadcast: "Testing video"</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- User Profile -->
+            <div style="position: relative;">
+              <div class="user-profile-btn" id="view2UserProfileBtn" title="Chanchal Sharma">
+                <div class="user-avatar-wrap">
+                  <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=120&h=120&q=80" alt="Chanchal Sharma" class="user-avatar-img">
+                </div>
+                <span class="user-name">Chanchal Sharma</span>
+                <svg class="user-chevron-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </div>
-              <span style="font-size: 12.5px; font-weight: 600; color: #7C3AED;">Ask HyIQ</span>
-            </button>
 
-            <!-- Notifications -->
-            <button class="notification-btn" onclick="openModal('hyiqModal')" title="17 Notifications" style="width: 36px; height: 36px; border-radius: 9px; border: 1px solid #E2E8F0; background: #FFFFFF; display: grid; place-items: center; position: relative;">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-              <span class="notification-count" style="top: -4px; right: -4px;">17</span>
-            </button>
-
-            <!-- Profile Avatar -->
-            <div class="user-profile-btn" onclick="toggleOrgSwitcher()" title="Chanchal Sharma" style="background: #FFFFFF; border: 1px solid #E2E8F0; padding: 4px 10px; border-radius: 10px;">
-              <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=80&h=80&q=80" alt="Chanchal Sharma" style="width: 26px; height: 26px; border-radius: 50%; object-fit: cover;">
-              <span style="font-size: 13px; font-weight: 600; color: #0F172A;">Chanchal</span>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <!-- User Profile Popover -->
+              <div class="popover-menu" id="view2UserProfilePopover" style="right: 0;">
+                <div style="padding: 10px 12px; border-bottom: 1px solid var(--border-subtle);">
+                  <div style="font-weight: 700; color: var(--text-heading); font-size: 13.5px;">Chanchal Sharma</div>
+                  <div style="font-size: 11.5px; color: var(--text-muted);">Administrator • Noisiv Consulting</div>
+                </div>
+                <div class="popover-item" onclick="showToast('Opened Account Settings')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                  <span>Account Settings</span>
+                </div>
+                <div class="popover-item" onclick="toggleOrgSwitcher()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                  <span>Switch Workspace</span>
+                </div>
+                <div class="popover-divider"></div>
+                <div class="popover-item" style="color: #EF4444;" onclick="showToast('Signed out from session')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                  <span>Log out</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -4289,74 +4377,59 @@
           </div>
         </div>
 
-        <!-- Dashboard Title Row (Exact Donezo Rhythm) -->
-        <div class="donezo-title-row">
-          <div class="donezo-title-group">
-            <h1>Dashboard</h1>
-            <p>Plan, prioritize, and accomplish your tasks with ease. Monday, September 28.</p>
+        <!-- Subheader Action Bar (Breadcrumb & Customize Widgets - Image 2) -->
+        <div class="dashboard-subnav">
+          <div class="breadcrumbs-wrap">
+            <a href="javascript:void(0)" onclick="selectDonezoNavItemByTitle('Dashboard')" title="Go to Home">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+              <span>Home</span>
+            </a>
+            <span class="crumb-sep">›</span>
+            <span class="crumb-current" id="breadcrumbActiveItem2">Dashboard</span>
           </div>
-          <div class="donezo-title-actions">
-            <button class="btn-donezo-primary" onclick="openModal('broadcastModal')">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              <span>+ Add Action</span>
-            </button>
-            <button class="btn-donezo-secondary" onclick="openCustomizeModal()">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+
+          <div class="subnav-actions">
+            <!-- 6 new widgets pill -->
+            <div class="widget-announcement-pill" onclick="openWidgetModal()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"></path>
+              </svg>
+              <span>6 new widgets: Word of the Day, Memory Match...</span>
+            </div>
+
+            <!-- Customize button -->
+            <button class="customize-btn" onclick="openCustomizeModal()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
               <span>Customize</span>
             </button>
           </div>
         </div>
 
-        <!-- 4 Donezo KPI Summary Cards (media_1790695719054.png) -->
-        <div class="donezo-kpi-grid">
-          <!-- Card 1: Highlighted Dark Gradient -->
-          <div class="donezo-kpi-card highlight">
-            <div class="donezo-kpi-header">
-              <span class="kpi-label">Total Headcount</span>
-              <span class="kpi-arrow-icon">↗</span>
-            </div>
-            <div class="kpi-value">24</div>
-            <div class="kpi-trend" style="color: #A7F3D0;">
-              <span>↑ 5 Increased from last month</span>
-            </div>
-          </div>
+        <!-- Greeting Hero Banner (Exact match to media_1790698218525.png) -->
+        <section class="hero-banner" id="heroGreetingBanner2">
+          <!-- Decorative geometric stars inspired by Coursue (Image 5) -->
+          <svg class="banner-star banner-star-1" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+          </svg>
+          <svg class="banner-star banner-star-2" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+          </svg>
+          <svg class="banner-star banner-star-3" viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+          </svg>
 
-          <!-- Card 2 -->
-          <div class="donezo-kpi-card">
-            <div class="donezo-kpi-header">
-              <span class="kpi-label">Ended Offboardings</span>
-              <span class="kpi-arrow-icon">↗</span>
-            </div>
-            <div class="kpi-value" style="color: #0F172A;">10</div>
-            <div class="kpi-trend">
-              <span>↑ 6 Completed on time</span>
-            </div>
+          <div class="banner-date">MONDAY, SEPTEMBER 28</div>
+          <h1 class="banner-title">Hey Chanchal</h1>
+          <p class="banner-subtitle">Start your week with full potential this Monday.</p>
+          
+          <div class="banner-quote-pill">
+            <span class="banner-quote-dot"></span>
+            <span>Strong workplace relationships improve teamwork and job satisfaction.</span>
           </div>
-
-          <!-- Card 3 -->
-          <div class="donezo-kpi-card">
-            <div class="donezo-kpi-header">
-              <span class="kpi-label">Running Workflows</span>
-              <span class="kpi-arrow-icon">↗</span>
-            </div>
-            <div class="kpi-value" style="color: #0F172A;">12</div>
-            <div class="kpi-trend">
-              <span>↑ 2 Increased from last month</span>
-            </div>
-          </div>
-
-          <!-- Card 4 -->
-          <div class="donezo-kpi-card">
-            <div class="donezo-kpi-header">
-              <span class="kpi-label">Pending Approvals</span>
-              <span class="kpi-arrow-icon">↗</span>
-            </div>
-            <div class="kpi-value" style="color: #0F172A;">2</div>
-            <div class="kpi-trend" style="color: #D97706;">
-              <span>⚡ Needs executive sign-off</span>
-            </div>
-          </div>
-        </div>
+        </section>
 
         <!-- Bento Content Grid (All Existing View 1 Information in Crisp White Cards) -->
         <div class="dashboard-grid">
@@ -5017,7 +5090,16 @@
     document.querySelectorAll('.donezo-nav-item').forEach(el => el.classList.remove('active'));
     itemEl.classList.add('active');
     const title = itemEl.getAttribute('data-title') || 'Dashboard';
+    const breadcrumb2 = document.getElementById('breadcrumbActiveItem2');
+    if (breadcrumb2) breadcrumb2.textContent = title;
     showToast(`Navigated to ${title} (View 2)`);
+  }
+
+  function selectDonezoNavItemByTitle(title) {
+    const item = document.querySelector(`.donezo-nav-item[data-title="${title}"]`);
+    if (item) {
+      selectDonezoNavItem(item);
+    }
   }
 
   function filterDonezoMenu(query) {
@@ -5293,6 +5375,13 @@
     });
   }
 
+  const view2HeaderSearch = document.getElementById('view2HeaderSearch');
+  if (view2HeaderSearch) {
+    view2HeaderSearch.addEventListener('input', (e) => {
+      filterDonezoMenu(e.target.value);
+    });
+  }
+
   // 4. Broadcast Like Micro-interaction
   let likeCountVal = 0;
   let hasLiked = false;
@@ -5535,12 +5624,18 @@
     if (!e.target.closest('#userProfileBtn') && !e.target.closest('#userProfilePopover')) {
       document.getElementById('userProfilePopover')?.classList.remove('open');
     }
+    if (!e.target.closest('#view2NotificationBtn') && !e.target.closest('#view2NotificationsPopover')) {
+      document.getElementById('view2NotificationsPopover')?.classList.remove('open');
+    }
+    if (!e.target.closest('#view2UserProfileBtn') && !e.target.closest('#view2UserProfilePopover')) {
+      document.getElementById('view2UserProfilePopover')?.classList.remove('open');
+    }
     if (!e.target.closest('#orgSwitcherBtn') && !e.target.closest('#workspacePopover')) {
       document.getElementById('workspacePopover')?.classList.remove('open');
     }
   };
 
-  // Popover triggers
+  // Popover triggers (View 1)
   document.getElementById('notificationBtn')?.addEventListener('click', (e) => {
     e.stopPropagation();
     document.getElementById('userProfilePopover')?.classList.remove('open');
@@ -5553,6 +5648,19 @@
     document.getElementById('notificationsPopover')?.classList.remove('open');
     document.getElementById('workspacePopover')?.classList.remove('open');
     document.getElementById('userProfilePopover')?.classList.toggle('open');
+  });
+
+  // Popover triggers (View 2)
+  document.getElementById('view2NotificationBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('view2UserProfilePopover')?.classList.remove('open');
+    document.getElementById('view2NotificationsPopover')?.classList.toggle('open');
+  });
+
+  document.getElementById('view2UserProfileBtn')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    document.getElementById('view2NotificationsPopover')?.classList.remove('open');
+    document.getElementById('view2UserProfilePopover')?.classList.toggle('open');
   });
 
   document.getElementById('askHyiqBtn').addEventListener('click', () => openModal('hyiqModal'));
