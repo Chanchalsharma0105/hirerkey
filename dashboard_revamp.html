@@ -115,13 +115,13 @@
     }
 
     /* ==========================================================================
-       1. WHITE SLEEK SIDE MENU (SIDEBAR)
+       1. WHITE SLEEK SIDE MENU (SIDEBAR) — INSPIRED BY DONEZO & SHOPEERS
        ========================================================================== */
     .app-sidebar {
       width: 260px;
       min-width: 260px;
-      background: var(--bg-surface);
-      border-right: 1px solid var(--border-subtle);
+      background: #FFFFFF;
+      border-right: 1px solid #EEF2F6;
       height: 100vh;
       position: sticky;
       top: 0;
@@ -129,7 +129,7 @@
       flex-direction: column;
       z-index: 100;
       transition: width var(--transition-smooth), min-width var(--transition-smooth);
-      box-shadow: 2px 0 12px rgba(15, 23, 42, 0.02);
+      box-shadow: 1px 0 0 #EEF2F6, 4px 0 20px rgba(15, 23, 42, 0.015);
       user-select: none;
     }
 
@@ -145,13 +145,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 18px;
-      border-bottom: 1px solid var(--border-subtle);
+      padding: 0 16px 0 18px;
+      border-bottom: 1px solid #EEF2F6;
       position: relative;
+      flex-shrink: 0;
+      background: #FFFFFF;
     }
 
     .app-sidebar.collapsed .sidebar-header {
-      padding: 0 12px;
+      padding: 0 10px;
       justify-content: center;
     }
 
@@ -163,9 +165,34 @@
       text-decoration: none;
     }
 
-    /* Hirerkey Authentic Wordmark */
+    /* Hirerkey Emblem Squircle (Unified brand symbol) */
+    .brand-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.22);
+      flex-shrink: 0;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .brand-container:hover .brand-icon-box {
+      transform: scale(1.04);
+      box-shadow: 0 5px 14px rgba(124, 58, 237, 0.32);
+    }
+
+    .app-sidebar.collapsed .brand-icon-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+    }
+
+    /* Hirerkey Wordmark */
     .brand-wordmark {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--text-heading);
       letter-spacing: -0.04em;
@@ -178,6 +205,7 @@
     .brand-wordmark svg.logo-svg {
       height: 24px;
       width: auto;
+      display: block;
     }
 
     .app-sidebar.collapsed .brand-wordmark {
@@ -185,59 +213,46 @@
       opacity: 0;
     }
 
-    .brand-mini-icon {
-      display: none;
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
-      color: #FFFFFF;
-      font-weight: 800;
-      font-size: 16px;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.28);
-    }
-
-    .app-sidebar.collapsed .brand-mini-icon {
-      display: flex;
-    }
-
-    /* Collapse Toggle Button */
+    /* Sleek Collapse Toggle Button */
     .sidebar-toggle-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: var(--bg-surface-subtle);
-      border: 1px solid var(--border-card);
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: transparent;
+      border: 1px solid transparent;
       display: grid;
       place-items: center;
-      color: var(--text-muted);
+      color: #94A3B8;
+      cursor: pointer;
       transition: all var(--transition-fast);
-      box-shadow: var(--shadow-sm);
     }
 
     .sidebar-toggle-btn:hover {
-      background: var(--brand-subtle);
+      background: #F8FAFC;
+      border-color: #E2E8F0;
       color: var(--brand-primary);
-      border-color: var(--border-focus);
-      transform: scale(1.06);
     }
 
     .app-sidebar.collapsed .sidebar-toggle-btn {
       position: absolute;
       right: -13px;
       top: 22px;
-      background: var(--brand-primary);
-      color: #FFFFFF;
-      border-color: var(--brand-primary);
-      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.35);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      color: #64748B;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
       z-index: 120;
     }
 
     .app-sidebar.collapsed .sidebar-toggle-btn:hover {
-      background: var(--brand-primary-hover);
+      background: var(--brand-primary);
       color: #FFFFFF;
+      border-color: var(--brand-primary);
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
     }
 
     .sidebar-toggle-btn svg {
@@ -248,85 +263,119 @@
       transform: rotate(180deg);
     }
 
-    /* Search Menus Area */
+    /* Ultra-Sleek Search Menus Area */
     .sidebar-search-area {
       padding: 14px 16px 8px 16px;
+      flex-shrink: 0;
     }
 
     .app-sidebar.collapsed .sidebar-search-area {
-      padding: 14px 10px 8px 10px;
+      padding: 12px 10px 8px 10px;
     }
 
     .sidebar-search-pill {
       display: flex;
       align-items: center;
-      background: var(--bg-surface-subtle);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-full);
-      padding: 6px 12px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      height: 36px;
+      padding: 0 8px 0 10px;
       gap: 8px;
       transition: all var(--transition-fast);
       position: relative;
     }
 
+    .sidebar-search-pill:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+    }
+
     .sidebar-search-pill:focus-within {
       background: #FFFFFF;
       border-color: var(--brand-primary);
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
     }
 
     .sidebar-search-pill svg.search-icon {
-      color: var(--text-subtle);
+      color: #94A3B8;
       flex-shrink: 0;
+      transition: color var(--transition-fast);
+    }
+
+    .sidebar-search-pill:focus-within svg.search-icon {
+      color: var(--brand-primary);
     }
 
     .sidebar-search-pill input {
       width: 100%;
       font-size: 13px;
+      font-weight: 400;
       color: var(--text-heading);
+      background: transparent;
+      border: none;
+      outline: none;
     }
 
     .sidebar-search-pill input::placeholder {
-      color: var(--text-subtle);
+      color: #94A3B8;
+      font-size: 12.5px;
     }
 
     .sidebar-search-actions {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       flex-shrink: 0;
     }
 
     .sidebar-search-actions button {
-      color: var(--text-subtle);
+      color: #94A3B8;
       display: grid;
       place-items: center;
-      transition: color var(--transition-fast);
-      padding: 2px;
-      border-radius: 4px;
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      transition: all var(--transition-fast);
     }
 
     .sidebar-search-actions button:hover {
       color: var(--brand-primary);
-      background: var(--brand-subtle);
+      background: var(--brand-light);
     }
 
-    .kbd-shortcut {
+    .sidebar-kbd {
       background: #FFFFFF;
-      border: 1px solid var(--border-card);
+      border: 1px solid #E2E8F0;
       border-radius: 4px;
       padding: 1px 5px;
       font-size: 10px;
       font-family: var(--font-mono);
       font-weight: 600;
-      color: var(--text-muted);
+      color: #64748B;
       letter-spacing: -0.02em;
+      box-shadow: 0 1px 1px rgba(15, 23, 42, 0.04);
+      user-select: none;
     }
 
     .app-sidebar.collapsed .sidebar-search-pill {
+      width: 42px;
+      height: 40px;
+      margin: 0 auto;
+      padding: 0;
       justify-content: center;
-      padding: 8px 0;
       cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .app-sidebar.collapsed .sidebar-search-pill:hover {
+      background: var(--brand-light);
+      border-color: #C4B5FD;
+      color: var(--brand-primary);
+    }
+
+    .app-sidebar.collapsed .sidebar-search-pill:hover svg.search-icon {
+      color: var(--brand-primary);
     }
 
     .app-sidebar.collapsed .sidebar-search-pill input,
@@ -339,7 +388,7 @@
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 8px 12px 20px 12px;
+      padding: 6px 12px 18px 12px;
       display: flex;
       flex-direction: column;
       gap: 2px;
@@ -349,23 +398,32 @@
       width: 4px;
     }
 
-    .sidebar-nav-list::-webkit-scrollbar-thumb {
-      background: rgba(148, 163, 184, 0.2);
-      border-radius: 4px;
+    .sidebar-nav-list::-webkit-scrollbar-track {
+      background: transparent;
     }
 
-    .sidebar-nav-list::-webkit-scrollbar-thumb:hover {
-      background: rgba(148, 163, 184, 0.4);
+    .sidebar-nav-list::-webkit-scrollbar-thumb {
+      background: transparent;
+      border-radius: 9999px;
+      transition: background var(--transition-fast);
+    }
+
+    .sidebar-nav-list:hover::-webkit-scrollbar-thumb {
+      background: #E2E8F0;
+    }
+
+    .sidebar-nav-list:hover::-webkit-scrollbar-thumb:hover {
+      background: #CBD5E1;
     }
 
     .app-sidebar.collapsed .sidebar-nav-list {
-      padding: 8px 8px 20px 8px;
+      padding: 6px 8px 18px 8px;
     }
 
     /* Category Accordion Header */
     .nav-category {
-      margin-top: 14px;
-      margin-bottom: 4px;
+      margin-top: 16px;
+      margin-bottom: 2px;
     }
 
     .nav-category:first-of-type {
@@ -376,33 +434,49 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 6px 12px;
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--text-subtle);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+      padding: 5px 8px;
+      border-radius: 6px;
       cursor: pointer;
-      border-radius: var(--radius-sm);
       transition: all var(--transition-fast);
     }
 
     .nav-category-header:hover {
-      color: var(--text-heading);
-      background: var(--bg-surface-subtle);
+      background: #F8FAFC;
+    }
+
+    .nav-category-header span.cat-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      transition: color var(--transition-fast);
+      user-select: none;
+    }
+
+    .nav-category-header:hover span.cat-title {
+      color: #475569;
     }
 
     .category-toggle-icon {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1;
-      transition: transform var(--transition-fast);
-      color: var(--text-subtle);
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      transition: transform var(--transition-fast), color var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .nav-category-header:hover .category-toggle-icon {
+      color: #64748B;
+    }
+
+    .nav-category.collapsed .category-toggle-icon {
+      transform: rotate(-90deg);
     }
 
     .app-sidebar.collapsed .nav-category-header {
       justify-content: center;
-      padding: 12px 0 6px 0;
+      padding: 10px 0 6px 0;
     }
 
     .app-sidebar.collapsed .nav-category-header span.cat-title,
@@ -412,139 +486,19 @@
 
     .app-sidebar.collapsed .nav-category-header::before {
       content: '';
-      width: 18px;
-      height: 2px;
-      background: var(--border-card);
-      border-radius: 2px;
-    }
-
-    /* Nav Item Base */
-    .nav-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 9px 12px;
-      border-radius: 10px;
-      color: var(--text-body);
-      font-size: 13.5px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      position: relative;
-      margin-bottom: 1px;
-      text-decoration: none;
-    }
-
-    .nav-item-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .nav-icon {
-      display: grid;
-      place-items: center;
       width: 20px;
-      height: 20px;
-      color: var(--text-muted);
-      flex-shrink: 0;
-      transition: color var(--transition-fast), transform var(--transition-fast);
+      height: 1px;
+      background: #E2E8F0;
+      border-radius: 1px;
     }
 
-    .nav-label {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: opacity var(--transition-fast);
-    }
-
-    .nav-item:hover {
-      background: var(--bg-surface-subtle);
-      color: var(--text-heading);
-      transform: translateX(2px);
-    }
-
-    .nav-item:hover .nav-icon {
-      color: var(--brand-primary);
-    }
-
-    /* Active Nav Item (Dashboard Pill - Inspiration from Coursue / Shopeers) */
-    .nav-item.active {
-      background: var(--brand-pill-bg);
-      color: var(--brand-pill-active);
-      font-weight: 600;
-      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08);
-    }
-
-    .nav-item.active .nav-icon {
-      color: var(--brand-pill-active);
-    }
-
-    .nav-item.active::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      bottom: 8px;
-      width: 3.5px;
-      background: var(--brand-primary);
-      border-radius: 0 3px 3px 0;
-    }
-
-    /* Workplace Active Sub-Item (HR Broadcast in Image 1) */
-    .nav-item.active-highlight {
-      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
-      color: #FFFFFF !important;
-      font-weight: 600;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28);
-    }
-
-    .nav-item.active-highlight .nav-icon {
-      color: #FFFFFF !important;
-    }
-
-    /* Notification Pill Badges */
-    .nav-badge-count {
-      background: #EF4444;
-      color: #FFFFFF;
-      font-size: 11px;
-      font-weight: 700;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 6px;
-      border-radius: var(--radius-full);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-      box-shadow: 0 2px 5px rgba(239, 68, 68, 0.35);
-    }
-
-    /* Collapsed Item Centering */
-    .app-sidebar.collapsed .nav-item {
-      justify-content: center;
-      padding: 10px 0;
-    }
-
-    .app-sidebar.collapsed .nav-label,
-    .app-sidebar.collapsed .nav-badge-count {
-      display: none;
-    }
-
-    .app-sidebar.collapsed .nav-item:hover {
-      transform: none;
-      background: var(--brand-pill-bg);
-      color: var(--brand-primary);
-    }
-
-    /* Category Accordion Expand/Collapse */
+    /* Category Items Container */
     .nav-category-items {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 2px;
       overflow: hidden;
-      transition: max-height 0.3s ease, opacity 0.25s ease;
+      transition: max-height 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
       max-height: 800px;
     }
 
@@ -554,16 +508,179 @@
       pointer-events: none;
     }
 
-    .nav-category.collapsed .category-toggle-icon {
-      transform: rotate(90deg);
+    /* High-End Menu Items */
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 38px;
+      min-height: 38px;
+      padding: 0 10px;
+      border-radius: 9px;
+      color: #475569;
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+      margin-bottom: 2px;
+      text-decoration: none;
     }
 
-    /* Bottom Workspace / Company Switcher */
+    .nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .nav-icon {
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      color: #64748B;
+      flex-shrink: 0;
+      transition: color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .nav-icon svg {
+      width: 17px;
+      height: 17px;
+      stroke-width: 1.8;
+      display: block;
+    }
+
+    .nav-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.01em;
+      transition: color var(--transition-fast);
+    }
+
+    .nav-item:hover {
+      background: #F8FAFC;
+      color: #0F172A;
+    }
+
+    .nav-item:hover .nav-icon {
+      color: var(--brand-primary);
+      transform: translateX(1px);
+    }
+
+    .nav-item:hover .nav-label {
+      color: #0F172A;
+    }
+
+    /* Active Nav Item (Donezo & Shopeers Inspired Pill) */
+    .nav-item.active {
+      background: var(--brand-light);
+      color: var(--brand-primary);
+      font-weight: 600;
+      box-shadow: inset 0 0 0 1px rgba(124, 58, 237, 0.12);
+    }
+
+    .nav-item.active .nav-icon {
+      color: var(--brand-primary);
+    }
+
+    .nav-item.active .nav-label {
+      color: var(--brand-primary);
+      font-weight: 600;
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      bottom: 7px;
+      width: 3.5px;
+      background: var(--brand-primary);
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* Workplace Active Highlighted Sub-Item */
+    .nav-item.active-highlight {
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF !important;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+    }
+
+    .nav-item.active-highlight .nav-icon {
+      color: #FFFFFF !important;
+    }
+
+    .nav-item.active-highlight .nav-label {
+      color: #FFFFFF !important;
+    }
+
+    /* Notification Pill Badge */
+    .nav-badge-count {
+      background: #FEE2E2;
+      color: #DC2626;
+      font-size: 11px;
+      font-weight: 700;
+      height: 19px;
+      min-width: 19px;
+      padding: 0 6.5px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(220, 38, 38, 0.2);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      letter-spacing: 0;
+      box-shadow: 0 1px 2px rgba(220, 38, 38, 0.08);
+      transition: all var(--transition-fast);
+    }
+
+    /* Collapsed Item Centering */
+    .app-sidebar.collapsed .nav-item {
+      width: 44px;
+      height: 42px;
+      margin: 2px auto;
+      padding: 0;
+      justify-content: center;
+      border-radius: 10px;
+    }
+
+    .app-sidebar.collapsed .nav-item-left {
+      gap: 0;
+      justify-content: center;
+    }
+
+    .app-sidebar.collapsed .nav-label,
+    .app-sidebar.collapsed .nav-badge-count {
+      display: none;
+    }
+
+    .app-sidebar.collapsed .nav-item:hover {
+      background: var(--brand-light);
+      color: var(--brand-primary);
+      transform: none;
+    }
+
+    .app-sidebar.collapsed .nav-item.active {
+      background: var(--brand-light);
+      color: var(--brand-primary);
+    }
+
+    .app-sidebar.collapsed .nav-item.active::before {
+      top: 9px;
+      bottom: 9px;
+      width: 3px;
+    }
+
+    /* Bottom Workspace / Company Switcher (Elevated Profile Card) */
     .sidebar-footer {
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid #EEF2F6;
       padding: 12px 14px;
-      background: var(--bg-surface);
+      background: #FFFFFF;
       position: relative;
+      flex-shrink: 0;
     }
 
     .app-sidebar.collapsed .sidebar-footer {
@@ -575,16 +692,18 @@
       align-items: center;
       justify-content: space-between;
       padding: 8px 10px;
-      border-radius: var(--radius-md);
-      background: var(--bg-surface-subtle);
-      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
       cursor: pointer;
       transition: all var(--transition-fast);
+      width: 100%;
     }
 
     .workspace-switcher:hover {
-      background: var(--bg-surface-hover);
-      border-color: var(--border-card);
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
     }
 
     .workspace-info {
@@ -595,81 +714,112 @@
     }
 
     .workspace-avatar {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #312E81 0%, #1E1B4B 100%);
       color: #C7D2FE;
       display: grid;
       place-items: center;
       font-weight: 800;
       font-size: 13px;
       flex-shrink: 0;
-      border: 1.5px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 6px rgba(30, 27, 75, 0.2);
+    }
+
+    .workspace-text-group {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      min-width: 0;
+      line-height: 1.25;
     }
 
     .workspace-title {
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       color: var(--text-heading);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      letter-spacing: -0.01em;
     }
 
-    .workspace-chevron {
-      color: var(--text-subtle);
-      font-size: 10px;
+    .workspace-subtext {
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #64748B;
+      white-space: nowrap;
+    }
+
+    .workspace-unfold-icon {
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
       margin-left: 6px;
+      transition: color var(--transition-fast);
+    }
+
+    .workspace-switcher:hover .workspace-unfold-icon {
+      color: #475569;
     }
 
     .app-sidebar.collapsed .workspace-switcher {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto;
+      padding: 0;
       justify-content: center;
-      padding: 6px 0;
+      border-radius: 12px;
     }
 
-    .app-sidebar.collapsed .workspace-title,
-    .app-sidebar.collapsed .workspace-chevron {
+    .app-sidebar.collapsed .workspace-text-group,
+    .app-sidebar.collapsed .workspace-unfold-icon {
       display: none;
-    }
-
-    /* Floating Tooltip for Collapsed Sidebar (renders outside container to prevent clipping) */
-    .sidebar-floating-tooltip {
-      position: fixed;
-      background: var(--text-heading);
-      color: #FFFFFF;
-      padding: 6px 12px;
-      border-radius: var(--radius-sm);
-      font-size: 12px;
-      font-weight: 500;
-      white-space: nowrap;
-      z-index: 9999;
-      box-shadow: var(--shadow-dropdown);
-      pointer-events: none;
-      display: none;
-      transform: translateY(-50%);
-      transition: opacity 0.1s ease;
     }
 
     /* Workspace Switcher Popover */
     .workspace-popover {
       position: absolute;
       bottom: calc(100% + 8px);
-      left: 14px;
-      right: 14px;
+      left: 12px;
+      right: 12px;
       background: #FFFFFF;
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-dropdown);
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.14), 0 4px 12px rgba(15, 23, 42, 0.05);
       padding: 6px;
       display: none;
       flex-direction: column;
-      gap: 2px;
-      z-index: 200;
+      gap: 3px;
+      z-index: 250;
     }
 
     .workspace-popover.open {
       display: flex;
+      animation: popoverFadeIn 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes popoverFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .workspace-popover-header {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #94A3B8;
+      padding: 6px 8px 4px 8px;
     }
 
     .workspace-option {
@@ -680,29 +830,100 @@
       border-radius: 8px;
       font-size: 12.5px;
       font-weight: 500;
-      color: var(--text-body);
+      color: #334155;
       cursor: pointer;
-      transition: background var(--transition-fast);
+      transition: all var(--transition-fast);
+    }
+
+    .workspace-option-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .workspace-mini-badge {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: #EEF2F6;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
     }
 
     .workspace-option:hover {
-      background: var(--bg-surface-subtle);
-      color: var(--text-heading);
+      background: #F8FAFC;
+      color: #0F172A;
     }
 
     .workspace-option.active {
-      background: var(--brand-pill-bg);
+      background: var(--brand-light);
       color: var(--brand-primary);
       font-weight: 600;
     }
 
+    .workspace-option.active .workspace-mini-badge {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+    }
+
+    .workspace-popover-divider {
+      height: 1px;
+      background: #EEF2F6;
+      margin: 4px 0;
+    }
+
+    .workspace-option.action-option {
+      color: var(--brand-primary);
+      font-weight: 600;
+    }
+
+    .workspace-option.action-option:hover {
+      background: var(--brand-light);
+    }
+
+    /* Floating Tooltip for Collapsed Sidebar */
+    .sidebar-floating-tooltip {
+      position: fixed;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      z-index: 9999;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.2);
+      pointer-events: none;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      transform: translateY(-50%);
+      transition: opacity 0.12s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar-floating-tooltip .tooltip-badge {
+      background: #EF4444;
+      color: #FFFFFF;
+      padding: 1px 5px;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
     /* Empty state for sidebar search */
     .sidebar-no-results {
-      padding: 16px 12px;
+      padding: 24px 12px;
       text-align: center;
-      font-size: 12px;
-      color: var(--text-muted);
+      font-size: 12.5px;
+      color: #94A3B8;
       display: none;
+      line-height: 1.4;
     }
 
     /* ==========================================================================
@@ -1989,36 +2210,41 @@
     
     <!-- Sidebar Header & Authentic Hirerkey Brand Wordmark -->
     <div class="sidebar-header">
-      <a href="javascript:void(0)" class="brand-container" onclick="selectNavItem(document.querySelector('.nav-item[data-title="Dashboard"]'))">
-        <div class="brand-mini-icon">h</div>
+      <a href="javascript:void(0)" class="brand-container" onclick="selectNavItemByTitle('Dashboard')">
+        <div class="brand-icon-box" title="Hirerkey">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M5 4v16M5 12h8a4 4 0 0 1 4 4v4" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="17" cy="6" r="2.5" fill="#DDD6FE"/>
+          </svg>
+        </div>
         <div class="brand-wordmark">
           <!-- Authentic Hirerkey Logo with Curved Swoosh Underline -->
-          <svg class="logo-svg" viewBox="0 0 160 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <text x="0" y="28" font-family="'Inter', sans-serif" font-size="28" font-weight="800" fill="#0F172A" letter-spacing="-1.5">hirerkey</text>
-            <!-- Characteristic Hirerkey swoosh connecting from 'r' underneath 'key' -->
-            <path d="M78 33 C95 38, 125 38, 142 33" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round"/>
+          <svg class="logo-svg" viewBox="0 0 148 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="24" font-family="'Inter', -apple-system, sans-serif" font-size="24" font-weight="800" fill="#0F172A" letter-spacing="-1.2">hirerkey</text>
+            <path d="M68 28 C85 33, 115 33, 138 28" stroke="#7C3AED" stroke-width="3" stroke-linecap="round"/>
           </svg>
         </div>
       </a>
       <button class="sidebar-toggle-btn" id="sidebarCollapseBtn" title="Toggle Sidebar (⌘B)">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
+        <svg class="toggle-rail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="9" y1="3" x2="9" y2="21"></line>
+          <polyline points="15 9 12 12 15 15"></polyline>
         </svg>
       </button>
     </div>
 
     <!-- Quick Menu Search -->
     <div class="sidebar-search-area">
-      <div class="sidebar-search-pill" id="sidebarSearchPill">
+      <div class="sidebar-search-pill" id="sidebarSearchPill" onclick="if(appSidebar.classList.contains('collapsed')) toggleSidebar();">
         <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" placeholder="Search menus..." id="sidebarMenuSearch" autocomplete="off">
+        <input type="text" placeholder="Search menus..." id="sidebarMenuSearch" autocomplete="off" spellcheck="false">
         <div class="sidebar-search-actions">
-          <button id="sidebarVoiceBtn" title="Voice Search" onclick="openVoiceModal()"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></button>
-          <span class="kbd-shortcut">⌘K</span>
-          <button id="sidebarExpandBtn" title="Expand Sidebar" onclick="toggleSidebar()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></button>
+          <button id="sidebarVoiceBtn" title="Voice Search" onclick="event.stopPropagation(); openModal('voiceModal');"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></button>
+          <kbd class="sidebar-kbd">⌘K</kbd>
         </div>
       </div>
     </div>
@@ -2030,7 +2256,7 @@
       <a href="javascript:void(0)" class="nav-item active" data-title="Dashboard">
         <div class="nav-item-left">
           <span class="nav-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
               <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
               <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
@@ -2045,13 +2271,15 @@
       <div class="nav-category" data-cat="intelligence">
         <div class="nav-category-header" onclick="toggleNavCategory(this)">
           <span class="cat-title">Intelligence</span>
-          <span class="category-toggle-icon">−</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="nav-category-items">
           <a href="javascript:void(0)" class="nav-item" data-title="Analytics Hub">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path><path d="M4 20h16"></path></svg>
               </span>
               <span class="nav-label">Analytics Hub</span>
             </div>
@@ -2059,7 +2287,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Knowledge Hub">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><circle cx="12" cy="9" r="2.5"></circle><path d="M9 14h6"></path></svg>
               </span>
               <span class="nav-label">Knowledge Hub</span>
             </div>
@@ -2071,13 +2299,15 @@
       <div class="nav-category" data-cat="onboarding">
         <div class="nav-category-header" onclick="toggleNavCategory(this)">
           <span class="cat-title">Onboarding</span>
-          <span class="category-toggle-icon">−</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="nav-category-items">
           <a href="javascript:void(0)" class="nav-item" data-title="Orientation">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg>
               </span>
               <span class="nav-label">Orientation</span>
             </div>
@@ -2085,7 +2315,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Department Tour">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22.01"></line><line x1="15" y1="22" x2="15" y2="22.01"></line><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="9" y2="18.01"></line><line x1="15" y1="18" x2="15" y2="18.01"></line></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path><line x1="9" y1="7" x2="9" y2="7.01"></line><line x1="15" y1="7" x2="15" y2="7.01"></line><line x1="9" y1="11" x2="9" y2="11.01"></line><line x1="15" y1="11" x2="15" y2="11.01"></line><line x1="9" y1="15" x2="9" y2="15.01"></line><line x1="15" y1="15" x2="15" y2="15.01"></line></svg>
               </span>
               <span class="nav-label">Department Tour</span>
             </div>
@@ -2097,13 +2327,15 @@
       <div class="nav-category" data-cat="all-employees">
         <div class="nav-category-header" onclick="toggleNavCategory(this)">
           <span class="cat-title">All Employees</span>
-          <span class="category-toggle-icon">−</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="nav-category-items">
           <a href="javascript:void(0)" class="nav-item" data-title="Pre Boarding">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
               </span>
               <span class="nav-label">Pre Boarding</span>
             </div>
@@ -2111,7 +2343,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Active">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
               </span>
               <span class="nav-label">Active</span>
             </div>
@@ -2119,7 +2351,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Exit">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
               </span>
               <span class="nav-label">Exit</span>
             </div>
@@ -2131,13 +2363,15 @@
       <div class="nav-category" data-cat="performance-tools">
         <div class="nav-category-header" onclick="toggleNavCategory(this)">
           <span class="cat-title">Performance Tools</span>
-          <span class="category-toggle-icon">−</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="nav-category-items">
           <a href="javascript:void(0)" class="nav-item" data-title="1-on-1 Check-ins">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><text x="8.5" y="17" font-size="7.5" font-family="sans-serif" font-weight="bold" fill="currentColor">19</text></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor"></circle><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"></circle></svg>
               </span>
               <span class="nav-label">1-on-1 Check-ins</span>
             </div>
@@ -2145,7 +2379,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Create Appraisals">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
               </span>
               <span class="nav-label">Create Appraisals</span>
             </div>
@@ -2157,13 +2391,15 @@
       <div class="nav-category" data-cat="appraisal">
         <div class="nav-category-header" onclick="toggleNavCategory(this)">
           <span class="cat-title">Appraisal</span>
-          <span class="category-toggle-icon">−</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="nav-category-items">
           <a href="javascript:void(0)" class="nav-item" data-title="Manager Review">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
               </span>
               <span class="nav-label">Manager Review</span>
             </div>
@@ -2171,7 +2407,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Side-by-Side Review">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line><path d="M7 8h2"></path><path d="M15 8h2"></path><path d="M7 12h2"></path><path d="M15 12h2"></path></svg>
               </span>
               <span class="nav-label">Side-by-Side Review</span>
             </div>
@@ -2179,7 +2415,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="HR Final Review">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="9 15 11 17 15 13"></polyline></svg>
               </span>
               <span class="nav-label">HR Final Review</span>
             </div>
@@ -2191,13 +2427,15 @@
       <div class="nav-category" data-cat="pulse-surveys">
         <div class="nav-category-header" onclick="toggleNavCategory(this)">
           <span class="cat-title">Pulse Surveys</span>
-          <span class="category-toggle-icon">−</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="nav-category-items">
           <a href="javascript:void(0)" class="nav-item" data-title="Manage Pulse Surveys">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
               </span>
               <span class="nav-label">Manage Pulse Surveys</span>
             </div>
@@ -2209,13 +2447,15 @@
       <div class="nav-category" data-cat="workplace">
         <div class="nav-category-header" onclick="toggleNavCategory(this)">
           <span class="cat-title">Workplace</span>
-          <span class="category-toggle-icon">−</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="nav-category-items">
           <a href="javascript:void(0)" class="nav-item" data-title="Pending Approvals">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><polyline points="9 11 12 14 17 9"></polyline></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
               </span>
               <span class="nav-label">Pending Approvals</span>
             </div>
@@ -2224,7 +2464,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Shift Roster">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><circle cx="12" cy="14" r="4"></circle><polyline points="12 12 12 14 13.5 15"></polyline></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path></svg>
               </span>
               <span class="nav-label">Shift Roster</span>
             </div>
@@ -2232,7 +2472,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Org Chart">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="3" width="6" height="4" rx="1"></rect><rect x="3" y="17" width="6" height="4" rx="1"></rect><rect x="15" y="17" width="6" height="4" rx="1"></rect><path d="M12 7v5m0 0H6v5m6-5h6v5"></path></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="4" rx="1"></rect><rect x="2" y="17" width="6" height="4" rx="1"></rect><rect x="16" y="17" width="6" height="4" rx="1"></rect><path d="M12 7v5m0 0H5v5m7-5h9v5"></path></svg>
               </span>
               <span class="nav-label">Org Chart</span>
             </div>
@@ -2240,7 +2480,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Team Attendance">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6"></path><path d="M22 11h-6"></path></svg>
               </span>
               <span class="nav-label">Team Attendance</span>
             </div>
@@ -2248,7 +2488,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Service Desk">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line></svg>
               </span>
               <span class="nav-label">Service Desk</span>
             </div>
@@ -2256,16 +2496,15 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Task Checklist">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
               </span>
               <span class="nav-label">Task Checklist</span>
             </div>
           </a>
-          <!-- HR Broadcast from Image 1 -->
           <a href="javascript:void(0)" class="nav-item" data-title="HR Broadcast">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
               </span>
               <span class="nav-label">HR Broadcast</span>
             </div>
@@ -2273,7 +2512,7 @@
           <a href="javascript:void(0)" class="nav-item" data-title="Document Vault">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
               </span>
               <span class="nav-label">Document Vault</span>
             </div>
@@ -2285,13 +2524,15 @@
       <div class="nav-category" data-cat="expenses">
         <div class="nav-category-header" onclick="toggleNavCategory(this)">
           <span class="cat-title">Expenses</span>
-          <span class="category-toggle-icon">−</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
         </div>
         <div class="nav-category-items">
           <a href="javascript:void(0)" class="nav-item" data-title="Manager Approvals">
             <div class="nav-item-left">
               <span class="nav-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><path d="M12 11h.01"></path><path d="M12 15h.01"></path></svg>
               </span>
               <span class="nav-label">Manager Approvals</span>
             </div>
@@ -2306,27 +2547,52 @@
 
     </nav>
 
-    <!-- Bottom Organization Switcher -->
+    <!-- Bottom Organization Switcher (Elevated Profile Card) -->
     <div class="sidebar-footer">
-      <div class="workspace-switcher" id="orgSwitcherBtn">
+      <div class="workspace-switcher" id="orgSwitcherBtn" title="Switch Workspace">
         <div class="workspace-info">
           <div class="workspace-avatar">N</div>
-          <span class="workspace-title" id="currentOrgTitle">(TEST) Noisiv Consulting</span>
+          <div class="workspace-text-group">
+            <span class="workspace-title" id="currentOrgTitle">(TEST) Noisiv Consulting</span>
+            <span class="workspace-subtext" id="currentOrgSubtitle">Free Tier • 48 Members</span>
+          </div>
         </div>
-        <span class="workspace-chevron">▲▼</span>
+        <span class="workspace-unfold-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="7 15 12 20 17 15"></polyline>
+            <polyline points="7 9 12 4 17 9"></polyline>
+          </svg>
+        </span>
       </div>
 
       <!-- Interactive Switcher Popover -->
       <div class="workspace-popover" id="workspacePopover">
-        <div class="workspace-option active" onclick="switchOrganization('(TEST) Noisiv Consulting', 'N')">
-          <span>(TEST) Noisiv Consulting</span>
-          <span>✓</span>
+        <div class="workspace-popover-header">Workspaces</div>
+        <div class="workspace-option active" onclick="switchOrganization('(TEST) Noisiv Consulting', 'N', 'Free Tier • 48 Members')">
+          <div class="workspace-option-left">
+            <div class="workspace-mini-badge">N</div>
+            <span>(TEST) Noisiv Consulting</span>
+          </div>
+          <svg class="workspace-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </div>
-        <div class="workspace-option" onclick="switchOrganization('Acme Corp Global', 'A')">
-          <span>Acme Corp Global</span>
+        <div class="workspace-option" onclick="switchOrganization('Acme Corp Global', 'A', 'Enterprise • 320 Members')">
+          <div class="workspace-option-left">
+            <div class="workspace-mini-badge">A</div>
+            <span>Acme Corp Global</span>
+          </div>
         </div>
-        <div class="workspace-option" onclick="switchOrganization('Hirerkey Tech Demo', 'H')">
-          <span>Hirerkey Tech Demo</span>
+        <div class="workspace-option" onclick="switchOrganization('Hirerkey Tech Demo', 'H', 'Team • 12 Members')">
+          <div class="workspace-option-left">
+            <div class="workspace-mini-badge">H</div>
+            <span>Hirerkey Tech Demo</span>
+          </div>
+        </div>
+        <div class="workspace-popover-divider"></div>
+        <div class="workspace-option action-option" onclick="showToast('Create Workspace dialog opened')">
+          <div class="workspace-option-left">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Organization</span>
+          </div>
         </div>
       </div>
     </div>
@@ -2473,7 +2739,7 @@
       <!-- Subheader Action Bar (Breadcrumb & Customize Widgets) -->
       <div class="dashboard-subnav">
         <div class="breadcrumbs-wrap">
-          <a href="javascript:void(0)" onclick="selectNavItem(document.querySelector('.nav-item[data-title="Dashboard"]'))">
+          <a href="javascript:void(0)" onclick="selectNavItemByTitle('Dashboard')">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             <span>Home</span>
           </a>
@@ -3077,14 +3343,18 @@
     hideFloatingTooltip();
   }
 
-  sidebarCollapseBtn.addEventListener('click', toggleSidebar);
-  mobileMenuToggle.addEventListener('click', () => {
-    if (window.innerWidth <= 860) {
-      appSidebar.classList.toggle('mobile-open');
-    } else {
-      toggleSidebar();
-    }
-  });
+  if (sidebarCollapseBtn) {
+    sidebarCollapseBtn.addEventListener('click', toggleSidebar);
+  }
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+      if (window.innerWidth <= 860) {
+        appSidebar.classList.toggle('mobile-open');
+      } else {
+        toggleSidebar();
+      }
+    });
+  }
 
   // Floating Tooltip for collapsed sidebar items (prevents clipping by overflow container)
   const navItems = document.querySelectorAll('.nav-item');
@@ -3093,11 +3363,16 @@
       if (!appSidebar.classList.contains('collapsed')) return;
       const title = item.getAttribute('data-title');
       if (!title) return;
+      const badge = item.querySelector('.nav-badge-count');
       const rect = item.getBoundingClientRect();
-      sidebarTooltip.textContent = title;
+      if (badge) {
+        sidebarTooltip.innerHTML = `<span>${title}</span><span class="tooltip-badge">${badge.textContent.trim()}</span>`;
+      } else {
+        sidebarTooltip.textContent = title;
+      }
       sidebarTooltip.style.top = `${rect.top + rect.height / 2}px`;
-      sidebarTooltip.style.left = `${rect.right + 10}px`;
-      sidebarTooltip.style.display = 'block';
+      sidebarTooltip.style.left = `${rect.right + 12}px`;
+      sidebarTooltip.style.display = 'flex';
     });
 
     item.addEventListener('mouseleave', hideFloatingTooltip);
@@ -3109,7 +3384,7 @@
   });
 
   function hideFloatingTooltip() {
-    sidebarTooltip.style.display = 'none';
+    if (sidebarTooltip) sidebarTooltip.style.display = 'none';
   }
 
   function selectNavItem(itemEl) {
@@ -3117,8 +3392,14 @@
     navItems.forEach(el => el.classList.remove('active', 'active-highlight'));
     itemEl.classList.add('active');
     const title = itemEl.getAttribute('data-title');
-    document.getElementById('breadcrumbActiveItem').textContent = title;
-    showToast(`Switched view to ${title}`);
+    const breadcrumb = document.getElementById('breadcrumbActiveItem');
+    if (breadcrumb && title) breadcrumb.textContent = title;
+    if (title) showToast(`Switched view to ${title}`);
+  }
+
+  function selectNavItemByTitle(title) {
+    const item = document.querySelector(`.nav-item[data-title="${title}"]`);
+    if (item) selectNavItem(item);
   }
 
   // Keyboard shortcut: ⌘B / Ctrl+B for Sidebar, ⌘K / Ctrl+K for Search, ⌘ ⇧ Space for Voice, Esc for Modals
@@ -3130,9 +3411,11 @@
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
       if (appSidebar.classList.contains('collapsed')) {
-        document.getElementById('globalHeaderSearch').focus();
+        const ghSearch = document.getElementById('globalHeaderSearch');
+        if (ghSearch) ghSearch.focus();
       } else {
-        document.getElementById('sidebarMenuSearch').focus();
+        const sbSearch = document.getElementById('sidebarMenuSearch');
+        if (sbSearch) sbSearch.focus();
       }
     }
     if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.code === 'Space') {
@@ -3149,8 +3432,10 @@
     if (appSidebar.classList.contains('collapsed')) {
       toggleSidebar();
     }
-    const category = headerEl.parentElement;
-    category.classList.toggle('collapsed');
+    const category = headerEl.closest('.nav-category');
+    if (category) {
+      category.classList.toggle('collapsed');
+    }
   }
 
   // 3. Sidebar Search Filter (Live filtering across ALL items including Dashboard)
@@ -3158,60 +3443,66 @@
   const sidebarNoResults = document.getElementById('sidebarNoResults');
   const dashboardTopItem = document.querySelector('.nav-item[data-title="Dashboard"]');
 
-  sidebarMenuSearch.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-    const categories = document.querySelectorAll('.nav-category');
-    let totalVisible = 0;
+  if (sidebarMenuSearch) {
+    sidebarMenuSearch.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      const categories = document.querySelectorAll('.nav-category');
+      let totalVisible = 0;
 
-    // Filter top Dashboard item
-    if (dashboardTopItem) {
-      if (query === '' || dashboardTopItem.innerText.toLowerCase().includes(query)) {
-        dashboardTopItem.style.display = 'flex';
-        totalVisible++;
-      } else {
-        dashboardTopItem.style.display = 'none';
-      }
-    }
-
-    // Filter category items
-    categories.forEach(cat => {
-      const items = cat.querySelectorAll('.nav-item');
-      let hasVisibleItem = false;
-
-      items.forEach(item => {
-        const text = item.innerText.toLowerCase();
-        if (query === '' || text.includes(query)) {
-          item.style.display = 'flex';
-          hasVisibleItem = true;
+      // Filter top Dashboard item
+      if (dashboardTopItem) {
+        if (query === '' || dashboardTopItem.innerText.toLowerCase().includes(query)) {
+          dashboardTopItem.style.display = 'flex';
           totalVisible++;
         } else {
-          item.style.display = 'none';
+          dashboardTopItem.style.display = 'none';
+        }
+      }
+
+      // Filter category items
+      categories.forEach(cat => {
+        const items = cat.querySelectorAll('.nav-item');
+        let hasVisibleItem = false;
+
+        items.forEach(item => {
+          const text = item.innerText.toLowerCase();
+          if (query === '' || text.includes(query)) {
+            item.style.display = 'flex';
+            hasVisibleItem = true;
+            totalVisible++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        if (hasVisibleItem || query === '') {
+          cat.style.display = 'block';
+          cat.classList.remove('collapsed');
+        } else {
+          cat.style.display = 'none';
         }
       });
 
-      if (hasVisibleItem || query === '') {
-        cat.style.display = 'block';
-        cat.classList.remove('collapsed');
-      } else {
-        cat.style.display = 'none';
+      // Handle no results
+      if (sidebarNoResults) {
+        if (totalVisible === 0) {
+          sidebarNoResults.style.display = 'block';
+          sidebarNoResults.textContent = `No menus found matching "${e.target.value}"`;
+        } else {
+          sidebarNoResults.style.display = 'none';
+        }
       }
     });
-
-    // Handle no results
-    if (totalVisible === 0) {
-      sidebarNoResults.style.display = 'block';
-      sidebarNoResults.textContent = `No menus found matching "${e.target.value}"`;
-    } else {
-      sidebarNoResults.style.display = 'none';
-    }
-  });
+  }
 
   // Global Header Search Filter
   const globalHeaderSearch = document.getElementById('globalHeaderSearch');
-  globalHeaderSearch.addEventListener('input', (e) => {
-    sidebarMenuSearch.value = e.target.value;
-    sidebarMenuSearch.dispatchEvent(new Event('input'));
-  });
+  if (globalHeaderSearch && sidebarMenuSearch) {
+    globalHeaderSearch.addEventListener('input', (e) => {
+      sidebarMenuSearch.value = e.target.value;
+      sidebarMenuSearch.dispatchEvent(new Event('input'));
+    });
+  }
 
   // 4. Broadcast Like Micro-interaction
   let likeCountVal = 0;
@@ -3222,16 +3513,15 @@
     if (!hasLiked) {
       likeCountVal++;
       hasLiked = true;
-      likeBtn.classList.add('liked');
-      showToast('Liked Uneet Kumar's broadcast! 👍');
+      if (likeBtn) likeBtn.classList.add('liked');
+      showToast("Liked Uneet Kumar's broadcast! 👍");
     } else {
       likeCountVal--;
       hasLiked = false;
-      likeBtn.classList.remove('liked');
+      if (likeBtn) likeBtn.classList.remove('liked');
     }
-    likeCount.textContent = likeCountVal;
+    if (likeCount) likeCount.textContent = likeCountVal;
   }
-
   // 5. Refresh Moment Carousel (Features animated SVG memes)
   const refreshMoments = [
     {
@@ -3512,24 +3802,70 @@
 
   // Workspace Switcher
   function toggleOrgSwitcher() {
-    document.getElementById('workspacePopover').classList.toggle('open');
+    const popover = document.getElementById('workspacePopover');
+    if (popover) popover.classList.toggle('open');
   }
 
-  document.getElementById('orgSwitcherBtn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    toggleOrgSwitcher();
-  });
-
-  function switchOrganization(name, avatarChar) {
-    document.getElementById('currentOrgTitle').textContent = name;
-    document.querySelector('.workspace-avatar').textContent = avatarChar;
-    document.querySelectorAll('.workspace-option').forEach(opt => {
-      opt.classList.toggle('active', opt.innerText.includes(name));
+  const orgSwitcherBtn = document.getElementById('orgSwitcherBtn');
+  if (orgSwitcherBtn) {
+    orgSwitcherBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (appSidebar.classList.contains('collapsed')) {
+        toggleSidebar();
+        setTimeout(toggleOrgSwitcher, 200);
+      } else {
+        toggleOrgSwitcher();
+      }
     });
-    document.getElementById('workspacePopover').classList.remove('open');
+  }
+
+  function switchOrganization(name, avatarChar, subtext) {
+    const titleEl = document.getElementById('currentOrgTitle');
+    if (titleEl) titleEl.textContent = name;
+
+    const subtextEl = document.getElementById('currentOrgSubtitle');
+    if (subtextEl && subtext) subtextEl.textContent = subtext;
+
+    const avatarEl = document.querySelector('.workspace-avatar');
+    if (avatarEl) avatarEl.textContent = avatarChar;
+
+    document.querySelectorAll('.workspace-option').forEach(opt => {
+      const isMatch = opt.innerText.includes(name);
+      opt.classList.toggle('active', isMatch);
+      const existingCheck = opt.querySelector('.workspace-check-icon');
+      if (isMatch && !existingCheck && !opt.classList.contains('action-option')) {
+        const check = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        check.setAttribute('class', 'workspace-check-icon');
+        check.setAttribute('width', '14');
+        check.setAttribute('height', '14');
+        check.setAttribute('viewBox', '0 0 24 24');
+        check.setAttribute('fill', 'none');
+        check.setAttribute('stroke', '#7C3AED');
+        check.setAttribute('stroke-width', '2.5');
+        check.setAttribute('stroke-linecap', 'round');
+        check.setAttribute('stroke-linejoin', 'round');
+        check.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+        opt.appendChild(check);
+      } else if (!isMatch && existingCheck) {
+        existingCheck.remove();
+      }
+    });
+
+    const popover = document.getElementById('workspacePopover');
+    if (popover) popover.classList.remove('open');
     showToast(`Switched workspace to ${name}`);
   }
 
+  // Dismiss workspace popover on click outside
+  document.addEventListener('click', (e) => {
+    const popover = document.getElementById('workspacePopover');
+    const switcher = document.getElementById('orgSwitcherBtn');
+    if (popover && popover.classList.contains('open')) {
+      if (!popover.contains(e.target) && !switcher.contains(e.target)) {
+        popover.classList.remove('open');
+      }
+    }
+  });
   // 6 New Widgets Generator (Adding to dashboard from gallery)
   function addCustomWidget(type) {
     const container = document.getElementById('dynamicWidgetsContainer');
