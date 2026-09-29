@@ -1464,40 +1464,33 @@
     }
 
     /* ==========================================================================
-       VIEW 2: DONEZO CANVAS (ELEVATED SHEET & FLOATING WHITE MENU)
+       VIEW 2: FULL SCREEN DASHBOARD WITH ELEVATED WHITE SIDE MENU
+       Inspired directly by Donezo aesthetics (media_1790695719054.png)
        ========================================================================== */
-    .view2-viewport {
-      background: #EAEFF5;
-      padding: 24px 32px 48px 32px;
+    .view2-layout {
+      display: flex;
+      width: 100%;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      background: #F8FAFC;
+      margin: 0;
+      padding: 0;
+      position: relative;
       box-sizing: border-box;
-      width: 100%;
     }
 
-    .donezo-sheet-card {
-      width: 100%;
-      max-width: 1520px;
-      background: #FFFFFF;
-      border-radius: 28px;
-      box-shadow: 0 24px 64px -12px rgba(15, 23, 42, 0.12), 0 4px 20px rgba(15, 23, 42, 0.04);
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      overflow: hidden;
-      display: flex;
-      min-height: 94vh;
-    }
-
-    /* 1. View 2 Side Menu: Elevated White Slab "Feeling on top of the content area" */
+    /* 1. View 2 Side Menu: Elevated White Side Menu Floating Over Grey Content Canvas */
     .donezo-sidebar {
       width: 250px;
       min-width: 250px;
       max-width: 250px;
+      height: 100vh;
+      position: sticky;
+      top: 0;
       background: #FFFFFF;
-      box-shadow: 6px 0 24px -4px rgba(15, 23, 42, 0.06);
-      border-right: 1px solid #EEF2F6;
-      z-index: 20;
+      /* Distinct Right Elevation Shadow: Sits physically on top of the grey content area */
+      box-shadow: 6px 0 28px -4px rgba(15, 23, 42, 0.08), 2px 0 8px -2px rgba(15, 23, 42, 0.04);
+      border-right: 1px solid rgba(226, 232, 240, 0.85);
+      z-index: 50;
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
@@ -1585,7 +1578,7 @@
     .donezo-nav-item.active::before {
       content: '';
       position: absolute;
-      left: -12px;
+      left: 0;
       top: 50%;
       transform: translateY(-50%);
       width: 4px;
@@ -1684,25 +1677,43 @@
       background: #FFFFFF;
     }
 
-    /* 2. View 2 Content Area: Soft Grey Canvas with White Cards */
+    /* 2. View 2 Content Area: Full Screen Soft Grey Canvas */
     .donezo-content-area {
       flex: 1;
+      min-width: 0;
+      min-height: 100vh;
       background: #F8FAFC; /* Soft cool grey surface */
-      padding: 24px 32px 48px 32px;
       display: flex;
       flex-direction: column;
-      gap: 22px;
-      min-width: 0;
-      overflow-y: auto;
     }
 
-    /* Topbar in View 2 */
+    /* Topbar in View 2: Full width sticky header across content area */
     .donezo-topbar-row {
+      height: 64px;
+      min-height: 64px;
+      max-height: 64px;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border-bottom: 1px solid #EEF2F6;
+      padding: 0 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      background: transparent;
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    /* Inner Content Canvas in View 2 */
+    .donezo-inner-canvas {
+      padding: 20px 32px 48px 32px;
+      max-width: 1480px;
+      width: 100%;
+      margin: 0 auto;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
     .donezo-search-header {
@@ -1897,21 +1908,26 @@
     }
 
     @media (max-width: 900px) {
-      .view2-viewport {
-        padding: 12px;
-      }
-      .donezo-sheet-card {
+      .view2-layout {
         flex-direction: column;
-        border-radius: 18px;
       }
       .donezo-sidebar {
         width: 100%;
         max-width: 100%;
+        height: auto;
+        position: relative;
         border-right: none;
         border-bottom: 1px solid #EEF2F6;
+        box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
       }
       .donezo-kpi-grid {
         grid-template-columns: 1fr;
+      }
+      .donezo-topbar-row {
+        padding: 0 16px;
+      }
+      .donezo-inner-canvas {
+        padding: 16px;
       }
     }
 
@@ -3914,17 +3930,14 @@
 </div> <!-- /dashboard-view-1 -->
 
 <!-- ==========================================================================
-     VIEW 2: DONEZO CANVAS (ELEVATED SHEET & FLOATING WHITE MENU)
-     Inspired directly by Donezo (media_1790695719054.png)
+     VIEW 2: FULL SCREEN DASHBOARD WITH ELEVATED WHITE SIDE MENU
+     Inspired directly by Donezo aesthetics (media_1790695719054.png)
      ========================================================================== -->
 <div id="dashboard-view-2" class="dashboard-view-panel" style="display: none;">
-  <div class="view2-viewport">
-    
-    <!-- Central Rounded Rectangle Canvas ("The Blank Sheet with Drop Shadow") -->
-    <div class="donezo-sheet-card">
+  <div class="view2-layout">
 
-      <!-- 1. Left Side Menu (Elevated White Slab "Feeling on top of the content area") -->
-      <aside class="donezo-sidebar">
+    <!-- 1. Left Side Menu (Elevated Pure White Sidebar over Full Screen Dashboard) -->
+    <aside class="donezo-sidebar">
         <!-- Logo Header -->
         <div class="donezo-sidebar-header">
           <a href="javascript:void(0)" class="brand-container" onclick="switchDashboardView(2)" title="Hirerkey Dashboard">
@@ -4206,15 +4219,25 @@
       <!-- 2. Right Content Area (Soft Grey Surface with Floating White Cards) -->
       <main class="donezo-content-area">
 
-        <!-- Topbar Row with Search, View Switcher in Middle, and Profile on Right -->
+        <!-- Topbar Row in View 2: Full width across content area with breathable center -->
         <div class="donezo-topbar-row">
-          <!-- Search Header -->
-          <div class="donezo-search-header">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="text" placeholder="Search task, employee, or doc... (⌘F)">
+          <!-- Left Topbar Group: Toggle & Search -->
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <button class="menu-toggle-btn" id="view2SidebarToggle" onclick="toggleView2Sidebar()" title="Toggle Side Menu (Hide / Show)" aria-label="Toggle Side Menu">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+              </svg>
+            </button>
+
+            <!-- Search Header -->
+            <div class="donezo-search-header">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" placeholder="Search task, employee, or doc... (⌘F)">
+            </div>
           </div>
 
           <!-- Topbar Right Actions -->
@@ -4247,8 +4270,11 @@
           </div>
         </div>
 
-        <!-- View Switcher Toolbar Row in View 2 -->
-        <div class="donezo-switcher-row">
+        <!-- Inner Content Canvas in View 2 -->
+        <div class="donezo-inner-canvas">
+
+          <!-- View Switcher Toolbar Row in View 2 -->
+          <div class="donezo-switcher-row">
           <div class="screen-switcher-bar" id="viewSwitcherBar2">
             <button class="screen-tab" id="tab2-view-1" onclick="switchDashboardView(1)">
               <span>View 1: Standard Dashboard</span>
@@ -4615,13 +4641,13 @@
             </div>
           </div>
 
-        </div>
+        </div> <!-- /dashboard-grid -->
 
-      </main>
+      </div> <!-- /donezo-inner-canvas -->
 
-    </div> <!-- /donezo-sheet-card -->
+    </main>
 
-  </div> <!-- /view2-viewport -->
+  </div> <!-- /view2-layout -->
 </div> <!-- /dashboard-view-2 -->
 
 <!-- ==========================================================================
@@ -5001,6 +5027,21 @@
       const text = item.innerText.toLowerCase();
       item.style.display = (q === '' || text.includes(q)) ? 'flex' : 'none';
     });
+  }
+
+  function toggleView2Sidebar() {
+    const sb = document.querySelector('.donezo-sidebar');
+    const btn = document.getElementById('view2SidebarToggle');
+    if (!sb) return;
+    if (sb.style.display === 'none') {
+      sb.style.display = 'flex';
+      if (btn) btn.classList.remove('active');
+      showToast('Side menu shown');
+    } else {
+      sb.style.display = 'none';
+      if (btn) btn.classList.add('active');
+      showToast('Side menu hidden');
+    }
   }
 
   // Completely Hide (0px) or Show Sidebar (topbar button / ⌘\ / ⌘B)
