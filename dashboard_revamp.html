@@ -131,7 +131,7 @@
       transition: width var(--transition-smooth), min-width var(--transition-smooth), max-width var(--transition-smooth), transform var(--transition-smooth), opacity var(--transition-smooth), border-color var(--transition-smooth);
       box-shadow: 4px 0 20px rgba(15, 23, 42, 0.015);
       user-select: none;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
     /* Collapsed Sidebar Rail (72px responsive rail matching Shopeers) */
@@ -148,7 +148,7 @@
       overflow: hidden !important;
       transform: translateX(-100%);
       opacity: 0 !important;
-      border-right: none !important;
+      border-right-color: transparent !important;
       box-shadow: none !important;
       pointer-events: none !important;
       visibility: hidden;
@@ -2369,6 +2369,15 @@
       .app-sidebar.mobile-open {
         left: 0;
       }
+      .app-sidebar.sidebar-hidden {
+        width: 260px !important;
+        min-width: 260px !important;
+        max-width: 260px !important;
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+      }
       .mobile-sidebar-toggle {
         display: inline-flex;
       }
@@ -3644,9 +3653,10 @@
   // Minimize into 72px rail or expand back (circular arrow inside sidebar header)
   function toggleSidebarCollapse() {
     if (window.innerWidth <= 860) {
+      appSidebar.classList.remove('sidebar-hidden');
       appSidebar.classList.toggle('mobile-open');
     } else {
-      // If sidebar was completely hidden, reveal it
+      // If sidebar was completely hidden, reveal it in its current state
       if (appSidebar.classList.contains('sidebar-hidden')) {
         appSidebar.classList.remove('sidebar-hidden');
         if (topbarSidebarToggle) {
@@ -3654,8 +3664,14 @@
           topbarSidebarToggle.classList.remove('active');
           topbarSidebarToggle.setAttribute('title', 'Toggle Sidebar (Hide / Show)');
         }
+        hideFloatingTooltip();
+        return;
       }
-      appSidebar.classList.toggle('collapsed');
+      const isCollapsed = appSidebar.classList.toggle('collapsed');
+      if (sidebarCollapseBtn) {
+        sidebarCollapseBtn.setAttribute('title', isCollapsed ? 'Expand Sidebar' : 'Minimize Sidebar (72px rail)');
+        sidebarCollapseBtn.setAttribute('aria-label', isCollapsed ? 'Expand Sidebar' : 'Minimize Sidebar');
+      }
       hideFloatingTooltip();
     }
   }
@@ -3664,6 +3680,7 @@
   // Completely Hide (0px) or Show Sidebar (topbar button / ⌘\ / ⌘B)
   function toggleSidebarVisibility() {
     if (window.innerWidth <= 860) {
+      appSidebar.classList.remove('sidebar-hidden');
       appSidebar.classList.toggle('mobile-open');
     } else {
       const isHidden = appSidebar.classList.toggle('sidebar-hidden');
@@ -3671,12 +3688,11 @@
       document.getElementById('workspacePopover')?.classList.remove('open');
       if (topbarSidebarToggle) {
         topbarSidebarToggle.setAttribute('aria-expanded', (!isHidden).toString());
+        topbarSidebarToggle.setAttribute('title', isHidden ? 'Toggle Sidebar (Hide / Show) - Currently Hidden (⌘\\)' : 'Toggle Sidebar (Hide / Show)');
         if (isHidden) {
           topbarSidebarToggle.classList.add('active');
-          topbarSidebarToggle.setAttribute('title', 'Show Sidebar (⌘\\)');
         } else {
           topbarSidebarToggle.classList.remove('active');
-          topbarSidebarToggle.setAttribute('title', 'Toggle Sidebar (Hide / Show)');
         }
       }
     }
@@ -3694,6 +3710,7 @@
   if (mobileSidebarToggle) {
     mobileSidebarToggle.addEventListener('click', (e) => {
       e.stopPropagation();
+      appSidebar.classList.remove('sidebar-hidden');
       appSidebar.classList.toggle('mobile-open');
     });
   }
