@@ -1007,6 +1007,34 @@
       gap: 12px;
     }
 
+    /* Mobile Sidebar Toggle Button (Dedicated mobile drawer toggle, visible only on screens <= 860px) */
+    .mobile-sidebar-toggle {
+      display: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      align-items: center;
+      justify-content: center;
+      color: #64748B;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .mobile-sidebar-toggle:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: var(--brand-primary);
+    }
+
+    .mobile-sidebar-toggle:active {
+      background: #F5F3FF;
+      border-color: #DDD6FE;
+      color: var(--brand-primary);
+    }
+
     /* Quick Actions & Modules Hub Button */
     .menu-toggle-btn {
       width: 38px;
@@ -1046,6 +1074,7 @@
       top: calc(100% + 8px);
       left: 0;
       width: 330px;
+      max-width: calc(100vw - 32px);
       background: #FFFFFF;
       border: 1px solid var(--border-card);
       border-radius: var(--radius-md);
@@ -1135,6 +1164,13 @@
       background: #F8FAFC;
       border-color: #F1F5F9;
       transform: translateX(2px);
+    }
+
+    .quick-action-item:focus {
+      outline: none;
+      background: #F8FAFC;
+      border-color: #DDD6FE;
+      box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
     }
 
     .quick-action-icon-box {
@@ -2490,6 +2526,9 @@
       .app-sidebar.mobile-open {
         left: 0;
       }
+      .mobile-sidebar-toggle {
+        display: inline-flex;
+      }
       .topbar {
         padding: 0 16px;
       }
@@ -2924,14 +2963,28 @@
     <!-- Topbar Header (Exact match to Image 2 & 3) -->
     <header class="topbar">
       <div class="topbar-left">
+        <!-- Mobile Sidebar Drawer Toggle (Dedicated mobile drawer toggle, visible only on screens <= 860px) -->
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" title="Open Navigation Menu" aria-label="Open Navigation Menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3.5" y1="6" x2="20.5" y2="6"></line>
+            <line x1="3.5" y1="12" x2="20.5" y2="12"></line>
+            <line x1="3.5" y1="18" x2="20.5" y2="18"></line>
+          </svg>
+        </button>
+
         <!-- Quick Actions & Modules Launcher Hub Button (Repurposed from former collapse toggle) -->
         <div class="quick-actions-container">
           <button class="menu-toggle-btn" id="quickActionsBtn" title="Quick Actions & Apps (⌘J)" aria-expanded="false" aria-haspopup="true" aria-label="Quick Actions & Apps">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1.5"></rect>
-              <rect x="14" y="3.5" width="6.5" height="6.5" rx="1.5"></rect>
-              <rect x="14" y="14" width="6.5" height="6.5" rx="1.5"></rect>
-              <rect x="3.5" y="14" width="6.5" height="6.5" rx="1.5"></rect>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="5" cy="5" r="2.2"></circle>
+              <circle cx="12" cy="5" r="2.2"></circle>
+              <circle cx="19" cy="5" r="2.2"></circle>
+              <circle cx="5" cy="12" r="2.2"></circle>
+              <circle cx="12" cy="12" r="2.2"></circle>
+              <circle cx="19" cy="12" r="2.2"></circle>
+              <circle cx="5" cy="19" r="2.2"></circle>
+              <circle cx="12" cy="19" r="2.2"></circle>
+              <circle cx="19" cy="19" r="2.2"></circle>
             </svg>
           </button>
 
@@ -2949,7 +3002,7 @@
 
             <div class="quick-actions-grid">
               <!-- 1. New HR Broadcast -->
-              <div class="quick-action-item" onclick="triggerQuickAction('broadcast')" role="button" tabindex="0">
+              <div class="quick-action-item" onclick="triggerQuickAction('broadcast')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); triggerQuickAction('broadcast'); }" role="button" tabindex="0">
                 <div class="quick-action-icon-box" style="background: #F3E8FF; color: #7C3AED;">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -2967,7 +3020,7 @@
               </div>
 
               <!-- 2. Create Appraisal -->
-              <div class="quick-action-item" onclick="triggerQuickAction('appraisal')" role="button" tabindex="0">
+              <div class="quick-action-item" onclick="triggerQuickAction('appraisal')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); triggerQuickAction('appraisal'); }" role="button" tabindex="0">
                 <div class="quick-action-icon-box" style="background: #EEF2FF; color: #4F46E5;">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
@@ -2988,7 +3041,7 @@
               </div>
 
               <!-- 3. 1-on-1 Check-in -->
-              <div class="quick-action-item" onclick="triggerQuickAction('checkin')" role="button" tabindex="0">
+              <div class="quick-action-item" onclick="triggerQuickAction('checkin')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); triggerQuickAction('checkin'); }" role="button" tabindex="0">
                 <div class="quick-action-icon-box" style="background: #ECFDF5; color: #059669;">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -3005,7 +3058,7 @@
               </div>
 
               <!-- 4. Offboarding Workflow -->
-              <div class="quick-action-item" onclick="triggerQuickAction('offboarding')" role="button" tabindex="0">
+              <div class="quick-action-item" onclick="triggerQuickAction('offboarding')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); triggerQuickAction('offboarding'); }" role="button" tabindex="0">
                 <div class="quick-action-icon-box" style="background: #FFFBEB; color: #D97706;">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
@@ -3024,7 +3077,7 @@
               </div>
 
               <!-- 5. Document Vault -->
-              <div class="quick-action-item" onclick="triggerQuickAction('vault')" role="button" tabindex="0">
+              <div class="quick-action-item" onclick="triggerQuickAction('vault')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); triggerQuickAction('vault'); }" role="button" tabindex="0">
                 <div class="quick-action-icon-box" style="background: #F0F9FF; color: #0284C7;">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
@@ -3043,7 +3096,7 @@
               </div>
 
               <!-- 6. Analytics Hub -->
-              <div class="quick-action-item" onclick="triggerQuickAction('analytics')" role="button" tabindex="0">
+              <div class="quick-action-item" onclick="triggerQuickAction('analytics')" onkeydown="if(event.key === 'Enter' || event.key === ' ') { event.preventDefault(); triggerQuickAction('analytics'); }" role="button" tabindex="0">
                 <div class="quick-action-icon-box" style="background: #FFF1F2; color: #E11D48;">
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -3880,17 +3933,29 @@
   // 1. Sidebar Collapse, Persistence & Tooltip Management
   const appSidebar = document.getElementById('appSidebar');
   const sidebarCollapseBtn = document.getElementById('sidebarCollapseBtn');
+  const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
   const quickActionsBtn = document.getElementById('quickActionsBtn');
   const quickActionsPopover = document.getElementById('quickActionsPopover');
   const sidebarTooltip = document.getElementById('sidebarTooltip');
 
   function toggleSidebar() {
-    appSidebar.classList.toggle('collapsed');
-    hideFloatingTooltip();
+    if (window.innerWidth <= 860) {
+      appSidebar.classList.toggle('mobile-open');
+    } else {
+      appSidebar.classList.toggle('collapsed');
+      hideFloatingTooltip();
+    }
   }
 
   if (sidebarCollapseBtn) {
     sidebarCollapseBtn.addEventListener('click', toggleSidebar);
+  }
+  if (mobileSidebarToggle) {
+    mobileSidebarToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeQuickActions();
+      appSidebar.classList.toggle('mobile-open');
+    });
   }
   if (quickActionsBtn) {
     quickActionsBtn.addEventListener('click', (e) => {
@@ -3968,24 +4033,34 @@
     sidebarSearchPill.addEventListener('mouseleave', hideFloatingTooltip);
   }
 
-  function selectNavItem(itemEl) {
+  function selectNavItem(itemEl, customToast) {
     if (!itemEl) return;
     navItems.forEach(el => el.classList.remove('active', 'active-highlight'));
     itemEl.classList.add('active');
     const title = itemEl.getAttribute('data-title');
     const breadcrumb = document.getElementById('breadcrumbActiveItem');
     if (breadcrumb && title) breadcrumb.textContent = title;
-    if (title) showToast(`Switched view to ${title}`);
+    itemEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    if (window.innerWidth <= 860 && appSidebar && appSidebar.classList.contains('mobile-open')) {
+      appSidebar.classList.remove('mobile-open');
+    }
+
+    if (customToast) {
+      showToast(customToast);
+    } else if (title) {
+      showToast(`Switched view to ${title}`);
+    }
   }
 
-  function selectNavItemByTitle(title) {
+  function selectNavItemByTitle(title, customToast) {
     const item = document.querySelector(`.nav-item[data-title="${title}"]`);
     if (item) {
       const parentCat = item.closest('.nav-category');
       if (parentCat) {
         parentCat.classList.remove('collapsed');
       }
-      selectNavItem(item);
+      selectNavItem(item, customToast);
     }
   }
 
@@ -3997,7 +4072,9 @@
     }
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'j') {
       e.preventDefault();
-      toggleQuickActions();
+      if (!document.querySelector('.modal-overlay.open')) {
+        toggleQuickActions();
+      }
     }
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
@@ -4286,6 +4363,10 @@
         btn.classList.add('active');
         btn.setAttribute('aria-expanded', 'true');
       }
+      setTimeout(() => {
+        const firstItem = popover.querySelector('.quick-action-item');
+        if (firstItem) firstItem.focus();
+      }, 50);
     } else {
       popover.classList.remove('open');
       if (btn) {
@@ -4313,24 +4394,19 @@
         showToast('Opening HR Broadcast Composer... 📣');
         break;
       case 'appraisal':
-        selectNavItemByTitle('Create Appraisals');
-        showToast('Opening Create Appraisals review cycle... 📝');
+        selectNavItemByTitle('Create Appraisals', 'Opening Create Appraisals review cycle... 📝');
         break;
       case 'checkin':
-        selectNavItemByTitle('1-on-1 Check-ins');
-        showToast('Opening 1-on-1 Check-in scheduler & notes... 💬');
+        selectNavItemByTitle('1-on-1 Check-ins', 'Opening 1-on-1 Check-in scheduler & notes... 💬');
         break;
       case 'offboarding':
-        selectNavItemByTitle('Exit');
-        showToast('Opening Offboarding & Exit clearance case management... 🚪');
+        selectNavItemByTitle('Exit', 'Opening Offboarding & Exit clearance case management... 🚪');
         break;
       case 'vault':
-        selectNavItemByTitle('Document Vault');
-        showToast('Opening Document Vault for secure uploads... 📁');
+        selectNavItemByTitle('Document Vault', 'Opening Document Vault for secure uploads... 📁');
         break;
       case 'analytics':
-        selectNavItemByTitle('Analytics Hub');
-        showToast('Switched to Workforce Analytics Hub & Metrics... 📊');
+        selectNavItemByTitle('Analytics Hub', 'Switched to Workforce Analytics Hub & Metrics... 📊');
         break;
       default:
         showToast('Action executed');
@@ -4340,13 +4416,58 @@
   function submitNewBroadcast() {
     const titleInput = document.getElementById('broadcastTitleInput');
     const audienceSelect = document.getElementById('broadcastAudienceSelect');
+    const categorySelect = document.getElementById('broadcastCategorySelect');
+    const contentInput = document.getElementById('broadcastContentInput');
+
     const title = titleInput?.value.trim() || 'New HR Broadcast';
     const audience = audienceSelect?.value || 'All Employees';
+    const category = categorySelect?.value || 'Company Wide Announcement';
+    const content = contentInput?.value.trim() || '';
+
     closeModal('broadcastModal');
     showToast(`Broadcast "${title}" published to ${audience}! 📣`);
 
     const card = document.getElementById('broadcastCard');
     if (card) {
+      const postEl = document.createElement('div');
+      postEl.className = 'broadcast-post live-new-broadcast';
+      postEl.style.borderBottom = '1px solid var(--border-subtle)';
+      postEl.style.marginBottom = '14px';
+      postEl.style.paddingBottom = '14px';
+      postEl.style.animation = 'fadeInPopover 0.3s ease';
+
+      postEl.innerHTML = `
+        <div class="post-author-row">
+          <div class="author-avatar-wrap" style="background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%); color: #FFF; font-weight: 700;">HR</div>
+          <div class="author-meta">
+            <span class="author-name">HR Operations (You)</span>
+            <span class="author-role-date">Administrator • Just now • <span style="color: var(--brand-primary); font-weight: 600;">${escapeHtml(audience)}</span></span>
+          </div>
+        </div>
+        <div class="post-content">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <h3 class="post-title" style="margin: 0;">${escapeHtml(title)}</h3>
+            <span style="font-size: 10px; font-weight: 600; color: #7C3AED; background: #FAF5FF; padding: 1px 6px; border-radius: 4px; border: 1px solid #E9D5FF;">${escapeHtml(category)}</span>
+          </div>
+          <p class="post-body" style="white-space: pre-wrap;">${escapeHtml(content)}</p>
+        </div>
+        <div class="post-reactions">
+          <button class="btn-like" onclick="this.classList.toggle('liked'); const c = this.querySelector('.post-like-count'); c.textContent = this.classList.contains('liked') ? 1 : 0; showToast(this.classList.contains('liked') ? 'Liked broadcast! 👍' : 'Unliked broadcast');">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+            </svg>
+            <span class="post-like-count">0</span>
+          </button>
+        </div>
+      `;
+
+      const header = card.querySelector('.card-header');
+      if (header && header.nextSibling) {
+        card.insertBefore(postEl, header.nextSibling);
+      } else {
+        card.appendChild(postEl);
+      }
+
       card.scrollIntoView({ behavior: 'smooth', block: 'center' });
       card.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
       card.style.boxShadow = '0 0 0 3px rgba(124, 58, 237, 0.4)';
@@ -4364,7 +4485,7 @@
       e.target.classList.remove('open');
     }
     if (window.innerWidth <= 860 && appSidebar && appSidebar.classList.contains('mobile-open')) {
-      if (!e.target.closest('#appSidebar') && !e.target.closest('#sidebarCollapseBtn')) {
+      if (!e.target.closest('#appSidebar') && !e.target.closest('#sidebarCollapseBtn') && !e.target.closest('#mobileSidebarToggle')) {
         appSidebar.classList.remove('mobile-open');
       }
     }
@@ -4383,14 +4504,20 @@
   };
 
   // Popover triggers
-  document.getElementById('notificationBtn').addEventListener('click', (e) => {
+  document.getElementById('notificationBtn')?.addEventListener('click', (e) => {
     e.stopPropagation();
-    document.getElementById('notificationsPopover').classList.toggle('open');
+    closeQuickActions();
+    document.getElementById('userProfilePopover')?.classList.remove('open');
+    document.getElementById('workspacePopover')?.classList.remove('open');
+    document.getElementById('notificationsPopover')?.classList.toggle('open');
   });
 
-  document.getElementById('userProfileBtn').addEventListener('click', (e) => {
+  document.getElementById('userProfileBtn')?.addEventListener('click', (e) => {
     e.stopPropagation();
-    document.getElementById('userProfilePopover').classList.toggle('open');
+    closeQuickActions();
+    document.getElementById('notificationsPopover')?.classList.remove('open');
+    document.getElementById('workspacePopover')?.classList.remove('open');
+    document.getElementById('userProfilePopover')?.classList.toggle('open');
   });
 
   document.getElementById('askHyiqBtn').addEventListener('click', () => openModal('hyiqModal'));
@@ -4507,6 +4634,9 @@
 
   // Workspace Switcher
   function toggleOrgSwitcher() {
+    closeQuickActions();
+    document.getElementById('notificationsPopover')?.classList.remove('open');
+    document.getElementById('userProfilePopover')?.classList.remove('open');
     const popover = document.getElementById('workspacePopover');
     if (popover) popover.classList.toggle('open');
   }
@@ -4537,13 +4667,13 @@
         avatarEl.innerHTML = `
           <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <radialGradient id="noisivBgGrad" cx="42%" cy="38%" r="60%">
+              <radialGradient id="noisivBgGradDynamic" cx="42%" cy="38%" r="60%">
                 <stop offset="0%" stop-color="#281347"/>
                 <stop offset="65%" stop-color="#140827"/>
                 <stop offset="100%" stop-color="#080312"/>
               </radialGradient>
             </defs>
-            <circle cx="16" cy="16" r="14.2" fill="url(#noisivBgGrad)"/>
+            <circle cx="16" cy="16" r="14.2" fill="url(#noisivBgGradDynamic)"/>
             <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
             <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
             <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
