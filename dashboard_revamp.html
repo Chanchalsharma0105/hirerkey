@@ -1478,11 +1478,11 @@
       box-sizing: border-box;
     }
 
-    /* 1. View 2 Side Menu: Elevated Floating White Island Card (media_1790699346082.png) */
+    /* 1. View 2 Side Menu: Elevated Floating White Island Card (Sleek 218px Width & Theme Colors) */
     .donezo-sidebar {
-      width: 256px;
-      min-width: 256px;
-      max-width: 256px;
+      width: 218px;
+      min-width: 218px;
+      max-width: 218px;
       height: calc(100vh - 36px);
       position: sticky;
       top: 18px;
@@ -1501,7 +1501,7 @@
     }
 
     .donezo-sidebar-header {
-      padding: 24px 22px 14px 22px;
+      padding: 20px 18px 10px 18px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
@@ -1510,17 +1510,19 @@
     .donezo-brand-link {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       text-decoration: none;
       cursor: pointer;
     }
 
     .donezo-logo-svg {
       flex-shrink: 0;
+      width: 28px;
+      height: 28px;
     }
 
     .donezo-brand-text {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       color: #0F172A;
       letter-spacing: -0.03em;
@@ -1531,7 +1533,7 @@
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 4px 0 12px 0;
+      padding: 4px 0 10px 0;
       display: flex;
       flex-direction: column;
       scrollbar-width: thin;
@@ -1548,20 +1550,20 @@
     }
 
     .donezo-cat-title {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: #94A3B8;
-      padding: 14px 24px 8px 24px;
+      padding: 12px 18px 6px 18px;
     }
 
     .donezo-nav-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 24px;
-      font-size: 14.5px;
+      padding: 8.5px 18px;
+      font-size: 13.5px;
       font-weight: 500;
       color: #94A3B8;
       text-decoration: none;
@@ -1580,7 +1582,7 @@
       color: #0F172A;
     }
 
-    /* Active Item: Green left tab and green bento icon (media_1790699346082.png) */
+    /* Active Item: Hirerkey Theme Purple left tab and bento icon */
     .donezo-nav-item.active {
       color: #0F172A !important;
       font-weight: 700;
@@ -1593,20 +1595,21 @@
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      width: 7px;
-      height: 38px;
-      background: #007A55;
-      border-radius: 0 7px 7px 0;
+      width: 5px;
+      height: 32px;
+      background: var(--brand-primary); /* Theme Purple #7C3AED */
+      border-radius: 0 5px 5px 0;
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.45);
     }
 
     .donezo-nav-item.active .donezo-nav-icon {
-      color: #007A55 !important;
+      color: var(--brand-primary) !important;
     }
 
     .donezo-nav-item-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       min-width: 0;
     }
 
@@ -1619,26 +1622,28 @@
     }
 
     .donezo-nav-label {
-      font-size: 14.5px;
+      font-size: 13.5px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
+    /* Tasks Badge: Theme Purple Badge */
     .donezo-task-badge {
-      background: #06392B;
+      background: var(--brand-primary);
       color: #FFFFFF;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 700;
-      padding: 2px 7px;
+      padding: 2px 6px;
       border-radius: 6px;
       line-height: 1.2;
       letter-spacing: 0.02em;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
     }
 
     /* Expandable Extra Modules section */
     .donezo-extra-modules-wrap {
-      padding: 10px 18px 4px 18px;
+      padding: 8px 14px 4px 14px;
     }
 
     .donezo-expand-btn {
@@ -1646,12 +1651,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 12px;
-      border-radius: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
       background: #F8FAFC;
       border: 1px dashed #CBD5E1;
       color: #64748B;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 600;
       cursor: pointer;
       transition: all var(--transition-fast);
@@ -1671,21 +1676,22 @@
       transform: rotate(180deg);
     }
 
-    /* Bottom Promo Card (media_1790699346082.png) */
+    /* Bottom Promo Card (Hirerkey Theme Purple & Midnight Gradient) */
     .donezo-app-card-wrap {
-      padding: 8px 14px 14px 14px;
+      padding: 6px 12px 14px 12px;
       background: #FFFFFF;
       flex-shrink: 0;
     }
 
     .donezo-app-card {
-      padding: 16px;
-      background: radial-gradient(120% 120% at 10% 10%, #03231A 0%, #06392B 60%, #021711 100%);
-      border-radius: 18px;
+      padding: 14px;
+      background: radial-gradient(120% 120% at 10% 10%, #1E1B4B 0%, #2E1065 60%, #0F0A1C 100%);
+      border-radius: 16px;
       color: #FFFFFF;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 8px 20px -4px rgba(6, 57, 43, 0.4);
+      box-shadow: 0 8px 20px -4px rgba(46, 16, 101, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .donezo-app-waves {
@@ -1695,24 +1701,24 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
-      opacity: 0.6;
+      opacity: 0.65;
     }
 
     .donezo-app-icon-wrap {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: #FFFFFF;
       display: grid;
       place-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
       position: relative;
       z-index: 2;
     }
 
     .donezo-app-title {
-      font-size: 14.5px;
+      font-size: 13px;
       font-weight: 700;
       color: #FFFFFF;
       line-height: 1.25;
@@ -1721,22 +1727,22 @@
     }
 
     .donezo-app-sub {
-      font-size: 11px;
+      font-size: 10.5px;
       color: rgba(255, 255, 255, 0.75);
-      margin-top: 4px;
-      margin-bottom: 14px;
+      margin-top: 3px;
+      margin-bottom: 11px;
       position: relative;
       z-index: 2;
     }
 
     .donezo-app-btn {
       width: 100%;
-      padding: 8px 0;
-      background: #0A5C44;
+      padding: 7px 0;
+      background: var(--brand-primary);
       border: none;
-      border-radius: 20px;
+      border-radius: 18px;
       color: #FFFFFF;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       cursor: pointer;
       transition: all var(--transition-fast);
@@ -1744,43 +1750,45 @@
       text-align: center;
       position: relative;
       z-index: 2;
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.4);
     }
 
     .donezo-app-btn:hover {
-      background: #0D684D;
-      box-shadow: 0 4px 12px rgba(10, 92, 68, 0.4);
+      background: #6D28D9;
+      transform: translateY(-1px);
     }
 
-    /* 2. View 2 Content Area: Full Screen Soft Grey Canvas */
+    /* 2. View 2 Content Area: Unified Soft Grey Surface (#F4F5F7) */
     .donezo-content-area {
       flex: 1;
       min-width: 0;
       min-height: 100vh;
-      background: #F8FAFC; /* Soft cool grey surface */
+      background: #F4F5F7;
       display: flex;
       flex-direction: column;
     }
 
-    /* Topbar in View 2: Full width sticky header across content area */
+    /* Topbar in View 2: Floating Header seamlessly aligned with floating sidebar (media_1790695719054.png) */
     .donezo-topbar-row {
-      height: 64px;
-      min-height: 64px;
-      max-height: 64px;
+      height: auto;
+      min-height: 48px;
       box-sizing: border-box;
-      background: #FFFFFF;
-      border-bottom: 1px solid #EEF2F6;
-      padding: 0 32px;
+      background: transparent;
+      border-bottom: none;
+      padding: 18px 32px 10px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
       z-index: 40;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
 
     /* Inner Content Canvas in View 2 */
     .donezo-inner-canvas {
-      padding: 20px 32px 48px 32px;
+      padding: 10px 32px 48px 18px;
       max-width: 1480px;
       width: 100%;
       margin: 0 auto;
@@ -4015,11 +4023,11 @@
       <!-- 1. Header with Donezo Logo -->
       <div class="donezo-sidebar-header">
         <a href="javascript:void(0)" class="donezo-brand-link" onclick="switchDashboardView(2)" title="Donezo">
-          <!-- Concentric Green Donezo Icon from Screenshot -->
-          <svg class="donezo-logo-svg" width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17 5.5C11.5 5.5 7 10 7 15.5C7 22 11.5 27.5 17 27.5C22.5 27.5 27 22 27 15.5C27 10 22.5 5.5 17 5.5Z" stroke="#007A55" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M17 9.5C13.5 9.5 10.5 12.2 10.5 15.5C10.5 19.5 13.5 22.5 17 22.5C20.5 22.5 23.5 19.5 23.5 15.5C23.5 12.2 20.5 9.5 17 9.5Z" stroke="#007A55" stroke-width="2.4" stroke-linecap="round"/>
-            <path d="M14 17C14.8 18.2 16 19 17 19C18 19 19.2 18.2 20 17" stroke="#007A55" stroke-width="2.2" stroke-linecap="round"/>
+          <!-- Concentric Donezo Icon in Theme Purple -->
+          <svg class="donezo-logo-svg" width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 5.5C11.5 5.5 7 10 7 15.5C7 22 11.5 27.5 17 27.5C22.5 27.5 27 22 27 15.5C27 10 22.5 5.5 17 5.5Z" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M17 9.5C13.5 9.5 10.5 12.2 10.5 15.5C10.5 19.5 13.5 22.5 17 22.5C20.5 22.5 23.5 19.5 23.5 15.5C23.5 12.2 20.5 9.5 17 9.5Z" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M14 17C14.8 18.2 16 19 17 19C18 19 19.2 18.2 20 17" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
           </svg>
           <span class="donezo-brand-text">Donezo</span>
         </a>
@@ -4031,12 +4039,12 @@
         <!-- Category: MENU -->
         <div class="donezo-cat-title">MENU</div>
 
-        <!-- Active Item: Dashboard -->
+        <!-- Active Item: Dashboard (Theme Purple) -->
         <a href="javascript:void(0)" class="donezo-nav-item active" data-title="Dashboard" onclick="selectDonezoNavItem(this)">
           <div class="donezo-nav-item-left">
             <span class="donezo-nav-icon active-icon">
-              <!-- 4-square Bento Icon filled with green -->
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#007A55">
+              <!-- 4-square Bento Icon filled with theme purple -->
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#7C3AED">
                 <rect x="3" y="3" width="7.5" height="7.5" rx="2"></rect>
                 <rect x="13.5" y="3" width="7.5" height="7.5" rx="2"></rect>
                 <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"></rect>
@@ -4203,12 +4211,12 @@
       <div class="donezo-app-card-wrap">
         <div class="donezo-app-card">
           <svg class="donezo-app-waves" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M -20 140 C 40 100, 100 130, 220 80" stroke="rgba(16, 185, 129, 0.22)" stroke-width="1.8"/>
-            <path d="M -10 160 C 50 110, 120 140, 230 100" stroke="rgba(16, 185, 129, 0.28)" stroke-width="2"/>
-            <path d="M 0 170 C 70 120, 140 150, 240 120" stroke="rgba(16, 185, 129, 0.18)" stroke-width="1.6"/>
+            <path d="M -20 140 C 40 100, 100 130, 220 80" stroke="rgba(167, 139, 250, 0.3)" stroke-width="1.8"/>
+            <path d="M -10 160 C 50 110, 120 140, 230 100" stroke="rgba(167, 139, 250, 0.35)" stroke-width="2"/>
+            <path d="M 0 170 C 70 120, 140 150, 240 120" stroke="rgba(167, 139, 250, 0.22)" stroke-width="1.6"/>
           </svg>
           <div class="donezo-app-icon-wrap">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#007A55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
               <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
               <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
