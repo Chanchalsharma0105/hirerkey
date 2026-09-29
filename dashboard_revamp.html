@@ -1443,6 +1443,26 @@
       background: var(--brand-primary);
     }
 
+    .dashboard-switcher-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 0 16px 0;
+      margin-bottom: 2px;
+      border-bottom: 1px solid #EEF2F6;
+      width: 100%;
+    }
+
+    .donezo-switcher-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 0 16px 0;
+      margin-bottom: 4px;
+      border-bottom: 1px solid #EEF2F6;
+      width: 100%;
+    }
+
     /* ==========================================================================
        VIEW 2: DONEZO CANVAS (ELEVATED SHEET & FLOATING WHITE MENU)
        ========================================================================== */
@@ -3351,20 +3371,6 @@
         </div>
       </div>
 
-      <!-- Screen Switcher Tabs (View 1, View 2, View 3 - Matching Offboarding & Property Settings Pattern) -->
-      <div class="screen-switcher-bar" id="viewSwitcherBar1">
-        <button class="screen-tab active" id="tab1-view-1" onclick="switchDashboardView(1)">
-          <span class="screen-tab-dot"></span>
-          <span>View 1: Standard Dashboard</span>
-        </button>
-        <button class="screen-tab" id="tab1-view-2" onclick="switchDashboardView(2)">
-          <span>View 2: Donezo Canvas</span>
-        </button>
-        <button class="screen-tab" id="tab1-view-3" onclick="switchDashboardView(3)" title="Future Concept">
-          <span>View 3: Minimalist</span>
-        </button>
-      </div>
-
       <!-- Right Topbar Actions (Image 2) -->
       <div class="topbar-right">
         <!-- Pill 1: Ask HyIQ | HyIQ Voice [⌘ ⇧ Space] (Image 2) -->
@@ -3502,6 +3508,22 @@
          3. DASHBOARD MAIN CANVAS & INNER CONTENT
          ========================================================================== -->
     <div class="dashboard-container">
+
+      <!-- View Switcher Toolbar Row (Positioned Above Breadcrumbs & Widgets Line) -->
+      <div class="dashboard-switcher-row">
+        <div class="screen-switcher-bar" id="viewSwitcherBar1">
+          <button class="screen-tab active" id="tab1-view-1" onclick="switchDashboardView(1)">
+            <span class="screen-tab-dot"></span>
+            <span>View 1: Standard Dashboard</span>
+          </button>
+          <button class="screen-tab" id="tab1-view-2" onclick="switchDashboardView(2)">
+            <span>View 2: Donezo Canvas</span>
+          </button>
+          <button class="screen-tab" id="tab1-view-3" onclick="switchDashboardView(3)" title="Future Concept">
+            <span>View 3: Minimalist</span>
+          </button>
+        </div>
+      </div>
 
       <!-- Subheader Action Bar (Breadcrumb & Customize Widgets - Image 2) -->
       <div class="dashboard-subnav">
@@ -4195,20 +4217,6 @@
             <input type="text" placeholder="Search task, employee, or doc... (⌘F)">
           </div>
 
-          <!-- Screen Switcher Tabs (In Middle) -->
-          <div class="screen-switcher-bar" id="viewSwitcherBar2">
-            <button class="screen-tab" id="tab2-view-1" onclick="switchDashboardView(1)">
-              <span>View 1: Standard Dashboard</span>
-            </button>
-            <button class="screen-tab active" id="tab2-view-2" onclick="switchDashboardView(2)">
-              <span class="screen-tab-dot"></span>
-              <span>View 2: Donezo Canvas</span>
-            </button>
-            <button class="screen-tab" id="tab2-view-3" onclick="switchDashboardView(3)" title="Future Concept">
-              <span>View 3: Minimalist</span>
-            </button>
-          </div>
-
           <!-- Topbar Right Actions -->
           <div class="donezo-top-actions">
             <!-- HyIQ Voice Shortcut -->
@@ -4236,6 +4244,22 @@
               <span style="font-size: 13px; font-weight: 600; color: #0F172A;">Chanchal</span>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
+          </div>
+        </div>
+
+        <!-- View Switcher Toolbar Row in View 2 -->
+        <div class="donezo-switcher-row">
+          <div class="screen-switcher-bar" id="viewSwitcherBar2">
+            <button class="screen-tab" id="tab2-view-1" onclick="switchDashboardView(1)">
+              <span>View 1: Standard Dashboard</span>
+            </button>
+            <button class="screen-tab active" id="tab2-view-2" onclick="switchDashboardView(2)">
+              <span class="screen-tab-dot"></span>
+              <span>View 2: Donezo Canvas</span>
+            </button>
+            <button class="screen-tab" id="tab2-view-3" onclick="switchDashboardView(3)" title="Future Concept">
+              <span>View 3: Minimalist</span>
+            </button>
           </div>
         </div>
 
