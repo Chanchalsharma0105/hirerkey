@@ -8,7 +8,7 @@
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
@@ -118,8 +118,8 @@
        1. WHITE SLEEK SIDE MENU (SIDEBAR) — INSPIRED BY DONEZO & SHOPEERS
        ========================================================================== */
     .app-sidebar {
-      width: 260px;
-      min-width: 260px;
+      width: 236px;
+      min-width: 236px;
       background: #FFFFFF;
       border-right: 1px solid #EEF2F6;
       height: 100vh;
@@ -133,19 +133,19 @@
       user-select: none;
     }
 
-    /* Collapsed Sidebar Rail (Shopeers / Donezo style) */
+    /* Collapsed Sidebar Rail (68px–72px responsive rail) */
     .app-sidebar.collapsed {
-      width: 74px;
-      min-width: 74px;
+      width: 70px;
+      min-width: 70px;
     }
 
     /* Sidebar Top Brand Header */
     .sidebar-header {
-      height: 70px;
+      height: 62px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 16px 0 18px;
+      padding: 0 14px 0 16px;
       border-bottom: 1px solid #EEF2F6;
       position: relative;
       flex-shrink: 0;
@@ -160,98 +160,100 @@
     .brand-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 0;
       cursor: pointer;
       text-decoration: none;
+      user-select: none;
     }
 
-    /* Hirerkey Emblem Squircle (Unified brand symbol) */
-    .brand-icon-box {
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
-      color: #FFFFFF;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.22);
-      flex-shrink: 0;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-    }
-
-    .brand-container:hover .brand-icon-box {
-      transform: scale(1.04);
-      box-shadow: 0 5px 14px rgba(124, 58, 237, 0.32);
-    }
-
-    .app-sidebar.collapsed .brand-icon-box {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-    }
-
-    /* Hirerkey Wordmark */
+    /* Authentic Hirerkey Wordmark with Signature Curved Swoosh (media_1790665061893.png) */
     .brand-wordmark {
-      font-size: 20px;
+      display: inline-flex;
+      align-items: baseline;
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 21.5px;
       font-weight: 800;
-      color: var(--text-heading);
       letter-spacing: -0.04em;
       position: relative;
-      display: inline-flex;
-      align-items: center;
+      line-height: 1;
       transition: opacity var(--transition-fast);
     }
 
-    .brand-wordmark svg.logo-svg {
-      height: 24px;
-      width: auto;
-      display: block;
+    .logo-hirer {
+      color: #0F172A;
+      transition: color var(--transition-fast);
+    }
+
+    .logo-key-wrap {
+      position: relative;
+      color: #0F172A;
+      display: inline-block;
+      transition: color var(--transition-fast);
+    }
+
+    .logo-swoosh {
+      position: absolute;
+      left: -7px;
+      bottom: -6px;
+      width: calc(100% + 9px);
+      height: 11px;
+      pointer-events: none;
+      overflow: visible;
+      transition: transform var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .brand-container:hover .logo-swoosh {
+      transform: translateY(0.5px);
+      filter: drop-shadow(0 2px 5px rgba(124, 58, 237, 0.45));
+    }
+
+    .brand-container:hover .logo-swoosh path {
+      stroke: #6D28D9;
+    }
+
+    .brand-container:hover .logo-hirer,
+    .brand-container:hover .logo-key-wrap {
+      color: #7C3AED;
     }
 
     .app-sidebar.collapsed .brand-wordmark {
       display: none;
-      opacity: 0;
     }
 
-    /* Sleek Collapse Toggle Button */
+    /* Sleek Circular Collapse Toggle Button matching media_1790665061893.png */
     .sidebar-toggle-btn {
       width: 30px;
       height: 30px;
-      border-radius: 8px;
-      background: transparent;
-      border: 1px solid transparent;
+      border-radius: 50%;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
       display: grid;
       place-items: center;
-      color: #94A3B8;
+      color: #7C3AED;
       cursor: pointer;
       transition: all var(--transition-fast);
+      flex-shrink: 0;
     }
 
     .sidebar-toggle-btn:hover {
-      background: #F8FAFC;
-      border-color: #E2E8F0;
-      color: var(--brand-primary);
+      background: #EDE9FE;
+      border-color: #DDD6FE;
+      color: #6D28D9;
+      transform: scale(1.06);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.2);
     }
 
     .app-sidebar.collapsed .sidebar-toggle-btn {
-      position: absolute;
-      right: -13px;
-      top: 22px;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: #FFFFFF;
-      color: #64748B;
-      border: 1px solid #E2E8F0;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-      z-index: 120;
+      width: 34px;
+      height: 34px;
+      transform: rotate(180deg);
     }
 
     .app-sidebar.collapsed .sidebar-toggle-btn:hover {
       background: var(--brand-primary);
       color: #FFFFFF;
       border-color: var(--brand-primary);
-      transform: scale(1.1);
+      transform: rotate(180deg) scale(1.08);
       box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
     }
 
@@ -259,18 +261,14 @@
       transition: transform var(--transition-normal);
     }
 
-    .app-sidebar.collapsed .sidebar-toggle-btn svg {
-      transform: rotate(180deg);
-    }
-
     /* Ultra-Sleek Search Menus Area */
     .sidebar-search-area {
-      padding: 14px 16px 8px 16px;
+      padding: 10px 10px 6px 10px;
       flex-shrink: 0;
     }
 
     .app-sidebar.collapsed .sidebar-search-area {
-      padding: 12px 10px 8px 10px;
+      padding: 10px 8px 6px 8px;
     }
 
     .sidebar-search-pill {
@@ -278,10 +276,10 @@
       align-items: center;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
-      height: 36px;
-      padding: 0 8px 0 10px;
-      gap: 8px;
+      border-radius: 8px;
+      height: 33px;
+      padding: 0 7px 0 9px;
+      gap: 7px;
       transition: all var(--transition-fast);
       position: relative;
     }
@@ -309,7 +307,7 @@
 
     .sidebar-search-pill input {
       width: 100%;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 400;
       color: var(--text-heading);
       background: transparent;
@@ -319,13 +317,13 @@
 
     .sidebar-search-pill input::placeholder {
       color: #94A3B8;
-      font-size: 12.5px;
+      font-size: 12px;
     }
 
     .sidebar-search-actions {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
       flex-shrink: 0;
     }
 
@@ -333,9 +331,9 @@
       color: #94A3B8;
       display: grid;
       place-items: center;
-      width: 22px;
-      height: 22px;
-      border-radius: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
       transition: all var(--transition-fast);
     }
 
@@ -347,9 +345,9 @@
     .sidebar-kbd {
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: 4px;
-      padding: 1px 5px;
-      font-size: 10px;
+      border-radius: 3px;
+      padding: 1px 4px;
+      font-size: 9.5px;
       font-family: var(--font-mono);
       font-weight: 600;
       color: #64748B;
@@ -359,13 +357,13 @@
     }
 
     .app-sidebar.collapsed .sidebar-search-pill {
-      width: 42px;
-      height: 40px;
+      width: 38px;
+      height: 36px;
       margin: 0 auto;
       padding: 0;
       justify-content: center;
       cursor: pointer;
-      border-radius: 10px;
+      border-radius: 8px;
     }
 
     .app-sidebar.collapsed .sidebar-search-pill:hover {
@@ -388,10 +386,10 @@
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 6px 12px 18px 12px;
+      padding: 4px 8px 16px 8px;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1.5px;
     }
 
     .sidebar-nav-list::-webkit-scrollbar {
@@ -417,24 +415,24 @@
     }
 
     .app-sidebar.collapsed .sidebar-nav-list {
-      padding: 6px 8px 18px 8px;
+      padding: 4px 6px 16px 6px;
     }
 
     /* Category Accordion Header */
     .nav-category {
-      margin-top: 16px;
+      margin-top: 13px;
       margin-bottom: 2px;
     }
 
     .nav-category:first-of-type {
-      margin-top: 8px;
+      margin-top: 4px;
     }
 
     .nav-category-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 5px 8px;
+      padding: 4px 7px;
       border-radius: 6px;
       cursor: pointer;
       transition: all var(--transition-fast);
@@ -445,11 +443,11 @@
     }
 
     .nav-category-header span.cat-title {
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
       color: #94A3B8;
       text-transform: uppercase;
-      letter-spacing: 0.07em;
+      letter-spacing: 0.06em;
       transition: color var(--transition-fast);
       user-select: none;
     }
@@ -481,7 +479,7 @@
 
     .app-sidebar.collapsed .nav-category-header {
       justify-content: center;
-      padding: 6px 0 4px 0;
+      padding: 5px 0 3px 0;
     }
 
     .app-sidebar.collapsed .nav-category-header span.cat-title,
@@ -501,7 +499,7 @@
     .nav-category-items {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1.5px;
       overflow: hidden;
       transition: max-height 0.28s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
       max-height: 800px;
@@ -520,45 +518,45 @@
       pointer-events: auto !important;
     }
 
-    /* High-End Menu Items */
+    /* High-End Sleek Menu Items (~35px height, 13px font) */
     .nav-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 38px;
-      min-height: 38px;
-      padding: 0 10px;
-      border-radius: 9px;
+      height: 35px;
+      min-height: 35px;
+      padding: 0 8px;
+      border-radius: 8px;
       color: #475569;
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 500;
       cursor: pointer;
       transition: all var(--transition-fast);
       position: relative;
-      margin-bottom: 2px;
+      margin-bottom: 1.5px;
       text-decoration: none;
     }
 
     .nav-item-left {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 9px;
       min-width: 0;
     }
 
     .nav-icon {
       display: grid;
       place-items: center;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       color: #64748B;
       flex-shrink: 0;
       transition: color var(--transition-fast), transform var(--transition-fast);
     }
 
     .nav-icon svg {
-      width: 17px;
-      height: 17px;
+      width: 16px;
+      height: 16px;
       stroke-width: 1.8;
       display: block;
     }
@@ -569,6 +567,7 @@
       text-overflow: ellipsis;
       letter-spacing: -0.01em;
       transition: color var(--transition-fast);
+      font-size: 13px;
     }
 
     .nav-item:hover {
@@ -605,11 +604,11 @@
     .nav-item.active::before {
       content: '';
       position: absolute;
-      left: -12px;
+      left: -8px;
       top: 50%;
       transform: translateY(-50%);
       width: 3.5px;
-      height: 22px;
+      height: 20px;
       background: var(--brand-primary);
       border-radius: 0 4px 4px 0;
       box-shadow: 0 0 8px rgba(124, 58, 237, 0.35);
@@ -639,11 +638,11 @@
     .nav-badge-count {
       background: #FEE2E2;
       color: #DC2626;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
-      height: 19px;
-      min-width: 19px;
-      padding: 0 6.5px;
+      height: 18px;
+      min-width: 18px;
+      padding: 0 5.5px;
       border-radius: var(--radius-full);
       border: 1px solid rgba(220, 38, 38, 0.2);
       display: inline-flex;
@@ -657,12 +656,12 @@
 
     /* Collapsed Item Centering */
     .app-sidebar.collapsed .nav-item {
-      width: 44px;
-      height: 42px;
+      width: 40px;
+      height: 38px;
       margin: 2px auto;
       padding: 0;
       justify-content: center;
-      border-radius: 10px;
+      border-radius: 8px;
       position: relative;
     }
 
@@ -688,11 +687,11 @@
     }
 
     .app-sidebar.collapsed .nav-item.active::before {
-      left: -15px;
+      left: -10px;
       top: 50%;
       transform: translateY(-50%);
-      width: 3.5px;
-      height: 22px;
+      width: 3px;
+      height: 20px;
     }
 
     /* Collapsed rail notification badge status dot (Donezo / Shopeers) */
@@ -700,35 +699,35 @@
     .app-sidebar.collapsed .nav-item[data-title="Pending Approvals"]::after {
       content: '';
       position: absolute;
-      top: 7px;
-      right: 9px;
-      width: 6.5px;
-      height: 6.5px;
+      top: 6px;
+      right: 8px;
+      width: 6px;
+      height: 6px;
       background: #EF4444;
       border-radius: 50%;
       border: 1.5px solid #FFFFFF;
       box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.25);
     }
 
-    /* Bottom Workspace / Company Switcher (Elevated Profile Card) */
+    /* Bottom Workspace / Company Switcher (media_1790665061890.png) */
     .sidebar-footer {
       border-top: 1px solid #EEF2F6;
-      padding: 12px 14px;
+      padding: 10px;
       background: #FFFFFF;
       position: relative;
       flex-shrink: 0;
     }
 
     .app-sidebar.collapsed .sidebar-footer {
-      padding: 12px 8px;
+      padding: 10px 6px;
     }
 
     .workspace-switcher {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 10px;
-      border-radius: 12px;
+      padding: 6px 8px;
+      border-radius: 10px;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
       cursor: pointer;
@@ -745,23 +744,26 @@
     .workspace-info {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       min-width: 0;
+      flex: 1;
     }
 
     .workspace-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
-      background: linear-gradient(135deg, #312E81 0%, #1E1B4B 100%);
-      color: #C7D2FE;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
       display: grid;
       place-items: center;
-      font-weight: 800;
-      font-size: 13px;
       flex-shrink: 0;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 2px 6px rgba(30, 27, 75, 0.2);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+    }
+
+    .workspace-avatar svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .workspace-text-group {
@@ -769,11 +771,11 @@
       flex-direction: column;
       text-align: left;
       min-width: 0;
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     .workspace-title {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--text-heading);
       white-space: nowrap;
@@ -782,19 +784,12 @@
       letter-spacing: -0.01em;
     }
 
-    .workspace-subtext {
-      font-size: 10.5px;
-      font-weight: 500;
-      color: #64748B;
-      white-space: nowrap;
-    }
-
     .workspace-unfold-icon {
       color: #94A3B8;
       display: grid;
       place-items: center;
       flex-shrink: 0;
-      margin-left: 6px;
+      margin-left: 4px;
       transition: color var(--transition-fast);
     }
 
@@ -803,12 +798,12 @@
     }
 
     .app-sidebar.collapsed .workspace-switcher {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       margin: 0 auto;
       padding: 0;
       justify-content: center;
-      border-radius: 12px;
+      border-radius: 10px;
     }
 
     .app-sidebar.collapsed .workspace-text-group,
@@ -2252,28 +2247,16 @@
        ========================================================================== -->
   <aside class="app-sidebar" id="appSidebar">
     
-    <!-- Sidebar Header & Authentic Hirerkey Brand Wordmark -->
+    <!-- Sidebar Header & Authentic Hirerkey Brand Wordmark (media_1790665061893.png) -->
     <div class="sidebar-header">
-      <a href="javascript:void(0)" class="brand-container" onclick="selectNavItemByTitle('Dashboard')">
-        <div class="brand-icon-box" title="Hirerkey">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-            <path d="M5 4v16M5 12h8a4 4 0 0 1 4 4v4" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <circle cx="17" cy="6" r="2.5" fill="#DDD6FE"/>
-          </svg>
-        </div>
+      <a href="javascript:void(0)" class="brand-container" onclick="selectNavItemByTitle('Dashboard')" title="Hirerkey Dashboard">
         <div class="brand-wordmark">
-          <!-- Authentic Hirerkey Logo with Curved Swoosh Underline -->
-          <svg class="logo-svg" viewBox="0 0 148 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <text x="0" y="24" font-family="'Inter', -apple-system, sans-serif" font-size="24" font-weight="800" fill="#0F172A" letter-spacing="-1.2">hirerkey</text>
-            <path d="M68 28 C85 33, 115 33, 138 28" stroke="#7C3AED" stroke-width="3" stroke-linecap="round"/>
-          </svg>
+          <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 54 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5 C10 9.5, 38 10, 51 2" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
         </div>
       </a>
       <button class="sidebar-toggle-btn" id="sidebarCollapseBtn" title="Toggle Sidebar (⌘B)">
-        <svg class="toggle-rail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="9" y1="3" x2="9" y2="21"></line>
-          <polyline points="15 9 12 12 15 15"></polyline>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
         </svg>
       </button>
     </div>
@@ -2591,20 +2574,39 @@
 
     </nav>
 
-    <!-- Bottom Organization Switcher (Elevated Profile Card) -->
+    <!-- Bottom Organization Switcher (media_1790665061890.png) -->
     <div class="sidebar-footer">
       <div class="workspace-switcher" id="orgSwitcherBtn" title="Switch Workspace">
         <div class="workspace-info">
-          <div class="workspace-avatar">N</div>
+          <div class="workspace-avatar noisiv-avatar" title="(TEST) Noisiv Consulting">
+            <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="noisivBgGrad" cx="45%" cy="40%" r="55%">
+                  <stop offset="0%" stop-color="#24143D"/>
+                  <stop offset="100%" stop-color="#090514"/>
+                </radialGradient>
+                <clipPath id="noisivInnerClip">
+                  <circle cx="16" cy="16" r="14"/>
+                </clipPath>
+              </defs>
+              <circle cx="16" cy="16" r="14" fill="url(#noisivBgGrad)"/>
+              <g clip-path="url(#noisivInnerClip)">
+                <rect x="8.5" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
+                <rect x="20.3" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
+                <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#090514" stroke-width="7" stroke-linecap="round"/>
+                <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round"/>
+              </g>
+              <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+            </svg>
+          </div>
           <div class="workspace-text-group">
             <span class="workspace-title" id="currentOrgTitle">(TEST) Noisiv Consulting</span>
-            <span class="workspace-subtext" id="currentOrgSubtitle">Free Tier • 48 Members</span>
           </div>
         </div>
         <span class="workspace-unfold-icon">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="7 15 12 20 17 15"></polyline>
-            <polyline points="7 9 12 4 17 9"></polyline>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 9l5-5 5 5"></path>
+            <path d="M7 15l5 5 5-5"></path>
           </svg>
         </span>
       </div>
@@ -2614,7 +2616,18 @@
         <div class="workspace-popover-header">Workspaces</div>
         <div class="workspace-option active" onclick="switchOrganization('(TEST) Noisiv Consulting', 'N', 'Free Tier • 48 Members')">
           <div class="workspace-option-left">
-            <div class="workspace-mini-badge">N</div>
+            <div class="workspace-mini-badge noisiv-mini-badge" style="background: transparent; overflow: hidden; padding: 0;">
+              <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="14" fill="#130924"/>
+                <g clip-path="url(#noisivInnerClip)">
+                  <rect x="8.5" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
+                  <rect x="20.3" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
+                  <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#130924" stroke-width="7" stroke-linecap="round"/>
+                  <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round"/>
+                </g>
+                <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+              </svg>
+            </div>
             <span>(TEST) Noisiv Consulting</span>
           </div>
           <svg class="workspace-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -3431,6 +3444,45 @@
     if (sidebarTooltip) sidebarTooltip.style.display = 'none';
   }
 
+  // Floating tooltips for rail utility buttons in collapsed mode
+  if (orgSwitcherBtn) {
+    orgSwitcherBtn.addEventListener('mouseenter', () => {
+      if (!appSidebar.classList.contains('collapsed')) return;
+      const title = document.getElementById('currentOrgTitle')?.textContent || '(TEST) Noisiv Consulting';
+      const rect = orgSwitcherBtn.getBoundingClientRect();
+      sidebarTooltip.innerHTML = `<span>${escapeHtml(title)}</span>`;
+      sidebarTooltip.style.top = `${rect.top + rect.height / 2}px`;
+      sidebarTooltip.style.left = `${rect.right + 12}px`;
+      sidebarTooltip.style.display = 'flex';
+    });
+    orgSwitcherBtn.addEventListener('mouseleave', hideFloatingTooltip);
+  }
+
+  if (sidebarCollapseBtn) {
+    sidebarCollapseBtn.addEventListener('mouseenter', () => {
+      if (!appSidebar.classList.contains('collapsed')) return;
+      const rect = sidebarCollapseBtn.getBoundingClientRect();
+      sidebarTooltip.innerHTML = `<span>Expand Sidebar (⌘B)</span>`;
+      sidebarTooltip.style.top = `${rect.top + rect.height / 2}px`;
+      sidebarTooltip.style.left = `${rect.right + 12}px`;
+      sidebarTooltip.style.display = 'flex';
+    });
+    sidebarCollapseBtn.addEventListener('mouseleave', hideFloatingTooltip);
+  }
+
+  const sidebarSearchPill = document.getElementById('sidebarSearchPill');
+  if (sidebarSearchPill) {
+    sidebarSearchPill.addEventListener('mouseenter', () => {
+      if (!appSidebar.classList.contains('collapsed')) return;
+      const rect = sidebarSearchPill.getBoundingClientRect();
+      sidebarTooltip.innerHTML = `<span>Search Menus (⌘K)</span>`;
+      sidebarTooltip.style.top = `${rect.top + rect.height / 2}px`;
+      sidebarTooltip.style.left = `${rect.right + 12}px`;
+      sidebarTooltip.style.display = 'flex';
+    });
+    sidebarSearchPill.addEventListener('mouseleave', hideFloatingTooltip);
+  }
+
   function selectNavItem(itemEl) {
     if (!itemEl) return;
     navItems.forEach(el => el.classList.remove('active', 'active-highlight'));
@@ -3884,7 +3936,33 @@
     if (subtextEl && subtext) subtextEl.textContent = subtext;
 
     const avatarEl = document.querySelector('.workspace-avatar');
-    if (avatarEl) avatarEl.textContent = avatarChar;
+    if (avatarEl) {
+      if (name.includes('Noisiv')) {
+        avatarEl.innerHTML = `
+          <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="noisivBgGrad" cx="45%" cy="40%" r="55%">
+                <stop offset="0%" stop-color="#24143D"/>
+                <stop offset="100%" stop-color="#090514"/>
+              </radialGradient>
+              <clipPath id="noisivInnerClip">
+                <circle cx="16" cy="16" r="14"/>
+              </clipPath>
+            </defs>
+            <circle cx="16" cy="16" r="14" fill="url(#noisivBgGrad)"/>
+            <g clip-path="url(#noisivInnerClip)">
+              <rect x="8.5" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
+              <rect x="20.3" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
+              <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#090514" stroke-width="7" stroke-linecap="round"/>
+              <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round"/>
+            </g>
+            <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+          </svg>
+        `;
+      } else {
+        avatarEl.innerHTML = `<span style="font-weight: 800; font-size: 13px; color: #FFFFFF; background: linear-gradient(135deg, #7C3AED, #6366F1); width: 100%; height: 100%; display: grid; place-items: center; border-radius: 50%;">${escapeHtml(avatarChar)}</span>`;
+      }
+    }
 
     document.querySelectorAll('.workspace-option').forEach(opt => {
       const isMatch = opt.innerText.includes(name);
