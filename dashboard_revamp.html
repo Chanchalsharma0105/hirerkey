@@ -1395,6 +1395,507 @@
     }
 
     /* ==========================================================================
+       SCREEN / VIEW SWITCHER TABS (MATCHING OFFBOARDING & PROPERTY SETTINGS)
+       ========================================================================== */
+    .screen-switcher-bar {
+      display: inline-flex;
+      align-items: center;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .screen-tab {
+      padding: 6px 13px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #64748B;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .screen-tab:hover {
+      color: #0F172A;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .screen-tab.active {
+      background: #FFFFFF;
+      color: var(--brand-primary);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+      border-color: #E2E8F0;
+    }
+
+    .screen-tab-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand-primary);
+    }
+
+    /* ==========================================================================
+       VIEW 2: DONEZO CANVAS (ELEVATED SHEET & FLOATING WHITE MENU)
+       ========================================================================== */
+    .view2-viewport {
+      background: #EAEFF5;
+      padding: 24px 32px 48px 32px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    .donezo-sheet-card {
+      width: 100%;
+      max-width: 1520px;
+      background: #FFFFFF;
+      border-radius: 28px;
+      box-shadow: 0 24px 64px -12px rgba(15, 23, 42, 0.12), 0 4px 20px rgba(15, 23, 42, 0.04);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      overflow: hidden;
+      display: flex;
+      min-height: 94vh;
+    }
+
+    /* 1. View 2 Side Menu: Elevated White Slab "Feeling on top of the content area" */
+    .donezo-sidebar {
+      width: 250px;
+      min-width: 250px;
+      max-width: 250px;
+      background: #FFFFFF;
+      box-shadow: 6px 0 24px -4px rgba(15, 23, 42, 0.06);
+      border-right: 1px solid #EEF2F6;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .donezo-sidebar-header {
+      height: 64px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .donezo-search-wrap {
+      padding: 12px 16px;
+    }
+
+    .donezo-search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 6px 12px;
+    }
+
+    .donezo-search-box input {
+      flex: 1;
+      font-size: 12.5px;
+      color: #0F172A;
+    }
+
+    .donezo-nav-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 8px 12px 20px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .donezo-cat-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94A3B8;
+      padding: 14px 10px 6px 10px;
+    }
+
+    .donezo-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #475569;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .donezo-nav-item:hover {
+      background: #F8FAFC;
+      color: #0F172A;
+    }
+
+    /* Donezo Selected Item: Bold vertical left pill indicator bar (Image media_1790695719054.png) */
+    .donezo-nav-item.active {
+      color: #0F172A !important;
+      font-weight: 700;
+      background: #F8FAFC;
+    }
+
+    .donezo-nav-item.active .donezo-nav-icon {
+      color: var(--brand-primary);
+    }
+
+    .donezo-nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 26px;
+      background: var(--brand-primary);
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.45);
+    }
+
+    .donezo-nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .donezo-nav-icon {
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .donezo-badge {
+      background: #FEE2E2;
+      color: #DC2626;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 9999px;
+    }
+
+    /* Donezo Mobile App Promo Card (media_1790695719054.png) */
+    .donezo-app-card {
+      margin: 18px 4px 6px 4px;
+      padding: 16px;
+      background: radial-gradient(130% 130% at 100% 100%, #1E1B4B 0%, #0F172A 70%, #090D16 100%);
+      border-radius: 16px;
+      color: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 24px -6px rgba(15, 23, 42, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .donezo-app-icon-wrap {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      display: grid;
+      place-items: center;
+      margin-bottom: 10px;
+    }
+
+    .donezo-app-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .donezo-app-sub {
+      font-size: 11px;
+      color: #94A3B8;
+      margin-bottom: 12px;
+    }
+
+    .donezo-app-btn {
+      width: 100%;
+      padding: 7px 12px;
+      background: #7C3AED;
+      border: none;
+      border-radius: 20px;
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .donezo-app-btn:hover {
+      background: #6D28D9;
+      transform: translateY(-1px);
+    }
+
+    .donezo-sidebar-footer {
+      padding: 14px 16px;
+      border-top: 1px solid #EEF2F6;
+      background: #FFFFFF;
+    }
+
+    /* 2. View 2 Content Area: Soft Grey Canvas with White Cards */
+    .donezo-content-area {
+      flex: 1;
+      background: #F8FAFC; /* Soft cool grey surface */
+      padding: 24px 32px 48px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-width: 0;
+      overflow-y: auto;
+    }
+
+    /* Topbar in View 2 */
+    .donezo-topbar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: transparent;
+    }
+
+    .donezo-search-header {
+      width: 270px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .donezo-search-header input {
+      flex: 1;
+      font-size: 13px;
+      color: #0F172A;
+    }
+
+    .donezo-top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Title Row in View 2 */
+    .donezo-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .donezo-title-group h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .donezo-title-group p {
+      font-size: 13px;
+      color: #64748B;
+      margin-top: 3px;
+    }
+
+    .donezo-title-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-donezo-primary {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .btn-donezo-primary:hover {
+      background: var(--brand-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-donezo-secondary {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: #FFFFFF;
+      color: #334155;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .btn-donezo-secondary:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    /* KPI Summary Cards (Donezo Style from Image media_1790695719054.png) */
+    .donezo-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .donezo-kpi-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 18px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 110px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+      position: relative;
+      transition: all var(--transition-fast);
+    }
+
+    .donezo-kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    .donezo-kpi-card.highlight {
+      background: linear-gradient(145deg, #1E1B4B 0%, #171030 100%);
+      color: #FFFFFF;
+      border-color: transparent;
+    }
+
+    .donezo-kpi-card.highlight .kpi-label,
+    .donezo-kpi-card.highlight .kpi-trend {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .donezo-kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .kpi-arrow-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #E2E8F0;
+      display: grid;
+      place-items: center;
+      color: #64748B;
+    }
+
+    .donezo-kpi-card.highlight .kpi-arrow-icon {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+
+    .kpi-value {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 8px 0 4px 0;
+      line-height: 1;
+    }
+
+    .kpi-trend {
+      font-size: 11.5px;
+      color: #10B981;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Bento Cards in View 2 */
+    .donezo-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+    }
+
+    @media (max-width: 1200px) {
+      .donezo-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .view2-viewport {
+        padding: 12px;
+      }
+      .donezo-sheet-card {
+        flex-direction: column;
+        border-radius: 18px;
+      }
+      .donezo-sidebar {
+        width: 100%;
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #EEF2F6;
+      }
+      .donezo-kpi-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==========================================================================
        3. DASHBOARD MAIN CANVAS & INNER CONTENT
        ========================================================================== */
     .dashboard-container {
@@ -2397,7 +2898,10 @@
   </style>
 </head>
 <body>
-
+<!-- ==========================================================================
+     VIEW 1: STANDARD DASHBOARD LAYOUT (CURRENT PRISTINE DESIGN)
+     ========================================================================== -->
+<div id="dashboard-view-1" class="dashboard-view-panel">
 <div class="app-layout">
 
   <!-- ==========================================================================
@@ -2845,6 +3349,20 @@
           </div>
           <input type="text" placeholder="Search" id="globalHeaderSearch" autocomplete="off" spellcheck="false">
         </div>
+      </div>
+
+      <!-- Screen Switcher Tabs (View 1, View 2, View 3 - Matching Offboarding & Property Settings Pattern) -->
+      <div class="screen-switcher-bar" id="viewSwitcherBar1">
+        <button class="screen-tab active" id="tab1-view-1" onclick="switchDashboardView(1)">
+          <span class="screen-tab-dot"></span>
+          <span>View 1: Standard Dashboard</span>
+        </button>
+        <button class="screen-tab" id="tab1-view-2" onclick="switchDashboardView(2)">
+          <span>View 2: Donezo Canvas</span>
+        </button>
+        <button class="screen-tab" id="tab1-view-3" onclick="switchDashboardView(3)" title="Future Concept">
+          <span>View 3: Minimalist</span>
+        </button>
       </div>
 
       <!-- Right Topbar Actions (Image 2) -->
@@ -3371,6 +3889,716 @@
   </main>
 
 </div>
+</div> <!-- /dashboard-view-1 -->
+
+<!-- ==========================================================================
+     VIEW 2: DONEZO CANVAS (ELEVATED SHEET & FLOATING WHITE MENU)
+     Inspired directly by Donezo (media_1790695719054.png)
+     ========================================================================== -->
+<div id="dashboard-view-2" class="dashboard-view-panel" style="display: none;">
+  <div class="view2-viewport">
+    
+    <!-- Central Rounded Rectangle Canvas ("The Blank Sheet with Drop Shadow") -->
+    <div class="donezo-sheet-card">
+
+      <!-- 1. Left Side Menu (Elevated White Slab "Feeling on top of the content area") -->
+      <aside class="donezo-sidebar">
+        <!-- Logo Header -->
+        <div class="donezo-sidebar-header">
+          <a href="javascript:void(0)" class="brand-container" onclick="switchDashboardView(2)" title="Hirerkey Dashboard">
+            <div class="brand-wordmark">
+              <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+            </div>
+          </a>
+        </div>
+
+        <!-- Donezo Menu Search -->
+        <div class="donezo-search-wrap">
+          <div class="donezo-search-box">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" placeholder="Search menu..." id="donezoMenuSearch" oninput="filterDonezoMenu(this.value)">
+          </div>
+        </div>
+
+        <!-- Scrollable Navigation Items (All 23 Items & 8 Categories) -->
+        <nav class="donezo-nav-scroll" id="donezoNavScroll">
+          
+          <div class="donezo-cat-title">MENU</div>
+          <!-- Selected Active Item (Donezo Left Bar Style) -->
+          <a href="javascript:void(0)" class="donezo-nav-item active" data-title="Dashboard" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+                  <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+                  <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+                  <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+                </svg>
+              </span>
+              <span>Dashboard</span>
+            </div>
+          </a>
+
+          <div class="donezo-cat-title">INTELLIGENCE</div>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Analytics Hub" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path><path d="M4 20h16"></path></svg>
+              </span>
+              <span>Analytics Hub</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Knowledge Hub" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><circle cx="12" cy="9" r="2.5"></circle><path d="M9 14h6"></path></svg>
+              </span>
+              <span>Knowledge Hub</span>
+            </div>
+          </a>
+
+          <div class="donezo-cat-title">ONBOARDING</div>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Orientation" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg>
+              </span>
+              <span>Orientation</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Department Tour" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path><line x1="9" y1="7" x2="9" y2="7.01"></line><line x1="15" y1="7" x2="15" y2="7.01"></line></svg>
+              </span>
+              <span>Department Tour</span>
+            </div>
+          </a>
+
+          <div class="donezo-cat-title">ALL EMPLOYEES</div>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Pre Boarding" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line></svg>
+              </span>
+              <span>Pre Boarding</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Active" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </span>
+              <span>Active Staff</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Exit" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline></svg>
+              </span>
+              <span>Exit / Offboarding</span>
+            </div>
+          </a>
+
+          <div class="donezo-cat-title">PERFORMANCE TOOLS</div>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="1-on-1 Check-ins" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg>
+              </span>
+              <span>1-on-1 Check-ins</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Create Appraisals" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+              </span>
+              <span>Create Appraisals</span>
+            </div>
+          </a>
+
+          <div class="donezo-cat-title">APPRAISAL</div>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Manager Review" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </span>
+              <span>Manager Review</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Side-by-Side Review" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+              </span>
+              <span>Side-by-Side Review</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="HR Final Review" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="9 15 11 17 15 13"></polyline></svg>
+              </span>
+              <span>HR Final Review</span>
+            </div>
+          </a>
+
+          <div class="donezo-cat-title">PULSE SURVEYS</div>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Manage Pulse Surveys" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+              </span>
+              <span>Manage Pulse Surveys</span>
+            </div>
+          </a>
+
+          <div class="donezo-cat-title">WORKPLACE</div>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Pending Approvals" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </span>
+              <span>Pending Approvals</span>
+            </div>
+            <span class="donezo-badge">5</span>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Shift Roster" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"></rect></svg>
+              </span>
+              <span>Shift Roster</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Org Chart" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="4" rx="1"></rect><rect x="2" y="17" width="6" height="4" rx="1"></rect><rect x="16" y="17" width="6" height="4" rx="1"></rect></svg>
+              </span>
+              <span>Org Chart</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Team Attendance" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </span>
+              <span>Team Attendance</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Service Desk" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle></svg>
+              </span>
+              <span>Service Desk</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Task Checklist" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+              </span>
+              <span>Task Checklist</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="HR Broadcast" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+              <span>HR Broadcast</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Document Vault" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+              </span>
+              <span>Document Vault</span>
+            </div>
+          </a>
+
+          <div class="donezo-cat-title">EXPENSES</div>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Manager Approvals" onclick="selectDonezoNavItem(this)">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              </span>
+              <span>Manager Approvals</span>
+            </div>
+          </a>
+
+          <!-- Donezo Mobile App Download Promo Card (media_1790695719054.png) -->
+          <div class="donezo-app-card">
+            <div class="donezo-app-icon-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="3"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <div class="donezo-app-title">Download our<br>Mobile App</div>
+            <div class="donezo-app-sub">HR on the go, anywhere</div>
+            <button class="donezo-app-btn" onclick="showToast('Hirerkey Mobile App link sent to your device!')">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download</span>
+            </button>
+          </div>
+
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="donezo-sidebar-footer">
+          <div class="workspace-switcher" onclick="toggleOrgSwitcher()" title="Switch Workspace">
+            <div class="workspace-info">
+              <div class="workspace-avatar noisiv-avatar">
+                <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="16" cy="16" r="14.2" fill="#140827"/>
+                  <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                  <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                  <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+                  <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+                </svg>
+              </div>
+              <div class="workspace-text-group">
+                <span class="workspace-title">(TEST) Noisiv Consulting</span>
+              </div>
+            </div>
+            <span class="workspace-unfold-icon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 9l5-5 5 5"></path><path d="M7 15l5 5 5-5"></path></svg>
+            </span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- 2. Right Content Area (Soft Grey Surface with Floating White Cards) -->
+      <main class="donezo-content-area">
+
+        <!-- Topbar Row with Search, View Switcher in Middle, and Profile on Right -->
+        <div class="donezo-topbar-row">
+          <!-- Search Header -->
+          <div class="donezo-search-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" placeholder="Search task, employee, or doc... (⌘F)">
+          </div>
+
+          <!-- Screen Switcher Tabs (In Middle) -->
+          <div class="screen-switcher-bar" id="viewSwitcherBar2">
+            <button class="screen-tab" id="tab2-view-1" onclick="switchDashboardView(1)">
+              <span>View 1: Standard Dashboard</span>
+            </button>
+            <button class="screen-tab active" id="tab2-view-2" onclick="switchDashboardView(2)">
+              <span class="screen-tab-dot"></span>
+              <span>View 2: Donezo Canvas</span>
+            </button>
+            <button class="screen-tab" id="tab2-view-3" onclick="switchDashboardView(3)" title="Future Concept">
+              <span>View 3: Minimalist</span>
+            </button>
+          </div>
+
+          <!-- Topbar Right Actions -->
+          <div class="donezo-top-actions">
+            <!-- HyIQ Voice Shortcut -->
+            <button class="btn-hyiq" onclick="openModal('hyiqModal')" title="Ask HyIQ AI Assistant">
+              <div class="hyiq-robot-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3.5" y="6" width="17" height="15" rx="7.5" fill="#7C3AED"/>
+                  <circle cx="8.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
+                  <circle cx="15.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
+                  <path d="M9.5 15.8C10.5 17.2 13.5 17.2 14.5 15.8" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+              <span style="font-size: 12.5px; font-weight: 600; color: #7C3AED;">Ask HyIQ</span>
+            </button>
+
+            <!-- Notifications -->
+            <button class="notification-btn" onclick="openModal('hyiqModal')" title="17 Notifications" style="width: 36px; height: 36px; border-radius: 9px; border: 1px solid #E2E8F0; background: #FFFFFF; display: grid; place-items: center; position: relative;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <span class="notification-count" style="top: -4px; right: -4px;">17</span>
+            </button>
+
+            <!-- Profile Avatar -->
+            <div class="user-profile-btn" onclick="toggleOrgSwitcher()" title="Chanchal Sharma" style="background: #FFFFFF; border: 1px solid #E2E8F0; padding: 4px 10px; border-radius: 10px;">
+              <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=80&h=80&q=80" alt="Chanchal Sharma" style="width: 26px; height: 26px; border-radius: 50%; object-fit: cover;">
+              <span style="font-size: 13px; font-weight: 600; color: #0F172A;">Chanchal</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dashboard Title Row (Exact Donezo Rhythm) -->
+        <div class="donezo-title-row">
+          <div class="donezo-title-group">
+            <h1>Dashboard</h1>
+            <p>Plan, prioritize, and accomplish your tasks with ease. Monday, September 28.</p>
+          </div>
+          <div class="donezo-title-actions">
+            <button class="btn-donezo-primary" onclick="openModal('broadcastModal')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>+ Add Action</span>
+            </button>
+            <button class="btn-donezo-secondary" onclick="openCustomizeModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              <span>Customize</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 4 Donezo KPI Summary Cards (media_1790695719054.png) -->
+        <div class="donezo-kpi-grid">
+          <!-- Card 1: Highlighted Dark Gradient -->
+          <div class="donezo-kpi-card highlight">
+            <div class="donezo-kpi-header">
+              <span class="kpi-label">Total Headcount</span>
+              <span class="kpi-arrow-icon">↗</span>
+            </div>
+            <div class="kpi-value">24</div>
+            <div class="kpi-trend" style="color: #A7F3D0;">
+              <span>↑ 5 Increased from last month</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="donezo-kpi-card">
+            <div class="donezo-kpi-header">
+              <span class="kpi-label">Ended Offboardings</span>
+              <span class="kpi-arrow-icon">↗</span>
+            </div>
+            <div class="kpi-value" style="color: #0F172A;">10</div>
+            <div class="kpi-trend">
+              <span>↑ 6 Completed on time</span>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="donezo-kpi-card">
+            <div class="donezo-kpi-header">
+              <span class="kpi-label">Running Workflows</span>
+              <span class="kpi-arrow-icon">↗</span>
+            </div>
+            <div class="kpi-value" style="color: #0F172A;">12</div>
+            <div class="kpi-trend">
+              <span>↑ 2 Increased from last month</span>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="donezo-kpi-card">
+            <div class="donezo-kpi-header">
+              <span class="kpi-label">Pending Approvals</span>
+              <span class="kpi-arrow-icon">↗</span>
+            </div>
+            <div class="kpi-value" style="color: #0F172A;">2</div>
+            <div class="kpi-trend" style="color: #D97706;">
+              <span>⚡ Needs executive sign-off</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bento Content Grid (All Existing View 1 Information in Crisp White Cards) -->
+        <div class="dashboard-grid">
+
+          <!-- Left Column -->
+          <div class="grid-column-left">
+            <!-- Broadcast Card -->
+            <div class="donezo-card" id="donezoBroadcastCard">
+              <div class="card-header" style="margin-bottom: 14px;">
+                <div class="card-title-group">
+                  <div class="card-icon-pill">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
+                      <path d="M12 2v2"></path>
+                      <path d="M4.93 4.93l1.41 1.41"></path>
+                      <path d="M17.66 6.34l1.41-1.41"></path>
+                      <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
+                    </svg>
+                  </div>
+                  <h2 class="card-title">Broadcast</h2>
+                </div>
+              </div>
+
+              <!-- Post Content -->
+              <div class="broadcast-post">
+                <div class="post-author-row">
+                  <div class="author-avatar-wrap">UK</div>
+                  <div class="author-meta">
+                    <div class="author-name">Uneet Kumar</div>
+                    <div class="author-role-date">Marketing Manager | 17-08-2026 18:39</div>
+                  </div>
+                </div>
+
+                <div class="post-title">Testing video</div>
+                <div class="post-text">this i test</div>
+
+                <!-- Video Card Preview -->
+                <div class="video-preview-card" onclick="openModal('videoModal')">
+                  <div class="video-thumbnail-box">
+                    <svg class="play-triangle" viewBox="0 0 24 24" width="22" height="22" fill="#DC2626">
+                      <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <span class="video-type-badge">MP4</span>
+                  </div>
+                  <div class="video-file-info">
+                    <div class="video-filename">file_example_MP4_480_1_5MG.mp4</div>
+                    <div class="video-filesize">17-08-2026 • 3.0 MB • Tap to play full preview</div>
+                  </div>
+                </div>
+
+                <!-- Post Actions Bar -->
+                <div class="post-actions-bar">
+                  <button class="post-action-btn" onclick="toggleBroadcastLike()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                    </svg>
+                    <span>0</span>
+                  </button>
+                  <button class="post-action-btn" onclick="showToast('Comments: Uneet Kumar attached video broadcast.')">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    <span>Reply</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Alerts & Actions Card -->
+            <div class="donezo-card" style="margin-top: 20px;">
+              <div class="card-header" style="margin-bottom: 14px;">
+                <div class="card-title-group">
+                  <div class="card-icon-pill orange">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                  </div>
+                  <h2 class="card-title">Alerts & Actions</h2>
+                </div>
+                <span class="count-badge">5 Pending</span>
+              </div>
+
+              <div class="alerts-list">
+                <!-- Alert 1 -->
+                <div class="alert-item urgent">
+                  <div class="alert-item-header">
+                    <span class="alert-badge urgent">URGENT</span>
+                    <span class="alert-time">Notice ending in 12 days</span>
+                  </div>
+                  <div class="alert-title">Sara Khan (FDM-01) — Offboarding Clearance Pending</div>
+                  <div class="alert-desc">IT Asset return & Finance settlement clearance pending. Serving notice period.</div>
+                  <div class="alert-actions">
+                    <button class="alert-action-btn primary" onclick="showToast('Navigating to Sara Khan offboarding case...')">Open Clearance Case</button>
+                    <button class="alert-action-btn" onclick="showToast('Reminder ping sent to Line Manager & IT Lead')">Send Ping</button>
+                  </div>
+                </div>
+
+                <!-- Alert 2 -->
+                <div class="alert-item warning">
+                  <div class="alert-item-header">
+                    <span class="alert-badge warning">PROBATION</span>
+                    <span class="alert-time">Due Oct 02</span>
+                  </div>
+                  <div class="alert-title">3 Probation Review Confirmations</div>
+                  <div class="alert-desc">Engineering & Marketing team 90-day probationary review cycles awaiting HR confirmation.</div>
+                  <div class="alert-actions">
+                    <button class="alert-action-btn" onclick="showToast('Opened probation reviews batch')">Review 3 Cases</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Middle Column -->
+          <div class="grid-column-middle">
+            <!-- Refresh Moment Meme Card -->
+            <div class="donezo-card">
+              <div class="card-header" style="margin-bottom: 12px;">
+                <div class="card-title-group">
+                  <div class="card-icon-pill">🎬</div>
+                  <h2 class="card-title">Refresh Moment</h2>
+                </div>
+                <div class="card-header-actions">
+                  <button class="icon-control-btn" onclick="prevRefreshMoment()" title="Previous Meme">‹</button>
+                  <button class="icon-control-btn" onclick="nextRefreshMoment()" title="Next Meme">›</button>
+                  <button class="icon-control-btn" onclick="shuffleRefreshMoment()" title="Shuffle">⤮</button>
+                </div>
+              </div>
+
+              <!-- Animated Refresh Moment Visual Container -->
+              <div class="refresh-moment-visual" id="donezoRefreshMomentContainer">
+                <svg viewBox="0 0 400 240" width="100%" height="100%">
+                  <rect width="400" height="240" fill="#2C1A4D" rx="14"/>
+                  <rect x="60" y="160" width="280" height="20" fill="#58358B" rx="4"/>
+                  <rect x="140" y="90" width="120" height="80" fill="#C4B5FD" rx="8"/>
+                  <ellipse cx="200" cy="115" rx="22" ry="20" fill="#0F172A"/>
+                  <polygon points="185,98 193,82 201,96" fill="#0F172A"/>
+                  <polygon points="199,96 207,82 215,98" fill="#0F172A"/>
+                  <circle cx="193" cy="112" r="3" fill="#38BDF8"/>
+                  <circle cx="207" cy="112" r="3" fill="#38BDF8"/>
+                  <ellipse cx="200" cy="120" rx="4" ry="3" fill="#F43F5E"/>
+                  <ellipse cx="200" cy="142" rx="28" ry="18" fill="#0F172A"/>
+                  <text x="200" y="215" fill="#E2E8F0" font-family="system-ui" font-size="13" font-weight="600" text-anchor="middle">Me fixing bugs on Friday 5 PM 💻</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Quick Poll Card -->
+            <div class="donezo-card" style="margin-top: 20px;">
+              <div class="card-header" style="margin-bottom: 12px;">
+                <div class="card-title-group">
+                  <div class="card-icon-pill blue">📊</div>
+                  <h2 class="card-title">Quick Poll: Q4 Kickoff</h2>
+                </div>
+              </div>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">Which hybrid work schedule do you prefer for Q4?</p>
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <button class="poll-option-btn" onclick="votePoll(this, 62)">
+                  <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 12.5px;">
+                    <span>3 Days Office / 2 Days Remote</span>
+                    <span>62%</span>
+                  </div>
+                  <div class="poll-bar"><div class="poll-fill" style="width: 62%;"></div></div>
+                </button>
+                <button class="poll-option-btn" onclick="votePoll(this, 38)">
+                  <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 12.5px;">
+                    <span>Flexible Team Choice</span>
+                    <span>38%</span>
+                  </div>
+                  <div class="poll-bar"><div class="poll-fill" style="width: 38%;"></div></div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Reminders Card -->
+            <div class="donezo-card" style="margin-top: 20px;">
+              <div class="card-header" style="margin-bottom: 12px;">
+                <div class="card-title-group">
+                  <div class="card-icon-pill">🔔</div>
+                  <h2 class="card-title">Reminders</h2>
+                </div>
+                <button class="alert-action-btn primary" style="padding: 4px 10px; font-size: 12px;" onclick="addQuickReminder()">+ Add</button>
+              </div>
+              <div class="reminder-input-row" style="margin-bottom: 12px;">
+                <input type="text" class="reminder-input" id="donezoReminderInput" placeholder="Remind me to...">
+              </div>
+              <div class="reminders-list" id="donezoRemindersList">
+                <div class="reminder-item">
+                  <input type="checkbox" onchange="this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
+                  <span class="reminder-text">Review Q3 exit interview trends report</span>
+                </div>
+                <div class="reminder-item">
+                  <input type="checkbox" onchange="this.parentElement.style.opacity = this.checked ? '0.5' : '1';">
+                  <span class="reminder-text">Sign off IT asset clearance for leavers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="grid-column-right">
+            <!-- Upcoming Events Card -->
+            <div class="donezo-card">
+              <div class="card-header" style="margin-bottom: 12px;">
+                <div class="card-title-group">
+                  <div class="card-icon-pill blue">📅</div>
+                  <h2 class="card-title">Upcoming Events</h2>
+                </div>
+                <span class="count-badge">This Week</span>
+              </div>
+              <div class="events-list">
+                <div class="event-item">
+                  <div class="event-date-box">
+                    <span class="event-month">SEP</span>
+                    <span class="event-day">29</span>
+                  </div>
+                  <div class="event-info">
+                    <div class="event-title">All-Hands Q3 Review</div>
+                    <div class="event-sub">10:00 AM - 11:30 AM • Townhall</div>
+                  </div>
+                </div>
+                <div class="event-item">
+                  <div class="event-date-box" style="background: #FEF3C7; color: #D97706;">
+                    <span class="event-month">OCT</span>
+                    <span class="event-day">01</span>
+                  </div>
+                  <div class="event-info">
+                    <div class="event-title">🎂 Rahul Sharma's Birthday</div>
+                    <div class="event-sub">Engineering Lead • Send Wishes</div>
+                  </div>
+                </div>
+                <div class="event-item">
+                  <div class="event-date-box" style="background: #EDE9FE; color: #7C3AED;">
+                    <span class="event-month">OCT</span>
+                    <span class="event-day">03</span>
+                  </div>
+                  <div class="event-info">
+                    <div class="event-title">🎉 Noisiv 4-Year Anniversary</div>
+                    <div class="event-sub">Company Celebration Event</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- My Team Card -->
+            <div class="donezo-card" style="margin-top: 20px;">
+              <div class="card-header" style="margin-bottom: 12px;">
+                <div class="card-title-group">
+                  <div class="card-icon-pill">👥</div>
+                  <h2 class="card-title">My Team</h2>
+                </div>
+                <span class="count-badge">48 Active</span>
+              </div>
+              <div class="team-list">
+                <div class="team-member-row">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="Sara Khan" class="team-avatar">
+                  <div class="team-meta">
+                    <div class="team-name">Sara Khan</div>
+                    <div class="team-role">Frontend Lead (FDM-01)</div>
+                  </div>
+                  <span class="status-dot-pill" style="background: #FEF2F2; color: #DC2626;">Serving Notice</span>
+                </div>
+                <div class="team-member-row">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80" alt="Uneet Kumar" class="team-avatar">
+                  <div class="team-meta">
+                    <div class="team-name">Uneet Kumar</div>
+                    <div class="team-role">Marketing Manager</div>
+                  </div>
+                  <span class="status-dot-pill" style="background: #ECFDF5; color: #059669;">Active</span>
+                </div>
+                <div class="team-member-row">
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80" alt="Aarav Patel" class="team-avatar">
+                  <div class="team-meta">
+                    <div class="team-name">Aarav Patel</div>
+                    <div class="team-role">Senior DevOps Architect</div>
+                  </div>
+                  <span class="status-dot-pill" style="background: #ECFDF5; color: #059669;">Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </main>
+
+    </div> <!-- /donezo-sheet-card -->
+
+  </div> <!-- /view2-viewport -->
+</div> <!-- /dashboard-view-2 -->
 
 <!-- ==========================================================================
      INTERACTIVE MODALS: ASK HYIQ, VOICE, VIDEO PREVIEW, CUSTOMIZE
@@ -3676,6 +4904,80 @@
     }
   }
   const toggleSidebar = toggleSidebarCollapse;
+
+  // ==========================================================================
+  // MULTI-VIEW DASHBOARD SWITCHER: VIEW 1 (STANDARD) & VIEW 2 (DONEZO CANVAS)
+  // Patterned after offboarding_preview.html & property_settings_preview.html
+  // ==========================================================================
+  function switchDashboardView(viewNumber) {
+    const v1 = document.getElementById('dashboard-view-1');
+    const v2 = document.getElementById('dashboard-view-2');
+
+    if (viewNumber === 2) {
+      if (v1) v1.style.display = 'none';
+      if (v2) v2.style.display = 'block';
+
+      // Update active tabs across both view switchers
+      document.querySelectorAll('#tab1-view-1, #tab2-view-1').forEach(b => {
+        b.classList.remove('active');
+        b.querySelector('.screen-tab-dot')?.remove();
+      });
+      document.querySelectorAll('#tab1-view-2, #tab2-view-2').forEach(b => {
+        b.classList.add('active');
+        if (!b.querySelector('.screen-tab-dot')) {
+          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
+        }
+      });
+      document.querySelectorAll('#tab1-view-3, #tab2-view-3').forEach(b => b.classList.remove('active'));
+
+      localStorage.setItem('hirerkey_dashboard_active_view', '2');
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', '#view2');
+      }
+      showToast('Switched to View 2: Donezo Canvas (Elevated Sheet)');
+    } else if (viewNumber === 3) {
+      showToast('View 3: Clean Minimalist view coming soon! Showing View 2.');
+    } else {
+      if (v1) v1.style.display = 'block';
+      if (v2) v2.style.display = 'none';
+
+      // Update active tabs across both view switchers
+      document.querySelectorAll('#tab1-view-2, #tab2-view-2').forEach(b => {
+        b.classList.remove('active');
+        b.querySelector('.screen-tab-dot')?.remove();
+      });
+      document.querySelectorAll('#tab1-view-1, #tab2-view-1').forEach(b => {
+        b.classList.add('active');
+        if (!b.querySelector('.screen-tab-dot')) {
+          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
+        }
+      });
+      document.querySelectorAll('#tab1-view-3, #tab2-view-3').forEach(b => b.classList.remove('active'));
+
+      localStorage.setItem('hirerkey_dashboard_active_view', '1');
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', '#view1');
+      }
+      showToast('Switched to View 1: Standard Dashboard');
+    }
+  }
+
+  function selectDonezoNavItem(itemEl) {
+    if (!itemEl) return;
+    document.querySelectorAll('.donezo-nav-item').forEach(el => el.classList.remove('active'));
+    itemEl.classList.add('active');
+    const title = itemEl.getAttribute('data-title') || 'Dashboard';
+    showToast(`Navigated to ${title} (View 2)`);
+  }
+
+  function filterDonezoMenu(query) {
+    const q = (query || '').toLowerCase().trim();
+    const items = document.querySelectorAll('.donezo-nav-item');
+    items.forEach(item => {
+      const text = item.innerText.toLowerCase();
+      item.style.display = (q === '' || text.includes(q)) ? 'flex' : 'none';
+    });
+  }
 
   // Completely Hide (0px) or Show Sidebar (topbar button / ⌘\ / ⌘B)
   function toggleSidebarVisibility() {
@@ -4444,6 +5746,18 @@
     closeModal('customizeModal');
     showToast('New widget added to dashboard!');
   }
+
+  // Initialize active view from URL search param (?view=2), hash (#view2), or localStorage
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const hash = window.location.hash;
+    const savedView = localStorage.getItem('hirerkey_dashboard_active_view');
+    if (params.get('view') === '2' || hash === '#view2' || savedView === '2') {
+      switchDashboardView(2);
+    } else if (params.get('view') === '1' || hash === '#view1' || savedView === '1') {
+      switchDashboardView(1);
+    }
+  });
 
   // Toast feedback utility
   let toastTimer;
