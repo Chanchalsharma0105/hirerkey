@@ -193,9 +193,9 @@
 
     .logo-swoosh {
       position: absolute;
-      left: -7px;
-      bottom: -6px;
-      width: calc(100% + 9px);
+      left: -13px;
+      bottom: -5px;
+      width: calc(100% + 15px);
       height: 11px;
       pointer-events: none;
       overflow: visible;
@@ -204,7 +204,7 @@
 
     .brand-container:hover .logo-swoosh {
       transform: translateY(0.5px);
-      filter: drop-shadow(0 2px 5px rgba(124, 58, 237, 0.45));
+      filter: drop-shadow(0 2px 6px rgba(124, 58, 237, 0.45));
     }
 
     .brand-container:hover .logo-swoosh path {
@@ -712,14 +712,14 @@
     /* Bottom Workspace / Company Switcher (media_1790665061890.png) */
     .sidebar-footer {
       border-top: 1px solid #EEF2F6;
-      padding: 10px;
+      padding: 8px 9px;
       background: #FFFFFF;
       position: relative;
       flex-shrink: 0;
     }
 
     .app-sidebar.collapsed .sidebar-footer {
-      padding: 10px 6px;
+      padding: 8px 6px;
     }
 
     .workspace-switcher {
@@ -2251,7 +2251,7 @@
     <div class="sidebar-header">
       <a href="javascript:void(0)" class="brand-container" onclick="selectNavItemByTitle('Dashboard')" title="Hirerkey Dashboard">
         <div class="brand-wordmark">
-          <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 54 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 3.5 C10 9.5, 38 10, 51 2" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+          <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
         </div>
       </a>
       <button class="sidebar-toggle-btn" id="sidebarCollapseBtn" title="Toggle Sidebar (⌘B)">
@@ -2581,21 +2581,16 @@
           <div class="workspace-avatar noisiv-avatar" title="(TEST) Noisiv Consulting">
             <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <radialGradient id="noisivBgGrad" cx="45%" cy="40%" r="55%">
-                  <stop offset="0%" stop-color="#24143D"/>
-                  <stop offset="100%" stop-color="#090514"/>
+                <radialGradient id="noisivBgGrad" cx="42%" cy="38%" r="60%">
+                  <stop offset="0%" stop-color="#281347"/>
+                  <stop offset="65%" stop-color="#140827"/>
+                  <stop offset="100%" stop-color="#080312"/>
                 </radialGradient>
-                <clipPath id="noisivInnerClip">
-                  <circle cx="16" cy="16" r="14"/>
-                </clipPath>
               </defs>
-              <circle cx="16" cy="16" r="14" fill="url(#noisivBgGrad)"/>
-              <g clip-path="url(#noisivInnerClip)">
-                <rect x="8.5" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
-                <rect x="20.3" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
-                <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#090514" stroke-width="7" stroke-linecap="round"/>
-                <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round"/>
-              </g>
+              <circle cx="16" cy="16" r="14.2" fill="url(#noisivBgGrad)"/>
+              <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+              <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+              <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
               <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
             </svg>
           </div>
@@ -2618,13 +2613,10 @@
           <div class="workspace-option-left">
             <div class="workspace-mini-badge noisiv-mini-badge" style="background: transparent; overflow: hidden; padding: 0;">
               <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="16" cy="16" r="14" fill="#130924"/>
-                <g clip-path="url(#noisivInnerClip)">
-                  <rect x="8.5" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
-                  <rect x="20.3" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
-                  <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#130924" stroke-width="7" stroke-linecap="round"/>
-                  <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round"/>
-                </g>
+                <circle cx="16" cy="16" r="14.2" fill="#140827"/>
+                <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
                 <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
               </svg>
             </div>
@@ -3941,21 +3933,16 @@
         avatarEl.innerHTML = `
           <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <radialGradient id="noisivBgGrad" cx="45%" cy="40%" r="55%">
-                <stop offset="0%" stop-color="#24143D"/>
-                <stop offset="100%" stop-color="#090514"/>
+              <radialGradient id="noisivBgGrad" cx="42%" cy="38%" r="60%">
+                <stop offset="0%" stop-color="#281347"/>
+                <stop offset="65%" stop-color="#140827"/>
+                <stop offset="100%" stop-color="#080312"/>
               </radialGradient>
-              <clipPath id="noisivInnerClip">
-                <circle cx="16" cy="16" r="14"/>
-              </clipPath>
             </defs>
-            <circle cx="16" cy="16" r="14" fill="url(#noisivBgGrad)"/>
-            <g clip-path="url(#noisivInnerClip)">
-              <rect x="8.5" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
-              <rect x="20.3" y="6" width="3.2" height="20" rx="1.6" fill="#FFFFFF"/>
-              <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#090514" stroke-width="7" stroke-linecap="round"/>
-              <line x1="6.5" y1="6.5" x2="25.5" y2="25.5" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round"/>
-            </g>
+            <circle cx="16" cy="16" r="14.2" fill="url(#noisivBgGrad)"/>
+            <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+            <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+            <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
             <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
           </svg>
         `;
