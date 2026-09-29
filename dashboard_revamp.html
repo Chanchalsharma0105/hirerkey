@@ -474,9 +474,14 @@
       transform: rotate(-90deg);
     }
 
+    .app-sidebar.collapsed .nav-category {
+      margin-top: 8px;
+      margin-bottom: 2px;
+    }
+
     .app-sidebar.collapsed .nav-category-header {
       justify-content: center;
-      padding: 10px 0 6px 0;
+      padding: 6px 0 4px 0;
     }
 
     .app-sidebar.collapsed .nav-category-header span.cat-title,
@@ -486,9 +491,9 @@
 
     .app-sidebar.collapsed .nav-category-header::before {
       content: '';
-      width: 20px;
+      width: 18px;
       height: 1px;
-      background: #E2E8F0;
+      background: #EEF2F6;
       border-radius: 1px;
     }
 
@@ -506,6 +511,13 @@
       max-height: 0 !important;
       opacity: 0;
       pointer-events: none;
+    }
+
+    /* In collapsed rail mode, keep all navigation icons accessible */
+    .app-sidebar.collapsed .nav-category.collapsed .nav-category-items {
+      max-height: none !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
     }
 
     /* High-End Menu Items */
@@ -593,12 +605,14 @@
     .nav-item.active::before {
       content: '';
       position: absolute;
-      left: 0;
-      top: 7px;
-      bottom: 7px;
+      left: -12px;
+      top: 50%;
+      transform: translateY(-50%);
       width: 3.5px;
+      height: 22px;
       background: var(--brand-primary);
       border-radius: 0 4px 4px 0;
+      box-shadow: 0 0 8px rgba(124, 58, 237, 0.35);
     }
 
     /* Workplace Active Highlighted Sub-Item */
@@ -607,6 +621,10 @@
       color: #FFFFFF !important;
       font-weight: 600;
       box-shadow: 0 4px 14px rgba(124, 58, 237, 0.25);
+    }
+
+    .nav-item.active-highlight::before {
+      display: none;
     }
 
     .nav-item.active-highlight .nav-icon {
@@ -645,6 +663,7 @@
       padding: 0;
       justify-content: center;
       border-radius: 10px;
+      position: relative;
     }
 
     .app-sidebar.collapsed .nav-item-left {
@@ -669,9 +688,26 @@
     }
 
     .app-sidebar.collapsed .nav-item.active::before {
-      top: 9px;
-      bottom: 9px;
-      width: 3px;
+      left: -15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3.5px;
+      height: 22px;
+    }
+
+    /* Collapsed rail notification badge status dot (Donezo / Shopeers) */
+    .app-sidebar.collapsed .nav-item:has(.nav-badge-count)::after,
+    .app-sidebar.collapsed .nav-item[data-title="Pending Approvals"]::after {
+      content: '';
+      position: absolute;
+      top: 7px;
+      right: 9px;
+      width: 6.5px;
+      height: 6.5px;
+      background: #EF4444;
+      border-radius: 50%;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 0 0 1px rgba(239, 68, 68, 0.25);
     }
 
     /* Bottom Workspace / Company Switcher (Elevated Profile Card) */
@@ -840,6 +876,14 @@
       align-items: center;
       gap: 8px;
       min-width: 0;
+      flex: 1;
+    }
+
+    .workspace-option-left span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 165px;
     }
 
     .workspace-mini-badge {
@@ -2236,7 +2280,7 @@
 
     <!-- Quick Menu Search -->
     <div class="sidebar-search-area">
-      <div class="sidebar-search-pill" id="sidebarSearchPill" onclick="if(appSidebar.classList.contains('collapsed')) toggleSidebar();">
+      <div class="sidebar-search-pill" id="sidebarSearchPill" title="Search menus (⌘K)" onclick="if(appSidebar.classList.contains('collapsed')) { toggleSidebar(); setTimeout(() => { const s = document.getElementById('sidebarMenuSearch'); if(s) s.focus(); }, 180); }">
         <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -2588,7 +2632,7 @@
           </div>
         </div>
         <div class="workspace-popover-divider"></div>
-        <div class="workspace-option action-option" onclick="showToast('Create Workspace dialog opened')">
+        <div class="workspace-option action-option" onclick="closeAllModalsAndPopovers(); showToast('Create Workspace dialog opened');">
           <div class="workspace-option-left">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             <span>Add Organization</span>
@@ -3423,16 +3467,24 @@
       openModal('voiceModal');
     }
     if (e.key === 'Escape') {
+      const sbSearch = document.getElementById('sidebarMenuSearch');
+      if (sbSearch && document.activeElement === sbSearch) {
+        sbSearch.value = '';
+        sbSearch.dispatchEvent(new Event('input'));
+        sbSearch.blur();
+      }
       closeAllModalsAndPopovers();
     }
   });
 
   // 2. Nav Category Accordion Toggle
   function toggleNavCategory(headerEl) {
+    const category = headerEl.closest('.nav-category');
     if (appSidebar.classList.contains('collapsed')) {
       toggleSidebar();
+      if (category) category.classList.remove('collapsed');
+      return;
     }
-    const category = headerEl.closest('.nav-category');
     if (category) {
       category.classList.toggle('collapsed');
     }
@@ -3666,6 +3718,11 @@
     if (e.target.classList.contains('modal-overlay')) {
       e.target.classList.remove('open');
     }
+    if (window.innerWidth <= 860 && appSidebar && appSidebar.classList.contains('mobile-open')) {
+      if (!e.target.closest('#appSidebar') && !e.target.closest('#mobileMenuToggle')) {
+        appSidebar.classList.remove('mobile-open');
+      }
+    }
     if (!e.target.closest('#notificationBtn') && !e.target.closest('#notificationsPopover')) {
       document.getElementById('notificationsPopover').classList.remove('open');
     }
@@ -3755,7 +3812,7 @@
       if (val.toLowerCase().includes('approval')) {
         botMsg.innerHTML = '<strong>Approvals Summary:</strong> You have 5 pending requests (3 Leave requests from Marketing, 2 Shift Roster changes in Engineering). All have manager pre-approval.';
       } else if (val.toLowerCase().includes('task')) {
-        botMsg.innerHTML = '<strong>Today's Critical Tasks:</strong><br>• Complete Q3 HR Final Reviews for 12 employees.<br>• Review Uneet Kumar's marketing video broadcast.<br>• Check Shift Roster staffing for upcoming weekend.';
+        botMsg.innerHTML = "<strong>Today's Critical Tasks:</strong><br>• Complete Q3 HR Final Reviews for 12 employees.<br>• Review Uneet Kumar's marketing video broadcast.<br>• Check Shift Roster staffing for upcoming weekend.";
       } else {
         botMsg.innerHTML = `<strong>HyIQ Analysis:</strong> Analyzed Hirerkey workspace for "${escapeHtml(val)}". All records are synchronized with Noisiv Consulting organization data.`;
       }
