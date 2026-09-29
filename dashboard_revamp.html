@@ -118,8 +118,8 @@
        1. WHITE SLEEK SIDE MENU (SIDEBAR) — INSPIRED BY DONEZO & SHOPEERS
        ========================================================================== */
     .app-sidebar {
-      width: 236px;
-      min-width: 236px;
+      width: 248px;
+      min-width: 248px;
       background: #FFFFFF;
       border-right: 1px solid #EEF2F6;
       height: 100vh;
@@ -133,19 +133,22 @@
       user-select: none;
     }
 
-    /* Collapsed Sidebar Rail (68px–72px responsive rail) */
+    /* Collapsed Sidebar Rail (72px responsive rail matching Shopeers) */
     .app-sidebar.collapsed {
-      width: 70px;
-      min-width: 70px;
+      width: 72px;
+      min-width: 72px;
     }
 
-    /* Sidebar Top Brand Header */
+    /* Sidebar Top Brand Header - Exact 64px shared with main topbar */
     .sidebar-header {
-      height: 62px;
+      height: 64px;
+      min-height: 64px;
+      max-height: 64px;
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 14px 0 16px;
+      padding: 0 16px;
       border-bottom: 1px solid #EEF2F6;
       position: relative;
       flex-shrink: 0;
@@ -263,12 +266,12 @@
 
     /* Ultra-Sleek Search Menus Area */
     .sidebar-search-area {
-      padding: 10px 10px 6px 10px;
+      padding: 12px 12px 8px 12px;
       flex-shrink: 0;
     }
 
     .app-sidebar.collapsed .sidebar-search-area {
-      padding: 10px 8px 6px 8px;
+      padding: 12px 8px 8px 8px;
     }
 
     .sidebar-search-pill {
@@ -276,10 +279,10 @@
       align-items: center;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 8px;
-      height: 33px;
-      padding: 0 7px 0 9px;
-      gap: 7px;
+      border-radius: 9px;
+      height: 36px;
+      padding: 0 8px 0 10px;
+      gap: 8px;
       transition: all var(--transition-fast);
       position: relative;
     }
@@ -381,15 +384,15 @@
       display: none;
     }
 
-    /* Scrollable Menu Navigation List */
+    /* Scrollable Menu Navigation List — Shopeers Proportions */
     .sidebar-nav-list {
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 4px 8px 16px 8px;
+      padding: 6px 10px 20px 10px;
       display: flex;
       flex-direction: column;
-      gap: 1.5px;
+      gap: 2px;
     }
 
     .sidebar-nav-list::-webkit-scrollbar {
@@ -415,25 +418,25 @@
     }
 
     .app-sidebar.collapsed .sidebar-nav-list {
-      padding: 4px 6px 16px 6px;
+      padding: 6px 6px 20px 6px;
     }
 
     /* Category Accordion Header */
     .nav-category {
-      margin-top: 13px;
-      margin-bottom: 2px;
+      margin-top: 14px;
+      margin-bottom: 3px;
     }
 
     .nav-category:first-of-type {
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .nav-category-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 4px 7px;
-      border-radius: 6px;
+      padding: 5px 8px;
+      border-radius: 7px;
       cursor: pointer;
       transition: all var(--transition-fast);
     }
@@ -443,7 +446,7 @@
     }
 
     .nav-category-header span.cat-title {
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 700;
       color: #94A3B8;
       text-transform: uppercase;
@@ -518,29 +521,29 @@
       pointer-events: auto !important;
     }
 
-    /* High-End Sleek Menu Items (~35px height, 13px font) */
+    /* High-End Sleek Menu Items (~37px height, 13.5px font matching Shopeers) */
     .nav-item {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 35px;
-      min-height: 35px;
-      padding: 0 8px;
-      border-radius: 8px;
+      height: 37px;
+      min-height: 37px;
+      padding: 0 10px;
+      border-radius: 9px;
       color: #475569;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 500;
       cursor: pointer;
       transition: all var(--transition-fast);
       position: relative;
-      margin-bottom: 1.5px;
+      margin-bottom: 2px;
       text-decoration: none;
     }
 
     .nav-item-left {
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
       min-width: 0;
     }
 
@@ -555,8 +558,8 @@
     }
 
     .nav-icon svg {
-      width: 16px;
-      height: 16px;
+      width: 17px;
+      height: 17px;
       stroke-width: 1.8;
       display: block;
     }
@@ -567,7 +570,7 @@
       text-overflow: ellipsis;
       letter-spacing: -0.01em;
       transition: color var(--transition-fast);
-      font-size: 13px;
+      font-size: 13.5px;
     }
 
     .nav-item:hover {
@@ -604,11 +607,11 @@
     .nav-item.active::before {
       content: '';
       position: absolute;
-      left: -8px;
+      left: -10px;
       top: 50%;
       transform: translateY(-50%);
       width: 3.5px;
-      height: 20px;
+      height: 22px;
       background: var(--brand-primary);
       border-radius: 0 4px 4px 0;
       box-shadow: 0 0 8px rgba(124, 58, 237, 0.35);
@@ -656,12 +659,12 @@
 
     /* Collapsed Item Centering */
     .app-sidebar.collapsed .nav-item {
-      width: 40px;
+      width: 42px;
       height: 38px;
       margin: 2px auto;
       padding: 0;
       justify-content: center;
-      border-radius: 8px;
+      border-radius: 9px;
       position: relative;
     }
 
@@ -690,7 +693,7 @@
       left: -10px;
       top: 50%;
       transform: translateY(-50%);
-      width: 3px;
+      width: 3.5px;
       height: 20px;
     }
 
@@ -712,22 +715,22 @@
     /* Bottom Workspace / Company Switcher (media_1790665061890.png) */
     .sidebar-footer {
       border-top: 1px solid #EEF2F6;
-      padding: 8px 9px;
+      padding: 10px 12px;
       background: #FFFFFF;
       position: relative;
       flex-shrink: 0;
     }
 
     .app-sidebar.collapsed .sidebar-footer {
-      padding: 8px 6px;
+      padding: 10px 8px;
     }
 
     .workspace-switcher {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 6px 8px;
-      border-radius: 10px;
+      padding: 7px 10px;
+      border-radius: 11px;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
       cursor: pointer;
@@ -798,8 +801,8 @@
     }
 
     .app-sidebar.collapsed .workspace-switcher {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       margin: 0 auto;
       padding: 0;
       justify-content: center;
@@ -977,12 +980,15 @@
       min-height: 100vh;
     }
 
-    /* Topbar Header */
+    /* Topbar Header - Exactly 64px to match sidebar-header (Image 3) */
     .topbar {
-      height: 70px;
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 0 32px;
+      height: 64px;
+      min-height: 64px;
+      max-height: 64px;
+      box-sizing: border-box;
+      background: #FFFFFF;
+      border-bottom: 1px solid #EEF2F6;
+      padding: 0 28px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -995,236 +1001,316 @@
     .topbar-left {
       display: flex;
       align-items: center;
-      gap: 18px;
+      gap: 12px;
     }
 
-    /* Hamburger Button */
+    /* Hamburger / Sidebar Toggle Button (Image 2 & 3) */
     .menu-toggle-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
       display: grid;
       place-items: center;
-      color: var(--text-muted);
-      border: 1px solid var(--border-card);
-      background: var(--bg-surface);
+      color: #64748B;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
       transition: all var(--transition-fast);
+      flex-shrink: 0;
     }
 
     .menu-toggle-btn:hover {
-      background: var(--bg-surface-subtle);
-      color: var(--text-heading);
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #1E293B;
     }
 
-    /* Pill Search Bar (Donezo / Shopeers / Coursue inspired) */
+    /* Clean Search Bar with Light Square Icon Box (Image 2 & 3) */
     .topbar-search {
       position: relative;
-      width: 280px;
+      height: 38px;
+      width: 270px;
       display: flex;
       align-items: center;
-      background: var(--bg-surface-subtle);
-      border: 1px solid var(--border-card);
-      border-radius: var(--radius-full);
-      padding: 7px 14px;
-      gap: 10px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 9px;
+      padding: 3px 12px 3px 4px;
+      gap: 8px;
       transition: all var(--transition-fast);
     }
 
     .topbar-search:focus-within {
-      width: 320px;
-      background: #FFFFFF;
+      width: 310px;
       border-color: var(--brand-primary);
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
     }
 
-    .topbar-search svg {
-      color: var(--text-subtle);
+    .search-icon-box {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      background: #F1F5F9;
+      display: grid;
+      place-items: center;
       flex-shrink: 0;
+      color: #64748B;
+      transition: all var(--transition-fast);
+    }
+
+    .topbar-search:focus-within .search-icon-box {
+      background: var(--brand-light);
+      color: var(--brand-primary);
     }
 
     .topbar-search input {
       width: 100%;
       font-size: 13.5px;
-      color: var(--text-heading);
+      font-weight: 400;
+      color: #1E293B;
+      background: transparent;
+      border: none;
+      outline: none;
     }
 
     .topbar-search input::placeholder {
-      color: var(--text-subtle);
+      color: #94A3B8;
+      font-size: 13px;
     }
 
-    .topbar-search .search-badge {
-      background: #FFFFFF;
-      border: 1px solid var(--border-card);
-      border-radius: 4px;
-      padding: 1px 6px;
-      font-size: 10px;
-      font-family: var(--font-mono);
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    /* Topbar Right Actions */
+    /* Topbar Right Actions (Image 2) */
     .topbar-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
-    /* Ask HyIQ Button */
+    /* Pill 1: Ask HyIQ + HyIQ Voice Combined Pill (Image 2) */
+    .header-hyiq-pill {
+      display: inline-flex;
+      align-items: center;
+      background: #FFFFFF;
+      border: 1px solid #E0E7FF;
+      border-radius: 12px;
+      height: 38px;
+      padding: 0 4px 0 6px;
+      box-shadow: 0 1px 2px rgba(124, 58, 237, 0.04);
+      transition: all var(--transition-fast);
+    }
+
+    .header-hyiq-pill:hover {
+      border-color: #C4B5FD;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+    }
+
     .btn-hyiq {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--brand-pill-bg);
-      color: var(--brand-primary);
-      border: 1px solid #DDD6FE;
-      padding: 7px 14px;
-      border-radius: var(--radius-full);
-      font-size: 13px;
-      font-weight: 600;
+      gap: 7px;
+      padding: 5px 9px;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
       transition: all var(--transition-fast);
-      box-shadow: 0 1px 2px rgba(124, 58, 237, 0.06);
     }
 
     .btn-hyiq:hover {
-      background: var(--brand-subtle);
-      border-color: var(--brand-primary);
-      transform: translateY(-1px);
-      box-shadow: 0 3px 8px rgba(124, 58, 237, 0.15);
+      background: #F5F3FF;
+    }
+
+    .btn-hyiq-text {
+      color: var(--brand-primary);
+      font-weight: 700;
+      font-size: 13.5px;
+      letter-spacing: -0.01em;
+    }
+
+    .hyiq-robot-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .header-pill-divider {
+      width: 1px;
+      height: 18px;
+      background: #E2E8F0;
+      margin: 0 4px;
+      flex-shrink: 0;
     }
 
     .btn-hyiq-voice {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: var(--bg-surface);
-      color: var(--text-body);
-      border: 1px solid var(--border-card);
-      padding: 7px 14px;
-      border-radius: var(--radius-full);
-      font-size: 13px;
-      font-weight: 500;
+      gap: 7px;
+      padding: 5px 9px;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
       transition: all var(--transition-fast);
     }
 
     .btn-hyiq-voice:hover {
-      background: var(--bg-surface-subtle);
-      border-color: var(--brand-primary);
-      color: var(--brand-primary);
+      background: #F8FAFC;
     }
 
-    .btn-hyiq-voice .voice-bars {
+    .btn-voice-text {
+      color: #334155;
+      font-weight: 600;
+      font-size: 13.5px;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-hyiq-voice:hover .btn-voice-text {
+      color: #0F172A;
+    }
+
+    .voice-bars {
       display: flex;
-      align-items: flex-end;
-      gap: 2px;
-      height: 12px;
+      align-items: center;
+      gap: 2.5px;
+      height: 15px;
     }
 
-    .btn-hyiq-voice .voice-bar {
-      width: 2px;
-      background: var(--brand-primary);
-      border-radius: 1px;
-      animation: voicePulse 1.2s ease-in-out infinite;
+    .voice-bar {
+      width: 2.5px;
+      border-radius: 2px;
+      animation: voicePulse 1.2s ease-in-out infinite alternate;
     }
 
-    .btn-hyiq-voice .voice-bar:nth-child(2) { height: 10px; animation-delay: 0.15s; }
-    .btn-hyiq-voice .voice-bar:nth-child(3) { height: 14px; animation-delay: 0.3s; }
-    .btn-hyiq-voice .voice-bar:nth-child(4) { height: 7px; animation-delay: 0.45s; }
+    .voice-bar-1 { height: 9px; background: #8B5CF6; animation-delay: 0.1s; }
+    .voice-bar-2 { height: 14px; background: #3B82F6; animation-delay: 0.25s; }
+    .voice-bar-3 { height: 16px; background: #06B6D4; animation-delay: 0.4s; }
+    .voice-bar-4 { height: 10px; background: #7C3AED; animation-delay: 0.15s; }
 
     @keyframes voicePulse {
-      0%, 100% { transform: scaleY(0.5); }
-      50% { transform: scaleY(1.2); }
+      0% { transform: scaleY(0.4); opacity: 0.7; }
+      100% { transform: scaleY(1.15); opacity: 1; }
     }
 
     .voice-shortcut {
-      background: var(--bg-surface-subtle);
-      border: 1px solid var(--border-card);
-      border-radius: 4px;
-      padding: 1px 5px;
-      font-size: 10px;
-      font-family: var(--font-mono);
-      font-weight: 600;
-      color: var(--text-muted);
-    }
-
-    /* Version Badge */
-    .version-pill {
-      font-family: var(--font-mono);
-      font-size: 12px;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 11px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       font-weight: 500;
-      color: var(--text-muted);
-      background: var(--bg-surface-subtle);
-      border: 1px solid var(--border-subtle);
-      padding: 4px 9px;
-      border-radius: var(--radius-full);
+      color: #64748B;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
     }
 
-    /* Notification Bell */
+    /* Pill 2: v22.2.0 + Notification Bell Combined Pill (Image 2) */
+    .header-version-notif-pill {
+      display: inline-flex;
+      align-items: center;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      height: 38px;
+      padding: 0 6px 0 12px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+      position: relative;
+      transition: all var(--transition-fast);
+    }
+
+    .header-version-notif-pill:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+    }
+
+    .version-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      font-family: var(--font-main);
+      user-select: none;
+    }
+
     .notification-btn {
       position: relative;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
       display: grid;
       place-items: center;
-      color: var(--text-body);
-      border: 1px solid var(--border-card);
-      background: var(--bg-surface);
+      color: #334155;
+      background: transparent;
+      border: none;
+      cursor: pointer;
       transition: all var(--transition-fast);
     }
 
     .notification-btn:hover {
-      background: var(--bg-surface-subtle);
-      border-color: var(--border-focus);
       color: var(--brand-primary);
+      background: #F8FAFC;
     }
 
     .notification-count {
       position: absolute;
       top: -3px;
       right: -3px;
-      background: #EF4444;
+      background: #DC2626;
       color: #FFFFFF;
       font-size: 10px;
       font-weight: 800;
       min-width: 17px;
       height: 17px;
-      border-radius: var(--radius-full);
+      border-radius: 9999px;
       display: grid;
       place-items: center;
       border: 2px solid #FFFFFF;
       padding: 0 3px;
+      line-height: 1;
+      box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
     }
 
-    /* User Profile Chip */
+    /* User Profile Block (Image 2) */
     .user-profile-btn {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
-      padding: 4px 10px 4px 4px;
-      border-radius: var(--radius-full);
-      border: 1px solid var(--border-subtle);
-      background: var(--bg-surface);
+      gap: 9px;
+      height: 38px;
+      padding: 2px 6px 2px 2px;
+      border-radius: 9px;
       cursor: pointer;
       transition: all var(--transition-fast);
+      background: transparent;
+      border: none;
+      user-select: none;
     }
 
     .user-profile-btn:hover {
-      background: var(--bg-surface-subtle);
-      border-color: var(--border-card);
+      background: #F8FAFC;
     }
 
     .user-avatar-wrap {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1.5px solid #F1F5F9;
+      background: #FEF3C7;
       position: relative;
-      width: 32px;
-      height: 32px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* Resilient Styled Avatar Component (Never breaks on 403) */
+    .user-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .user-avatar-circle {
       width: 100%;
       height: 100%;
-      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1232,37 +1318,31 @@
       font-size: 12px;
       color: #FFFFFF;
       background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-      box-shadow: 0 2px 6px rgba(245, 158, 11, 0.28);
-      border: 1.5px solid var(--brand-subtle);
-    }
-
-    .online-indicator {
-      position: absolute;
-      bottom: -1px;
-      right: -1px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #10B981;
-      border: 1.5px solid #FFFFFF;
     }
 
     .user-name {
       font-size: 13.5px;
-      font-weight: 600;
-      color: var(--text-heading);
+      font-weight: 500;
+      color: #1E293B;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
     }
 
-    .user-chevron {
-      color: var(--text-subtle);
-      font-size: 12px;
+    .user-chevron-svg {
+      color: #64748B;
+      flex-shrink: 0;
+      transition: transform var(--transition-fast);
+    }
+
+    .user-profile-btn:hover .user-chevron-svg {
+      color: #1E293B;
     }
 
     /* ==========================================================================
        3. DASHBOARD MAIN CANVAS & INNER CONTENT
        ========================================================================== */
     .dashboard-container {
-      padding: 24px 32px 48px 32px;
+      padding: 20px 32px 48px 32px;
       max-width: 1480px;
       width: 100%;
       margin: 0 auto;
@@ -1271,7 +1351,7 @@
       gap: 24px;
     }
 
-    /* Subheader Action Bar */
+    /* Subheader Action Bar (Image 2) */
     .dashboard-subnav {
       display: flex;
       align-items: center;
@@ -1283,19 +1363,26 @@
       align-items: center;
       gap: 6px;
       font-size: 13px;
-      color: var(--text-muted);
+      color: #64748B;
     }
 
     .breadcrumbs-wrap a {
-      color: var(--text-muted);
+      color: #64748B;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
+      font-weight: 500;
       transition: color var(--transition-fast);
     }
 
     .breadcrumbs-wrap a:hover {
       color: var(--brand-primary);
+    }
+
+    .breadcrumbs-wrap .crumb-sep {
+      color: #94A3B8;
+      font-size: 13px;
+      user-select: none;
     }
 
     .breadcrumbs-wrap .crumb-current {
@@ -2656,65 +2743,80 @@
        ========================================================================== -->
   <main class="app-main">
 
-    <!-- Topbar Header -->
+    <!-- Topbar Header (Exact match to Image 2 & 3) -->
     <header class="topbar">
       <div class="topbar-left">
-        <button class="menu-toggle-btn" id="mobileMenuToggle" title="Toggle Menu">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
+        <button class="menu-toggle-btn" id="mobileMenuToggle" title="Toggle Sidebar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="7" x2="20" y2="7"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="17" x2="20" y2="17"></line>
           </svg>
         </button>
 
-        <!-- Search Bar with ⌘K -->
+        <!-- Search Bar with light square icon container (Image 2) -->
         <div class="topbar-search">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input type="text" placeholder="Search" id="globalHeaderSearch">
-          <span class="search-badge">⌘K</span>
+          <div class="search-icon-box">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input type="text" placeholder="Search" id="globalHeaderSearch" autocomplete="off" spellcheck="false">
         </div>
       </div>
 
-      <!-- Right Topbar Actions -->
+      <!-- Right Topbar Actions (Image 2) -->
       <div class="topbar-right">
-        <!-- Ask HyIQ -->
-        <button class="btn-hyiq" id="askHyiqBtn" title="Ask HyIQ AI Assistant">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"></path>
-          </svg>
-          <span>Ask HyIQ</span>
-        </button>
-
-        <!-- HyIQ Voice with ⌘ ⇧ Space -->
-        <button class="btn-hyiq-voice" id="hyiqVoiceBtn" title="HyIQ Voice Command (⌘ ⇧ Space)">
-          <div class="voice-bars">
-            <div class="voice-bar"></div>
-            <div class="voice-bar"></div>
-            <div class="voice-bar"></div>
-            <div class="voice-bar"></div>
-          </div>
-          <span>HyIQ Voice</span>
-          <span class="voice-shortcut">⌘ ⇧ Space</span>
-        </button>
-
-        <!-- Version Pill -->
-        <div class="version-pill">v22.2.0</div>
-
-        <!-- Notification Bell with Badge 17 -->
-        <div style="position: relative;">
-          <button class="notification-btn" id="notificationBtn" title="Notifications">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
-            <span class="notification-count" id="notificationBadge">17</span>
+        <!-- Pill 1: Ask HyIQ | HyIQ Voice [⌘ ⇧ Space] (Image 2) -->
+        <div class="header-hyiq-pill">
+          <button class="btn-hyiq" id="askHyiqBtn" title="Ask HyIQ AI Assistant">
+            <div class="hyiq-robot-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" fill="#7C3AED"/>
+                <path d="M12 5V2.5" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                <circle cx="12" cy="2.5" r="1" fill="#FFFFFF"/>
+                <path d="M7 6L5.2 4.2" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M17 6L18.8 4.2" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                <rect x="7" y="8" width="10" height="7.5" rx="2" fill="#EDE9FE"/>
+                <circle cx="9.6" cy="11.2" r="1.2" fill="#7C3AED"/>
+                <circle cx="14.4" cy="11.2" r="1.2" fill="#7C3AED"/>
+                <path d="M10.2 13.3C10.8 14 13.2 14 13.8 13.3" stroke="#7C3AED" stroke-width="1.3" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="btn-hyiq-text">Ask HyIQ</span>
           </button>
+
+          <div class="header-pill-divider"></div>
+
+          <button class="btn-hyiq-voice" id="hyiqVoiceBtn" title="HyIQ Voice Command (⌘ ⇧ Space)">
+            <div class="voice-bars">
+              <div class="voice-bar voice-bar-1"></div>
+              <div class="voice-bar voice-bar-2"></div>
+              <div class="voice-bar voice-bar-3"></div>
+              <div class="voice-bar voice-bar-4"></div>
+            </div>
+            <span class="btn-voice-text">HyIQ Voice</span>
+            <kbd class="voice-shortcut">⌘ ⇧ Space</kbd>
+          </button>
+        </div>
+
+        <!-- Pill 2: v22.2.0 | Notification Bell with Badge 17 (Image 2) -->
+        <div style="position: relative;">
+          <div class="header-version-notif-pill">
+            <span class="version-label">v22.2.0</span>
+            <div class="header-pill-divider"></div>
+            <button class="notification-btn" id="notificationBtn" title="Notifications (17 unread)">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="notification-count" id="notificationBadge">17</span>
+            </button>
+          </div>
           
           <!-- Notification Popover -->
-          <div class="popover-menu" id="notificationsPopover" style="width: 320px;">
+          <div class="popover-menu" id="notificationsPopover" style="width: 320px; right: 0;">
             <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--border-subtle);">
               <span style="font-size: 13.5px; font-weight: 700; color: var(--text-heading);" id="notifHeaderTitle">Notifications (17)</span>
               <button style="font-size: 11.5px; color: var(--brand-primary); font-weight: 600;" onclick="clearAllNotifications()">Mark all read</button>
@@ -2745,19 +2847,37 @@
           </div>
         </div>
 
-        <!-- User Profile Dropdown -->
+        <!-- User Profile (Image 2) -->
         <div style="position: relative;">
-          <div class="user-profile-btn" id="userProfileBtn">
+          <div class="user-profile-btn" id="userProfileBtn" title="Chanchal Sharma">
             <div class="user-avatar-wrap">
-              <div class="user-avatar-circle">CS</div>
-              <span class="online-indicator"></span>
+              <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=120&h=120&q=80" alt="Chanchal Sharma" class="user-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <svg class="user-avatar-svg-fallback" viewBox="0 0 36 36" width="34" height="34" style="display:none;" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="36" rx="18" fill="#F1F5F9"/>
+                <path d="M18 7C12.5 7 9 12 9 18C9 23 12.5 27 18 27C23.5 27 27 23 27 18C27 12 23.5 7 18 7Z" fill="#D97706"/>
+                <path d="M18 9C13.5 9 10.5 13 10.5 18C10.5 22 13.5 25.5 18 25.5C22.5 25.5 25.5 22 25.5 18C25.5 13 22.5 9 18 9Z" fill="#F59E0B"/>
+                <path d="M9 13C7 15 6 19 8 22C9.5 24 11 22 11 18C11 14.5 10 13.5 9 13Z" fill="#B45309"/>
+                <path d="M27 13C29 15 30 19 28 22C26.5 24 25 22 25 18C25 14.5 26 13.5 27 13Z" fill="#B45309"/>
+                <ellipse cx="18" cy="20.5" rx="4.5" ry="3.8" fill="#FDE68A"/>
+                <path d="M16.5 18.5H19.5C19.5 18.5 19.8 19.8 18 20.2C16.2 19.8 16.5 18.5 16.5 18.5Z" fill="#1E293B"/>
+                <line x1="18" y1="20.2" x2="18" y2="21.8" stroke="#1E293B" stroke-width="0.8"/>
+                <circle cx="14" cy="15" r="1.3" fill="#1E293B"/>
+                <circle cx="22" cy="15" r="1.3" fill="#1E293B"/>
+                <circle cx="13.6" cy="14.6" r="0.4" fill="#FFFFFF"/>
+                <circle cx="21.6" cy="14.6" r="0.4" fill="#FFFFFF"/>
+                <path d="M12 24.5L18 31L24 24.5C21.5 26.5 14.5 26.5 12 24.5Z" fill="#EA580C"/>
+                <path d="M11 24C14 26 22 26 25 24L24 25.5C21.5 27 14.5 27 12 25.5L11 24Z" fill="#C2410C"/>
+                <circle cx="18" cy="27" r="0.8" fill="#FDBA74"/>
+              </svg>
             </div>
             <span class="user-name">Chanchal Sharma</span>
-            <span class="user-chevron">⌄</span>
+            <svg class="user-chevron-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </div>
 
           <!-- User Profile Popover -->
-          <div class="popover-menu" id="userProfilePopover">
+          <div class="popover-menu" id="userProfilePopover" style="right: 0;">
             <div style="padding: 10px 12px; border-bottom: 1px solid var(--border-subtle);">
               <div style="font-weight: 700; color: var(--text-heading); font-size: 13.5px;">Chanchal Sharma</div>
               <div style="font-size: 11.5px; color: var(--text-muted);">Administrator • Noisiv Consulting</div>
@@ -2785,14 +2905,17 @@
          ========================================================================== -->
     <div class="dashboard-container">
 
-      <!-- Subheader Action Bar (Breadcrumb & Customize Widgets) -->
+      <!-- Subheader Action Bar (Breadcrumb & Customize Widgets - Image 2) -->
       <div class="dashboard-subnav">
         <div class="breadcrumbs-wrap">
-          <a href="javascript:void(0)" onclick="selectNavItemByTitle('Dashboard')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <a href="javascript:void(0)" onclick="selectNavItemByTitle('Dashboard')" title="Go to Home">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
             <span>Home</span>
           </a>
-          <span>›</span>
+          <span class="crumb-sep">›</span>
           <span class="crumb-current" id="breadcrumbActiveItem">Dashboard</span>
         </div>
 
