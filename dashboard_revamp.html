@@ -1540,7 +1540,7 @@
       flex: 1;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 4px 0 24px 0;
+      padding: 4px 0 10px 0;
       display: flex;
       flex-direction: column;
       scrollbar-width: thin;
@@ -1703,6 +1703,81 @@
       line-height: 1.2;
       letter-spacing: 0.02em;
       box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
+    }
+
+    /* Bottom Organization / Property Switcher in View 2 Floating Sidebar (media_1790751329158.png) */
+    .donezo-sidebar-footer {
+      border-top: 1px solid #EEF2F6;
+      padding: 10px 12px 14px 12px;
+      background: #FFFFFF;
+      position: relative;
+      flex-shrink: 0;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      box-sizing: border-box;
+      z-index: 60;
+    }
+
+    .donezo-workspace-switcher {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+
+    .donezo-workspace-switcher:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+    }
+
+    .donezo-workspace-switcher .workspace-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+    }
+
+    .donezo-workspace-switcher .workspace-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.01em;
+    }
+
+    .donezo-workspace-popover {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 10px;
+      right: 10px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.16);
+      padding: 6px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 100;
+    }
+
+    .donezo-workspace-popover.open {
+      display: flex;
     }
 
     /* 2. View 2 Content Area: Unified Soft Grey Surface (#F4F5F7) */
@@ -4474,6 +4549,79 @@
         </div>
 
       </nav>
+
+      <!-- 3. Bottom Property / Workspace Switcher (Exact Match to media_1790751329158.png) -->
+      <div class="donezo-sidebar-footer">
+        <div class="workspace-switcher donezo-workspace-switcher" id="orgSwitcherBtn2" onclick="toggleOrgSwitcher2(event)" title="Switch Property / Workspace">
+          <div class="workspace-info">
+            <div class="workspace-avatar noisiv-avatar" title="(TEST) Noisiv Consulting">
+              <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="noisivBgGrad2" cx="42%" cy="38%" r="60%">
+                    <stop offset="0%" stop-color="#281347"/>
+                    <stop offset="65%" stop-color="#140827"/>
+                    <stop offset="100%" stop-color="#080312"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="16" cy="16" r="14.2" fill="url(#noisivBgGrad2)"/>
+                <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+                <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+              </svg>
+            </div>
+            <div class="workspace-text-group">
+              <span class="workspace-title" id="currentOrgTitle2">(TEST) Noisiv Consulting</span>
+              <span class="workspace-subtitle" id="currentOrgSubtitle2" style="display:none;">Free Tier • 48 Members</span>
+            </div>
+          </div>
+          <span class="workspace-unfold-icon">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 9l5-5 5 5"></path>
+              <path d="M7 15l5 5 5-5"></path>
+            </svg>
+          </span>
+        </div>
+
+        <!-- Interactive Switcher Popover for View 2 -->
+        <div class="workspace-popover donezo-workspace-popover" id="workspacePopover2">
+          <div class="workspace-popover-header">Properties / Workspaces</div>
+          <div class="workspace-option active" onclick="switchOrganization('(TEST) Noisiv Consulting', 'N', 'Free Tier • 48 Members')">
+            <div class="workspace-option-left">
+              <div class="workspace-mini-badge noisiv-mini-badge" style="background: transparent; overflow: hidden; padding: 0;">
+                <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="16" cy="16" r="14.2" fill="#140827"/>
+                  <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                  <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                  <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+                  <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+                </svg>
+              </div>
+              <span>(TEST) Noisiv Consulting</span>
+            </div>
+            <svg class="workspace-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div class="workspace-option" onclick="switchOrganization('Acme Corp Global', 'A', 'Enterprise • 320 Members')">
+            <div class="workspace-option-left">
+              <div class="workspace-mini-badge">A</div>
+              <span>Acme Corp Global</span>
+            </div>
+          </div>
+          <div class="workspace-option" onclick="switchOrganization('Hirerkey Tech Demo', 'H', 'Team • 12 Members')">
+            <div class="workspace-option-left">
+              <div class="workspace-mini-badge">H</div>
+              <span>Hirerkey Tech Demo</span>
+            </div>
+          </div>
+          <div class="workspace-popover-divider"></div>
+          <div class="workspace-option action-option" onclick="closeAllModalsAndPopovers(); showToast('Create Workspace dialog opened');">
+            <div class="workspace-option-left">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Add Organization</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </aside>
 
       <!-- 2. Right Content Area (Soft Grey Surface with Floating White Cards) -->
@@ -4604,7 +4752,7 @@
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                   <span>Account Settings</span>
                 </div>
-                <div class="popover-item" onclick="toggleOrgSwitcher()">
+                <div class="popover-item" onclick="toggleOrgSwitcher2()">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
                   <span>Switch Workspace</span>
                 </div>
@@ -6424,6 +6572,13 @@
     }
   }
 
+  function toggleOrgSwitcher2(e) {
+    if (e) e.stopPropagation();
+    document.getElementById('view2NotificationsPopover')?.classList.remove('open');
+    document.getElementById('view2UserProfilePopover')?.classList.remove('open');
+    document.getElementById('workspacePopover2')?.classList.toggle('open');
+  }
+
   // ==========================================================================
   // VIEW 3: LIGHT PURPLE ACCENT DASHBOARD HANDLERS
   // ==========================================================================
@@ -7146,6 +7301,7 @@
     document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
     document.querySelectorAll('.popover-menu').forEach(p => p.classList.remove('open'));
     document.getElementById('workspacePopover')?.classList.remove('open');
+    document.getElementById('workspacePopover2')?.classList.remove('open');
     document.getElementById('workspacePopover3')?.classList.remove('open');
   }
 
@@ -7427,13 +7583,17 @@
 
   function switchOrganization(name, avatarChar, subtext) {
     const titleEl = document.getElementById('currentOrgTitle');
+    const titleEl2 = document.getElementById('currentOrgTitle2');
     const titleEl3 = document.getElementById('currentOrgTitle3');
     if (titleEl) titleEl.textContent = name;
+    if (titleEl2) titleEl2.textContent = name;
     if (titleEl3) titleEl3.textContent = name;
 
     const subtextEl = document.getElementById('currentOrgSubtitle');
+    const subtextEl2 = document.getElementById('currentOrgSubtitle2');
     const subtextEl3 = document.getElementById('currentOrgSubtitle3');
     if (subtextEl && subtext) subtextEl.textContent = subtext;
+    if (subtextEl2 && subtext) subtextEl2.textContent = subtext;
     if (subtextEl3 && subtext) subtextEl3.textContent = subtext;
 
     const avatarEls = document.querySelectorAll('.workspace-avatar');
@@ -7483,8 +7643,10 @@
     });
 
     const popover = document.getElementById('workspacePopover');
+    const popover2 = document.getElementById('workspacePopover2');
     const popover3 = document.getElementById('workspacePopover3');
     if (popover) popover.classList.remove('open');
+    if (popover2) popover2.classList.remove('open');
     if (popover3) popover3.classList.remove('open');
     showToast(`Switched workspace to ${name}`);
   }
@@ -7496,6 +7658,20 @@
     if (popover && popover.classList.contains('open')) {
       if (!popover.contains(e.target) && !switcher.contains(e.target)) {
         popover.classList.remove('open');
+      }
+    }
+    const popover2 = document.getElementById('workspacePopover2');
+    const switcher2 = document.getElementById('orgSwitcherBtn2');
+    if (popover2 && popover2.classList.contains('open')) {
+      if (!popover2.contains(e.target) && !switcher2.contains(e.target)) {
+        popover2.classList.remove('open');
+      }
+    }
+    const popover3 = document.getElementById('workspacePopover3');
+    const switcher3 = document.getElementById('orgSwitcherBtn3');
+    if (popover3 && popover3.classList.contains('open')) {
+      if (!popover3.contains(e.target) && !switcher3.contains(e.target)) {
+        popover3.classList.remove('open');
       }
     }
   });
