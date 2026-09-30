@@ -2952,6 +2952,184 @@
         display: none;
       }
     }
+
+    /* ==========================================================================
+       VIEW 3: LIGHT PURPLE ACCENT SIDEBAR & HEADER (#F5F3FF)
+       Exact structure of View 1 with lightest shade of brand primary (#7C3AED)
+       ========================================================================== */
+    #dashboard-view-3 {
+      background: var(--bg-canvas);
+    }
+
+    #dashboard-view-3 .app-sidebar {
+      background: var(--brand-light); /* #F5F3FF - Lightest shade of #7C3AED */
+      border-right: 1px solid var(--brand-subtle); /* #EDE9FE */
+      box-shadow: 4px 0 24px rgba(124, 58, 237, 0.04);
+    }
+
+    #dashboard-view-3 .sidebar-header {
+      background: var(--brand-light);
+      border-bottom: 1px solid var(--brand-subtle);
+    }
+
+    #dashboard-view-3 .sidebar-toggle-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--brand-subtle);
+      color: #64748B;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.06);
+    }
+
+    #dashboard-view-3 .sidebar-toggle-btn:hover {
+      background: var(--brand-primary);
+      border-color: var(--brand-primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+    }
+
+    #dashboard-view-3 .sidebar-search-pill {
+      background: #FFFFFF;
+      border: 1px solid var(--brand-subtle);
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.04);
+    }
+
+    #dashboard-view-3 .sidebar-search-pill:hover {
+      background: #FFFFFF;
+      border-color: #C4B5FD;
+    }
+
+    #dashboard-view-3 .sidebar-search-pill:focus-within {
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    #dashboard-view-3 .sidebar-kbd {
+      background: var(--brand-light);
+      border: 1px solid var(--brand-subtle);
+      color: var(--brand-primary);
+    }
+
+    #dashboard-view-3 .nav-category-header span.cat-title {
+      color: #6D28D9;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    #dashboard-view-3 .nav-category-header .category-toggle-icon {
+      color: #8B5CF6;
+    }
+
+    #dashboard-view-3 .nav-category-header:hover {
+      background: rgba(237, 233, 254, 0.55);
+    }
+
+    #dashboard-view-3 .nav-item {
+      color: #475569;
+    }
+
+    #dashboard-view-3 .nav-item:hover {
+      background: var(--brand-subtle); /* #EDE9FE */
+      color: #1E1B4B;
+    }
+
+    #dashboard-view-3 .nav-item:hover .nav-icon {
+      color: var(--brand-primary);
+    }
+
+    #dashboard-view-3 .nav-item.active {
+      background: #FFFFFF !important;
+      color: var(--brand-primary) !important;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.1), inset 0 0 0 1px rgba(124, 58, 237, 0.2) !important;
+    }
+
+    #dashboard-view-3 .nav-item.active .nav-icon {
+      color: var(--brand-primary) !important;
+    }
+
+    #dashboard-view-3 .nav-item.active .nav-label {
+      color: var(--brand-primary) !important;
+      font-weight: 700;
+    }
+
+    #dashboard-view-3 .nav-item.active::before {
+      background: var(--brand-primary);
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.45);
+    }
+
+    #dashboard-view-3 .sidebar-footer {
+      background: var(--brand-light);
+      border-top: 1px solid var(--brand-subtle);
+    }
+
+    #dashboard-view-3 .workspace-switcher {
+      background: #FFFFFF;
+      border: 1px solid var(--brand-subtle);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.04);
+    }
+
+    #dashboard-view-3 .workspace-switcher:hover {
+      background: #FFFFFF;
+      border-color: #C4B5FD;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+    }
+
+    /* View 3 Topbar: Lightest Shade of Purple */
+    #dashboard-view-3 .topbar {
+      background: var(--brand-light); /* #F5F3FF */
+      border-bottom: 1px solid var(--brand-subtle); /* #EDE9FE */
+      box-shadow: 0 2px 12px rgba(124, 58, 237, 0.03);
+    }
+
+    #dashboard-view-3 .menu-toggle-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--brand-subtle);
+      color: #64748B;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.04);
+    }
+
+    #dashboard-view-3 .menu-toggle-btn:hover {
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      color: var(--brand-primary);
+    }
+
+    #dashboard-view-3 .mobile-sidebar-toggle {
+      background: #FFFFFF;
+      border: 1px solid var(--brand-subtle);
+    }
+
+    #dashboard-view-3 .topbar-search {
+      background: #FFFFFF;
+      border: 1px solid var(--brand-subtle);
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.04);
+    }
+
+    #dashboard-view-3 .topbar-search:focus-within {
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    #dashboard-view-3 .topbar-search .search-icon-box {
+      background: var(--brand-light);
+      color: var(--brand-primary);
+    }
+
+    #dashboard-view-3 .header-hyiq-pill,
+    #dashboard-view-3 .header-version-notif-pill,
+    #dashboard-view-3 .user-profile-btn {
+      background: #FFFFFF;
+      border: 1px solid var(--brand-subtle);
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.04);
+    }
+
+    #dashboard-view-3 .header-hyiq-pill:hover,
+    #dashboard-view-3 .header-version-notif-pill:hover,
+    #dashboard-view-3 .user-profile-btn:hover {
+      border-color: #C4B5FD;
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.08);
+    }
   </style>
 </head>
 <body>
@@ -3556,8 +3734,8 @@
           <button class="screen-tab" id="tab1-view-2" onclick="switchDashboardView(2)">
             <span>View 2: Donezo Canvas</span>
           </button>
-          <button class="screen-tab" id="tab1-view-3" onclick="switchDashboardView(3)" title="Future Concept">
-            <span>View 3: Minimalist</span>
+          <button class="screen-tab" id="tab1-view-3" onclick="switchDashboardView(3)" title="Light Purple Theme">
+            <span>View 3: Light Purple Accent</span>
           </button>
         </div>
       </div>
@@ -4422,8 +4600,8 @@
               <span class="screen-tab-dot"></span>
               <span>View 2: Donezo Canvas</span>
             </button>
-            <button class="screen-tab" id="tab2-view-3" onclick="switchDashboardView(3)" title="Future Concept">
-              <span>View 3: Minimalist</span>
+            <button class="screen-tab" id="tab2-view-3" onclick="switchDashboardView(3)" title="Light Purple Theme">
+              <span>View 3: Light Purple Accent</span>
             </button>
           </div>
         </div>
@@ -4775,6 +4953,1002 @@
 </div> <!-- /dashboard-view-2 -->
 
 <!-- ==========================================================================
+     VIEW 3: LIGHT PURPLE ACCENT SIDEBAR & HEADER (#F5F3FF)
+     Everything matching View 1 with lightest shade of brand primary (#7C3AED)
+     ========================================================================== -->
+<div id="dashboard-view-3" style="display: none;" class="dashboard-view-panel">
+<div class="app-layout">
+
+  <!-- ==========================================================================
+       1. AUTHENTIC HIRERKEY WHITE SLEEK SIDEBAR
+       ========================================================================== -->
+  <aside class="app-sidebar" id="appSidebar3">
+    
+    <!-- Sidebar Header & Authentic Hirerkey Brand Wordmark (media_1790665061893.png) -->
+    <div class="sidebar-header">
+      <a href="javascript:void(0)" class="brand-container" onclick="selectView3NavItemByTitle('Dashboard')" title="Hirerkey Dashboard">
+        <div class="brand-wordmark">
+          <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+        </div>
+      </a>
+      <button class="sidebar-toggle-btn" id="sidebarCollapseBtn3" onclick="toggleView3SidebarCollapse()" title="Minimize Sidebar (72px rail)" aria-label="Minimize Sidebar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Quick Menu Search -->
+    <div class="sidebar-search-area">
+      <div class="sidebar-search-pill" id="sidebarSearchPill3" title="Search menus (⌘K)" onclick="if(document.getElementById('appSidebar3').classList.contains('collapsed')) { toggleView3SidebarCollapse(); setTimeout(() => { const s = document.getElementById('sidebarMenuSearch3'); if(s) s.focus(); }, 180); }">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" placeholder="Search menus..." id="sidebarMenuSearch3" oninput="filterView3Menu(this.value)" autocomplete="off" spellcheck="false">
+        <div class="sidebar-search-actions">
+          <button id="sidebarVoiceBtn3" title="Voice Search" onclick="event.stopPropagation(); openModal('voiceModal');"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></button>
+          <kbd class="sidebar-kbd">⌘K</kbd>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scrollable Navigation Items -->
+    <nav class="sidebar-nav-list" id="sidebarNavList3">
+
+      <!-- Standalone Active Dashboard Item -->
+      <a href="javascript:void(0)" class="nav-item active" data-title="Dashboard" onclick="selectView3NavItem(this)">
+        <div class="nav-item-left">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="3" width="7" height="7" rx="1.5"></rect>
+              <rect x="14" y="14" width="7" height="7" rx="1.5"></rect>
+              <rect x="3" y="14" width="7" height="7" rx="1.5"></rect>
+            </svg>
+          </span>
+          <span class="nav-label">Dashboard</span>
+        </div>
+      </a>
+
+      <!-- 1. Intelligence -->
+      <div class="nav-category" data-cat="intelligence">
+        <div class="nav-category-header" onclick="toggleNavCategory(this)">
+          <span class="cat-title">Intelligence</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="nav-category-items">
+          <a href="javascript:void(0)" class="nav-item" data-title="Analytics Hub" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path><path d="M4 20h16"></path></svg>
+              </span>
+              <span class="nav-label">Analytics Hub</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Knowledge Hub" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><circle cx="12" cy="9" r="2.5"></circle><path d="M9 14h6"></path></svg>
+              </span>
+              <span class="nav-label">Knowledge Hub</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Onboarding -->
+      <div class="nav-category" data-cat="onboarding">
+        <div class="nav-category-header" onclick="toggleNavCategory(this)">
+          <span class="cat-title">Onboarding</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="nav-category-items">
+          <a href="javascript:void(0)" class="nav-item" data-title="Orientation" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg>
+              </span>
+              <span class="nav-label">Orientation</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Department Tour" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path><line x1="9" y1="7" x2="9" y2="7.01"></line><line x1="15" y1="7" x2="15" y2="7.01"></line><line x1="9" y1="11" x2="9" y2="11.01"></line><line x1="15" y1="11" x2="15" y2="11.01"></line><line x1="9" y1="15" x2="9" y2="15.01"></line><line x1="15" y1="15" x2="15" y2="15.01"></line></svg>
+              </span>
+              <span class="nav-label">Department Tour</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. All Employees -->
+      <div class="nav-category" data-cat="all-employees">
+        <div class="nav-category-header" onclick="toggleNavCategory(this)">
+          <span class="cat-title">All Employees</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="nav-category-items">
+          <a href="javascript:void(0)" class="nav-item" data-title="Pre Boarding" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              </span>
+              <span class="nav-label">Pre Boarding</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Active" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              </span>
+              <span class="nav-label">Active</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Exit" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              </span>
+              <span class="nav-label">Exit</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. Performance Tools -->
+      <div class="nav-category" data-cat="performance-tools">
+        <div class="nav-category-header" onclick="toggleNavCategory(this)">
+          <span class="cat-title">Performance Tools</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="nav-category-items">
+          <a href="javascript:void(0)" class="nav-item" data-title="1-on-1 Check-ins" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><circle cx="8.5" cy="15.5" r="1.5" fill="currentColor"></circle><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"></circle></svg>
+              </span>
+              <span class="nav-label">1-on-1 Check-ins</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Create Appraisals" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+              </span>
+              <span class="nav-label">Create Appraisals</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. Appraisal -->
+      <div class="nav-category" data-cat="appraisal">
+        <div class="nav-category-header" onclick="toggleNavCategory(this)">
+          <span class="cat-title">Appraisal</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="nav-category-items">
+          <a href="javascript:void(0)" class="nav-item" data-title="Manager Review" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg>
+              </span>
+              <span class="nav-label">Manager Review</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Side-by-Side Review" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line><path d="M7 8h2"></path><path d="M15 8h2"></path><path d="M7 12h2"></path><path d="M15 12h2"></path></svg>
+              </span>
+              <span class="nav-label">Side-by-Side Review</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="HR Final Review" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="9 15 11 17 15 13"></polyline></svg>
+              </span>
+              <span class="nav-label">HR Final Review</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. Pulse Surveys -->
+      <div class="nav-category" data-cat="pulse-surveys">
+        <div class="nav-category-header" onclick="toggleNavCategory(this)">
+          <span class="cat-title">Pulse Surveys</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="nav-category-items">
+          <a href="javascript:void(0)" class="nav-item" data-title="Manage Pulse Surveys" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+              </span>
+              <span class="nav-label">Manage Pulse Surveys</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 7. Workplace -->
+      <div class="nav-category" data-cat="workplace">
+        <div class="nav-category-header" onclick="toggleNavCategory(this)">
+          <span class="cat-title">Workplace</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="nav-category-items">
+          <a href="javascript:void(0)" class="nav-item" data-title="Pending Approvals" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </span>
+              <span class="nav-label">Pending Approvals</span>
+            </div>
+            <span class="nav-badge-count">5</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Shift Roster" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path></svg>
+              </span>
+              <span class="nav-label">Shift Roster</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Org Chart" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="4" rx="1"></rect><rect x="2" y="17" width="6" height="4" rx="1"></rect><rect x="16" y="17" width="6" height="4" rx="1"></rect><path d="M12 7v5m0 0H5v5m7-5h9v5"></path></svg>
+              </span>
+              <span class="nav-label">Org Chart</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Team Attendance" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6"></path><path d="M22 11h-6"></path></svg>
+              </span>
+              <span class="nav-label">Team Attendance</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Service Desk" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line></svg>
+              </span>
+              <span class="nav-label">Service Desk</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Task Checklist" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+              </span>
+              <span class="nav-label">Task Checklist</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="HR Broadcast" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+              <span class="nav-label">HR Broadcast</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="nav-item" data-title="Document Vault" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>
+              </span>
+              <span class="nav-label">Document Vault</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 8. Expenses -->
+      <div class="nav-category" data-cat="expenses">
+        <div class="nav-category-header" onclick="toggleNavCategory(this)">
+          <span class="cat-title">Expenses</span>
+          <span class="category-toggle-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="nav-category-items">
+          <a href="javascript:void(0)" class="nav-item" data-title="Manager Approvals" onclick="selectView3NavItem(this)">
+            <div class="nav-item-left">
+              <span class="nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><path d="M12 11h.01"></path><path d="M12 15h.01"></path></svg>
+              </span>
+              <span class="nav-label">Manager Approvals</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- No Results Placeholder for Search -->
+      <div class="sidebar-no-results" id="sidebarNoResults3" style="display: none;">
+        No menus found matching your search.
+      </div>
+
+    </nav>
+
+    <!-- Bottom Organization Switcher (media_1790665061890.png) -->
+    <div class="sidebar-footer">
+      <div class="workspace-switcher" id="orgSwitcherBtn3" onclick="toggleOrgSwitcher3(event)" title="Switch Workspace">
+        <div class="workspace-info">
+          <div class="workspace-avatar noisiv-avatar" title="(TEST) Noisiv Consulting">
+            <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="noisivBgGrad3" cx="42%" cy="38%" r="60%">
+                  <stop offset="0%" stop-color="#281347"/>
+                  <stop offset="65%" stop-color="#140827"/>
+                  <stop offset="100%" stop-color="#080312"/>
+                </radialGradient>
+              </defs>
+              <circle cx="16" cy="16" r="14.2" fill="url(#noisivBgGrad3)"/>
+              <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+              <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+              <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+              <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+            </svg>
+          </div>
+          <div class="workspace-text-group">
+            <span class="workspace-title" id="currentOrgTitle3">(TEST) Noisiv Consulting</span>
+            <span class="workspace-subtitle" id="currentOrgSubtitle3" style="display:none;">Free Tier • 48 Members</span>
+          </div>
+        </div>
+        <span class="workspace-unfold-icon">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 9l5-5 5 5"></path>
+            <path d="M7 15l5 5 5-5"></path>
+          </svg>
+        </span>
+      </div>
+
+      <!-- Interactive Switcher Popover -->
+      <div class="workspace-popover" id="workspacePopover3">
+        <div class="workspace-popover-header">Workspaces</div>
+        <div class="workspace-option active" onclick="switchOrganization('(TEST) Noisiv Consulting', 'N', 'Free Tier • 48 Members')">
+          <div class="workspace-option-left">
+            <div class="workspace-mini-badge noisiv-mini-badge" style="background: transparent; overflow: hidden; padding: 0;">
+              <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="14.2" fill="#140827"/>
+                <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+                <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+                <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+              </svg>
+            </div>
+            <span>(TEST) Noisiv Consulting</span>
+          </div>
+          <svg class="workspace-check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="workspace-option" onclick="switchOrganization('Acme Corp Global', 'A', 'Enterprise • 320 Members')">
+          <div class="workspace-option-left">
+            <div class="workspace-mini-badge">A</div>
+            <span>Acme Corp Global</span>
+          </div>
+        </div>
+        <div class="workspace-option" onclick="switchOrganization('Hirerkey Tech Demo', 'H', 'Team • 12 Members')">
+          <div class="workspace-option-left">
+            <div class="workspace-mini-badge">H</div>
+            <span>Hirerkey Tech Demo</span>
+          </div>
+        </div>
+        <div class="workspace-popover-divider"></div>
+        <div class="workspace-option action-option" onclick="closeAllModalsAndPopovers(); showToast('Create Workspace dialog opened');">
+          <div class="workspace-option-left">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Organization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- Floating Tooltip Element (Prevents overflow clipping in collapsed sidebar) -->
+  <div class="sidebar-floating-tooltip" id="sidebarTooltip3"></div>
+
+  <!-- ==========================================================================
+       2. MAIN APP SHELL & TOPBAR
+       ========================================================================== -->
+  <main class="app-main">
+
+    <!-- Topbar Header (Exact match to Image 2 & 3) -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <!-- Mobile Sidebar Drawer Toggle (Dedicated mobile drawer toggle, visible only on screens <= 860px) -->
+        <button class="mobile-sidebar-toggle" id="mobileSidebarToggle3" onclick="toggleView3MobileSidebar()" title="Open Navigation Menu" aria-label="Open Navigation Menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3.5" y1="6" x2="20.5" y2="6"></line>
+            <line x1="3.5" y1="12" x2="20.5" y2="12"></line>
+            <line x1="3.5" y1="18" x2="20.5" y2="18"></line>
+          </svg>
+        </button>
+
+        <!-- Sidebar Hide/Show Toggle Button (Antigravity & Modern IDE Style) -->
+        <button class="menu-toggle-btn" id="topbarSidebarToggle3" onclick="toggleView3SidebarVisibility()" title="Toggle Sidebar (Hide / Show)" aria-label="Toggle Sidebar" aria-expanded="true">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+          </svg>
+        </button>
+
+        <!-- Search Bar with light square icon container (Image 2) -->
+        <div class="topbar-search">
+          <div class="search-icon-box">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input type="text" placeholder="Search" id="globalHeaderSearch3" oninput="filterView3Global(this.value)" autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+
+      <!-- Right Topbar Actions (Image 2) -->
+      <div class="topbar-right">
+        <!-- Pill 1: Ask HyIQ | HyIQ Voice [⌘ ⇧ Space] (Image 2) -->
+        <div class="header-hyiq-pill">
+          <button class="btn-hyiq" id="view3AskHyiqBtn" title="Ask HyIQ AI Assistant">
+            <div class="hyiq-robot-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.5 6.5L4.5 4" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="4" cy="3.5" r="1.2" fill="#7C3AED"/>
+                <path d="M17.5 6.5L19.5 4" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="20" cy="3.5" r="1.2" fill="#7C3AED"/>
+                <rect x="3.5" y="6" width="17" height="15" rx="7.5" fill="#7C3AED"/>
+                <circle cx="8.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
+                <circle cx="15.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
+                <path d="M9.5 15.8C10.5 17.2 13.5 17.2 14.5 15.8" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="btn-hyiq-text">Ask HyIQ</span>
+          </button>
+
+          <div class="header-pill-divider"></div>
+
+          <button class="btn-hyiq-voice" id="view3HyiqVoiceBtn" title="HyIQ Voice Command (⌘ ⇧ Space)">
+            <div class="voice-bars">
+              <div class="voice-bar voice-bar-1"></div>
+              <div class="voice-bar voice-bar-2"></div>
+              <div class="voice-bar voice-bar-3"></div>
+              <div class="voice-bar voice-bar-4"></div>
+            </div>
+            <span class="btn-voice-text">HyIQ Voice</span>
+            <kbd class="voice-shortcut">⌘ ⇧ Space</kbd>
+          </button>
+        </div>
+
+        <!-- Pill 2: v22.2.0 | Notification Bell with Badge 17 (Image 2) -->
+        <div style="position: relative;">
+          <div class="header-version-notif-pill">
+            <span class="version-label">v22.2.0</span>
+            <div class="header-pill-divider"></div>
+            <button class="notification-btn" id="view3NotificationBtn" onclick="toggleView3NotificationPopover(event)" title="Notifications (17 unread)">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="notification-count" id="view3NotificationBadge">17</span>
+            </button>
+          </div>
+          
+          <!-- Notification Popover -->
+          <div class="popover-menu" id="view3NotificationsPopover" style="width: 320px; right: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 12px; border-bottom: 1px solid var(--border-subtle);">
+              <span style="font-size: 13.5px; font-weight: 700; color: var(--text-heading);" id="notifHeaderTitle3">Notifications (17)</span>
+              <button style="font-size: 11.5px; color: var(--brand-primary); font-weight: 600;" onclick="clearAllNotifications()">Mark all read</button>
+            </div>
+            <div style="max-height: 280px; overflow-y: auto; padding: 6px;" id="notificationsList3">
+              <div class="popover-item">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; flex-shrink: 0;"></span>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 12.5px;">5 Pending Approvals</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Leave & expense requests pending sign-off</div>
+                </div>
+              </div>
+              <div class="popover-item">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #7C3AED; flex-shrink: 0;"></span>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 12.5px;">HR Final Review Cycle</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Appraisal cycle deadline in 3 days</div>
+                </div>
+              </div>
+              <div class="popover-item">
+                <span style="width: 8px; height: 8px; border-radius: 50%; background: #3B82F6; flex-shrink: 0;"></span>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; font-size: 12.5px;">Uneet Kumar posted video</div>
+                  <div style="font-size: 11px; color: var(--text-muted);">New broadcast: "Testing video"</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- User Profile (Image 2) -->
+        <div style="position: relative;">
+          <div class="user-profile-btn" id="view3UserProfileBtn" onclick="toggleView3ProfilePopover(event)" title="Chanchal Sharma">
+            <div class="user-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=120&h=120&q=80" alt="Chanchal Sharma" class="user-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+              <svg class="user-avatar-svg-fallback" viewBox="0 0 36 36" width="34" height="34" style="display:none;" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="36" rx="18" fill="#F1F5F9"/>
+                <path d="M18 7C12.5 7 9 12 9 18C9 23 12.5 27 18 27C23.5 27 27 23 27 18C27 12 23.5 7 18 7Z" fill="#D97706"/>
+                <path d="M18 9C13.5 9 10.5 13 10.5 18C10.5 22 13.5 25.5 18 25.5C22.5 25.5 25.5 22 25.5 18C25.5 13 22.5 9 18 9Z" fill="#F59E0B"/>
+                <path d="M9 13C7 15 6 19 8 22C9.5 24 11 22 11 18C11 14.5 10 13.5 9 13Z" fill="#B45309"/>
+                <path d="M27 13C29 15 30 19 28 22C26.5 24 25 22 25 18C25 14.5 26 13.5 27 13Z" fill="#B45309"/>
+                <ellipse cx="18" cy="20.5" rx="4.5" ry="3.8" fill="#FDE68A"/>
+                <path d="M16.5 18.5H19.5C19.5 18.5 19.8 19.8 18 20.2C16.2 19.8 16.5 18.5 16.5 18.5Z" fill="#1E293B"/>
+                <line x1="18" y1="20.2" x2="18" y2="21.8" stroke="#1E293B" stroke-width="0.8"/>
+                <circle cx="14" cy="15" r="1.3" fill="#1E293B"/>
+                <circle cx="22" cy="15" r="1.3" fill="#1E293B"/>
+                <circle cx="13.6" cy="14.6" r="0.4" fill="#FFFFFF"/>
+                <circle cx="21.6" cy="14.6" r="0.4" fill="#FFFFFF"/>
+                <path d="M12 24.5L18 31L24 24.5C21.5 26.5 14.5 26.5 12 24.5Z" fill="#EA580C"/>
+                <path d="M11 24C14 26 22 26 25 24L24 25.5C21.5 27 14.5 27 12 25.5L11 24Z" fill="#C2410C"/>
+                <circle cx="18" cy="27" r="0.8" fill="#FDBA74"/>
+              </svg>
+            </div>
+            <span class="user-name">Chanchal Sharma</span>
+            <svg class="user-chevron-svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+
+          <!-- User Profile Popover -->
+          <div class="popover-menu" id="view3UserProfilePopover" style="right: 0;">
+            <div style="padding: 10px 12px; border-bottom: 1px solid var(--border-subtle);">
+              <div style="font-weight: 700; color: var(--text-heading); font-size: 13.5px;">Chanchal Sharma</div>
+              <div style="font-size: 11.5px; color: var(--text-muted);">Administrator • Noisiv Consulting</div>
+            </div>
+            <div class="popover-item" onclick="showToast('Opened Account Settings')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              <span>Account Settings</span>
+            </div>
+            <div class="popover-item" onclick="toggleOrgSwitcher()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              <span>Switch Workspace</span>
+            </div>
+            <div class="popover-divider"></div>
+            <div class="popover-item" style="color: #EF4444;" onclick="showToast('Signed out from session')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              <span>Log out</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+         3. DASHBOARD MAIN CANVAS & INNER CONTENT
+         ========================================================================== -->
+    <div class="dashboard-container">
+
+      <!-- View Switcher Toolbar Row (Positioned Above Breadcrumbs & Widgets Line) -->
+      <div class="dashboard-switcher-row">
+        <div class="screen-switcher-bar" id="viewSwitcherBar3">
+          <button class="screen-tab" id="tab3-view-1" onclick="switchDashboardView(1)">
+            <span>View 1: Standard Dashboard</span>
+          </button>
+          <button class="screen-tab" id="tab3-view-2" onclick="switchDashboardView(2)">
+            <span>View 2: Donezo Canvas</span>
+          </button>
+          <button class="screen-tab active" id="tab3-view-3" onclick="switchDashboardView(3)">
+            <span class="screen-tab-dot"></span>
+            <span>View 3: Light Purple Accent</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Subheader Action Bar (Breadcrumb & Customize Widgets - Image 2) -->
+      <div class="dashboard-subnav">
+        <div class="breadcrumbs-wrap">
+          <a href="javascript:void(0)" onclick="selectView3NavItemByTitle('Dashboard')" title="Go to Home">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+          </a>
+          <span class="crumb-sep">›</span>
+          <span class="crumb-current" id="breadcrumbActiveItem3">Dashboard</span>
+        </div>
+
+        <div class="subnav-actions">
+          <!-- 6 new widgets pill -->
+          <div class="widget-announcement-pill" onclick="openWidgetModal()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"></path>
+            </svg>
+            <span>6 new widgets: Word of the Day, Memory Match...</span>
+          </div>
+
+          <!-- Customize button -->
+          <button class="customize-btn" onclick="openCustomizeModal()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Customize</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- ==========================================================================
+           4. GREETING HERO BANNER
+           ========================================================================== -->
+      <section class="hero-banner" id="heroGreetingBanner3">
+        <!-- Decorative geometric stars inspired by Coursue (Image 5) -->
+        <svg class="banner-star banner-star-1" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+        </svg>
+        <svg class="banner-star banner-star-2" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+        </svg>
+        <svg class="banner-star banner-star-3" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+        </svg>
+
+        <div class="banner-date">MONDAY, SEPTEMBER 28</div>
+        <h1 class="banner-title">Hey Chanchal</h1>
+        <p class="banner-subtitle">Start your week with full potential this Monday.</p>
+        
+        <div class="banner-quote-pill">
+          <span class="banner-quote-dot"></span>
+          <span>Strong workplace relationships improve teamwork and job satisfaction.</span>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           5. BENTO DASHBOARD GRID
+           ========================================================================== -->
+      <div class="dashboard-grid">
+
+        <!-- Left Column: Broadcast & Alerts/Actions -->
+        <div class="grid-column-left">
+
+          <!-- Card 1: Broadcast -->
+          <div class="dashboard-card" id="broadcastCard3">
+            <div class="card-header">
+              <div class="card-title-group">
+                <div class="card-icon-pill">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
+                    <path d="M12 2v2"></path>
+                    <path d="M4.93 4.93l1.41 1.41"></path>
+                    <path d="M17.66 6.34l1.41-1.41"></path>
+                    <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
+                  </svg>
+                </div>
+                <h2 class="card-title">Broadcast</h2>
+              </div>
+            </div>
+
+            <!-- Post Content -->
+            <div class="broadcast-post">
+              <!-- Author Header -->
+              <div class="post-author-row">
+                <div class="author-avatar-wrap">UK</div>
+                <div class="author-meta">
+                  <span class="author-name">Uneet Kumar</span>
+                  <span class="author-role-date">Marketing Manager | 17-08-2026 18:39</span>
+                </div>
+              </div>
+
+              <!-- Message Body -->
+              <div class="post-content">
+                <h3 class="post-title">Testing video</h3>
+                <p class="post-body">this i test</p>
+              </div>
+
+              <!-- Attached Video File Card -->
+              <div class="video-attachment-card" onclick="openVideoModal()">
+                <div class="video-thumb-icon">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <span class="mp4-tag">MP4</span>
+                </div>
+                <div class="video-details">
+                  <span class="video-filename">file_exampl...</span>
+                  <span class="video-filemeta">17-08-2026 • 3.0 MB</span>
+                </div>
+              </div>
+
+              <!-- Reactions Footer -->
+              <div class="post-reactions">
+                <button class="btn-like" id="likeBroadcastBtn3" onclick="toggleBroadcastLike()">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+                  </svg>
+                  <span id="likeCount3">0</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Alerts & Actions -->
+          <div class="dashboard-card" id="alertsCard3">
+            <div class="card-header">
+              <div class="card-title-group">
+                <div class="card-icon-pill orange">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                  </svg>
+                </div>
+                <h2 class="card-title">Alerts & Actions</h2>
+              </div>
+              <span style="font-size: 12px; font-weight: 600; color: var(--text-muted);">3 Active Alerts</span>
+            </div>
+
+            <div class="alerts-list">
+              <div class="alert-item">
+                <div class="alert-item-left">
+                  <span class="alert-status-dot red"></span>
+                  <div class="alert-text-group">
+                    <span class="alert-heading">5 Pending Workplace Approvals</span>
+                    <span class="alert-subtext">3 leave requests and 2 shift changes await sign-off</span>
+                  </div>
+                </div>
+                <button class="alert-action-btn" onclick="showToast('Navigating to Pending Approvals (5)')">Review</button>
+              </div>
+
+              <div class="alert-item">
+                <div class="alert-item-left">
+                  <span class="alert-status-dot amber"></span>
+                  <div class="alert-text-group">
+                    <span class="alert-heading">Appraisal Cycle Q3 Final HR Review</span>
+                    <span class="alert-subtext">Manager reviews completed for Noisiv Consulting</span>
+                  </div>
+                </div>
+                <button class="alert-action-btn" onclick="showToast('Opening Appraisal Review Cycle')">Open Cycle</button>
+              </div>
+
+              <div class="alert-item">
+                <div class="alert-item-left">
+                  <span class="alert-status-dot purple"></span>
+                  <div class="alert-text-group">
+                    <span class="alert-heading">Pulse Survey Response Rate: 84%</span>
+                    <span class="alert-subtext">Department engagement survey closes Friday</span>
+                  </div>
+                </div>
+                <button class="alert-action-btn" onclick="showToast('Opening Pulse Surveys Engagement Report')">View Report</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Container for Newly Added Custom Widgets -->
+          <div id="dynamicWidgetsContainer3" style="display: flex; flex-direction: column; gap: 24px;"></div>
+
+        </div>
+
+        <!-- Right Column: Refresh Moment & Reminders -->
+        <div class="grid-column-right">
+
+          <!-- Card 3: Refresh Moment -->
+          <div class="dashboard-card" id="refreshMomentCard3">
+            <div class="card-header">
+              <div class="card-title-group">
+                <div class="card-icon-pill blue">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                    <line x1="7" y1="2" x2="7" y2="22"></line>
+                    <line x1="17" y1="2" x2="17" y2="22"></line>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <line x1="2" y1="7" x2="7" y2="7"></line>
+                    <line x1="2" y1="17" x2="7" y2="17"></line>
+                    <line x1="17" y1="17" x2="22" y2="17"></line>
+                    <line x1="17" y1="7" x2="22" y2="7"></line>
+                  </svg>
+                </div>
+                <h2 class="card-title">Refresh Moment</h2>
+              </div>
+              <div class="card-controls">
+                <button class="control-btn" id="refreshPrevBtn3" onclick="navigateRefreshMoment(-1)" title="Previous">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="control-btn" id="refreshNextBtn3" onclick="navigateRefreshMoment(1)" title="Next">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+                <button class="control-btn" id="refreshShuffleBtn3" onclick="shuffleRefreshMoment()" title="Shuffle">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Refresh Media Display: Bulletproof Interactive Cat Typing Meme -->
+            <div class="refresh-media-wrap" id="refreshMediaContainer3">
+              <!-- Animated SVG Artwork of the iconic Black Cat typing furiously on silver Apple MacBook -->
+              <svg class="cat-meme-canvas" id="catSvgCanvas3" viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <!-- Desk Gradient -->
+                  <linearGradient id="deskGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#78350F"/>
+                    <stop offset="100%" stop-color="#451A03"/>
+                  </linearGradient>
+                  <!-- Background Office Wall -->
+                  <linearGradient id="wallGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1E293B"/>
+                    <stop offset="100%" stop-color="#0F172A"/>
+                  </linearGradient>
+                  <!-- Laptop Aluminum -->
+                  <linearGradient id="laptopGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#E2E8F0"/>
+                    <stop offset="50%" stop-color="#CBD5E1"/>
+                    <stop offset="100%" stop-color="#94A3B8"/>
+                  </linearGradient>
+                  <!-- Laptop Screen Glow -->
+                  <linearGradient id="screenGlow3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38BDF8"/>
+                    <stop offset="100%" stop-color="#6366F1"/>
+                  </linearGradient>
+                </defs>
+
+                <!-- Room Background -->
+                <rect width="480" height="340" fill="url(#wallGrad3)"/>
+                
+                <!-- Room ambient window light beam -->
+                <polygon points="0,0 200,0 360,240 0,240" fill="rgba(255, 255, 255, 0.03)"/>
+
+                <!-- Wooden Table / Desk -->
+                <polygon points="0,220 480,220 480,340 0,340" fill="url(#deskGrad3)"/>
+                <line x1="0" y1="220" x2="480" y2="220" stroke="#92400E" stroke-width="2"/>
+
+                <!-- Silver Apple MacBook Open on Desk -->
+                <!-- Base bottom case -->
+                <polygon points="90,265 240,265 270,225 130,225" fill="url(#laptopGrad3)"/>
+                <!-- Keyboard area -->
+                <polygon points="120,255 220,255 245,228 145,228" fill="#1E293B"/>
+                <g fill="#475569">
+                  <!-- Simulated Keycaps -->
+                  <rect x="135" y="232" width="10" height="3" rx="1"/>
+                  <rect x="150" y="232" width="10" height="3" rx="1"/>
+                  <rect x="165" y="232" width="10" height="3" rx="1"/>
+                  <rect x="180" y="232" width="10" height="3" rx="1"/>
+                  <rect x="195" y="232" width="10" height="3" rx="1"/>
+                  <rect x="210" y="232" width="10" height="3" rx="1"/>
+                  <rect x="130" y="238" width="12" height="3" rx="1"/>
+                  <rect x="146" y="238" width="12" height="3" rx="1"/>
+                  <rect x="162" y="238" width="12" height="3" rx="1"/>
+                  <rect x="178" y="238" width="12" height="3" rx="1"/>
+                  <rect x="194" y="238" width="12" height="3" rx="1"/>
+                  <rect x="210" y="238" width="12" height="3" rx="1"/>
+                  <rect x="145" y="247" width="55" height="4" rx="1"/>
+                </g>
+                <!-- Trackpad -->
+                <polygon points="152,263 192,263 192,254 152,254" fill="#CBD5E1"/>
+
+                <!-- Open Display Screen Backside (facing viewer angled) -->
+                <polygon points="130,225 270,225 255,140 125,140" fill="url(#laptopGrad3)" stroke="#64748B" stroke-width="1.5"/>
+                <!-- Glowing Apple Logo on laptop back -->
+                <g class="anim-apple-logo" transform="translate(190, 172) scale(0.7)">
+                  <path d="M15.2 12.9c-.1-2.4 1.9-3.6 2-3.7-1.1-1.6-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6.0-3.1 1-3.9 2.5-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2-.1 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.6-1-2.6-3.9z" fill="#FFFFFF"/>
+                  <path d="M13.4 5.4c.7-.8 1.1-2 1-3.2-1 .1-2.2.7-2.9 1.5-.6.7-1.1 1.9-1 3 1.2.1 2.3-.6 2.9-1.3z" fill="#FFFFFF"/>
+                </g>
+
+                <!-- Code Sparks / Particles Emitting from Keyboard -->
+                <text class="anim-spark-1" x="170" y="220" font-family="'JetBrains Mono', monospace" font-size="14" fill="#38BDF8" font-weight="bold">&lt;/&gt;</text>
+                <text class="anim-spark-2" x="140" y="210" font-family="'JetBrains Mono', monospace" font-size="13" fill="#FBBF24" font-weight="bold">git push</text>
+                <text class="anim-spark-3" x="200" y="205" font-family="'JetBrains Mono', monospace" font-size="15" fill="#34D399" font-weight="bold">✨</text>
+
+                <!-- The Famous Black Cat -->
+                <!-- Body -->
+                <ellipse cx="370" cy="240" rx="65" ry="60" fill="#111827"/>
+                
+                <!-- Tail with slight curve -->
+                <path d="M430 240 Q465 210 450 170" stroke="#111827" stroke-width="16" stroke-linecap="round" fill="none"/>
+
+                <!-- Cat Head -->
+                <circle cx="330" cy="180" r="42" fill="#111827"/>
+                
+                <!-- Ears -->
+                <polygon points="300,155 315,115 335,148" fill="#111827"/>
+                <polygon points="307,152 318,125 330,148" fill="#F472B6" opacity="0.6"/>
+                <polygon points="335,148 355,115 370,155" fill="#111827"/>
+                <polygon points="340,148 352,125 363,152" fill="#F472B6" opacity="0.6"/>
+
+                <!-- Big Expressive Cat Eyes -->
+                <ellipse cx="312" cy="178" rx="8" ry="11" fill="#FBBF24"/>
+                <ellipse cx="312" cy="178" rx="3.5" ry="9" fill="#000000"/>
+                <circle cx="310" cy="174" r="2.5" fill="#FFFFFF"/>
+
+                <ellipse cx="338" cy="178" rx="8" ry="11" fill="#FBBF24"/>
+                <ellipse cx="338" cy="178" rx="3.5" ry="9" fill="#000000"/>
+                <circle cx="336" cy="174" r="2.5" fill="#FFFFFF"/>
+
+                <!-- Pink Nose & Whiskers -->
+                <polygon points="322,192 328,192 325,196" fill="#F472B6"/>
+                <line x1="305" y1="193" x2="280" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="305" y1="196" x2="282" y2="199" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="340" y1="193" x2="365" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="340" y1="196" x2="363" y2="199" stroke="#94A3B8" stroke-width="1.5"/>
+
+                <!-- Right Front Paw resting forward -->
+                <g class="anim-paw-right">
+                  <path d="M340 230 Q280 235 220 238" stroke="#111827" stroke-width="18" stroke-linecap="round" fill="none"/>
+                  <!-- White paw tip tapping keys -->
+                  <ellipse cx="218" cy="239" rx="10" ry="7" fill="#F8FAFC"/>
+                </g>
+
+                <!-- Left Front Paw furiously tapping Apple keyboard -->
+                <g class="anim-paw-left">
+                  <path d="M320 220 Q250 215 180 242" stroke="#111827" stroke-width="18" stroke-linecap="round" fill="none"/>
+                  <!-- White paw tip tapping keys -->
+                  <ellipse cx="178" cy="243" rx="11" ry="8" fill="#F8FAFC"/>
+                </g>
+              </svg>
+
+              <!-- Extra Meme Art Container for Slide 2 and 3 -->
+              <div id="extraMemeArt3" style="display: none; width: 100%; height: 100%;"></div>
+
+              <!-- Meme Caption Bar -->
+              <div class="refresh-caption-bar">
+                <span id="refreshCaption3">Me fixing bugs on Friday 5 PM 💻</span>
+                <span style="opacity: 0.7; font-size: 11px;" id="refreshCounter3">1 of 3</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Reminders -->
+          <div class="dashboard-card" id="remindersCard3">
+            <div class="card-header">
+              <div class="card-title-group">
+                <div class="card-icon-pill orange">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                  </svg>
+                </div>
+                <h2 class="card-title">Reminders</h2>
+              </div>
+            </div>
+
+            <!-- Quick Add Bar -->
+            <div class="reminders-input-wrap">
+              <input type="text" id="newReminderInput3" placeholder="Remind me to..." onkeydown="handleReminderKey(event)">
+              <button class="btn-add-reminder" onclick="addReminder()">+ Add</button>
+            </div>
+
+            <!-- To-Do Content Area -->
+            <div id="remindersContent3">
+              <!-- Default state text exactly matching Image 2 -->
+              <div class="reminders-empty" id="remindersEmptyState3">
+                Nothing to remember yet. Add a quick to-do above.
+              </div>
+              <div class="reminders-list" id="remindersList3" style="display: none;"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+</div> <!-- /dashboard-view-3 -->
+
+<!-- ==========================================================================
      INTERACTIVE MODALS: ASK HYIQ, VOICE, VIDEO PREVIEW, CUSTOMIZE
      ========================================================================== -->
 
@@ -5080,29 +6254,30 @@
   const toggleSidebar = toggleSidebarCollapse;
 
   // ==========================================================================
-  // MULTI-VIEW DASHBOARD SWITCHER: VIEW 1 (STANDARD) & VIEW 2 (DONEZO CANVAS)
-  // Patterned after offboarding_preview.html & property_settings_preview.html
+  // MULTI-VIEW DASHBOARD SWITCHER: VIEW 1, VIEW 2, AND VIEW 3
   // ==========================================================================
   function switchDashboardView(viewNumber) {
     const v1 = document.getElementById('dashboard-view-1');
     const v2 = document.getElementById('dashboard-view-2');
+    const v3 = document.getElementById('dashboard-view-3');
+
+    // Clear active states and dots across all tabs in all 3 toolbars
+    document.querySelectorAll('[id^="tab1-view-"], [id^="tab2-view-"], [id^="tab3-view-"]').forEach(b => {
+      b.classList.remove('active');
+      b.querySelector('.screen-tab-dot')?.remove();
+    });
 
     if (viewNumber === 2) {
       if (v1) v1.style.display = 'none';
       if (v2) v2.style.display = 'block';
+      if (v3) v3.style.display = 'none';
 
-      // Update active tabs across both view switchers
-      document.querySelectorAll('#tab1-view-1, #tab2-view-1').forEach(b => {
-        b.classList.remove('active');
-        b.querySelector('.screen-tab-dot')?.remove();
-      });
-      document.querySelectorAll('#tab1-view-2, #tab2-view-2').forEach(b => {
+      document.querySelectorAll('#tab1-view-2, #tab2-view-2, #tab3-view-2').forEach(b => {
         b.classList.add('active');
         if (!b.querySelector('.screen-tab-dot')) {
           b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
         }
       });
-      document.querySelectorAll('#tab1-view-3, #tab2-view-3').forEach(b => b.classList.remove('active'));
 
       localStorage.setItem('hirerkey_dashboard_active_view', '2');
       if (window.history && window.history.replaceState) {
@@ -5110,23 +6285,33 @@
       }
       showToast('Switched to View 2: Donezo Canvas (Elevated Sheet)');
     } else if (viewNumber === 3) {
-      showToast('View 3: Clean Minimalist view coming soon! Showing View 2.');
-    } else {
-      if (v1) v1.style.display = 'block';
+      if (v1) v1.style.display = 'none';
       if (v2) v2.style.display = 'none';
+      if (v3) v3.style.display = 'block';
 
-      // Update active tabs across both view switchers
-      document.querySelectorAll('#tab1-view-2, #tab2-view-2').forEach(b => {
-        b.classList.remove('active');
-        b.querySelector('.screen-tab-dot')?.remove();
-      });
-      document.querySelectorAll('#tab1-view-1, #tab2-view-1').forEach(b => {
+      document.querySelectorAll('#tab1-view-3, #tab2-view-3, #tab3-view-3').forEach(b => {
         b.classList.add('active');
         if (!b.querySelector('.screen-tab-dot')) {
           b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
         }
       });
-      document.querySelectorAll('#tab1-view-3, #tab2-view-3').forEach(b => b.classList.remove('active'));
+
+      localStorage.setItem('hirerkey_dashboard_active_view', '3');
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState(null, '', '#view3');
+      }
+      showToast('Switched to View 3: Light Purple Accent');
+    } else {
+      if (v1) v1.style.display = 'block';
+      if (v2) v2.style.display = 'none';
+      if (v3) v3.style.display = 'none';
+
+      document.querySelectorAll('#tab1-view-1, #tab2-view-1, #tab3-view-1').forEach(b => {
+        b.classList.add('active');
+        if (!b.querySelector('.screen-tab-dot')) {
+          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
+        }
+      });
 
       localStorage.setItem('hirerkey_dashboard_active_view', '1');
       if (window.history && window.history.replaceState) {
@@ -5208,6 +6393,180 @@
     }
   }
 
+  // ==========================================================================
+  // VIEW 3: LIGHT PURPLE ACCENT DASHBOARD HANDLERS
+  // ==========================================================================
+  function selectView3NavItem(itemEl) {
+    if (!itemEl) return;
+    const navItems3 = document.querySelectorAll('#dashboard-view-3 .nav-item');
+    navItems3.forEach(el => el.classList.remove('active', 'active-highlight'));
+    itemEl.classList.add('active');
+    const title = itemEl.getAttribute('data-title');
+    const breadcrumb3 = document.getElementById('breadcrumbActiveItem3');
+    if (breadcrumb3 && title) breadcrumb3.textContent = title;
+    itemEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    const appSidebar3 = document.getElementById('appSidebar3');
+    if (window.innerWidth <= 860 && appSidebar3 && appSidebar3.classList.contains('mobile-open')) {
+      appSidebar3.classList.remove('mobile-open');
+    }
+
+    if (title) {
+      showToast(`Switched view to ${title} (View 3)`);
+    }
+  }
+
+  function selectView3NavItemByTitle(title) {
+    const item = document.querySelector(`#dashboard-view-3 .nav-item[data-title="${title}"]`);
+    if (item) {
+      const parentCat = item.closest('.nav-category');
+      if (parentCat) {
+        parentCat.classList.remove('collapsed');
+      }
+      selectView3NavItem(item);
+    }
+  }
+
+  function toggleView3SidebarCollapse() {
+    const sb3 = document.getElementById('appSidebar3');
+    const collapseBtn = document.getElementById('sidebarCollapseBtn3');
+    const topbarToggle = document.getElementById('topbarSidebarToggle3');
+    if (!sb3) return;
+
+    if (window.innerWidth <= 860) {
+      sb3.classList.remove('sidebar-hidden');
+      sb3.classList.toggle('mobile-open');
+    } else {
+      if (sb3.classList.contains('sidebar-hidden')) {
+        sb3.classList.remove('sidebar-hidden');
+        if (topbarToggle) {
+          topbarToggle.setAttribute('aria-expanded', 'true');
+          topbarToggle.classList.remove('active');
+          topbarToggle.setAttribute('title', 'Toggle Sidebar (Hide / Show)');
+        }
+        return;
+      }
+      const isCollapsed = sb3.classList.toggle('collapsed');
+      if (collapseBtn) {
+        collapseBtn.setAttribute('title', isCollapsed ? 'Expand Sidebar' : 'Minimize Sidebar (72px rail)');
+        collapseBtn.setAttribute('aria-label', isCollapsed ? 'Expand Sidebar' : 'Minimize Sidebar');
+      }
+    }
+  }
+
+  function toggleView3SidebarVisibility() {
+    const sb3 = document.getElementById('appSidebar3');
+    const topbarToggle = document.getElementById('topbarSidebarToggle3');
+    if (!sb3) return;
+
+    if (window.innerWidth <= 860) {
+      sb3.classList.remove('sidebar-hidden');
+      sb3.classList.toggle('mobile-open');
+    } else {
+      const isHidden = sb3.classList.toggle('sidebar-hidden');
+      if (topbarToggle) {
+        topbarToggle.setAttribute('aria-expanded', (!isHidden).toString());
+        topbarToggle.setAttribute('title', isHidden ? 'Toggle Sidebar (Hide / Show) - Currently Hidden (⌘\\)' : 'Toggle Sidebar (Hide / Show)');
+        if (isHidden) {
+          topbarToggle.classList.add('active');
+        } else {
+          topbarToggle.classList.remove('active');
+        }
+      }
+    }
+  }
+
+  function toggleView3MobileSidebar() {
+    const sb3 = document.getElementById('appSidebar3');
+    if (!sb3) return;
+    sb3.classList.remove('sidebar-hidden');
+    sb3.classList.toggle('mobile-open');
+  }
+
+  function filterView3Menu(query) {
+    const q = (query || '').toLowerCase().trim();
+    const categories = document.querySelectorAll('#dashboard-view-3 .nav-category');
+    const dashboardTopItem = document.querySelector('#dashboard-view-3 .nav-item[data-title="Dashboard"]');
+    const noResults = document.getElementById('sidebarNoResults3');
+    let totalVisible = 0;
+
+    if (dashboardTopItem) {
+      if (q === '' || dashboardTopItem.innerText.toLowerCase().includes(q)) {
+        dashboardTopItem.style.display = 'flex';
+        totalVisible++;
+      } else {
+        dashboardTopItem.style.display = 'none';
+      }
+    }
+
+    categories.forEach(cat => {
+      const items = cat.querySelectorAll('.nav-item');
+      let hasVisibleItem = false;
+
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (q === '' || text.includes(q)) {
+          item.style.display = 'flex';
+          hasVisibleItem = true;
+          totalVisible++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (hasVisibleItem || q === '') {
+        cat.style.display = 'block';
+        cat.classList.remove('collapsed');
+      } else {
+        cat.style.display = 'none';
+      }
+    });
+
+    if (noResults) {
+      if (totalVisible === 0) {
+        noResults.style.display = 'block';
+        noResults.textContent = `No menus found matching "${query}"`;
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
+  }
+
+  function filterView3Global(query) {
+    const sbSearch = document.getElementById('sidebarMenuSearch3');
+    if (sbSearch) sbSearch.value = query;
+    filterView3Menu(query);
+  }
+
+  function toggleView3NotificationPopover(e) {
+    if (e) e.stopPropagation();
+    document.getElementById('view3UserProfilePopover')?.classList.remove('open');
+    document.getElementById('workspacePopover3')?.classList.remove('open');
+    document.getElementById('view3NotificationsPopover')?.classList.toggle('open');
+  }
+
+  function toggleView3ProfilePopover(e) {
+    if (e) e.stopPropagation();
+    document.getElementById('view3NotificationsPopover')?.classList.remove('open');
+    document.getElementById('workspacePopover3')?.classList.remove('open');
+    document.getElementById('view3UserProfilePopover')?.classList.toggle('open');
+  }
+
+  function toggleOrgSwitcher3(e) {
+    if (e) e.stopPropagation();
+    document.getElementById('view3NotificationsPopover')?.classList.remove('open');
+    document.getElementById('view3UserProfilePopover')?.classList.remove('open');
+    const sb3 = document.getElementById('appSidebar3');
+    if (sb3 && sb3.classList.contains('collapsed')) {
+      toggleView3SidebarCollapse();
+      setTimeout(() => {
+        document.getElementById('workspacePopover3')?.classList.toggle('open');
+      }, 200);
+    } else {
+      document.getElementById('workspacePopover3')?.classList.toggle('open');
+    }
+  }
+
   // Completely Hide (0px) or Show Sidebar (topbar button / ⌘\ / ⌘B)
   function toggleSidebarVisibility() {
     if (window.innerWidth <= 860) {
@@ -5247,7 +6606,7 @@
   }
 
   // Floating Tooltip for collapsed sidebar items (prevents clipping by overflow container)
-  const navItems = document.querySelectorAll('.nav-item');
+  const navItems = document.querySelectorAll('#dashboard-view-1 .nav-item');
   navItems.forEach(item => {
     item.addEventListener('mouseenter', (e) => {
       if (!appSidebar.classList.contains('collapsed')) return;
@@ -5275,9 +6634,11 @@
 
   function hideFloatingTooltip() {
     if (sidebarTooltip) sidebarTooltip.style.display = 'none';
+    const st3 = document.getElementById('sidebarTooltip3');
+    if (st3) st3.style.display = 'none';
   }
 
-  // Floating tooltips for rail utility buttons in collapsed mode
+  // Floating tooltips for rail utility buttons in collapsed mode (View 1)
   if (orgSwitcherBtn) {
     orgSwitcherBtn.addEventListener('mouseenter', () => {
       if (!appSidebar.classList.contains('collapsed')) return;
@@ -5316,6 +6677,82 @@
     sidebarSearchPill.addEventListener('mouseleave', hideFloatingTooltip);
   }
 
+  // Floating Tooltips for View 3 rail items in collapsed mode
+  const navItems3 = document.querySelectorAll('#dashboard-view-3 .nav-item');
+  const appSidebar3 = document.getElementById('appSidebar3');
+  const sidebarTooltip3 = document.getElementById('sidebarTooltip3');
+  navItems3.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      if (!appSidebar3 || !appSidebar3.classList.contains('collapsed')) return;
+      const title = item.getAttribute('data-title');
+      if (!title) return;
+      const badge = item.querySelector('.nav-badge-count');
+      const rect = item.getBoundingClientRect();
+      const tt = sidebarTooltip3 || sidebarTooltip;
+      if (tt) {
+        if (badge) {
+          tt.innerHTML = `<span>${title}</span><span class="tooltip-badge">${badge.textContent.trim()}</span>`;
+        } else {
+          tt.textContent = title;
+        }
+        tt.style.top = `${rect.top + rect.height / 2}px`;
+        tt.style.left = `${rect.right + 12}px`;
+        tt.style.display = 'flex';
+      }
+    });
+
+    item.addEventListener('mouseleave', hideFloatingTooltip);
+  });
+
+  const orgSwitcherBtn3 = document.getElementById('orgSwitcherBtn3');
+  if (orgSwitcherBtn3) {
+    orgSwitcherBtn3.addEventListener('mouseenter', () => {
+      if (!appSidebar3 || !appSidebar3.classList.contains('collapsed')) return;
+      const title = document.getElementById('currentOrgTitle3')?.textContent || '(TEST) Noisiv Consulting';
+      const rect = orgSwitcherBtn3.getBoundingClientRect();
+      const tt = sidebarTooltip3 || sidebarTooltip;
+      if (tt) {
+        tt.innerHTML = `<span>${escapeHtml(title)}</span>`;
+        tt.style.top = `${rect.top + rect.height / 2}px`;
+        tt.style.left = `${rect.right + 12}px`;
+        tt.style.display = 'flex';
+      }
+    });
+    orgSwitcherBtn3.addEventListener('mouseleave', hideFloatingTooltip);
+  }
+
+  const sidebarCollapseBtn3 = document.getElementById('sidebarCollapseBtn3');
+  if (sidebarCollapseBtn3) {
+    sidebarCollapseBtn3.addEventListener('mouseenter', () => {
+      if (!appSidebar3 || !appSidebar3.classList.contains('collapsed')) return;
+      const rect = sidebarCollapseBtn3.getBoundingClientRect();
+      const tt = sidebarTooltip3 || sidebarTooltip;
+      if (tt) {
+        tt.innerHTML = `<span>Expand Sidebar</span>`;
+        tt.style.top = `${rect.top + rect.height / 2}px`;
+        tt.style.left = `${rect.right + 12}px`;
+        tt.style.display = 'flex';
+      }
+    });
+    sidebarCollapseBtn3.addEventListener('mouseleave', hideFloatingTooltip);
+  }
+
+  const sidebarSearchPill3 = document.getElementById('sidebarSearchPill3');
+  if (sidebarSearchPill3) {
+    sidebarSearchPill3.addEventListener('mouseenter', () => {
+      if (!appSidebar3 || !appSidebar3.classList.contains('collapsed')) return;
+      const rect = sidebarSearchPill3.getBoundingClientRect();
+      const tt = sidebarTooltip3 || sidebarTooltip;
+      if (tt) {
+        tt.innerHTML = `<span>Search Menus (⌘K)</span>`;
+        tt.style.top = `${rect.top + rect.height / 2}px`;
+        tt.style.left = `${rect.right + 12}px`;
+        tt.style.display = 'flex';
+      }
+    });
+    sidebarSearchPill3.addEventListener('mouseleave', hideFloatingTooltip);
+  }
+
   function selectNavItem(itemEl, customToast) {
     if (!itemEl) return;
     navItems.forEach(el => el.classList.remove('active', 'active-highlight'));
@@ -5351,16 +6788,40 @@
   document.addEventListener('keydown', (e) => {
     if ((e.metaKey || e.ctrlKey) && (e.key === '\\' || e.code === 'Backslash' || e.key.toLowerCase() === 'b')) {
       e.preventDefault();
-      toggleSidebarVisibility();
+      const v3 = document.getElementById('dashboard-view-3');
+      const v2 = document.getElementById('dashboard-view-2');
+      if (v3 && v3.style.display !== 'none') {
+        toggleView3SidebarVisibility();
+      } else if (v2 && v2.style.display !== 'none') {
+        toggleView2Sidebar();
+      } else {
+        toggleSidebarVisibility();
+      }
     }
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
       e.preventDefault();
-      if (appSidebar.classList.contains('collapsed') || appSidebar.classList.contains('sidebar-hidden')) {
-        const ghSearch = document.getElementById('globalHeaderSearch');
-        if (ghSearch) ghSearch.focus();
+      const v3 = document.getElementById('dashboard-view-3');
+      const v2 = document.getElementById('dashboard-view-2');
+      if (v3 && v3.style.display !== 'none') {
+        const sb3 = document.getElementById('appSidebar3');
+        if (sb3 && (sb3.classList.contains('collapsed') || sb3.classList.contains('sidebar-hidden'))) {
+          const ghSearch = document.getElementById('globalHeaderSearch3');
+          if (ghSearch) ghSearch.focus();
+        } else {
+          const sbSearch = document.getElementById('sidebarMenuSearch3');
+          if (sbSearch) sbSearch.focus();
+        }
+      } else if (v2 && v2.style.display !== 'none') {
+        const v2Search = document.getElementById('view2HeaderSearch') || document.getElementById('donezoMenuSearch');
+        if (v2Search) v2Search.focus();
       } else {
-        const sbSearch = document.getElementById('sidebarMenuSearch');
-        if (sbSearch) sbSearch.focus();
+        if (appSidebar.classList.contains('collapsed') || appSidebar.classList.contains('sidebar-hidden')) {
+          const ghSearch = document.getElementById('globalHeaderSearch');
+          if (ghSearch) ghSearch.focus();
+        } else {
+          const sbSearch = document.getElementById('sidebarMenuSearch');
+          if (sbSearch) sbSearch.focus();
+        }
       }
     }
     if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.code === 'Space') {
@@ -5369,10 +6830,16 @@
     }
     if (e.key === 'Escape') {
       const sbSearch = document.getElementById('sidebarMenuSearch');
+      const sbSearch3 = document.getElementById('sidebarMenuSearch3');
       if (sbSearch && document.activeElement === sbSearch) {
         sbSearch.value = '';
         sbSearch.dispatchEvent(new Event('input'));
         sbSearch.blur();
+      }
+      if (sbSearch3 && document.activeElement === sbSearch3) {
+        sbSearch3.value = '';
+        filterView3Menu('');
+        sbSearch3.blur();
       }
       closeAllModalsAndPopovers();
     }
@@ -5381,8 +6848,14 @@
   // 2. Nav Category Accordion Toggle
   function toggleNavCategory(headerEl) {
     const category = headerEl.closest('.nav-category');
-    if (appSidebar.classList.contains('collapsed')) {
-      toggleSidebar();
+    const isV3 = headerEl.closest('#dashboard-view-3');
+    const activeSidebar = isV3 ? document.getElementById('appSidebar3') : appSidebar;
+    if (activeSidebar && activeSidebar.classList.contains('collapsed')) {
+      if (isV3) {
+        toggleView3SidebarCollapse();
+      } else {
+        toggleSidebar();
+      }
       if (category) category.classList.remove('collapsed');
       return;
     }
@@ -5457,6 +6930,13 @@
     });
   }
 
+  const globalHeaderSearch3 = document.getElementById('globalHeaderSearch3');
+  if (globalHeaderSearch3) {
+    globalHeaderSearch3.addEventListener('input', (e) => {
+      filterView3Global(e.target.value);
+    });
+  }
+
   const view2HeaderSearch = document.getElementById('view2HeaderSearch');
   if (view2HeaderSearch) {
     view2HeaderSearch.addEventListener('input', (e) => {
@@ -5469,18 +6949,23 @@
   let hasLiked = false;
   function toggleBroadcastLike() {
     const likeBtn = document.getElementById('likeBroadcastBtn');
+    const likeBtn3 = document.getElementById('likeBroadcastBtn3');
     const likeCount = document.getElementById('likeCount');
+    const likeCount3 = document.getElementById('likeCount3');
     if (!hasLiked) {
       likeCountVal++;
       hasLiked = true;
       if (likeBtn) likeBtn.classList.add('liked');
+      if (likeBtn3) likeBtn3.classList.add('liked');
       showToast("Liked Uneet Kumar's broadcast! 👍");
     } else {
       likeCountVal--;
       hasLiked = false;
       if (likeBtn) likeBtn.classList.remove('liked');
+      if (likeBtn3) likeBtn3.classList.remove('liked');
     }
     if (likeCount) likeCount.textContent = likeCountVal;
+    if (likeCount3) likeCount3.textContent = likeCountVal;
   }
   // 5. Refresh Moment Carousel (Features animated SVG memes)
   const refreshMoments = [
@@ -5501,30 +6986,36 @@
 
   function updateRefreshDisplay() {
     const moment = refreshMoments[currentMomentIdx];
-    const captionEl = document.getElementById('refreshCaption');
-    const counterEl = document.getElementById('refreshCounter');
-    const container = document.getElementById('refreshMediaContainer');
+    const captionEls = [document.getElementById('refreshCaption'), document.getElementById('refreshCaption3')];
+    const counterEls = [document.getElementById('refreshCounter'), document.getElementById('refreshCounter3')];
 
-    captionEl.textContent = moment.caption;
-    counterEl.textContent = `${currentMomentIdx + 1} of ${refreshMoments.length}`;
+    captionEls.forEach(el => { if (el) el.textContent = moment.caption; });
+    counterEls.forEach(el => { if (el) el.textContent = `${currentMomentIdx + 1} of ${refreshMoments.length}`; });
 
-    // Render corresponding fun SVG art
-    const catCanvas = document.getElementById('catSvgCanvas');
-    const extraArt = document.getElementById('extraMemeArt');
+    const catCanvases = [document.getElementById('catSvgCanvas'), document.getElementById('catSvgCanvas3')];
+    const extraArts = [document.getElementById('extraMemeArt'), document.getElementById('extraMemeArt3')];
 
     if (moment.renderType === 'cat') {
-      catCanvas.style.display = 'block';
-      extraArt.style.display = 'none';
+      catCanvases.forEach(c => { if (c) c.style.display = 'block'; });
+      extraArts.forEach(a => { if (a) a.style.display = 'none'; });
     } else if (moment.renderType === 'coffee') {
-      catCanvas.style.display = 'none';
-      extraArt.style.display = 'grid';
-      extraArt.style.cssText = 'width: 100%; height: 100%; display: grid; place-items: center; background: #1E1B4B; color: #FFFFFF; font-size: 48px;';
-      extraArt.innerHTML = '<div style="text-align: center;"><div style="font-size: 72px; animation: voicePulse 1s infinite alternate;">☕</div><p style="font-size: 16px; font-weight: 700; margin-top: 10px; color: #C7D2FE;">Caffeine Level: 99.4%</p></div>';
+      catCanvases.forEach(c => { if (c) c.style.display = 'none'; });
+      extraArts.forEach(a => {
+        if (a) {
+          a.style.display = 'grid';
+          a.style.cssText = 'width: 100%; height: 100%; display: grid; place-items: center; background: #1E1B4B; color: #FFFFFF; font-size: 48px;';
+          a.innerHTML = '<div style="text-align: center;"><div style="font-size: 72px; animation: voicePulse 1s infinite alternate;">☕</div><p style="font-size: 16px; font-weight: 700; margin-top: 10px; color: #C7D2FE;">Caffeine Level: 99.4%</p></div>';
+        }
+      });
     } else if (moment.renderType === 'success') {
-      catCanvas.style.display = 'none';
-      extraArt.style.display = 'grid';
-      extraArt.style.cssText = 'width: 100%; height: 100%; display: grid; place-items: center; background: #064E3B; color: #FFFFFF; font-size: 48px;';
-      extraArt.innerHTML = '<div style="text-align: center;"><div style="font-size: 72px;">🎉 🚀 ✨</div><p style="font-size: 16px; font-weight: 700; margin-top: 10px; color: #6EE7B7;">Zero Build Errors!</p></div>';
+      catCanvases.forEach(c => { if (c) c.style.display = 'none'; });
+      extraArts.forEach(a => {
+        if (a) {
+          a.style.display = 'grid';
+          a.style.cssText = 'width: 100%; height: 100%; display: grid; place-items: center; background: #064E3B; color: #FFFFFF; font-size: 48px;';
+          a.innerHTML = '<div style="text-align: center;"><div style="font-size: 72px;">🎉 🚀 ✨</div><p style="font-size: 16px; font-weight: 700; margin-top: 10px; color: #6EE7B7;">Zero Build Errors!</p></div>';
+        }
+      });
     }
   }
 
@@ -5546,47 +7037,50 @@
   const reminders = [];
 
   function renderReminders() {
-    const emptyState = document.getElementById('remindersEmptyState');
-    const list = document.getElementById('remindersList');
+    const emptyStates = [document.getElementById('remindersEmptyState'), document.getElementById('remindersEmptyState3')];
+    const lists = [document.getElementById('remindersList'), document.getElementById('remindersList3')];
 
     if (reminders.length === 0) {
-      emptyState.style.display = 'block';
-      list.style.display = 'none';
-      list.innerHTML = '';
+      emptyStates.forEach(el => { if (el) el.style.display = 'block'; });
+      lists.forEach(el => { if (el) { el.style.display = 'none'; el.innerHTML = ''; } });
       return;
     }
 
-    emptyState.style.display = 'none';
-    list.style.display = 'flex';
-    list.innerHTML = '';
-
-    reminders.forEach((r, idx) => {
-      const item = document.createElement('div');
-      item.className = `reminder-item ${r.done ? 'done' : ''}`;
-      item.innerHTML = `
-        <div class="reminder-checkbox-wrap">
-          <input type="checkbox" class="reminder-checkbox" ${r.done ? 'checked' : ''} onchange="toggleReminderDone(${idx})">
-          <span>${escapeHtml(r.text)}</span>
-        </div>
-        <button class="btn-del-reminder" onclick="deleteReminder(${idx})" title="Delete">✕</button>
-      `;
-      list.appendChild(item);
+    emptyStates.forEach(el => { if (el) el.style.display = 'none'; });
+    lists.forEach(el => {
+      if (!el) return;
+      el.style.display = 'flex';
+      el.innerHTML = '';
+      reminders.forEach((r, idx) => {
+        const item = document.createElement('div');
+        item.className = `reminder-item ${r.done ? 'done' : ''}`;
+        item.innerHTML = `
+          <div class="reminder-checkbox-wrap">
+            <input type="checkbox" class="reminder-checkbox" ${r.done ? 'checked' : ''} onchange="toggleReminderDone(${idx})">
+            <span>${escapeHtml(r.text)}</span>
+          </div>
+          <button class="btn-del-reminder" onclick="deleteReminder(${idx})" title="Delete">✕</button>
+        `;
+        el.appendChild(item);
+      });
     });
   }
 
-  function addReminder() {
-    const input = document.getElementById('newReminderInput');
-    const text = input.value.trim();
+  function addReminder(viewNum) {
+    const input3 = document.getElementById('newReminderInput3');
+    const input1 = document.getElementById('newReminderInput');
+    const text = (viewNum === 3 && input3 ? input3.value : (input1?.value || input3?.value || '')).trim();
     if (!text) return;
     reminders.push({ text, done: false });
-    input.value = '';
+    if (input1) input1.value = '';
+    if (input3) input3.value = '';
     renderReminders();
     showToast('Reminder added! 🔔');
   }
 
-  function handleReminderKey(e) {
+  function handleReminderKey(e, viewNum) {
     if (e.key === 'Enter') {
-      addReminder();
+      addReminder(viewNum);
     }
   }
 
@@ -5619,9 +7113,9 @@
 
   function closeAllModalsAndPopovers() {
     document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
-    document.getElementById('notificationsPopover')?.classList.remove('open');
-    document.getElementById('userProfilePopover')?.classList.remove('open');
+    document.querySelectorAll('.popover-menu').forEach(p => p.classList.remove('open'));
     document.getElementById('workspacePopover')?.classList.remove('open');
+    document.getElementById('workspacePopover3')?.classList.remove('open');
   }
 
   function submitNewBroadcast() {
@@ -5638,8 +7132,8 @@
     closeModal('broadcastModal');
     showToast(`Broadcast "${title}" published to ${audience}! 📣`);
 
-    const card = document.getElementById('broadcastCard');
-    if (card) {
+    [document.getElementById('broadcastCard'), document.getElementById('broadcastCard3')].forEach(card => {
+      if (!card) return;
       const postEl = document.createElement('div');
       postEl.className = 'broadcast-post live-new-broadcast';
       postEl.style.borderBottom = '1px solid var(--border-subtle)';
@@ -5687,7 +7181,7 @@
         card.style.boxShadow = '';
         card.style.borderColor = '';
       }, 2500);
-    }
+    });
     document.getElementById('newBroadcastForm')?.reset();
   }
 
@@ -5698,6 +7192,12 @@
     if (window.innerWidth <= 860 && appSidebar && appSidebar.classList.contains('mobile-open')) {
       if (!e.target.closest('#appSidebar') && !e.target.closest('#sidebarCollapseBtn') && !e.target.closest('#mobileSidebarToggle')) {
         appSidebar.classList.remove('mobile-open');
+      }
+    }
+    const appSidebar3 = document.getElementById('appSidebar3');
+    if (window.innerWidth <= 860 && appSidebar3 && appSidebar3.classList.contains('mobile-open')) {
+      if (!e.target.closest('#appSidebar3') && !e.target.closest('#sidebarCollapseBtn3') && !e.target.closest('#mobileSidebarToggle3')) {
+        appSidebar3.classList.remove('mobile-open');
       }
     }
     if (!e.target.closest('#notificationBtn') && !e.target.closest('#notificationsPopover')) {
@@ -5712,8 +7212,17 @@
     if (!e.target.closest('#view2UserProfileBtn') && !e.target.closest('#view2UserProfilePopover')) {
       document.getElementById('view2UserProfilePopover')?.classList.remove('open');
     }
+    if (!e.target.closest('#view3NotificationBtn') && !e.target.closest('#view3NotificationsPopover')) {
+      document.getElementById('view3NotificationsPopover')?.classList.remove('open');
+    }
+    if (!e.target.closest('#view3UserProfileBtn') && !e.target.closest('#view3UserProfilePopover')) {
+      document.getElementById('view3UserProfilePopover')?.classList.remove('open');
+    }
     if (!e.target.closest('#orgSwitcherBtn') && !e.target.closest('#workspacePopover')) {
       document.getElementById('workspacePopover')?.classList.remove('open');
+    }
+    if (!e.target.closest('#orgSwitcherBtn3') && !e.target.closest('#workspacePopover3')) {
+      document.getElementById('workspacePopover3')?.classList.remove('open');
     }
   };
 
@@ -5745,8 +7254,10 @@
     document.getElementById('view2UserProfilePopover')?.classList.toggle('open');
   });
 
-  document.getElementById('askHyiqBtn').addEventListener('click', () => openModal('hyiqModal'));
-  document.getElementById('hyiqVoiceBtn').addEventListener('click', () => openModal('voiceModal'));
+  document.getElementById('askHyiqBtn')?.addEventListener('click', () => openModal('hyiqModal'));
+  document.getElementById('hyiqVoiceBtn')?.addEventListener('click', () => openModal('voiceModal'));
+  document.getElementById('view3AskHyiqBtn')?.addEventListener('click', () => openModal('hyiqModal'));
+  document.getElementById('view3HyiqVoiceBtn')?.addEventListener('click', () => openModal('voiceModal'));
 
   function openVideoModal() {
     openModal('videoModal');
@@ -5839,22 +7350,27 @@
 
   function clearAllNotifications() {
     const badge = document.getElementById('notificationBadge');
+    const badge3 = document.getElementById('view3NotificationBadge');
     if (badge) badge.style.display = 'none';
+    if (badge3) badge3.style.display = 'none';
     const notifTitle = document.getElementById('notifHeaderTitle');
+    const notifTitle3 = document.getElementById('notifHeaderTitle3');
     if (notifTitle) notifTitle.textContent = 'Notifications (0)';
+    if (notifTitle3) notifTitle3.textContent = 'Notifications (0)';
     const list = document.getElementById('notificationsList');
-    if (list) {
-      list.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted); font-size: 13px;">All caught up! No unread notifications.</div>';
-    }
+    const list3 = document.getElementById('notificationsList3');
+    const emptyHtml = '<div style="padding: 20px; text-align: center; color: var(--text-muted); font-size: 13px;">All caught up! No unread notifications.</div>';
+    if (list) list.innerHTML = emptyHtml;
+    if (list3) list3.innerHTML = emptyHtml;
     showToast('All 17 notifications marked as read.');
   }
 
   function toggleCard(cardId, isVisible) {
     const card = document.getElementById(cardId);
-    if (card) {
-      card.style.display = isVisible ? '' : 'none';
-      showToast(`${cardId} ${isVisible ? 'shown' : 'hidden'}`);
-    }
+    const card3 = document.getElementById(cardId + '3');
+    if (card) card.style.display = isVisible ? '' : 'none';
+    if (card3) card3.style.display = isVisible ? '' : 'none';
+    showToast(`${cardId} ${isVisible ? 'shown' : 'hidden'}`);
   }
 
   // Workspace Switcher
@@ -5880,13 +7396,17 @@
 
   function switchOrganization(name, avatarChar, subtext) {
     const titleEl = document.getElementById('currentOrgTitle');
+    const titleEl3 = document.getElementById('currentOrgTitle3');
     if (titleEl) titleEl.textContent = name;
+    if (titleEl3) titleEl3.textContent = name;
 
     const subtextEl = document.getElementById('currentOrgSubtitle');
+    const subtextEl3 = document.getElementById('currentOrgSubtitle3');
     if (subtextEl && subtext) subtextEl.textContent = subtext;
+    if (subtextEl3 && subtext) subtextEl3.textContent = subtext;
 
-    const avatarEl = document.querySelector('.workspace-avatar');
-    if (avatarEl) {
+    const avatarEls = document.querySelectorAll('.workspace-avatar');
+    avatarEls.forEach(avatarEl => {
       if (name.includes('Noisiv')) {
         avatarEl.innerHTML = `
           <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -5907,7 +7427,7 @@
       } else {
         avatarEl.innerHTML = `<span style="font-weight: 800; font-size: 13px; color: #FFFFFF; background: linear-gradient(135deg, #7C3AED, #6366F1); width: 100%; height: 100%; display: grid; place-items: center; border-radius: 50%;">${escapeHtml(avatarChar)}</span>`;
       }
-    }
+    });
 
     document.querySelectorAll('.workspace-option').forEach(opt => {
       const isMatch = opt.innerText.includes(name);
@@ -5932,7 +7452,9 @@
     });
 
     const popover = document.getElementById('workspacePopover');
+    const popover3 = document.getElementById('workspacePopover3');
     if (popover) popover.classList.remove('open');
+    if (popover3) popover3.classList.remove('open');
     showToast(`Switched workspace to ${name}`);
   }
 
@@ -5946,14 +7468,14 @@
       }
     }
   });
+
   // 6 New Widgets Generator (Adding to dashboard from gallery)
   function addCustomWidget(type) {
-    const container = document.getElementById('dynamicWidgetsContainer');
-    const card = document.createElement('div');
-    card.className = 'dashboard-card';
+    const containers = [document.getElementById('dynamicWidgetsContainer'), document.getElementById('dynamicWidgetsContainer3')].filter(Boolean);
 
+    let html = '';
     if (type === 'wordOfDay') {
-      card.innerHTML = `
+      html = `
         <div class="card-header">
           <div class="card-title-group">
             <div class="card-icon-pill blue">📖</div>
@@ -5968,7 +7490,7 @@
         </div>
       `;
     } else if (type === 'memoryMatch') {
-      card.innerHTML = `
+      html = `
         <div class="card-header">
           <div class="card-title-group">
             <div class="card-icon-pill">🧠</div>
@@ -5985,7 +7507,7 @@
         </div>
       `;
     } else {
-      card.innerHTML = `
+      html = `
         <div class="card-header">
           <div class="card-title-group">
             <div class="card-icon-pill orange">✨</div>
@@ -5997,17 +7519,25 @@
       `;
     }
 
-    container.appendChild(card);
+    containers.forEach(container => {
+      const card = document.createElement('div');
+      card.className = 'dashboard-card';
+      card.innerHTML = html;
+      container.appendChild(card);
+    });
+
     closeModal('customizeModal');
     showToast('New widget added to dashboard!');
   }
 
-  // Initialize active view from URL search param (?view=2), hash (#view2), or localStorage
+  // Initialize active view from URL search param (?view=3), hash (#view3), or localStorage
   window.addEventListener('DOMContentLoaded', () => {
     const params = new URLSearchParams(window.location.search);
     const hash = window.location.hash;
     const savedView = localStorage.getItem('hirerkey_dashboard_active_view');
-    if (params.get('view') === '2' || hash === '#view2' || savedView === '2') {
+    if (params.get('view') === '3' || hash === '#view3' || savedView === '3') {
+      switchDashboardView(3);
+    } else if (params.get('view') === '2' || hash === '#view2' || savedView === '2') {
       switchDashboardView(2);
     } else if (params.get('view') === '1' || hash === '#view1' || savedView === '1') {
       switchDashboardView(1);
