@@ -825,64 +825,155 @@
       margin-top: 4px;
     }
 
-    /* Survey Questions Box (media_1790756452785.png & media_1790756452799.png) */
-    .survey-card-container {
+    /* Questions Header & Contained Question Boxes (media_1790762077483.png) */
+    .question-box {
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: var(--radius-md);
-      padding: 18px 20px 14px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      transition: border-color 0.15s ease;
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
-    .survey-card-container:hover {
+    .question-box:hover {
       border-color: #CBD5E1;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     }
-
-    .question-block {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      position: relative;
-    }
-    .question-block + .question-block {
-      padding-top: 14px;
-      border-top: 1px dashed #E2E8F0;
-    }
-    .question-block-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: -4px;
-    }
-    .question-badge-subtle {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #7C3AED;
-      background: #EDE9FE;
-      padding: 2px 8px;
-      border-radius: var(--radius-full);
-    }
-    .btn-delete-q {
-      background: transparent;
-      border: none;
-      color: #94A3B8;
-      cursor: pointer;
-      font-size: 13px;
+    .q-badge-pill {
       width: 24px;
       height: 24px;
-      border-radius: 4px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 700;
+      font-size: 12px;
       display: grid;
       place-items: center;
+      flex-shrink: 0;
+    }
+    .btn-icon-minus {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      padding: 0;
       transition: all 0.15s ease;
     }
-    .btn-delete-q:hover {
+    .btn-icon-minus:hover {
       background: #FEE2E2;
       color: #DC2626;
     }
+    .btn-icon-minus:hover svg {
+      stroke: #DC2626;
+    }
+    .drag-handle-dots {
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      color: #94A3B8;
+      cursor: grab;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+    }
+    .drag-handle-dots:hover {
+      color: #475569;
+      background: #F1F5F9;
+    }
+    .form-field-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1E293B;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .form-field-input {
+      width: 100%;
+      height: 42px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 0 14px;
+      font-size: 13.5px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1E293B;
+      background: #F9FAFB;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .form-field-input:hover {
+      border-color: #CBD5E1;
+    }
+    .form-field-input:focus {
+      outline: none;
+      border-color: #7C3AED;
+      background: #F9FAFB;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+    .form-field-input::placeholder {
+      color: #94A3B8;
+    }
+    .custom-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    .form-field-select {
+      width: 100%;
+      height: 42px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 0 34px 0 14px;
+      font-size: 13.5px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #1E293B;
+      background: #F9FAFB;
+      appearance: none;
+      -webkit-appearance: none;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .form-field-select:hover {
+      border-color: #CBD5E1;
+    }
+    .form-field-select:focus {
+      outline: none;
+      border-color: #7C3AED;
+      background: #F9FAFB;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+    .select-caret {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #64748B;
+    }
+    .btn-add-question-screenshot {
+      background: #F3EEFF;
+      color: #7C3AED;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    .btn-add-question-screenshot:hover {
+      background: #EDE9FE;
+      color: #6D28D9;
+    }
 
-    /* Custom Select with Carets */
+    /* Standard Select with Carets for Category/Frequency */
     .select-wrap {
       position: relative;
       width: 100%;
@@ -919,47 +1010,6 @@
       color: #64748B;
       display: grid;
       place-items: center;
-    }
-
-    /* Required Checkbox */
-    .checkbox-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      color: #334155;
-      cursor: pointer;
-      user-select: none;
-      width: fit-content;
-    }
-    .custom-checkbox {
-      width: 17px;
-      height: 17px;
-      accent-color: #7C3AED;
-      cursor: pointer;
-    }
-
-    /* Centered + Add New Question Button (media_1790756452799.png) */
-    .add-q-center-wrap {
-      display: flex;
-      justify-content: center;
-      padding: 4px 0 2px 0;
-    }
-    .btn-add-new-q {
-      background: transparent;
-      border: none;
-      color: #64748B;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      padding: 6px 14px;
-      border-radius: var(--radius-md);
-      transition: all 0.15s ease;
-    }
-    .btn-add-new-q:hover {
-      background: #F8FAFC;
-      color: #7C3AED;
     }
 
     /* Audience Boxes: Department & Designation with Dashed Pill (media_1790756452799.png) */
@@ -1638,18 +1688,25 @@
           <textarea class="form-textarea" id="pulseDescInput" placeholder="Enter pulse description" maxlength="240"></textarea>
         </div>
 
-        <!-- 4. Survey Section (media_1790756452785.png & media_1790756452799.png) -->
-        <div class="form-group">
-          <div class="section-subheading">Survey</div>
-          <div class="survey-card-container">
-            <div id="questionsContainer" style="display: flex; flex-direction: column; gap: 14px;">
-              <!-- Questions rendered via JS -->
-            </div>
-            <div class="add-q-center-wrap">
-              <button type="button" class="btn-add-new-q" onclick="addNewQuestion()">
-                Add New Question
-              </button>
-            </div>
+        <!-- 4. Questions Section (media_1790762077483.png) -->
+        <div class="form-group" style="margin-top: 6px; margin-bottom: 8px;">
+          <!-- Questions Header -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span style="font-size: 15px; font-weight: 700; color: #0F172A; letter-spacing: -0.01em;">Questions</span>
+            <span style="font-size: 12.5px; color: #94A3B8;">Configured in individual boxes</span>
+          </div>
+
+          <!-- Dynamic Questions List (Rendered dynamically in individual boxes via renderQuestions()) -->
+          <div id="questionsContainer" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Questions rendered via JS -->
+          </div>
+
+          <!-- Right-aligned + Add Question pill button -->
+          <div style="display: flex; justify-content: flex-end; margin-top: 14px;">
+            <button type="button" class="btn-add-question-screenshot" onclick="addNewQuestion()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Question</span>
+            </button>
           </div>
         </div>
 
@@ -1926,10 +1983,16 @@
       status: 'Active',   // Inactive | Active
       questions: [
         {
-          id: 'q_init_1',
-          text: '',
-          type: 'Rating Scale (1-5)',
-          required: true
+          id: 'q_1',
+          text: 'What was the primary reason for deciding to leave?',
+          type: 'text',
+          placeholder: 'Share your primary reasons for departing'
+        },
+        {
+          id: 'q_2',
+          text: 'What constructive suggestions do you have for leadership to improve?',
+          type: 'text',
+          placeholder: 'Share your candid suggestions for executive leadership'
         }
       ]
     };
@@ -2143,59 +2206,69 @@
     });
 
     // ========================================================================
-    // QUESTIONS BUILDER ENGINE (RENDER / ADD / DELETE)
+    // QUESTIONS BUILDER ENGINE (RENDER / ADD / DELETE / REORDER)
+    // MATCHING SCREENSHOT media_1790762077483.png
     // ========================================================================
     function renderQuestions() {
       const container = document.getElementById('questionsContainer');
       if (!container) return;
 
       container.innerHTML = surveyFormData.questions.map((q, idx) => `
-        <div class="question-block" id="q_block_${q.id}">
-          ${surveyFormData.questions.length > 1 ? `
-            <div class="question-block-header">
-              <span class="question-badge-subtle">Question ${idx + 1}</span>
-              <button type="button" class="btn-delete-q" title="Delete Question" onclick="deleteQuestion('${q.id}')">✕</button>
+        <div class="question-box" id="q_box_${q.id}">
+          <!-- Card Top Bar: Badge, Title, Delete, Reorder -->
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="q-badge-pill">${idx + 1}</span>
+              <span style="font-size: 14.5px; font-weight: 700; color: #0F172A;">Question ${idx + 1}</span>
             </div>
-          ` : ''}
-
-          <!-- Question Text * (media_1790756452785.png) -->
-          <div class="form-group">
-            <label class="form-label" style="font-weight: 500; font-size: 13px;">
-              <span>Question Text <span class="required-asterisk">*</span></span>
-            </label>
-            <textarea class="form-textarea" rows="2" placeholder="Enter question text"
-              style="min-height: 68px;"
-              oninput="updateQuestion('${q.id}', 'text', this.value)">${escapeHtml(q.text || '')}</textarea>
-          </div>
-
-          <!-- Question Type Select (media_1790756452785.png) -->
-          <div class="form-group">
-            <label class="form-label" style="font-weight: 500; font-size: 13px;">Question Type</label>
-            <div class="select-wrap">
-              <select class="form-select" onchange="updateQuestion('${q.id}', 'type', this.value)">
-                <option value="Rating Scale (1-5)" ${q.type === 'Rating Scale (1-5)' ? 'selected' : ''}>Rating Scale (1-5)</option>
-                <option value="Rating Scale (1-10)" ${q.type === 'Rating Scale (1-10)' ? 'selected' : ''}>Rating Scale (1-10)</option>
-                <option value="Open Text" ${q.type === 'Open Text' ? 'selected' : ''}>Open Text Answer</option>
-                <option value="Single Choice" ${q.type === 'Single Choice' ? 'selected' : ''}>Single Choice (Radio)</option>
-                <option value="Multiple Choice" ${q.type === 'Multiple Choice' ? 'selected' : ''}>Multiple Choice (Checkbox)</option>
-                <option value="Likert Scale" ${q.type === 'Likert Scale' ? 'selected' : ''}>Likert Scale (Strongly Disagree to Agree)</option>
-                <option value="Net Promoter Score" ${q.type === 'Net Promoter Score' ? 'selected' : ''}>Net Promoter Score (eNPS 0-10)</option>
-              </select>
-              <div class="select-arrow">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="m7 15 5 5 5-5"/>
-                  <path d="m7 9 5-5 5 5"/>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <button type="button" class="btn-icon-minus" onclick="deleteQuestion('${q.id}')" title="Delete Question">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/>
+                  <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+              </button>
+              <div class="drag-handle-dots" title="Reorder Question (${idx > 0 ? 'Click to move up' : 'Click to move down'})" onclick="moveQuestion('${q.id}', ${idx > 0 ? "'up'" : "'down'"})">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#94A3B8">
+                  <circle cx="9" cy="5" r="1.5"/>
+                  <circle cx="15" cy="5" r="1.5"/>
+                  <circle cx="9" cy="12" r="1.5"/>
+                  <circle cx="15" cy="12" r="1.5"/>
+                  <circle cx="9" cy="19" r="1.5"/>
+                  <circle cx="15" cy="19" r="1.5"/>
                 </svg>
               </div>
             </div>
           </div>
 
-          <!-- Required Checkbox (media_1790756452785.png) -->
-          <div>
-            <label class="checkbox-label">
-              <input type="checkbox" class="custom-checkbox" ${q.required ? 'checked' : ''} onchange="updateQuestion('${q.id}', 'required', this.checked)">
-              <span>Required</span>
-            </label>
+          <!-- Row 1: Question * -->
+          <div style="margin-bottom: 14px;">
+            <label class="form-field-label">Question <span style="color: #DC2626;">*</span></label>
+            <input type="text" class="form-field-input" value="${escapeHtml(q.text || '')}" placeholder="Enter question..."
+              oninput="updateQuestion('${q.id}', 'text', this.value)" />
+          </div>
+
+          <!-- Row 2: Type * and Placeholder (2 columns) -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <label class="form-field-label">Type <span style="color: #DC2626;">*</span></label>
+              <div class="custom-select-wrapper">
+                <select class="form-field-select" onchange="updateQuestion('${q.id}', 'type', this.value)">
+                  <option value="text" ${q.type === 'text' ? 'selected' : ''}>text</option>
+                  <option value="rating" ${q.type === 'rating' ? 'selected' : ''}>rating</option>
+                  <option value="single_choice" ${q.type === 'single_choice' ? 'selected' : ''}>single choice</option>
+                  <option value="multiple_choice" ${q.type === 'multiple_choice' ? 'selected' : ''}>multiple choice</option>
+                </select>
+                <svg class="select-caret" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <label class="form-field-label">Placeholder</label>
+              <input type="text" class="form-field-input" value="${escapeHtml(q.placeholder || '')}" placeholder="Share your suggestions / feedback..."
+                oninput="updateQuestion('${q.id}', 'placeholder', this.value)" />
+            </div>
           </div>
         </div>
       `).join('');
@@ -2206,19 +2279,19 @@
       surveyFormData.questions.push({
         id: newId,
         text: '',
-        type: 'Rating Scale (1-5)',
-        required: true
+        type: 'text',
+        placeholder: 'Share your candid feedback...'
       });
       renderQuestions();
       showToast(`Added Question ${surveyFormData.questions.length}`);
       
       // Auto-focus new question
       setTimeout(() => {
-        const el = document.getElementById(`q_block_${newId}`);
+        const el = document.getElementById(`q_box_${newId}`);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          const ta = el.querySelector('textarea');
-          if (ta) ta.focus();
+          const inp = el.querySelector('input');
+          if (inp) inp.focus();
         }
       }, 100);
     }
@@ -2231,6 +2304,24 @@
       surveyFormData.questions = surveyFormData.questions.filter(q => q.id !== id);
       renderQuestions();
       showToast('Question removed.');
+    }
+
+    function moveQuestion(id, direction) {
+      const idx = surveyFormData.questions.findIndex(q => q.id === id);
+      if (idx === -1) return;
+      if (direction === 'up' && idx > 0) {
+        const temp = surveyFormData.questions[idx];
+        surveyFormData.questions[idx] = surveyFormData.questions[idx - 1];
+        surveyFormData.questions[idx - 1] = temp;
+        renderQuestions();
+        showToast(`Moved Question ${idx + 1} up`);
+      } else if (direction === 'down' && idx < surveyFormData.questions.length - 1) {
+        const temp = surveyFormData.questions[idx];
+        surveyFormData.questions[idx] = surveyFormData.questions[idx + 1];
+        surveyFormData.questions[idx + 1] = temp;
+        renderQuestions();
+        showToast(`Moved Question ${idx + 1} down`);
+      }
     }
 
     function updateQuestion(id, field, val) {
@@ -2258,27 +2349,27 @@
       surveyFormData.questions = [
         {
           id: 'q_ai_1',
-          text: 'How balanced do you feel your workload and shift schedule has been over the past month?',
-          type: 'Rating Scale (1-5)',
-          required: true
+          text: 'How satisfied are you with overall team culture and leadership support?',
+          type: 'text',
+          placeholder: 'Share your thoughts regarding workplace support and leadership...'
         },
         {
           id: 'q_ai_2',
-          text: 'Do you feel valued, respected, and recognized by your direct line manager?',
-          type: 'Rating Scale (1-5)',
-          required: true
+          text: 'What constructive suggestions do you have for leadership to improve shift operations?',
+          type: 'text',
+          placeholder: 'Share suggestions for executive leadership & department heads...'
         },
         {
           id: 'q_ai_3',
-          text: 'How satisfied are you with cross-departmental cooperation and teamwork on busy days?',
-          type: 'Rating Scale (1-5)',
-          required: true
+          text: 'Do you feel valued, respected, and recognized by your immediate manager?',
+          type: 'text',
+          placeholder: 'Share your candid experience regarding managerial recognition...'
         },
         {
           id: 'q_ai_4',
-          text: 'What is one specific improvement leadership can implement to make your daily work easier?',
-          type: 'Open Text',
-          required: false
+          text: 'What is one specific improvement that would make your daily work easier?',
+          type: 'text',
+          placeholder: 'Suggest practical tools, resource, or communication improvements...'
         }
       ];
 
@@ -2333,14 +2424,14 @@
       const emptyQ = surveyFormData.questions.find(q => !q.text.trim());
       if (emptyQ) {
         showToast('⚠️ Please provide Question Text for all survey questions.');
-        const el = document.getElementById(`q_block_${emptyQ.id}`);
+        const el = document.getElementById(`q_box_${emptyQ.id}`) || document.getElementById(`q_block_${emptyQ.id}`);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          const ta = el.querySelector('textarea');
-          if (ta) {
-            ta.focus();
-            ta.style.borderColor = '#DC2626';
-            setTimeout(() => { ta.style.borderColor = '#E2E8F0'; }, 2000);
+          const inp = el.querySelector('input') || el.querySelector('textarea');
+          if (inp) {
+            inp.focus();
+            inp.style.borderColor = '#DC2626';
+            setTimeout(() => { inp.style.borderColor = '#E2E8F0'; }, 2000);
           }
         }
         return;
@@ -2439,21 +2530,15 @@
               ${idx + 1}. ${escapeHtml(q.text || 'Question text...')} ${q.required ? '<span style="color:#DC2626;">*</span>' : ''}
             </div>
 
-            ${q.type === 'Rating Scale (1-5)' ? `
+            ${q.type === 'rating' || q.type === 'Rating Scale (1-5)' ? `
               <div class="rating-respondent-row" id="prev_rating_${q.id}">
                 ${[1, 2, 3, 4, 5].map(n => `
                   <button type="button" class="rating-num-btn" onclick="selectPreviewRating('${q.id}', ${n})">${n}</button>
                 `).join('')}
               </div>
-            ` : (q.type === 'Rating Scale (1-10)' ? `
-              <div class="rating-respondent-row" style="flex-wrap: wrap;">
-                ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `
-                  <button type="button" class="rating-num-btn" style="width: 36px; height: 36px; font-size: 13px;" onclick="this.classList.toggle('selected')">${n}</button>
-                `).join('')}
-              </div>
             ` : `
-              <textarea class="form-textarea" rows="2" placeholder="Write your confidential feedback..." style="min-height:60px;"></textarea>
-            `)}
+              <textarea class="form-textarea" rows="2" placeholder="${escapeHtml(q.placeholder || 'Write your confidential feedback...')}" style="min-height:60px;"></textarea>
+            `}
           </div>
         `).join('');
       }
