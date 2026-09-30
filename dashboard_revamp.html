@@ -1501,10 +1501,17 @@
     }
 
     .donezo-sidebar-header {
-      padding: 20px 18px 10px 18px;
+      padding: 20px 18px 12px 18px;
       display: flex;
       align-items: center;
       justify-content: flex-start;
+    }
+
+    .donezo-brand-container {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
     }
 
     .donezo-brand-link {
@@ -1571,24 +1578,24 @@
     }
 
     .donezo-cat-header:hover .donezo-cat-title {
-      color: #475569;
+      color: #1E293B;
     }
 
     .donezo-cat-header:hover .donezo-cat-chevron {
-      color: #64748B;
+      color: #475569;
     }
 
     .donezo-cat-title {
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #94A3B8;
+      letter-spacing: 0.065em;
+      color: #64748B;
       transition: color var(--transition-fast);
     }
 
     .donezo-cat-chevron {
-      color: #CBD5E1;
+      color: #94A3B8;
       display: grid;
       place-items: center;
       transition: transform var(--transition-fast), color var(--transition-fast);
@@ -1619,7 +1626,7 @@
       padding: 7px 18px;
       font-size: 13px;
       font-weight: 500;
-      color: #64748B;
+      color: #334155;
       text-decoration: none;
       transition: all var(--transition-fast);
       position: relative;
@@ -1668,7 +1675,7 @@
     }
 
     .donezo-nav-icon {
-      color: #94A3B8;
+      color: #475569;
       display: grid;
       place-items: center;
       width: 18px;
@@ -1679,6 +1686,7 @@
 
     .donezo-nav-label {
       font-size: 13px;
+      color: inherit;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -4164,16 +4172,12 @@
 
     <!-- 1. Left Side Menu (Elevated Pure White Floating Card - Exact Match to media_1790699346082.png) -->
     <aside class="donezo-sidebar">
-      <!-- 1. Header with Donezo Logo -->
+      <!-- 1. Header with Hirerkey Logo -->
       <div class="donezo-sidebar-header">
-        <a href="javascript:void(0)" class="donezo-brand-link" onclick="switchDashboardView(2)" title="Donezo">
-          <!-- Concentric Donezo Icon in Theme Purple -->
-          <svg class="donezo-logo-svg" width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17 5.5C11.5 5.5 7 10 7 15.5C7 22 11.5 27.5 17 27.5C22.5 27.5 27 22 27 15.5C27 10 22.5 5.5 17 5.5Z" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M17 9.5C13.5 9.5 10.5 12.2 10.5 15.5C10.5 19.5 13.5 22.5 17 22.5C20.5 22.5 23.5 19.5 23.5 15.5C23.5 12.2 20.5 9.5 17 9.5Z" stroke="#7C3AED" stroke-width="2.4" stroke-linecap="round"/>
-            <path d="M14 17C14.8 18.2 16 19 17 19C18 19 19.2 18.2 20 17" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
-          </svg>
-          <span class="donezo-brand-text">Donezo</span>
+        <a href="javascript:void(0)" class="brand-container donezo-brand-container" onclick="selectDonezoNavItemByTitle('Dashboard')" title="Hirerkey Dashboard">
+          <div class="brand-wordmark">
+            <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+          </div>
         </a>
       </div>
 
@@ -4185,7 +4189,7 @@
           <div class="donezo-nav-item-left">
             <span class="donezo-nav-icon active-icon">
               <!-- 4-square Bento Icon filled with theme purple -->
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="#7C3AED">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
                 <rect x="3" y="3" width="7.5" height="7.5" rx="2"></rect>
                 <rect x="13.5" y="3" width="7.5" height="7.5" rx="2"></rect>
                 <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"></rect>
