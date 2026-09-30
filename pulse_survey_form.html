@@ -1688,29 +1688,7 @@
           <textarea class="form-textarea" id="pulseDescInput" placeholder="Enter pulse description" maxlength="240"></textarea>
         </div>
 
-        <!-- 4. Questions Section (media_1790762077483.png) -->
-        <div class="form-group" style="margin-top: 6px; margin-bottom: 8px;">
-          <!-- Questions Header -->
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-            <span style="font-size: 15px; font-weight: 700; color: #0F172A; letter-spacing: -0.01em;">Questions</span>
-            <span style="font-size: 12.5px; color: #94A3B8;">Configured in individual boxes</span>
-          </div>
-
-          <!-- Dynamic Questions List (Rendered dynamically in individual boxes via renderQuestions()) -->
-          <div id="questionsContainer" style="display: flex; flex-direction: column; gap: 14px;">
-            <!-- Questions rendered via JS -->
-          </div>
-
-          <!-- Right-aligned + Add Question pill button -->
-          <div style="display: flex; justify-content: flex-end; margin-top: 14px;">
-            <button type="button" class="btn-add-question-screenshot" onclick="addNewQuestion()">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              <span>Add Question</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- 5. Department Filter Field with Dashed Pill (media_1790756452799.png) -->
+        <!-- 4. Department Filter Field with Dashed Pill (media_1790756452799.png) -->
         <div class="form-group">
           <label class="form-label">Department</label>
           <div class="audience-field-box" id="deptFieldBox">
@@ -1752,7 +1730,7 @@
           </div>
         </div>
 
-        <!-- 6. Designation Filter Field with Dashed Pill (media_1790756452799.png) -->
+        <!-- 5. Designation Filter Field with Dashed Pill (media_1790756452799.png) -->
         <div class="form-group">
           <label class="form-label">Designation</label>
           <div class="audience-field-box" id="desigFieldBox">
@@ -1788,7 +1766,7 @@
           </div>
         </div>
 
-        <!-- 7. Category & Frequency (2-Column Grid) -->
+        <!-- 6. Category & Frequency (2-Column Grid) -->
         <div class="grid-2col">
           <div class="form-group">
             <label class="form-label">Category</label>
@@ -1834,7 +1812,7 @@
           </div>
         </div>
 
-        <!-- 8. Start Date & End Date (2-Column Grid) -->
+        <!-- 7. Start Date & End Date (2-Column Grid) -->
         <div class="grid-2col">
           <div class="form-group">
             <label class="form-label">Start Date</label>
@@ -1863,7 +1841,7 @@
           </div>
         </div>
 
-        <!-- 9. Survey Configuration: Priority & Status Switches (media_1790756452799.png) -->
+        <!-- 8. Survey Configuration: Priority & Status Switches (media_1790756452799.png) -->
         <div class="form-group" style="margin-top: 4px;">
           <div class="section-subheading" style="margin-bottom: 8px;">Survey Configuration</div>
           <div class="switches-grid">
@@ -1894,6 +1872,28 @@
               </div>
             </div>
 
+          </div>
+        </div>
+
+        <!-- 9. Questions Section (media_1790762077483.png) - Placed at last -->
+        <div class="form-group" style="margin-top: 14px; margin-bottom: 8px;">
+          <!-- Questions Header -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+            <span style="font-size: 15px; font-weight: 700; color: #0F172A; letter-spacing: -0.01em;">Questions</span>
+            <span style="font-size: 12.5px; color: #94A3B8;">Configured in individual boxes</span>
+          </div>
+
+          <!-- Dynamic Questions List (Rendered dynamically in individual boxes via renderQuestions()) -->
+          <div id="questionsContainer" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Questions rendered via JS -->
+          </div>
+
+          <!-- Right-aligned + Add Question pill button -->
+          <div style="display: flex; justify-content: flex-end; margin-top: 14px;">
+            <button type="button" class="btn-add-question-screenshot" onclick="addNewQuestion()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <span>Add Question</span>
+            </button>
           </div>
         </div>
 
