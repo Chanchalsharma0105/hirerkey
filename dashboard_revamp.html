@@ -1643,11 +1643,21 @@
       color: #0F172A;
     }
 
-    /* Active Item: Hirerkey Theme Purple left tab and bento icon */
+    /* Active Item: Hirerkey Theme Purple left tab, icon, text and soft tint */
     .donezo-nav-item.active {
-      color: #0F172A !important;
+      color: var(--brand-primary) !important;
       font-weight: 700;
-      background: #FFFFFF !important;
+      background: rgba(124, 58, 237, 0.06) !important;
+    }
+
+    .donezo-nav-item.active:hover {
+      color: var(--brand-primary) !important;
+      background: rgba(124, 58, 237, 0.1) !important;
+    }
+
+    .donezo-nav-item.active .donezo-nav-label {
+      color: var(--brand-primary) !important;
+      font-weight: 700;
     }
 
     .donezo-nav-item.active::before {
