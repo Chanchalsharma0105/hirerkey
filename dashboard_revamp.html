@@ -1548,6 +1548,87 @@
       transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
+    /* Search Bar in View 2 Side Menu (Matches View 1 Styling) */
+    .donezo-search-area {
+      padding: 0 14px 10px 14px;
+      flex-shrink: 0;
+    }
+
+    .donezo-search-pill {
+      display: flex;
+      align-items: center;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      height: 35px;
+      padding: 0 8px 0 10px;
+      gap: 7px;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+
+    .donezo-search-pill:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+    }
+
+    .donezo-search-pill:focus-within {
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .donezo-search-pill svg.search-icon {
+      color: #94A3B8;
+      flex-shrink: 0;
+      transition: color var(--transition-fast);
+    }
+
+    .donezo-search-pill:focus-within svg.search-icon {
+      color: var(--brand-primary);
+    }
+
+    .donezo-search-pill input {
+      width: 100%;
+      font-size: 12.5px;
+      font-weight: 400;
+      color: #0F172A;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+
+    .donezo-search-pill input::placeholder {
+      color: #94A3B8;
+      font-size: 12px;
+    }
+
+    .donezo-search-pill .sidebar-search-actions {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
+    .donezo-search-pill .sidebar-search-actions button {
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      padding: 0;
+    }
+
+    .donezo-search-pill .sidebar-search-actions button:hover {
+      color: var(--brand-primary);
+      background: rgba(124, 58, 237, 0.08);
+    }
+
     .donezo-brand-link {
       display: inline-flex;
       align-items: center;
@@ -1857,6 +1938,41 @@
 
     .donezo-sidebar.collapsed .donezo-collapse-btn:hover {
       transform: rotate(180deg) scale(1.08);
+    }
+
+    /* Collapsed Search Pill: Centered 44x38 Search Icon Button */
+    .donezo-sidebar.collapsed .donezo-search-area {
+      padding: 2px 8px 6px 8px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .donezo-sidebar.collapsed .donezo-search-pill {
+      width: 44px;
+      height: 38px;
+      margin: 0 auto;
+      padding: 0;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: #64748B;
+    }
+
+    .donezo-sidebar.collapsed .donezo-search-pill:hover {
+      background: #F1F5F9;
+      border-color: #E2E8F0;
+      color: var(--brand-primary);
+    }
+
+    .donezo-sidebar.collapsed .donezo-search-pill:hover svg.search-icon {
+      color: var(--brand-primary);
+    }
+
+    .donezo-sidebar.collapsed .donezo-search-pill input,
+    .donezo-sidebar.collapsed .donezo-search-pill .sidebar-search-actions {
+      display: none !important;
     }
 
     .donezo-sidebar.collapsed .donezo-nav-scroll {
@@ -4496,6 +4612,21 @@
         </button>
       </div>
 
+      <!-- Quick Menu Search (View 2) -->
+      <div class="sidebar-search-area donezo-search-area">
+        <div class="sidebar-search-pill donezo-search-pill" id="donezoSearchPill" title="Search menus (⌘K)" onclick="const sb = document.querySelector('.donezo-sidebar'); if(sb && sb.classList.contains('collapsed')) { toggleDonezoSidebarCollapse(); setTimeout(() => { const s = document.getElementById('donezoMenuSearch'); if(s) s.focus(); }, 180); }">
+          <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" placeholder="Search menus..." id="donezoMenuSearch" oninput="filterDonezoMenu(this.value)" autocomplete="off" spellcheck="false">
+          <div class="sidebar-search-actions">
+            <button type="button" id="donezoVoiceBtn" title="Voice Search" onclick="event.stopPropagation(); openModal('voiceModal');"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></button>
+            <kbd class="sidebar-kbd">⌘K</kbd>
+          </div>
+        </div>
+      </div>
+
       <!-- 2. Scrollable Navigation (Full Hirerkey Menu Matching View 1) -->
       <nav class="donezo-nav-scroll" id="donezoNavScroll">
         
@@ -4787,6 +4918,9 @@
             </a>
           </div>
         </div>
+
+        <!-- Feedback when no menus match search in View 2 -->
+        <div id="donezoNoResults" style="display: none; padding: 22px 14px; text-align: center; font-size: 12.5px; color: #94A3B8;">No menus found</div>
 
       </nav>
 
@@ -6772,9 +6906,13 @@
     const q = (query || '').toLowerCase().trim();
     const categories = document.querySelectorAll('.donezo-nav-category');
     const dashboardItem = document.querySelector('.donezo-sidebar .donezo-nav-item[data-title="Dashboard"]');
+    const noResults = document.getElementById('donezoNoResults');
+    let totalMatches = 0;
 
     if (dashboardItem) {
-      dashboardItem.style.display = (q === '' || 'dashboard'.includes(q)) ? 'flex' : 'none';
+      const match = (q === '' || 'dashboard'.includes(q));
+      dashboardItem.style.display = match ? 'flex' : 'none';
+      if (match) totalMatches++;
     }
 
     categories.forEach(cat => {
@@ -6785,7 +6923,10 @@
         const text = (item.innerText || '').toLowerCase();
         const matches = (q === '' || title.includes(q) || text.includes(q));
         item.style.display = matches ? 'flex' : 'none';
-        if (matches) anyMatch = true;
+        if (matches) {
+          anyMatch = true;
+          totalMatches++;
+        }
       });
 
       if (q === '') {
@@ -6795,6 +6936,15 @@
         if (anyMatch) cat.classList.remove('collapsed');
       }
     });
+
+    if (noResults) {
+      if (q !== '' && totalMatches === 0) {
+        noResults.style.display = 'block';
+        noResults.textContent = `No menus found matching "${query}"`;
+      } else {
+        noResults.style.display = 'none';
+      }
+    }
   }
 
   function toggleDonezoSidebarCollapse() {
@@ -7254,8 +7404,17 @@
           if (sbSearch) sbSearch.focus();
         }
       } else if (v2 && v2.style.display !== 'none') {
-        const v2Search = document.getElementById('view2HeaderSearch') || document.getElementById('donezoMenuSearch');
-        if (v2Search) v2Search.focus();
+        const sb = document.querySelector('.donezo-sidebar');
+        if (sb && sb.classList.contains('collapsed')) {
+          toggleDonezoSidebarCollapse();
+          setTimeout(() => {
+            const dzSearch = document.getElementById('donezoMenuSearch');
+            if (dzSearch) dzSearch.focus();
+          }, 180);
+        } else {
+          const dzSearch = document.getElementById('donezoMenuSearch') || document.getElementById('view2HeaderSearch');
+          if (dzSearch) dzSearch.focus();
+        }
       } else {
         if (appSidebar.classList.contains('collapsed') || appSidebar.classList.contains('sidebar-hidden')) {
           const ghSearch = document.getElementById('globalHeaderSearch');
@@ -7273,6 +7432,7 @@
     if (e.key === 'Escape') {
       const sbSearch = document.getElementById('sidebarMenuSearch');
       const sbSearch3 = document.getElementById('sidebarMenuSearch3');
+      const dzSearch = document.getElementById('donezoMenuSearch');
       if (sbSearch && document.activeElement === sbSearch) {
         sbSearch.value = '';
         sbSearch.dispatchEvent(new Event('input'));
@@ -7282,6 +7442,11 @@
         sbSearch3.value = '';
         filterView3Menu('');
         sbSearch3.blur();
+      }
+      if (dzSearch && document.activeElement === dzSearch) {
+        dzSearch.value = '';
+        filterDonezoMenu('');
+        dzSearch.blur();
       }
       closeAllModalsAndPopovers();
     }
@@ -7380,9 +7545,21 @@
   }
 
   const view2HeaderSearch = document.getElementById('view2HeaderSearch');
+  const donezoMenuSearch = document.getElementById('donezoMenuSearch');
   if (view2HeaderSearch) {
     view2HeaderSearch.addEventListener('input', (e) => {
       filterDonezoMenu(e.target.value);
+      if (donezoMenuSearch && donezoMenuSearch.value !== e.target.value) {
+        donezoMenuSearch.value = e.target.value;
+      }
+    });
+  }
+  if (donezoMenuSearch) {
+    donezoMenuSearch.addEventListener('input', (e) => {
+      filterDonezoMenu(e.target.value);
+      if (view2HeaderSearch && view2HeaderSearch.value !== e.target.value) {
+        view2HeaderSearch.value = e.target.value;
+      }
     });
   }
 
