@@ -1,0 +1,2561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey™ — Create New Pulse Survey</title>
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       HIRERKEY DESIGN SYSTEM TOKENS
+       ========================================================================== */
+    :root {
+      --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+      /* Primary Brand Purples */
+      --primary-50: #FAF5FF;
+      --primary-100: #EDE9FE;
+      --primary-200: #DDD6FE;
+      --primary-300: #C4B5FD;
+      --primary-500: #7C3AED;
+      --primary-600: #6D28D9;
+      --primary-700: #5B21B6;
+
+      /* Shell & Neutrals */
+      --shell-bg: #0B132B;
+      --shell-sidebar: #001741;
+      --shell-nav-hover: rgba(255, 255, 255, 0.08);
+      --shell-nav-active: #7C3AED;
+      --ground: #F4F6FB;
+      --surface: #FFFFFF;
+      --surface-2: #F8FAFC;
+      --surface-border: #E2E8F0;
+      --border-subtle: #EEF2F6;
+
+      /* Typography */
+      --text-main: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --text-tertiary: #94A3B8;
+
+      /* Accent Statuses */
+      --status-active-bg: #DCFCE7;
+      --status-active-text: #16A34A;
+      --status-active-border: #86EFAC;
+      --status-urgent-bg: #FEE2E2;
+      --status-urgent-text: #DC2626;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 4px 14px -2px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 16px 36px -6px rgba(15, 23, 42, 0.14);
+      --shadow-modal: 0 24px 64px -12px rgba(15, 23, 42, 0.28), 0 0 0 1px rgba(0, 0, 0, 0.06);
+
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --radius-full: 9999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-inter) !important;
+    }
+
+    body {
+      background-color: var(--ground);
+      color: var(--text-body);
+      font-size: 13.5px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    /* ==========================================================================
+       APP SHELL: DARK NAVY SIDEBAR & TOPBAR (AS SEEN IN SCREENSHOTS)
+       ========================================================================== */
+    .app-layout {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Dark Navy Sidebar */
+    .sidebar {
+      width: 250px;
+      min-width: 250px;
+      background: var(--shell-sidebar);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 30;
+      transition: width 0.25s ease;
+    }
+
+    .sidebar-header {
+      padding: 22px 20px 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .brand-wordmark {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: #FFFFFF;
+    }
+    .logo-hirer {
+      color: #FFFFFF;
+    }
+    .logo-key-wrap {
+      color: var(--primary-500);
+      position: relative;
+      margin-left: 0.5px;
+    }
+    .logo-swoosh {
+      position: absolute;
+      left: -2px;
+      bottom: -6px;
+      width: 58px;
+      height: 12px;
+      pointer-events: none;
+    }
+
+    .sidebar-avatar-small {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #4F46E5);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-category-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 12px 4px 12px;
+      margin-top: 8px;
+    }
+
+    .nav-category-title:first-child {
+      margin-top: 0;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      border-radius: var(--radius-md);
+      color: #94A3B8;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .nav-item:hover {
+      color: #FFFFFF;
+      background: var(--shell-nav-hover);
+    }
+
+    .nav-item.active {
+      background: var(--shell-nav-active);
+      color: #FFFFFF;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    }
+
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .sidebar-footer {
+      padding: 14px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    /* Main Content Area */
+    .main-canvas {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: var(--ground);
+      position: relative;
+    }
+
+    /* Top Navigation Bar */
+    .topbar {
+      height: 64px;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--surface-border);
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: var(--primary-500);
+    }
+    .breadcrumb-active {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .topbar-search-wrap {
+      display: flex;
+      align-items: center;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-md);
+      padding: 0 12px;
+      height: 36px;
+      width: 260px;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+    .topbar-search-wrap:focus-within {
+      background: #FFFFFF;
+      border-color: var(--primary-500);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+    .topbar-search-wrap input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 13px;
+      width: 100%;
+      color: var(--text-main);
+    }
+
+    .icon-btn-ghost {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid transparent;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+    .icon-btn-ghost:hover {
+      background: #F1F5F9;
+      color: var(--text-main);
+    }
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #EF4444;
+      border-radius: 50%;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      border: 2px solid #FFFFFF;
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 4px 10px 4px 4px;
+      border-radius: var(--radius-full);
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .user-pill:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+    }
+    .user-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #7C3AED;
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .user-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Content Canvas Body */
+    .content-body {
+      padding: 28px;
+      flex: 1;
+    }
+
+    /* Top Dashboard Header & Controls */
+    .page-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .page-heading {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+    .page-subheading {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .btn-create-pulse {
+      background: var(--primary-500);
+      color: #FFFFFF;
+      border: none;
+      padding: 9px 18px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+      transition: all 0.18s ease;
+    }
+    .btn-create-pulse:hover {
+      background: var(--primary-600);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
+    }
+
+    /* Metric Summary KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: #FFFFFF;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .kpi-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .kpi-val-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .kpi-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+      font-family: var(--font-inter);
+    }
+    .kpi-trend {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #16A34A;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* Pulse Directory Table Card */
+    .table-card {
+      background: #FFFFFF;
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .table-toolbar {
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--surface-border);
+      background: #FFFFFF;
+    }
+    .tab-pills {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .tab-pill {
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: all 0.15s ease;
+    }
+    .tab-pill:hover {
+      color: var(--text-main);
+      background: #F1F5F9;
+    }
+    .tab-pill.active {
+      color: var(--primary-500);
+      background: var(--primary-50);
+    }
+
+    .pulse-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .pulse-table th {
+      background: #F8FAFC;
+      padding: 12px 18px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--surface-border);
+    }
+    .pulse-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 13.5px;
+      color: var(--text-body);
+      vertical-align: middle;
+    }
+    .pulse-table tr:hover td {
+      background: #FBFBFF;
+    }
+    .pulse-name-cell {
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .pulse-subtext {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+    .chip-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      font-weight: 600;
+    }
+    .chip-active {
+      background: #DCFCE7;
+      color: #15803D;
+      border: 1px solid #BBF7D0;
+    }
+    .chip-scheduled {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #BFDBFE;
+    }
+    .chip-draft {
+      background: #F1F5F9;
+      color: #475569;
+      border: 1px solid #CBD5E1;
+    }
+
+    /* ==========================================================================
+       CREATE NEW PULSE SURVEY MODAL (PIXEL-PERFECT MATCH TO SCREENSHOTS)
+       (media_1790756452785.png & media_1790756452799.png)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.42);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .pulse-modal-card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 740px;
+      max-height: calc(100vh - 48px);
+      box-shadow: var(--shadow-modal);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.96) translateY(8px);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .modal-overlay.open .pulse-modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    /* Modal Header */
+    .modal-header {
+      padding: 22px 28px 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #F1F5F9;
+      flex-shrink: 0;
+    }
+    .modal-title-purple {
+      font-size: 18px;
+      font-weight: 700;
+      color: #7C3AED; /* Signature bold purple heading from screenshot */
+      letter-spacing: -0.015em;
+    }
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: all 0.15s ease;
+    }
+    .modal-close-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    /* Modal Scrollable Body */
+    .modal-body {
+      padding: 22px 28px 26px 28px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* AI Fill Pill Banner (media_1790756452785.png) */
+    .ai-pill-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FAF5FF;
+      border: 1px solid #EDE9FE;
+      border-radius: var(--radius-full);
+      padding: 8px 14px 8px 12px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .ai-pill-banner:hover {
+      background: #F5EEFF;
+      border-color: #DDD6FE;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.12);
+      transform: translateY(-1px);
+    }
+    .ai-pill-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ai-sparkle-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      display: grid;
+      place-items: center;
+      color: #7C3AED;
+      flex-shrink: 0;
+    }
+    .ai-pill-text {
+      font-size: 13.5px;
+      color: #334155;
+    }
+    .ai-pill-text strong {
+      color: #7C3AED;
+      font-weight: 700;
+    }
+    .ai-circle-arrow-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      border: none;
+      display: grid;
+      place-items: center;
+      color: #7C3AED;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+    .ai-pill-banner:hover .ai-circle-arrow-btn {
+      background: #7C3AED;
+      color: #FFFFFF;
+      transform: translateX(2px);
+    }
+
+    /* Form Fields General */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .required-asterisk {
+      color: #DC2626;
+      margin-left: 2px;
+    }
+    .char-count {
+      font-size: 11px;
+      font-weight: 500;
+      color: #94A3B8;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      font-size: 13.5px;
+      color: #0F172A;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+    .form-input::placeholder {
+      color: #94A3B8;
+      font-size: 13px;
+    }
+    .form-input:hover {
+      border-color: #CBD5E1;
+    }
+    .form-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .form-textarea {
+      width: 100%;
+      min-height: 84px;
+      padding: 10px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      font-size: 13.5px;
+      color: #0F172A;
+      outline: none;
+      resize: vertical;
+      line-height: 1.5;
+      transition: all 0.15s ease;
+    }
+    .form-textarea::placeholder {
+      color: #94A3B8;
+      font-size: 13px;
+    }
+    .form-textarea:hover {
+      border-color: #CBD5E1;
+    }
+    .form-textarea:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    /* Section Subheadings */
+    .section-subheading {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+      margin-top: 4px;
+    }
+
+    /* Survey Questions Box (media_1790756452785.png) */
+    .questions-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .question-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+      transition: all 0.15s ease;
+    }
+    .question-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+    }
+
+    .question-card-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: -4px;
+    }
+    .question-pill-index {
+      font-size: 12px;
+      font-weight: 700;
+      color: #7C3AED;
+      background: #EDE9FE;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+    .question-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-icon-tiny {
+      width: 26px;
+      height: 26px;
+      border-radius: var(--radius-sm);
+      border: none;
+      background: transparent;
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-icon-tiny:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+    .btn-icon-tiny.delete:hover {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+
+    /* Custom Select with Carets */
+    .select-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .form-select {
+      width: 100%;
+      height: 40px;
+      padding: 0 34px 0 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      font-size: 13.5px;
+      color: #0F172A;
+      outline: none;
+      appearance: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .form-select:hover {
+      border-color: #CBD5E1;
+    }
+    .form-select:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+    .select-arrow {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+    }
+
+    /* Rating Scale Levels Builder (Exact from Exit Survey Engine) */
+    .rating-preview-box {
+      background: #F8FAFC;
+      border: 1px dashed #CBD5E1;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .rating-preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+    }
+    .rating-levels-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .rating-badge-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+    }
+    .rating-color-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Required Checkbox */
+    .checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      user-select: none;
+      width: fit-content;
+    }
+    .custom-checkbox {
+      width: 17px;
+      height: 17px;
+      accent-color: #7C3AED;
+      cursor: pointer;
+    }
+
+    /* Centered + Add New Question Button (media_1790756452799.png) */
+    .add-q-center-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 6px 0;
+    }
+    .btn-add-new-q {
+      background: transparent;
+      border: none;
+      color: #64748B;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: var(--radius-md);
+      transition: all 0.15s ease;
+    }
+    .btn-add-new-q:hover {
+      background: #F1F5F9;
+      color: #7C3AED;
+    }
+
+    /* Audience Boxes: Department & Designation with Dashed Pill (media_1790756452799.png) */
+    .audience-field-box {
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-md);
+      min-height: 44px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: #FFFFFF;
+      transition: all 0.15s ease;
+      position: relative;
+    }
+    .audience-field-box:hover {
+      border-color: #CBD5E1;
+    }
+    .audience-field-box:focus-within {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .btn-dashed-pill {
+      background: #FFFFFF;
+      border: 1.5px dashed #7C3AED;
+      color: #7C3AED;
+      border-radius: var(--radius-full);
+      padding: 4px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+    .btn-dashed-pill:hover {
+      background: #FAF5FF;
+      border-color: #6D28D9;
+      color: #6D28D9;
+      transform: scale(1.02);
+    }
+
+    .tag-chip {
+      background: #EDE9FE;
+      color: #7C3AED;
+      border: 1px solid #DDD6FE;
+      border-radius: var(--radius-full);
+      padding: 3px 9px;
+      font-size: 12px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      animation: chipPop 0.2s ease;
+    }
+    @keyframes chipPop {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .tag-chip-remove {
+      cursor: pointer;
+      color: #7C3AED;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tag-chip-remove:hover {
+      color: #5B21B6;
+      transform: scale(1.2);
+    }
+
+    /* Multi-select Dropdown Popover */
+    .dropdown-popover {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 260px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 6px;
+      z-index: 50;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+    .dropdown-popover.open {
+      display: flex;
+    }
+    .dropdown-option {
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.12s ease;
+    }
+    .dropdown-option:hover {
+      background: #FAF5FF;
+      color: #7C3AED;
+    }
+    .dropdown-option.selected {
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 600;
+    }
+
+    /* 2-Column Grid Layouts */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Date Input with Calendar Icon */
+    .date-input-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .date-input-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #64748B;
+    }
+    .form-date-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 14px 0 36px;
+      border-radius: var(--radius-md);
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      font-size: 13px;
+      color: #0F172A;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+    .form-date-input:hover {
+      border-color: #CBD5E1;
+    }
+    .form-date-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    /* Switches: Priority & Status (media_1790756452799.png) */
+    .switches-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    .switch-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .switch-control-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .switch-state-label {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #64748B;
+      transition: color 0.15s ease;
+      user-select: none;
+    }
+    .switch-state-label.active-label {
+      color: #7C3AED;
+      font-weight: 600;
+    }
+    .switch-state-label.green-active {
+      color: #16A34A;
+      font-weight: 600;
+    }
+
+    /* Modern Pill Toggle Switch */
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+      cursor: pointer;
+    }
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #CBD5E1;
+      border-radius: var(--radius-full);
+      transition: background-color 0.25s ease;
+    }
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: #FFFFFF;
+      border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toggle-switch input:checked + .toggle-slider {
+      background-color: #16A34A; /* Active green by default */
+    }
+    .toggle-switch.purple-switch input:checked + .toggle-slider {
+      background-color: #7C3AED; /* Urgent purple */
+    }
+    .toggle-switch input:checked + .toggle-slider:before {
+      transform: translateX(20px);
+    }
+
+    /* Modal Footer Actions (media_1790756452799.png) */
+    .modal-footer {
+      padding: 16px 28px;
+      border-top: 1px solid #F1F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      background: #FFFFFF;
+      flex-shrink: 0;
+    }
+    .btn-modal-cancel {
+      padding: 9px 18px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-modal-cancel:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+    .btn-modal-create {
+      padding: 9px 22px;
+      border: none;
+      background: #7C3AED; /* Vibrant purple from screenshot */
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .btn-modal-create:hover {
+      background: #6D28D9;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
+    }
+
+    /* ==========================================================================
+       EMPLOYEE RESPONDENT LIVE PREVIEW MODAL
+       ========================================================================== */
+    .preview-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 1100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .preview-modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .preview-card {
+      background: #FFFFFF;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 620px;
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      box-shadow: var(--shadow-modal);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+    .preview-badge-chip {
+      background: #EDE9FE;
+      color: #7C3AED;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      font-weight: 700;
+      width: fit-content;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Rating Interactive Buttons for Respondent */
+    .rating-respondent-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+    .rating-num-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      border: 1.5px solid #E2E8F0;
+      background: #FFFFFF;
+      font-size: 15px;
+      font-weight: 700;
+      color: #334155;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .rating-num-btn:hover {
+      border-color: #7C3AED;
+      color: #7C3AED;
+      background: #FAF5FF;
+      transform: translateY(-2px);
+    }
+    .rating-num-btn.selected {
+      background: #7C3AED;
+      border-color: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    }
+
+    /* Floating Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: var(--radius-lg);
+      font-size: 13.5px;
+      font-weight: 500;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      transform: translateY(30px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast-container.show {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .sidebar {
+        display: none;
+      }
+      .grid-2col, .switches-grid, .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+      .topbar-search-wrap {
+        display: none;
+      }
+      .pulse-modal-card {
+        max-width: 100%;
+        max-height: 100vh;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- ======================================================================
+         1. DARK NAVY SIDEBAR (AUTHENTIC HIRERKEY SHELL)
+         ====================================================================== -->
+    <aside class="sidebar" id="appSidebar">
+      <!-- Sidebar Header with Hirerkey Wordmark -->
+      <div class="sidebar-header">
+        <a href="javascript:void(0)" class="brand-wordmark" title="Hirerkey HRMS">
+          <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+        </a>
+        <div class="sidebar-avatar-small" title="Crowne Plaza Dubai">CP</div>
+      </div>
+
+      <!-- Sidebar Navigation Menu -->
+      <nav class="sidebar-nav">
+        <div class="nav-category-title">Core Management</div>
+        <a href="javascript:void(0)" class="nav-item">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+          </span>
+          <span>Dashboard</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <span>Employees</span>
+        </a>
+
+        <div class="nav-category-title">Employee Voice & Feedback</div>
+        <a href="javascript:void(0)" class="nav-item active" title="Pulse Surveys">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </span>
+          <span>Pulse Surveys</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </span>
+          <span>eNPS & Sentiment</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </span>
+          <span>Exit Interviews</span>
+        </a>
+
+        <div class="nav-category-title">Talent Operations</div>
+        <a href="javascript:void(0)" class="nav-item">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </span>
+          <span>Onboarding</span>
+        </a>
+        <a href="javascript:void(0)" class="nav-item">
+          <span class="nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </span>
+          <span>Offboarding</span>
+        </a>
+      </nav>
+
+      <!-- Sidebar Footer User / Property Info -->
+      <div class="sidebar-footer">
+        <div class="user-avatar" style="width: 30px; height: 30px; font-size: 11px;">NC</div>
+        <div style="display: flex; flex-direction: column; min-width: 0;">
+          <span style="font-size: 12.5px; font-weight: 700; color: #FFFFFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Noisiv Consulting</span>
+          <span style="font-size: 11px; color: #94A3B8;">Enterprise Tier</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         2. MAIN CONTENT AREA (BACKGROUND DIRECTORY VIEW)
+         ====================================================================== -->
+    <main class="main-canvas">
+      
+      <!-- Top Navigation Bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="breadcrumb">
+            <a href="javascript:void(0)">Home</a>
+            <span>/</span>
+            <a href="javascript:void(0)">Employee Voice</a>
+            <span>/</span>
+            <span class="breadcrumb-active">Pulse Surveys</span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-search-wrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" placeholder="Search surveys, tags..." id="globalSearch">
+          </div>
+
+          <button class="icon-btn-ghost" title="Notifications">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+            <span class="badge-dot"></span>
+          </button>
+
+          <div class="user-pill">
+            <div class="user-avatar">CS</div>
+            <span class="user-name">Chanchal S.</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Canvas Body -->
+      <div class="content-body">
+        
+        <!-- Page Title & Header Actions -->
+        <div class="page-title-row">
+          <div>
+            <h1 class="page-heading">Pulse Surveys</h1>
+            <p class="page-subheading">Continuously gauge team sentiment, well-being, and workplace engagement across all properties.</p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn-modal-cancel" onclick="openPreviewModal()" title="Preview live employee survey taking experience">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              Employee Preview
+            </button>
+            <button type="button" class="btn-create-pulse" onclick="openPulseModal()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Create New Pulse Survey
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric KPI Summary Cards -->
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Active Surveys</div>
+            <div class="kpi-val-row">
+              <div class="kpi-value" id="kpiActiveCount">4</div>
+              <span class="kpi-trend">↑ 2 ongoing</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Avg Participation</div>
+            <div class="kpi-val-row">
+              <div class="kpi-value">88.4%</div>
+              <span class="kpi-trend">↑ +4.2% MoM</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Overall eNPS</div>
+            <div class="kpi-val-row">
+              <div class="kpi-value" style="color: #7C3AED;">+46</div>
+              <span class="kpi-trend" style="color: #7C3AED;">World Class</span>
+            </div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Total Responses</div>
+            <div class="kpi-val-row">
+              <div class="kpi-value">1,248</div>
+              <span class="kpi-trend">across 6 depts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Surveys Directory Table Card -->
+        <div class="table-card">
+          <div class="table-toolbar">
+            <div class="tab-pills">
+              <button class="tab-pill active">All Surveys (4)</button>
+              <button class="tab-pill">Active (2)</button>
+              <button class="tab-pill">Scheduled (1)</button>
+              <button class="tab-pill">Drafts (1)</button>
+            </div>
+            <div style="font-size: 12.5px; color: var(--text-muted);">
+              Showing active & upcoming pulse cycles
+            </div>
+          </div>
+
+          <table class="pulse-table">
+            <thead>
+              <tr>
+                <th>Pulse Survey Name</th>
+                <th>Category</th>
+                <th>Target Audience</th>
+                <th>Frequency</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="surveyTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ========================================================================
+       3. "CREATE NEW PULSE SURVEY" MODAL OVERLAY (MATCHING SCREENSHOTS)
+       (media_1790756452785.png & media_1790756452799.png)
+       ======================================================================== -->
+  <div class="modal-overlay open" id="pulseModalOverlay" onclick="handleBackdropClick(event)">
+    <div class="pulse-modal-card" id="pulseModalCard">
+      
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h2 class="modal-title-purple">Create New Pulse Survey</h2>
+        <button type="button" class="modal-close-btn" onclick="closePulseModal()" title="Close (Esc)">✕</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body" id="modalScrollBody">
+        
+        <!-- 1. AI Fill Pill Banner (media_1790756452785.png) -->
+        <div class="ai-pill-banner" onclick="triggerHyIqAiFill()" title="Click to let AI automatically generate the pulse survey">
+          <div class="ai-pill-left">
+            <div class="ai-sparkle-circle">
+              <!-- AI Sparkle SVG -->
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2L14.7 8.3L21 11L14.7 13.7L12 20L9.3 13.7L3 11L9.3 8.3L12 2Z" fill="currentColor"/>
+              </svg>
+            </div>
+            <span class="ai-pill-text">Describe it and let <strong>AI fill this in</strong></span>
+          </div>
+          <button type="button" class="ai-circle-arrow-btn" title="Run AI Generation">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 2. Pulse Name * Field -->
+        <div class="form-group">
+          <label class="form-label" for="pulseNameInput">
+            <span>Pulse Name <span class="required-asterisk">*</span></span>
+            <span class="char-count" id="nameCharCount">0/80</span>
+          </label>
+          <input type="text" class="form-input" id="pulseNameInput" placeholder="Enter pulse name" maxlength="80" oninput="handleNameInput(this.value)">
+        </div>
+
+        <!-- 3. Description Field -->
+        <div class="form-group">
+          <label class="form-label" for="pulseDescInput">
+            <span>Description</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button type="button" style="background: none; border: none; font-size: 11.5px; font-weight: 600; color: #7C3AED; cursor: pointer; display: inline-flex; align-items: center; gap: 3px;" onclick="refineDescWithAi()">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.7 8.3L21 11L14.7 13.7L12 20L9.3 13.7L3 11L9.3 8.3L12 2Z"/></svg>
+                Refine with AI
+              </button>
+              <span class="char-count" id="descCharCount">0/240</span>
+            </div>
+          </label>
+          <textarea class="form-textarea" id="pulseDescInput" placeholder="Enter pulse description" maxlength="240" oninput="handleDescInput(this.value)"></textarea>
+        </div>
+
+        <!-- 4. Survey Section: Question Cards Builder -->
+        <div class="form-group">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div class="section-subheading">Survey</div>
+            <span style="font-size: 11.5px; color: #94A3B8;" id="questionCounterText">1 Question</span>
+          </div>
+
+          <!-- Questions Dynamic Container -->
+          <div class="questions-wrapper" id="questionsContainer">
+            <!-- Questions rendered via JS -->
+          </div>
+
+          <!-- Add New Question Centered Button (media_1790756452799.png) -->
+          <div class="add-q-center-wrap">
+            <button type="button" class="btn-add-new-q" onclick="addNewQuestion()">
+              Add New Question
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. Department Filter Field with Dashed Pill (media_1790756452799.png) -->
+        <div class="form-group">
+          <label class="form-label">Department</label>
+          <div class="audience-field-box" id="deptFieldBox">
+            <div id="deptChipsWrap" style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;"></div>
+            <button type="button" class="btn-dashed-pill" onclick="toggleAudienceDropdown('dept', event)">
+              + Select Department
+            </button>
+
+            <!-- Department Dropdown Popover -->
+            <div class="dropdown-popover" id="deptDropdown">
+              <div class="dropdown-option" onclick="selectAudience('dept', 'All Departments')">
+                <span>All Departments</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('dept', 'Front Office')">
+                <span>Front Office</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('dept', 'Food & Beverage')">
+                <span>Food & Beverage</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('dept', 'Housekeeping')">
+                <span>Housekeeping</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('dept', 'Kitchen / Culinary')">
+                <span>Kitchen / Culinary</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('dept', 'Engineering & Facilities')">
+                <span>Engineering & Facilities</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('dept', 'Sales & Marketing')">
+                <span>Sales & Marketing</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('dept', 'Human Resources')">
+                <span>Human Resources</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('dept', 'Security & Safety')">
+                <span>Security & Safety</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Designation Filter Field with Dashed Pill (media_1790756452799.png) -->
+        <div class="form-group">
+          <label class="form-label">Designation</label>
+          <div class="audience-field-box" id="desigFieldBox">
+            <div id="desigChipsWrap" style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;"></div>
+            <button type="button" class="btn-dashed-pill" onclick="toggleAudienceDropdown('desig', event)">
+              + Select Designation
+            </button>
+
+            <!-- Designation Dropdown Popover -->
+            <div class="dropdown-popover" id="desigDropdown">
+              <div class="dropdown-option" onclick="selectAudience('desig', 'All Designations')">
+                <span>All Designations</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('desig', 'General Manager / Director')">
+                <span>General Manager / Director</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('desig', 'Department Head')">
+                <span>Department Head</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('desig', 'Supervisor / Lead')">
+                <span>Supervisor / Lead</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('desig', 'Senior Specialist')">
+                <span>Senior Specialist</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('desig', 'Frontline Staff')">
+                <span>Frontline Staff</span>
+              </div>
+              <div class="dropdown-option" onclick="selectAudience('desig', 'Intern / Trainee')">
+                <span>Intern / Trainee</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Category & Frequency (2-Column Grid) -->
+        <div class="grid-2col">
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <div class="select-wrap">
+              <select class="form-select" id="pulseCategorySelect" onchange="surveyFormData.category = this.value">
+                <option value="Employee Engagement" selected>Employee Engagement</option>
+                <option value="Company Culture & Values">Company Culture & Values</option>
+                <option value="Work-Life Balance & Well-being">Work-Life Balance & Well-being</option>
+                <option value="Management & Leadership">Management & Leadership</option>
+                <option value="Career Growth & Learning">Career Growth & Learning</option>
+                <option value="Compensation & Benefits">Compensation & Benefits</option>
+                <option value="Tools & Workplace Resources">Tools & Workplace Resources</option>
+                <option value="General Feedback">General Feedback</option>
+              </select>
+              <div class="select-arrow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Frequency</label>
+            <div class="select-wrap">
+              <select class="form-select" id="pulseFrequencySelect" onchange="surveyFormData.frequency = this.value">
+                <option value="One Time" selected>One Time</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Bi-Weekly">Bi-Weekly</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Quarterly">Quarterly</option>
+                <option value="Semi-Annually">Semi-Annually</option>
+                <option value="Annually">Annually</option>
+              </select>
+              <div class="select-arrow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Start Date & End Date (2-Column Grid) -->
+        <div class="grid-2col">
+          <div class="form-group">
+            <label class="form-label">Start Date</label>
+            <div class="date-input-wrap">
+              <svg class="date-input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <input type="date" class="form-date-input" id="startDateInput" onchange="surveyFormData.startDate = this.value">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">End Date</label>
+            <div class="date-input-wrap">
+              <svg class="date-input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <input type="date" class="form-date-input" id="endDateInput" onchange="surveyFormData.endDate = this.value">
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Survey Configuration: Priority & Status Switches (media_1790756452799.png) -->
+        <div class="form-group" style="margin-top: 4px;">
+          <div class="section-subheading" style="margin-bottom: 8px;">Survey Configuration</div>
+          <div class="switches-grid">
+            
+            <!-- Priority Switch (Normal <-> Urgent) -->
+            <div class="switch-group">
+              <label class="form-label" style="font-weight: 500; font-size: 12px; color: #64748B;">Priority</label>
+              <div class="switch-control-row">
+                <span class="switch-state-label active-label" id="priorityNormalLabel">Normal</span>
+                <label class="toggle-switch purple-switch">
+                  <input type="checkbox" id="priorityToggleInput" onchange="handlePriorityToggle(this.checked)">
+                  <span class="toggle-slider"></span>
+                </label>
+                <span class="switch-state-label" id="priorityUrgentLabel">Urgent</span>
+              </div>
+            </div>
+
+            <!-- Status Switch (Inactive <-> Active) -->
+            <div class="switch-group">
+              <label class="form-label" style="font-weight: 500; font-size: 12px; color: #64748B;">Status</label>
+              <div class="switch-control-row">
+                <span class="switch-state-label" id="statusInactiveLabel">Inactive</span>
+                <label class="toggle-switch">
+                  <input type="checkbox" id="statusToggleInput" checked onchange="handleStatusToggle(this.checked)">
+                  <span class="toggle-slider"></span>
+                </label>
+                <span class="switch-state-label green-active" id="statusActiveLabel">Active</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer Action Bar (media_1790756452799.png) -->
+      <div class="modal-footer">
+        <button type="button" class="btn-modal-cancel" onclick="closePulseModal()">Cancel</button>
+        <button type="button" class="btn-modal-create" onclick="saveAndCreateSurvey()">
+          Create Survey
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       4. EMPLOYEE RESPONDENT LIVE PREVIEW MODAL
+       ======================================================================== -->
+  <div class="preview-modal-overlay" id="previewModalOverlay" onclick="if(event.target===this) closePreviewModal()">
+    <div class="preview-card">
+      <div style="display: flex; align-items: center; justify-content: space-between;">
+        <span class="preview-badge-chip">Live Employee Survey Preview</span>
+        <button type="button" class="modal-close-btn" onclick="closePreviewModal()">✕</button>
+      </div>
+      <div>
+        <h2 style="font-size: 19px; font-weight: 800; color: #0F172A;" id="prevTitle">Quarterly Employee Well-being Pulse</h2>
+        <p style="font-size: 13px; color: #64748B; margin-top: 4px;" id="prevDesc">Please share your honest ratings to help leadership enhance team morale and resources.</p>
+      </div>
+
+      <div id="previewQuestionsList" style="display: flex; flex-direction: column; gap: 18px;">
+        <!-- Live preview questions rendered dynamically -->
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px;">
+        <button type="button" class="btn-modal-cancel" onclick="closePreviewModal()">Close Preview</button>
+        <button type="button" class="btn-modal-create" onclick="showToast('✓ Survey response submitted in test preview mode!')">
+          Submit Response
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       5. FLOATING TOAST NOTIFICATION
+       ======================================================================== -->
+  <div class="toast-container" id="actionToast">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMessage">Survey saved successfully</span>
+  </div>
+
+  <!-- ========================================================================
+       JAVASCRIPT: PULSE SURVEY ENGINE & STATE MANAGEMENT
+       ======================================================================== -->
+  <script>
+    // Safe String Escaping
+    function escapeHtml(str) {
+      if (str === undefined || str === null) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(new RegExp("'", "g"), '&#039;');
+    }
+
+    // Default Rating Labels
+    const DEFAULT_RATING_5 = [
+      { level: 1, label: 'Very Bad', color: '#EF4444' },
+      { level: 2, label: 'Bad', color: '#F97316' },
+      { level: 3, label: 'Neutral', color: '#3B82F6' },
+      { level: 4, label: 'Good', color: '#F59E0B' },
+      { level: 5, label: 'Very Good', color: '#8B5CF6' }
+    ];
+
+    // Survey In-Memory Data Model
+    let surveyFormData = {
+      name: '',
+      description: '',
+      departments: ['Front Office', 'Food & Beverage'],
+      designations: ['All Designations'],
+      category: 'Employee Engagement',
+      frequency: 'One Time',
+      startDate: new Date().toISOString().split('T')[0],
+      endDate: new Date(Date.now() + 14 * 86400000).toISOString().split('T')[0],
+      priority: 'Normal', // Normal | Urgent
+      status: 'Active',   // Inactive | Active
+      questions: [
+        {
+          id: 'q_init_1',
+          text: 'How satisfied are you with the communication and support from your leadership team?',
+          type: 'Rating Scale (1-5)',
+          required: true
+        }
+      ]
+    };
+
+    // Directory list of existing surveys
+    let surveysDirectory = [
+      {
+        id: 'ps_101',
+        name: 'Quarterly Team Sentiment & Well-being',
+        category: 'Work-Life Balance & Well-being',
+        departments: ['All Departments'],
+        frequency: 'Quarterly',
+        status: 'Active',
+        priority: 'Normal',
+        questionsCount: 4,
+        responses: 428
+      },
+      {
+        id: 'ps_102',
+        name: 'Leadership & Managerial Support Pulse',
+        category: 'Management & Leadership',
+        departments: ['Front Office', 'F&B', 'Housekeeping'],
+        frequency: 'Monthly',
+        status: 'Active',
+        priority: 'Urgent',
+        questionsCount: 3,
+        responses: 312
+      },
+      {
+        id: 'ps_103',
+        name: 'Workplace Culture & Cross-Team Collaboration',
+        category: 'Company Culture & Values',
+        departments: ['Sales', 'HR', 'Engineering'],
+        frequency: 'Bi-Weekly',
+        status: 'Scheduled',
+        priority: 'Normal',
+        questionsCount: 5,
+        responses: 0
+      },
+      {
+        id: 'ps_104',
+        name: 'Staff Dining & Canteen Satisfaction',
+        category: 'Tools & Workplace Resources',
+        departments: ['All Departments'],
+        frequency: 'One Time',
+        status: 'Draft',
+        priority: 'Normal',
+        questionsCount: 2,
+        responses: 0
+      }
+    ];
+
+    // Toast Utility
+    let toastTimer;
+    function showToast(msg) {
+      const toast = document.getElementById('actionToast');
+      const text = document.getElementById('toastMessage');
+      if (!toast || !text) return;
+      text.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Modal Visibility Handlers
+    function openPulseModal() {
+      const overlay = document.getElementById('pulseModalOverlay');
+      if (overlay) {
+        overlay.classList.add('open');
+        setTimeout(() => {
+          const input = document.getElementById('pulseNameInput');
+          if (input) input.focus();
+        }, 150);
+      }
+    }
+
+    function closePulseModal() {
+      const overlay = document.getElementById('pulseModalOverlay');
+      if (overlay) {
+        overlay.classList.remove('open');
+      }
+      closeAllAudienceDropdowns();
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target && e.target.id === 'pulseModalOverlay') {
+        closePulseModal();
+      }
+    }
+
+    // Live Inputs Handlers
+    function handleNameInput(val) {
+      surveyFormData.name = val;
+      const count = document.getElementById('nameCharCount');
+      if (count) count.textContent = `${val.length}/80`;
+    }
+
+    function handleDescInput(val) {
+      surveyFormData.description = val;
+      const count = document.getElementById('descCharCount');
+      if (count) count.textContent = `${val.length}/240`;
+    }
+
+    // Priority Toggle Switch
+    function handlePriorityToggle(isUrgent) {
+      surveyFormData.priority = isUrgent ? 'Urgent' : 'Normal';
+      const normalLbl = document.getElementById('priorityNormalLabel');
+      const urgentLbl = document.getElementById('priorityUrgentLabel');
+      if (normalLbl && urgentLbl) {
+        if (isUrgent) {
+          normalLbl.classList.remove('active-label');
+          urgentLbl.classList.add('active-label');
+        } else {
+          normalLbl.classList.add('active-label');
+          urgentLbl.classList.remove('active-label');
+        }
+      }
+    }
+
+    // Status Toggle Switch
+    function handleStatusToggle(isActive) {
+      surveyFormData.status = isActive ? 'Active' : 'Inactive';
+      const inactLbl = document.getElementById('statusInactiveLabel');
+      const actLbl = document.getElementById('statusActiveLabel');
+      if (inactLbl && actLbl) {
+        if (isActive) {
+          inactLbl.classList.remove('active-label');
+          actLbl.classList.add('green-active');
+        } else {
+          inactLbl.classList.add('active-label');
+          actLbl.classList.remove('green-active');
+        }
+      }
+    }
+
+    // Audience Multi-select Tags
+    function renderAudienceChips() {
+      // Departments
+      const deptWrap = document.getElementById('deptChipsWrap');
+      if (deptWrap) {
+        deptWrap.innerHTML = surveyFormData.departments.map(d => `
+          <span class="tag-chip">
+            ${escapeHtml(d)}
+            <span class="tag-chip-remove" onclick="removeAudienceTag('dept', '${escapeHtml(d)}')">✕</span>
+          </span>
+        `).join('');
+      }
+
+      // Designations
+      const desigWrap = document.getElementById('desigChipsWrap');
+      if (desigWrap) {
+        desigWrap.innerHTML = surveyFormData.designations.map(d => `
+          <span class="tag-chip">
+            ${escapeHtml(d)}
+            <span class="tag-chip-remove" onclick="removeAudienceTag('desig', '${escapeHtml(d)}')">✕</span>
+          </span>
+        `).join('');
+      }
+    }
+
+    function removeAudienceTag(type, val) {
+      if (type === 'dept') {
+        surveyFormData.departments = surveyFormData.departments.filter(item => item !== val);
+      } else {
+        surveyFormData.designations = surveyFormData.designations.filter(item => item !== val);
+      }
+      renderAudienceChips();
+    }
+
+    function toggleAudienceDropdown(type, e) {
+      if (e) e.stopPropagation();
+      const popover = document.getElementById(type === 'dept' ? 'deptDropdown' : 'desigDropdown');
+      const other = document.getElementById(type === 'dept' ? 'desigDropdown' : 'deptDropdown');
+      if (other) other.classList.remove('open');
+      if (popover) popover.classList.toggle('open');
+    }
+
+    function closeAllAudienceDropdowns() {
+      document.getElementById('deptDropdown')?.classList.remove('open');
+      document.getElementById('desigDropdown')?.classList.remove('open');
+    }
+
+    function selectAudience(type, val) {
+      if (type === 'dept') {
+        if (val === 'All Departments') {
+          surveyFormData.departments = ['All Departments'];
+        } else {
+          surveyFormData.departments = surveyFormData.departments.filter(item => item !== 'All Departments');
+          if (!surveyFormData.departments.includes(val)) {
+            surveyFormData.departments.push(val);
+          }
+        }
+      } else {
+        if (val === 'All Designations') {
+          surveyFormData.designations = ['All Designations'];
+        } else {
+          surveyFormData.designations = surveyFormData.designations.filter(item => item !== 'All Designations');
+          if (!surveyFormData.designations.includes(val)) {
+            surveyFormData.designations.push(val);
+          }
+        }
+      }
+      renderAudienceChips();
+      closeAllAudienceDropdowns();
+      showToast(`Added ${val} to target audience`);
+    }
+
+    // Dismiss popovers on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#deptFieldBox') && !e.target.closest('#desigFieldBox')) {
+        closeAllAudienceDropdowns();
+      }
+    });
+
+    // ========================================================================
+    // QUESTIONS BUILDER ENGINE (RENDER / ADD / DELETE / REORDER)
+    // ========================================================================
+    function renderQuestions() {
+      const container = document.getElementById('questionsContainer');
+      const counterText = document.getElementById('questionCounterText');
+      if (!container) return;
+
+      if (counterText) {
+        counterText.textContent = `${surveyFormData.questions.length} Question${surveyFormData.questions.length === 1 ? '' : 's'}`;
+      }
+
+      container.innerHTML = surveyFormData.questions.map((q, idx) => `
+        <div class="question-card" id="q_card_${q.id}">
+          <div class="question-card-topbar">
+            <span class="question-pill-index">Question ${idx + 1}</span>
+            <div class="question-card-actions">
+              ${surveyFormData.questions.length > 1 ? `
+                <button type="button" class="btn-icon-tiny" title="Move Up" onclick="moveQuestion('${q.id}', -1)" ${idx === 0 ? 'disabled style="opacity:0.3; cursor:default;"' : ''}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+                </button>
+                <button type="button" class="btn-icon-tiny" title="Move Down" onclick="moveQuestion('${q.id}', 1)" ${idx === surveyFormData.questions.length - 1 ? 'disabled style="opacity:0.3; cursor:default;"' : ''}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <button type="button" class="btn-icon-tiny delete" title="Delete Question" onclick="deleteQuestion('${q.id}')">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                </button>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- Question Text * (media_1790756452785.png) -->
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 500;">
+              <span>Question Text <span class="required-asterisk">*</span></span>
+            </label>
+            <textarea class="form-textarea" rows="2" placeholder="Enter question text"
+              style="min-height: 64px;"
+              oninput="updateQuestion('${q.id}', 'text', this.value)">${escapeHtml(q.text || '')}</textarea>
+          </div>
+
+          <!-- Question Type Select (media_1790756452785.png) -->
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 500;">Question Type</label>
+            <div class="select-wrap">
+              <select class="form-select" onchange="updateQuestion('${q.id}', 'type', this.value)">
+                <option value="Rating Scale (1-5)" ${q.type === 'Rating Scale (1-5)' ? 'selected' : ''}>Rating Scale (1-5)</option>
+                <option value="Rating Scale (1-10)" ${q.type === 'Rating Scale (1-10)' ? 'selected' : ''}>Rating Scale (1-10)</option>
+                <option value="Open Text" ${q.type === 'Open Text' ? 'selected' : ''}>Open Text Answer</option>
+                <option value="Single Choice" ${q.type === 'Single Choice' ? 'selected' : ''}>Single Choice (Radio)</option>
+                <option value="Multiple Choice" ${q.type === 'Multiple Choice' ? 'selected' : ''}>Multiple Choice (Checkbox)</option>
+                <option value="Likert Scale" ${q.type === 'Likert Scale' ? 'selected' : ''}>Likert Scale (Strongly Disagree to Agree)</option>
+                <option value="Net Promoter Score" ${q.type === 'Net Promoter Score' ? 'selected' : ''}>Net Promoter Score (eNPS 0-10)</option>
+              </select>
+              <div class="select-arrow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rating Scale Live Customizer Preview (When Rating Scale 1-5 is chosen) -->
+          ${q.type === 'Rating Scale (1-5)' ? `
+            <div class="rating-preview-box">
+              <div class="rating-preview-header">
+                <span>Rating Scale Scale Levels</span>
+                <span style="font-size: 11px; color: #7C3AED; font-weight: 600;">5 Levels (1 to 5)</span>
+              </div>
+              <div class="rating-levels-row">
+                ${DEFAULT_RATING_5.map(r => `
+                  <span class="rating-badge-item">
+                    <span class="rating-color-dot" style="background: ${r.color};"></span>
+                    <span>${r.level}. ${r.label}</span>
+                  </span>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Required Checkbox (media_1790756452785.png) -->
+          <div>
+            <label class="checkbox-label">
+              <input type="checkbox" class="custom-checkbox" ${q.required ? 'checked' : ''} onchange="updateQuestion('${q.id}', 'required', this.checked)">
+              <span>Required</span>
+            </label>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addNewQuestion() {
+      const newId = 'q_' + Date.now();
+      surveyFormData.questions.push({
+        id: newId,
+        text: '',
+        type: 'Rating Scale (1-5)',
+        required: true
+      });
+      renderQuestions();
+      showToast(`Added Question ${surveyFormData.questions.length}`);
+      
+      // Auto-focus new question
+      setTimeout(() => {
+        const el = document.getElementById(`q_card_${newId}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const ta = el.querySelector('textarea');
+          if (ta) ta.focus();
+        }
+      }, 100);
+    }
+
+    function deleteQuestion(id) {
+      if (surveyFormData.questions.length <= 1) {
+        showToast('Survey requires at least one question.');
+        return;
+      }
+      surveyFormData.questions = surveyFormData.questions.filter(q => q.id !== id);
+      renderQuestions();
+      showToast('Question removed.');
+    }
+
+    function moveQuestion(id, direction) {
+      const idx = surveyFormData.questions.findIndex(q => q.id === id);
+      if (idx === -1) return;
+      const targetIdx = idx + direction;
+      if (targetIdx < 0 || targetIdx >= surveyFormData.questions.length) return;
+      const item = surveyFormData.questions.splice(idx, 1)[0];
+      surveyFormData.questions.splice(targetIdx, 0, item);
+      renderQuestions();
+    }
+
+    function updateQuestion(id, field, val) {
+      const q = surveyFormData.questions.find(item => item.id === id);
+      if (!q) return;
+      q[field] = val;
+      if (field === 'type') {
+        renderQuestions();
+      }
+    }
+
+    // ========================================================================
+    // HYIQ AI GENERATION & REFINE (REPLICATING EXIT FORM AI ASSIST)
+    // ========================================================================
+    function triggerHyIqAiFill() {
+      // Auto-draft an authentic high-impact Pulse Survey
+      surveyFormData.name = 'Q3 Colleague Well-being & Workplace Sentiment';
+      surveyFormData.description = 'Your candid feedback helps Crowne Plaza Dubai leadership continuously elevate team well-being, managerial support, and shift operations.';
+      surveyFormData.category = 'Work-Life Balance & Well-being';
+      surveyFormData.frequency = 'Quarterly';
+      surveyFormData.departments = ['All Departments'];
+      surveyFormData.designations = ['All Designations'];
+      surveyFormData.priority = 'Normal';
+      surveyFormData.status = 'Active';
+
+      surveyFormData.questions = [
+        {
+          id: 'q_ai_1',
+          text: 'How balanced do you feel your workload and shift schedule has been over the past month?',
+          type: 'Rating Scale (1-5)',
+          required: true
+        },
+        {
+          id: 'q_ai_2',
+          text: 'Do you feel valued, respected, and recognized by your direct line manager?',
+          type: 'Rating Scale (1-5)',
+          required: true
+        },
+        {
+          id: 'q_ai_3',
+          text: 'How satisfied are you with cross-departmental cooperation and teamwork on busy days?',
+          type: 'Rating Scale (1-5)',
+          required: true
+        },
+        {
+          id: 'q_ai_4',
+          text: 'What is one specific improvement leadership can implement to make your daily work easier?',
+          type: 'Open Text',
+          required: false
+        }
+      ];
+
+      // Update Form Inputs
+      document.getElementById('pulseNameInput').value = surveyFormData.name;
+      document.getElementById('pulseDescInput').value = surveyFormData.description;
+      document.getElementById('pulseCategorySelect').value = surveyFormData.category;
+      document.getElementById('pulseFrequencySelect').value = surveyFormData.frequency;
+      document.getElementById('priorityToggleInput').checked = false;
+      document.getElementById('statusToggleInput').checked = true;
+
+      handleNameInput(surveyFormData.name);
+      handleDescInput(surveyFormData.description);
+      handlePriorityToggle(false);
+      handleStatusToggle(true);
+      renderAudienceChips();
+      renderQuestions();
+
+      showToast('✨ HyIQ AI: Generated 4 hospitality pulse questions with complete targeting!');
+    }
+
+    function refineDescWithAi() {
+      const refined = 'Your confidential insights directly empower hotel management to prioritize staff well-being, improve shift coordination, and foster a supportive workplace culture.';
+      surveyFormData.description = refined;
+      const descInput = document.getElementById('pulseDescInput');
+      if (descInput) descInput.value = refined;
+      handleDescInput(refined);
+      showToast('✨ HyIQ AI: Survey description refined to executive HR tone.');
+    }
+
+    // ========================================================================
+    // CREATE / SAVE SURVEY VALIDATION
+    // ========================================================================
+    function saveAndCreateSurvey() {
+      if (!surveyFormData.name.trim()) {
+        showToast('⚠️ Please enter a Pulse Name.');
+        const input = document.getElementById('pulseNameInput');
+        if (input) {
+          input.focus();
+          input.style.borderColor = '#DC2626';
+          setTimeout(() => { input.style.borderColor = '#E2E8F0'; }, 2000);
+        }
+        return;
+      }
+
+      // Check if at least one question has text
+      const emptyQ = surveyFormData.questions.find(q => !q.text.trim());
+      if (emptyQ) {
+        showToast('⚠️ Please provide Question Text for all survey questions.');
+        const el = document.getElementById(`q_card_${emptyQ.id}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          const ta = el.querySelector('textarea');
+          if (ta) {
+            ta.focus();
+            ta.style.borderColor = '#DC2626';
+            setTimeout(() => { ta.style.borderColor = '#E2E8F0'; }, 2000);
+          }
+        }
+        return;
+      }
+
+      // Add to directory
+      const newRecord = {
+        id: 'ps_' + Date.now(),
+        name: surveyFormData.name,
+        category: surveyFormData.category,
+        departments: [...surveyFormData.departments],
+        frequency: surveyFormData.frequency,
+        status: surveyFormData.status,
+        priority: surveyFormData.priority,
+        questionsCount: surveyFormData.questions.length,
+        responses: 0
+      };
+
+      surveysDirectory.unshift(newRecord);
+      renderDirectoryTable();
+
+      // Update KPI
+      const kpiEl = document.getElementById('kpiActiveCount');
+      if (kpiEl) {
+        const activeCount = surveysDirectory.filter(s => s.status === 'Active').length;
+        kpiEl.textContent = activeCount;
+      }
+
+      closePulseModal();
+      showToast(`✓ "${surveyFormData.name}" created and launched!`);
+    }
+
+    // Render Directory Table in Background View
+    function renderDirectoryTable() {
+      const tbody = document.getElementById('surveyTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = surveysDirectory.map(s => `
+        <tr>
+          <td>
+            <div class="pulse-name-cell">
+              <span>${escapeHtml(s.name)}</span>
+              <span class="pulse-subtext">${s.questionsCount} questions • ${s.responses} responses collected</span>
+            </div>
+          </td>
+          <td><span style="font-weight: 500; color: #475569;">${escapeHtml(s.category)}</span></td>
+          <td>
+            <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+              ${s.departments.slice(0, 2).map(d => `
+                <span class="tag-chip" style="font-size: 11px; padding: 2px 7px;">${escapeHtml(d)}</span>
+              `).join('')}
+              ${s.departments.length > 2 ? `<span style="font-size: 11px; color: #94A3B8;">+${s.departments.length - 2}</span>` : ''}
+            </div>
+          </td>
+          <td><span style="color: #64748B;">${escapeHtml(s.frequency)}</span></td>
+          <td>
+            <span class="chip-badge ${s.status === 'Active' ? 'chip-active' : (s.status === 'Scheduled' ? 'chip-scheduled' : 'chip-draft')}">
+              ${s.status === 'Active' ? '● Active' : (s.status === 'Scheduled' ? '📅 Scheduled' : 'Draft')}
+            </span>
+          </td>
+          <td>
+            <span style="font-size: 12px; font-weight: 600; color: ${s.priority === 'Urgent' ? '#DC2626' : '#64748B'};">
+              ${s.priority === 'Urgent' ? '⚡ Urgent' : 'Normal'}
+            </span>
+          </td>
+          <td>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="btn-icon-tiny" title="Preview" onclick="openPreviewModal()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+              <button type="button" class="btn-icon-tiny" title="Edit" onclick="openPulseModal()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // ========================================================================
+    // EMPLOYEE RESPONDENT LIVE PREVIEW MODAL
+    // ========================================================================
+    function openPreviewModal() {
+      const overlay = document.getElementById('previewModalOverlay');
+      const titleEl = document.getElementById('prevTitle');
+      const descEl = document.getElementById('prevDesc');
+      const listEl = document.getElementById('previewQuestionsList');
+
+      if (titleEl) titleEl.textContent = surveyFormData.name || 'Untitled Pulse Survey';
+      if (descEl) descEl.textContent = surveyFormData.description || 'Please share your ratings and honest suggestions.';
+
+      if (listEl) {
+        listEl.innerHTML = surveyFormData.questions.map((q, idx) => `
+          <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px;">
+            <div style="font-size: 13.5px; font-weight: 700; color: #0F172A; margin-bottom: 8px;">
+              ${idx + 1}. ${escapeHtml(q.text || 'Question text...')} ${q.required ? '<span style="color:#DC2626;">*</span>' : ''}
+            </div>
+
+            ${q.type === 'Rating Scale (1-5)' ? `
+              <div class="rating-respondent-row" id="prev_rating_${q.id}">
+                ${[1, 2, 3, 4, 5].map(n => `
+                  <button type="button" class="rating-num-btn" onclick="selectPreviewRating('${q.id}', ${n})">${n}</button>
+                `).join('')}
+              </div>
+            ` : (q.type === 'Rating Scale (1-10)' ? `
+              <div class="rating-respondent-row" style="flex-wrap: wrap;">
+                ${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `
+                  <button type="button" class="rating-num-btn" style="width: 36px; height: 36px; font-size: 13px;" onclick="this.classList.toggle('selected')">${n}</button>
+                `).join('')}
+              </div>
+            ` : `
+              <textarea class="form-textarea" rows="2" placeholder="Write your confidential feedback..." style="background:#FFFFFF; min-height:60px;"></textarea>
+            `)}
+          </div>
+        `).join('');
+      }
+
+      if (overlay) overlay.classList.add('open');
+    }
+
+    function selectPreviewRating(qId, val) {
+      const row = document.getElementById(`prev_rating_${qId}`);
+      if (!row) return;
+      row.querySelectorAll('.rating-num-btn').forEach((btn, idx) => {
+        if (idx + 1 === val) btn.classList.add('selected');
+        else btn.classList.remove('selected');
+      });
+      showToast(`Selected rating: ${val} of 5`);
+    }
+
+    function closePreviewModal() {
+      const overlay = document.getElementById('previewModalOverlay');
+      if (overlay) overlay.classList.remove('open');
+    }
+
+    // Keyboard Shortcuts (Esc to close modal)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const preview = document.getElementById('previewModalOverlay');
+        if (preview && preview.classList.contains('open')) {
+          closePreviewModal();
+          return;
+        }
+        const pulse = document.getElementById('pulseModalOverlay');
+        if (pulse && pulse.classList.contains('open')) {
+          closePulseModal();
+        }
+      }
+    });
+
+    // Initialization on DOM Ready
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set initial defaults
+      const startEl = document.getElementById('startDateInput');
+      const endEl = document.getElementById('endDateInput');
+      if (startEl) startEl.value = surveyFormData.startDate;
+      if (endEl) endEl.value = surveyFormData.endDate;
+
+      renderAudienceChips();
+      renderQuestions();
+      renderDirectoryTable();
+    });
+  </script>
+</body>
+</html>
