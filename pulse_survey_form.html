@@ -751,7 +751,7 @@
       padding: 0 14px;
       border-radius: var(--radius-md);
       border: 1px solid #E2E8F0;
-      background: #FFFFFF;
+      background: #F9FAFB;
       font-size: 13.5px;
       color: #0F172A;
       outline: none;
@@ -766,7 +766,8 @@
     }
     .form-input:focus {
       border-color: #7C3AED;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      background: #F9FAFB;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
     }
 
     .form-textarea {
@@ -775,7 +776,7 @@
       padding: 10px 14px;
       border-radius: var(--radius-md);
       border: 1px solid #E2E8F0;
-      background: #FFFFFF;
+      background: #F9FAFB;
       font-size: 13.5px;
       color: #0F172A;
       outline: none;
@@ -792,7 +793,8 @@
     }
     .form-textarea:focus {
       border-color: #7C3AED;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      background: #F9FAFB;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
     }
 
     /* Section Subheadings */
@@ -872,20 +874,22 @@
       padding: 0 34px 0 14px;
       border-radius: var(--radius-md);
       border: 1px solid #E2E8F0;
-      background: #FFFFFF;
+      background: #F9FAFB;
       font-size: 13.5px;
       color: #0F172A;
       outline: none;
       appearance: none;
+      -webkit-appearance: none;
       cursor: pointer;
-      transition: border-color 0.15s ease;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
     .form-select:hover {
       border-color: #CBD5E1;
     }
     .form-select:focus {
       border-color: #7C3AED;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      background: #F9FAFB;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
     }
     .select-arrow {
       position: absolute;
@@ -949,7 +953,7 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
-      background: #FFFFFF;
+      background: #F9FAFB;
       transition: all 0.15s ease;
       position: relative;
     }
@@ -958,7 +962,8 @@
     }
     .audience-field-box:focus-within {
       border-color: #7C3AED;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      background: #F9FAFB;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
     }
 
     .btn-dashed-pill {
@@ -1081,7 +1086,7 @@
       padding: 0 14px 0 36px;
       border-radius: var(--radius-md);
       border: 1px solid #E2E8F0;
-      background: #FFFFFF;
+      background: #F9FAFB;
       font-size: 13px;
       color: #0F172A;
       outline: none;
@@ -1092,7 +1097,8 @@
     }
     .form-date-input:focus {
       border-color: #7C3AED;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+      background: #F9FAFB;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
     }
 
     /* Switches: Priority & Status (media_1790756452799.png) */
@@ -2413,7 +2419,7 @@
                 `).join('')}
               </div>
             ` : `
-              <textarea class="form-textarea" rows="2" placeholder="Write your confidential feedback..." style="background:#FFFFFF; min-height:60px;"></textarea>
+              <textarea class="form-textarea" rows="2" placeholder="Write your confidential feedback..." style="min-height:60px;"></textarea>
             `)}
           </div>
         `).join('');
