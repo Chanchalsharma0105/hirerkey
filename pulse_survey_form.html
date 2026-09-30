@@ -602,11 +602,11 @@
 
     .pulse-modal-card {
       background: #FFFFFF;
-      border-radius: 16px;
+      border-radius: 12px;
       width: 100%;
-      max-width: 740px;
+      max-width: 680px;
       max-height: calc(100vh - 48px);
-      box-shadow: var(--shadow-modal);
+      box-shadow: 0 20px 48px -8px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.05);
       display: flex;
       flex-direction: column;
       overflow: hidden;
@@ -620,7 +620,7 @@
 
     /* Modal Header */
     .modal-header {
-      padding: 22px 28px 16px 28px;
+      padding: 20px 24px 16px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -628,18 +628,18 @@
       flex-shrink: 0;
     }
     .modal-title-purple {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       color: #7C3AED; /* Signature bold purple heading from screenshot */
-      letter-spacing: -0.015em;
+      letter-spacing: -0.01em;
     }
     .modal-close-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       border: none;
       background: transparent;
-      color: #64748B;
+      color: #94A3B8;
       display: grid;
       place-items: center;
       cursor: pointer;
@@ -653,12 +653,12 @@
 
     /* Modal Scrollable Body */
     .modal-body {
-      padding: 22px 28px 26px 28px;
+      padding: 20px 24px 22px 24px;
       overflow-y: auto;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 16px;
     }
 
     /* AI Fill Pill Banner (media_1790756452785.png) */
@@ -804,65 +804,59 @@
       margin-top: 4px;
     }
 
-    /* Survey Questions Box (media_1790756452785.png) */
-    .questions-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .question-card {
+    /* Survey Questions Box (media_1790756452785.png & media_1790756452799.png) */
+    .survey-card-container {
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: var(--radius-lg);
-      padding: 18px 20px;
-      position: relative;
+      border-radius: var(--radius-md);
+      padding: 18px 20px 14px 20px;
       display: flex;
       flex-direction: column;
       gap: 14px;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
-      transition: all 0.15s ease;
+      transition: border-color 0.15s ease;
     }
-    .question-card:hover {
+    .survey-card-container:hover {
       border-color: #CBD5E1;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
     }
 
-    .question-card-topbar {
+    .question-block {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+    .question-block + .question-block {
+      padding-top: 14px;
+      border-top: 1px dashed #E2E8F0;
+    }
+    .question-block-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: -4px;
     }
-    .question-pill-index {
-      font-size: 12px;
+    .question-badge-subtle {
+      font-size: 11.5px;
       font-weight: 700;
       color: #7C3AED;
       background: #EDE9FE;
       padding: 2px 8px;
       border-radius: var(--radius-full);
     }
-    .question-card-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-icon-tiny {
-      width: 26px;
-      height: 26px;
-      border-radius: var(--radius-sm);
-      border: none;
+    .btn-delete-q {
       background: transparent;
+      border: none;
       color: #94A3B8;
+      cursor: pointer;
+      font-size: 13px;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
       display: grid;
       place-items: center;
-      cursor: pointer;
       transition: all 0.15s ease;
     }
-    .btn-icon-tiny:hover {
-      background: #F1F5F9;
-      color: #0F172A;
-    }
-    .btn-icon-tiny.delete:hover {
+    .btn-delete-q:hover {
       background: #FEE2E2;
       color: #DC2626;
     }
@@ -884,7 +878,7 @@
       outline: none;
       appearance: none;
       cursor: pointer;
-      transition: all 0.15s ease;
+      transition: border-color 0.15s ease;
     }
     .form-select:hover {
       border-color: #CBD5E1;
@@ -902,50 +896,6 @@
       color: #64748B;
       display: grid;
       place-items: center;
-    }
-
-    /* Rating Scale Levels Builder (Exact from Exit Survey Engine) */
-    .rating-preview-box {
-      background: #F8FAFC;
-      border: 1px dashed #CBD5E1;
-      border-radius: var(--radius-md);
-      padding: 12px 14px;
-      margin-top: 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .rating-preview-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 12px;
-      font-weight: 600;
-      color: #475569;
-    }
-    .rating-levels-row {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .rating-badge-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: var(--radius-full);
-      font-size: 12px;
-      font-weight: 600;
-      color: #334155;
-    }
-    .rating-color-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      flex-shrink: 0;
     }
 
     /* Required Checkbox */
@@ -971,21 +921,21 @@
     .add-q-center-wrap {
       display: flex;
       justify-content: center;
-      padding: 6px 0;
+      padding: 4px 0 2px 0;
     }
     .btn-add-new-q {
       background: transparent;
       border: none;
       color: #64748B;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
       padding: 6px 14px;
       border-radius: var(--radius-md);
       transition: all 0.15s ease;
     }
     .btn-add-new-q:hover {
-      background: #F1F5F9;
+      background: #F8FAFC;
       color: #7C3AED;
     }
 
@@ -1149,7 +1099,7 @@
     .switches-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 20px;
       align-items: center;
     }
     .switch-group {
@@ -1163,18 +1113,14 @@
       gap: 10px;
     }
     .switch-state-label {
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 500;
       color: #64748B;
       transition: color 0.15s ease;
       user-select: none;
     }
-    .switch-state-label.active-label {
+    .switch-state-label.active-purple {
       color: #7C3AED;
-      font-weight: 600;
-    }
-    .switch-state-label.green-active {
-      color: #16A34A;
       font-weight: 600;
     }
 
@@ -1182,8 +1128,8 @@
     .toggle-switch {
       position: relative;
       display: inline-block;
-      width: 44px;
-      height: 24px;
+      width: 40px;
+      height: 22px;
       cursor: pointer;
     }
     .toggle-switch input {
@@ -1200,33 +1146,33 @@
       bottom: 0;
       background-color: #CBD5E1;
       border-radius: var(--radius-full);
-      transition: background-color 0.25s ease;
+      transition: background-color 0.22s ease;
     }
     .toggle-slider:before {
       position: absolute;
       content: "";
-      height: 18px;
-      width: 18px;
+      height: 16px;
+      width: 16px;
       left: 3px;
       bottom: 3px;
       background-color: #FFFFFF;
       border-radius: 50%;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .toggle-switch input:checked + .toggle-slider {
+    .toggle-switch.status-switch input:checked + .toggle-slider {
       background-color: #16A34A; /* Active green by default */
     }
-    .toggle-switch.purple-switch input:checked + .toggle-slider {
+    .toggle-switch.priority-switch input:checked + .toggle-slider {
       background-color: #7C3AED; /* Urgent purple */
     }
     .toggle-switch input:checked + .toggle-slider:before {
-      transform: translateX(20px);
+      transform: translateX(18px);
     }
 
     /* Modal Footer Actions (media_1790756452799.png) */
     .modal-footer {
-      padding: 16px 28px;
+      padding: 14px 24px;
       border-top: 1px solid #F1F5F9;
       display: flex;
       align-items: center;
@@ -1236,12 +1182,12 @@
       flex-shrink: 0;
     }
     .btn-modal-cancel {
-      padding: 9px 18px;
+      padding: 8px 18px;
       border: 1px solid #E2E8F0;
       background: #FFFFFF;
       color: #334155;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
       border-radius: var(--radius-md);
       cursor: pointer;
       transition: all 0.15s ease;
@@ -1252,15 +1198,15 @@
       color: #0F172A;
     }
     .btn-modal-create {
-      padding: 9px 22px;
+      padding: 8px 22px;
       border: none;
       background: #7C3AED; /* Vibrant purple from screenshot */
       color: #FFFFFF;
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
       border-radius: var(--radius-md);
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
       transition: all 0.18s ease;
       display: inline-flex;
       align-items: center;
@@ -1268,8 +1214,7 @@
     }
     .btn-modal-create:hover {
       background: #6D28D9;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
     }
 
     /* ==========================================================================
@@ -1642,43 +1587,30 @@
         <div class="form-group">
           <label class="form-label" for="pulseNameInput">
             <span>Pulse Name <span class="required-asterisk">*</span></span>
-            <span class="char-count" id="nameCharCount">0/80</span>
           </label>
-          <input type="text" class="form-input" id="pulseNameInput" placeholder="Enter pulse name" maxlength="80" oninput="handleNameInput(this.value)">
+          <input type="text" class="form-input" id="pulseNameInput" placeholder="Enter pulse name" maxlength="80">
         </div>
 
         <!-- 3. Description Field -->
         <div class="form-group">
           <label class="form-label" for="pulseDescInput">
             <span>Description</span>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <button type="button" style="background: none; border: none; font-size: 11.5px; font-weight: 600; color: #7C3AED; cursor: pointer; display: inline-flex; align-items: center; gap: 3px;" onclick="refineDescWithAi()">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.7 8.3L21 11L14.7 13.7L12 20L9.3 13.7L3 11L9.3 8.3L12 2Z"/></svg>
-                Refine with AI
-              </button>
-              <span class="char-count" id="descCharCount">0/240</span>
-            </div>
           </label>
-          <textarea class="form-textarea" id="pulseDescInput" placeholder="Enter pulse description" maxlength="240" oninput="handleDescInput(this.value)"></textarea>
+          <textarea class="form-textarea" id="pulseDescInput" placeholder="Enter pulse description" maxlength="240"></textarea>
         </div>
 
-        <!-- 4. Survey Section: Question Cards Builder -->
+        <!-- 4. Survey Section (media_1790756452785.png & media_1790756452799.png) -->
         <div class="form-group">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <div class="section-subheading">Survey</div>
-            <span style="font-size: 11.5px; color: #94A3B8;" id="questionCounterText">1 Question</span>
-          </div>
-
-          <!-- Questions Dynamic Container -->
-          <div class="questions-wrapper" id="questionsContainer">
-            <!-- Questions rendered via JS -->
-          </div>
-
-          <!-- Add New Question Centered Button (media_1790756452799.png) -->
-          <div class="add-q-center-wrap">
-            <button type="button" class="btn-add-new-q" onclick="addNewQuestion()">
-              Add New Question
-            </button>
+          <div class="section-subheading">Survey</div>
+          <div class="survey-card-container">
+            <div id="questionsContainer" style="display: flex; flex-direction: column; gap: 14px;">
+              <!-- Questions rendered via JS -->
+            </div>
+            <div class="add-q-center-wrap">
+              <button type="button" class="btn-add-new-q" onclick="addNewQuestion()">
+                Add New Question
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1776,7 +1708,10 @@
                 <option value="General Feedback">General Feedback</option>
               </select>
               <div class="select-arrow">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m7 15 5 5 5-5"/>
+                  <path d="m7 9 5-5 5 5"/>
+                </svg>
               </div>
             </div>
           </div>
@@ -1794,7 +1729,10 @@
                 <option value="Annually">Annually</option>
               </select>
               <div class="select-arrow">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m7 15 5 5 5-5"/>
+                  <path d="m7 9 5-5 5 5"/>
+                </svg>
               </div>
             </div>
           </div>
@@ -1805,16 +1743,26 @@
           <div class="form-group">
             <label class="form-label">Start Date</label>
             <div class="date-input-wrap">
-              <svg class="date-input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              <input type="date" class="form-date-input" id="startDateInput" onchange="surveyFormData.startDate = this.value">
+              <svg class="date-input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <input type="text" class="form-date-input" id="startDateInput" placeholder="Select a date" onfocus="this.type='date'; try{this.showPicker()}catch(e){}" onblur="if(!this.value) this.type='text'" onchange="surveyFormData.startDate = this.value">
             </div>
           </div>
 
           <div class="form-group">
             <label class="form-label">End Date</label>
             <div class="date-input-wrap">
-              <svg class="date-input-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              <input type="date" class="form-date-input" id="endDateInput" onchange="surveyFormData.endDate = this.value">
+              <svg class="date-input-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <input type="text" class="form-date-input" id="endDateInput" placeholder="Select a date" onfocus="this.type='date'; try{this.showPicker()}catch(e){}" onblur="if(!this.value) this.type='text'" onchange="surveyFormData.endDate = this.value">
             </div>
           </div>
         </div>
@@ -1828,8 +1776,8 @@
             <div class="switch-group">
               <label class="form-label" style="font-weight: 500; font-size: 12px; color: #64748B;">Priority</label>
               <div class="switch-control-row">
-                <span class="switch-state-label active-label" id="priorityNormalLabel">Normal</span>
-                <label class="toggle-switch purple-switch">
+                <span class="switch-state-label active-purple" id="priorityNormalLabel">Normal</span>
+                <label class="toggle-switch priority-switch">
                   <input type="checkbox" id="priorityToggleInput" onchange="handlePriorityToggle(this.checked)">
                   <span class="toggle-slider"></span>
                 </label>
@@ -1842,11 +1790,11 @@
               <label class="form-label" style="font-weight: 500; font-size: 12px; color: #64748B;">Status</label>
               <div class="switch-control-row">
                 <span class="switch-state-label" id="statusInactiveLabel">Inactive</span>
-                <label class="toggle-switch">
+                <label class="toggle-switch status-switch">
                   <input type="checkbox" id="statusToggleInput" checked onchange="handleStatusToggle(this.checked)">
                   <span class="toggle-slider"></span>
                 </label>
-                <span class="switch-state-label green-active" id="statusActiveLabel">Active</span>
+                <span class="switch-state-label active-purple" id="statusActiveLabel">Active</span>
               </div>
             </div>
 
@@ -1929,18 +1877,18 @@
     let surveyFormData = {
       name: '',
       description: '',
-      departments: ['Front Office', 'Food & Beverage'],
-      designations: ['All Designations'],
+      departments: [],
+      designations: [],
       category: 'Employee Engagement',
       frequency: 'One Time',
-      startDate: new Date().toISOString().split('T')[0],
-      endDate: new Date(Date.now() + 14 * 86400000).toISOString().split('T')[0],
+      startDate: '',
+      endDate: '',
       priority: 'Normal', // Normal | Urgent
       status: 'Active',   // Inactive | Active
       questions: [
         {
           id: 'q_init_1',
-          text: 'How satisfied are you with the communication and support from your leadership team?',
+          text: '',
           type: 'Rating Scale (1-5)',
           required: true
         }
@@ -2038,14 +1986,10 @@
     // Live Inputs Handlers
     function handleNameInput(val) {
       surveyFormData.name = val;
-      const count = document.getElementById('nameCharCount');
-      if (count) count.textContent = `${val.length}/80`;
     }
 
     function handleDescInput(val) {
       surveyFormData.description = val;
-      const count = document.getElementById('descCharCount');
-      if (count) count.textContent = `${val.length}/240`;
     }
 
     // Priority Toggle Switch
@@ -2055,11 +1999,11 @@
       const urgentLbl = document.getElementById('priorityUrgentLabel');
       if (normalLbl && urgentLbl) {
         if (isUrgent) {
-          normalLbl.classList.remove('active-label');
-          urgentLbl.classList.add('active-label');
+          normalLbl.classList.remove('active-purple');
+          urgentLbl.classList.add('active-purple');
         } else {
-          normalLbl.classList.add('active-label');
-          urgentLbl.classList.remove('active-label');
+          normalLbl.classList.add('active-purple');
+          urgentLbl.classList.remove('active-purple');
         }
       }
     }
@@ -2071,11 +2015,11 @@
       const actLbl = document.getElementById('statusActiveLabel');
       if (inactLbl && actLbl) {
         if (isActive) {
-          inactLbl.classList.remove('active-label');
-          actLbl.classList.add('green-active');
+          inactLbl.classList.remove('active-purple');
+          actLbl.classList.add('active-purple');
         } else {
-          inactLbl.classList.add('active-label');
-          actLbl.classList.remove('green-active');
+          inactLbl.classList.add('active-purple');
+          actLbl.classList.remove('active-purple');
         }
       }
     }
@@ -2160,49 +2104,34 @@
     });
 
     // ========================================================================
-    // QUESTIONS BUILDER ENGINE (RENDER / ADD / DELETE / REORDER)
+    // QUESTIONS BUILDER ENGINE (RENDER / ADD / DELETE)
     // ========================================================================
     function renderQuestions() {
       const container = document.getElementById('questionsContainer');
-      const counterText = document.getElementById('questionCounterText');
       if (!container) return;
 
-      if (counterText) {
-        counterText.textContent = `${surveyFormData.questions.length} Question${surveyFormData.questions.length === 1 ? '' : 's'}`;
-      }
-
       container.innerHTML = surveyFormData.questions.map((q, idx) => `
-        <div class="question-card" id="q_card_${q.id}">
-          <div class="question-card-topbar">
-            <span class="question-pill-index">Question ${idx + 1}</span>
-            <div class="question-card-actions">
-              ${surveyFormData.questions.length > 1 ? `
-                <button type="button" class="btn-icon-tiny" title="Move Up" onclick="moveQuestion('${q.id}', -1)" ${idx === 0 ? 'disabled style="opacity:0.3; cursor:default;"' : ''}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
-                </button>
-                <button type="button" class="btn-icon-tiny" title="Move Down" onclick="moveQuestion('${q.id}', 1)" ${idx === surveyFormData.questions.length - 1 ? 'disabled style="opacity:0.3; cursor:default;"' : ''}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-                </button>
-                <button type="button" class="btn-icon-tiny delete" title="Delete Question" onclick="deleteQuestion('${q.id}')">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                </button>
-              ` : ''}
+        <div class="question-block" id="q_block_${q.id}">
+          ${surveyFormData.questions.length > 1 ? `
+            <div class="question-block-header">
+              <span class="question-badge-subtle">Question ${idx + 1}</span>
+              <button type="button" class="btn-delete-q" title="Delete Question" onclick="deleteQuestion('${q.id}')">✕</button>
             </div>
-          </div>
+          ` : ''}
 
           <!-- Question Text * (media_1790756452785.png) -->
           <div class="form-group">
-            <label class="form-label" style="font-weight: 500;">
+            <label class="form-label" style="font-weight: 500; font-size: 13px;">
               <span>Question Text <span class="required-asterisk">*</span></span>
             </label>
             <textarea class="form-textarea" rows="2" placeholder="Enter question text"
-              style="min-height: 64px;"
+              style="min-height: 68px;"
               oninput="updateQuestion('${q.id}', 'text', this.value)">${escapeHtml(q.text || '')}</textarea>
           </div>
 
           <!-- Question Type Select (media_1790756452785.png) -->
           <div class="form-group">
-            <label class="form-label" style="font-weight: 500;">Question Type</label>
+            <label class="form-label" style="font-weight: 500; font-size: 13px;">Question Type</label>
             <div class="select-wrap">
               <select class="form-select" onchange="updateQuestion('${q.id}', 'type', this.value)">
                 <option value="Rating Scale (1-5)" ${q.type === 'Rating Scale (1-5)' ? 'selected' : ''}>Rating Scale (1-5)</option>
@@ -2214,28 +2143,13 @@
                 <option value="Net Promoter Score" ${q.type === 'Net Promoter Score' ? 'selected' : ''}>Net Promoter Score (eNPS 0-10)</option>
               </select>
               <div class="select-arrow">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m7 15 5 5 5-5"/>
+                  <path d="m7 9 5-5 5 5"/>
+                </svg>
               </div>
             </div>
           </div>
-
-          <!-- Rating Scale Live Customizer Preview (When Rating Scale 1-5 is chosen) -->
-          ${q.type === 'Rating Scale (1-5)' ? `
-            <div class="rating-preview-box">
-              <div class="rating-preview-header">
-                <span>Rating Scale Scale Levels</span>
-                <span style="font-size: 11px; color: #7C3AED; font-weight: 600;">5 Levels (1 to 5)</span>
-              </div>
-              <div class="rating-levels-row">
-                ${DEFAULT_RATING_5.map(r => `
-                  <span class="rating-badge-item">
-                    <span class="rating-color-dot" style="background: ${r.color};"></span>
-                    <span>${r.level}. ${r.label}</span>
-                  </span>
-                `).join('')}
-              </div>
-            </div>
-          ` : ''}
 
           <!-- Required Checkbox (media_1790756452785.png) -->
           <div>
@@ -2261,7 +2175,7 @@
       
       // Auto-focus new question
       setTimeout(() => {
-        const el = document.getElementById(`q_card_${newId}`);
+        const el = document.getElementById(`q_block_${newId}`);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'center' });
           const ta = el.querySelector('textarea');
@@ -2280,23 +2194,10 @@
       showToast('Question removed.');
     }
 
-    function moveQuestion(id, direction) {
-      const idx = surveyFormData.questions.findIndex(q => q.id === id);
-      if (idx === -1) return;
-      const targetIdx = idx + direction;
-      if (targetIdx < 0 || targetIdx >= surveyFormData.questions.length) return;
-      const item = surveyFormData.questions.splice(idx, 1)[0];
-      surveyFormData.questions.splice(targetIdx, 0, item);
-      renderQuestions();
-    }
-
     function updateQuestion(id, field, val) {
       const q = surveyFormData.questions.find(item => item.id === id);
       if (!q) return;
       q[field] = val;
-      if (field === 'type') {
-        renderQuestions();
-      }
     }
 
     // ========================================================================
@@ -2310,6 +2211,8 @@
       surveyFormData.frequency = 'Quarterly';
       surveyFormData.departments = ['All Departments'];
       surveyFormData.designations = ['All Designations'];
+      surveyFormData.startDate = new Date().toISOString().split('T')[0];
+      surveyFormData.endDate = new Date(Date.now() + 14 * 86400000).toISOString().split('T')[0];
       surveyFormData.priority = 'Normal';
       surveyFormData.status = 'Active';
 
@@ -2345,11 +2248,11 @@
       document.getElementById('pulseDescInput').value = surveyFormData.description;
       document.getElementById('pulseCategorySelect').value = surveyFormData.category;
       document.getElementById('pulseFrequencySelect').value = surveyFormData.frequency;
+      document.getElementById('startDateInput').value = surveyFormData.startDate;
+      document.getElementById('endDateInput').value = surveyFormData.endDate;
       document.getElementById('priorityToggleInput').checked = false;
       document.getElementById('statusToggleInput').checked = true;
 
-      handleNameInput(surveyFormData.name);
-      handleDescInput(surveyFormData.description);
       handlePriorityToggle(false);
       handleStatusToggle(true);
       renderAudienceChips();
@@ -2371,7 +2274,8 @@
     // CREATE / SAVE SURVEY VALIDATION
     // ========================================================================
     function saveAndCreateSurvey() {
-      if (!surveyFormData.name.trim()) {
+      const nameVal = (document.getElementById('pulseNameInput')?.value || '').trim();
+      if (!nameVal) {
         showToast('⚠️ Please enter a Pulse Name.');
         const input = document.getElementById('pulseNameInput');
         if (input) {
@@ -2381,12 +2285,16 @@
         }
         return;
       }
+      surveyFormData.name = nameVal;
+      surveyFormData.description = (document.getElementById('pulseDescInput')?.value || '').trim();
+      surveyFormData.startDate = document.getElementById('startDateInput')?.value || '';
+      surveyFormData.endDate = document.getElementById('endDateInput')?.value || '';
 
       // Check if at least one question has text
       const emptyQ = surveyFormData.questions.find(q => !q.text.trim());
       if (emptyQ) {
         showToast('⚠️ Please provide Question Text for all survey questions.');
-        const el = document.getElementById(`q_card_${emptyQ.id}`);
+        const el = document.getElementById(`q_block_${emptyQ.id}`);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth', block: 'center' });
           const ta = el.querySelector('textarea');
@@ -2404,7 +2312,7 @@
         id: 'ps_' + Date.now(),
         name: surveyFormData.name,
         category: surveyFormData.category,
-        departments: [...surveyFormData.departments],
+        departments: surveyFormData.departments.length ? [...surveyFormData.departments] : ['All Departments'],
         frequency: surveyFormData.frequency,
         status: surveyFormData.status,
         priority: surveyFormData.priority,
@@ -2549,8 +2457,8 @@
       // Set initial defaults
       const startEl = document.getElementById('startDateInput');
       const endEl = document.getElementById('endDateInput');
-      if (startEl) startEl.value = surveyFormData.startDate;
-      if (endEl) endEl.value = surveyFormData.endDate;
+      if (startEl && surveyFormData.startDate) startEl.value = surveyFormData.startDate;
+      if (endEl && surveyFormData.endDate) endEl.value = surveyFormData.endDate;
 
       renderAudienceChips();
       renderQuestions();
