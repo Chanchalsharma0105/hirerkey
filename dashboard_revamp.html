@@ -2195,6 +2195,190 @@
       gap: 12px;
     }
 
+    /* ==========================================================================
+       VIEW 2: ASK HYIQ DUAL ACTION CAPSULE (media_1790768907252.jpg)
+       Outer capsule with iridescent border, gradient Ask HyIQ button & Voice trigger
+       ========================================================================== */
+    .view2-hyiq-capsule {
+      display: inline-flex;
+      align-items: center;
+      background: #FFFFFF;
+      border-radius: 9999px;
+      height: 44px;
+      padding: 3px 12px 3px 3px;
+      box-sizing: border-box;
+      position: relative;
+      border: 1.5px solid transparent;
+      background-image: linear-gradient(#FFFFFF, #FFFFFF), linear-gradient(115deg, rgba(167, 139, 250, 0.75) 0%, rgba(147, 197, 253, 0.6) 55%, rgba(103, 232, 249, 0.8) 100%);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 4px 18px -2px rgba(124, 58, 237, 0.1), 0 1px 3px rgba(0, 0, 0, 0.04);
+      gap: 14px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .view2-hyiq-capsule:hover {
+      box-shadow: 0 6px 24px -2px rgba(124, 58, 237, 0.16), 0 2px 6px rgba(0, 0, 0, 0.05);
+      transform: translateY(-0.5px);
+    }
+
+    /* Left Gradient Pill Button: Ask HyIQ */
+    .view2-btn-ask-hyiq {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      height: 38px;
+      padding: 0 18px 0 12px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #7C3AED 0%, #5B5BF7 50%, #3B82F6 100%);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+      transition: all 0.2s ease;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .view2-btn-ask-hyiq:hover {
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
+      filter: brightness(1.05);
+      transform: scale(1.01);
+    }
+
+    .view2-btn-ask-hyiq:active {
+      transform: scale(0.98);
+    }
+
+    .view2-hyiq-robot-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .view2-btn-ask-text {
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    /* Right Section: Voice + Shortcut Key Badge */
+    .view2-btn-hyiq-voice {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0 4px 0 0;
+      transition: all 0.15s ease;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .view2-voice-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .view2-voice-bars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 22px;
+    }
+
+    .view2-voice-bar {
+      width: 3.5px;
+      border-radius: 9999px;
+      transition: height 0.2s ease;
+    }
+
+    .view2-voice-bar-1 {
+      height: 12px;
+      background: #8B5CF6;
+    }
+
+    .view2-voice-bar-2 {
+      height: 20px;
+      background: #6366F1;
+    }
+
+    .view2-voice-bar-3 {
+      height: 15px;
+      background: #3B82F6;
+    }
+
+    .view2-voice-bar-4 {
+      height: 9px;
+      background: #38BDF8;
+    }
+
+    .view2-btn-hyiq-voice:hover .view2-voice-bar-1 {
+      animation: voiceWave1 0.7s infinite alternate ease-in-out;
+    }
+    .view2-btn-hyiq-voice:hover .view2-voice-bar-2 {
+      animation: voiceWave2 0.7s infinite alternate ease-in-out 0.15s;
+    }
+    .view2-btn-hyiq-voice:hover .view2-voice-bar-3 {
+      animation: voiceWave3 0.7s infinite alternate ease-in-out 0.3s;
+    }
+    .view2-btn-hyiq-voice:hover .view2-voice-bar-4 {
+      animation: voiceWave4 0.7s infinite alternate ease-in-out 0.45s;
+    }
+
+    @keyframes voiceWave1 { 0% { height: 8px; } 100% { height: 16px; } }
+    @keyframes voiceWave2 { 0% { height: 14px; } 100% { height: 22px; } }
+    @keyframes voiceWave3 { 0% { height: 10px; } 100% { height: 18px; } }
+    @keyframes voiceWave4 { 0% { height: 6px; } 100% { height: 14px; } }
+
+    .view2-btn-voice-text {
+      color: #0F172A;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .view2-btn-hyiq-voice:hover .view2-btn-voice-text {
+      color: #4F46E5;
+    }
+
+    .view2-voice-shortcut {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 7px;
+      padding: 3px 8px;
+      color: #475569;
+      font-size: 11.5px;
+      font-weight: 500;
+      font-family: inherit;
+      line-height: 1.3;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      transition: all 0.15s ease;
+    }
+
+    .view2-btn-hyiq-voice:hover .view2-voice-shortcut {
+      border-color: #CBD5E1;
+      background: #FFFFFF;
+      color: #1E293B;
+    }
+
+    .view2-voice-shortcut .shortcut-symbol {
+      font-size: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .view2-voice-shortcut {
+        display: none;
+      }
+    }
+
     /* Title Row in View 2 */
     .donezo-title-row {
       display: flex;
@@ -5355,35 +5539,48 @@
 
           <!-- Right Topbar Actions (Exact Match to Screenshot 1) -->
           <div class="topbar-right">
-            <!-- Pill 1: Ask HyIQ | HyIQ Voice [⌘ ⇧ Space] -->
-            <div class="header-hyiq-pill">
-              <button class="btn-hyiq" id="view2AskHyiqBtn" onclick="openModal('hyiqModal')" title="Ask HyIQ AI Assistant">
-                <div class="hyiq-robot-icon">
+            <!-- Pill 1: Ask HyIQ | Voice [⌘ ⇧ Space] (Exact match to media_1790768907252.jpg) -->
+            <div class="view2-hyiq-capsule">
+              <!-- Left Gradient Pill Button: Ask HyIQ -->
+              <button class="view2-btn-ask-hyiq" id="view2AskHyiqBtn" onclick="openModal('hyiqModal')" title="Ask HyIQ AI Assistant">
+                <div class="view2-hyiq-robot-icon">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6.5 6.5L4.5 4" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
-                    <circle cx="4" cy="3.5" r="1.2" fill="#7C3AED"/>
-                    <path d="M17.5 6.5L19.5 4" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
-                    <circle cx="20" cy="3.5" r="1.2" fill="#7C3AED"/>
-                    <rect x="3.5" y="6" width="17" height="15" rx="7.5" fill="#7C3AED"/>
-                    <circle cx="8.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
-                    <circle cx="15.5" cy="12.5" r="1.8" fill="#FFFFFF"/>
-                    <path d="M9.5 15.8C10.5 17.2 13.5 17.2 14.5 15.8" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+                    <!-- Top antenna bead & stem -->
+                    <circle cx="12" cy="2.4" r="1.4" fill="#FFFFFF"/>
+                    <line x1="12" y1="3.8" x2="12" y2="6.2" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
+                    <!-- Side ear bumpers -->
+                    <rect x="2.4" y="9.2" width="2.2" height="6.8" rx="1.1" fill="#FFFFFF"/>
+                    <rect x="19.4" y="9.2" width="2.2" height="6.8" rx="1.1" fill="#FFFFFF"/>
+                    <!-- Main dome head silhouette -->
+                    <path d="M4.5 13.2C4.5 8.8 7.8 5.6 12 5.6C16.2 5.6 19.5 8.8 19.5 13.2C19.5 17 16.5 19.6 12 19.6C7.5 19.6 4.5 17 4.5 13.2Z" fill="#FFFFFF"/>
+                    <!-- Left eye (purple dot) -->
+                    <circle cx="9.3" cy="12.2" r="1.6" fill="#7C3AED"/>
+                    <!-- Right eye (cyan glowing circle with light pupil) -->
+                    <circle cx="14.7" cy="12.2" r="1.9" fill="#38BDF8"/>
+                    <circle cx="14.7" cy="12.2" r="0.9" fill="#E0F2FE"/>
+                    <!-- Smiling mouth -->
+                    <path d="M10.2 15.3C10.8 16.4 13.2 16.4 13.8 15.3" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/>
                   </svg>
                 </div>
-                <span class="btn-hyiq-text">Ask HyIQ</span>
+                <span class="view2-btn-ask-text">Ask HyIQ</span>
               </button>
 
-              <div class="header-pill-divider"></div>
-
-              <button class="btn-hyiq-voice" id="view2HyiqVoiceBtn" onclick="openModal('voiceModal')" title="HyIQ Voice Command (⌘ ⇧ Space)">
-                <div class="voice-bars">
-                  <div class="voice-bar voice-bar-1"></div>
-                  <div class="voice-bar voice-bar-2"></div>
-                  <div class="voice-bar voice-bar-3"></div>
-                  <div class="voice-bar voice-bar-4"></div>
+              <!-- Right Button: Voice + Keyboard Shortcut -->
+              <button class="view2-btn-hyiq-voice" id="view2HyiqVoiceBtn" onclick="openModal('voiceModal')" title="Voice Command (⌘ ⇧ Space)">
+                <div class="view2-voice-inner">
+                  <div class="view2-voice-bars">
+                    <div class="view2-voice-bar view2-voice-bar-1"></div>
+                    <div class="view2-voice-bar view2-voice-bar-2"></div>
+                    <div class="view2-voice-bar view2-voice-bar-3"></div>
+                    <div class="view2-voice-bar view2-voice-bar-4"></div>
+                  </div>
+                  <span class="view2-btn-voice-text">Voice</span>
                 </div>
-                <span class="btn-voice-text">HyIQ Voice</span>
-                <kbd class="voice-shortcut">⌘ ⇧ Space</kbd>
+                <kbd class="view2-voice-shortcut">
+                  <span class="shortcut-symbol">⌘</span>
+                  <span class="shortcut-symbol">⇧</span>
+                  <span class="shortcut-key">Space</span>
+                </kbd>
               </button>
             </div>
 
