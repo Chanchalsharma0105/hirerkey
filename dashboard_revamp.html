@@ -1495,16 +1495,18 @@
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
-      overflow: hidden;
+      overflow: visible;
       box-sizing: border-box;
-      transition: all var(--transition-normal);
+      transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.25s cubic-bezier(0.4, 0, 0.2, 1), max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .donezo-sidebar-header {
-      padding: 20px 18px 12px 18px;
+      padding: 16px 14px 12px 18px;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
     }
 
     .donezo-brand-container {
@@ -1512,6 +1514,38 @@
       align-items: center;
       text-decoration: none;
       cursor: pointer;
+      min-width: 0;
+    }
+
+    /* Circular Collapse/Expand Button (Exact Match to media_1790753920423.png) */
+    .donezo-collapse-btn {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      margin-left: auto;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      color: #7C3AED;
+    }
+
+    .donezo-collapse-btn:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      transform: scale(1.06);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.16);
+    }
+
+    .donezo-collapse-btn svg {
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .donezo-brand-link {
@@ -1556,22 +1590,22 @@
       border-radius: 4px;
     }
 
-    /* Category Accordion Header in Donezo Sidebar */
+    /* Category Accordion Header in Donezo Sidebar - Increased Minor Spacing */
     .donezo-nav-category {
       display: flex;
       flex-direction: column;
-      margin-top: 8px;
+      margin-top: 14px;
     }
 
     .donezo-nav-category:first-of-type {
-      margin-top: 4px;
+      margin-top: 10px;
     }
 
     .donezo-cat-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 6px 18px 4px 18px;
+      padding: 7px 18px 5px 18px;
       cursor: pointer;
       user-select: none;
       transition: all var(--transition-fast);
@@ -1608,6 +1642,7 @@
     .donezo-cat-items {
       display: flex;
       flex-direction: column;
+      gap: 3px;
       overflow: hidden;
       transition: max-height 0.25s ease, opacity 0.2s ease;
       max-height: 600px;
@@ -1623,7 +1658,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 7px 18px;
+      padding: 7.5px 18px;
       font-size: 13px;
       font-weight: 500;
       color: #334155;
@@ -1632,6 +1667,11 @@
       position: relative;
       cursor: pointer;
       background: #FFFFFF;
+      margin-bottom: 1.5px;
+    }
+
+    .donezo-sidebar .donezo-nav-item[data-title="Dashboard"] {
+      margin-bottom: 4px;
     }
 
     .donezo-nav-item:hover {
@@ -1643,7 +1683,7 @@
       color: #0F172A;
     }
 
-    /* Active Item: Hirerkey Theme Purple left tab, icon, text and soft tint */
+    /* Active Item: Hirerkey Theme Purple left tab, icon, text and soft tint (Expanded Mode) */
     .donezo-nav-item.active {
       color: var(--brand-primary) !important;
       font-weight: 700;
@@ -1788,6 +1828,191 @@
 
     .donezo-workspace-popover.open {
       display: flex;
+    }
+
+    /* ==========================================================================
+       COLLAPSED STATE FOR VIEW 2 SIDE MENU (Image 2: media_1790753953619.png)
+       Retains pointed 10px corners, compact 68px rail, purple card for active item
+       ========================================================================== */
+    .donezo-sidebar.collapsed {
+      width: 68px;
+      min-width: 68px;
+      max-width: 68px;
+      border-radius: 10px; /* Kept exactly same pointed 10px corner as before collapsing */
+    }
+
+    .donezo-sidebar.collapsed .donezo-sidebar-header {
+      padding: 16px 8px 10px 8px;
+      justify-content: center;
+    }
+
+    .donezo-sidebar.collapsed .donezo-brand-container {
+      display: none !important;
+    }
+
+    .donezo-sidebar.collapsed .donezo-collapse-btn {
+      margin: 0 auto;
+      transform: rotate(180deg); /* Points right > to expand */
+    }
+
+    .donezo-sidebar.collapsed .donezo-collapse-btn:hover {
+      transform: rotate(180deg) scale(1.08);
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-scroll {
+      padding: 6px 0 12px 0;
+      align-items: center;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-category {
+      margin-top: 6px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-category:first-of-type {
+      margin-top: 4px;
+    }
+
+    .donezo-sidebar.collapsed .donezo-cat-header {
+      display: none !important;
+    }
+
+    .donezo-sidebar.collapsed .donezo-cat-items {
+      max-height: none !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      width: 100%;
+    }
+
+    /* Collapsed Nav Item: Centered 44x44 square with rounded corners */
+    .donezo-sidebar.collapsed .donezo-nav-item {
+      width: 44px;
+      height: 44px;
+      min-height: 44px;
+      padding: 0;
+      margin: 2px auto;
+      justify-content: center;
+      border-radius: 10px;
+      background: transparent;
+      color: #475569;
+      position: relative;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      transform: translateY(-1px);
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item .donezo-nav-item-left {
+      gap: 0;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-icon svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-label {
+      display: none !important;
+    }
+
+    .donezo-sidebar.collapsed .donezo-task-badge {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      padding: 0;
+      width: 7px;
+      height: 7px;
+      min-width: 7px;
+      border-radius: 50%;
+      font-size: 0;
+      box-shadow: 0 0 0 2px #FFFFFF;
+    }
+
+    /* Collapsed Active Item: Vibrant Purple Card Squircle with Glowing Shadow (Exact to media_1790753953619.png) */
+    .donezo-sidebar.collapsed .donezo-nav-item.active {
+      width: 44px;
+      height: 44px;
+      min-height: 44px;
+      padding: 0;
+      margin: 3px auto;
+      justify-content: center;
+      background: #7C3AED !important;
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%) !important;
+      color: #FFFFFF !important;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px -2px rgba(124, 58, 237, 0.48), 0 2px 6px -1px rgba(124, 58, 237, 0.3);
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item.active:hover {
+      background: linear-gradient(135deg, #6D28D9 0%, #5B21B6 100%) !important;
+      transform: translateY(-1px);
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item.active::before {
+      display: none !important;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item.active .donezo-nav-icon {
+      color: #FFFFFF !important;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item.active svg {
+      stroke: #FFFFFF !important;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item.active svg[stroke] {
+      stroke: #FFFFFF !important;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item[data-title="Dashboard"].active svg {
+      fill: #FFFFFF !important;
+      stroke: none !important;
+    }
+
+    /* Collapsed Footer: Compact Switcher Avatar (Pointed 10px Corner Retained) */
+    .donezo-sidebar.collapsed .donezo-sidebar-footer {
+      padding: 10px 8px;
+      border-bottom-left-radius: 10px; /* Kept 10px corner */
+      border-bottom-right-radius: 10px; /* Kept 10px corner */
+    }
+
+    .donezo-sidebar.collapsed .donezo-workspace-switcher {
+      width: 42px;
+      height: 42px;
+      padding: 0;
+      margin: 0 auto;
+      justify-content: center;
+      border-radius: 8px;
+    }
+
+    .donezo-sidebar.collapsed .workspace-text-group,
+    .donezo-sidebar.collapsed .workspace-unfold-icon {
+      display: none !important;
+    }
+
+    .donezo-sidebar.collapsed .donezo-workspace-popover {
+      left: calc(100% + 12px);
+      bottom: 8px;
+      right: auto;
+      width: 220px;
     }
 
     /* 2. View 2 Content Area: Unified Soft Grey Surface (#F4F5F7) */
@@ -4257,13 +4482,18 @@
 
     <!-- 1. Left Side Menu (Elevated Pure White Floating Card - Exact Match to media_1790699346082.png) -->
     <aside class="donezo-sidebar">
-      <!-- 1. Header with Hirerkey Logo -->
+      <!-- 1. Header with Hirerkey Logo & Collapse Button (Exact Match to media_1790753920423.png) -->
       <div class="donezo-sidebar-header">
         <a href="javascript:void(0)" class="brand-container donezo-brand-container" onclick="selectDonezoNavItemByTitle('Dashboard')" title="Hirerkey Dashboard">
           <div class="brand-wordmark">
             <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
           </div>
         </a>
+        <button type="button" class="donezo-collapse-btn" id="donezoSidebarCollapseBtn" onclick="toggleDonezoSidebarCollapse()" title="Collapse Side Menu" aria-label="Collapse Side Menu">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
       </div>
 
       <!-- 2. Scrollable Navigation (Full Hirerkey Menu Matching View 1) -->
@@ -6567,10 +6797,26 @@
     });
   }
 
+  function toggleDonezoSidebarCollapse() {
+    const sb = document.querySelector('.donezo-sidebar');
+    const btn = document.getElementById('donezoSidebarCollapseBtn');
+    if (!sb) return;
+    const isCollapsed = sb.classList.toggle('collapsed');
+    if (btn) {
+      btn.title = isCollapsed ? 'Expand Side Menu' : 'Collapse Side Menu';
+      btn.setAttribute('aria-label', btn.title);
+    }
+    showToast(isCollapsed ? 'Side menu collapsed to rail' : 'Side menu expanded');
+  }
+
   function toggleView2Sidebar() {
     const sb = document.querySelector('.donezo-sidebar');
     const btn = document.getElementById('view2SidebarToggle');
     if (!sb) return;
+    if (window.innerWidth > 860) {
+      toggleDonezoSidebarCollapse();
+      return;
+    }
     if (sb.style.display === 'none') {
       sb.style.display = 'flex';
       if (btn) btn.classList.remove('active');
@@ -7759,6 +8005,12 @@
     } else if (params.get('view') === '1' || hash === '#view1' || savedView === '1') {
       switchDashboardView(1);
     }
+    document.querySelectorAll('.donezo-nav-item').forEach(it => {
+      if (!it.getAttribute('title')) {
+        const dt = it.getAttribute('data-title');
+        if (dt) it.setAttribute('title', dt);
+      }
+    });
   });
 
   // Toast feedback utility
