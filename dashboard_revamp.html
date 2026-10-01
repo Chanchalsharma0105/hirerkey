@@ -1443,6 +1443,76 @@
       background: var(--brand-primary);
     }
 
+    /* Highlighted Recommended View 2 Tab & Chip */
+    .screen-tab.screen-tab-recommended {
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.22);
+      color: #5B21B6;
+      font-weight: 700;
+      position: relative;
+      gap: 7px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .screen-tab.screen-tab-recommended:hover {
+      background: rgba(124, 58, 237, 0.14);
+      border-color: rgba(124, 58, 237, 0.4);
+      color: #4C1D95;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.15);
+    }
+
+    .screen-tab.screen-tab-recommended.active {
+      background: #FFFFFF;
+      border: 1.5px solid #7C3AED;
+      color: #7C3AED;
+      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.2), 0 0 0 2px rgba(124, 58, 237, 0.12);
+    }
+
+    .tab-recommended-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4.5px;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 1px 4px rgba(124, 58, 237, 0.35);
+      animation: pulseRecommendedGlow 3s ease-in-out infinite;
+    }
+
+    .screen-tab.screen-tab-recommended.active .tab-recommended-badge {
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.45);
+    }
+
+    .tab-recommended-badge svg {
+      flex-shrink: 0;
+      animation: sparkleRotate 4s ease-in-out infinite;
+    }
+
+    @keyframes pulseRecommendedGlow {
+      0%, 100% {
+        box-shadow: 0 1px 4px rgba(124, 58, 237, 0.35);
+      }
+      50% {
+        box-shadow: 0 2px 10px rgba(124, 58, 237, 0.65), 0 0 0 2px rgba(124, 58, 237, 0.25);
+      }
+    }
+
+    @keyframes sparkleRotate {
+      0%, 100% {
+        transform: rotate(0deg) scale(1);
+      }
+      50% {
+        transform: rotate(15deg) scale(1.15);
+      }
+    }
+
     .dashboard-switcher-row {
       display: flex;
       align-items: center;
@@ -4759,8 +4829,12 @@
             <span class="screen-tab-dot"></span>
             <span>View 1: Standard Dashboard</span>
           </button>
-          <button class="screen-tab" id="tab1-view-2" onclick="switchDashboardView(2)">
-            <span>View 2 (Recommended View)</span>
+          <button class="screen-tab screen-tab-recommended" id="tab1-view-2" onclick="switchDashboardView(2)" title="View 2 (Recommended View) — The most optimized and preferred dashboard layout">
+            <span>View 2</span>
+            <span class="tab-recommended-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z"/></svg>
+              <span>Recommended View</span>
+            </span>
           </button>
           <button class="screen-tab" id="tab1-view-3" onclick="switchDashboardView(3)" title="Light Purple Theme">
             <span>View 3: Light Purple Accent</span>
@@ -5732,9 +5806,13 @@
             <button class="screen-tab" id="tab2-view-1" onclick="switchDashboardView(1)">
               <span>View 1: Standard Dashboard</span>
             </button>
-            <button class="screen-tab active" id="tab2-view-2" onclick="switchDashboardView(2)">
+            <button class="screen-tab screen-tab-recommended active" id="tab2-view-2" onclick="switchDashboardView(2)" title="View 2 (Recommended View) — The most optimized and preferred dashboard layout">
               <span class="screen-tab-dot"></span>
-              <span>View 2 (Recommended View)</span>
+              <span>View 2</span>
+              <span class="tab-recommended-badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z"/></svg>
+                <span>Recommended View</span>
+              </span>
             </button>
             <button class="screen-tab" id="tab2-view-3" onclick="switchDashboardView(3)" title="Light Purple Theme">
               <span>View 3: Light Purple Accent</span>
@@ -6689,8 +6767,12 @@
           <button class="screen-tab" id="tab3-view-1" onclick="switchDashboardView(1)">
             <span>View 1: Standard Dashboard</span>
           </button>
-          <button class="screen-tab" id="tab3-view-2" onclick="switchDashboardView(2)">
-            <span>View 2 (Recommended View)</span>
+          <button class="screen-tab screen-tab-recommended" id="tab3-view-2" onclick="switchDashboardView(2)" title="View 2 (Recommended View) — The most optimized and preferred dashboard layout">
+            <span>View 2</span>
+            <span class="tab-recommended-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z"/></svg>
+              <span>Recommended View</span>
+            </span>
           </button>
           <button class="screen-tab active" id="tab3-view-3" onclick="switchDashboardView(3)">
             <span class="screen-tab-dot"></span>
@@ -7688,8 +7770,12 @@
           <button class="screen-tab" id="tab4-view-1" onclick="switchDashboardView(1)">
             <span>View 1: Standard Dashboard</span>
           </button>
-          <button class="screen-tab" id="tab4-view-2" onclick="switchDashboardView(2)">
-            <span>View 2 (Recommended View)</span>
+          <button class="screen-tab screen-tab-recommended" id="tab4-view-2" onclick="switchDashboardView(2)" title="View 2 (Recommended View) — The most optimized and preferred dashboard layout">
+            <span>View 2</span>
+            <span class="tab-recommended-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z"/></svg>
+              <span>Recommended View</span>
+            </span>
           </button>
           <button class="screen-tab" id="tab4-view-3" onclick="switchDashboardView(3)" title="Light Purple Theme">
             <span>View 3: Light Purple Accent</span>
