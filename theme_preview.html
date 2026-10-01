@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Hirerkey™ — Theme Preview (UI System Studio)</title>
   
-  <!-- Preconnect to Google Fonts for Inter and JetBrains Mono -->
+  <!-- Preconnect to Google Fonts for Plus Jakarta Sans, Inter and JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     /* ==========================================================================
@@ -1942,6 +1942,903 @@
     .joy-modal-dialog.closing {
       animation: htsModalSlideOutToRight 150ms ease-in both;
     }
+
+    /* ==========================================================================
+       VIEW 2: DASHBOARD REVAMP DESIGN SYSTEM & UI KIT SPECIFICATION
+       Tokens, Typography (Plus Jakarta Sans), Donezo Components, Bento Cards & Micro-Interactions
+       ========================================================================== */
+    :root {
+      /* View 2 Brand Palette */
+      --v2-brand-primary: #7C3AED;
+      --v2-brand-primary-hover: #6D28D9;
+      --v2-brand-primary-dark: #5B21B6;
+      --v2-brand-light: #F5F3FF;
+      --v2-brand-subtle: #EDE9FE;
+      --v2-brand-pill-bg: #F3EEFF;
+      --v2-brand-pill-active: #6D28D9;
+      
+      /* View 2 Canvas & Surfaces */
+      --v2-bg-dashboard: #F4F6F9;
+      --v2-bg-surface: #FFFFFF;
+      --v2-bg-surface-subtle: #F8FAFC;
+      --v2-bg-surface-hover: #F1F5F9;
+      
+      /* View 2 Typography */
+      --v2-font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --v2-font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --v2-font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+      
+      --v2-text-heading: #0F172A;
+      --v2-text-body: #334155;
+      --v2-text-muted: #64748B;
+      --v2-text-subtle: #94A3B8;
+      
+      /* View 2 Borders & Dividers */
+      --v2-border-subtle: #EEF2F6;
+      --v2-border-card: #E5E7EB;
+      --v2-border-focus: #C4B5FD;
+      
+      /* View 2 Elevation & Shadows */
+      --v2-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --v2-shadow-card: 0 2px 10px rgba(15, 23, 42, 0.03), 0 1px 3px rgba(15, 23, 42, 0.02);
+      --v2-shadow-hover: 0 8px 24px rgba(15, 23, 42, 0.07), 0 2px 6px rgba(15, 23, 42, 0.03);
+      --v2-shadow-dropdown: 0 16px 36px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
+      --v2-shadow-banner: 0 14px 32px -6px rgba(109, 40, 217, 0.32);
+      
+      /* View 2 Bento & Iridescent Gradients */
+      --v2-bento-navy: linear-gradient(145deg, #1E1B4B 0%, #171030 100%);
+      --v2-hyiq-gradient: linear-gradient(90deg, #7C3AED 0%, #5B5BF7 50%, #3B82F6 100%);
+      --v2-hyiq-border: linear-gradient(115deg, rgba(167, 139, 250, 0.75) 0%, rgba(147, 197, 253, 0.6) 55%, rgba(103, 232, 249, 0.8) 100%);
+      --v2-banner-gradient: linear-gradient(135deg, #7C3AED 0%, #6D28D9 45%, #5B21B6 100%);
+    }
+
+    /* View 2 Benchmark View Base Container */
+    .v2-benchmark-view {
+      padding: 0;
+      width: 100%;
+      box-sizing: border-box;
+      font-family: var(--v2-font-body);
+    }
+
+    /* View 2 Typography Hierarchy Classes */
+    .v2-display-lg {
+      font-family: var(--v2-font-display);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--v2-text-heading);
+    }
+    .v2-h1 {
+      font-family: var(--v2-font-display);
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--v2-text-heading);
+    }
+    .v2-h2 {
+      font-family: var(--v2-font-display);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.015em;
+      color: var(--v2-text-heading);
+    }
+    .v2-h3 {
+      font-family: var(--v2-font-body);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: var(--v2-text-heading);
+    }
+    .v2-title-md {
+      font-family: var(--v2-font-body);
+      font-size: 15px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--v2-text-heading);
+    }
+    .v2-body-lg {
+      font-family: var(--v2-font-body);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--v2-text-body);
+    }
+    .v2-body-md {
+      font-family: var(--v2-font-body);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--v2-text-body);
+    }
+    .v2-body-sm {
+      font-family: var(--v2-font-body);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--v2-text-body);
+    }
+    .v2-caption {
+      font-family: var(--v2-font-body);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--v2-text-muted);
+    }
+    .v2-category-track {
+      font-family: var(--v2-font-body);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.065em;
+      color: var(--v2-text-muted);
+    }
+    .v2-mono-code {
+      font-family: var(--v2-font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--v2-brand-primary);
+    }
+
+    /* Donezo Buttons */
+    .btn-donezo-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--v2-brand-primary);
+      color: #FFFFFF;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.28);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn-donezo-primary:hover {
+      background: var(--v2-brand-primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.38);
+    }
+    .btn-donezo-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-donezo-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #FFFFFF;
+      color: #334155;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn-donezo-secondary:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+    .btn-donezo-secondary:active {
+      transform: scale(0.98);
+    }
+
+    .widget-announcement-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--v2-brand-pill-bg);
+      color: var(--v2-brand-primary);
+      border: 1px solid #DDD6FE;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .widget-announcement-pill:hover {
+      background: var(--v2-brand-subtle);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(124, 58, 237, 0.12);
+    }
+
+    .donezo-collapse-btn {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      color: #7C3AED;
+    }
+    .donezo-collapse-btn:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      transform: scale(1.06);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.16);
+    }
+
+    .control-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--v2-text-muted);
+      border: 1px solid var(--v2-border-card);
+      background: var(--v2-bg-surface);
+      transition: all var(--transition-fast);
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .control-btn:hover {
+      background: var(--v2-bg-surface-subtle);
+      color: var(--v2-brand-primary);
+      border-color: var(--v2-border-focus);
+    }
+
+    /* Donezo Sidebar Navigation Item & Signature Micro-Animations */
+    .donezo-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      text-decoration: none;
+      transition: background 0.22s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease, box-shadow 0.22s ease;
+      position: relative;
+      cursor: pointer;
+      background: #FFFFFF;
+      border-radius: 8px;
+      margin-bottom: 2px;
+      border: 1px solid transparent;
+    }
+    .donezo-nav-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scaleY(0);
+      transform-origin: center;
+      width: 3.5px;
+      height: 18px;
+      background: linear-gradient(180deg, #A78BFA 0%, #7C3AED 100%);
+      border-radius: 0 3px 3px 0;
+      box-shadow: 0 0 6px rgba(124, 58, 237, 0.35);
+      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .donezo-nav-item:not(.active):hover::before {
+      transform: translateY(-50%) scaleY(1);
+      opacity: 0.95;
+    }
+    .donezo-nav-item:hover {
+      color: #0F172A;
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.05) 0%, rgba(248, 250, 252, 0.95) 100%);
+      border-color: rgba(124, 58, 237, 0.08);
+    }
+    .donezo-nav-item:hover .donezo-nav-item-left {
+      transform: translateX(4px);
+    }
+    .donezo-nav-item:hover .donezo-nav-icon {
+      color: var(--v2-brand-primary);
+      transform: scale(1.15) rotate(-3deg);
+      filter: drop-shadow(0 2px 5px rgba(124, 58, 237, 0.22));
+    }
+    .donezo-nav-item:not(.active):hover .donezo-nav-label {
+      color: #0F172A;
+      font-weight: 600;
+    }
+    .donezo-nav-item:hover .donezo-task-badge {
+      transform: scale(1.12);
+      box-shadow: 0 3px 8px rgba(124, 58, 237, 0.45);
+    }
+    .donezo-nav-item.active {
+      color: var(--v2-brand-primary) !important;
+      font-weight: 700;
+      background: rgba(124, 58, 237, 0.06) !important;
+      border-color: rgba(124, 58, 237, 0.15) !important;
+    }
+    .donezo-nav-item.active:hover {
+      background: rgba(124, 58, 237, 0.1) !important;
+    }
+    .donezo-nav-item.active .donezo-nav-label {
+      color: var(--v2-brand-primary) !important;
+      font-weight: 700;
+    }
+    .donezo-nav-item.active::before {
+      transform: translateY(-50%) scaleY(1) !important;
+      width: 4.5px;
+      height: 26px;
+      background: var(--v2-brand-primary);
+      border-radius: 0 2px 2px 0;
+      box-shadow: 0 0 8px rgba(124, 58, 237, 0.45);
+      opacity: 1 !important;
+    }
+    .donezo-nav-item.active .donezo-nav-icon {
+      color: var(--v2-brand-primary) !important;
+    }
+    .donezo-nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .donezo-nav-icon {
+      color: #475569;
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease, filter 0.2s ease;
+    }
+    .donezo-nav-label {
+      font-size: 13px;
+      color: inherit;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.2s ease, font-weight 0.2s ease;
+    }
+    .donezo-task-badge {
+      background: var(--v2-brand-primary);
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 1.5px 6px;
+      border-radius: 6px;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+    }
+
+    /* HyIQ AI Capsule & Voice Wave Bar Ripples */
+    .view2-hyiq-capsule {
+      display: inline-flex;
+      align-items: center;
+      background: #FFFFFF;
+      border-radius: 9999px;
+      height: 44px;
+      padding: 3px 12px 3px 3px;
+      box-sizing: border-box;
+      position: relative;
+      border: 1.5px solid transparent;
+      background-image: linear-gradient(#FFFFFF, #FFFFFF), linear-gradient(115deg, rgba(167, 139, 250, 0.75) 0%, rgba(147, 197, 253, 0.6) 55%, rgba(103, 232, 249, 0.8) 100%);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      box-shadow: 0 4px 18px -2px rgba(124, 58, 237, 0.1), 0 1px 3px rgba(0, 0, 0, 0.04);
+      gap: 14px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .view2-hyiq-capsule:hover {
+      box-shadow: 0 6px 24px -2px rgba(124, 58, 237, 0.16), 0 2px 6px rgba(0, 0, 0, 0.05);
+      transform: translateY(-0.5px);
+    }
+    .view2-btn-ask-hyiq {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      height: 38px;
+      padding: 0 18px 0 12px;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #7C3AED 0%, #5B5BF7 50%, #3B82F6 100%);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .view2-btn-ask-hyiq:hover {
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
+      filter: brightness(1.05);
+      transform: scale(1.01);
+    }
+    .view2-btn-ask-hyiq:active {
+      transform: scale(0.98);
+    }
+    .view2-btn-ask-text {
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .view2-btn-hyiq-voice {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0 4px 0 0;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .view2-voice-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .view2-voice-bars {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      height: 22px;
+    }
+    .view2-voice-bar {
+      width: 3.5px;
+      border-radius: 9999px;
+      transition: height 0.2s ease;
+    }
+    .view2-voice-bar-1 { height: 12px; background: #8B5CF6; }
+    .view2-voice-bar-2 { height: 20px; background: #6366F1; }
+    .view2-voice-bar-3 { height: 15px; background: #3B82F6; }
+    .view2-voice-bar-4 { height: 9px; background: #38BDF8; }
+
+    .view2-btn-hyiq-voice:hover .view2-voice-bar-1 { animation: voiceWave1 0.7s infinite alternate ease-in-out; }
+    .view2-btn-hyiq-voice:hover .view2-voice-bar-2 { animation: voiceWave2 0.7s infinite alternate ease-in-out 0.15s; }
+    .view2-btn-hyiq-voice:hover .view2-voice-bar-3 { animation: voiceWave3 0.7s infinite alternate ease-in-out 0.3s; }
+    .view2-btn-hyiq-voice:hover .view2-voice-bar-4 { animation: voiceWave4 0.7s infinite alternate ease-in-out 0.45s; }
+
+    @keyframes voiceWave1 { 0% { height: 8px; } 100% { height: 16px; } }
+    @keyframes voiceWave2 { 0% { height: 14px; } 100% { height: 22px; } }
+    @keyframes voiceWave3 { 0% { height: 10px; } 100% { height: 18px; } }
+    @keyframes voiceWave4 { 0% { height: 6px; } 100% { height: 14px; } }
+
+    .view2-btn-voice-text {
+      color: #0F172A;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .view2-btn-hyiq-voice:hover .view2-btn-voice-text {
+      color: #4F46E5;
+    }
+    .view2-voice-shortcut {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 7px;
+      padding: 3px 8px;
+      color: #475569;
+      font-size: 11.5px;
+      font-weight: 500;
+      line-height: 1.3;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      transition: all 0.15s ease;
+    }
+    .view2-btn-hyiq-voice:hover .view2-voice-shortcut {
+      border-color: #CBD5E1;
+      background: #FFFFFF;
+      color: #1E293B;
+    }
+
+    /* Bento Summary KPI Cards */
+    .donezo-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .donezo-kpi-card {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 18px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 110px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+      position: relative;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+    .donezo-kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+    }
+    .donezo-kpi-card.highlight {
+      background: linear-gradient(145deg, #1E1B4B 0%, #171030 100%);
+      color: #FFFFFF;
+      border-color: transparent;
+    }
+    .donezo-kpi-card.highlight .kpi-label,
+    .donezo-kpi-card.highlight .kpi-trend {
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .donezo-kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .kpi-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+    }
+    .kpi-arrow-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1px solid #E2E8F0;
+      display: grid;
+      place-items: center;
+      color: #64748B;
+    }
+    .donezo-kpi-card.highlight .kpi-arrow-icon {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+    .kpi-value {
+      font-family: var(--v2-font-display);
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 8px 0 4px 0;
+      line-height: 1;
+    }
+    .kpi-trend {
+      font-size: 11.5px;
+      color: #10B981;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Hero Greeting Banner */
+    .v2-hero-banner {
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 45%, #5B21B6 100%);
+      border-radius: 20px;
+      padding: 32px 36px;
+      color: #FFFFFF;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 14px 32px -6px rgba(109, 40, 217, 0.32);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .banner-star {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.25);
+      pointer-events: none;
+      filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
+      animation: starTwinkle 3s ease-in-out infinite alternate;
+    }
+    .banner-star-1 { right: 90px; top: 24px; width: 72px; height: 72px; animation-delay: 0s; }
+    .banner-star-2 { right: 260px; bottom: 24px; width: 38px; height: 38px; animation-delay: 1.5s; }
+    .banner-star-3 { right: 48px; bottom: 18px; width: 48px; height: 48px; animation-delay: 0.8s; }
+    @keyframes starTwinkle {
+      0% { opacity: 0.3; transform: scale(0.92); }
+      100% { opacity: 0.8; transform: scale(1.08); }
+    }
+    .banner-date {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .banner-title {
+      font-family: var(--v2-font-display);
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0;
+    }
+    .banner-subtitle {
+      font-size: 15px;
+      font-weight: 400;
+      opacity: 0.92;
+      max-width: 600px;
+      margin: 0;
+    }
+    .banner-quote-pill {
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 7px 16px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #FFFFFF;
+      max-width: fit-content;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .banner-quote-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #FBBF24;
+      box-shadow: 0 0 8px #FBBF24;
+      flex-shrink: 0;
+    }
+
+    /* Modern Table & Status Chips (View 2) */
+    .donezo-table-container {
+      background: #FFFFFF;
+      border: 1px solid #E5E7EB;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--v2-shadow-card);
+    }
+    .donezo-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+      text-align: left;
+    }
+    .donezo-table thead th {
+      background: #F8FAFC;
+      color: #64748B;
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 12px 16px;
+      border-bottom: 1px solid #E2E8F0;
+    }
+    .donezo-table tbody tr {
+      transition: background 0.15s ease;
+      cursor: pointer;
+    }
+    .donezo-table tbody tr:hover {
+      background: #F8FAFC;
+    }
+    .donezo-table tbody td {
+      padding: 13px 16px;
+      border-bottom: 1px solid #EEF2F6;
+      color: #334155;
+      vertical-align: middle;
+    }
+    .donezo-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Modern Status Chips in View 2 */
+    .v2-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.3;
+      border: 1px solid transparent;
+      user-select: none;
+    }
+    .v2-chip-urgent {
+      background: #FEF2F2;
+      color: #DC2626;
+      border-color: #FECACA;
+    }
+    .v2-chip-warning {
+      background: #FEF3C7;
+      color: #D97706;
+      border-color: #FDE68A;
+    }
+    .v2-chip-active {
+      background: #ECFDF5;
+      color: #059669;
+      border-color: #A7F3D0;
+    }
+    .v2-chip-info {
+      background: #EFF6FF;
+      color: #2563EB;
+      border-color: #BFDBFE;
+    }
+    .v2-chip-purple {
+      background: #F5F3FF;
+      color: #7C3AED;
+      border-color: #DDD6FE;
+    }
+
+    /* Search Pill & Form Controls in View 2 */
+    .donezo-search-pill {
+      display: flex;
+      align-items: center;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      height: 36px;
+      padding: 0 10px;
+      gap: 8px;
+      transition: all var(--transition-fast);
+      position: relative;
+    }
+    .donezo-search-pill:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+    }
+    .donezo-search-pill:focus-within {
+      background: #FFFFFF;
+      border-color: var(--v2-brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+    .donezo-search-pill input {
+      width: 100%;
+      font-size: 13px;
+      font-weight: 400;
+      color: #0F172A;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+
+    /* Modal Dialog (View 2 Donezo Style) */
+    .v2-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+    .v2-modal-overlay.open {
+      display: flex;
+      opacity: 1;
+    }
+    .v2-modal-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      box-shadow: var(--v2-shadow-dropdown);
+      width: 100%;
+      max-width: 540px;
+      overflow: hidden;
+      transform: scale(0.96);
+      transition: transform var(--transition-normal);
+      border: 1px solid var(--v2-border-card);
+    }
+    .v2-modal-overlay.open .v2-modal-card {
+      transform: scale(1);
+    }
+    .v2-modal-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--v2-border-subtle);
+    }
+    .v2-modal-title {
+      font-family: var(--v2-font-display);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--v2-text-heading);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .v2-modal-close-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--v2-text-muted);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 18px;
+      transition: all var(--transition-fast);
+    }
+    .v2-modal-close-btn:hover {
+      background: var(--v2-bg-surface-subtle);
+      color: var(--v2-text-heading);
+    }
+    .v2-modal-body {
+      padding: 24px;
+    }
+
+    /* Dark Mode Overrides for View 2 Benchmark */
+    body.dark-mode .v2-benchmark-view {
+      --v2-bg-dashboard: #0B1120;
+      --v2-bg-surface: #1E293B;
+      --v2-bg-surface-subtle: #0F172A;
+      --v2-bg-surface-hover: #334155;
+      --v2-text-heading: #F8FAFC;
+      --v2-text-body: #CBD5E1;
+      --v2-text-muted: #94A3B8;
+      --v2-border-subtle: #334155;
+      --v2-border-card: #475569;
+    }
+    body.dark-mode .donezo-nav-item {
+      background: #1E293B;
+      color: #CBD5E1;
+    }
+    body.dark-mode .donezo-nav-item:hover {
+      background: #334155;
+      color: #FFFFFF;
+    }
+    body.dark-mode .donezo-kpi-card {
+      background: #1E293B;
+      border-color: #334155;
+      color: #F8FAFC;
+    }
+    body.dark-mode .donezo-table-container {
+      background: #1E293B;
+      border-color: #334155;
+    }
+    body.dark-mode .donezo-table thead th {
+      background: #0F172A;
+      color: #94A3B8;
+      border-color: #334155;
+    }
+    body.dark-mode .donezo-table tbody td {
+      border-color: #334155;
+      color: #CBD5E1;
+    }
+    body.dark-mode .donezo-table tbody tr:hover {
+      background: #0F172A;
+    }
+    body.dark-mode .v2-modal-card {
+      background: #1E293B;
+      border-color: #334155;
+      color: #F8FAFC;
+    }
+    body.dark-mode .btn-donezo-secondary {
+      background: #1E293B;
+      color: #E2E8F0;
+      border-color: #334155;
+    }
+    body.dark-mode .btn-donezo-secondary:hover {
+      background: #334155;
+      color: #FFFFFF;
+    }
+    body.dark-mode .donezo-search-pill {
+      background: #0F172A;
+      border-color: #334155;
+    }
+    body.dark-mode .donezo-search-pill input {
+      color: #F8FAFC;
+    }
   </style>
 </head>
 <body>
@@ -1984,14 +2881,7 @@
     </div>
   </header>
 
-  <!-- View 2 Sub-Navigation Bar (Shown when View 2 is selected) -->
-  <nav class="studio-tabs" id="view2SubTabsBar" style="display: none; justify-content: center; background: #0B1120; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 0;">
-    <button class="studio-tab-btn active" onclick="switchStudioView('screen-dashboard')">📱 Screen 1: Dashboard</button>
-    <button class="studio-tab-btn" onclick="switchStudioView('screen-offboarding')">📋 Screen 2: Offboarding</button>
-    <button class="studio-tab-btn" onclick="switchStudioView('uikit')">🧩 Mobile UI Kit</button>
-    <button class="studio-tab-btn" onclick="switchStudioView('colors')">🎨 Colors &amp; Tokens</button>
-    <button class="studio-tab-btn" onclick="switchStudioView('typography')">🔤 Typography &amp; Scale</button>
-  </nav>
+
 
   <!-- ================= 2. MAIN SIMULATOR WORKSPACE ================= -->
   <main class="studio-canvas">
@@ -2377,432 +3267,621 @@
 
         </div> <!-- /#view1Benchmark -->
 
-        <!-- ================= VIEW A: COLORS & TOKENS ================= -->
-        <div id="viewColors" class="inspector-panel" style="display: none;">
-          <div class="section-title-row">
-            <h2 class="section-title">Primary Brand Palette (Purple)</h2>
-            <span class="status-chip serving">View 2 Core</span>
-          </div>
-          <div class="palette-grid">
-            <div class="swatch-card" onclick="copyToken('#7C3AED', 'primary.500')">
-              <div class="swatch-color" style="background: #7C3AED;"></div>
-              <div class="swatch-info"><div class="swatch-name">primary.500</div><div class="swatch-hex">#7C3AED (Main)</div></div>
-            </div>
-            <div class="swatch-card" onclick="copyToken('#6D28D9', 'primary.600')">
-              <div class="swatch-color" style="background: #6D28D9;"></div>
-              <div class="swatch-info"><div class="swatch-name">primary.600</div><div class="swatch-hex">#6D28D9 (Hover)</div></div>
-            </div>
-            <div class="swatch-card" onclick="copyToken('#EDE9FE', 'primary.100')">
-              <div class="swatch-color" style="background: #EDE9FE;"></div>
-              <div class="swatch-info"><div class="swatch-name">primary.100</div><div class="swatch-hex">#EDE9FE (Soft)</div></div>
-            </div>
-            <div class="swatch-card" onclick="copyToken('#F5F3FF', 'primary.50')">
-              <div class="swatch-color" style="background: #F5F3FF;"></div>
-              <div class="swatch-info"><div class="swatch-name">primary.50</div><div class="swatch-hex">#F5F3FF (Tint)</div></div>
-            </div>
-          </div>
-
-          <div class="section-title-row" style="margin-top: 14px;">
-            <h2 class="section-title">HyIQ AI Assistant Gradients</h2>
-            <span class="status-chip active">View 2 Iridescent</span>
-          </div>
-          <div class="palette-grid">
-            <div class="swatch-card" onclick="copyToken('linear-gradient(90deg, #7C3AED, #5B5BF7, #3B82F6)', 'hyiq.gradient')">
-              <div class="swatch-color" style="background: var(--hyiq-gradient);"></div>
-              <div class="swatch-info"><div class="swatch-name">hyiq.gradient</div><div class="swatch-hex">Purple &rarr; Blue</div></div>
-            </div>
-            <div class="swatch-card" onclick="copyToken('#001741', 'navy.shell')">
-              <div class="swatch-color" style="background: #001741;"></div>
-              <div class="swatch-info"><div class="swatch-name">navy.shell</div><div class="swatch-hex">#001741 (Dark Shell)</div></div>
-            </div>
-          </div>
-
-          <div class="section-title-row" style="margin-top: 14px;">
-            <h2 class="section-title">Status Palettes (Offboarding)</h2>
-          </div>
-          <div class="palette-grid">
-            <div class="swatch-card" onclick="copyToken('#10B981', 'success.trend')">
-              <div class="swatch-color" style="background: #10B981;"></div>
-              <div class="swatch-info"><div class="swatch-name">success.trend</div><div class="swatch-hex">#10B981 (Active)</div></div>
-            </div>
-            <div class="swatch-card" onclick="copyToken('#F59E0B', 'warning.main')">
-              <div class="swatch-color" style="background: #F59E0B;"></div>
-              <div class="swatch-info"><div class="swatch-name">warning.main</div><div class="swatch-hex">#F59E0B (Notice)</div></div>
-            </div>
-            <div class="swatch-card" onclick="copyToken('#DC2626', 'danger.main')">
-              <div class="swatch-color" style="background: #DC2626;"></div>
-              <div class="swatch-info"><div class="swatch-name">danger.main</div><div class="swatch-hex">#DC2626 (Critical)</div></div>
-            </div>
-            <div class="swatch-card" onclick="copyToken('#3B82F6', 'info.main')">
-              <div class="swatch-color" style="background: #3B82F6;"></div>
-              <div class="swatch-info"><div class="swatch-name">info.main</div><div class="swatch-hex">#3B82F6 (Blue)</div></div>
-            </div>
-          </div>
-
-          <div class="section-title-row" style="margin-top: 14px;">
-            <h2 class="section-title">Signature Surfaces</h2>
-          </div>
-          <div class="palette-grid">
-            <div class="swatch-card" onclick="copyToken('#F9FAFB', 'bg.input')">
-              <div class="swatch-color" style="background: #F9FAFB;"></div>
-              <div class="swatch-info"><div class="swatch-name">surfaces.input</div><div class="swatch-hex">#F9FAFB (Grey)</div></div>
-            </div>
-            <div class="swatch-card" onclick="copyToken('#EEEBFF', 'table.head')">
-              <div class="swatch-color" style="background: #EEEBFF;"></div>
-              <div class="swatch-info"><div class="swatch-name">surfaces.tableHead</div><div class="swatch-hex">#EEEBFF (Lavender)</div></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ================= VIEW B: TYPOGRAPHY & WEIGHTS ================= -->
-        <div id="viewTypography" class="inspector-panel" style="display: none;">
-          <div class="section-title-row">
-            <h2 class="section-title">Inter Typography Scale</h2>
-            <span class="status-chip serving">Inter 400-800</span>
-          </div>
-
-          <div class="typo-row">
-            <div class="typo-meta"><span class="typo-token-badge">display-1</span><span class="typo-spec">32px • 800 ExtraBold</span></div>
-            <div class="typo-sample" style="font-size: 28px; font-weight: 800; letter-spacing: -0.025em;">AED 48,250</div>
-          </div>
-
-          <div class="typo-row">
-            <div class="typo-meta"><span class="typo-token-badge">display-2</span><span class="typo-spec">26px • 800 ExtraBold</span></div>
-            <div class="typo-sample" style="font-size: 24px; font-weight: 800; letter-spacing: -0.02em;">Leaver Case Workspace</div>
-          </div>
-
-          <div class="typo-row">
-            <div class="typo-meta"><span class="typo-token-badge">h1 / title-lg</span><span class="typo-spec">20px • 700 Bold</span></div>
-            <div class="typo-sample" style="font-size: 18px; font-weight: 700;">Department Clearance Checklist</div>
-          </div>
-
-          <div class="typo-row">
-            <div class="typo-meta"><span class="typo-token-badge">title-md</span><span class="typo-spec">15px • 600 SemiBold</span></div>
-            <div class="typo-sample" style="font-size: 15px; font-weight: 600;">Sara Khan — FDM-01</div>
-          </div>
-
-          <div class="typo-row">
-            <div class="typo-meta"><span class="typo-token-badge">body-md</span><span class="typo-spec">14px • 400 Regular</span></div>
-            <div class="typo-sample" style="font-size: 14px; font-weight: 400; color: var(--neutral-700);">Employee serving 30 days statutory notice period.</div>
-          </div>
-
-          <div class="typo-row">
-            <div class="typo-meta"><span class="typo-token-badge">body-xs</span><span class="typo-spec">12px • 400 Regular</span></div>
-            <div class="typo-sample" style="font-size: 12px; font-weight: 400; color: var(--neutral-500);">Last working day: 31 Oct 2026</div>
-          </div>
-
-          <div class="typo-row">
-            <div class="typo-meta"><span class="typo-token-badge">mono-md</span><span class="typo-spec">JetBrains Mono • 13px</span></div>
-            <div class="typo-sample" style="font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: var(--primary-600);">REF: HK-OFFB-2026-9042</div>
-          </div>
-        </div>
-
-        <!-- ================= VIEW C: MOBILE UI KIT GALLERY ================= -->
-        <div id="viewUiKit" class="inspector-panel" style="display: none;">
-          <div class="section-title-row">
-            <h2 class="section-title">Joy UI Buttons</h2>
-          </div>
-          <button class="btn-mobile-primary" onclick="triggerToast('Primary Action Clicked')">Primary Solid Button</button>
-          <button class="btn-mobile-secondary" style="margin-top: 8px;" onclick="triggerToast('Secondary Action Clicked')">Secondary Outlined Button</button>
+<!-- ==========================================================================
+             VIEW 2: DASHBOARD REVAMP DESIGN SYSTEM & UI KIT SPECIFICATION
+             (RECOMMENDED VIEW — Plus Jakarta Sans, Donezo Bento Architecture & HyIQ Capsule)
+             ========================================================================== -->
+        <div id="view2Benchmark" class="v2-benchmark-view inspector-panel" style="display: none;">
           
-          <div class="section-title-row" style="margin-top: 18px;">
-            <h2 class="section-title">Status Chips & Pills</h2>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span class="status-chip notice">● 24 Days Notice</span>
-            <span class="status-chip active">● Active Case</span>
-            <span class="status-chip serving">● Serving Notice</span>
-            <span class="status-chip" style="background: var(--danger-100); color: var(--danger-700); border: 1px solid var(--danger-200);">● Overdue Item</span>
-          </div>
-
-          <div class="section-title-row" style="margin-top: 18px;">
-            <h2 class="section-title">Signature Grey Inputs (#F9FAFB)</h2>
-          </div>
-          <div class="mobile-form-group">
-            <label class="mobile-form-label">Employee Name</label>
-            <input type="text" class="mobile-input" value="Sara Khan" placeholder="Enter name">
-          </div>
-          <div class="mobile-form-group">
-            <label class="mobile-form-label">Exit Handover Notes</label>
-            <textarea class="mobile-textarea" placeholder="Add specific operational notes...">Client files transferred to successor cover.</textarea>
-          </div>
-
-          <div class="section-title-row" style="margin-top: 18px;">
-            <h2 class="section-title">Interactive Bottom Sheet Modal</h2>
-          </div>
-          <button class="btn-mobile-primary" style="background: var(--neutral-800);" onclick="openBottomSheet()">Trigger Mobile Bottom Sheet</button>
-        </div>
-
-        <!-- ================= VIEW D: SCREEN 1 (DASHBOARD REVAMP VIEW 2 MOBILE) ================= -->
-        <div id="viewScreenDashboard" class="inspector-panel" style="display: none;">
-          
-          <!-- Ask HyIQ Mobile Capsule (Reference Parity) -->
-          <div class="mobile-hyiq-capsule" onclick="openBottomSheet()">
-            <div class="capsule-left-pill">
-              <div class="robot-icon-wrap">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="3" fill="#FFFFFF"/><circle cx="8.5" cy="11.5" r="1.5" fill="#7C3AED"/><circle cx="15.5" cy="11.5" r="1.5" fill="#38BDF8"/><path d="M10 15h4" stroke="#7C3AED" strokeWidth="1.5" strokeLinecap="round"/><line x1="12" y1="2" x2="12" y2="6" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round"/></svg>
-              </div>
-              <span style="font-weight: 700; font-size: 13.5px;">Ask HyIQ</span>
-            </div>
-            <div class="capsule-voice-side">
-              <div class="wave-bars">
-                <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
-              </div>
-              <span style="font-size: 13px; font-weight: 600; color: var(--neutral-800);">Voice</span>
-            </div>
-          </div>
-
-          <!-- Section Heading -->
-          <div class="section-title-row">
-            <div>
-              <h2 class="section-title" style="font-size: 18px;">Welcome back, Chanchal</h2>
-              <div style="font-size: 12px; color: var(--neutral-500);">Habtoor Hospitality Operations Hub</div>
-            </div>
-            <button class="status-chip active" style="border: none; cursor: pointer;">Today</button>
-          </div>
-
-          <!-- Swipeable KPI Cards Carousel -->
-          <div class="mobile-kpi-grid">
-            <!-- 1. Highlight Navy Bento Card -->
-            <div class="kpi-card highlight">
-              <div class="kpi-top-row">
-                <span class="kpi-label">Active Headcount</span>
-                <div class="kpi-arrow-circle">↗</div>
-              </div>
-              <div class="kpi-number">482</div>
-              <div class="kpi-trend-row">↑ +14 new hires this month</div>
-            </div>
-
-            <!-- 2. Active Leavers -->
-            <div class="kpi-card">
-              <div class="kpi-top-row">
-                <span class="kpi-label">Active Leavers</span>
-                <div class="kpi-arrow-circle">↗</div>
-              </div>
-              <div class="kpi-number" style="color: var(--primary-500);">8</div>
-              <div class="kpi-trend-row">● 4 serving notice</div>
-            </div>
-
-            <!-- 3. Pending Approvals -->
-            <div class="kpi-card">
-              <div class="kpi-top-row">
-                <span class="kpi-label">Pending Approvals</span>
-                <div class="kpi-arrow-circle">↗</div>
-              </div>
-              <div class="kpi-number" style="color: var(--warning-700);">5</div>
-              <div class="kpi-trend-row" style="color: var(--warning-700);">● 2 urgent SLA</div>
-            </div>
-          </div>
-
-          <!-- Quick Actions Grid -->
-          <div class="section-title-row">
-            <h3 class="section-title" style="font-size: 14px;">Quick Workflows</h3>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px;">
-            <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-card); padding: 12px; cursor: pointer;" onclick="switchStudioView('screen-offboarding')">
-              <div style="font-size: 18px; margin-bottom: 6px;">🚪</div>
-              <div style="font-weight: 700; font-size: 13px; color: var(--neutral-900);">Start Offboarding</div>
-              <div style="font-size: 11.5px; color: var(--neutral-400);">Process resignation</div>
-            </div>
-            <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-card); padding: 12px; cursor: pointer;" onclick="triggerToast('Launching Pulse Survey Flow')">
-              <div style="font-size: 18px; margin-bottom: 6px;">📊</div>
-              <div style="font-weight: 700; font-size: 13px; color: var(--neutral-900);">Pulse Surveys</div>
-              <div style="font-size: 11.5px; color: var(--neutral-400);">Review responses</div>
-            </div>
-          </div>
-
-          <!-- Recent Activity Card -->
-          <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-card); padding: 16px;">
-            <div class="section-title-row">
-              <span style="font-weight: 700; font-size: 14px; color: var(--neutral-900);">Recent Departure Queue</span>
-              <span style="font-size: 12px; color: var(--primary-600); font-weight: 600; cursor: pointer;" onclick="switchStudioView('screen-offboarding')">View All</span>
-            </div>
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--neutral-100); cursor: pointer;" onclick="switchStudioView('screen-offboarding')">
+          <!-- View 2 Benchmark Header Card -->
+          <div style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; margin-bottom: 24px; box-shadow: var(--v2-shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 10px;">
               <div style="display: flex; align-items: center; gap: 10px;">
-                <div class="leaver-avatar" style="width: 36px; height: 36px; font-size: 13px;">SK</div>
+                <span class="tab-recommended-badge" style="font-size: 11.5px; padding: 4px 12px; font-weight: 700;">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.6 9.4L24 12L14.6 14.6L12 24L9.4 14.6L0 12L9.4 9.4L12 0Z"/></svg>
+                  <span>Recommended View • View 2 Redesign</span>
+                </span>
+                <span style="font-size: 12.5px; color: var(--v2-text-muted); font-weight: 500;">Donezo Canvas Architecture (theme.ts &amp; index.css Revamp)</span>
+              </div>
+              <button type="button" class="btn-donezo-secondary" onclick="switchMainThemeView(1)" title="Compare with View 1 Existing MUI Baseline">
+                <span>➔ Compare with View 1 (MUI Baseline)</span>
+              </button>
+            </div>
+            <h1 class="v2-h1" style="margin: 0; font-size: 24px;">View 2: Dashboard Revamp UI Kit &amp; Theme Specification</h1>
+            <p class="v2-body-md" style="color: var(--v2-text-muted); margin: 6px 0 0 0;">
+              Production UI kit specifications extracted from Dashboard Revamp View 2: Plus Jakarta Sans display hierarchy, Donezo floating card surfaces (<code style="background: var(--v2-bg-surface-subtle); padding: 2px 6px; border-radius: 4px;">#FFFFFF</code> on <code style="background: var(--v2-bg-surface-subtle); padding: 2px 6px; border-radius: 4px;">#F4F6F9</code>), spring-loaded sidebar navigation with icon rotation, bento KPI summary cards with dark navy highlight, HyIQ dual-action capsule with interactive voice wave equalizer, and soft rounded status chips.
+            </p>
+
+            <!-- Quick Sub-Category Nav Pills -->
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 18px; overflow-x: auto; padding-top: 14px; border-top: 1px solid var(--v2-border-subtle);">
+              <button type="button" class="joy-tab-btn active" onclick="filterV2View2('all', this)">All View 2 Components</button>
+              <button type="button" class="joy-tab-btn" onclick="filterV2View2('tokens', this)">1. Palette &amp; CSS Tokens</button>
+              <button type="button" class="joy-tab-btn" onclick="filterV2View2('typography', this)">2. Typography Scale</button>
+              <button type="button" class="joy-tab-btn" onclick="filterV2View2('buttons', this)">3. Buttons &amp; States</button>
+              <button type="button" class="joy-tab-btn" onclick="filterV2View2('sidebar', this)">4. Donezo Sidebar Nav</button>
+              <button type="button" class="joy-tab-btn" onclick="filterV2View2('bento', this)">5. Bento KPI Cards</button>
+              <button type="button" class="joy-tab-btn" onclick="filterV2View2('table', this)">6. Tables &amp; Status Chips</button>
+              <button type="button" class="joy-tab-btn" onclick="filterV2View2('banner', this)">7. Hero Banner &amp; HyIQ</button>
+              <button type="button" class="joy-tab-btn" onclick="filterV2View2('modal', this)">8. Modals &amp; Inputs</button>
+            </div>
+          </div>
+
+          <!-- Section 1: Palette Scales & Theme Variables -->
+          <div class="v2-subpanel" id="v2Subpanel-tokens" style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; margin-bottom: 24px; box-shadow: var(--v2-shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <h2 class="v2-h2" style="margin: 0; font-size: 18px;">1. Palette Scales &amp; CSS Tokens</h2>
+              <span class="v2-caption">Plus Jakarta Sans &bull; Brand Purple #7C3AED &bull; Dark Navy Bento #1E1B4B</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+              
+              <!-- Brand Purple Scale -->
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 14px;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--v2-text-heading); margin-bottom: 10px;">Primary Brand Purple Scale (--v2-brand-primary)</div>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; font-size: 10px; text-align: center;">
+                  <div class="swatch-cell" onclick="copyToken('#F5F3FF', 'brand.50')" style="background: #F5F3FF; color: #5B21B6; padding: 6px 2px; border-radius: 6px; border: 1px solid #DDD6FE; cursor: pointer;">50<br>#F5F3FF</div>
+                  <div class="swatch-cell" onclick="copyToken('#EDE9FE', 'brand.100')" style="background: #EDE9FE; color: #5B21B6; padding: 6px 2px; border-radius: 6px; cursor: pointer;">100<br>#EDE9FE</div>
+                  <div class="swatch-cell" onclick="copyToken('#DDD6FE', 'brand.200')" style="background: #DDD6FE; color: #4C1D95; padding: 6px 2px; border-radius: 6px; cursor: pointer;">200<br>#DDD6FE</div>
+                  <div class="swatch-cell" onclick="copyToken('#C4B5FD', 'brand.300')" style="background: #C4B5FD; color: #3B1578; padding: 6px 2px; border-radius: 6px; cursor: pointer;">300<br>#C4B5FD</div>
+                  <div class="swatch-cell" onclick="copyToken('#A78BFA', 'brand.400')" style="background: #A78BFA; color: #FFFFFF; padding: 6px 2px; border-radius: 6px; cursor: pointer;">400<br>#A78BFA</div>
+                  <div class="swatch-cell" onclick="copyToken('#7C3AED', 'brand.500 (Main)')" style="background: #7C3AED; color: #FFFFFF; padding: 6px 2px; border-radius: 6px; font-weight: 700; cursor: pointer; box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);">500<br>Main</div>
+                  <div class="swatch-cell" onclick="copyToken('#6D28D9', 'brand.600 (Hover)')" style="background: #6D28D9; color: #FFFFFF; padding: 6px 2px; border-radius: 6px; font-weight: 700; cursor: pointer;">600<br>Hover</div>
+                  <div class="swatch-cell" onclick="copyToken('#5B21B6', 'brand.700 (Dark)')" style="background: #5B21B6; color: #FFFFFF; padding: 6px 2px; border-radius: 6px; cursor: pointer;">700<br>#5B21B6</div>
+                  <div class="swatch-cell" onclick="copyToken('#4C1D95', 'brand.800')" style="background: #4C1D95; color: #FFFFFF; padding: 6px 2px; border-radius: 6px; cursor: pointer;">800<br>#4C1D95</div>
+                  <div class="swatch-cell" onclick="copyToken('#3B1578', 'brand.900')" style="background: #3B1578; color: #FFFFFF; padding: 6px 2px; border-radius: 6px; cursor: pointer;">900<br>#3B1578</div>
+                </div>
+              </div>
+
+              <!-- Bento Dark Navy & Canvas Scale -->
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 14px;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--v2-text-heading); margin-bottom: 10px;">Bento Dark Navy &amp; Surfaces</div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; font-size: 10px; text-align: center;">
+                  <div class="swatch-cell" onclick="copyToken('linear-gradient(145deg, #1E1B4B 0%, #171030 100%)', 'bento.navy')" style="background: linear-gradient(145deg, #1E1B4B 0%, #171030 100%); color: #FFFFFF; padding: 6px 2px; border-radius: 6px; font-weight: 700; cursor: pointer; border: 1px solid rgba(255,255,255,0.2);">Navy Bento<br>#1E1B4B</div>
+                  <div class="swatch-cell" onclick="copyToken('#F4F6F9', 'canvas.dashboard')" style="background: #F4F6F9; color: #334155; padding: 6px 2px; border-radius: 6px; border: 1px solid #E2E8F0; cursor: pointer;">Canvas<br>#F4F6F9</div>
+                  <div class="swatch-cell" onclick="copyToken('#FFFFFF', 'surface.white')" style="background: #FFFFFF; color: #0F172A; padding: 6px 2px; border-radius: 6px; border: 1px solid #E2E8F0; font-weight: 700; cursor: pointer;">Surface<br>#FFFFFF</div>
+                  <div class="swatch-cell" onclick="copyToken('#F8FAFC', 'surface.subtle')" style="background: #F8FAFC; color: #475569; padding: 6px 2px; border-radius: 6px; border: 1px solid #E2E8F0; cursor: pointer;">Subtle<br>#F8FAFC</div>
+                </div>
+              </div>
+
+              <!-- HyIQ Gradient Tokens -->
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 14px;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--v2-text-heading); margin-bottom: 10px;">HyIQ Iridescent &amp; Banner Tokens</div>
+                <div style="display: flex; flex-direction: column; gap: 8px; font-size: 11px;">
+                  <div class="swatch-cell" onclick="copyToken('linear-gradient(90deg, #7C3AED 0%, #5B5BF7 50%, #3B82F6 100%)', 'hyiq.action')" style="background: linear-gradient(90deg, #7C3AED 0%, #5B5BF7 50%, #3B82F6 100%); color: #FFFFFF; padding: 6px 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                    HyIQ Action: linear-gradient(90deg, #7C3AED ➔ #5B5BF7 ➔ #3B82F6)
+                  </div>
+                  <div class="swatch-cell" onclick="copyToken('linear-gradient(135deg, #7C3AED 0%, #6D28D9 45%, #5B21B6 100%)', 'banner.hero')" style="background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 45%, #5B21B6 100%); color: #FFFFFF; padding: 6px 10px; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                    Hero Banner: linear-gradient(135deg, #7C3AED ➔ #6D28D9 ➔ #5B21B6)
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modern Status Chip Palette -->
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 14px; grid-column: 1 / -1;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--v2-text-heading); margin-bottom: 10px;">Modern Status &amp; SLA Badge Palettes (View 2)</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; font-size: 12px;">
+                  <span class="v2-chip v2-chip-urgent" onclick="copyToken('#FEF2F2 / #DC2626', 'chip.urgent')">Serving Notice: #FEF2F2 / #DC2626</span>
+                  <span class="v2-chip v2-chip-warning" onclick="copyToken('#FEF3C7 / #D97706', 'chip.warning')">Pending Clearance: #FEF3C7 / #D97706</span>
+                  <span class="v2-chip v2-chip-active" onclick="copyToken('#ECFDF5 / #059669', 'chip.active')">Active Employee: #ECFDF5 / #059669</span>
+                  <span class="v2-chip v2-chip-info" onclick="copyToken('#EFF6FF / #2563EB', 'chip.info')">In Review / SLA: #EFF6FF / #2563EB</span>
+                  <span class="v2-chip v2-chip-purple" onclick="copyToken('#F5F3FF / #7C3AED', 'chip.purple')">High Priority: #F5F3FF / #7C3AED</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Section 2: Typography Scale Hierarchy -->
+          <div class="v2-subpanel" id="v2Subpanel-typography" style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; margin-bottom: 24px; box-shadow: var(--v2-shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <h2 class="v2-h2" style="margin: 0; font-size: 18px;">2. Typography Scale Hierarchy (Plus Jakarta Sans &amp; Inter)</h2>
+              <span class="v2-caption">Display: Plus Jakarta Sans &bull; UI/Body: Inter &bull; Code: JetBrains Mono</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px;">
+              
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 16px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--v2-brand-primary); text-transform: uppercase; margin-bottom: 4px;">Display Large &bull; Plus Jakarta Sans 800 / 32px / 1.15</div>
+                <div class="v2-display-lg">32px Display Headline</div>
+                <div class="v2-caption" style="margin-top: 4px;">Used in Hero Greeting ("Hey Chanchal") and Large Bento KPI Metrics ("248")</div>
+              </div>
+
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 16px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--v2-brand-primary); text-transform: uppercase; margin-bottom: 4px;">Page Title (h1) &bull; Plus Jakarta Sans 800 / 26px / 1.2</div>
+                <div class="v2-h1">26px Dashboard Title</div>
+                <div class="v2-caption" style="margin-top: 4px;">Used in primary view headers and module section page banners</div>
+              </div>
+
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 16px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--v2-brand-primary); text-transform: uppercase; margin-bottom: 4px;">Brand Title &bull; Plus Jakarta Sans 800 / 20px / -0.03em</div>
+                <div style="font-family: var(--v2-font-display); font-size: 20px; font-weight: 800; color: var(--v2-text-heading); letter-spacing: -0.03em;">Donezo &bull; Hirerkey</div>
+                <div class="v2-caption" style="margin-top: 4px;">Used in floating sidebar brand logo header</div>
+              </div>
+
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 16px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--v2-brand-primary); text-transform: uppercase; margin-bottom: 4px;">Card Title (h3) &bull; Inter 700 / 16px / 1.35</div>
+                <div class="v2-h3">16px Bento Card Title (Broadcast / Alerts)</div>
+                <div class="v2-caption" style="margin-top: 4px;">Used in bento card headers and widget group titles</div>
+              </div>
+
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 16px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--v2-brand-primary); text-transform: uppercase; margin-bottom: 4px;">Interface / Nav Item &bull; Inter 500 &amp; 600 / 13px / 1.4</div>
+                <div style="display: flex; gap: 12px; align-items: center; margin-top: 4px;">
+                  <span style="font-size: 13px; font-weight: 500; color: #334155;">Idle Nav Label (500)</span>
+                  <span style="font-size: 13px; font-weight: 700; color: #7C3AED;">Active Nav Label (700)</span>
+                </div>
+                <div class="v2-caption" style="margin-top: 6px;">Used in sidebar navigation, buttons, and subnav tabs</div>
+              </div>
+
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 16px;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--v2-brand-primary); text-transform: uppercase; margin-bottom: 4px;">Category Tracking &bull; Inter 700 / 9px uppercase / 0.065em</div>
+                <div class="v2-category-track">MAIN MENU &bull; TEAMS &amp; ACCESS &bull; SYSTEM</div>
+                <div class="v2-caption" style="margin-top: 6px;">Used for sidebar category accordion headers with 0.065em letter spacing</div>
+              </div>
+
+              <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 16px; grid-column: 1 / -1;">
+                <div style="font-size: 11px; font-weight: 700; color: var(--v2-brand-primary); text-transform: uppercase; margin-bottom: 4px;">Mono Metadata &bull; JetBrains Mono 600 / 12px</div>
+                <div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
+                  <code>HK-9204 (Employee ID)</code>
+                  <code>AED 45,200 (Settlement)</code>
+                  <code>⌘ ⇧ Space (Voice Shortcut)</code>
+                  <code>⌘K (Quick Search)</code>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Section 3: Buttons & Interactive Hover States -->
+          <div class="v2-subpanel" id="v2Subpanel-buttons" style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; margin-bottom: 24px; box-shadow: var(--v2-shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <h2 class="v2-h2" style="margin: 0; font-size: 18px;">3. Donezo Buttons, Pills &amp; Interactive States</h2>
+              <span class="v2-caption">translateY(-1px) &bull; Brand purple glow &bull; Scale down on active</span>
+            </div>
+            <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 18px;">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 16px;">
+                
+                <!-- Primary Donezo Button -->
                 <div>
-                  <div style="font-weight: 600; font-size: 13px; color: var(--neutral-900);">Sara Khan</div>
-                  <div style="font-size: 11.5px; color: var(--neutral-400);">FDM-01 • Front Desk</div>
+                  <button type="button" class="btn-donezo-primary" onclick="triggerToast('btn-donezo-primary clicked')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                    <span>Primary Action (Hover me)</span>
+                  </button>
+                  <div class="v2-caption" style="margin-top: 4px;">translateY(-1px) | shadow 0 6px 16px</div>
                 </div>
-              </div>
-              <span class="status-chip notice">24d Left</span>
-            </div>
-          </div>
 
-        </div>
-
-        <!-- ================= VIEW E: SCREEN 2 (OFFBOARDING WORKSPACE MOBILE) ================= -->
-        <div id="viewScreenOffboarding" class="inspector-panel" style="display: none;">
-          
-          <!-- Back Link -->
-          <div style="display: flex; align-items: center; gap: 6px; color: var(--primary-600); font-size: 12.5px; font-weight: 600; cursor: pointer; margin-bottom: 12px;" onclick="switchStudioView('screen-dashboard')">
-            <span>←</span> Back to Departures List
-          </div>
-
-          <!-- Leaver Profile Card (Mobile Parity) -->
-          <div class="mobile-leaver-card">
-            <div class="leaver-top-identity">
-              <div class="leaver-avatar-box">
-                <div class="leaver-avatar">SK</div>
+                <!-- Secondary Donezo Button -->
                 <div>
-                  <div style="display: flex; align-items: center; gap: 6px;">
-                    <span class="leaver-name">Sara Khan</span>
-                    <span class="leaver-seat-tag">FDM-01</span>
+                  <button type="button" class="btn-donezo-secondary" onclick="triggerToast('btn-donezo-secondary clicked')">
+                    <span>Secondary Action</span>
+                  </button>
+                  <div class="v2-caption" style="margin-top: 4px;">#F8FAFC hover | #CBD5E1 border</div>
+                </div>
+
+                <!-- Widget Announcement Pill -->
+                <div>
+                  <div class="widget-announcement-pill" onclick="triggerToast('widget-announcement-pill clicked')">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"/></svg>
+                    <span>6 new widgets available</span>
                   </div>
-                  <div class="leaver-subtitle">Front Desk Manager • Guest Experience</div>
+                  <div class="v2-caption" style="margin-top: 4px;">#F3EEFF pill | translateY(-1px)</div>
+                </div>
+
+                <!-- Circular Collapse Button -->
+                <div>
+                  <button type="button" class="donezo-collapse-btn" onclick="triggerToast('donezo-collapse-btn clicked')" title="Collapse Side Rail">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <div class="v2-caption" style="margin-top: 4px;">28x28 round | scale 1.06</div>
+                </div>
+
+                <!-- Square Control Button -->
+                <div>
+                  <button type="button" class="control-btn" onclick="triggerToast('control-btn clicked')" title="Card Options">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                  </button>
+                  <div class="v2-caption" style="margin-top: 4px;">30x30 square | border #C4B5FD</div>
+                </div>
+
+              </div>
+
+              <!-- Interactive Donezo HyIQ Action Capsule -->
+              <div style="border-top: 1px solid var(--v2-border-card); padding-top: 16px; margin-top: 14px;">
+                <div style="font-size: 12px; font-weight: 700; color: var(--v2-text-heading); margin-bottom: 8px;">HyIQ AI Dual Action Capsule (Hover over Voice to see animated equalizer waves)</div>
+                <div class="view2-hyiq-capsule">
+                  <button type="button" class="view2-btn-ask-hyiq" onclick="triggerToast('Ask HyIQ Assistant Opened')">
+                    <div class="view2-hyiq-robot-icon">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="3" fill="#FFFFFF"/><circle cx="8.5" cy="11.5" r="1.5" fill="#7C3AED"/><circle cx="15.5" cy="11.5" r="1.5" fill="#38BDF8"/><path d="M10 15h4" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="2" x2="12" y2="6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <span class="view2-btn-ask-text">Ask HyIQ</span>
+                  </button>
+                  <button type="button" class="view2-btn-hyiq-voice" onclick="triggerToast('Voice Command Triggered')">
+                    <div class="view2-voice-inner">
+                      <div class="view2-voice-bars">
+                        <div class="view2-voice-bar view2-voice-bar-1"></div>
+                        <div class="view2-voice-bar view2-voice-bar-2"></div>
+                        <div class="view2-voice-bar view2-voice-bar-3"></div>
+                        <div class="view2-voice-bar view2-voice-bar-4"></div>
+                      </div>
+                      <span class="view2-btn-voice-text">Voice</span>
+                    </div>
+                    <kbd class="view2-voice-shortcut">
+                      <span class="shortcut-symbol">⌘</span>
+                      <span class="shortcut-symbol">⇧</span>
+                      <span class="shortcut-key">Space</span>
+                    </kbd>
+                  </button>
                 </div>
               </div>
-              <span class="status-chip notice">24d Left</span>
-            </div>
 
-            <div style="display: flex; align-items: center; gap: 6px;">
-              <span class="status-chip serving">● Serving Notice</span>
-              <span class="status-chip active">● Resignation</span>
-            </div>
-
-            <!-- Mini 2x2 Metrics -->
-            <div class="mini-metrics-grid">
-              <div class="mini-metric-box">
-                <div class="mini-metric-lbl">Line Manager</div>
-                <div class="mini-metric-val">Tariq Mansoor</div>
-              </div>
-              <div class="mini-metric-box">
-                <div class="mini-metric-lbl">Tenure</div>
-                <div class="mini-metric-val">2y 4m</div>
-              </div>
-              <div class="mini-metric-box">
-                <div class="mini-metric-lbl">Successor Cover</div>
-                <div class="mini-metric-val" style="color: var(--success-trend);">Fatima Noor</div>
-              </div>
-              <div class="mini-metric-box">
-                <div class="mini-metric-lbl">Notice Period</div>
-                <div class="mini-metric-val" style="color: var(--warning-700);">30 Days Total</div>
-              </div>
             </div>
           </div>
 
-          <!-- Signature Tab Bar (5 Operational Lifecycles) -->
-          <div class="mobile-tab-bar">
-            <button class="mobile-tab-item active">Overview</button>
-            <button class="mobile-tab-item">Handover <span class="tab-counter-pill">3</span></button>
-            <button class="mobile-tab-item">Clearance <span class="tab-counter-pill">2/4</span></button>
-            <button class="mobile-tab-item">Exit Survey</button>
-            <button class="mobile-tab-item">Settlement</button>
-          </div>
-
-          <!-- Clearance Checklist Summary Component -->
-          <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-card); padding: 16px; margin-bottom: 16px;">
-            <div class="section-title-row">
-              <span style="font-weight: 700; font-size: 14px; color: var(--neutral-900);">Departmental Clearance</span>
-              <span style="font-size: 12px; color: var(--primary-600); font-weight: 600;">2 of 4 Cleared</span>
+          <!-- Section 4: Donezo Sidebar Nav Items & Micro-Interactions -->
+          <div class="v2-subpanel" id="v2Subpanel-sidebar" style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; margin-bottom: 24px; box-shadow: var(--v2-shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <h2 class="v2-h2" style="margin: 0; font-size: 18px;">4. Donezo Sidebar Navigation Items &amp; Micro-Interactions</h2>
+                <p class="v2-caption" style="margin: 2px 0 0 0;">
+                  Sliding spring purple indicator bar &bull; Icon rotate (-3deg) &amp; scale (1.15) with drop-shadow &bull; Text slide translateX(4px) &bull; Collapsed 68px rail squircle
+                </p>
+              </div>
+              <button type="button" class="btn-donezo-primary" onclick="toggleSidebarRailDemo()" title="Toggle between 218px expanded sidebar and 68px collapsed rail">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <span id="btnToggleRailText">Toggle Rail Mode (218px ↔ 68px)</span>
+              </button>
             </div>
 
-            <!-- Progress Bar -->
-            <div style="height: 6px; background: var(--neutral-100); border-radius: 999px; overflow: hidden; margin-bottom: 12px;">
-              <div style="width: 50%; height: 100%; background: var(--primary-500); border-radius: 999px;"></div>
-            </div>
+            <!-- Demo Sidebar Container -->
+            <div id="demoSidebarContainer" style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+              
+              <!-- Simulated Sidebar Column -->
+              <div style="width: 218px; min-width: 218px; background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 10px; padding: 12px 6px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05); transition: width 0.25s ease;" id="demoSidebarCard">
+                
+                <!-- Category 1: Main Menu -->
+                <div style="padding: 4px 12px; margin-bottom: 4px;" class="donezo-cat-header">
+                  <span class="v2-category-track">MAIN MENU</span>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="donezo-cat-chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
 
-            <!-- Departmental List -->
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg-input); border-radius: var(--radius-md);">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                  <span style="color: var(--success-500); font-weight: 800;">✓</span>
-                  <div>
-                    <div style="font-weight: 600; font-size: 13px; color: var(--neutral-900);">IT Asset Revocation</div>
-                    <div style="font-size: 11px; color: var(--neutral-400);">Laptop & keycard retrieved</div>
+                <!-- Active Item -->
+                <div class="donezo-nav-item active" onclick="selectDonezoNavDemo(this)">
+                  <div class="donezo-nav-item-left">
+                    <span class="donezo-nav-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                    </span>
+                    <span class="donezo-nav-label">Dashboard (Active)</span>
                   </div>
                 </div>
-                <span class="status-chip active">Cleared</span>
-              </div>
 
-              <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; background: var(--bg-input); border-radius: var(--radius-md);">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                  <span style="color: var(--warning-500); font-weight: 800;">⋯</span>
-                  <div>
-                    <div style="font-weight: 600; font-size: 13px; color: var(--neutral-900);">Finance & Gratuity Signoff</div>
-                    <div style="font-size: 11px; color: var(--neutral-400);">Awaiting final payroll audit</div>
+                <!-- Hover Candidate 1 -->
+                <div class="donezo-nav-item" onclick="selectDonezoNavDemo(this)">
+                  <div class="donezo-nav-item-left">
+                    <span class="donezo-nav-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                    </span>
+                    <span class="donezo-nav-label">Departures (Hover me)</span>
+                  </div>
+                  <span class="donezo-task-badge">5</span>
+                </div>
+
+                <!-- Hover Candidate 2 -->
+                <div class="donezo-nav-item" onclick="selectDonezoNavDemo(this)">
+                  <div class="donezo-nav-item-left">
+                    <span class="donezo-nav-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </span>
+                    <span class="donezo-nav-label">Employees &amp; Exit</span>
                   </div>
                 </div>
-                <span class="status-chip notice">Pending</span>
+
+                <!-- Category 2: Teams & Access -->
+                <div style="padding: 10px 12px 4px 12px; margin-top: 6px; border-top: 1px solid #F1F5F9;" class="donezo-cat-header">
+                  <span class="v2-category-track">OPERATIONS</span>
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="donezo-cat-chevron"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+
+                <div class="donezo-nav-item" onclick="selectDonezoNavDemo(this)">
+                  <div class="donezo-nav-item-left">
+                    <span class="donezo-nav-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                    </span>
+                    <span class="donezo-nav-label">Clearance Signoffs</span>
+                  </div>
+                  <span class="donezo-task-badge">12</span>
+                </div>
+
+                <div class="donezo-nav-item" onclick="selectDonezoNavDemo(this)">
+                  <div class="donezo-nav-item-left">
+                    <span class="donezo-nav-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </span>
+                    <span class="donezo-nav-label">Notice Countdown</span>
+                  </div>
+                </div>
+
               </div>
+
+              <!-- Micro-Interaction Breakdown Explanation Card -->
+              <div style="flex: 1; min-width: 280px; background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 18px;">
+                <div style="font-size: 13px; font-weight: 700; color: var(--v2-text-heading); margin-bottom: 8px;">View 2 Sidebar Micro-Interaction Breakdown:</div>
+                <ul style="font-size: 12px; color: var(--v2-text-body); line-height: 1.6; padding-left: 18px; margin: 0;">
+                  <li><strong>Spring-Loaded Indicator:</strong> <code style="background: #fff; padding: 1px 4px; border-radius: 4px;">::before</code> pseudo-element transforms with <code style="background: #fff; padding: 1px 4px; border-radius: 4px;">scaleY(0) &rarr; scaleY(1)</code> using spring easing <code style="background: #fff; padding: 1px 4px; border-radius: 4px;">cubic-bezier(0.34, 1.56, 0.64, 1)</code>.</li>
+                  <li><strong>Smooth Label Translation:</strong> Content slides smoothly <code style="background: #fff; padding: 1px 4px; border-radius: 4px;">translateX(4px)</code> to make room for the indicator bar.</li>
+                  <li><strong>Dynamic Icon Rotation:</strong> Icon scales to <code style="background: #fff; padding: 1px 4px; border-radius: 4px;">1.15</code>, rotates <code style="background: #fff; padding: 1px 4px; border-radius: 4px;">-3deg</code>, and gains a purple drop-shadow <code style="background: #fff; padding: 1px 4px; border-radius: 4px;">rgba(124, 58, 237, 0.22)</code>.</li>
+                  <li><strong>Active State Anchoring:</strong> Active item has solid theme purple color (<code style="background: #fff; padding: 1px 4px; border-radius: 4px;">#7C3AED</code>), <code style="background: #fff; padding: 1px 4px; border-radius: 4px;">rgba(124, 58, 237, 0.06)</code> tint background, and 26px solid indicator bar.</li>
+                  <li><strong>Collapsed Rail Squircle:</strong> When collapsed to 68px rail, active item morphs into a glowing purple squircle card (<code style="background: #fff; padding: 1px 4px; border-radius: 4px;">linear-gradient(135deg, #7C3AED, #6D28D9)</code>) with 12px border radius.</li>
+                </ul>
+              </div>
+
             </div>
           </div>
 
-          <!-- Bottom Action -->
-          <button class="btn-mobile-primary" onclick="openBottomSheet()">Confirm Next Clearance Step</button>
-        </div>
+          <!-- Section 5: Bento KPI Cards & Elevation -->
+          <div class="v2-subpanel" id="v2Subpanel-bento" style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; margin-bottom: 24px; box-shadow: var(--v2-shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <div>
+                <h2 class="v2-h2" style="margin: 0; font-size: 18px;">5. Bento Summary KPI Cards (Dark Navy Highlight &amp; Elevated White)</h2>
+                <p class="v2-caption" style="margin: 2px 0 0 0;">Hover card elevation translateY(-2px) &bull; Circular arrow badge &bull; Plus Jakarta Sans 32px metrics</p>
+              </div>
+              <span class="v2-chip v2-chip-purple">View 2 Signature Bento</span>
+            </div>
 
-      </div>
+            <div class="donezo-kpi-grid">
+              
+              <!-- Highlight Bento Card (Dark Navy) -->
+              <div class="donezo-kpi-card highlight" onclick="triggerToast('Highlight KPI: 248 Total Leavers Tracked')">
+                <div class="donezo-kpi-header">
+                  <span class="kpi-label">Total Leavers Tracked</span>
+                  <div class="kpi-arrow-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="kpi-value">248</div>
+                  <div class="kpi-trend">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+                    <span>+12.4% vs last month</span>
+                  </div>
+                </div>
+              </div>
 
-      <!-- ================= MOBILE BOTTOM NAVIGATION DOCK ================= -->
-      <div class="mobile-bottom-dock">
-        <button class="dock-tab active" id="dockTabHome" onclick="switchStudioView('screen-dashboard')">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="3" y="3" width="7.5" height="7.5" rx="2"></rect>
-            <rect x="13.5" y="3" width="7.5" height="7.5" rx="2"></rect>
-            <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"></rect>
-            <rect x="3" y="13.5" width="7.5" height="7.5" rx="2"></rect>
-          </svg>
-          <span class="dock-label">Home</span>
-        </button>
+              <!-- Elevated White Card 1 -->
+              <div class="donezo-kpi-card" onclick="triggerToast('KPI: 48 In Notice Period')">
+                <div class="donezo-kpi-header">
+                  <span class="kpi-label">In Notice Period</span>
+                  <div class="kpi-arrow-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="kpi-value" style="color: var(--v2-text-heading);">48</div>
+                  <div class="kpi-trend" style="color: #D97706;">
+                    <span>18 days average remaining</span>
+                  </div>
+                </div>
+              </div>
 
-        <button class="dock-tab" id="dockTabDepartures" onclick="switchStudioView('screen-offboarding')">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-            <polyline points="16 17 21 12 16 7"></polyline>
-            <line x1="21" y1="12" x2="9" y2="12"></line>
-          </svg>
-          <span class="dock-label">Departures</span>
-        </button>
+              <!-- Elevated White Card 2 -->
+              <div class="donezo-kpi-card" onclick="triggerToast('KPI: 12 Clearance Signoffs Pending')">
+                <div class="donezo-kpi-header">
+                  <span class="kpi-label">Clearance Signoffs</span>
+                  <div class="kpi-arrow-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="kpi-value" style="color: var(--v2-text-heading);">12</div>
+                  <div class="kpi-trend" style="color: #DC2626;">
+                    <span>3 urgent SLAs pending</span>
+                  </div>
+                </div>
+              </div>
 
-        <!-- Center AI Button -->
-        <button class="dock-ai-center" onclick="openBottomSheet()">
-          <div class="dock-ai-circle">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="6" width="16" height="12" rx="3" fill="#FFFFFF"/><circle cx="8.5" cy="11.5" r="1.5" fill="#7C3AED"/><circle cx="15.5" cy="11.5" r="1.5" fill="#38BDF8"/><path d="M10 15h4" stroke="#7C3AED" stroke-width="1.5" stroke-linecap="round"/><line x1="12" y1="2" x2="12" y2="6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/></svg>
+              <!-- Elevated White Card 3 -->
+              <div class="donezo-kpi-card" onclick="triggerToast('KPI: 99.4% Settlement Accuracy')">
+                <div class="donezo-kpi-header">
+                  <span class="kpi-label">Settlement Accuracy</span>
+                  <div class="kpi-arrow-icon">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                  </div>
+                </div>
+                <div>
+                  <div class="kpi-value" style="color: var(--v2-text-heading);">99.4%</div>
+                  <div class="kpi-trend" style="color: #059669;">
+                    <span>100% UAE Law compliant</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
-          <span style="font-size: 10px; font-weight: 700; color: var(--primary-600); margin-top: 2px;">HyIQ AI</span>
-        </button>
 
-        <button class="dock-tab" id="dockTabApprovals" onclick="triggerToast('5 Pending Approvals')">
-          <div style="position: relative;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="9 11 12 14 22 4"></polyline>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-            </svg>
-            <span style="position: absolute; top: -4px; right: -8px; background: var(--primary-500); color: #FFF; font-size: 9px; font-weight: 700; border-radius: 6px; padding: 1px 4px;">5</span>
+          <!-- Section 6: Modern Data Table & Soft Status Chips -->
+          <div class="v2-subpanel" id="v2Subpanel-table" style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; margin-bottom: 24px; box-shadow: var(--v2-shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <h2 class="v2-h2" style="margin: 0; font-size: 18px;">6. View 2 Modern Data Table &amp; Status Chips</h2>
+                <p class="v2-caption" style="margin: 2px 0 0 0;">
+                  Subtle dividers &bull; Rounded pill status chips &bull; Clean row hover background #F8FAFC &bull; Action buttons
+                </p>
+              </div>
+              <button type="button" class="btn-donezo-primary" onclick="triggerToast('Loaded 4 leaver records in table')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                <span>Refresh Table Data</span>
+              </button>
+            </div>
+
+            <div class="donezo-table-container">
+              <table class="donezo-table">
+                <thead>
+                  <tr>
+                    <th>Ticket / Leaver</th>
+                    <th>Employee ID</th>
+                    <th>Department</th>
+                    <th>Stage &amp; SLA</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr onclick="triggerToast('Selected Sara Khan case')">
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #EDE9FE; color: #7C3AED; font-weight: 700; font-size: 12px; display: grid; place-items: center;">SK</div>
+                        <div>
+                          <div style="font-weight: 600; color: var(--v2-text-heading);">Sara Khan</div>
+                          <div class="v2-caption">Lead UI Designer</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code class="v2-mono-code">HK-9204</code></td>
+                    <td>Product Design</td>
+                    <td>Serving Notice (18d left)</td>
+                    <td><span class="v2-chip v2-chip-urgent">Serving Notice</span></td>
+                    <td><span class="v2-chip v2-chip-purple">High SLA</span></td>
+                    <td style="text-align: right;">
+                      <button type="button" class="btn-donezo-secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="event.stopPropagation(); triggerToast('Opened Sara Khan review')">Review</button>
+                    </td>
+                  </tr>
+
+                  <tr onclick="triggerToast('Selected Alexandre Dubois case')">
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #FEF3C7; color: #D97706; font-weight: 700; font-size: 12px; display: grid; place-items: center;">AD</div>
+                        <div>
+                          <div style="font-weight: 600; color: var(--v2-text-heading);">Alexandre Dubois</div>
+                          <div class="v2-caption">Senior Full-Stack Engineer</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code class="v2-mono-code">HK-7811</code></td>
+                    <td>Core Engineering</td>
+                    <td>Operational Handover</td>
+                    <td><span class="v2-chip v2-chip-warning">Notice Period</span></td>
+                    <td><span class="v2-chip v2-chip-info">3 Reviews</span></td>
+                    <td style="text-align: right;">
+                      <button type="button" class="btn-donezo-primary" style="padding: 4px 10px; font-size: 11.5px;" onclick="event.stopPropagation(); triggerToast('Opened ticket HK-7811')">Open Ticket</button>
+                    </td>
+                  </tr>
+
+                  <tr onclick="triggerToast('Selected Priya Sharma case')">
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #ECFDF5; color: #059669; font-weight: 700; font-size: 12px; display: grid; place-items: center;">PS</div>
+                        <div>
+                          <div style="font-weight: 600; color: var(--v2-text-heading);">Priya Sharma</div>
+                          <div class="v2-caption">HR Business Partner</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code class="v2-mono-code">HK-6419</code></td>
+                    <td>People Operations</td>
+                    <td>Exit Interview Scheduled</td>
+                    <td><span class="v2-chip v2-chip-active">Active Clearance</span></td>
+                    <td><span class="v2-chip v2-chip-info">Normal SLA</span></td>
+                    <td style="text-align: right;">
+                      <button type="button" class="btn-donezo-secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="event.stopPropagation(); triggerToast('Viewing case HK-6419')">View Case</button>
+                    </td>
+                  </tr>
+
+                  <tr onclick="triggerToast('Selected Omar Al-Mansoor case')">
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #EFF6FF; color: #2563EB; font-weight: 700; font-size: 12px; display: grid; place-items: center;">OA</div>
+                        <div>
+                          <div style="font-weight: 600; color: var(--v2-text-heading);">Omar Al-Mansoor</div>
+                          <div class="v2-caption">DevOps Lead</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code class="v2-mono-code">HK-5512</code></td>
+                    <td>Cloud &amp; IT Ops</td>
+                    <td>IT Asset Return Scheduled</td>
+                    <td><span class="v2-chip v2-chip-purple">Pending Signoff</span></td>
+                    <td><span class="v2-chip v2-chip-urgent">Urgent</span></td>
+                    <td style="text-align: right;">
+                      <button type="button" class="btn-donezo-secondary" style="padding: 4px 10px; font-size: 11.5px;" onclick="event.stopPropagation(); triggerToast('Sent IT asset ping')">Send Ping</button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
           </div>
-          <span class="dock-label">Approvals</span>
-        </button>
 
-        <button class="dock-tab" id="dockTabProfile" onclick="openBottomSheet()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-          <span class="dock-label">Profile</span>
-        </button>
-      </div>
+          <!-- Section 7: Greeting Hero Banner & Iridescent HyIQ Capsule -->
+          <div class="v2-subpanel" id="v2Subpanel-banner" style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; margin-bottom: 24px; box-shadow: var(--v2-shadow-card);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+              <h2 class="v2-h2" style="margin: 0; font-size: 18px;">7. Hero Greeting Banner &amp; Twinkling Stars</h2>
+              <span class="v2-caption">Coursue &amp; Hirerkey signature gradient &bull; Golden quote dot</span>
+            </div>
 
-      <!-- Home Indicator -->
-      <div class="device-home-bar-wrap">
-        <div class="device-home-indicator"></div>
-      </div>
+            <!-- Live Hero Greeting Banner Specimen -->
+            <section class="v2-hero-banner" id="v2HeroBannerSpecimen">
+              <!-- Geometric 4-point twinkling stars -->
+              <svg class="banner-star banner-star-1" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+              </svg>
+              <svg class="banner-star banner-star-2" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+              </svg>
+              <svg class="banner-star banner-star-3" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M50 0 C50 35 65 50 100 50 C65 50 50 65 50 100 C50 65 35 50 0 50 C35 50 50 35 50 0 Z"></path>
+              </svg>
 
-      <!-- BOTTOM SHEET MODAL INSIDE PHONE -->
-      <div class="bottom-sheet-overlay" id="bottomSheet" onclick="closeBottomSheet(event)">
-        <div class="bottom-sheet-card" onclick="event.stopPropagation()">
-          <div class="drag-handle-pill"></div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-            <div style="font-size: 16px; font-weight: 700; color: var(--neutral-900);">Ask HyIQ Assistant</div>
-            <button style="background: none; border: none; font-size: 16px; cursor: pointer; color: var(--neutral-400);" onclick="closeBottomSheet()">✕</button>
+              <div class="banner-date">MONDAY, SEPTEMBER 28</div>
+              <h1 class="banner-title">Hey Chanchal</h1>
+              <p class="banner-subtitle">Start your week with full potential this Monday.</p>
+              
+              <div class="banner-quote-pill">
+                <span class="banner-quote-dot"></span>
+                <span>Strong workplace relationships improve teamwork and job satisfaction.</span>
+              </div>
+            </section>
           </div>
-          <p style="font-size: 13px; color: var(--neutral-500); margin-bottom: 14px;">
-            How can I assist you with Habtoor Hospitality operations today?
-          </p>
-          <input type="text" class="mobile-input" placeholder="E.g., Generate leaver notice report..." style="margin-bottom: 12px;">
-          <button class="btn-mobile-primary" onclick="triggerToast('Prompt Sent to HyIQ AI'); closeBottomSheet();">Ask HyIQ (⌘↵)</button>
-        </div>
-      </div>
+
+          <!-- Section 8: Modals, Popovers & Inputs -->
+          <div class="v2-subpanel" id="v2Subpanel-modal" style="background: var(--v2-bg-surface); border: 1px solid var(--v2-border-card); border-radius: 18px; padding: 22px; box-shadow: var(--v2-shadow-card);">
+            <h2 class="v2-h2" style="margin-bottom: 16px; font-size: 18px;">8. Form Controls, Search Pills &amp; Donezo Modal Dialog</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 16px;">
+              <!-- Donezo Search Pill -->
+              <div>
+                <label style="font-size: 12px; font-weight: 600; color: var(--v2-text-heading); display: block; margin-bottom: 6px;">Donezo Search Pill (focus ring: 0 0 0 3px rgba(124,58,237,0.1))</label>
+                <div class="donezo-search-pill">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input type="text" placeholder="Search leavers, policies, or cases..." value="Sara Khan FDM-01">
+                  <kbd style="font-size: 10px; background: #EDE9FE; color: #7C3AED; padding: 2px 6px; border-radius: 4px; font-weight: 700;">⌘K</kbd>
+                </div>
+              </div>
+
+              <!-- Interactive Reminders Item -->
+              <div>
+                <label style="font-size: 12px; font-weight: 600; color: var(--v2-text-heading); display: block; margin-bottom: 6px;">Donezo Interactive Checklist To-Do</label>
+                <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 8px; padding: 8px 12px; display: flex; align-items: center; gap: 10px;">
+                  <input type="checkbox" onchange="toggleDemoReminder(this)" style="cursor: pointer; width: 16px; height: 16px; accent-color: #7C3AED;">
+                  <span style="font-size: 13px; color: var(--v2-text-body);" id="demoReminderText">Sign off IT asset clearance for Sara Khan</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Modal Trigger Card -->
+            <div style="background: var(--v2-bg-surface-subtle); border: 1px solid var(--v2-border-card); border-radius: 12px; padding: 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <div style="font-size: 13.5px; font-weight: 700; color: var(--v2-text-heading);">View 2 Donezo Modal Dialog (20px Rounded Card + Backdrop Blur)</div>
+                <div class="v2-caption">Demonstrates scale(0.96) &rarr; scale(1) transition with pure white floating card surface</div>
+              </div>
+              <button type="button" class="btn-donezo-primary" onclick="openV2ModalPreview()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                <span>Open View 2 Donezo Modal</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div> <!-- /#view2Benchmark -->
+
+      </div> <!-- /#deviceScreenScroll -->
 
       <!-- JoyModal Dialog Interactive Demo Element (theme.ts parity) -->
       <div class="joy-modal-overlay" id="joyModalOverlayDemo" onclick="if(event.target === this) closeJoyModalPreview()">
@@ -2828,6 +3907,34 @@
         </div>
       </div>
 
+      <!-- View 2 Donezo Modal Dialog Interactive Demo Element -->
+      <div class="v2-modal-overlay" id="v2ModalOverlayDemo" onclick="if(event.target === this) closeV2ModalPreview()">
+        <div class="v2-modal-card" id="v2ModalCardDemo">
+          <div class="v2-modal-topbar">
+            <div class="v2-modal-title">
+              <span class="v2-chip v2-chip-purple" style="font-size: 10px; padding: 2px 8px;">Donezo Modal</span>
+              <span>View 2 Redesign Dialog</span>
+            </div>
+            <button type="button" class="v2-modal-close-btn" onclick="closeV2ModalPreview()">&times;</button>
+          </div>
+          <div class="v2-modal-body">
+            <p class="v2-body-md" style="margin-bottom: 16px; color: var(--v2-text-body);">
+              This modal uses View 2's elevated island architecture with 20px card radius, delicate ambient shadow (<code>var(--v2-shadow-dropdown)</code>), and backdrop blur (4px).
+            </p>
+            <div style="background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 12px; padding: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 18px;">✨</span>
+              <div style="font-size: 12.5px; color: #5B21B6; line-height: 1.4;">
+                <strong>Donezo Redesign Parity:</strong> Fully aligned with Dashboard Revamp View 2 design tokens and components.
+              </div>
+            </div>
+            <div style="display: flex; justify-content: flex-end; gap: 10px;">
+              <button type="button" class="btn-donezo-secondary" onclick="closeV2ModalPreview()">Cancel</button>
+              <button type="button" class="btn-donezo-primary" onclick="closeV2ModalPreview(); triggerToast('Action confirmed in View 2 Modal');">Confirm Action</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- In-Device Toast Notification -->
       <div class="mobile-toast" id="mobileToast">
         <span>✨</span> <span id="toastText">Action triggered</span>
@@ -2837,42 +3944,32 @@
   </main>
 
   <script>
-    // ==========================================================================
+        // ==========================================================================
     // PRIMARY DUAL-MODE SWITCHER: VIEW 1 VS VIEW 2
     // ==========================================================================
     function switchMainThemeView(viewNum) {
       const v1Btn = document.getElementById('btnModeView1');
       const v2Btn = document.getElementById('btnModeView2');
       const v1Panel = document.getElementById('view1Benchmark');
-      const v2SubTabs = document.getElementById('view2SubTabsBar');
+      const v2Panel = document.getElementById('view2Benchmark');
       const browserUrl = document.getElementById('browserUrlText');
 
       if (viewNum === 1) {
         if (v1Btn) v1Btn.classList.add('active');
         if (v2Btn) v2Btn.classList.remove('active');
         if (v1Panel) v1Panel.style.display = 'block';
-        if (v2SubTabs) v2SubTabs.style.display = 'none';
-
-        // Hide View 2 panels
-        const v2Panels = ['viewColors', 'viewTypography', 'viewUiKit', 'viewScreenDashboard', 'viewScreenOffboarding'];
-        v2Panels.forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.style.display = 'none';
-        });
+        if (v2Panel) v2Panel.style.display = 'none';
 
         if (browserUrl) browserUrl.textContent = 'https://hirerkey.app/theme-studio/view-1-existing-ui-kit';
-        triggerToast('Switched to View 1: Existing UI Kit (MUI Baseline)');
+        triggerToast('Switched to View 1: Existing UI Kit (MUI Joy Baseline)');
       } else {
         if (v1Btn) v1Btn.classList.remove('active');
         if (v2Btn) v2Btn.classList.add('active');
         if (v1Panel) v1Panel.style.display = 'none';
-        if (v2SubTabs) v2SubTabs.style.display = 'flex';
+        if (v2Panel) v2Panel.style.display = 'block';
 
-        // Show View 2 default panel (Dashboard)
-        switchStudioView('screen-dashboard');
-
-        if (browserUrl) browserUrl.textContent = 'https://hirerkey.app/theme-studio/view-2-redesign';
-        triggerToast('Switched to View 2: Redesign (Donezo Canvas & Mobile)');
+        if (browserUrl) browserUrl.textContent = 'https://hirerkey.app/theme-studio/view-2-dashboard-revamp-ui-kit';
+        triggerToast('Switched to View 2: Redesign (Dashboard Revamp UI Kit)');
       }
 
       const scrollArea = document.getElementById('deviceScreenScroll');
@@ -2946,50 +4043,87 @@
     }
 
     // ==========================================================================
-    // VIEW 2 STUDIO TAB VIEW SWITCHING
+    // VIEW 2 BENCHMARK INTERACTIVE ACTIONS & FILTERS
     // ==========================================================================
-    function switchStudioView(viewId) {
-      const views = ['colors', 'typography', 'uikit', 'screen-dashboard', 'screen-offboarding'];
-      
-      views.forEach(v => {
-        const el = document.getElementById('view' + v.charAt(0).toUpperCase() + v.slice(1).replace('-d', 'D').replace('-o', 'O'));
-        if (el) el.style.display = 'none';
-      });
-
-      const tabBtns = document.querySelectorAll('.studio-tab-btn');
-      tabBtns.forEach(btn => btn.classList.remove('active'));
-
-      if (viewId === 'colors') {
-        document.getElementById('viewColors').style.display = 'block';
-        if (tabBtns[3]) tabBtns[3].classList.add('active');
-      } else if (viewId === 'typography') {
-        document.getElementById('viewTypography').style.display = 'block';
-        if (tabBtns[4]) tabBtns[4].classList.add('active');
-      } else if (viewId === 'uikit') {
-        document.getElementById('viewUiKit').style.display = 'block';
-        if (tabBtns[2]) tabBtns[2].classList.add('active');
-      } else if (viewId === 'screen-dashboard') {
-        document.getElementById('viewScreenDashboard').style.display = 'block';
-        if (tabBtns[0]) tabBtns[0].classList.add('active');
-        highlightDock('dockTabHome');
-      } else if (viewId === 'screen-offboarding') {
-        document.getElementById('viewScreenOffboarding').style.display = 'block';
-        if (tabBtns[1]) tabBtns[1].classList.add('active');
-        highlightDock('dockTabDepartures');
+    function filterV2View2(category, btnEl) {
+      if (btnEl) {
+        const parent = btnEl.parentElement;
+        if (parent) {
+          parent.querySelectorAll('.joy-tab-btn').forEach(b => b.classList.remove('active'));
+        }
+        btnEl.classList.add('active');
       }
-
-      const scrollArea = document.getElementById('deviceScreenScroll');
-      if (scrollArea) scrollArea.scrollTop = 0;
+      const subpanels = document.querySelectorAll('.v2-subpanel');
+      if (category === 'all') {
+        subpanels.forEach(p => p.style.display = 'block');
+      } else {
+        subpanels.forEach(p => {
+          if (p.id === 'v2Subpanel-' + category) {
+            p.style.display = 'block';
+          } else {
+            p.style.display = 'none';
+          }
+        });
+      }
+      triggerToast(`View 2 Filter: ${category.toUpperCase()}`);
     }
 
-    function highlightDock(dockId) {
-      document.querySelectorAll('.dock-tab').forEach(t => t.classList.remove('active'));
-      const activeTab = document.getElementById(dockId);
-      if (activeTab) activeTab.classList.add('active');
+    function toggleSidebarRailDemo() {
+      const sidebar = document.getElementById('demoSidebarCard');
+      const btnText = document.getElementById('btnToggleRailText');
+      if (!sidebar) return;
+      const isExpanded = sidebar.style.width === '218px' || !sidebar.style.width;
+      if (isExpanded) {
+        sidebar.style.width = '68px';
+        sidebar.style.minWidth = '68px';
+        if (btnText) btnText.textContent = 'Rail Mode: 68px (Click to Expand)';
+        triggerToast('View 2 Sidebar Rail Collapsed to 68px (Squircle Mode)');
+      } else {
+        sidebar.style.width = '218px';
+        sidebar.style.minWidth = '218px';
+        if (btnText) btnText.textContent = 'Rail Mode: 218px (Click to Collapse)';
+        triggerToast('View 2 Sidebar Expanded to 218px (Full Mode)');
+      }
+    }
+
+    function selectDonezoNavDemo(itemEl) {
+      if (!itemEl) return;
+      const container = document.getElementById('demoSidebarCard');
+      if (container) {
+        container.querySelectorAll('.donezo-nav-item').forEach(el => el.classList.remove('active'));
+      }
+      itemEl.classList.add('active');
+      const label = itemEl.querySelector('.donezo-nav-label');
+      triggerToast(`Navigated to: ${label ? label.textContent.trim() : 'Item'}`);
+    }
+
+    function toggleDemoReminder(checkbox) {
+      const textEl = document.getElementById('demoReminderText');
+      if (!textEl) return;
+      if (checkbox.checked) {
+        textEl.style.textDecoration = 'line-through';
+        textEl.style.opacity = '0.5';
+        triggerToast('Reminder completed: IT asset clearance signed off');
+      } else {
+        textEl.style.textDecoration = 'none';
+        textEl.style.opacity = '1';
+        triggerToast('Reminder marked pending');
+      }
+    }
+
+    function openV2ModalPreview() {
+      const overlay = document.getElementById('v2ModalOverlayDemo');
+      if (overlay) overlay.classList.add('open');
+      triggerToast('Opened View 2 Donezo Modal Dialog');
+    }
+
+    function closeV2ModalPreview() {
+      const overlay = document.getElementById('v2ModalOverlayDemo');
+      if (overlay) overlay.classList.remove('open');
     }
 
     // ==========================================================================
-    // VIEWPORT RESIZING (FULLSCREEN VIEW)
+    // VIEWPORT RESIZING & UTILITIES
     // ==========================================================================
     function changeDeviceFrame(deviceType) {
       const frame = document.getElementById('deviceFrame');
@@ -3009,18 +4143,7 @@
       triggerToast(isDark ? 'Switched to Dark Mode Theme' : 'Switched to Light Mode Theme');
     }
 
-    // Interactive Bottom Sheet
-    function openBottomSheet() {
-      const sheet = document.getElementById('bottomSheet');
-      if (sheet) sheet.classList.add('active');
-    }
-
-    function closeBottomSheet(e) {
-      const sheet = document.getElementById('bottomSheet');
-      if (sheet) sheet.classList.remove('active');
-    }
-
-    // In-Device Toast Notification
+    // Toast Feedback
     let toastTimeout;
     function triggerToast(text) {
       const toast = document.getElementById('mobileToast');
