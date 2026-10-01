@@ -1744,7 +1744,7 @@
       font-weight: 500;
       color: #334155;
       text-decoration: none;
-      transition: all var(--transition-fast);
+      transition: background 0.22s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease, box-shadow 0.22s ease;
       position: relative;
       cursor: pointer;
       background: #FFFFFF;
@@ -1755,13 +1755,52 @@
       margin-bottom: 4px;
     }
 
+    /* Spring-loaded Indicator Bar on Hover & Active */
+    .donezo-nav-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scaleY(0);
+      transform-origin: center;
+      width: 3.5px;
+      height: 18px;
+      background: linear-gradient(180deg, #A78BFA 0%, #7C3AED 100%);
+      border-radius: 0 3px 3px 0;
+      box-shadow: 0 0 6px rgba(124, 58, 237, 0.35);
+      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .donezo-nav-item:not(.active):hover::before {
+      transform: translateY(-50%) scaleY(1);
+      opacity: 0.95;
+    }
+
     .donezo-nav-item:hover {
       color: #0F172A;
-      background: #F8FAFC;
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.05) 0%, rgba(248, 250, 252, 0.95) 100%);
+    }
+
+    .donezo-nav-item:hover .donezo-nav-item-left {
+      transform: translateX(4px);
     }
 
     .donezo-nav-item:hover .donezo-nav-icon {
+      color: var(--brand-primary);
+      transform: scale(1.15) rotate(-3deg);
+      filter: drop-shadow(0 2px 5px rgba(124, 58, 237, 0.22));
+    }
+
+    .donezo-nav-item:not(.active):hover .donezo-nav-label {
       color: #0F172A;
+      font-weight: 600;
+    }
+
+    .donezo-nav-item:hover .donezo-task-badge {
+      transform: scale(1.12);
+      box-shadow: 0 3px 8px rgba(124, 58, 237, 0.45);
     }
 
     /* Active Item: Hirerkey Theme Purple left tab, icon, text and soft tint (Expanded Mode) */
@@ -1782,20 +1821,22 @@
     }
 
     .donezo-nav-item.active::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scaleY(1) !important;
       width: 4.5px;
       height: 26px;
       background: var(--brand-primary); /* Theme Purple #7C3AED */
       border-radius: 0 2px 2px 0;
       box-shadow: 0 0 8px rgba(124, 58, 237, 0.45);
+      opacity: 1 !important;
     }
 
     .donezo-nav-item.active .donezo-nav-icon {
       color: var(--brand-primary) !important;
+    }
+
+    .donezo-nav-item.active:hover .donezo-nav-icon {
+      transform: scale(1.12);
+      filter: drop-shadow(0 2px 6px rgba(124, 58, 237, 0.35));
     }
 
     .donezo-nav-item-left {
@@ -1803,6 +1844,7 @@
       align-items: center;
       gap: 10px;
       min-width: 0;
+      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .donezo-nav-icon {
@@ -1812,7 +1854,7 @@
       width: 18px;
       height: 18px;
       flex-shrink: 0;
-      transition: color var(--transition-fast);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease, filter 0.2s ease;
     }
 
     .donezo-nav-label {
@@ -1821,6 +1863,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      transition: color 0.2s ease, font-weight 0.2s ease;
     }
 
     /* Badge: Theme Purple Badge (e.g. 5 for Pending Approvals) */
@@ -1834,6 +1877,7 @@
       line-height: 1.2;
       letter-spacing: 0.02em;
       box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
     }
 
     /* Bottom Organization / Property Switcher in View 2 Floating Sidebar (media_1790751329158.png) */
@@ -2017,18 +2061,30 @@
       background: transparent;
       color: #475569;
       position: relative;
+      transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease, color 0.2s ease, box-shadow 0.22s ease;
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item::before {
+      display: none !important;
     }
 
     .donezo-sidebar.collapsed .donezo-nav-item:hover {
-      background: #F1F5F9;
-      color: #0F172A;
-      transform: translateY(-1px);
+      background: rgba(124, 58, 237, 0.09);
+      color: var(--brand-primary);
+      transform: translateY(-2px) scale(1.06);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+    }
+
+    .donezo-sidebar.collapsed .donezo-nav-item:hover .donezo-nav-icon {
+      color: var(--brand-primary);
+      transform: scale(1.14);
     }
 
     .donezo-sidebar.collapsed .donezo-nav-item .donezo-nav-item-left {
       gap: 0;
       justify-content: center;
       width: 100%;
+      transform: none !important;
     }
 
     .donezo-sidebar.collapsed .donezo-nav-icon {
@@ -2079,7 +2135,8 @@
 
     .donezo-sidebar.collapsed .donezo-nav-item.active:hover {
       background: linear-gradient(135deg, #6D28D9 0%, #5B21B6 100%) !important;
-      transform: translateY(-1px);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 12px 24px -2px rgba(124, 58, 237, 0.55), 0 4px 10px -1px rgba(124, 58, 237, 0.35);
     }
 
     .donezo-sidebar.collapsed .donezo-nav-item.active::before {
