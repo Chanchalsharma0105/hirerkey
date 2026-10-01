@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hirerkey™ — Unified UI Theme System Studio: View 1 Existing UI Kit vs View 2 Redesign</title>
+  <title>Hirerkey™ — Theme Preview (UI System Studio)</title>
   
   <!-- Preconnect to Google Fonts for Inter and JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -289,47 +289,55 @@
       background: #1E293B;
     }
 
-    /* Main Workspace Layout */
+    /* Main Workspace Layout - Fullscreen */
     .studio-canvas {
       flex: 1;
+      width: 100%;
+      background: var(--bg-ground);
+      padding: 0;
       display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 32px 20px 48px 20px;
-      background: radial-gradient(circle at 50% 10%, #1E1B4B 0%, #0F172A 70%);
+      flex-direction: column;
       overflow-y: auto;
+      min-height: calc(100vh - 65px);
     }
 
-    /* ==========================================================================
-       DEVICE SIMULATOR PHONE FRAME (iPhone 16 Pro Aesthetics)
-       ========================================================================== */
-    .device-frame {
-      width: 393px;
-      height: 852px;
+    /* Fullscreen Application Container */
+    .device-frame,
+    .device-frame.desktop-frame {
+      width: 100%;
+      max-width: 100%;
+      min-height: calc(100vh - 65px);
       background: var(--bg-ground);
-      border-radius: 50px;
-      box-shadow: 0 0 0 12px #262E3D, 0 0 0 14px #1A202C, 0 24px 60px rgba(0, 0, 0, 0.55);
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
       position: relative;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: width 0.25s ease, height 0.25s ease;
+      overflow: visible;
+      transition: none;
     }
 
-    .device-frame.pixel-frame {
-      width: 412px;
-      height: 890px;
-      border-radius: 40px;
-      box-shadow: 0 0 0 10px #2D3748, 0 0 0 12px #1A202C, 0 24px 60px rgba(0, 0, 0, 0.55);
+    /* Hide simulated mobile simulator chrome and fake window bars */
+    .device-notch-row,
+    .device-home-bar-wrap,
+    .mobile-bottom-dock,
+    .mobile-shell-topbar,
+    .desktop-browser-header {
+      display: none !important;
     }
 
-    .device-frame.full-frame {
-      width: 100%;
-      max-width: 480px;
-      height: 900px;
-      border-radius: 24px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    .fullscreen-mode-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #E2E8F0;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
     }
 
     /* Dynamic Island / Top Notch */
@@ -372,18 +380,17 @@
       border: 1px solid #1F2937;
     }
 
-    /* Device Scrollable Screen Area */
+    /* Fullscreen Content Area */
     .device-screen-scroll {
+      width: 100%;
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 32px 40px 80px 40px !important;
+      box-sizing: border-box;
       flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
       position: relative;
-      scrollbar-width: none;
-    }
-    .device-screen-scroll::-webkit-scrollbar {
-      display: none;
     }
 
     /* Device Bottom Home Indicator Bar */
@@ -1201,24 +1208,20 @@
        ========================================================================== */
     .device-frame.desktop-frame {
       width: 100%;
-      max-width: 1240px;
-      height: 920px;
-      border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      max-width: 100%;
+      height: auto;
+      min-height: calc(100vh - 65px);
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
       background: var(--bg-ground);
     }
     .device-frame.desktop-frame .device-notch-row,
     .device-frame.desktop-frame .device-home-bar-wrap,
     .device-frame.desktop-frame .mobile-bottom-dock,
-    .device-frame.desktop-frame .mobile-shell-topbar {
-      display: none !important;
-    }
+    .device-frame.desktop-frame .mobile-shell-topbar,
     .device-frame.desktop-frame .desktop-browser-header {
-      display: flex !important;
-    }
-    .device-frame.desktop-frame .device-screen-scroll {
-      padding: 24px 32px !important;
+      display: none !important;
     }
 
     /* Desktop Window Browser Chrome */
@@ -1948,10 +1951,10 @@
     <div class="studio-brand">
       <div class="studio-logo">H</div>
       <div>
-        <div class="studio-title">Hirerkey™ UI Theme &amp; Component Studio</div>
+        <div class="studio-title">Hirerkey™ Theme Preview</div>
         <div style="font-size: 11.5px; color: #94A3B8;">Production MUI Joy Theme (theme.ts &amp; index.css) • View 1 Benchmark vs View 2 Redesign</div>
       </div>
-      <span class="studio-pill">UI System Studio</span>
+      <span class="studio-pill">Theme Preview</span>
     </div>
 
     <!-- Dual-Mode Primary Switcher: View 1 vs View 2 -->
@@ -1969,13 +1972,10 @@
       </button>
     </div>
 
-    <!-- Right Controls: Device Selector & Dark Mode Toggle -->
+    <!-- Right Controls: View Mode & Dark Mode Toggle -->
     <div class="studio-actions">
       <select class="device-select" id="deviceSelect" onchange="changeDeviceFrame(this.value)">
-        <option value="desktop" selected>🖥️ Desktop View (1240px Full Width)</option>
-        <option value="iphone">📱 iPhone 16 Pro (393 × 852)</option>
-        <option value="pixel">📱 Google Pixel 9 (412 × 890)</option>
-        <option value="full">📱 Fullscreen Mobile View</option>
+        <option value="desktop" selected>🖥️ Fullscreen View</option>
       </select>
 
       <button class="mode-toggle-btn" onclick="toggleThemeMode()">
@@ -2989,20 +2989,14 @@
     }
 
     // ==========================================================================
-    // DEVICE FRAME RESIZING (DESKTOP & MOBILE VIEWS)
+    // VIEWPORT RESIZING (FULLSCREEN VIEW)
     // ==========================================================================
     function changeDeviceFrame(deviceType) {
       const frame = document.getElementById('deviceFrame');
       if (!frame) return;
       frame.classList.remove('pixel-frame', 'full-frame', 'desktop-frame');
-      if (deviceType === 'desktop') {
-        frame.classList.add('desktop-frame');
-      } else if (deviceType === 'pixel') {
-        frame.classList.add('pixel-frame');
-      } else if (deviceType === 'full') {
-        frame.classList.add('full-frame');
-      }
-      triggerToast(`Viewport: ${deviceType.toUpperCase()}`);
+      frame.classList.add('desktop-frame');
+      triggerToast('Viewport: Fullscreen Desktop View');
     }
 
     // Dark / Light Theme Toggle
