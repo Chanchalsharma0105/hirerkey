@@ -101,4 +101,6 @@ export const hirerkeyTheme = extendTheme({
 export const theme = hirerkeyTheme;
 export default hirerkeyTheme;
 
+export { existingTheme } from './existingTheme';
 export { colors, radii, shadows, layout, typography, fontFamilies };
+
