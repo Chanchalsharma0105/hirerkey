@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Hirerkey™ — Mobile UI Theme & UI Kit Showcase (MUI Joy UI)</title>
+  <title>Hirerkey™ — Unified UI Theme System Studio: View 1 Existing UI Kit vs View 2 Redesign</title>
   
   <!-- Preconnect to Google Fonts for Inter and JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1195,6 +1195,726 @@
       transform: translateY(0);
       opacity: 1;
     }
+
+    /* ==========================================================================
+       DESKTOP & DUAL-MODE FRAME STYLING
+       ========================================================================== */
+    .device-frame.desktop-frame {
+      width: 100%;
+      max-width: 1240px;
+      height: 920px;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: var(--bg-ground);
+    }
+    .device-frame.desktop-frame .device-notch-row,
+    .device-frame.desktop-frame .device-home-bar-wrap,
+    .device-frame.desktop-frame .mobile-bottom-dock,
+    .device-frame.desktop-frame .mobile-shell-topbar {
+      display: none !important;
+    }
+    .device-frame.desktop-frame .desktop-browser-header {
+      display: flex !important;
+    }
+    .device-frame.desktop-frame .device-screen-scroll {
+      padding: 24px 32px !important;
+    }
+
+    /* Desktop Window Browser Chrome */
+    .desktop-browser-header {
+      height: 44px;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border-card);
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      z-index: 500;
+    }
+    body.dark-mode .desktop-browser-header {
+      background: #151D2C;
+      border-color: #273449;
+    }
+    .browser-dots {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .browser-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .browser-address-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #F1F5F9;
+      border-radius: 6px;
+      padding: 4px 14px;
+      font-size: 11.5px;
+      color: #64748B;
+      width: 380px;
+      justify-content: center;
+    }
+    body.dark-mode .browser-address-bar {
+      background: #1E293B;
+      color: #94A3B8;
+    }
+
+    /* Studio Mode Switcher Bar in Header */
+    .studio-mode-switcher {
+      display: flex;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 4px;
+    }
+    .mode-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #94A3B8;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.16s ease;
+      white-space: nowrap;
+    }
+    .mode-tab-btn:hover {
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .mode-tab-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.45);
+    }
+    .mode-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34D399;
+    }
+
+    /* ==========================================================================
+       VIEW 1: EXISTING MUI JOY UI KIT TOKENS & COMPONENTS (theme.ts & index.css)
+       ========================================================================== */
+    :root {
+      --joy-palette-primary-50: #F5F3FF;
+      --joy-palette-primary-100: #EDE9FE;
+      --joy-palette-primary-200: #DDD6FE;
+      --joy-palette-primary-300: #C4B5FD;
+      --joy-palette-primary-400: #A78BFA;
+      --joy-palette-primary-500: #7C3AED;
+      --joy-palette-primary-600: #6D28D9;
+      --joy-palette-primary-700: #5B21B6;
+      --joy-palette-primary-800: #4C1D95;
+      --joy-palette-primary-900: #3B1578;
+      --joy-palette-primary-mainChannel: 124 58 237;
+
+      --joy-palette-info-50: #EFF6FF;
+      --joy-palette-info-100: #DBEAFE;
+      --joy-palette-info-200: #BFDBFE;
+      --joy-palette-info-500: #3B82F6;
+      --joy-palette-info-600: #2563EB;
+      --joy-palette-info-700: #1D4ED8;
+
+      --joy-palette-background-body: #FFF;
+      --joy-palette-background-surface: #F9FAFB;
+      --joy-palette-background-level1: #F3F4F6;
+      --joy-palette-background-level2: #E5E7EB;
+      --joy-palette-background-card: #FFFFFF;
+      --joy-palette-divider: #E5E7EB;
+
+      --joy-palette-text-primary: #2C2C2C;
+      --joy-palette-text-secondary: #696969;
+
+      /* User CSS Tokens from index.css */
+      --primary-color: #6f42c1;
+      --btn-color: #00bfb2;
+      --chip-color: #fcefe1;
+      --tooltip-bg: #ffe4c4;
+      --tooltip-text: #a0522d;
+      --modal-title: 16px;
+      --subtext-color: #696969;
+    }
+
+    /* Joy UI Custom Scrollbar System */
+    .joy-benchmark-view ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+      background-color: transparent;
+    }
+    .joy-benchmark-view ::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 10px;
+      transition: background-color 0.3s ease-in-out;
+    }
+    .joy-benchmark-view *:hover::-webkit-scrollbar-thumb {
+      background-color: rgba(169, 169, 169, 0.4);
+    }
+    .joy-benchmark-view *:hover::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(169, 169, 169, 0.9);
+    }
+
+    /* Joy UI Typography Scale */
+    .joy-h1 {
+      font-family: var(--font-primary);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #2C2C2C;
+    }
+    .joy-h2 {
+      font-family: var(--font-primary);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: #2C2C2C;
+    }
+    .joy-h3 {
+      font-family: var(--font-primary);
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: #2C2C2C;
+    }
+    .joy-h4 {
+      font-family: var(--font-primary);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.45;
+      color: #2C2C2C;
+    }
+    .joy-title-lg {
+      font-family: var(--font-primary);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: #2C2C2C;
+    }
+    .joy-title-md {
+      font-family: var(--font-primary);
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.45;
+      color: #2C2C2C;
+    }
+    .joy-title-sm {
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #2C2C2C;
+    }
+    .joy-body-lg {
+      font-family: var(--font-primary);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #2C2C2C;
+    }
+    .joy-body-md {
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: #2C2C2C;
+    }
+    .joy-body-sm {
+      font-family: var(--font-primary);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #2C2C2C;
+    }
+    .joy-body-xs {
+      font-family: var(--font-primary);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.45;
+      color: #696969;
+    }
+    .joy-xxsm {
+      font-size: 10px;
+      font-weight: 500;
+      color: #696969;
+    }
+    .joy-sub-text {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--subtext-color) !important;
+    }
+
+    body.dark-mode .joy-h1,
+    body.dark-mode .joy-h2,
+    body.dark-mode .joy-h3,
+    body.dark-mode .joy-h4,
+    body.dark-mode .joy-title-lg,
+    body.dark-mode .joy-title-md,
+    body.dark-mode .joy-title-sm,
+    body.dark-mode .joy-body-lg,
+    body.dark-mode .joy-body-md,
+    body.dark-mode .joy-body-sm {
+      color: #F8FAFC !important;
+    }
+    body.dark-mode .joy-body-xs,
+    body.dark-mode .joy-xxsm {
+      color: #94A3B8 !important;
+    }
+
+    /* Joy Buttons with Exact Hover / Click / Active Specs */
+    .joy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--font-primary);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.4;
+      text-transform: none;
+      cursor: pointer;
+      border-radius: 6px; /* radius.md */
+      padding: 6px 14px;
+      transition: all 120ms ease-in-out;
+      border: none;
+      text-decoration: none;
+    }
+    .joy-btn-solid-primary {
+      background-color: #7C3AED;
+      color: #FFFFFF !important;
+    }
+    .joy-btn-solid-primary:hover {
+      transform: translateY(-1px) scale(1.03);
+      background-color: #6d28d9 !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 3px 4px rgba(124, 58, 237, 0.25), 0 0 0 1px rgba(124, 58, 237, 0.35);
+    }
+    .joy-btn-solid-primary:active {
+      transform: translateY(0) scale(1.01);
+    }
+
+    .joy-btn-secondary {
+      background-color: #F3F4F6;
+      color: #5B21B6;
+      border: 1px solid rgba(229, 231, 235, 1);
+    }
+    .joy-btn-secondary:hover {
+      transform: translateY(-1px);
+      font-size: 12.6px;
+      background-color: #E5E7EB !important;
+      color: #5B21B6;
+      box-shadow: 0 3px 4px rgba(124, 58, 237, 0.25), 0 0 0 1px rgba(124, 58, 237, 0.35);
+    }
+    .joy-btn-secondary:active {
+      background-color: #E5E7EB;
+    }
+    .joy-btn:disabled, .joy-btn.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Joy Tabs */
+    .joy-tabs-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px;
+      background: transparent;
+    }
+    .joy-tab-btn {
+      font-size: 12px;
+      font-weight: 500;
+      border-radius: 6px;
+      padding: 6px 14px;
+      border: none;
+      background: #F3F4F6;
+      color: #2C2C2C;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    body.dark-mode .joy-tab-btn {
+      background: #1E293B;
+      color: #E2E8F0;
+    }
+    .joy-tab-btn:hover {
+      background-color: #7C3AED;
+      color: #FFFFFF;
+    }
+    .joy-tab-btn.active {
+      background-color: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    }
+
+    /* Joy Table Benchmark */
+    .joy-table-container {
+      width: 100%;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid #E5E7EB;
+      background: #FFFFFF;
+    }
+    body.dark-mode .joy-table-container {
+      background: #151D2C;
+      border-color: #273449;
+    }
+    .joy-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: none;
+      font-family: var(--font-primary);
+    }
+    .joy-table thead th {
+      font-size: 13px;
+      font-weight: 500;
+      color: #696969;
+      background-color: #eeebff;
+      border-bottom: 2px solid #E5E7EB;
+      padding: 10px 16px;
+      text-align: left;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+    body.dark-mode .joy-table thead th {
+      background-color: #231C38;
+      border-color: #334155;
+      color: #CBD5E1;
+    }
+    .joy-table tbody tr {
+      transition: all 0.2s ease;
+      background-color: #FFFFFF;
+    }
+    body.dark-mode .joy-table tbody tr {
+      background-color: #151D2C;
+    }
+    .joy-table tbody tr:nth-of-type(even) {
+      background-color: #fafbfc;
+    }
+    body.dark-mode .joy-table tbody tr:nth-of-type(even) {
+      background-color: #1A2234;
+    }
+    .joy-table tbody tr:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+      background-color: #ede9fe !important;
+    }
+    body.dark-mode .joy-table tbody tr:hover {
+      background-color: #2E224D !important;
+    }
+    .joy-table tbody td {
+      font-size: 13px;
+      font-weight: 400;
+      color: #2C2C2C;
+      padding: 10px 16px;
+      border-bottom: 1px solid #f1f5f9;
+      white-space: nowrap;
+    }
+    body.dark-mode .joy-table tbody td {
+      color: #F8FAFC;
+      border-bottom-color: #273449;
+    }
+
+    /* Sticky Last Column in JoyTable */
+    .joy-table-sticky-last thead th:last-child {
+      position: sticky;
+      right: 0;
+      z-index: 3;
+      background-color: #eeebff;
+      box-shadow: -2px 0 4px rgba(0,0,0,0.02);
+    }
+    body.dark-mode .joy-table-sticky-last thead th:last-child {
+      background-color: #231C38;
+    }
+    .joy-table-sticky-last tbody tr > td:last-child {
+      position: sticky;
+      right: 0;
+      z-index: 1;
+      background-color: #FFFFFF;
+      transition: background-color 0.18s ease;
+      box-shadow: -2px 0 4px rgba(0,0,0,0.02);
+    }
+    body.dark-mode .joy-table-sticky-last tbody tr > td:last-child {
+      background-color: #151D2C;
+    }
+    .joy-table-sticky-last tbody tr:nth-of-type(even) > td:last-child {
+      background-color: #fafbfc;
+    }
+    body.dark-mode .joy-table-sticky-last tbody tr:nth-of-type(even) > td:last-child {
+      background-color: #1A2234;
+    }
+    .joy-table-sticky-last tbody tr:hover > td:last-child {
+      background-color: #ede9fe !important;
+    }
+    body.dark-mode .joy-table-sticky-last tbody tr:hover > td:last-child {
+      background-color: #2E224D !important;
+    }
+
+    /* Queue Incoming & Flash Animation */
+    @keyframes queueRowIncomingFlash {
+      0%, 15% {
+        background-color: rgba(99, 102, 241, 0.15);
+      }
+      100% {
+        background-color: transparent;
+      }
+    }
+    .joy-table tr.queue-row--incoming > td:first-of-type {
+      box-shadow: inset 3px 0 0 #6366f1;
+    }
+    .joy-table tr.queue-row--flash > td {
+      animation: queueRowIncomingFlash 2.6s ease-out;
+    }
+
+    /* Joy Inputs & Forms */
+    .joy-form-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: #2C2C2C;
+      margin-bottom: 6px;
+      display: block;
+    }
+    body.dark-mode .joy-form-label {
+      color: #E2E8F0;
+    }
+    .joy-input-field {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #2C2C2C;
+      outline: none;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    body.dark-mode .joy-input-field {
+      background: #1E293B;
+      border-color: #334155;
+      color: #F8FAFC;
+    }
+    .joy-input-field::placeholder {
+      font-size: 12px;
+      font-weight: 300;
+      color: #696969;
+      opacity: 1;
+    }
+    .joy-input-field:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 2px #EDE9FE;
+    }
+    .joy-textarea-field {
+      width: 100%;
+      min-height: 90px;
+      background: #FFFFFF;
+      border: 1px solid #D1D5DB;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #2C2C2C;
+      outline: none;
+      resize: vertical;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+    body.dark-mode .joy-textarea-field {
+      background: #1E293B;
+      border-color: #334155;
+      color: #F8FAFC;
+    }
+    .joy-textarea-field::placeholder {
+      font-size: 12px;
+      font-weight: 300;
+      color: #696969;
+    }
+    .joy-textarea-field:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 2px #EDE9FE;
+    }
+
+    /* Joy Alerts */
+    .joy-alert {
+      box-sizing: border-box;
+      max-width: 100%;
+      margin-bottom: 0.75rem;
+      text-align: start;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border-radius: 5px;
+      padding: 10px 14px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .joy-alert-soft {
+      border: 1px solid rgb(237, 233, 254);
+      background-color: #ffe4c4;
+      color: #a0522d;
+    }
+    .joy-alert-soft svg {
+      color: #a0522d;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .joy-alert-primary {
+      background-color: #eff6ff;
+      border: 1px solid #9cc1ff;
+      color: #0c59da;
+      font-weight: 500;
+    }
+    .joy-alert-primary svg {
+      color: #1557d6;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Joy Chips */
+    .joy-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 400;
+      border-radius: 5px;
+      padding: 2px 8px;
+      min-width: 15px;
+      height: 22px;
+      line-height: 1;
+    }
+    .joy-chip-soft {
+      background: #fcefe1;
+      color: #a0522d;
+    }
+    .joy-chip-primary {
+      background: #EDE9FE;
+      color: #5B21B6;
+      font-weight: 500;
+    }
+    .joy-chip-info {
+      background: #DBEAFE;
+      color: #1D4ED8;
+      font-weight: 500;
+    }
+
+    /* Joy Tooltip Demo */
+    .joy-tooltip-target {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .joy-tooltip-bubble {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #ffe4c4;
+      color: #a0522d;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 320px;
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: break-word;
+      line-height: 1.45;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 100;
+    }
+    .joy-tooltip-target:hover .joy-tooltip-bubble {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-2px);
+    }
+
+    /* Joy Modal Dialog Slide-in Right Animation */
+    @keyframes htsModalSlideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(calc(-50% + 20%)) translateY(-50%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%);
+      }
+    }
+    @keyframes htsModalSlideOutToRight {
+      from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%);
+      }
+      to {
+        opacity: 0;
+        transform: translateX(calc(-50% + 20%)) translateY(-50%);
+      }
+    }
+    @keyframes htsModalBackdropFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes htsModalBackdropFadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .joy-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(2px);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .joy-modal-overlay.open {
+      display: flex;
+      animation: htsModalBackdropFadeIn 220ms ease-out both;
+    }
+    .joy-modal-overlay.closing {
+      animation: htsModalBackdropFadeOut 180ms ease-in both;
+    }
+    .joy-modal-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      background: #FFFFFF;
+      border-radius: 10px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.22);
+      width: 90%;
+      max-width: 520px;
+      padding: 24px;
+      animation: htsModalSlideInRight 220ms ease-out both;
+      z-index: 10001;
+    }
+    body.dark-mode .joy-modal-dialog {
+      background: #151D2C;
+      color: #F8FAFC;
+    }
+    .joy-modal-dialog.closing {
+      animation: htsModalSlideOutToRight 150ms ease-in both;
+    }
   </style>
 </head>
 <body>
@@ -1204,27 +1924,30 @@
     <div class="studio-brand">
       <div class="studio-logo">H</div>
       <div>
-        <div class="studio-title">Hirerkey™ Mobile UI Theme & UI Kit</div>
-        <div style="font-size: 11.5px; color: #94A3B8;">MUI Joy UI System • View 2 & Offboarding Parity</div>
+        <div class="studio-title">Hirerkey™ UI Theme &amp; Component Studio</div>
+        <div style="font-size: 11.5px; color: #94A3B8;">Production MUI Joy Theme (theme.ts &amp; index.css) • View 1 Benchmark vs View 2 Redesign</div>
       </div>
-      <span class="studio-pill">Mobile First</span>
+      <span class="studio-pill">UI System Studio</span>
     </div>
 
-    <!-- 5 Studio Showcase Tabs -->
-    <nav class="studio-tabs">
-      <button class="studio-tab-btn active" onclick="switchStudioView('colors')">🎨 Colors & Tokens</button>
-      <button class="studio-tab-btn" onclick="switchStudioView('typography')">🔤 Typography & Scale</button>
-      <button class="studio-tab-btn" onclick="switchStudioView('uikit')">🧩 Mobile UI Kit</button>
-      <button class="studio-tab-btn" onclick="switchStudioView('screen-dashboard')">📱 Screen 1: Dashboard</button>
-      <button class="studio-tab-btn" onclick="switchStudioView('screen-offboarding')">📋 Screen 2: Offboarding</button>
-    </nav>
+    <!-- Dual-Mode Primary Switcher: View 1 vs View 2 -->
+    <div class="studio-mode-switcher">
+      <button type="button" class="mode-tab-btn active" id="btnModeView1" onclick="switchMainThemeView(1)">
+        <span class="mode-dot"></span>
+        <span>View 1: Existing UI Kit (MUI Baseline)</span>
+      </button>
+      <button type="button" class="mode-tab-btn" id="btnModeView2" onclick="switchMainThemeView(2)">
+        <span>View 2: Redesign (Donezo Canvas &amp; Mobile)</span>
+      </button>
+    </div>
 
     <!-- Right Controls: Device Selector & Dark Mode Toggle -->
     <div class="studio-actions">
       <select class="device-select" id="deviceSelect" onchange="changeDeviceFrame(this.value)">
-        <option value="iphone">iPhone 16 Pro (393 × 852)</option>
-        <option value="pixel">Google Pixel 9 (412 × 890)</option>
-        <option value="full">Fullscreen Mobile View</option>
+        <option value="desktop" selected>🖥️ Desktop View (1240px Full Width)</option>
+        <option value="iphone">📱 iPhone 16 Pro (393 × 852)</option>
+        <option value="pixel">📱 Google Pixel 9 (412 × 890)</option>
+        <option value="full">📱 Fullscreen Mobile View</option>
       </select>
 
       <button class="mode-toggle-btn" onclick="toggleThemeMode()">
@@ -1233,13 +1956,36 @@
     </div>
   </header>
 
+  <!-- View 2 Sub-Navigation Bar (Shown when View 2 is selected) -->
+  <nav class="studio-tabs" id="view2SubTabsBar" style="display: none; justify-content: center; background: #0B1120; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 8px 16px; border-radius: 0;">
+    <button class="studio-tab-btn active" onclick="switchStudioView('screen-dashboard')">📱 Screen 1: Dashboard</button>
+    <button class="studio-tab-btn" onclick="switchStudioView('screen-offboarding')">📋 Screen 2: Offboarding</button>
+    <button class="studio-tab-btn" onclick="switchStudioView('uikit')">🧩 Mobile UI Kit</button>
+    <button class="studio-tab-btn" onclick="switchStudioView('colors')">🎨 Colors &amp; Tokens</button>
+    <button class="studio-tab-btn" onclick="switchStudioView('typography')">🔤 Typography &amp; Scale</button>
+  </nav>
+
   <!-- ================= 2. MAIN SIMULATOR WORKSPACE ================= -->
   <main class="studio-canvas">
     
-    <!-- DEVICE FRAME -->
-    <div class="device-frame" id="deviceFrame">
+    <!-- DEVICE FRAME (Default: Desktop Frame) -->
+    <div class="device-frame desktop-frame" id="deviceFrame">
       
-      <!-- Top Status Row / Dynamic Island -->
+      <!-- Desktop Browser Window Chrome (Shown in Desktop View) -->
+      <div class="desktop-browser-header">
+        <div class="browser-dots">
+          <span class="browser-dot" style="background: #EF4444;"></span>
+          <span class="browser-dot" style="background: #F59E0B;"></span>
+          <span class="browser-dot" style="background: #10B981;"></span>
+        </div>
+        <div class="browser-address-bar">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          <span id="browserUrlText">https://hirerkey.app/theme-studio/view-1-existing-ui-kit</span>
+        </div>
+        <div style="font-size: 11.5px; color: #94A3B8; font-weight: 500;">Hirerkey™ Design Studio</div>
+      </div>
+
+      <!-- Top Status Row / Dynamic Island (Shown in Mobile View) -->
       <div class="device-notch-row">
         <span>9:41</span>
         <div class="dynamic-island">
@@ -1269,8 +2015,342 @@
       <!-- SCROLLABLE SCREEN CONTAINER -->
       <div class="device-screen-scroll" id="deviceScreenScroll">
         
+        <!-- ==========================================================================
+             VIEW 1: EXISTING MUI JOY UI KIT (PRODUCTION THEME BENCHMARK)
+             Exact 1:1 Implementation of theme.ts and index.css
+             ========================================================================== -->
+        <div id="view1Benchmark" class="joy-benchmark-view inspector-panel" style="display: block;">
+          
+          <!-- Benchmark Header Card -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="status-chip serving" style="font-size: 11px; padding: 3px 10px; font-weight: 700; text-transform: uppercase;">MUI Joy UI Theme System</span>
+                <span style="font-size: 12px; color: #696969; font-weight: 500;">Baseline Production Reference (theme.ts &amp; index.css)</span>
+              </div>
+              <button type="button" class="joy-btn joy-btn-solid-primary" onclick="switchMainThemeView(2)" title="Toggle to View 2 Redesign">
+                <span>Compare with View 2 Redesign ➔</span>
+              </button>
+            </div>
+            <h1 class="joy-h1" style="margin: 0; font-size: 22px;">View 1: Existing UI Kit &amp; Theme Specification</h1>
+            <p class="joy-body-md" style="color: #696969; margin: 6px 0 0 0;">
+              Production typography scales, primary/info token palettes, interactive button states (hover scale 1.03), sticky JoyTable with queue row flash animation, and soft apricot alerts.
+            </p>
+
+            <!-- Quick Sub-Category Nav Pills -->
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 16px; overflow-x: auto; padding-top: 12px; border-top: 1px solid var(--border-card);">
+              <button type="button" class="joy-tab-btn active" onclick="filterJoyView1('all', this)">All Components</button>
+              <button type="button" class="joy-tab-btn" onclick="filterJoyView1('tokens', this)">Palette &amp; Tokens</button>
+              <button type="button" class="joy-tab-btn" onclick="filterJoyView1('typography', this)">Typography Scale</button>
+              <button type="button" class="joy-tab-btn" onclick="filterJoyView1('buttons', this)">Buttons &amp; States</button>
+              <button type="button" class="joy-tab-btn" onclick="filterJoyView1('table', this)">JoyTable (Sticky + Flash)</button>
+              <button type="button" class="joy-tab-btn" onclick="filterJoyView1('forms', this)">Forms &amp; Inputs</button>
+              <button type="button" class="joy-tab-btn" onclick="filterJoyView1('alerts', this)">Alerts &amp; Tooltip</button>
+              <button type="button" class="joy-tab-btn" onclick="filterJoyView1('modal', this)">Modal Dialog</button>
+            </div>
+          </div>
+
+          <!-- Section 1: Palette Scales & Theme Variables -->
+          <div class="joy-subpanel" id="joySubpanel-tokens" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+              <h2 class="joy-h3" style="margin: 0;">1. Palette Scales &amp; CSS Tokens</h2>
+              <span class="joy-sub-text">Inter font &bull; Primary purple #7C3AED &bull; Info blue #3B82F6</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+              <!-- Primary Scale -->
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 12px; font-weight: 600; color: #2C2C2C; margin-bottom: 10px;">Primary Purple Scale (theme.primary)</div>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; font-size: 10px; text-align: center;">
+                  <div style="background: #F5F3FF; color: #5B21B6; padding: 6px 2px; border-radius: 4px; border: 1px solid #DDD6FE;">50<br>#F5F3FF</div>
+                  <div style="background: #EDE9FE; color: #5B21B6; padding: 6px 2px; border-radius: 4px;">100<br>#EDE9FE</div>
+                  <div style="background: #DDD6FE; color: #4C1D95; padding: 6px 2px; border-radius: 4px;">200<br>#DDD6FE</div>
+                  <div style="background: #C4B5FD; color: #3B1578; padding: 6px 2px; border-radius: 4px;">300<br>#C4B5FD</div>
+                  <div style="background: #A78BFA; color: #FFFFFF; padding: 6px 2px; border-radius: 4px;">400<br>#A78BFA</div>
+                  <div style="background: #7C3AED; color: #FFFFFF; padding: 6px 2px; border-radius: 4px; font-weight: 700;">500<br>Main</div>
+                  <div style="background: #6D28D9; color: #FFFFFF; padding: 6px 2px; border-radius: 4px; font-weight: 700;">600<br>Hover</div>
+                  <div style="background: #5B21B6; color: #FFFFFF; padding: 6px 2px; border-radius: 4px;">700<br>#5B21B6</div>
+                  <div style="background: #4C1D95; color: #FFFFFF; padding: 6px 2px; border-radius: 4px;">800<br>#4C1D95</div>
+                  <div style="background: #3B1578; color: #FFFFFF; padding: 6px 2px; border-radius: 4px;">900<br>#3B1578</div>
+                </div>
+              </div>
+
+              <!-- Info Scale -->
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 12px; font-weight: 600; color: #2C2C2C; margin-bottom: 10px;">Informational Blue Scale (theme.info)</div>
+                <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; font-size: 10px; text-align: center;">
+                  <div style="background: #EFF6FF; color: #1D4ED8; padding: 6px 2px; border-radius: 4px; border: 1px solid #BFDBFE;">50<br>#EFF6FF</div>
+                  <div style="background: #DBEAFE; color: #1D4ED8; padding: 6px 2px; border-radius: 4px;">100<br>#DBEAFE</div>
+                  <div style="background: #BFDBFE; color: #1D4ED8; padding: 6px 2px; border-radius: 4px;">200<br>#BFDBFE</div>
+                  <div style="background: #3B82F6; color: #FFFFFF; padding: 6px 2px; border-radius: 4px; font-weight: 700;">500<br>Main</div>
+                  <div style="background: #2563EB; color: #FFFFFF; padding: 6px 2px; border-radius: 4px;">600<br>#2563EB</div>
+                  <div style="background: #1D4ED8; color: #FFFFFF; padding: 6px 2px; border-radius: 4px;">700<br>#1D4ED8</div>
+                </div>
+              </div>
+
+              <!-- CSS Root Tokens -->
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 12px; font-weight: 600; color: #2C2C2C; margin-bottom: 10px;">CSS Root Variables (index.css)</div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 11px;">
+                  <span style="background: #fff; border: 1px solid #E5E7EB; padding: 4px 8px; border-radius: 6px;"><code>--primary-color: #6f42c1</code></span>
+                  <span style="background: #fff; border: 1px solid #E5E7EB; padding: 4px 8px; border-radius: 6px;"><code>--btn-color: #00bfb2</code></span>
+                  <span style="background: #fff; border: 1px solid #E5E7EB; padding: 4px 8px; border-radius: 6px;"><code>--chip-color: #fcefe1</code></span>
+                  <span style="background: #fff; border: 1px solid #E5E7EB; padding: 4px 8px; border-radius: 6px;"><code>--tooltip-bg: #ffe4c4</code></span>
+                  <span style="background: #fff; border: 1px solid #E5E7EB; padding: 4px 8px; border-radius: 6px;"><code>--tooltip-text: #a0522d</code></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Typography Hierarchy Specimen -->
+          <div class="joy-subpanel" id="joySubpanel-typography" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+              <h2 class="joy-h3" style="margin: 0;">2. Typography Hierarchy (JoyTypography)</h2>
+              <span class="joy-sub-text">Primary text: #2C2C2C &bull; Secondary text: #696969</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px;">
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 11px; font-weight: 600; color: #7C3AED; text-transform: uppercase; margin-bottom: 4px;">h1 &bull; 24px / 600 / 1.3</div>
+                <div class="joy-h1">24px Header One Title</div>
+              </div>
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 11px; font-weight: 600; color: #7C3AED; text-transform: uppercase; margin-bottom: 4px;">h2 &bull; 20px / 600 / 1.35</div>
+                <div class="joy-h2">20px Header Two Section</div>
+              </div>
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 11px; font-weight: 600; color: #7C3AED; text-transform: uppercase; margin-bottom: 4px;">h3 &bull; 18px / 500 / 1.4</div>
+                <div class="joy-h3">18px Header Three Subsection</div>
+              </div>
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 11px; font-weight: 600; color: #7C3AED; text-transform: uppercase; margin-bottom: 4px;">h4 &bull; 16px / 500 / 1.45</div>
+                <div class="joy-h4">16px Header Four Card Title</div>
+              </div>
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 11px; font-weight: 600; color: #7C3AED; text-transform: uppercase; margin-bottom: 4px;">title-lg &bull; 18px / 600 | title-md &bull; 16px / 500 | title-sm &bull; 14px / 500</div>
+                <div class="joy-title-lg">Title Large (18px)</div>
+                <div class="joy-title-md">Title Medium (16px)</div>
+                <div class="joy-title-sm">Title Small (14px)</div>
+              </div>
+              <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 14px;">
+                <div style="font-size: 11px; font-weight: 600; color: #7C3AED; text-transform: uppercase; margin-bottom: 4px;">body-lg &bull; 15px | body-md &bull; 14px | body-sm &bull; 13px | body-xs &bull; 12px | xxsm &bull; 10px</div>
+                <div class="joy-body-lg">Body Large 15px/400 (Reading text)</div>
+                <div class="joy-body-md">Body Medium 14px/400 (Input field text)</div>
+                <div class="joy-body-sm">Body Small 13px/400 (Table cells &amp; placeholders)</div>
+                <div class="joy-body-xs">Body Extra Small 12px/400 (Captions &amp; hints)</div>
+                <div class="joy-xxsm">XXSM 10px/500 (Micro status tags)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Buttons & Interactive Hover States -->
+          <div class="joy-subpanel" id="joySubpanel-buttons" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+              <h2 class="joy-h3" style="margin: 0;">3. JoyButton States &amp; JoyTabs</h2>
+              <span class="joy-sub-text">Hover scale 1.03 &bull; translateY(-1px) &bull; #6d28d9 background</span>
+            </div>
+            <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 12px;">
+                <!-- Solid Primary Button -->
+                <div>
+                  <button type="button" class="joy-btn joy-btn-solid-primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                    <span>Solid Primary (Hover me)</span>
+                  </button>
+                  <div style="font-size: 10px; color: #696969; margin-top: 4px;">scale: 1.03 | translateY(-1px) | #6d28d9</div>
+                </div>
+
+                <!-- Secondary Button -->
+                <div>
+                  <button type="button" class="joy-btn joy-btn-secondary">
+                    <span>Secondary Button</span>
+                  </button>
+                  <div style="font-size: 10px; color: #696969; margin-top: 4px;">fontSize: 12.6px on hover | #E5E7EB bg</div>
+                </div>
+
+                <!-- Disabled Button -->
+                <div>
+                  <button type="button" class="joy-btn joy-btn-solid-primary" disabled style="opacity: 0.6; cursor: not-allowed;">
+                    <span>Disabled Primary</span>
+                  </button>
+                  <div style="font-size: 10px; color: #696969; margin-top: 4px;">opacity: 0.6 | cursor: not-allowed</div>
+                </div>
+              </div>
+
+              <!-- Live JoyTabs -->
+              <div style="border-top: 1px solid #E5E7EB; padding-top: 14px; margin-top: 14px;">
+                <div style="font-size: 12px; font-weight: 600; color: #2C2C2C; margin-bottom: 8px;">JoyTabs Component (Hover #7C3AED, active shadow)</div>
+                <div class="joy-tabs-container">
+                  <button type="button" class="joy-tab-btn active" onclick="selectJoyTabsDemo(this)">All Requests</button>
+                  <button type="button" class="joy-tab-btn" onclick="selectJoyTabsDemo(this)">Pending Reviews (3)</button>
+                  <button type="button" class="joy-tab-btn" onclick="selectJoyTabsDemo(this)">Completed (12)</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: JoyTable Benchmark -->
+          <div class="joy-subpanel" id="joySubpanel-table" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+              <div>
+                <h2 class="joy-h3" style="margin: 0;">4. JoyTable Specification (Sticky Last Column &amp; Row Flash)</h2>
+                <p class="joy-body-xs" style="color: #696969; margin: 2px 0 0 0;">
+                  Header #eeebff with 13px/500 &bull; Hover translateY(-1px) with #ede9fe &bull; Sticky action column &bull; Incoming reply flash animation
+                </p>
+              </div>
+              <button type="button" class="joy-btn joy-btn-solid-primary" onclick="triggerJoyRowFlash()" title="Test queueRowIncomingFlash animation">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                <span>Trigger Incoming Row Flash (2.6s)</span>
+              </button>
+            </div>
+
+            <div class="joy-table-container">
+              <table class="joy-table joy-table-sticky-last">
+                <thead>
+                  <tr>
+                    <th>Ticket / Leaver</th>
+                    <th>Employee ID</th>
+                    <th>Department</th>
+                    <th>Stage &amp; SLA</th>
+                    <th>Status</th>
+                    <th>Priority</th>
+                    <th style="text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Normal Row -->
+                  <tr>
+                    <td>
+                      <div style="font-weight: 500; color: #2C2C2C;">Sara Khan</div>
+                      <div class="joy-body-xs" style="color: #696969;">Lead UI Designer</div>
+                    </td>
+                    <td><code>HK-9204</code></td>
+                    <td>Product Design</td>
+                    <td>Serving Notice (18d left)</td>
+                    <td><span class="joy-chip joy-chip-primary">In Progress</span></td>
+                    <td><span class="joy-chip joy-chip-soft">High SLA</span></td>
+                    <td style="text-align: right;">
+                      <button type="button" class="joy-btn joy-btn-secondary" style="padding: 4px 8px; font-size: 11px;">Review</button>
+                    </td>
+                  </tr>
+
+                  <!-- Incoming / Flash Row -->
+                  <tr class="queue-row--incoming" id="joyRowFlashTarget">
+                    <td>
+                      <div style="display: flex; align-items: center; gap: 6px;">
+                        <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #6366f1;"></span>
+                        <div style="font-weight: 500; color: #2C2C2C;">Alexandre Dubois</div>
+                      </div>
+                      <div class="joy-body-xs" style="color: #696969;">Senior Full-Stack Engineer</div>
+                    </td>
+                    <td><code>HK-7811</code></td>
+                    <td>Core Engineering</td>
+                    <td>Operational Handover</td>
+                    <td><span class="joy-chip joy-chip-info">Unread Reply</span></td>
+                    <td><span class="joy-chip joy-chip-soft">Urgent</span></td>
+                    <td style="text-align: right;">
+                      <button type="button" class="joy-btn joy-btn-solid-primary" style="padding: 4px 8px; font-size: 11px;">Open Ticket</button>
+                    </td>
+                  </tr>
+
+                  <!-- Third Row -->
+                  <tr>
+                    <td>
+                      <div style="font-weight: 500; color: #2C2C2C;">Priya Sharma</div>
+                      <div class="joy-body-xs" style="color: #696969;">HR Business Partner</div>
+                    </td>
+                    <td><code>HK-6419</code></td>
+                    <td>People Operations</td>
+                    <td>Exit Interview Scheduled</td>
+                    <td><span class="joy-chip joy-chip-soft">Pending Clearance</span></td>
+                    <td><span class="joy-chip joy-chip-primary">Medium</span></td>
+                    <td style="text-align: right;">
+                      <button type="button" class="joy-btn joy-btn-secondary" style="padding: 4px 8px; font-size: 11px;">View Case</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Section 5: Form Inputs & Controls -->
+          <div class="joy-subpanel" id="joySubpanel-forms" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+            <h2 class="joy-h3" style="margin-bottom: 14px;">5. Form Controls &amp; Focus Rings (JoyInput &amp; JoyTextarea)</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
+              <div>
+                <label class="joy-form-label">JoyInput Field</label>
+                <input type="text" class="joy-input-field" placeholder="12px 300 #696969 placeholder text..." value="Standard 14px 400 input value">
+                <div class="joy-body-xs" style="color: #696969; margin-top: 4px;">Focus ring: 0 0 0 2px #EDE9FE, border #7C3AED</div>
+              </div>
+              <div>
+                <label class="joy-form-label">Date Picker with Inverted Calendar Indicator</label>
+                <input type="date" class="joy-input-field" value="2026-10-01">
+                <div class="joy-body-xs" style="color: #696969; margin-top: 4px;">Custom webkit calendar indicator hue-rotate &amp; sepia filter</div>
+              </div>
+              <div style="grid-column: 1 / -1;">
+                <label class="joy-form-label">JoyTextarea Field (minHeight: 100px)</label>
+                <textarea class="joy-textarea-field" placeholder="Type notes or exit comments here..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 6: Alerts, Chips & Tooltips -->
+          <div class="joy-subpanel" id="joySubpanel-alerts" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow-sm);">
+            <h2 class="joy-h3" style="margin-bottom: 14px;">6. JoyAlert, JoyChip &amp; JoyTooltip Specifications</h2>
+
+            <!-- Soft Alert (Apricot Peach) -->
+            <div class="joy-alert joy-alert-soft">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <div>
+                <strong>Default Soft Alert (Apricot Peach #ffe4c4 / #a0522d)</strong><br>
+                <span>Notice period calculations will update automatically upon manager sign-off.</span>
+              </div>
+            </div>
+
+            <!-- Primary Alert (Blue) -->
+            <div class="joy-alert joy-alert-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <div>
+                <strong>Primary Alert (#eff6ff / #0c59da / border #9cc1ff)</strong><br>
+                <span>Statutory gratuity calculated per UAE Federal Labour Law No. 33 of 2021.</span>
+              </div>
+            </div>
+
+            <!-- Chips & Tooltip Demo -->
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: 14px; flex-wrap: wrap;">
+              <span class="joy-chip joy-chip-soft">Soft Chip (#fcefe1)</span>
+              <span class="joy-chip joy-chip-primary">Primary Chip (#EDE9FE)</span>
+              <span class="joy-chip joy-chip-info">Info Chip (#DBEAFE)</span>
+
+              <div class="joy-tooltip-target" style="margin-left: 12px;">
+                <span style="font-size: 12px; color: #7C3AED; text-decoration: underline; font-weight: 500;">
+                  Hover here for JoyTooltip
+                </span>
+                <div class="joy-tooltip-bubble">
+                  <strong>JoyTooltip (index.css)</strong><br>
+                  Background #ffe4c4 with #a0522d text, max-width 320px with multi-line wrap safety.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 7: Modal Dialog Preview -->
+          <div class="joy-subpanel" id="joySubpanel-modal" style="background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 14px; padding: 20px; box-shadow: var(--shadow-sm);">
+            <h2 class="joy-h3" style="margin-bottom: 14px;">7. JoyModalDialog Slide-in Animation</h2>
+            <div style="background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 10px; padding: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+              <div>
+                <div style="font-size: 13px; font-weight: 600; color: #2C2C2C;">Preview Dialog Slide-in Right (htsModalSlideInRight 220ms)</div>
+                <div class="joy-body-xs" style="color: #696969;">Tests backdrop fade-in and rightward slide-in modal animation defined in theme.ts</div>
+              </div>
+              <button type="button" class="joy-btn joy-btn-solid-primary" onclick="openJoyModalPreview()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+                <span>Open JoyModal Dialog</span>
+              </button>
+            </div>
+          </div>
+
+        </div> <!-- /#view1Benchmark -->
+
         <!-- ================= VIEW A: COLORS & TOKENS ================= -->
-        <div id="viewColors" class="inspector-panel" style="display: block;">
+        <div id="viewColors" class="inspector-panel" style="display: none;">
           <div class="section-title-row">
             <h2 class="section-title">Primary Brand Palette (Purple)</h2>
             <span class="status-chip serving">View 2 Core</span>
@@ -1696,6 +2776,30 @@
         </div>
       </div>
 
+      <!-- JoyModal Dialog Interactive Demo Element (theme.ts parity) -->
+      <div class="joy-modal-overlay" id="joyModalOverlayDemo" onclick="if(event.target === this) closeJoyModalPreview()">
+        <div class="joy-modal-dialog" id="joyModalDialogDemo">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="status-chip serving" style="font-size: 10px; padding: 2px 8px;">MUI Joy Dialog</span>
+              <h3 class="joy-h3" style="margin: 0; color: #2C2C2C;">MUI Joy Modal Dialog</h3>
+            </div>
+            <button type="button" onclick="closeJoyModalPreview()" style="color: #696969; font-size: 20px; line-height: 1; cursor: pointer; padding: 4px; background: none; border: none;">&times;</button>
+          </div>
+          <p class="joy-body-md" style="margin-bottom: 16px; color: #4B5563;">
+            This modal opens using <code>htsModalSlideInRight 220ms ease-out both</code> with backdrop <code>htsModalBackdropFadeIn 220ms</code> exactly as configured in <code>src/theme/existingTheme.ts</code>.
+          </p>
+          <div class="joy-alert joy-alert-soft" style="margin-bottom: 20px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <div>Alert inside modal with soft apricot background (<code>#FCF2E9</code>) and brown text (<code>#854D0E</code>).</div>
+          </div>
+          <div style="display: flex; justify-content: flex-end; gap: 10px;">
+            <button type="button" class="joy-btn joy-btn-secondary" onclick="closeJoyModalPreview()">Close Dialog</button>
+            <button type="button" class="joy-btn joy-btn-solid-primary" onclick="closeJoyModalPreview()">Confirm Action</button>
+          </div>
+        </div>
+      </div>
+
       <!-- In-Device Toast Notification -->
       <div class="mobile-toast" id="mobileToast">
         <span>✨</span> <span id="toastText">Action triggered</span>
@@ -1705,7 +2809,117 @@
   </main>
 
   <script>
-    // Studio Tab View Switching
+    // ==========================================================================
+    // PRIMARY DUAL-MODE SWITCHER: VIEW 1 VS VIEW 2
+    // ==========================================================================
+    function switchMainThemeView(viewNum) {
+      const v1Btn = document.getElementById('btnModeView1');
+      const v2Btn = document.getElementById('btnModeView2');
+      const v1Panel = document.getElementById('view1Benchmark');
+      const v2SubTabs = document.getElementById('view2SubTabsBar');
+      const browserUrl = document.getElementById('browserUrlText');
+
+      if (viewNum === 1) {
+        if (v1Btn) v1Btn.classList.add('active');
+        if (v2Btn) v2Btn.classList.remove('active');
+        if (v1Panel) v1Panel.style.display = 'block';
+        if (v2SubTabs) v2SubTabs.style.display = 'none';
+
+        // Hide View 2 panels
+        const v2Panels = ['viewColors', 'viewTypography', 'viewUiKit', 'viewScreenDashboard', 'viewScreenOffboarding'];
+        v2Panels.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = 'none';
+        });
+
+        if (browserUrl) browserUrl.textContent = 'https://hirerkey.app/theme-studio/view-1-existing-ui-kit';
+        triggerToast('Switched to View 1: Existing UI Kit (MUI Baseline)');
+      } else {
+        if (v1Btn) v1Btn.classList.remove('active');
+        if (v2Btn) v2Btn.classList.add('active');
+        if (v1Panel) v1Panel.style.display = 'none';
+        if (v2SubTabs) v2SubTabs.style.display = 'flex';
+
+        // Show View 2 default panel (Dashboard)
+        switchStudioView('screen-dashboard');
+
+        if (browserUrl) browserUrl.textContent = 'https://hirerkey.app/theme-studio/view-2-redesign';
+        triggerToast('Switched to View 2: Redesign (Donezo Canvas & Mobile)');
+      }
+
+      const scrollArea = document.getElementById('deviceScreenScroll');
+      if (scrollArea) scrollArea.scrollTop = 0;
+    }
+
+    // ==========================================================================
+    // VIEW 1 BENCHMARK INTERACTIVE ACTIONS & FILTERS
+    // ==========================================================================
+    function filterJoyView1(category, btnEl) {
+      if (btnEl) {
+        const parent = btnEl.parentElement;
+        if (parent) {
+          parent.querySelectorAll('.joy-tab-btn').forEach(b => b.classList.remove('active'));
+        }
+        btnEl.classList.add('active');
+      }
+      const subpanels = document.querySelectorAll('.joy-subpanel');
+      if (category === 'all') {
+        subpanels.forEach(p => p.style.display = 'block');
+      } else {
+        subpanels.forEach(p => {
+          if (p.id === 'joySubpanel-' + category) {
+            p.style.display = 'block';
+          } else {
+            p.style.display = 'none';
+          }
+        });
+      }
+      triggerToast(`View 1 Filter: ${category.toUpperCase()}`);
+    }
+
+    function triggerJoyRowFlash() {
+      const row = document.getElementById('joyRowFlashTarget');
+      if (!row) return;
+      row.classList.remove('queue-row--flash');
+      void row.offsetWidth; // Force reflow
+      row.classList.add('queue-row--flash');
+      triggerToast('Row flash triggered: queueRowIncomingFlash (2.6s wash)');
+    }
+
+    function openJoyModalPreview() {
+      const overlay = document.getElementById('joyModalOverlayDemo');
+      const dialog = document.getElementById('joyModalDialogDemo');
+      if (!overlay || !dialog) return;
+      overlay.classList.remove('closing');
+      dialog.classList.remove('closing');
+      overlay.classList.add('open');
+    }
+
+    function closeJoyModalPreview() {
+      const overlay = document.getElementById('joyModalOverlayDemo');
+      const dialog = document.getElementById('joyModalDialogDemo');
+      if (!overlay || !dialog) return;
+      overlay.classList.add('closing');
+      dialog.classList.add('closing');
+      setTimeout(() => {
+        overlay.classList.remove('open', 'closing');
+        dialog.classList.remove('closing');
+      }, 180);
+    }
+
+    function selectJoyTabsDemo(btnEl) {
+      if (!btnEl) return;
+      const parent = btnEl.closest('.joy-tabs-container');
+      if (parent) {
+        parent.querySelectorAll('.joy-tab-btn').forEach(b => b.classList.remove('active'));
+        btnEl.classList.add('active');
+      }
+      triggerToast(`Active JoyTab: ${btnEl.textContent.trim()}`);
+    }
+
+    // ==========================================================================
+    // VIEW 2 STUDIO TAB VIEW SWITCHING
+    // ==========================================================================
     function switchStudioView(viewId) {
       const views = ['colors', 'typography', 'uikit', 'screen-dashboard', 'screen-offboarding'];
       
@@ -1719,20 +2933,20 @@
 
       if (viewId === 'colors') {
         document.getElementById('viewColors').style.display = 'block';
-        tabBtns[0].classList.add('active');
+        if (tabBtns[3]) tabBtns[3].classList.add('active');
       } else if (viewId === 'typography') {
         document.getElementById('viewTypography').style.display = 'block';
-        tabBtns[1].classList.add('active');
+        if (tabBtns[4]) tabBtns[4].classList.add('active');
       } else if (viewId === 'uikit') {
         document.getElementById('viewUiKit').style.display = 'block';
-        tabBtns[2].classList.add('active');
+        if (tabBtns[2]) tabBtns[2].classList.add('active');
       } else if (viewId === 'screen-dashboard') {
         document.getElementById('viewScreenDashboard').style.display = 'block';
-        tabBtns[3].classList.add('active');
+        if (tabBtns[0]) tabBtns[0].classList.add('active');
         highlightDock('dockTabHome');
       } else if (viewId === 'screen-offboarding') {
         document.getElementById('viewScreenOffboarding').style.display = 'block';
-        tabBtns[4].classList.add('active');
+        if (tabBtns[1]) tabBtns[1].classList.add('active');
         highlightDock('dockTabDepartures');
       }
 
@@ -1746,15 +2960,21 @@
       if (activeTab) activeTab.classList.add('active');
     }
 
-    // Device Frame Resizing
+    // ==========================================================================
+    // DEVICE FRAME RESIZING (DESKTOP & MOBILE VIEWS)
+    // ==========================================================================
     function changeDeviceFrame(deviceType) {
       const frame = document.getElementById('deviceFrame');
-      frame.classList.remove('pixel-frame', 'full-frame');
-      if (deviceType === 'pixel') {
+      if (!frame) return;
+      frame.classList.remove('pixel-frame', 'full-frame', 'desktop-frame');
+      if (deviceType === 'desktop') {
+        frame.classList.add('desktop-frame');
+      } else if (deviceType === 'pixel') {
         frame.classList.add('pixel-frame');
       } else if (deviceType === 'full') {
         frame.classList.add('full-frame');
       }
+      triggerToast(`Viewport: ${deviceType.toUpperCase()}`);
     }
 
     // Dark / Light Theme Toggle
