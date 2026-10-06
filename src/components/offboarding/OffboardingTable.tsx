@@ -74,10 +74,10 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
       hoverTimeoutRef.current = null;
     }
     const rect = e.currentTarget.getBoundingClientRect();
-    const cardWidth = 330;
-    const cardHeight = 310;
+    const cardWidth = 310;
+    const cardHeight = 260;
     let left = rect.right + 12;
-    let top = rect.top - 10;
+    let top = rect.top - 8;
     if (typeof window !== 'undefined') {
       if (left + cardWidth > window.innerWidth - 16) {
         left = rect.left - cardWidth - 12;
@@ -769,13 +769,14 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
             position: 'fixed',
             top: hoverPos.top,
             left: hoverPos.left,
-            width: 330,
+            width: 310,
             bgcolor: '#FFFFFF',
             border: '1px solid #E2E8F0',
             borderRadius: '14px',
-            boxShadow: '0 16px 38px -6px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.05)',
+            boxShadow: '0 14px 34px -4px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(15, 23, 42, 0.04)',
             zIndex: 99999,
             overflow: 'hidden',
+            p: '14px',
             animation: 'empCardFadeIn 0.16s cubic-bezier(0.16, 1, 0.3, 1)',
             fontFamily: 'Inter, system-ui, sans-serif',
             '@keyframes empCardFadeIn': {
@@ -784,102 +785,58 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
             },
           }}
         >
-          {/* Top banner */}
+          {/* Header: Profile Avatar and Name side by side */}
           <Box
             sx={{
-              height: 40,
-              background: 'linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #4F46E5 100%)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 1.5,
+              mb: 1.5,
             }}
-          />
-
-          <Box sx={{ p: '0 16px 14px 16px' }}>
-            {/* Header */}
-            <Box
+          >
+            <Box sx={{ position: 'relative', flexShrink: 0 }}>
+              <Avatar
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: '10px',
+                  bgcolor: '#EDE9FE',
+                  color: '#6D28D9',
+                  fontWeight: 700,
+                  fontSize: '14px',
+                  border: '1.5px solid #DDD6FE',
+                }}
+              >
+                {hoveredCase.initials}
+              </Avatar>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: -1,
+                  right: -1,
+                  width: 9,
+                  height: 9,
+                  borderRadius: '50%',
+                  bgcolor: '#10B981',
+                  border: '2px solid #FFFFFF',
+                }}
+              />
+            </Box>
+            <Typography
+              level="title-sm"
               sx={{
-                display: 'flex',
-                alignItems: 'flex-end',
-                justifyContent: 'space-between',
-                gap: 1.25,
-                mt: '-22px',
-                mb: 1.5,
+                fontSize: '15px',
+                fontWeight: 700,
+                color: '#0F172A',
+                lineHeight: 1.3,
               }}
             >
-              <Box sx={{ position: 'relative', flexShrink: 0 }}>
-                <Avatar
-                  sx={{
-                    width: 44,
-                    height: 44,
-                    borderRadius: '12px',
-                    bgcolor: '#EDE9FE',
-                    color: '#6D28D9',
-                    fontWeight: 700,
-                    fontSize: '15px',
-                    border: '2.5px solid #FFFFFF',
-                    boxShadow: '0 3px 8px rgba(15, 23, 42, 0.12)',
-                  }}
-                >
-                  {hoveredCase.initials}
-                </Avatar>
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: -1,
-                    right: -1,
-                    width: 10,
-                    height: 10,
-                    borderRadius: '50%',
-                    bgcolor: '#10B981',
-                    border: '2px solid #FFFFFF',
-                    boxShadow: '0 0 0 1px rgba(16, 185, 129, 0.2)',
-                  }}
-                />
-              </Box>
-              <Chip
-                size="sm"
-                sx={{
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  color: '#7C3AED',
-                  bgcolor: '#FAF8FF',
-                  border: '1px solid #DDD6FE',
-                  borderRadius: '999px',
-                  lineHeight: 1.2,
-                  alignSelf: 'center',
-                  mt: '18px',
-                }}
-              >
-                {hoveredCase.department}
-              </Chip>
-            </Box>
+              {hoveredCase.name}
+            </Typography>
+          </Box>
 
-            {/* Name & Title */}
-            <Box sx={{ mb: 1.5 }}>
-              <Typography
-                level="title-sm"
-                sx={{
-                  fontSize: '15px',
-                  fontWeight: 700,
-                  color: '#0F172A',
-                  lineHeight: 1.3,
-                }}
-              >
-                {hoveredCase.name}
-              </Typography>
-              <Typography
-                level="body-xs"
-                sx={{
-                  fontSize: '12.5px',
-                  fontWeight: 500,
-                  color: '#475569',
-                  mt: 0.25,
-                }}
-              >
-                {hoveredCase.designation || hoveredCase.title}
-              </Typography>
-            </Box>
-
-            {/* Details Box: All 6 required fields */}
-            <Box
+          {/* Details Box: All 5 attributes cleanly organized */}
+          <Box
               sx={{
                 bgcolor: '#F8FAFC',
                 border: '1px solid #EDF2F7',
@@ -1161,72 +1118,8 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 </Box>
               </Box>
             </Box>
-
-            {/* Footer */}
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: 1.25,
-                mt: 1.25,
-                pt: 1.25,
-                borderTop: '1px solid #F1F5F9',
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                <Chip
-                  size="sm"
-                  sx={{
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    px: 0.9,
-                    py: 0.2,
-                    borderRadius: '999px',
-                    bgcolor: '#EDE9FE',
-                    color: '#7C3AED',
-                  }}
-                >
-                  {STAGE_CONFIGS[hoveredCase.stage]?.label || 'Serving notice'}
-                </Chip>
-                <Typography level="body-xs" sx={{ fontSize: '11px', color: '#64748B' }}>
-                  {hoveredCase.dueText}
-                </Typography>
-              </Box>
-              <IconButton
-                size="sm"
-                variant="outlined"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  const id = hoveredCase.id;
-                  setHoveredCase(null);
-                  setHoverPos(null);
-                  onOpenCase(id);
-                }}
-                sx={{
-                  fontSize: '11.5px',
-                  fontWeight: 600,
-                  color: '#7C3AED',
-                  bgcolor: '#FAF8FF',
-                  borderColor: '#DDD6FE',
-                  borderRadius: '6px',
-                  px: 1,
-                  py: 0.5,
-                  gap: 0.5,
-                  '&:hover': {
-                    bgcolor: '#7C3AED',
-                    color: '#FFFFFF',
-                    borderColor: '#7C3AED',
-                  },
-                }}
-              >
-                <Typography level="body-xs" sx={{ fontWeight: 600, color: 'inherit' }}>Open Case</Typography>
-                <FiChevronRight size={12} />
-              </IconButton>
-            </Box>
           </Box>
-        </Box>
-      )}
+        )}
     </Box>
   );
 };
