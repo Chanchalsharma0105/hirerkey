@@ -2768,7 +2768,7 @@
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
 
     .empty-primary-btn {
@@ -9024,13 +9024,6 @@
 
     container.innerHTML = `
       <div class="view2-empty-state-card">
-        <div class="empty-category-pill">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
-          </svg>
-          <span>${state.category} • ${state.title}</span>
-        </div>
-
         <div class="empty-art-box">
           ${state.svg}
         </div>
@@ -9042,14 +9035,6 @@
           <button class="empty-primary-btn" onclick="handleEmptyStateAction('${state.title}', '${state.primaryCta}')">
             <span>${state.primaryCta}</span>
           </button>
-          <button class="empty-secondary-btn" onclick="handleEmptyStateAction('${state.title}', '${state.secondaryCta}')">
-            <span>${state.secondaryCta}</span>
-          </button>
-        </div>
-
-        <div class="empty-tip-card">
-          <span style="font-size: 16px; flex-shrink: 0;">💡</span>
-          <div>${state.tip}</div>
         </div>
       </div>
     `;
