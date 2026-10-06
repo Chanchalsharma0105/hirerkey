@@ -1256,6 +1256,289 @@
       margin-top: 1px;
     }
 
+    /* ==========================================================================
+       EMPLOYEE HOVER CARD (SCREEN 1)
+       ========================================================================== */
+    .emp-hover-target {
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .emp-avatar.emp-hover-target:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 0 2.5px rgba(124, 58, 237, 0.35);
+    }
+    .emp-name.emp-hover-target {
+      position: relative;
+      display: inline-block;
+      transition: color 0.15s ease;
+    }
+    .emp-name.emp-hover-target:hover {
+      color: #6D28D9;
+      text-decoration: underline;
+    }
+
+    .employee-hover-card {
+      position: fixed;
+      width: 330px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      box-shadow: 0 16px 38px -6px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.05);
+      z-index: 99999;
+      pointer-events: auto;
+      overflow: hidden;
+      animation: empCardFadeIn 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    @keyframes empCardFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .emp-card-banner {
+      height: 40px;
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #4F46E5 100%);
+      position: relative;
+    }
+
+    .emp-card-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+    }
+
+    .emp-card-body {
+      padding: 0 16px 14px 16px;
+      position: relative;
+    }
+
+    .emp-card-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: -22px;
+      margin-bottom: 12px;
+    }
+
+    .emp-card-avatar-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .emp-card-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #EDE9FE;
+      color: #6D28D9;
+      font-weight: 700;
+      font-size: 15px;
+      display: grid;
+      place-items: center;
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.12);
+      font-family: var(--font-inter);
+    }
+
+    .emp-card-status-dot {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.2);
+    }
+
+    .emp-card-dept-badge {
+      font-size: 11px;
+      font-weight: 600;
+      color: #7C3AED;
+      background: #FAF8FF;
+      border: 1px solid #DDD6FE;
+      padding: 3px 8px;
+      border-radius: 999px;
+      line-height: 1.2;
+      align-self: center;
+      margin-top: 18px;
+    }
+
+    .emp-card-identity {
+      margin-bottom: 12px;
+    }
+
+    .emp-card-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .emp-card-designation-top {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #475569;
+      margin-top: 2px;
+    }
+
+    .emp-card-details {
+      background: #F8FAFC;
+      border: 1px solid #EDF2F7;
+      border-radius: 10px;
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .emp-card-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .emp-card-field-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #64748B;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .emp-card-field-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .emp-card-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94A3B8;
+      display: block;
+      line-height: 1.1;
+      margin-bottom: 1px;
+    }
+
+    .emp-card-value {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #1E293B;
+      line-height: 1.35;
+      word-break: break-word;
+    }
+
+    .emp-card-value.font-mono {
+      font-family: var(--font-mono), monospace !important;
+      font-size: 11.5px;
+      color: #334155;
+    }
+
+    .emp-card-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: #2563EB;
+      text-decoration: none;
+      word-break: break-all;
+      transition: color 0.15s ease;
+    }
+
+    .emp-card-link:hover {
+      color: #1D4ED8;
+      text-decoration: underline;
+    }
+
+    .emp-card-copy-btn {
+      background: none;
+      border: none;
+      padding: 2px;
+      cursor: pointer;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .emp-card-copy-btn:hover {
+      color: #7C3AED;
+      background: #EDE9FE;
+    }
+
+    .emp-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #F1F5F9;
+    }
+
+    .emp-card-footer-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .emp-card-footer-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .emp-card-footer-due {
+      font-size: 11px;
+      font-weight: 500;
+      color: #64748B;
+    }
+
+    .emp-card-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #7C3AED;
+      background: #FAF8FF;
+      border: 1px solid #DDD6FE;
+      padding: 4px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .emp-card-action-btn:hover {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+    }
+
     /* Position & Seat */
     .position-title {
       font-weight: 500;
@@ -6020,6 +6303,109 @@
   <span id="toastText">Action completed successfully.</span>
 </div>
 
+<!-- Employee Hover Card (Screen 1 departures list) -->
+<div id="employeeHoverCard" class="employee-hover-card" style="display: none;" onmouseenter="handleCardMouseEnter()" onmouseleave="scheduleHideEmpCard()">
+  <!-- Top decorative accent banner -->
+  <div class="emp-card-banner"></div>
+
+  <div class="emp-card-body">
+    <!-- Header: Avatar, Name, Designation & Department Badge -->
+    <div class="emp-card-header">
+      <div class="emp-card-avatar-wrap">
+        <div class="emp-card-avatar" id="empCardAvatar">SK</div>
+        <span class="emp-card-status-dot" title="Active Employee"></span>
+      </div>
+      <div class="emp-card-dept-badge" id="empCardDeptBadge">Front Office</div>
+    </div>
+
+    <!-- Identity: Name & Designation subtitle -->
+    <div class="emp-card-identity">
+      <div class="emp-card-name" id="empCardName">Sara Khan</div>
+      <div class="emp-card-designation-top" id="empCardDesignationTop">Front Desk Manager</div>
+    </div>
+
+    <!-- Details Box: All 6 required fields clearly displayed -->
+    <div class="emp-card-details">
+      <!-- 1. Designation -->
+      <div class="emp-card-field">
+        <div class="emp-card-field-icon" title="Designation">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <div class="emp-card-field-content">
+          <span class="emp-card-label">Designation</span>
+          <span class="emp-card-value" id="empCardDesignation">Front Desk Manager</span>
+        </div>
+      </div>
+
+      <!-- 2. Department -->
+      <div class="emp-card-field">
+        <div class="emp-card-field-icon" title="Department">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/><path d="M14 9h1"/><path d="M14 13h1"/><path d="M14 17h1"/></svg>
+        </div>
+        <div class="emp-card-field-content">
+          <span class="emp-card-label">Department</span>
+          <span class="emp-card-value" id="empCardDepartment">Front Office</span>
+        </div>
+      </div>
+
+      <!-- 3. Position -->
+      <div class="emp-card-field">
+        <div class="emp-card-field-icon" title="Position">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="emp-card-field-content">
+          <span class="emp-card-label">Position</span>
+          <span class="emp-card-value font-mono" id="empCardPosition">Senior Specialist · Seat FDM-01</span>
+        </div>
+      </div>
+
+      <!-- 4. Email -->
+      <div class="emp-card-field">
+        <div class="emp-card-field-icon" title="Email">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div class="emp-card-field-content">
+          <span class="emp-card-label">Email</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px;">
+            <a href="mailto:sara.khan@noisiv.com" class="emp-card-link" id="empCardEmailLink">sara.khan@noisiv.com</a>
+            <button class="emp-card-copy-btn" id="empCardCopyEmailBtn" title="Copy email" onclick="copyCardEmail(event)">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Contact -->
+      <div class="emp-card-field">
+        <div class="emp-card-field-icon" title="Contact">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="emp-card-field-content">
+          <span class="emp-card-label">Contact</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px;">
+            <a href="tel:+971504928812" class="emp-card-link" id="empCardContactLink">+971 50 492 8812</a>
+            <button class="emp-card-copy-btn" id="empCardCopyPhoneBtn" title="Copy contact" onclick="copyCardPhone(event)">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer: Stage info & Action link -->
+    <div class="emp-card-footer">
+      <div class="emp-card-footer-status">
+        <span class="emp-card-footer-pill" id="empCardStatusPill">Serving notice</span>
+        <span class="emp-card-footer-due" id="empCardDueText">In 29 days</span>
+      </div>
+      <button class="emp-card-action-btn" id="empCardViewBtn" onclick="openCaseFromHoverCard(event)" title="Open offboarding workspace">
+        <span>Open Case</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- ==========================================================================
      DATA & APPLICATION LOGIC
      ========================================================================== */ -->
@@ -6173,6 +6559,10 @@ let cases = [
     name: 'Sara Khan',
     ini: 'SK',
     title: 'Front Desk Manager',
+    designation: 'Front Desk Manager',
+    position: 'Senior Specialist · Seat FDM-01',
+    email: 'sara.khan@noisiv.com',
+    contact: '+971 50 492 8812',
     seat: 'FDM-01',
     dept: 'Front Office',
     manager: 'James Cole · Hotel Manager',
@@ -6222,6 +6612,10 @@ let cases = [
     name: 'Rahul Mehta',
     ini: 'RM',
     title: 'Sous Chef',
+    designation: 'Sous Chef',
+    position: 'Culinary Production Lead · Seat SC-02',
+    email: 'rahul.mehta@noisiv.com',
+    contact: '+971 52 381 9940',
     seat: 'SC-02',
     dept: 'Kitchen',
     manager: 'Chef Philippe · Executive Chef',
@@ -6263,6 +6657,10 @@ let cases = [
     name: 'Aisha Noor',
     ini: 'AN',
     title: 'Guest Relations Executive',
+    designation: 'Guest Relations Executive',
+    position: 'Guest Services Associate · Seat GR-04',
+    email: 'aisha.noor@noisiv.com',
+    contact: '+971 54 712 3390',
     seat: 'GR-04',
     dept: 'Front Office',
     manager: 'Sara Khan · Front Desk Manager',
@@ -6301,6 +6699,10 @@ let cases = [
     name: 'Leena Joseph',
     ini: 'LJ',
     title: 'Housekeeping Supervisor',
+    designation: 'Housekeeping Supervisor',
+    position: 'Operations Supervisor · Seat HKS-03',
+    email: 'leena.joseph@noisiv.com',
+    contact: '+971 55 904 1128',
     seat: 'HKS-03',
     dept: 'Housekeeping',
     manager: 'Maria Santos · Executive Housekeeper',
@@ -6341,6 +6743,10 @@ let cases = [
     name: 'Mark Dsouza',
     ini: 'MD',
     title: 'Security Officer',
+    designation: 'Security Officer',
+    position: 'Safety & Security Specialist · Seat SO-07',
+    email: 'mark.dsouza@noisiv.com',
+    contact: '+971 56 620 4451',
     seat: 'SO-07',
     dept: 'Security',
     manager: 'Capt. Tariq Al-Hashimi · Security Head',
@@ -7986,10 +8392,10 @@ function renderTable() {
     <tr onclick="openCaseView(${c.id})">
       <td class="center cell-sno">${sNo}</td>
       <td>
-        <div class="employee-cell">
-          <div class="emp-avatar">${c.ini}</div>
+        <div class="employee-cell" onmouseenter="handleEmpHoverEnter(event, ${c.id})" onmouseleave="handleEmpHoverLeave(event)">
+          <div class="emp-avatar emp-hover-target" onmouseenter="handleEmpHoverEnter(event, ${c.id})" onmouseleave="handleEmpHoverLeave(event)">${c.ini}</div>
           <div class="emp-info">
-            <span class="emp-name">${c.name}</span>
+            <span class="emp-name emp-hover-target" onmouseenter="handleEmpHoverEnter(event, ${c.id})" onmouseleave="handleEmpHoverLeave(event)">${c.name}</span>
             <span class="emp-seat-tag">${c.seat}</span>
           </div>
         </div>
@@ -8041,6 +8447,183 @@ function renderTable() {
   `;
   }).join('');
 }
+
+// =============================================================================
+// SCREEN 1: EMPLOYEE HOVER CARD CONTROLLERS
+// =============================================================================
+let empCardHideTimeout = null;
+
+function handleEmpHoverEnter(e, empId) {
+  if (e) e.stopPropagation();
+  if (empCardHideTimeout) {
+    clearTimeout(empCardHideTimeout);
+    empCardHideTimeout = null;
+  }
+  showEmployeeHoverCard(e ? (e.currentTarget || e.target) : null, empId);
+}
+
+function handleEmpHoverLeave(e) {
+  scheduleHideEmpCard();
+}
+
+function handleCardMouseEnter() {
+  if (empCardHideTimeout) {
+    clearTimeout(empCardHideTimeout);
+    empCardHideTimeout = null;
+  }
+}
+
+function scheduleHideEmpCard() {
+  if (empCardHideTimeout) clearTimeout(empCardHideTimeout);
+  empCardHideTimeout = setTimeout(() => {
+    hideEmployeeHoverCard();
+  }, 180);
+}
+
+function hideEmployeeHoverCard() {
+  const card = document.getElementById('employeeHoverCard');
+  if (card) {
+    card.style.display = 'none';
+  }
+}
+
+function showEmployeeHoverCard(triggerEl, empId) {
+  const c = cases.find(item => item.id === empId);
+  if (!c) return;
+
+  const card = document.getElementById('employeeHoverCard');
+  if (!card) return;
+
+  // 1. Employee Name
+  const nameEl = document.getElementById('empCardName');
+  if (nameEl) nameEl.textContent = c.name;
+
+  // Initials / Avatar
+  const avatarEl = document.getElementById('empCardAvatar');
+  if (avatarEl) avatarEl.textContent = c.ini || c.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+
+  // 2. Designation
+  const desigVal = c.designation || c.title || 'Specialist';
+  const desigTop = document.getElementById('empCardDesignationTop');
+  if (desigTop) desigTop.textContent = desigVal;
+  const desigField = document.getElementById('empCardDesignation');
+  if (desigField) desigField.textContent = desigVal;
+
+  // 3. Department
+  const deptVal = c.dept || c.department || 'Operations';
+  const deptBadge = document.getElementById('empCardDeptBadge');
+  if (deptBadge) deptBadge.textContent = deptVal;
+  const deptField = document.getElementById('empCardDepartment');
+  if (deptField) deptField.textContent = deptVal;
+
+  // 4. Position
+  const posVal = c.position || `Senior Specialist · Seat ${c.seat}`;
+  const posField = document.getElementById('empCardPosition');
+  if (posField) posField.textContent = posVal;
+
+  // 5. Email
+  const emailVal = c.email || `${c.name.toLowerCase().replace(/[^a-z0-9]/g, '.')}@noisiv.com`;
+  const emailLink = document.getElementById('empCardEmailLink');
+  if (emailLink) {
+    emailLink.textContent = emailVal;
+    emailLink.href = `mailto:${emailVal}`;
+  }
+
+  // 6. Contact
+  const contactVal = c.contact || '+971 50 492 8812';
+  const contactLink = document.getElementById('empCardContactLink');
+  if (contactLink) {
+    contactLink.textContent = contactVal;
+    contactLink.href = `tel:${contactVal.replace(/\s+/g, '')}`;
+  }
+
+  // Extra context: Stage & Due text
+  const statusPill = document.getElementById('empCardStatusPill');
+  if (statusPill) statusPill.textContent = c.stageName || 'Serving notice';
+
+  const dueText = document.getElementById('empCardDueText');
+  if (dueText) dueText.textContent = c.dueText || '';
+
+  card.setAttribute('data-current-emp-id', c.id);
+
+  // Measure & position
+  card.style.display = 'block';
+  card.style.visibility = 'hidden';
+
+  const target = triggerEl || document.querySelector('.employee-cell');
+  if (!target) return;
+
+  const rect = target.getBoundingClientRect();
+  const cardRect = card.getBoundingClientRect();
+  const cardWidth = cardRect.width || 330;
+  const cardHeight = cardRect.height || 330;
+
+  const margin = 12;
+  let left = rect.right + margin;
+  let top = rect.top - 10;
+
+  // Collision detection for right edge
+  if (left + cardWidth > window.innerWidth - 16) {
+    left = rect.left - cardWidth - margin;
+  }
+  if (left < 16) {
+    left = 16;
+  }
+
+  // Collision detection for bottom edge
+  if (top + cardHeight > window.innerHeight - 16) {
+    top = window.innerHeight - cardHeight - 16;
+  }
+  if (top < 16) {
+    top = 16;
+  }
+
+  card.style.left = `${left}px`;
+  card.style.top = `${top}px`;
+  card.style.visibility = 'visible';
+}
+
+function copyCardEmail(e) {
+  e.stopPropagation();
+  const email = document.getElementById('empCardEmailLink').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(email).then(() => {
+      showToast(`✓ Copied email: ${email}`);
+    }).catch(() => {
+      showToast(`Email: ${email}`);
+    });
+  } else {
+    showToast(`Email: ${email}`);
+  }
+}
+
+function copyCardPhone(e) {
+  e.stopPropagation();
+  const phone = document.getElementById('empCardContactLink').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(phone).then(() => {
+      showToast(`✓ Copied contact: ${phone}`);
+    }).catch(() => {
+      showToast(`Contact: ${phone}`);
+    });
+  } else {
+    showToast(`Contact: ${phone}`);
+  }
+}
+
+function openCaseFromHoverCard(e) {
+  e.stopPropagation();
+  const card = document.getElementById('employeeHoverCard');
+  const empId = parseInt(card.getAttribute('data-current-emp-id'), 10);
+  hideEmployeeHoverCard();
+  if (empId) {
+    openCaseView(empId);
+  }
+}
+
+window.addEventListener('scroll', () => {
+  hideEmployeeHoverCard();
+}, { passive: true });
 
 function switchScope(scope) {
   activeScope = scope;
@@ -8234,6 +8817,10 @@ function submitStartModal() {
     name: empName,
     ini: empName.split(' ').map(n => n[0]).join(''),
     title: empTitle,
+    designation: empTitle,
+    position: `Staff Specialist · Seat ${empSeat}`,
+    email: empName.toLowerCase().replace(/[^a-z0-9]/g, '.') + '@noisiv.com',
+    contact: '+971 50 ' + Math.floor(1000000 + Math.random() * 9000000).toString().replace(/(\d{3})(\d{4})/, '$1 $2'),
     seat: empSeat,
     dept: empDept,
     manager: 'James Cole · Hotel Manager',

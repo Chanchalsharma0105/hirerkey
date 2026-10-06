@@ -24,6 +24,11 @@ import {
   FiChevronRight,
   FiEye,
   FiEdit,
+  FiPhone,
+  FiBriefcase,
+  FiLayers,
+  FiCopy,
+  FiCheck,
 } from 'react-icons/fi';
 import { MdOutlineChair } from 'react-icons/md';
 import {
@@ -57,6 +62,59 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
   onPageChange,
   onRowsPerPageChange,
 }) => {
+  // Employee Hover Card State & Controllers
+  const [hoveredCase, setHoveredCase] = React.useState<OffboardingCase | null>(null);
+  const [hoverPos, setHoverPos] = React.useState<{ top: number; left: number } | null>(null);
+  const hoverTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [copiedField, setCopiedField] = React.useState<'email' | 'contact' | null>(null);
+
+  const handleEmpMouseEnter = (e: React.MouseEvent<HTMLElement>, caseItem: OffboardingCase) => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    const rect = e.currentTarget.getBoundingClientRect();
+    const cardWidth = 330;
+    const cardHeight = 310;
+    let left = rect.right + 12;
+    let top = rect.top - 10;
+    if (typeof window !== 'undefined') {
+      if (left + cardWidth > window.innerWidth - 16) {
+        left = rect.left - cardWidth - 12;
+      }
+      if (left < 16) left = 16;
+      if (top + cardHeight > window.innerHeight - 16) {
+        top = window.innerHeight - cardHeight - 16;
+      }
+      if (top < 16) top = 16;
+    }
+    setHoverPos({ top, left });
+    setHoveredCase(caseItem);
+  };
+
+  const handleEmpMouseLeave = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    hoverTimeoutRef.current = setTimeout(() => {
+      setHoveredCase(null);
+      setHoverPos(null);
+    }, 180);
+  };
+
+  const handleCardMouseEnter = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+  };
+
+  const handleCopy = (text: string, type: 'email' | 'contact') => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text);
+      setCopiedField(type);
+      setTimeout(() => setCopiedField(null), 1800);
+    }
+  };
+
   const getReasonLabel = (val: string) => {
     const found = REASONS_LIST.find((r) => r.value === val);
     return found ? found.label : val;
@@ -315,7 +373,16 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
 
                     {/* Employee */}
                     <td>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
+                      <Box
+                        onMouseEnter={(e) => handleEmpMouseEnter(e, c)}
+                        onMouseLeave={handleEmpMouseLeave}
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 1.25,
+                          cursor: 'pointer',
+                        }}
+                      >
                         <Avatar
                           size="sm"
                           sx={{
@@ -327,6 +394,11 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                             fontSize: '12px',
                             fontFamily: 'Inter, system-ui, sans-serif',
                             border: '1px solid #DDD6FE',
+                            transition: 'all 0.16s ease',
+                            '&:hover': {
+                              transform: 'scale(1.08)',
+                              boxShadow: '0 0 0 2.5px rgba(124, 58, 237, 0.35)',
+                            },
                           }}
                         >
                           {c.initials}
@@ -340,7 +412,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                               fontWeight: 600,
                               fontSize: '13.5px',
                               lineHeight: 1.3,
-                              '&:hover': { textDecoration: 'underline' },
+                              '&:hover': { textDecoration: 'underline', color: '#6D28D9' },
                             }}
                           >
                             {c.name}
@@ -687,6 +759,474 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
           {Math.min(startIndex + rowsPerPage, totalCases)} of {totalCases}
         </Typography>
       </Box>
+
+      {/* Floating Employee Hover Card */}
+      {hoveredCase && hoverPos && (
+        <Box
+          onMouseEnter={handleCardMouseEnter}
+          onMouseLeave={handleEmpMouseLeave}
+          sx={{
+            position: 'fixed',
+            top: hoverPos.top,
+            left: hoverPos.left,
+            width: 330,
+            bgcolor: '#FFFFFF',
+            border: '1px solid #E2E8F0',
+            borderRadius: '14px',
+            boxShadow: '0 16px 38px -6px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(15, 23, 42, 0.05)',
+            zIndex: 99999,
+            overflow: 'hidden',
+            animation: 'empCardFadeIn 0.16s cubic-bezier(0.16, 1, 0.3, 1)',
+            fontFamily: 'Inter, system-ui, sans-serif',
+            '@keyframes empCardFadeIn': {
+              from: { opacity: 0, transform: 'translateY(4px) scale(0.98)' },
+              to: { opacity: 1, transform: 'translateY(0) scale(1)' },
+            },
+          }}
+        >
+          {/* Top banner */}
+          <Box
+            sx={{
+              height: 40,
+              background: 'linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #4F46E5 100%)',
+            }}
+          />
+
+          <Box sx={{ p: '0 16px 14px 16px' }}>
+            {/* Header */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'flex-end',
+                justifyContent: 'space-between',
+                gap: 1.25,
+                mt: '-22px',
+                mb: 1.5,
+              }}
+            >
+              <Box sx={{ position: 'relative', flexShrink: 0 }}>
+                <Avatar
+                  sx={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: '12px',
+                    bgcolor: '#EDE9FE',
+                    color: '#6D28D9',
+                    fontWeight: 700,
+                    fontSize: '15px',
+                    border: '2.5px solid #FFFFFF',
+                    boxShadow: '0 3px 8px rgba(15, 23, 42, 0.12)',
+                  }}
+                >
+                  {hoveredCase.initials}
+                </Avatar>
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: -1,
+                    right: -1,
+                    width: 10,
+                    height: 10,
+                    borderRadius: '50%',
+                    bgcolor: '#10B981',
+                    border: '2px solid #FFFFFF',
+                    boxShadow: '0 0 0 1px rgba(16, 185, 129, 0.2)',
+                  }}
+                />
+              </Box>
+              <Chip
+                size="sm"
+                sx={{
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  color: '#7C3AED',
+                  bgcolor: '#FAF8FF',
+                  border: '1px solid #DDD6FE',
+                  borderRadius: '999px',
+                  lineHeight: 1.2,
+                  alignSelf: 'center',
+                  mt: '18px',
+                }}
+              >
+                {hoveredCase.department}
+              </Chip>
+            </Box>
+
+            {/* Name & Title */}
+            <Box sx={{ mb: 1.5 }}>
+              <Typography
+                level="title-sm"
+                sx={{
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  color: '#0F172A',
+                  lineHeight: 1.3,
+                }}
+              >
+                {hoveredCase.name}
+              </Typography>
+              <Typography
+                level="body-xs"
+                sx={{
+                  fontSize: '12.5px',
+                  fontWeight: 500,
+                  color: '#475569',
+                  mt: 0.25,
+                }}
+              >
+                {hoveredCase.designation || hoveredCase.title}
+              </Typography>
+            </Box>
+
+            {/* Details Box: All 6 required fields */}
+            <Box
+              sx={{
+                bgcolor: '#F8FAFC',
+                border: '1px solid #EDF2F7',
+                borderRadius: '10px',
+                p: '10px 12px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 1.25,
+              }}
+            >
+              {/* 1. Designation */}
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.25 }}>
+                <Box
+                  sx={{
+                    width: 22,
+                    height: 22,
+                    borderRadius: '6px',
+                    bgcolor: '#FFFFFF',
+                    border: '1px solid #E2E8F0',
+                    color: '#64748B',
+                    display: 'grid',
+                    placeItems: 'center',
+                    flexShrink: 0,
+                    mt: '1px',
+                  }}
+                >
+                  <FiBriefcase size={12} />
+                </Box>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Typography
+                    level="body-xs"
+                    sx={{
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: '#94A3B8',
+                      lineHeight: 1.1,
+                      mb: 0.25,
+                    }}
+                  >
+                    Designation
+                  </Typography>
+                  <Typography
+                    level="body-sm"
+                    sx={{
+                      fontSize: '12.5px',
+                      fontWeight: 600,
+                      color: '#1E293B',
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {hoveredCase.designation || hoveredCase.title}
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* 2. Department */}
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.25 }}>
+                <Box
+                  sx={{
+                    width: 22,
+                    height: 22,
+                    borderRadius: '6px',
+                    bgcolor: '#FFFFFF',
+                    border: '1px solid #E2E8F0',
+                    color: '#64748B',
+                    display: 'grid',
+                    placeItems: 'center',
+                    flexShrink: 0,
+                    mt: '1px',
+                  }}
+                >
+                  <FiLayers size={12} />
+                </Box>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Typography
+                    level="body-xs"
+                    sx={{
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: '#94A3B8',
+                      lineHeight: 1.1,
+                      mb: 0.25,
+                    }}
+                  >
+                    Department
+                  </Typography>
+                  <Typography
+                    level="body-sm"
+                    sx={{
+                      fontSize: '12.5px',
+                      fontWeight: 600,
+                      color: '#1E293B',
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {hoveredCase.department}
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* 3. Position */}
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.25 }}>
+                <Box
+                  sx={{
+                    width: 22,
+                    height: 22,
+                    borderRadius: '6px',
+                    bgcolor: '#FFFFFF',
+                    border: '1px solid #E2E8F0',
+                    color: '#64748B',
+                    display: 'grid',
+                    placeItems: 'center',
+                    flexShrink: 0,
+                    mt: '1px',
+                  }}
+                >
+                  <MdOutlineChair size={13} />
+                </Box>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Typography
+                    level="body-xs"
+                    sx={{
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: '#94A3B8',
+                      lineHeight: 1.1,
+                      mb: 0.25,
+                    }}
+                  >
+                    Position
+                  </Typography>
+                  <Typography
+                    level="body-sm"
+                    sx={{
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      fontFamily: 'JetBrains Mono, monospace',
+                      color: '#334155',
+                      lineHeight: 1.35,
+                    }}
+                  >
+                    {hoveredCase.position || `Senior Specialist · Seat ${hoveredCase.seat}`}
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* 4. Email */}
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.25 }}>
+                <Box
+                  sx={{
+                    width: 22,
+                    height: 22,
+                    borderRadius: '6px',
+                    bgcolor: '#FFFFFF',
+                    border: '1px solid #E2E8F0',
+                    color: '#64748B',
+                    display: 'grid',
+                    placeItems: 'center',
+                    flexShrink: 0,
+                    mt: '1px',
+                  }}
+                >
+                  <FiMail size={12} />
+                </Box>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Typography
+                    level="body-xs"
+                    sx={{
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: '#94A3B8',
+                      lineHeight: 1.1,
+                      mb: 0.25,
+                    }}
+                  >
+                    Email
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5 }}>
+                    <Typography
+                      component="a"
+                      href={`mailto:${hoveredCase.email || hoveredCase.name.toLowerCase().replace(/\s+/g, '.') + '@noisiv.com'}`}
+                      level="body-sm"
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        color: '#2563EB',
+                        textDecoration: 'none',
+                        wordBreak: 'break-all',
+                        '&:hover': { textDecoration: 'underline', color: '#1D4ED8' },
+                      }}
+                    >
+                      {hoveredCase.email || hoveredCase.name.toLowerCase().replace(/\s+/g, '.') + '@noisiv.com'}
+                    </Typography>
+                    <IconButton
+                      size="sm"
+                      variant="plain"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCopy(hoveredCase.email || hoveredCase.name.toLowerCase().replace(/\s+/g, '.') + '@noisiv.com', 'email');
+                      }}
+                      sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'email' ? '#16A34A' : '#94A3B8' }}
+                    >
+                      {copiedField === 'email' ? <FiCheck size={12} /> : <FiCopy size={11} />}
+                    </IconButton>
+                  </Box>
+                </Box>
+              </Box>
+
+              {/* 5. Contact */}
+              <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.25 }}>
+                <Box
+                  sx={{
+                    width: 22,
+                    height: 22,
+                    borderRadius: '6px',
+                    bgcolor: '#FFFFFF',
+                    border: '1px solid #E2E8F0',
+                    color: '#64748B',
+                    display: 'grid',
+                    placeItems: 'center',
+                    flexShrink: 0,
+                    mt: '1px',
+                  }}
+                >
+                  <FiPhone size={12} />
+                </Box>
+                <Box sx={{ flex: 1, minWidth: 0 }}>
+                  <Typography
+                    level="body-xs"
+                    sx={{
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: '#94A3B8',
+                      lineHeight: 1.1,
+                      mb: 0.25,
+                    }}
+                  >
+                    Contact
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5 }}>
+                    <Typography
+                      component="a"
+                      href={`tel:${(hoveredCase.contact || hoveredCase.phone || '+971 50 492 8812').replace(/\s+/g, '')}`}
+                      level="body-sm"
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        color: '#2563EB',
+                        textDecoration: 'none',
+                        '&:hover': { textDecoration: 'underline', color: '#1D4ED8' },
+                      }}
+                    >
+                      {hoveredCase.contact || hoveredCase.phone || '+971 50 492 8812'}
+                    </Typography>
+                    <IconButton
+                      size="sm"
+                      variant="plain"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCopy(hoveredCase.contact || hoveredCase.phone || '+971 50 492 8812', 'contact');
+                      }}
+                      sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'contact' ? '#16A34A' : '#94A3B8' }}
+                    >
+                      {copiedField === 'contact' ? <FiCheck size={12} /> : <FiCopy size={11} />}
+                    </IconButton>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+
+            {/* Footer */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                gap: 1.25,
+                mt: 1.25,
+                pt: 1.25,
+                borderTop: '1px solid #F1F5F9',
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                <Chip
+                  size="sm"
+                  sx={{
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    px: 0.9,
+                    py: 0.2,
+                    borderRadius: '999px',
+                    bgcolor: '#EDE9FE',
+                    color: '#7C3AED',
+                  }}
+                >
+                  {STAGE_CONFIGS[hoveredCase.stage]?.label || 'Serving notice'}
+                </Chip>
+                <Typography level="body-xs" sx={{ fontSize: '11px', color: '#64748B' }}>
+                  {hoveredCase.dueText}
+                </Typography>
+              </Box>
+              <IconButton
+                size="sm"
+                variant="outlined"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const id = hoveredCase.id;
+                  setHoveredCase(null);
+                  setHoverPos(null);
+                  onOpenCase(id);
+                }}
+                sx={{
+                  fontSize: '11.5px',
+                  fontWeight: 600,
+                  color: '#7C3AED',
+                  bgcolor: '#FAF8FF',
+                  borderColor: '#DDD6FE',
+                  borderRadius: '6px',
+                  px: 1,
+                  py: 0.5,
+                  gap: 0.5,
+                  '&:hover': {
+                    bgcolor: '#7C3AED',
+                    color: '#FFFFFF',
+                    borderColor: '#7C3AED',
+                  },
+                }}
+              >
+                <Typography level="body-xs" sx={{ fontWeight: 600, color: 'inherit' }}>Open Case</Typography>
+                <FiChevronRight size={12} />
+              </IconButton>
+            </Box>
+          </Box>
+        </Box>
+      )}
     </Box>
   );
 };

@@ -88,6 +88,11 @@ export interface OffboardingCase {
   title: string;
   seat: string; // e.g., 'FDM-01'
   department: string;
+  email?: string;
+  contact?: string;
+  phone?: string;
+  designation?: string;
+  position?: string;
   reason: OffboardingReasonType;
   startDate?: string;
   noticeGivenDate?: string;
