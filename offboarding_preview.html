@@ -1812,254 +1812,246 @@
       background: #EDE9FE;
     }
 
-    /* Glassmorphism Modifier for Container */
-    .employee-hover-card.is-glass {
-      background: transparent !important;
-      border: none !important;
-      box-shadow: none !important;
-      overflow: visible !important;
+    /* Arc Wave & Navy Branding Modifier for Container */
+    .employee-hover-card.is-arc {
+      width: 380px !important;
+      background: #FFFFFF !important;
+      border: 1px solid #E2E8F0 !important;
+      border-radius: 20px !important;
+      overflow: hidden !important;
+      box-shadow: 0 24px 50px -12px rgba(0, 23, 65, 0.22), 0 4px 12px rgba(15, 23, 42, 0.05) !important;
+      padding: 0 !important;
     }
 
     /* =========================================================================
-       EMPLOYEE HOVER CARD: FORMAT 3 (Leena Joseph - Glassmorphism Style)
+       EMPLOYEE HOVER CARD: FORMAT 3 (Leena Joseph - Curved Arc & Navy Wave Style)
+       Directly inspired by media_1791308293272.png
        ========================================================================= */
-    .emp-card-glass-wrap {
+    .emp-card-arc-wrap {
       position: relative;
-      background: rgba(255, 255, 255, 0.78);
-      backdrop-filter: blur(20px) saturate(190%);
-      -webkit-backdrop-filter: blur(20px) saturate(190%);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      border-radius: 18px;
+      width: 100%;
+      min-height: 220px;
+      background: #FFFFFF;
       overflow: hidden;
-      box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.18),
-                  0 0 0 1px rgba(255, 255, 255, 0.9) inset,
-                  0 8px 24px -6px rgba(124, 58, 237, 0.15);
+      border-radius: 20px;
       font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
-    .emp-card-glass-orb {
+    .emp-card-arc-bg {
       position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      filter: blur(28px);
-      z-index: 0;
-      opacity: 0.65;
-    }
-
-    .emp-card-glass-orb-1 {
-      width: 140px;
-      height: 140px;
-      background: linear-gradient(135deg, #A855F7, #7C3AED);
-      top: -35px;
-      right: -35px;
-    }
-
-    .emp-card-glass-orb-2 {
-      width: 120px;
-      height: 120px;
-      background: linear-gradient(135deg, #60A5FA, #3B82F6);
-      bottom: -30px;
-      left: -30px;
-    }
-
-    .emp-card-glass-header {
-      position: relative;
+      top: 0;
+      right: 0;
+      bottom: 0;
       width: 100%;
-      height: 52px;
-      background: linear-gradient(135deg, rgba(168, 85, 247, 0.45) 0%, rgba(124, 58, 237, 0.55) 100%);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-      overflow: hidden;
+      height: 100%;
+      pointer-events: none;
       z-index: 1;
     }
 
-    .emp-card-glass-avatar-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      margin-top: -34px;
+    .emp-card-arc-logo {
+      position: absolute;
+      bottom: 15px;
+      right: 18px;
       z-index: 2;
+      display: flex;
+      align-items: center;
+      font-family: var(--font-inter), sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      user-select: none;
     }
 
-    .emp-card-glass-avatar-ring {
-      width: 68px;
-      height: 68px;
+    .arc-logo-hirer {
+      color: #FFFFFF;
+    }
+
+    .arc-logo-key-wrap {
+      color: #FFFFFF;
+      position: relative;
+      display: inline-block;
+    }
+
+    .arc-logo-swoosh {
+      position: absolute;
+      left: -6px;
+      bottom: -5px;
+      width: calc(100% + 10px);
+      height: 6px;
+      pointer-events: none;
+    }
+
+    .emp-card-arc-content {
+      position: relative;
+      z-index: 3;
+      padding: 18px 20px 18px 20px;
+      max-width: 245px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .emp-card-arc-identity {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .emp-card-arc-avatar-wrap {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+
+    .emp-card-arc-ring-svg {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 56px;
+      height: 56px;
+      pointer-events: none;
+    }
+
+    .emp-card-arc-avatar-inner {
+      width: 48px;
+      height: 48px;
+      margin: 2px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      border: 3.5px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
       overflow: hidden;
+      background: #EDE9FE;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
     }
 
-    .emp-card-glass-avatar-img {
+    .emp-card-arc-avatar-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
 
-    .emp-card-glass-avatar-fallback {
-      font-size: 20px;
+    .emp-card-arc-avatar-fallback {
+      font-size: 17px;
       font-weight: 700;
-      color: #6D28D9;
+      color: #7C3AED;
       display: none;
     }
 
-    .emp-card-glass-status-dot {
-      position: absolute;
-      bottom: 2px;
-      right: calc(50% - 31px);
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: #10B981;
-      border: 2px solid rgba(255, 255, 255, 0.95);
-      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.4);
-      z-index: 3;
-    }
-
-    .emp-card-glass-name {
-      font-size: 15.5px;
-      font-weight: 800;
-      color: #0F172A;
-      text-align: center;
-      margin-top: 7px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.2;
-      position: relative;
-      z-index: 1;
-    }
-
-    .emp-card-glass-pill-wrap {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 5px;
-      margin-bottom: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .emp-card-glass-id-pill {
-      font-family: var(--font-mono), monospace !important;
-      font-size: 10.5px;
-      font-weight: 600;
-      color: #6D28D9;
-      background: rgba(245, 243, 255, 0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(221, 214, 254, 0.9);
-      border-radius: 5px;
-      padding: 1px 6px;
-      line-height: 1.2;
-      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08);
-    }
-
-    .emp-card-glass-dept-pill {
-      background: rgba(237, 233, 254, 0.85);
-      backdrop-filter: blur(8px);
-      color: #5B21B6;
-      border: 1px solid rgba(221, 214, 254, 0.9);
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2px 13px;
-      border-radius: 999px;
-      display: inline-block;
-      letter-spacing: 0.02em;
-      line-height: 1.25;
-      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08);
-    }
-
-    .emp-card-glass-meta-box {
-      background: rgba(255, 255, 255, 0.58);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      border-radius: 12px;
-      padding: 9px 12px;
-      margin: 0 14px 14px 14px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+    .emp-card-arc-id-text {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      position: relative;
-      z-index: 1;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
-    }
-
-    .emp-card-glass-row {
-      display: grid;
-      grid-template-columns: 84px 10px 1fr;
-      align-items: center;
-      font-size: 11.5px;
-      line-height: 1.35;
-    }
-
-    .emp-card-glass-label {
-      color: #475569;
-      font-weight: 600;
-      white-space: nowrap;
-      font-family: var(--font-inter);
-      font-size: 11.5px;
-    }
-
-    .emp-card-glass-colon {
-      color: #64748B;
-      font-weight: 600;
-      text-align: center;
-      font-size: 11.5px;
-    }
-
-    .emp-card-glass-val {
-      color: #0F172A;
-      font-weight: 600;
-      font-size: 11.5px;
-      word-break: break-word;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 4px;
       min-width: 0;
     }
 
-    .emp-card-glass-link {
-      color: #2563EB;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 11.5px;
-      transition: color 0.15s ease;
+    .emp-card-arc-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      line-height: 1.2;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .emp-card-glass-link:hover {
-      color: #1D4ED8;
+    .emp-card-arc-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 2px;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .emp-card-arc-meta {
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #94A3B8;
+      margin-top: 1px;
+      white-space: nowrap;
+    }
+
+    .emp-card-arc-details {
+      display: flex;
+      flex-direction: column;
+      gap: 8.5px;
+    }
+
+    .emp-card-arc-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .emp-card-arc-icon-circle {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #7C3AED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.28);
+    }
+
+    .emp-card-arc-row-content {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+      font-size: 11.5px;
+      line-height: 1.3;
+    }
+
+    .emp-card-arc-link {
+      color: #1E293B;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.15s ease;
+    }
+
+    .emp-card-arc-link:hover {
+      color: #7C3AED;
       text-decoration: underline;
     }
 
-    .emp-card-glass-copy-btn {
-      background: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      padding: 1.5px 3.5px;
+    .emp-card-arc-val {
+      color: #334155;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .emp-card-arc-copy-btn {
+      background: none;
+      border: none;
+      padding: 2px;
       cursor: pointer;
       color: #94A3B8;
       display: inline-flex;
       align-items: center;
       border-radius: 4px;
       transition: all 0.15s ease;
-      flex-shrink: 0;
+      opacity: 0.7;
     }
 
-    .emp-card-glass-copy-btn:hover {
+    .emp-card-arc-copy-btn:hover {
+      opacity: 1;
       color: #7C3AED;
       background: #EDE9FE;
     }
+
 
     /* Position & Seat */
     .position-title {
@@ -6983,71 +6975,101 @@
     </div>
   </div>
 
-  <!-- VIEW 3: Glassmorphism Style (Leena Joseph - Row 3) -->
-  <div id="empCardFormat3" class="emp-card-glass-wrap" style="display: none;">
-    <!-- Ambient Glass Lighting Orbs -->
-    <div class="emp-card-glass-orb emp-card-glass-orb-1"></div>
-    <div class="emp-card-glass-orb emp-card-glass-orb-2"></div>
+  <!-- VIEW 3: Arc Wave & Navy Branding Style (Leena Joseph - Row 4 / ID 4) -->
+  <div id="empCardFormat3" class="emp-card-arc-wrap" style="display: none;">
+    <!-- Right Curved Navy Panel & Purple Wave Accent (media_1791308293272.png) -->
+    <svg class="emp-card-arc-bg" viewBox="0 0 380 220" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Purple Accent Ribbon Wave -->
+      <path d="M 220 0 C 290 60, 290 160, 204 220 L 380 220 L 380 0 Z" fill="#7C3AED" />
+      <!-- Deep Navy Dark Panel -->
+      <path d="M 238 0 C 298 65, 298 155, 224 220 L 380 220 L 380 0 Z" fill="#001741" />
+    </svg>
 
-    <!-- Straight Frosted Header -->
-    <div class="emp-card-glass-header"></div>
-
-    <!-- Centered Overlapping Circular Avatar -->
-    <div class="emp-card-glass-avatar-container">
-      <div class="emp-card-glass-avatar-ring">
-        <img src="./leena_avatar.jpg" alt="Leena Joseph" class="emp-card-glass-avatar-img" id="empCardGlassAvatarImg" onerror="this.onerror=null; this.src='public/leena_avatar.jpg';" />
-        <span class="emp-card-glass-avatar-fallback" id="empCardGlassAvatarFallback">LJ</span>
-      </div>
-      <span class="emp-card-glass-status-dot" title="Active Employee"></span>
+    <!-- Authentic Hirerkey White Wordmark in Navy Section -->
+    <div class="emp-card-arc-logo">
+      <span class="arc-logo-hirer">hirer</span><span class="arc-logo-key-wrap">key<svg class="arc-logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/></svg></span>
     </div>
 
-    <!-- Centered Name: LEENA JOSEPH -->
-    <div class="emp-card-glass-name" id="empCardGlassName">LEENA JOSEPH</div>
-
-    <!-- Centered Badges Row: ID Chip + Department Chip -->
-    <div class="emp-card-glass-pill-wrap">
-      <span class="emp-card-glass-id-pill" id="empCardGlassIdPill">#EMP-0004</span>
-      <span class="emp-card-glass-dept-pill" id="empCardGlassPill">Housekeeping</span>
-    </div>
-
-    <!-- Colon-Aligned Key-Value Metadata List: Only Designation, Position, Email, Phone -->
-    <div class="emp-card-glass-meta-box">
-      <!-- Designation -->
-      <div class="emp-card-glass-row">
-        <span class="emp-card-glass-label">Designation</span>
-        <span class="emp-card-glass-colon">:</span>
-        <span class="emp-card-glass-val" id="empCardGlassDesignation">Housekeeping Supervisor</span>
+    <!-- Left Content Column -->
+    <div class="emp-card-arc-content">
+      <!-- Top Identity Row: Avatar with Ring & Purple Arc + Name & Subtitles -->
+      <div class="emp-card-arc-identity">
+        <div class="emp-card-arc-avatar-wrap">
+          <svg class="emp-card-arc-ring-svg" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="26" fill="none" stroke="#F1F5F9" stroke-width="2.5" />
+            <circle cx="28" cy="28" r="26" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-dasharray="40 125" stroke-dashoffset="10" stroke-linecap="round" />
+          </svg>
+          <div class="emp-card-arc-avatar-inner">
+            <img src="./leena_avatar.jpg" alt="Leena Joseph" class="emp-card-arc-avatar-img" id="empCardArcAvatarImg" onerror="this.onerror=null; this.src='public/leena_avatar.jpg';" />
+            <span class="emp-card-arc-avatar-fallback" id="empCardArcAvatarFallback">LJ</span>
+          </div>
+        </div>
+        <div class="emp-card-arc-id-text">
+          <div class="emp-card-arc-name" id="empCardArcName">LEENA JOSEPH</div>
+          <div class="emp-card-arc-title" id="empCardArcTitle">Housekeeping Supervisor</div>
+          <div class="emp-card-arc-meta" id="empCardArcMeta">Operations · Seat HKS-03</div>
+        </div>
       </div>
 
-      <!-- Position -->
-      <div class="emp-card-glass-row">
-        <span class="emp-card-glass-label">Position</span>
-        <span class="emp-card-glass-colon">:</span>
-        <span class="emp-card-glass-val" id="empCardGlassPosition">Operations Supervisor · Seat HKS-03</span>
-      </div>
+      <!-- 4 Details Rows with Vibrant Purple Circular Badges -->
+      <div class="emp-card-arc-details">
+        <!-- 1. Phone -->
+        <div class="emp-card-arc-row">
+          <div class="emp-card-arc-icon-circle">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <div class="emp-card-arc-row-content">
+            <a href="tel:+971559041128" class="emp-card-arc-link" id="empCardArcPhoneLink">+971 55 904 1128</a>
+            <button class="emp-card-arc-copy-btn" id="empCardArcCopyPhoneBtn" title="Copy phone" onclick="copyCardArcPhone(event)">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
 
-      <!-- E-mail -->
-      <div class="emp-card-glass-row">
-        <span class="emp-card-glass-label">E-mail</span>
-        <span class="emp-card-glass-colon">:</span>
-        <span class="emp-card-glass-val">
-          <a href="mailto:leena.joseph@noisiv.com" class="emp-card-glass-link" id="empCardGlassEmailLink">leena.joseph@noisiv.com</a>
-          <button class="emp-card-glass-copy-btn" id="empCardGlassCopyEmailBtn" title="Copy email" onclick="copyCardGlassEmail(event)">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-        </span>
-      </div>
+        <!-- 2. Email -->
+        <div class="emp-card-arc-row">
+          <div class="emp-card-arc-icon-circle">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="emp-card-arc-row-content">
+            <a href="mailto:leena.joseph@noisiv.com" class="emp-card-arc-link" id="empCardArcEmailLink">leena.joseph@noisiv.com</a>
+            <button class="emp-card-arc-copy-btn" id="empCardArcCopyEmailBtn" title="Copy email" onclick="copyCardArcEmail(event)">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
 
-      <!-- Phone -->
-      <div class="emp-card-glass-row">
-        <span class="emp-card-glass-label">Phone</span>
-        <span class="emp-card-glass-colon">:</span>
-        <span class="emp-card-glass-val">
-          <a href="tel:+971559041128" class="emp-card-glass-link" id="empCardGlassPhoneLink">+971 55 904 1128</a>
-          <button class="emp-card-glass-copy-btn" id="empCardGlassCopyPhoneBtn" title="Copy phone" onclick="copyCardGlassPhone(event)">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-        </span>
+        <!-- 3. Globe / Department -->
+        <div class="emp-card-arc-row">
+          <div class="emp-card-arc-icon-circle">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <div class="emp-card-arc-row-content">
+            <span class="emp-card-arc-val" id="empCardArcDept">Housekeeping Department</span>
+          </div>
+        </div>
+
+        <!-- 4. Location Pin -->
+        <div class="emp-card-arc-row">
+          <div class="emp-card-arc-icon-circle">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="emp-card-arc-row-content">
+            <span class="emp-card-arc-val" id="empCardArcLocation">Dubai, UAE · Seat HKS-03</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -9148,41 +9170,44 @@ function showEmployeeHoverCard(triggerEl, empId) {
   const isAisha = (c.name && c.name.toLowerCase().includes('aisha')) || c.id === 3;
 
   if (isLeena) {
-    card.classList.add('is-glass');
+    card.classList.remove('is-glass');
+    card.classList.remove('is-arc');
+    card.classList.add('is-arc');
     if (f1) f1.style.display = 'none';
     if (f2) f2.style.display = 'none';
     if (f3) f3.style.display = 'block';
 
-    const glassName = document.getElementById('empCardGlassName');
-    if (glassName) glassName.textContent = c.name.toUpperCase();
+    const arcName = document.getElementById('empCardArcName');
+    if (arcName) arcName.textContent = c.name.toUpperCase();
 
-    const glassIdPill = document.getElementById('empCardGlassIdPill');
-    if (glassIdPill) glassIdPill.textContent = `#EMP-${c.id.toString().padStart(4, '0')}`;
+    const arcTitle = document.getElementById('empCardArcTitle');
+    if (arcTitle) arcTitle.textContent = c.designation || c.title || 'Housekeeping Supervisor';
 
-    const glassPill = document.getElementById('empCardGlassPill');
-    if (glassPill) glassPill.textContent = c.dept || c.department || 'Housekeeping';
+    const arcMeta = document.getElementById('empCardArcMeta');
+    if (arcMeta) arcMeta.textContent = `${c.dept || c.department || 'Operations'} · Seat ${c.seat || 'HKS-03'} · #EMP-${c.id.toString().padStart(4, '0')}`;
 
-    const glassDesig = document.getElementById('empCardGlassDesignation');
-    if (glassDesig) glassDesig.textContent = c.designation || c.title || 'Housekeeping Supervisor';
+    const arcDept = document.getElementById('empCardArcDept');
+    if (arcDept) arcDept.textContent = `${c.dept || c.department || 'Housekeeping'} Department`;
 
-    const glassPos = document.getElementById('empCardGlassPosition');
-    if (glassPos) glassPos.textContent = c.position || `Specialist · Seat ${c.seat || 'HKS-03'}`;
+    const arcLoc = document.getElementById('empCardArcLocation');
+    if (arcLoc) arcLoc.textContent = `Dubai, UAE · Seat ${c.seat || 'HKS-03'}`;
 
     const emailVal = c.email || 'leena.joseph@noisiv.com';
-    const glassEmailLink = document.getElementById('empCardGlassEmailLink');
-    if (glassEmailLink) {
-      glassEmailLink.textContent = emailVal;
-      glassEmailLink.href = `mailto:${emailVal}`;
+    const arcEmailLink = document.getElementById('empCardArcEmailLink');
+    if (arcEmailLink) {
+      arcEmailLink.textContent = emailVal;
+      arcEmailLink.href = `mailto:${emailVal}`;
     }
 
     const phoneVal = c.contact || c.phone || '+971 55 904 1128';
-    const glassPhoneLink = document.getElementById('empCardGlassPhoneLink');
-    if (glassPhoneLink) {
-      glassPhoneLink.textContent = phoneVal;
-      glassPhoneLink.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
+    const arcPhoneLink = document.getElementById('empCardArcPhoneLink');
+    if (arcPhoneLink) {
+      arcPhoneLink.textContent = phoneVal;
+      arcPhoneLink.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
     }
   } else if (isAisha) {
     card.classList.remove('is-glass');
+    card.classList.remove('is-arc');
     if (f1) f1.style.display = 'none';
     if (f2) f2.style.display = 'block';
     if (f3) f3.style.display = 'none';
@@ -9217,6 +9242,7 @@ function showEmployeeHoverCard(triggerEl, empId) {
     }
   } else {
     card.classList.remove('is-glass');
+    card.classList.remove('is-arc');
     if (f1) f1.style.display = 'block';
     if (f2) f2.style.display = 'none';
     if (f3) f3.style.display = 'none';
@@ -9363,6 +9389,52 @@ function copyCardWavePhone(e) {
   } else {
     showToast(`Contact: ${phone}`);
   }
+}
+
+
+function copyCardArcEmail(e) {
+  if (e) e.stopPropagation();
+  const el = document.getElementById('empCardArcEmailLink');
+  const txt = el ? el.textContent.trim() : 'leena.joseph@noisiv.com';
+  navigator.clipboard.writeText(txt).then(() => {
+    showToast('Copied email: ' + txt);
+  }).catch(() => {
+    showToast('Copied email: ' + txt);
+  });
+}
+
+function copyCardArcPhone(e) {
+  if (e) e.stopPropagation();
+  const el = document.getElementById('empCardArcPhoneLink');
+  const txt = el ? el.textContent.trim() : '+971 55 904 1128';
+  navigator.clipboard.writeText(txt).then(() => {
+    showToast('Copied phone: ' + txt);
+  }).catch(() => {
+    showToast('Copied phone: ' + txt);
+  });
+}
+
+
+function copyCardArcEmail(e) {
+  if (e) e.stopPropagation();
+  const el = document.getElementById('empCardArcEmailLink');
+  const txt = el ? el.textContent.trim() : 'leena.joseph@noisiv.com';
+  navigator.clipboard.writeText(txt).then(() => {
+    showToast('Copied email: ' + txt);
+  }).catch(() => {
+    showToast('Copied email: ' + txt);
+  });
+}
+
+function copyCardArcPhone(e) {
+  if (e) e.stopPropagation();
+  const el = document.getElementById('empCardArcPhoneLink');
+  const txt = el ? el.textContent.trim() : '+971 55 904 1128';
+  navigator.clipboard.writeText(txt).then(() => {
+    showToast('Copied phone: ' + txt);
+  }).catch(() => {
+    showToast('Copied phone: ' + txt);
+  });
 }
 
 function copyCardGlassEmail(e) {
