@@ -1812,6 +1812,255 @@
       background: #EDE9FE;
     }
 
+    /* Glassmorphism Modifier for Container */
+    .employee-hover-card.is-glass {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      overflow: visible !important;
+    }
+
+    /* =========================================================================
+       EMPLOYEE HOVER CARD: FORMAT 3 (Leena Joseph - Glassmorphism Style)
+       ========================================================================= */
+    .emp-card-glass-wrap {
+      position: relative;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px -12px rgba(15, 23, 42, 0.18),
+                  0 0 0 1px rgba(255, 255, 255, 0.9) inset,
+                  0 8px 24px -6px rgba(124, 58, 237, 0.15);
+      font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .emp-card-glass-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(28px);
+      z-index: 0;
+      opacity: 0.65;
+    }
+
+    .emp-card-glass-orb-1 {
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, #A855F7, #7C3AED);
+      top: -35px;
+      right: -35px;
+    }
+
+    .emp-card-glass-orb-2 {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #60A5FA, #3B82F6);
+      bottom: -30px;
+      left: -30px;
+    }
+
+    .emp-card-glass-header {
+      position: relative;
+      width: 100%;
+      height: 52px;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.45) 0%, rgba(124, 58, 237, 0.55) 100%);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .emp-card-glass-avatar-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-top: -34px;
+      z-index: 2;
+    }
+
+    .emp-card-glass-avatar-ring {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 3.5px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .emp-card-glass-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .emp-card-glass-avatar-fallback {
+      font-size: 20px;
+      font-weight: 700;
+      color: #6D28D9;
+      display: none;
+    }
+
+    .emp-card-glass-status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: calc(50% - 31px);
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 2px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.4);
+      z-index: 3;
+    }
+
+    .emp-card-glass-name {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #0F172A;
+      text-align: center;
+      margin-top: 7px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+
+    .emp-card-glass-pill-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 5px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .emp-card-glass-id-pill {
+      font-family: var(--font-mono), monospace !important;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #6D28D9;
+      background: rgba(245, 243, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(221, 214, 254, 0.9);
+      border-radius: 5px;
+      padding: 1px 6px;
+      line-height: 1.2;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08);
+    }
+
+    .emp-card-glass-dept-pill {
+      background: rgba(237, 233, 254, 0.85);
+      backdrop-filter: blur(8px);
+      color: #5B21B6;
+      border: 1px solid rgba(221, 214, 254, 0.9);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 13px;
+      border-radius: 999px;
+      display: inline-block;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08);
+    }
+
+    .emp-card-glass-meta-box {
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 12px;
+      padding: 9px 12px;
+      margin: 0 14px 14px 14px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+
+    .emp-card-glass-row {
+      display: grid;
+      grid-template-columns: 84px 10px 1fr;
+      align-items: center;
+      font-size: 11.5px;
+      line-height: 1.35;
+    }
+
+    .emp-card-glass-label {
+      color: #475569;
+      font-weight: 600;
+      white-space: nowrap;
+      font-family: var(--font-inter);
+      font-size: 11.5px;
+    }
+
+    .emp-card-glass-colon {
+      color: #64748B;
+      font-weight: 600;
+      text-align: center;
+      font-size: 11.5px;
+    }
+
+    .emp-card-glass-val {
+      color: #0F172A;
+      font-weight: 600;
+      font-size: 11.5px;
+      word-break: break-word;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .emp-card-glass-link {
+      color: #2563EB;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11.5px;
+      transition: color 0.15s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .emp-card-glass-link:hover {
+      color: #1D4ED8;
+      text-decoration: underline;
+    }
+
+    .emp-card-glass-copy-btn {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      padding: 1.5px 3.5px;
+      cursor: pointer;
+      color: #94A3B8;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .emp-card-glass-copy-btn:hover {
+      color: #7C3AED;
+      background: #EDE9FE;
+    }
+
     /* Position & Seat */
     .position-title {
       font-weight: 500;
@@ -6733,6 +6982,75 @@
       </div>
     </div>
   </div>
+
+  <!-- VIEW 3: Glassmorphism Style (Leena Joseph - Row 3) -->
+  <div id="empCardFormat3" class="emp-card-glass-wrap" style="display: none;">
+    <!-- Ambient Glass Lighting Orbs -->
+    <div class="emp-card-glass-orb emp-card-glass-orb-1"></div>
+    <div class="emp-card-glass-orb emp-card-glass-orb-2"></div>
+
+    <!-- Straight Frosted Header -->
+    <div class="emp-card-glass-header"></div>
+
+    <!-- Centered Overlapping Circular Avatar -->
+    <div class="emp-card-glass-avatar-container">
+      <div class="emp-card-glass-avatar-ring">
+        <img src="./leena_avatar.jpg" alt="Leena Joseph" class="emp-card-glass-avatar-img" id="empCardGlassAvatarImg" onerror="this.onerror=null; this.src='public/leena_avatar.jpg';" />
+        <span class="emp-card-glass-avatar-fallback" id="empCardGlassAvatarFallback">LJ</span>
+      </div>
+      <span class="emp-card-glass-status-dot" title="Active Employee"></span>
+    </div>
+
+    <!-- Centered Name: LEENA JOSEPH -->
+    <div class="emp-card-glass-name" id="empCardGlassName">LEENA JOSEPH</div>
+
+    <!-- Centered Badges Row: ID Chip + Department Chip -->
+    <div class="emp-card-glass-pill-wrap">
+      <span class="emp-card-glass-id-pill" id="empCardGlassIdPill">#EMP-0004</span>
+      <span class="emp-card-glass-dept-pill" id="empCardGlassPill">Housekeeping</span>
+    </div>
+
+    <!-- Colon-Aligned Key-Value Metadata List: Only Designation, Position, Email, Phone -->
+    <div class="emp-card-glass-meta-box">
+      <!-- Designation -->
+      <div class="emp-card-glass-row">
+        <span class="emp-card-glass-label">Designation</span>
+        <span class="emp-card-glass-colon">:</span>
+        <span class="emp-card-glass-val" id="empCardGlassDesignation">Housekeeping Supervisor</span>
+      </div>
+
+      <!-- Position -->
+      <div class="emp-card-glass-row">
+        <span class="emp-card-glass-label">Position</span>
+        <span class="emp-card-glass-colon">:</span>
+        <span class="emp-card-glass-val" id="empCardGlassPosition">Operations Supervisor · Seat HKS-03</span>
+      </div>
+
+      <!-- E-mail -->
+      <div class="emp-card-glass-row">
+        <span class="emp-card-glass-label">E-mail</span>
+        <span class="emp-card-glass-colon">:</span>
+        <span class="emp-card-glass-val">
+          <a href="mailto:leena.joseph@noisiv.com" class="emp-card-glass-link" id="empCardGlassEmailLink">leena.joseph@noisiv.com</a>
+          <button class="emp-card-glass-copy-btn" id="empCardGlassCopyEmailBtn" title="Copy email" onclick="copyCardGlassEmail(event)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </span>
+      </div>
+
+      <!-- Phone -->
+      <div class="emp-card-glass-row">
+        <span class="emp-card-glass-label">Phone</span>
+        <span class="emp-card-glass-colon">:</span>
+        <span class="emp-card-glass-val">
+          <a href="tel:+971559041128" class="emp-card-glass-link" id="empCardGlassPhoneLink">+971 55 904 1128</a>
+          <button class="emp-card-glass-copy-btn" id="empCardGlassCopyPhoneBtn" title="Copy phone" onclick="copyCardGlassPhone(event)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ==========================================================================
@@ -6968,6 +7286,50 @@ let cases = [
     }
   },
   {
+    id: 4,
+    name: 'Leena Joseph',
+    ini: 'LJ',
+    title: 'Housekeeping Supervisor',
+    designation: 'Housekeeping Supervisor',
+    position: 'Operations Supervisor · Seat HKS-03',
+    email: 'leena.joseph@noisiv.com',
+    contact: '+971 55 904 1128',
+    seat: 'HKS-03',
+    dept: 'Housekeeping',
+    manager: 'Maria Santos · Executive Housekeeper',
+    tenure: '7 yrs 2 mos',
+    leaveBalance: 15.0,
+    reason: 'Retirement',
+    startDate: '15 Aug 2026',
+    noticeGivenDate: '15 Aug 2026',
+    lwd: '15 Sep 2026',
+    dueText: 'Today',
+    dueTone: 'bad',
+    stage: 1,
+    stageName: 'Serving notice',
+    stageTone: 'pri',
+    successor: 'Meera Das',
+    handover: [
+      { key: 'Floor keys', title: 'All master floor keys deposited', subtitle: 'Handed to Maria Santos', done: true, tag: 'Physical Assets' }
+    ],
+    clearance: [
+      { dept: 'IT', title: 'Radio comms device returned', approver: 'Zaid Al-Harbi', notes: 'Device checked.', done: true, status: 'approved' },
+      { dept: 'Finance', title: 'Gratuity calculation audit', approver: 'Amina El-Sayed', notes: 'Gratuity verified.', done: true, status: 'approved' },
+      { dept: 'Admin', title: 'Staff accommodation room clearance', approver: 'Tariq Mansoor', notes: 'Room inspection done.', done: true, status: 'approved' },
+      { dept: 'Line manager', title: 'Final handover sign-off', approver: 'Maria Santos', notes: 'Handover complete.', done: true, status: 'approved' }
+    ],
+    exitInterviewStatus: 'completed',
+    settlement: {
+      leaveDays: 15.0,
+      encashmentAmount: '5,500',
+      recoveriesAmount: '0',
+      netPayable: '5,500',
+      currency: 'AED',
+      status: 'in_progress',
+      lettersGenerated: true
+    }
+  },
+  {
     id: 1,
     name: 'Sara Khan',
     ini: 'SK',
@@ -7063,50 +7425,6 @@ let cases = [
       currency: 'AED',
       status: 'pending',
       lettersGenerated: false
-    }
-  },
-  {
-    id: 4,
-    name: 'Leena Joseph',
-    ini: 'LJ',
-    title: 'Housekeeping Supervisor',
-    designation: 'Housekeeping Supervisor',
-    position: 'Operations Supervisor · Seat HKS-03',
-    email: 'leena.joseph@noisiv.com',
-    contact: '+971 55 904 1128',
-    seat: 'HKS-03',
-    dept: 'Housekeeping',
-    manager: 'Maria Santos · Executive Housekeeper',
-    tenure: '7 yrs 2 mos',
-    leaveBalance: 15.0,
-    reason: 'Retirement',
-    startDate: '15 Aug 2026',
-    noticeGivenDate: '15 Aug 2026',
-    lwd: '15 Sep 2026',
-    dueText: 'Today',
-    dueTone: 'bad',
-    stage: 1,
-    stageName: 'Serving notice',
-    stageTone: 'pri',
-    successor: 'Meera Das',
-    handover: [
-      { key: 'Floor keys', title: 'All master floor keys deposited', subtitle: 'Handed to Maria Santos', done: true, tag: 'Physical Assets' }
-    ],
-    clearance: [
-      { dept: 'IT', title: 'Radio comms device returned', approver: 'Zaid Al-Harbi', notes: 'Device checked.', done: true, status: 'approved' },
-      { dept: 'Finance', title: 'Gratuity calculation audit', approver: 'Amina El-Sayed', notes: 'Gratuity verified.', done: true, status: 'approved' },
-      { dept: 'Admin', title: 'Staff accommodation room clearance', approver: 'Tariq Mansoor', notes: 'Room inspection done.', done: true, status: 'approved' },
-      { dept: 'Line manager', title: 'Final handover sign-off', approver: 'Maria Santos', notes: 'Handover complete.', done: true, status: 'approved' }
-    ],
-    exitInterviewStatus: 'completed',
-    settlement: {
-      leaveDays: 15.0,
-      encashmentAmount: '5,500',
-      recoveriesAmount: '0',
-      netPayable: '5,500',
-      currency: 'AED',
-      status: 'in_progress',
-      lettersGenerated: true
     }
   }
 ];
@@ -8822,14 +9140,52 @@ function showEmployeeHoverCard(triggerEl, empId) {
   const card = document.getElementById('employeeHoverCard');
   if (!card) return;
 
-  const isAisha = (c.name && c.name.toLowerCase().includes('aisha')) || c.id === 3;
-
   const f1 = document.getElementById('empCardFormat1');
   const f2 = document.getElementById('empCardFormat2');
+  const f3 = document.getElementById('empCardFormat3');
 
-  if (isAisha) {
+  const isLeena = (c.name && c.name.toLowerCase().includes('leena')) || c.id === 4;
+  const isAisha = (c.name && c.name.toLowerCase().includes('aisha')) || c.id === 3;
+
+  if (isLeena) {
+    card.classList.add('is-glass');
+    if (f1) f1.style.display = 'none';
+    if (f2) f2.style.display = 'none';
+    if (f3) f3.style.display = 'block';
+
+    const glassName = document.getElementById('empCardGlassName');
+    if (glassName) glassName.textContent = c.name.toUpperCase();
+
+    const glassIdPill = document.getElementById('empCardGlassIdPill');
+    if (glassIdPill) glassIdPill.textContent = `#EMP-${c.id.toString().padStart(4, '0')}`;
+
+    const glassPill = document.getElementById('empCardGlassPill');
+    if (glassPill) glassPill.textContent = c.dept || c.department || 'Housekeeping';
+
+    const glassDesig = document.getElementById('empCardGlassDesignation');
+    if (glassDesig) glassDesig.textContent = c.designation || c.title || 'Housekeeping Supervisor';
+
+    const glassPos = document.getElementById('empCardGlassPosition');
+    if (glassPos) glassPos.textContent = c.position || `Specialist · Seat ${c.seat || 'HKS-03'}`;
+
+    const emailVal = c.email || 'leena.joseph@noisiv.com';
+    const glassEmailLink = document.getElementById('empCardGlassEmailLink');
+    if (glassEmailLink) {
+      glassEmailLink.textContent = emailVal;
+      glassEmailLink.href = `mailto:${emailVal}`;
+    }
+
+    const phoneVal = c.contact || c.phone || '+971 55 904 1128';
+    const glassPhoneLink = document.getElementById('empCardGlassPhoneLink');
+    if (glassPhoneLink) {
+      glassPhoneLink.textContent = phoneVal;
+      glassPhoneLink.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
+    }
+  } else if (isAisha) {
+    card.classList.remove('is-glass');
     if (f1) f1.style.display = 'none';
     if (f2) f2.style.display = 'block';
+    if (f3) f3.style.display = 'none';
 
     const waveName = document.getElementById('empCardWaveName');
     if (waveName) waveName.textContent = c.name.toUpperCase();
@@ -8860,8 +9216,10 @@ function showEmployeeHoverCard(triggerEl, empId) {
       wavePhoneLink.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
     }
   } else {
+    card.classList.remove('is-glass');
     if (f1) f1.style.display = 'block';
     if (f2) f2.style.display = 'none';
+    if (f3) f3.style.display = 'none';
 
     // 1. Employee Name
     const nameEl = document.getElementById('empCardName');
@@ -8996,6 +9354,34 @@ function copyCardWaveEmail(e) {
 function copyCardWavePhone(e) {
   e.stopPropagation();
   const phone = document.getElementById('empCardWavePhoneLink').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(phone).then(() => {
+      showToast(`✓ Copied contact: ${phone}`);
+    }).catch(() => {
+      showToast(`Contact: ${phone}`);
+    });
+  } else {
+    showToast(`Contact: ${phone}`);
+  }
+}
+
+function copyCardGlassEmail(e) {
+  e.stopPropagation();
+  const email = document.getElementById('empCardGlassEmailLink').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(email).then(() => {
+      showToast(`✓ Copied email: ${email}`);
+    }).catch(() => {
+      showToast(`Email: ${email}`);
+    });
+  } else {
+    showToast(`Email: ${email}`);
+  }
+}
+
+function copyCardGlassPhone(e) {
+  e.stopPropagation();
+  const phone = document.getElementById('empCardGlassPhoneLink').textContent;
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(phone).then(() => {
       showToast(`✓ Copied contact: ${phone}`);

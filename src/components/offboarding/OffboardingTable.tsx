@@ -760,35 +760,327 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
         </Typography>
       </Box>
 
-      {/* Floating Employee Hover Card */}
-      {/* Floating Employee Hover Card (Authentic Employee ID Card / Corporate Staff Pass) */}
-      {hoveredCase && hoverPos && (
-        <Box
-          onMouseEnter={handleCardMouseEnter}
-          onMouseLeave={handleEmpMouseLeave}
-          sx={{
-            position: 'fixed',
-            top: hoverPos.top,
-            left: hoverPos.left,
-            width: 320,
-            bgcolor: '#FFFFFF',
-            border: '1px solid #E2E8F0',
-            borderRadius: '16px',
-            boxShadow: '0 20px 40px -8px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04)',
-            zIndex: 99999,
-            overflow: 'hidden',
-            p: 0,
-            animation: 'empCardFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1)',
-            fontFamily: 'Inter, system-ui, sans-serif',
-            '@keyframes empCardFadeIn': {
-              from: { opacity: 0, transform: 'translateY(6px) scale(0.97)' },
-              to: { opacity: 1, transform: 'translateY(0) scale(1)' },
-            },
-          }}
-        >
-          {((hoveredCase.name && hoveredCase.name.toLowerCase().includes('aisha')) || hoveredCase.id === 3) ? (
-            /* Format 2: Curved Purple Wave Style (Aisha Noor - Row 2) */
-            <Box sx={{ position: 'relative', bgcolor: '#FFFFFF', overflow: 'hidden', borderRadius: '16px' }}>
+      {/* Floating Employee Hover Card (Supports 3 distinct card styles: Format 1 Badge for Mark, Format 2 Straight Header for Aisha, Format 3 Glassmorphism for Leena) */}
+      {hoveredCase && hoverPos && (() => {
+        const isLeena = (hoveredCase.name && hoveredCase.name.toLowerCase().includes('leena')) || hoveredCase.id === 4;
+        const isAisha = !isLeena && ((hoveredCase.name && hoveredCase.name.toLowerCase().includes('aisha')) || hoveredCase.id === 3);
+
+        return (
+          <Box
+            onMouseEnter={handleCardMouseEnter}
+            onMouseLeave={handleEmpMouseLeave}
+            sx={{
+              position: 'fixed',
+              top: hoverPos.top,
+              left: hoverPos.left,
+              width: 320,
+              bgcolor: isLeena ? 'transparent' : '#FFFFFF',
+              border: isLeena ? 'none' : '1px solid #E2E8F0',
+              borderRadius: isLeena ? '18px' : '16px',
+              boxShadow: isLeena
+                ? 'none'
+                : '0 20px 40px -8px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04)',
+              zIndex: 99999,
+              overflow: isLeena ? 'visible' : 'hidden',
+              p: 0,
+              animation: 'empCardFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1)',
+              fontFamily: 'Inter, system-ui, sans-serif',
+              '@keyframes empCardFadeIn': {
+                from: { opacity: 0, transform: 'translateY(6px) scale(0.97)' },
+                to: { opacity: 1, transform: 'translateY(0) scale(1)' },
+              },
+            }}
+          >
+            {isLeena ? (
+              /* Format 3: Glassmorphism Style (Leena Joseph - Row 3) */
+              <Box
+                sx={{
+                  position: 'relative',
+                  bgcolor: 'rgba(255, 255, 255, 0.78)',
+                  backdropFilter: 'blur(20px) saturate(190%)',
+                  WebkitBackdropFilter: 'blur(20px) saturate(190%)',
+                  border: '1px solid rgba(255, 255, 255, 0.85)',
+                  borderRadius: '18px',
+                  overflow: 'hidden',
+                  boxShadow:
+                    '0 24px 48px -12px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.9) inset, 0 8px 24px -6px rgba(124, 58, 237, 0.15)',
+                  fontFamily: 'Inter, system-ui, sans-serif',
+                }}
+              >
+                {/* Ambient Glass Lighting Orbs */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    borderRadius: '50%',
+                    pointerEvents: 'none',
+                    filter: 'blur(28px)',
+                    zIndex: 0,
+                    opacity: 0.65,
+                    width: 140,
+                    height: 140,
+                    background: 'linear-gradient(135deg, #A855F7, #7C3AED)',
+                    top: -35,
+                    right: -35,
+                  }}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    borderRadius: '50%',
+                    pointerEvents: 'none',
+                    filter: 'blur(28px)',
+                    zIndex: 0,
+                    opacity: 0.65,
+                    width: 120,
+                    height: 120,
+                    background: 'linear-gradient(135deg, #60A5FA, #3B82F6)',
+                    bottom: -30,
+                    left: -30,
+                  }}
+                />
+
+                {/* Straight Frosted Header */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    width: '100%',
+                    height: 52,
+                    background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.45) 0%, rgba(124, 58, 237, 0.55) 100%)',
+                    backdropFilter: 'blur(14px)',
+                    WebkitBackdropFilter: 'blur(14px)',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.5)',
+                    overflow: 'hidden',
+                    zIndex: 1,
+                  }}
+                />
+
+                {/* Centered Overlapping Circular Avatar */}
+                <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', mt: '-34px', zIndex: 2 }}>
+                  <Box
+                    sx={{
+                      width: 68,
+                      height: 68,
+                      borderRadius: '50%',
+                      bgcolor: 'rgba(255, 255, 255, 0.9)',
+                      border: '3.5px solid rgba(255, 255, 255, 0.95)',
+                      boxShadow: '0 6px 18px rgba(124, 58, 237, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8) inset',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      position: 'relative',
+                    }}
+                  >
+                    <img
+                      src="/leena_avatar.jpg"
+                      alt={hoveredCase.name}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = './leena_avatar.jpg';
+                      }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                  </Box>
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 2,
+                      right: 'calc(50% - 31px)',
+                      width: 11,
+                      height: 11,
+                      borderRadius: '50%',
+                      bgcolor: '#10B981',
+                      border: '2px solid rgba(255, 255, 255, 0.95)',
+                      boxShadow: '0 0 0 1px rgba(16, 185, 129, 0.4)',
+                      zIndex: 3,
+                    }}
+                  />
+                </Box>
+
+                {/* Centered Name: LEENA JOSEPH */}
+                <Typography
+                  sx={{
+                    fontSize: '15.5px',
+                    fontWeight: 800,
+                    color: '#0F172A',
+                    textAlign: 'center',
+                    mt: '7px',
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    lineHeight: 1.2,
+                    position: 'relative',
+                    zIndex: 1,
+                    fontFamily: 'Inter, system-ui, sans-serif',
+                  }}
+                >
+                  {hoveredCase.name.toUpperCase()}
+                </Typography>
+
+                {/* Centered Badges Row: ID Chip + Department Chip */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '7px',
+                    mt: '5px',
+                    mb: '12px',
+                    position: 'relative',
+                    zIndex: 1,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontFamily: 'JetBrains Mono, monospace',
+                      fontSize: '10.5px',
+                      fontWeight: 600,
+                      color: '#6D28D9',
+                      bgcolor: 'rgba(245, 243, 255, 0.85)',
+                      backdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(221, 214, 254, 0.9)',
+                      borderRadius: '5px',
+                      px: '6px',
+                      py: '1.5px',
+                      lineHeight: 1.2,
+                      boxShadow: '0 1px 3px rgba(124, 58, 237, 0.08)',
+                    }}
+                  >
+                    {`#EMP-${hoveredCase.id.toString().padStart(4, '0')}`}
+                  </Typography>
+                  <Box
+                    component="span"
+                    sx={{
+                      bgcolor: 'rgba(237, 233, 254, 0.85)',
+                      backdropFilter: 'blur(8px)',
+                      color: '#5B21B6',
+                      border: '1px solid rgba(221, 214, 254, 0.9)',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      px: '13px',
+                      py: '2px',
+                      borderRadius: '999px',
+                      display: 'inline-block',
+                      letterSpacing: '0.02em',
+                      lineHeight: 1.25,
+                      boxShadow: '0 1px 3px rgba(124, 58, 237, 0.08)',
+                    }}
+                  >
+                    {hoveredCase.department || 'Housekeeping'}
+                  </Box>
+                </Box>
+
+                {/* Colon-Aligned Key-Value Metadata List: Only Designation, Position, Email, Phone */}
+                <Box
+                  sx={{
+                    bgcolor: 'rgba(255, 255, 255, 0.58)',
+                    border: '1px solid rgba(255, 255, 255, 0.85)',
+                    borderRadius: '12px',
+                    p: '9px 12px',
+                    mx: '14px',
+                    mb: '14px',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '6px',
+                    position: 'relative',
+                    zIndex: 1,
+                    boxShadow: '0 2px 6px rgba(15, 23, 42, 0.03)',
+                  }}
+                >
+                  {/* Designation */}
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                    <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Designation</Typography>
+                    <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                    <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
+                      {hoveredCase.designation || hoveredCase.title}
+                    </Typography>
+                  </Box>
+
+                  {/* Position */}
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                    <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Position</Typography>
+                    <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                    <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
+                      {hoveredCase.position || `Operations Supervisor · Seat ${hoveredCase.seat}`}
+                    </Typography>
+                  </Box>
+
+                  {/* E-mail */}
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                    <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>E-mail</Typography>
+                    <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
+                      <Typography
+                        component="a"
+                        href={`mailto:${hoveredCase.email || 'leena.joseph@noisiv.com'}`}
+                        onClick={(e) => e.stopPropagation()}
+                        sx={{
+                          color: '#2563EB',
+                          fontWeight: 600,
+                          fontSize: '11.5px',
+                          textDecoration: 'none',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          '&:hover': { textDecoration: 'underline', color: '#1D4ED8' },
+                        }}
+                      >
+                        {hoveredCase.email || 'leena.joseph@noisiv.com'}
+                      </Typography>
+                      <IconButton
+                        size="sm"
+                        variant="plain"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopy(hoveredCase.email || 'leena.joseph@noisiv.com', 'email');
+                        }}
+                        sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'email' ? '#16A34A' : '#94A3B8', '&:hover': { color: '#7C3AED', bgcolor: '#EDE9FE' } }}
+                      >
+                        {copiedField === 'email' ? <FiCheck size={12} /> : <FiCopy size={11} />}
+                      </IconButton>
+                    </Box>
+                  </Box>
+
+                  {/* Phone */}
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                    <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Phone</Typography>
+                    <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
+                      <Typography
+                        component="a"
+                        href={`tel:${(hoveredCase.contact || hoveredCase.phone || '+971 55 904 1128').replace(/\s+/g, '')}`}
+                        onClick={(e) => e.stopPropagation()}
+                        sx={{
+                          color: '#2563EB',
+                          fontWeight: 600,
+                          fontSize: '11.5px',
+                          textDecoration: 'none',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          '&:hover': { textDecoration: 'underline', color: '#1D4ED8' },
+                        }}
+                      >
+                        {hoveredCase.contact || hoveredCase.phone || '+971 55 904 1128'}
+                      </Typography>
+                      <IconButton
+                        size="sm"
+                        variant="plain"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopy(hoveredCase.contact || hoveredCase.phone || '+971 55 904 1128', 'contact');
+                        }}
+                        sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'contact' ? '#16A34A' : '#94A3B8', '&:hover': { color: '#7C3AED', bgcolor: '#EDE9FE' } }}
+                      >
+                        {copiedField === 'contact' ? <FiCheck size={12} /> : <FiCopy size={11} />}
+                      </IconButton>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+            ) : isAisha ? (
+              /* Format 2: Straight Purple Header Style (Aisha Noor - Row 2) */
+              <Box sx={{ position: 'relative', bgcolor: '#FFFFFF', overflow: 'hidden', borderRadius: '16px' }}>
               {/* Straight Purple Header (Straight bottom edge, no curve) */}
               <Box sx={{ width: '100%', height: 52, bgcolor: '#7C3AED', background: 'linear-gradient(135deg, #9185F8 0%, #7C3AED 100%)' }} />
 
@@ -1381,7 +1673,8 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
             </>
           )}
         </Box>
-      )}
+        );
+      })()}
     </Box>
   );
 };
