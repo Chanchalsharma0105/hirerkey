@@ -4459,6 +4459,143 @@
       border: 1px solid rgba(226, 232, 240, 0.85);
     }
 
+
+    /* ==========================================================================
+       CANVAS TONE / BACKGROUND COLOR SWITCHER BAR
+       Interactive control to play with various color choices & custom color picker
+       ========================================================================== */
+    .dashboard-switcher-row,
+    .donezo-switcher-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 4px 0 16px 0;
+      margin-bottom: 2px;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+      width: 100%;
+    }
+
+    .canvas-tone-bar {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 10px;
+      padding: 3px 6px;
+      gap: 4px;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+      flex-shrink: 0;
+    }
+
+    .canvas-tone-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #64748B;
+      padding: 0 4px;
+      user-select: none;
+    }
+
+    .canvas-tone-label svg {
+      color: var(--brand-primary);
+    }
+
+    .canvas-tone-pills {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      flex-wrap: wrap;
+    }
+
+    .canvas-tone-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .canvas-tone-pill:hover {
+      background: rgba(255, 255, 255, 0.95);
+      color: #0F172A;
+      border-color: #E2E8F0;
+    }
+
+    .canvas-tone-pill.active {
+      background: #FFFFFF;
+      color: var(--brand-primary);
+      font-weight: 600;
+      border-color: #DDD6FE;
+      box-shadow: 0 1px 4px rgba(124, 58, 237, 0.12);
+    }
+
+    .tone-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .canvas-tone-pill:hover .tone-dot {
+      transform: scale(1.15);
+    }
+
+    .canvas-tone-pill.active .tone-dot {
+      box-shadow: 0 0 0 2px #7C3AED;
+    }
+
+    .tone-custom-label {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .tone-custom-label input[type="color"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    body,
+    .view2-layout,
+    .donezo-content-area,
+    .dashboard-view-panel {
+      transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @media (max-width: 1100px) {
+      .dashboard-switcher-row,
+      .donezo-switcher-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .canvas-tone-bar {
+        overflow-x: auto;
+        max-width: 100%;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -5079,6 +5216,53 @@
           <button class="screen-tab" id="tab1-view-6" onclick="switchDashboardView(6)" title="View 6: Diagonal Gradient">
             <span>View 6: Diagonal Gradient</span>
           </button>
+        </div>
+        <div class="canvas-tone-bar" id="canvasToneBar1">
+          <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+            <span>Canvas Tint:</span>
+          </div>
+          <div class="canvas-tone-pills">
+            <button type="button" class="canvas-tone-pill" data-tone="pearl" onclick="setDashboardBg('pearl')" title="Pearl Grey (#F4F5F7) — Original View 2 Soft Pearl Grey">
+              <span class="tone-dot" style="background: #F4F5F7; border: 1.5px solid #CBD5E1;"></span>
+              <span>Pearl Grey</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="lavender" onclick="setDashboardBg('lavender')" title="Lavender Mist (#F4EFFB) — Balanced modern light purple">
+              <span class="tone-dot" style="background: #F4EFFB; border: 1.5px solid #C4B5FD;"></span>
+              <span>Lavender</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="whisper" onclick="setDashboardBg('whisper')" title="Soft Lilac Whisper (#F8F6FD) — Delicate & airy">
+              <span class="tone-dot" style="background: #F8F6FD; border: 1.5px solid #DDD6FE;"></span>
+              <span>Lilac</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="aurora" onclick="setDashboardBg('aurora')" title="Aurora Mesh Glow — Atmospheric radiant purple gradient">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #EDE4FF, #F4EEFB); border: 1.5px solid #A78BFA;"></span>
+              <span>Aurora Glow</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="diagonal" onclick="setDashboardBg('diagonal')" title="Diagonal Gradient — 135° soft violet gradient wash">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #F3EBFC, #EBE1FA); border: 1.5px solid #8B5CF6;"></span>
+              <span>Diagonal</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="iris" onclick="setDashboardBg('iris')" title="Royal Iris (#EFE6F8) — High-contrast light purple">
+              <span class="tone-dot" style="background: #EFE6F8; border: 1.5px solid #8B5CF6;"></span>
+              <span>Iris</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="slate" onclick="setDashboardBg('slate')" title="Cool Dew (#F1EDF9) — Muted slate-lilac">
+              <span class="tone-dot" style="background: #F1EDF9; border: 1.5px solid #CBD5E1;"></span>
+              <span>Cool Dew</span>
+            </button>
+            <button type="button" class="canvas-tone-pill active" data-tone="classic" onclick="setDashboardBg('classic')" title="Classic Grey (#F4F6F9) — Standard SaaS grey">
+              <span class="tone-dot" style="background: #F4F6F9; border: 1.5px solid #94A3B8;"></span>
+              <span>Classic Grey</span>
+            </button>
+            <label class="canvas-tone-pill tone-custom-label" title="Pick any custom background color">
+              <span class="tone-dot custom-dot" style="background: conic-gradient(from 0deg, #7C3AED, #EC4899, #3B82F6, #7C3AED);"></span>
+              <span>Custom</span>
+              <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
+            </label>
+          </div>
         </div>
       </div>
 
@@ -6064,6 +6248,53 @@
               <span>View 6: Diagonal Gradient</span>
             </button>
           </div>
+        <div class="canvas-tone-bar" id="canvasToneBar2">
+          <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+            <span>Canvas Tint:</span>
+          </div>
+          <div class="canvas-tone-pills">
+            <button type="button" class="canvas-tone-pill active" data-tone="pearl" onclick="setDashboardBg('pearl')" title="Pearl Grey (#F4F5F7) — Original View 2 Soft Pearl Grey">
+              <span class="tone-dot" style="background: #F4F5F7; border: 1.5px solid #CBD5E1;"></span>
+              <span>Pearl Grey</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="lavender" onclick="setDashboardBg('lavender')" title="Lavender Mist (#F4EFFB) — Balanced modern light purple">
+              <span class="tone-dot" style="background: #F4EFFB; border: 1.5px solid #C4B5FD;"></span>
+              <span>Lavender</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="whisper" onclick="setDashboardBg('whisper')" title="Soft Lilac Whisper (#F8F6FD) — Delicate & airy">
+              <span class="tone-dot" style="background: #F8F6FD; border: 1.5px solid #DDD6FE;"></span>
+              <span>Lilac</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="aurora" onclick="setDashboardBg('aurora')" title="Aurora Mesh Glow — Atmospheric radiant purple gradient">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #EDE4FF, #F4EEFB); border: 1.5px solid #A78BFA;"></span>
+              <span>Aurora Glow</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="diagonal" onclick="setDashboardBg('diagonal')" title="Diagonal Gradient — 135° soft violet gradient wash">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #F3EBFC, #EBE1FA); border: 1.5px solid #8B5CF6;"></span>
+              <span>Diagonal</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="iris" onclick="setDashboardBg('iris')" title="Royal Iris (#EFE6F8) — High-contrast light purple">
+              <span class="tone-dot" style="background: #EFE6F8; border: 1.5px solid #8B5CF6;"></span>
+              <span>Iris</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="slate" onclick="setDashboardBg('slate')" title="Cool Dew (#F1EDF9) — Muted slate-lilac">
+              <span class="tone-dot" style="background: #F1EDF9; border: 1.5px solid #CBD5E1;"></span>
+              <span>Cool Dew</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="classic" onclick="setDashboardBg('classic')" title="Classic Grey (#F4F6F9) — Standard SaaS grey">
+              <span class="tone-dot" style="background: #F4F6F9; border: 1.5px solid #94A3B8;"></span>
+              <span>Classic Grey</span>
+            </button>
+            <label class="canvas-tone-pill tone-custom-label" title="Pick any custom background color">
+              <span class="tone-dot custom-dot" style="background: conic-gradient(from 0deg, #7C3AED, #EC4899, #3B82F6, #7C3AED);"></span>
+              <span>Custom</span>
+              <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
+            </label>
+          </div>
+        </div>
         </div>
 
         <!-- Subheader Action Bar (Breadcrumb & Customize Widgets - Image 2) -->
@@ -7045,6 +7276,53 @@
           <button class="screen-tab" id="tab3-view-6" onclick="switchDashboardView(6)" title="View 6: Diagonal Gradient">
             <span>View 6: Diagonal Gradient</span>
           </button>
+        </div>
+        <div class="canvas-tone-bar" id="canvasToneBar3">
+          <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+            <span>Canvas Tint:</span>
+          </div>
+          <div class="canvas-tone-pills">
+            <button type="button" class="canvas-tone-pill" data-tone="pearl" onclick="setDashboardBg('pearl')" title="Pearl Grey (#F4F5F7) — Original View 2 Soft Pearl Grey">
+              <span class="tone-dot" style="background: #F4F5F7; border: 1.5px solid #CBD5E1;"></span>
+              <span>Pearl Grey</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="lavender" onclick="setDashboardBg('lavender')" title="Lavender Mist (#F4EFFB) — Balanced modern light purple">
+              <span class="tone-dot" style="background: #F4EFFB; border: 1.5px solid #C4B5FD;"></span>
+              <span>Lavender</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="whisper" onclick="setDashboardBg('whisper')" title="Soft Lilac Whisper (#F8F6FD) — Delicate & airy">
+              <span class="tone-dot" style="background: #F8F6FD; border: 1.5px solid #DDD6FE;"></span>
+              <span>Lilac</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="aurora" onclick="setDashboardBg('aurora')" title="Aurora Mesh Glow — Atmospheric radiant purple gradient">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #EDE4FF, #F4EEFB); border: 1.5px solid #A78BFA;"></span>
+              <span>Aurora Glow</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="diagonal" onclick="setDashboardBg('diagonal')" title="Diagonal Gradient — 135° soft violet gradient wash">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #F3EBFC, #EBE1FA); border: 1.5px solid #8B5CF6;"></span>
+              <span>Diagonal</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="iris" onclick="setDashboardBg('iris')" title="Royal Iris (#EFE6F8) — High-contrast light purple">
+              <span class="tone-dot" style="background: #EFE6F8; border: 1.5px solid #8B5CF6;"></span>
+              <span>Iris</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="slate" onclick="setDashboardBg('slate')" title="Cool Dew (#F1EDF9) — Muted slate-lilac">
+              <span class="tone-dot" style="background: #F1EDF9; border: 1.5px solid #CBD5E1;"></span>
+              <span>Cool Dew</span>
+            </button>
+            <button type="button" class="canvas-tone-pill active" data-tone="classic" onclick="setDashboardBg('classic')" title="Classic Grey (#F4F6F9) — Standard SaaS grey">
+              <span class="tone-dot" style="background: #F4F6F9; border: 1.5px solid #94A3B8;"></span>
+              <span>Classic Grey</span>
+            </button>
+            <label class="canvas-tone-pill tone-custom-label" title="Pick any custom background color">
+              <span class="tone-dot custom-dot" style="background: conic-gradient(from 0deg, #7C3AED, #EC4899, #3B82F6, #7C3AED);"></span>
+              <span>Custom</span>
+              <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
+            </label>
+          </div>
         </div>
       </div>
 
@@ -8055,6 +8333,53 @@
             <span>View 6: Diagonal Gradient</span>
           </button>
         </div>
+        <div class="canvas-tone-bar" id="canvasToneBar4">
+          <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+            <span>Canvas Tint:</span>
+          </div>
+          <div class="canvas-tone-pills">
+            <button type="button" class="canvas-tone-pill" data-tone="pearl" onclick="setDashboardBg('pearl')" title="Pearl Grey (#F4F5F7) — Original View 2 Soft Pearl Grey">
+              <span class="tone-dot" style="background: #F4F5F7; border: 1.5px solid #CBD5E1;"></span>
+              <span>Pearl Grey</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="lavender" onclick="setDashboardBg('lavender')" title="Lavender Mist (#F4EFFB) — Balanced modern light purple">
+              <span class="tone-dot" style="background: #F4EFFB; border: 1.5px solid #C4B5FD;"></span>
+              <span>Lavender</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="whisper" onclick="setDashboardBg('whisper')" title="Soft Lilac Whisper (#F8F6FD) — Delicate & airy">
+              <span class="tone-dot" style="background: #F8F6FD; border: 1.5px solid #DDD6FE;"></span>
+              <span>Lilac</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="aurora" onclick="setDashboardBg('aurora')" title="Aurora Mesh Glow — Atmospheric radiant purple gradient">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #EDE4FF, #F4EEFB); border: 1.5px solid #A78BFA;"></span>
+              <span>Aurora Glow</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="diagonal" onclick="setDashboardBg('diagonal')" title="Diagonal Gradient — 135° soft violet gradient wash">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #F3EBFC, #EBE1FA); border: 1.5px solid #8B5CF6;"></span>
+              <span>Diagonal</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="iris" onclick="setDashboardBg('iris')" title="Royal Iris (#EFE6F8) — High-contrast light purple">
+              <span class="tone-dot" style="background: #EFE6F8; border: 1.5px solid #8B5CF6;"></span>
+              <span>Iris</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="slate" onclick="setDashboardBg('slate')" title="Cool Dew (#F1EDF9) — Muted slate-lilac">
+              <span class="tone-dot" style="background: #F1EDF9; border: 1.5px solid #CBD5E1;"></span>
+              <span>Cool Dew</span>
+            </button>
+            <button type="button" class="canvas-tone-pill active" data-tone="classic" onclick="setDashboardBg('classic')" title="Classic Grey (#F4F6F9) — Standard SaaS grey">
+              <span class="tone-dot" style="background: #F4F6F9; border: 1.5px solid #94A3B8;"></span>
+              <span>Classic Grey</span>
+            </button>
+            <label class="canvas-tone-pill tone-custom-label" title="Pick any custom background color">
+              <span class="tone-dot custom-dot" style="background: conic-gradient(from 0deg, #7C3AED, #EC4899, #3B82F6, #7C3AED);"></span>
+              <span>Custom</span>
+              <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
+            </label>
+          </div>
+        </div>
       </div>
 
       <!-- Subheader Action Bar (Breadcrumb & Customize Widgets - Image 2) -->
@@ -9039,6 +9364,53 @@
               <span>View 6: Diagonal Gradient</span>
             </button>
           </div>
+        <div class="canvas-tone-bar" id="canvasToneBar5">
+          <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+            <span>Canvas Tint:</span>
+          </div>
+          <div class="canvas-tone-pills">
+            <button type="button" class="canvas-tone-pill" data-tone="pearl" onclick="setDashboardBg('pearl')" title="Pearl Grey (#F4F5F7) — Original View 2 Soft Pearl Grey">
+              <span class="tone-dot" style="background: #F4F5F7; border: 1.5px solid #CBD5E1;"></span>
+              <span>Pearl Grey</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="lavender" onclick="setDashboardBg('lavender')" title="Lavender Mist (#F4EFFB) — Balanced modern light purple">
+              <span class="tone-dot" style="background: #F4EFFB; border: 1.5px solid #C4B5FD;"></span>
+              <span>Lavender</span>
+            </button>
+            <button type="button" class="canvas-tone-pill active" data-tone="whisper" onclick="setDashboardBg('whisper')" title="Soft Lilac Whisper (#F8F6FD) — Delicate & airy">
+              <span class="tone-dot" style="background: #F8F6FD; border: 1.5px solid #DDD6FE;"></span>
+              <span>Lilac</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="aurora" onclick="setDashboardBg('aurora')" title="Aurora Mesh Glow — Atmospheric radiant purple gradient">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #EDE4FF, #F4EEFB); border: 1.5px solid #A78BFA;"></span>
+              <span>Aurora Glow</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="diagonal" onclick="setDashboardBg('diagonal')" title="Diagonal Gradient — 135° soft violet gradient wash">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #F3EBFC, #EBE1FA); border: 1.5px solid #8B5CF6;"></span>
+              <span>Diagonal</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="iris" onclick="setDashboardBg('iris')" title="Royal Iris (#EFE6F8) — High-contrast light purple">
+              <span class="tone-dot" style="background: #EFE6F8; border: 1.5px solid #8B5CF6;"></span>
+              <span>Iris</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="slate" onclick="setDashboardBg('slate')" title="Cool Dew (#F1EDF9) — Muted slate-lilac">
+              <span class="tone-dot" style="background: #F1EDF9; border: 1.5px solid #CBD5E1;"></span>
+              <span>Cool Dew</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="classic" onclick="setDashboardBg('classic')" title="Classic Grey (#F4F6F9) — Standard SaaS grey">
+              <span class="tone-dot" style="background: #F4F6F9; border: 1.5px solid #94A3B8;"></span>
+              <span>Classic Grey</span>
+            </button>
+            <label class="canvas-tone-pill tone-custom-label" title="Pick any custom background color">
+              <span class="tone-dot custom-dot" style="background: conic-gradient(from 0deg, #7C3AED, #EC4899, #3B82F6, #7C3AED);"></span>
+              <span>Custom</span>
+              <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
+            </label>
+          </div>
+        </div>
         </div>
 
         <!-- Subheader Action Bar (Breadcrumb & Customize Widgets - Image 2) -->
@@ -9996,6 +10368,53 @@
               <span>View 6: Diagonal Gradient</span>
             </button>
           </div>
+        <div class="canvas-tone-bar" id="canvasToneBar6">
+          <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+            <span>Canvas Tint:</span>
+          </div>
+          <div class="canvas-tone-pills">
+            <button type="button" class="canvas-tone-pill" data-tone="pearl" onclick="setDashboardBg('pearl')" title="Pearl Grey (#F4F5F7) — Original View 2 Soft Pearl Grey">
+              <span class="tone-dot" style="background: #F4F5F7; border: 1.5px solid #CBD5E1;"></span>
+              <span>Pearl Grey</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="lavender" onclick="setDashboardBg('lavender')" title="Lavender Mist (#F4EFFB) — Balanced modern light purple">
+              <span class="tone-dot" style="background: #F4EFFB; border: 1.5px solid #C4B5FD;"></span>
+              <span>Lavender</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="whisper" onclick="setDashboardBg('whisper')" title="Soft Lilac Whisper (#F8F6FD) — Delicate & airy">
+              <span class="tone-dot" style="background: #F8F6FD; border: 1.5px solid #DDD6FE;"></span>
+              <span>Lilac</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="aurora" onclick="setDashboardBg('aurora')" title="Aurora Mesh Glow — Atmospheric radiant purple gradient">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #EDE4FF, #F4EEFB); border: 1.5px solid #A78BFA;"></span>
+              <span>Aurora Glow</span>
+            </button>
+            <button type="button" class="canvas-tone-pill active" data-tone="diagonal" onclick="setDashboardBg('diagonal')" title="Diagonal Gradient — 135° soft violet gradient wash">
+              <span class="tone-dot" style="background: linear-gradient(135deg, #F3EBFC, #EBE1FA); border: 1.5px solid #8B5CF6;"></span>
+              <span>Diagonal</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="iris" onclick="setDashboardBg('iris')" title="Royal Iris (#EFE6F8) — High-contrast light purple">
+              <span class="tone-dot" style="background: #EFE6F8; border: 1.5px solid #8B5CF6;"></span>
+              <span>Iris</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="slate" onclick="setDashboardBg('slate')" title="Cool Dew (#F1EDF9) — Muted slate-lilac">
+              <span class="tone-dot" style="background: #F1EDF9; border: 1.5px solid #CBD5E1;"></span>
+              <span>Cool Dew</span>
+            </button>
+            <button type="button" class="canvas-tone-pill" data-tone="classic" onclick="setDashboardBg('classic')" title="Classic Grey (#F4F6F9) — Standard SaaS grey">
+              <span class="tone-dot" style="background: #F4F6F9; border: 1.5px solid #94A3B8;"></span>
+              <span>Classic Grey</span>
+            </button>
+            <label class="canvas-tone-pill tone-custom-label" title="Pick any custom background color">
+              <span class="tone-dot custom-dot" style="background: conic-gradient(from 0deg, #7C3AED, #EC4899, #3B82F6, #7C3AED);"></span>
+              <span>Custom</span>
+              <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
+            </label>
+          </div>
+        </div>
         </div>
 
         <!-- Subheader Action Bar (Breadcrumb & Customize Widgets - Image 2) -->
@@ -10668,6 +11087,142 @@
   // ==========================================================================
   // MULTI-VIEW DASHBOARD SWITCHER: VIEW 1, VIEW 2, VIEW 3, AND VIEW 4
   // ==========================================================================
+  
+  // ==========================================================================
+  // CANVAS BACKGROUND TONE SWITCHER WITH CUSTOM COLOR PICKER
+  // ==========================================================================
+  const DASHBOARD_BG_PRESETS = {
+    pearl: {
+      name: 'Pearl Grey',
+      value: '#F4F5F7',
+      description: 'Original View 2 Soft Pearl Grey (#F4F5F7)'
+    },
+    lavender: {
+      name: 'Lavender Mist',
+      value: '#F4EFFB',
+      description: 'Balanced modern light purple (#F4EFFB)'
+    },
+    whisper: {
+      name: 'Lilac Whisper',
+      value: '#F8F6FD',
+      description: 'Airy and ultra-subtle soft lilac (#F8F6FD)'
+    },
+    aurora: {
+      name: 'Aurora Mesh Glow',
+      value: 'linear-gradient(135deg, #EDE4FF 0%, #F4EEFB 100%)',
+      description: 'Atmospheric radiant purple gradient'
+    },
+    diagonal: {
+      name: 'Diagonal Gradient',
+      value: 'linear-gradient(135deg, #F3EBFC 0%, #FAF7FE 50%, #EBE1FA 100%)',
+      description: '135° soft violet luxury diagonal wash'
+    },
+    iris: {
+      name: 'Royal Iris',
+      value: '#EFE6F8',
+      description: 'High-contrast light purple (#EFE6F8)'
+    },
+    slate: {
+      name: 'Cool Dew',
+      value: '#F1EDF9',
+      description: 'Muted slate-lilac (#F1EDF9)'
+    },
+    classic: {
+      name: 'Classic Grey',
+      value: '#F4F6F9',
+      description: 'Standard SaaS neutral grey (#F4F6F9)'
+    }
+  };
+
+  function setDashboardBg(toneKey, silent = false) {
+    const preset = DASHBOARD_BG_PRESETS[toneKey];
+    if (!preset) return;
+
+    // 1. Update CSS root variable
+    document.documentElement.style.setProperty('--bg-dashboard', preset.value);
+
+    // 2. Direct style updates for immediate repaint across all views
+    const targets = [
+      document.body,
+      ...document.querySelectorAll('.view2-layout, .donezo-content-area'),
+      ...document.querySelectorAll('.app-main, .dashboard-container, .dashboard-view-panel, #dashboard-view-1, #dashboard-view-2, #dashboard-view-3, #dashboard-view-4, #dashboard-view-5, #dashboard-view-6')
+    ];
+    targets.forEach(el => {
+      if (el) {
+        el.style.background = preset.value;
+        if (preset.value.includes('gradient')) {
+          el.style.backgroundAttachment = 'fixed';
+        } else {
+          el.style.backgroundAttachment = '';
+        }
+      }
+    });
+
+    // 3. Update active pill indicators across all toolbars
+    document.querySelectorAll('.canvas-tone-pill').forEach(btn => {
+      const isMatch = btn.getAttribute('data-tone') === toneKey;
+      btn.classList.toggle('active', isMatch);
+    });
+    document.querySelectorAll('.tone-custom-label').forEach(lbl => {
+      lbl.classList.remove('active');
+    });
+
+    // 4. Reset custom picker indicators
+    document.querySelectorAll('.custom-dot').forEach(dot => {
+      dot.style.background = 'conic-gradient(from 0deg, #7C3AED, #EC4899, #3B82F6, #7C3AED)';
+    });
+
+    // 5. Persist preference
+    localStorage.setItem('hirerkey_dashboard_bg_tone', toneKey);
+    localStorage.removeItem('hirerkey_dashboard_bg_custom');
+
+    if (!silent) {
+      showToast(`Canvas tint set to: ${preset.name}`);
+    }
+  }
+
+  function setCustomDashboardBg(hexColor, silent = false) {
+    if (!hexColor) return;
+
+    // 1. Update CSS root variable
+    document.documentElement.style.setProperty('--bg-dashboard', hexColor);
+
+    // 2. Direct style updates
+    const targets = [
+      document.body,
+      ...document.querySelectorAll('.view2-layout, .donezo-content-area'),
+      ...document.querySelectorAll('.app-main, .dashboard-container, .dashboard-view-panel, #dashboard-view-1, #dashboard-view-2, #dashboard-view-3, #dashboard-view-4, #dashboard-view-5, #dashboard-view-6')
+    ];
+    targets.forEach(el => {
+      if (el) {
+        el.style.background = hexColor;
+        el.style.backgroundAttachment = '';
+      }
+    });
+
+    // 3. Update active states
+    document.querySelectorAll('.canvas-tone-pill').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.querySelectorAll('.tone-custom-label').forEach(lbl => {
+      lbl.classList.add('active');
+    });
+    document.querySelectorAll('.custom-dot').forEach(dot => {
+      dot.style.background = hexColor;
+    });
+    document.querySelectorAll('.customColorPicker').forEach(picker => {
+      picker.value = hexColor;
+    });
+
+    // 4. Persist custom color
+    localStorage.setItem('hirerkey_dashboard_bg_tone', 'custom');
+    localStorage.setItem('hirerkey_dashboard_bg_custom', hexColor);
+
+    if (!silent) {
+      showToast(`Custom canvas tint: ${hexColor}`);
+    }
+  }
+
   function switchDashboardView(viewNumber) {
     const v1 = document.getElementById('dashboard-view-1');
     const v2 = document.getElementById('dashboard-view-2');
@@ -12847,6 +13402,15 @@
   // Initialize active view from URL search param (?view=3), hash (#view3), or localStorage
   window.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('hirerkey_dashboard_bg_tone');
+    // Restore saved canvas background tone if user selected one
+    const savedTone = localStorage.getItem('hirerkey_dashboard_bg_tone');
+    const savedCustom = localStorage.getItem('hirerkey_dashboard_bg_custom');
+    if (savedTone === 'custom' && savedCustom) {
+      setCustomDashboardBg(savedCustom, true);
+    } else if (savedTone && DASHBOARD_BG_PRESETS[savedTone]) {
+      setDashboardBg(savedTone, true);
+    }
+
     const params = new URLSearchParams(window.location.search);
     const hash = window.location.hash;
     const savedView = localStorage.getItem('hirerkey_dashboard_active_view');
