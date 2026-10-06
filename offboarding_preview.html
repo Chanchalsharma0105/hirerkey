@@ -1370,60 +1370,17 @@
       color: #7C3AED;
     }
 
-    /* Digital Smart Chip & NFC Contactless Icon */
-    .emp-card-chip-nfc {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .emp-card-smartchip {
-      width: 22px;
-      height: 16px;
-      border-radius: 3.5px;
-      background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 55%, #D97706 100%);
-      border: 1px solid #D97706;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(0, 0, 0, 0.08);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .emp-card-smartchip::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 1px;
-      background: rgba(180, 83, 9, 0.45);
-      top: 50%;
-      left: 0;
-    }
-
-    .emp-card-smartchip::after {
-      content: '';
-      position: absolute;
-      height: 100%;
-      width: 1px;
-      background: rgba(180, 83, 9, 0.45);
-      left: 50%;
-      top: 0;
-    }
-
-    .emp-card-chip-core {
-      width: 7px;
-      height: 7px;
-      border-radius: 1.5px;
-      background: #F59E0B;
-      border: 1px solid #B45309;
-      z-index: 1;
-    }
-
-    .emp-card-nfc-icon {
-      color: #94A3B8;
-      display: flex;
-      align-items: center;
+    .emp-card-staff-badge {
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #7C3AED;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      padding: 2px 7px;
+      border-radius: 999px;
+      line-height: 1.2;
     }
 
     /* Primary Identity: Avatar + Name + Badge Code */
@@ -6439,27 +6396,15 @@
   <div class="emp-card-lanyard-notch" title="Staff Badge Lanyard Clip Slot"></div>
 
   <div class="emp-card-body">
-    <!-- Corporate Pass Header with Logo and Smart Chip / NFC -->
+    <!-- Corporate Pass Header with Logo and Staff Badge -->
     <div class="emp-card-pass-header">
       <div class="emp-card-corp-brand">
         <div class="emp-card-corp-logo">N</div>
         <div class="emp-card-corp-title">
           <span class="emp-card-corp-name">NOISIV CONSULTING</span>
-          <span class="emp-card-corp-type">CORPORATE STAFF PASS</span>
         </div>
       </div>
-      <div class="emp-card-chip-nfc">
-        <div class="emp-card-smartchip" title="Digital Smart Security Chip">
-          <div class="emp-card-chip-core"></div>
-        </div>
-        <div class="emp-card-nfc-icon" title="NFC Contactless Access Enabled">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-            <path d="M4 10a12 12 0 0 1 16 0"/>
-            <path d="M7 13a8 8 0 0 1 10 0"/>
-            <path d="M10 16a4 4 0 0 1 4 0"/>
-          </svg>
-        </div>
-      </div>
+      <span class="emp-card-staff-badge">STAFF PASS</span>
     </div>
 
     <!-- Primary ID Identity: Photo/Avatar + Name + Badge Pill -->

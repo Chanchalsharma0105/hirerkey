@@ -801,7 +801,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
           />
 
           <Box sx={{ p: '10px 14px 12px 14px' }}>
-            {/* Corporate Pass Header: Branding + Smart Chip / NFC */}
+            {/* Corporate Pass Header: Branding + Staff Badge */}
             <Box
               sx={{
                 display: 'flex',
@@ -841,73 +841,27 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                   >
                     NOISIV CONSULTING
                   </Typography>
-                  <Typography
-                    sx={{
-                      fontSize: '7.5px',
-                      fontWeight: 600,
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      color: '#7C3AED',
-                    }}
-                  >
-                    CORPORATE STAFF PASS
-                  </Typography>
                 </Box>
               </Box>
 
-              {/* Smart Chip & NFC */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                <Box
-                  sx={{
-                    width: 22,
-                    height: 16,
-                    borderRadius: '3.5px',
-                    background: 'linear-gradient(135deg, #FDE68A 0%, #F59E0B 55%, #D97706 100%)',
-                    border: '1px solid #D97706',
-                    boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(0, 0, 0, 0.08)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    display: 'grid',
-                    placeItems: 'center',
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      width: '100%',
-                      height: '1px',
-                      bgcolor: 'rgba(180, 83, 9, 0.45)',
-                      top: '50%',
-                      left: 0,
-                    },
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      height: '100%',
-                      width: '1px',
-                      bgcolor: 'rgba(180, 83, 9, 0.45)',
-                      left: '50%',
-                      top: 0,
-                    },
-                  }}
-                >
-                  <Box
-                    sx={{
-                      width: 7,
-                      height: 7,
-                      borderRadius: '1.5px',
-                      bgcolor: '#F59E0B',
-                      border: '1px solid #B45309',
-                      zIndex: 1,
-                    }}
-                  />
-                </Box>
-                <Box sx={{ color: '#94A3B8', display: 'flex', alignItems: 'center' }}>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-                    <path d="M4 10a12 12 0 0 1 16 0" />
-                    <path d="M7 13a8 8 0 0 1 10 0" />
-                    <path d="M10 16a4 4 0 0 1 4 0" />
-                  </svg>
-                </Box>
-              </Box>
+              <Chip
+                size="sm"
+                sx={{
+                  fontSize: '8.5px',
+                  fontWeight: 700,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  color: '#7C3AED',
+                  bgcolor: '#F5F3FF',
+                  border: '1px solid #DDD6FE',
+                  borderRadius: '999px',
+                  px: 0.8,
+                  py: 0.2,
+                  lineHeight: 1.2,
+                }}
+              >
+                STAFF PASS
+              </Chip>
             </Box>
 
             {/* Primary ID Section: Avatar + Name + Badge Code & Clearance */}
