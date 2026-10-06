@@ -2673,6 +2673,191 @@
       }
     }
 
+
+    /* ==========================================================================
+       VIEW 2 EMPTY STATE SYSTEM FOR ALL MENUS
+       ========================================================================== */
+    .view2-empty-state-container {
+      width: 100%;
+      min-height: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 0 40px 0;
+    }
+
+    .view2-empty-state-card {
+      background: #FFFFFF;
+      border: 1px solid #EEF2F6;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+      width: 100%;
+      max-width: 820px;
+      padding: 44px 36px 48px 36px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: view2EmptyFadeIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes view2EmptyFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .empty-category-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F5F3FF;
+      color: #7C3AED;
+      border: 1px solid #DDD6FE;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3.5px 12px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+
+    .empty-art-box {
+      width: 240px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .empty-art-box:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .empty-title {
+      font-size: 23px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.025em;
+      line-height: 1.3;
+      margin: 0 0 10px 0;
+      max-width: 620px;
+    }
+
+    .empty-desc {
+      font-size: 14.5px;
+      color: #64748B;
+      line-height: 1.6;
+      max-width: 580px;
+      margin: 0 auto 26px auto;
+    }
+
+    .empty-actions-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .empty-primary-btn {
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 10px;
+      border: none;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.28);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .empty-primary-btn:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.36);
+      background: linear-gradient(135deg, #6D28D9 0%, #5B21B6 100%);
+    }
+
+    .empty-primary-btn:active {
+      transform: translateY(0);
+    }
+
+    .empty-secondary-btn {
+      background: #F8FAFC;
+      color: #334155;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1px solid #CBD5E1;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .empty-secondary-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #94A3B8;
+      transform: translateY(-1px);
+    }
+
+    .empty-tip-card {
+      background: #FAF8FF;
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      padding: 12px 18px;
+      max-width: 600px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12.5px;
+      color: #5B21B6;
+      line-height: 1.45;
+      text-align: left;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.04);
+    }
+
+    .view2-back-dashboard-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      color: #7C3AED;
+      border: 1px solid #DDD6FE;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.06);
+    }
+
+    .view2-back-dashboard-btn:hover {
+      background: #F5F3FF;
+      border-color: #7C3AED;
+      transform: translateX(-1px);
+    }
+
     @media (max-width: 900px) {
       .view2-layout {
         flex-direction: column;
@@ -5838,8 +6023,17 @@
           </div>
 
           <div class="subnav-actions">
+            <!-- Back to Dashboard button (Visible when inside any inner empty state) -->
+            <button class="view2-back-dashboard-btn" id="view2BackDashboardBtn" onclick="selectDonezoNavItemByTitle('Dashboard')" style="display: none;" title="Return to Dashboard Widgets">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Back to Dashboard</span>
+            </button>
+
             <!-- 6 new widgets pill -->
-            <div class="widget-announcement-pill" onclick="openWidgetModal()">
+            <div class="widget-announcement-pill" id="view2AnnouncementPill" onclick="openWidgetModal()">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z"></path>
               </svg>
@@ -5847,13 +6041,15 @@
             </div>
 
             <!-- Customize button -->
-            <button class="customize-btn" onclick="openCustomizeModal()">
+            <button class="customize-btn" id="view2CustomizeBtn" onclick="openCustomizeModal()">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
               <span>Customize</span>
             </button>
           </div>
         </div>
 
+        <!-- Default Dashboard Canvas (Hero Greeting Banner & Widget Grid) -->
+        <div id="view2DashboardWidgets" class="view2-dashboard-widgets">
         <!-- Greeting Hero Banner (Exact match to media_1790698218525.png) -->
         <section class="hero-banner" id="heroGreetingBanner2">
           <!-- Decorative geometric stars inspired by Coursue (Image 5) -->
@@ -6161,6 +6357,10 @@
           </div>
 
         </div> <!-- /dashboard-grid -->
+        </div> <!-- /view2DashboardWidgets -->
+
+        <!-- Dedicated Empty Screen State Viewport for All Menus (Except Dashboard) -->
+        <div id="view2EmptyStateContainer" class="view2-empty-state-container" style="display: none;"></div>
 
       </div> <!-- /donezo-inner-canvas -->
 
@@ -8571,6 +8771,293 @@
     }
   }
 
+  // Complete data dictionary of empty states for all 22 menus in View 2
+  const VIEW2_EMPTY_STATES = {
+  "Analytics Hub": {
+    "category": "Intelligence",
+    "title": "Analytics Hub",
+    "headline": "No Workforce Analytics Collected Yet",
+    "subtext": "There are currently no performance metrics or attendance data gathered. When your employees begin completing appraisals, clocking attendance, and submitting pulse surveys, live metric dashboards, retention curves, and headcount intelligence will automatically populate here.",
+    "primaryCta": "+ Connect Analytics Stream",
+    "secondaryCta": "Import Historical CSV",
+    "tip": "\u2728 <strong>HyIQ Intelligence:</strong> Retention risk calculations and turnover trends will automatically update as department data flows in.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"anGradBg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <linearGradient id=\"anGradBar\" x1=\"0%\" y1=\"0%\" x2=\"0%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#8B5CF6\"/>\n      <stop offset=\"100%\" stop-color=\"#6D28D9\"/>\n    </linearGradient>\n    <linearGradient id=\"anGradLine\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\">\n      <stop offset=\"0%\" stop-color=\"#38BDF8\"/>\n      <stop offset=\"100%\" stop-color=\"#818CF8\"/>\n    </linearGradient>\n    <filter id=\"anGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"6\" flood-color=\"#7C3AED\" flood-opacity=\"0.18\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#anGradBg)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <rect x=\"30\" y=\"32\" width=\"180\" height=\"116\" rx=\"12\" fill=\"#FFFFFF\" filter=\"url(#anGlow)\"/>\n  <line x1=\"30\" y1=\"56\" x2=\"210\" y2=\"56\" stroke=\"#F1F5F9\" stroke-width=\"1\"/>\n  <circle cx=\"44\" cy=\"44\" r=\"3.5\" fill=\"#EF4444\"/>\n  <circle cx=\"55\" cy=\"44\" r=\"3.5\" fill=\"#F59E0B\"/>\n  <circle cx=\"66\" cy=\"44\" r=\"3.5\" fill=\"#10B981\"/>\n  <rect x=\"80\" y=\"40\" width=\"60\" height=\"8\" rx=\"4\" fill=\"#F1F5F9\"/>\n  <!-- Bar charts -->\n  <rect x=\"48\" y=\"105\" width=\"14\" height=\"30\" rx=\"3\" fill=\"#E2E8F0\"/>\n  <rect x=\"70\" y=\"85\" width=\"14\" height=\"50\" rx=\"3\" fill=\"#DDD6FE\"/>\n  <rect x=\"92\" y=\"95\" width=\"14\" height=\"40\" rx=\"3\" fill=\"#C4B5FD\"/>\n  <rect x=\"114\" y=\"70\" width=\"14\" height=\"65\" rx=\"3\" fill=\"#A78BFA\"/>\n  <rect x=\"136\" y=\"60\" width=\"14\" height=\"75\" rx=\"3\" fill=\"url(#anGradBar)\"/>\n  <!-- Trend line -->\n  <path d=\"M 52 108 Q 80 82 100 92 T 142 58 T 190 64\" fill=\"none\" stroke=\"url(#anGradLine)\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n  <circle cx=\"142\" cy=\"58\" r=\"4.5\" fill=\"#FFFFFF\" stroke=\"#7C3AED\" stroke-width=\"2.5\"/>\n  <circle cx=\"190\" cy=\"64\" r=\"3.5\" fill=\"#38BDF8\"/>\n  <!-- Floating Pill -->\n  <rect x=\"130\" y=\"24\" width=\"76\" height=\"22\" rx=\"11\" fill=\"#7C3AED\"/>\n  <text x=\"168\" y=\"39\" font-family=\"Inter, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">+28.4% YoY</text>\n  <!-- Sparkles -->\n  <path d=\"M 24 24 L 26 18 L 28 24 L 34 26 L 28 28 L 26 34 L 24 28 L 18 26 Z\" fill=\"#A855F7\" opacity=\"0.7\"/>\n  <path d=\"M 216 142 L 217.5 137 L 219 142 L 224 143.5 L 219 145 L 217.5 150 L 216 145 L 211 143.5 Z\" fill=\"#60A5FA\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Knowledge Hub": {
+    "category": "Intelligence",
+    "title": "Knowledge Hub",
+    "headline": "The Knowledge Base is Currently a Blank Canvas",
+    "subtext": "No company articles, standard operating procedures (SOPs), or employee handbooks have been published yet. When you write guides or upload documents, team members can search policies, answers, and department wikis right here.",
+    "primaryCta": "+ Create Knowledge Article",
+    "secondaryCta": "Browse Policy Templates",
+    "tip": "\u2728 <strong>Centralized Wiki:</strong> You can link articles directly to pre-boarding journeys or pin them to departmental workspaces.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"khBg\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#FEF3C7\" stop-opacity=\"0.6\"/>\n    </linearGradient>\n    <filter id=\"khGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"8\" flood-color=\"#7C3AED\" flood-opacity=\"0.14\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#khBg)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Open Book Base -->\n  <g filter=\"url(#khGlow)\">\n    <path d=\"M 50 120 C 75 116 105 116 120 125 C 135 116 165 116 190 120 L 190 62 C 165 58 135 58 120 66 C 105 58 75 58 50 62 Z\" fill=\"#FFFFFF\" stroke=\"#E2E8F0\" stroke-width=\"1.5\"/>\n    <path d=\"M 120 66 L 120 125\" stroke=\"#CBD5E1\" stroke-width=\"2\"/>\n    <!-- Page Lines Left -->\n    <line x1=\"62\" y1=\"74\" x2=\"108\" y2=\"74\" stroke=\"#EDE9FE\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <line x1=\"62\" y1=\"84\" x2=\"104\" y2=\"84\" stroke=\"#EDE9FE\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <line x1=\"62\" y1=\"94\" x2=\"98\" y2=\"94\" stroke=\"#EDE9FE\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <line x1=\"62\" y1=\"104\" x2=\"106\" y2=\"104\" stroke=\"#EDE9FE\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <!-- Page Lines Right -->\n    <line x1=\"132\" y1=\"74\" x2=\"178\" y2=\"74\" stroke=\"#DDD6FE\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <line x1=\"132\" y1=\"84\" x2=\"172\" y2=\"84\" stroke=\"#DDD6FE\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <line x1=\"132\" y1=\"94\" x2=\"164\" y2=\"94\" stroke=\"#DDD6FE\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <line x1=\"132\" y1=\"104\" x2=\"176\" y2=\"104\" stroke=\"#DDD6FE\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <!-- Bookmark Ribbon -->\n    <path d=\"M 116 52 L 124 52 L 124 88 L 120 84 L 116 88 Z\" fill=\"#7C3AED\"/>\n  </g>\n  <!-- Floating Bulb Badge -->\n  <circle cx=\"178\" cy=\"42\" r=\"18\" fill=\"#FEF3C7\" stroke=\"#F59E0B\" stroke-width=\"1.5\"/>\n  <path d=\"M 174 46 L 182 46 M 175 49 L 181 49 M 178 35 C 174 35 171 38 171 41 C 171 43 173 44 174 45 L 182 45 C 183 44 185 43 185 41 C 185 38 182 35 178 35 Z\" stroke=\"#D97706\" stroke-width=\"1.8\" stroke-linecap=\"round\"/>\n  <!-- Sparkles -->\n  <path d=\"M 36 38 L 38 32 L 40 38 L 46 40 L 40 42 L 38 48 L 36 42 L 30 40 Z\" fill=\"#F59E0B\" opacity=\"0.8\"/>\n  <path d=\"M 198 138 L 200 133 L 202 138 L 207 140 L 202 142 L 200 147 L 198 142 L 193 140 Z\" fill=\"#7C3AED\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Orientation": {
+    "category": "Onboarding",
+    "title": "Orientation",
+    "headline": "No Orientation Journeys in Motion Yet",
+    "subtext": "There are no active orientation programs scheduled right now. When you create an orientation for your new employees, you can track their introduction milestones, mentor assignments, and hospitality training roadmaps right here.",
+    "primaryCta": "+ Create Orientation Program",
+    "secondaryCta": "Load 14-Day Starter Template",
+    "tip": "\u2728 <strong>Onboarding Success:</strong> Scheduled orientations boost employee first-month retention by over 38%.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"orGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#ECFDF5\"/>\n    </linearGradient>\n    <filter id=\"orGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#10B981\" flood-opacity=\"0.18\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#orGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Compass Outer Ring -->\n  <circle cx=\"120\" cy=\"85\" r=\"46\" fill=\"#FFFFFF\" stroke=\"#E2E8F0\" stroke-width=\"2\" filter=\"url(#orGlow)\"/>\n  <circle cx=\"120\" cy=\"85\" r=\"40\" stroke=\"#EDE9FE\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/>\n  <!-- Compass cardinal indicators -->\n  <text x=\"120\" y=\"53\" font-family=\"Inter, sans-serif\" font-size=\"9\" font-weight=\"800\" fill=\"#7C3AED\" text-anchor=\"middle\">N</text>\n  <text x=\"120\" y=\"122\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#94A3B8\" text-anchor=\"middle\">S</text>\n  <text x=\"156\" y=\"88\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#94A3B8\" text-anchor=\"middle\">E</text>\n  <text x=\"84\" y=\"88\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#94A3B8\" text-anchor=\"middle\">W</text>\n  <!-- Needles -->\n  <polygon points=\"120,56 126,85 120,81\" fill=\"#7C3AED\"/>\n  <polygon points=\"120,56 114,85 120,81\" fill=\"#9333EA\"/>\n  <polygon points=\"120,114 126,85 120,89\" fill=\"#CBD5E1\"/>\n  <polygon points=\"120,114 114,85 120,89\" fill=\"#94A3B8\"/>\n  <circle cx=\"120\" cy=\"85\" r=\"4\" fill=\"#FFFFFF\" stroke=\"#7C3AED\" stroke-width=\"2\"/>\n  <!-- Milestone Pathway -->\n  <path d=\"M 40 145 Q 80 135 120 148 T 200 138\" fill=\"none\" stroke=\"#A78BFA\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-dasharray=\"4 4\"/>\n  <circle cx=\"50\" cy=\"143\" r=\"5\" fill=\"#10B981\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n  <circle cx=\"120\" cy=\"148\" r=\"5\" fill=\"#7C3AED\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n  <circle cx=\"190\" cy=\"139\" r=\"5\" fill=\"#F59E0B\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n  <!-- Floating Waypoint Flag -->\n  <rect x=\"152\" y=\"32\" width=\"62\" height=\"22\" rx=\"11\" fill=\"#10B981\"/>\n  <text x=\"183\" y=\"47\" font-family=\"Inter, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">Day 1 Ready</text>\n  <!-- Sparkles -->\n  <path d=\"M 32 36 L 34 30 L 36 36 L 42 38 L 36 40 L 34 46 L 32 40 L 26 38 Z\" fill=\"#10B981\" opacity=\"0.8\"/>\n</svg>"
+  },
+  "Department Tour": {
+    "category": "Onboarding",
+    "title": "Department Tour",
+    "headline": "No Department Discovery Tours Configured Yet",
+    "subtext": "There are no active tours set up for departments. When you build immersive walkthroughs, new hires can explore properties, meet cross-functional teams, and learn key contact points from their very first week.",
+    "primaryCta": "+ Build Department Tour",
+    "secondaryCta": "Auto-Map From Property Units",
+    "tip": "\u2728 <strong>Operational Familiarity:</strong> Interactive department tours reduce first-month handover confusion by 45%.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"dtGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F8FAFC\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <filter id=\"dtGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.16\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#dtGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Building Silhouette -->\n  <g filter=\"url(#dtGlow)\">\n    <rect x=\"75\" y=\"44\" width=\"90\" height=\"95\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <rect x=\"85\" y=\"56\" width=\"16\" height=\"14\" rx=\"2\" fill=\"#EDE9FE\"/>\n    <rect x=\"112\" y=\"56\" width=\"16\" height=\"14\" rx=\"2\" fill=\"#EDE9FE\"/>\n    <rect x=\"139\" y=\"56\" width=\"16\" height=\"14\" rx=\"2\" fill=\"#EDE9FE\"/>\n    <rect x=\"85\" y=\"78\" width=\"16\" height=\"14\" rx=\"2\" fill=\"#EDE9FE\"/>\n    <rect x=\"112\" y=\"78\" width=\"16\" height=\"14\" rx=\"2\" fill=\"#EDE9FE\"/>\n    <rect x=\"139\" y=\"78\" width=\"16\" height=\"14\" rx=\"2\" fill=\"#EDE9FE\"/>\n    <!-- Entrance Archway -->\n    <path d=\"M 108 139 L 108 116 C 108 110 132 110 132 116 L 132 139 Z\" fill=\"#7C3AED\"/>\n  </g>\n  <!-- Floating Department Pins -->\n  <g>\n    <circle cx=\"48\" cy=\"62\" r=\"16\" fill=\"#FFFFFF\" stroke=\"#7C3AED\" stroke-width=\"2\"/>\n    <text x=\"48\" y=\"66\" font-family=\"Inter, sans-serif\" font-size=\"9\" font-weight=\"800\" fill=\"#7C3AED\" text-anchor=\"middle\">FO</text>\n    <line x1=\"64\" y1=\"68\" x2=\"75\" y2=\"76\" stroke=\"#A78BFA\" stroke-width=\"1.5\" stroke-dasharray=\"2 2\"/>\n  </g>\n  <g>\n    <circle cx=\"192\" cy=\"62\" r=\"16\" fill=\"#FFFFFF\" stroke=\"#10B981\" stroke-width=\"2\"/>\n    <text x=\"192\" y=\"66\" font-family=\"Inter, sans-serif\" font-size=\"9\" font-weight=\"800\" fill=\"#10B981\" text-anchor=\"middle\">HK</text>\n    <line x1=\"176\" y1=\"68\" x2=\"165\" y2=\"76\" stroke=\"#6EE7B7\" stroke-width=\"1.5\" stroke-dasharray=\"2 2\"/>\n  </g>\n  <g>\n    <circle cx=\"180\" cy=\"125\" r=\"14\" fill=\"#FFFFFF\" stroke=\"#F59E0B\" stroke-width=\"1.8\"/>\n    <text x=\"180\" y=\"129\" font-family=\"Inter, sans-serif\" font-size=\"8.5\" font-weight=\"800\" fill=\"#F59E0B\" text-anchor=\"middle\">F&amp;B</text>\n  </g>\n  <!-- Sparkles -->\n  <path d=\"M 32 125 L 34 119 L 36 125 L 42 127 L 36 129 L 34 135 L 32 129 L 26 127 Z\" fill=\"#7C3AED\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Pre Boarding": {
+    "category": "All Employees",
+    "title": "Pre Boarding",
+    "headline": "No Candidates in the Pre-boarding Pipeline",
+    "subtext": "There are no candidates currently undergoing pre-boarding. When candidate offers are accepted, initiate digital welcome kits, request mandatory KYC credentials, and track document readiness before their Day 1.",
+    "primaryCta": "+ Add Pre-boarding Candidate",
+    "secondaryCta": "Configure Welcome Kit",
+    "tip": "\u2728 <strong>Fast Track KYC:</strong> Automated reminders ensure 98% of statutory documents arrive before Day 1.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"pbGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#E0F2FE\"/>\n    </linearGradient>\n    <filter id=\"pbGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#38BDF8\" flood-opacity=\"0.18\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#pbGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Welcome Kit Box -->\n  <g filter=\"url(#pbGlow)\">\n    <rect x=\"70\" y=\"55\" width=\"100\" height=\"80\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <rect x=\"65\" y=\"48\" width=\"110\" height=\"18\" rx=\"4\" fill=\"#7C3AED\"/>\n    <!-- Ribbon Vertical -->\n    <rect x=\"114\" y=\"48\" width=\"12\" height=\"87\" fill=\"#F59E0B\"/>\n    <!-- Ribbon Bow -->\n    <path d=\"M 120 48 C 112 36 98 42 114 48 C 98 54 112 60 120 48 Z\" fill=\"#F59E0B\"/>\n    <path d=\"M 120 48 C 128 36 142 42 126 48 C 142 54 128 60 120 48 Z\" fill=\"#F59E0B\"/>\n  </g>\n  <!-- Checklist Tablet Behind -->\n  <rect x=\"36\" y=\"70\" width=\"46\" height=\"58\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#E2E8F0\" stroke-width=\"1.2\"/>\n  <circle cx=\"48\" cy=\"82\" r=\"3\" fill=\"#10B981\"/>\n  <line x1=\"56\" y1=\"82\" x2=\"74\" y2=\"82\" stroke=\"#CBD5E1\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n  <circle cx=\"48\" cy=\"94\" r=\"3\" fill=\"#10B981\"/>\n  <line x1=\"56\" y1=\"94\" x2=\"70\" y2=\"94\" stroke=\"#CBD5E1\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n  <circle cx=\"48\" cy=\"106\" r=\"3\" fill=\"#CBD5E1\"/>\n  <line x1=\"56\" y1=\"106\" x2=\"68\" y2=\"106\" stroke=\"#E2E8F0\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n  <!-- Floating Day Pill -->\n  <rect x=\"145\" y=\"28\" width=\"68\" height=\"22\" rx=\"11\" fill=\"#38BDF8\"/>\n  <text x=\"179\" y=\"43\" font-family=\"Inter, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">Day -3 Ready</text>\n  <!-- Sparkles -->\n  <path d=\"M 28 38 L 30 32 L 32 38 L 38 40 L 32 42 L 30 48 L 28 42 L 22 40 Z\" fill=\"#7C3AED\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Active": {
+    "category": "All Employees",
+    "title": "Active Staff",
+    "headline": "No Active Team Members Found",
+    "subtext": "There are no active staff records loaded in the system yet. When you onboard new employees or import your department roster, complete employee profiles, seat codes, and work statuses will display here.",
+    "primaryCta": "+ Add New Employee",
+    "secondaryCta": "Bulk Import CSV",
+    "tip": "\u2728 <strong>Directory Sync:</strong> Active staff directories sync automatically with shift rosters, attendance logs, and org charts.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"actGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#ECFDF5\"/>\n    </linearGradient>\n    <filter id=\"actGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.15\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#actGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Card Stack Left -->\n  <rect x=\"38\" y=\"58\" width=\"64\" height=\"82\" rx=\"8\" fill=\"#F8FAFC\" stroke=\"#E2E8F0\" stroke-width=\"1.2\" transform=\"rotate(-6 38 58)\"/>\n  <!-- Card Stack Right -->\n  <rect x=\"140\" y=\"52\" width=\"64\" height=\"82\" rx=\"8\" fill=\"#F8FAFC\" stroke=\"#E2E8F0\" stroke-width=\"1.2\" transform=\"rotate(6 140 52)\"/>\n  <!-- Center Main ID Card -->\n  <g filter=\"url(#actGlow)\">\n    <rect x=\"80\" y=\"42\" width=\"80\" height=\"104\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <!-- Card Lanyard Notch -->\n    <rect x=\"110\" y=\"47\" width=\"20\" height=\"4\" rx=\"2\" fill=\"#E2E8F0\"/>\n    <!-- Avatar Circle -->\n    <circle cx=\"120\" cy=\"74\" r=\"16\" fill=\"#DDD6FE\"/>\n    <circle cx=\"120\" cy=\"70\" r=\"6\" fill=\"#7C3AED\"/>\n    <path d=\"M 110 85 C 110 79 130 79 130 85 Z\" fill=\"#7C3AED\"/>\n    <!-- Active Status Beacon -->\n    <circle cx=\"132\" cy=\"85\" r=\"4\" fill=\"#10B981\" stroke=\"#FFFFFF\" stroke-width=\"1.5\"/>\n    <!-- Text Lines -->\n    <rect x=\"94\" y=\"98\" width=\"52\" height=\"6\" rx=\"3\" fill=\"#0F172A\"/>\n    <rect x=\"100\" y=\"108\" width=\"40\" height=\"5\" rx=\"2.5\" fill=\"#94A3B8\"/>\n    <!-- Seat Pill -->\n    <rect x=\"98\" y=\"122\" width=\"44\" height=\"14\" rx=\"7\" fill=\"#F5F3FF\"/>\n    <text x=\"120\" y=\"132\" font-family=\"monospace\" font-size=\"8\" font-weight=\"700\" fill=\"#7C3AED\" text-anchor=\"middle\">EMP-001</text>\n  </g>\n  <!-- Sparkles -->\n  <path d=\"M 28 34 L 30 28 L 32 34 L 38 36 L 32 38 L 30 44 L 28 38 L 22 36 Z\" fill=\"#10B981\" opacity=\"0.8\"/>\n  <path d=\"M 210 134 L 211.5 129 L 213 134 L 218 135.5 L 213 137 L 211.5 142 L 210 137 L 205 135.5 Z\" fill=\"#7C3AED\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Exit": {
+    "category": "All Employees",
+    "title": "Exit / Offboarding",
+    "headline": "No Active Offboarding Cases in Progress",
+    "subtext": "There are no pending leaver or departure cases right now. When an employee tenders resignation or offboarding is initiated, track notice countdowns, asset handovers, departmental clearance, and final settlements here.",
+    "primaryCta": "+ Start Offboarding Case",
+    "secondaryCta": "Review Offboarding Policy",
+    "tip": "\u2728 <strong>Smooth Exits:</strong> Multi-departmental clearances ensure 100% asset recovery and compliance with statutory UAE labor laws.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"exGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F8FAFC\"/>\n      <stop offset=\"100%\" stop-color=\"#FEE2E2\" stop-opacity=\"0.4\"/>\n    </linearGradient>\n    <filter id=\"exGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.14\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#exGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Exit Dossier Binder -->\n  <g filter=\"url(#exGlow)\">\n    <rect x=\"65\" y=\"44\" width=\"110\" height=\"96\" rx=\"8\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <path d=\"M 65 44 L 105 44 L 115 56 L 175 56 L 175 140 L 65 140 Z\" fill=\"#FAF5FF\" stroke=\"#DDD6FE\" stroke-width=\"1.2\"/>\n    <!-- Checklist Rows with Green Checks -->\n    <rect x=\"80\" y=\"68\" width=\"80\" height=\"12\" rx=\"3\" fill=\"#F1F5F9\"/>\n    <circle cx=\"86\" cy=\"74\" r=\"3.5\" fill=\"#10B981\"/>\n    <text x=\"122\" y=\"77\" font-family=\"Inter, sans-serif\" font-size=\"7.5\" font-weight=\"600\" fill=\"#475569\" text-anchor=\"middle\">IT System Access Terminated</text>\n    \n    <rect x=\"80\" y=\"86\" width=\"80\" height=\"12\" rx=\"3\" fill=\"#F1F5F9\"/>\n    <circle cx=\"86\" cy=\"92\" r=\"3.5\" fill=\"#10B981\"/>\n    <text x=\"122\" y=\"95\" font-family=\"Inter, sans-serif\" font-size=\"7.5\" font-weight=\"600\" fill=\"#475569\" text-anchor=\"middle\">Badge &amp; Keycard Recovered</text>\n\n    <rect x=\"80\" y=\"104\" width=\"80\" height=\"12\" rx=\"3\" fill=\"#F1F5F9\"/>\n    <circle cx=\"86\" cy=\"110\" r=\"3.5\" fill=\"#10B981\"/>\n    <text x=\"122\" y=\"113\" font-family=\"Inter, sans-serif\" font-size=\"7.5\" font-weight=\"600\" fill=\"#475569\" text-anchor=\"middle\">Final AED Settlement Cleared</text>\n  </g>\n  <!-- Floating Key -->\n  <circle cx=\"184\" cy=\"50\" r=\"10\" fill=\"#FEF3C7\" stroke=\"#F59E0B\" stroke-width=\"1.5\"/>\n  <rect x=\"189\" y=\"48\" width=\"14\" height=\"4\" fill=\"#F59E0B\"/>\n  <rect x=\"199\" y=\"52\" width=\"4\" height=\"4\" fill=\"#F59E0B\"/>\n  <!-- Sparkles -->\n  <path d=\"M 32 36 L 34 30 L 36 36 L 42 38 L 36 40 L 34 46 L 32 40 L 26 38 Z\" fill=\"#7C3AED\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "1-on-1 Check-ins": {
+    "category": "Performance Tools",
+    "title": "1-on-1 Check-ins",
+    "headline": "No 1-on-1 Check-ins Scheduled on the Horizon",
+    "subtext": "There are no 1-on-1 conversations booked right now. Regular touchpoints keep managers and team members aligned. When you schedule a check-in, set shared talking agendas, capture meeting notes, and assign action items here.",
+    "primaryCta": "+ Schedule 1-on-1 Session",
+    "secondaryCta": "View Agenda Templates",
+    "tip": "\u2728 <strong>Meeting Cadence:</strong> Bi-weekly 1-on-1 meetings elevate team engagement scores by up to 3.2\u00d7.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"oneGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <filter id=\"oneGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.18\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#oneGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Left Bubble (Purple) -->\n  <g filter=\"url(#oneGlow)\">\n    <path d=\"M 45 50 C 45 42 105 42 105 50 L 105 85 C 105 92 75 92 65 92 L 52 104 L 54 92 C 45 92 45 88 45 85 Z\" fill=\"#7C3AED\"/>\n    <!-- Chat Lines Inside -->\n    <line x1=\"56\" y1=\"58\" x2=\"94\" y2=\"58\" stroke=\"#DDD6FE\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n    <line x1=\"56\" y1=\"68\" x2=\"86\" y2=\"68\" stroke=\"#DDD6FE\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n    <line x1=\"56\" y1=\"78\" x2=\"76\" y2=\"78\" stroke=\"#DDD6FE\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n  </g>\n  <!-- Right Bubble (White) -->\n  <g filter=\"url(#oneGlow)\">\n    <path d=\"M 195 75 C 195 67 135 67 135 75 L 135 110 C 135 117 165 117 175 117 L 188 129 L 186 117 C 195 117 195 113 195 110 Z\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <line x1=\"146\" y1=\"83\" x2=\"184\" y2=\"83\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n    <line x1=\"146\" y1=\"93\" x2=\"176\" y2=\"93\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n    <circle cx=\"152\" cy=\"105\" r=\"3\" fill=\"#10B981\"/>\n    <text x=\"168\" y=\"108\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#10B981\">Agreed</text>\n  </g>\n  <!-- Calendar Floating Pill -->\n  <rect x=\"94\" y=\"24\" width=\"52\" height=\"20\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#E2E8F0\" stroke-width=\"1.2\"/>\n  <text x=\"120\" y=\"38\" font-family=\"Inter, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#64748B\" text-anchor=\"middle\">10:00 AM</text>\n  <!-- Sparkles -->\n  <path d=\"M 28 32 L 30 26 L 32 32 L 38 34 L 32 36 L 30 42 L 28 36 L 22 34 Z\" fill=\"#7C3AED\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Create Appraisals": {
+    "category": "Performance Tools",
+    "title": "Create Appraisals",
+    "headline": "No Performance Review Cycles Active",
+    "subtext": "There are currently no performance appraisal cycles open. When you configure and launch an evaluation cycle, define review deadlines, select rating rubrics, and assign self & manager evaluation workflows right here.",
+    "primaryCta": "+ Launch Appraisal Cycle",
+    "secondaryCta": "Browse 360\u00b0 Rubrics",
+    "tip": "\u2728 <strong>HyIQ Rubrics:</strong> HyIQ AI can recommend hospitality role competencies tailored to Front Office and F&B staff.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"apGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#FEF3C7\" stop-opacity=\"0.6\"/>\n    </linearGradient>\n    <filter id=\"apGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"6\" stdDeviation=\"8\" flood-color=\"#F59E0B\" flood-opacity=\"0.22\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#apGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Target Center Medal -->\n  <g filter=\"url(#apGlow)\">\n    <circle cx=\"120\" cy=\"84\" r=\"42\" fill=\"#FFFFFF\" stroke=\"#F59E0B\" stroke-width=\"3\"/>\n    <circle cx=\"120\" cy=\"84\" r=\"32\" fill=\"#FEF3C7\"/>\n    <!-- 5-Point Star -->\n    <polygon points=\"120,62 125,76 139,76 128,85 132,99 120,90 108,99 112,85 101,76 115,76\" fill=\"#F59E0B\"/>\n    <!-- Medal Ribbons -->\n    <path d=\"M 108 120 L 98 152 L 112 144 L 120 152 L 118 120 Z\" fill=\"#7C3AED\"/>\n    <path d=\"M 132 120 L 142 152 L 128 144 L 120 152 L 122 120 Z\" fill=\"#9333EA\"/>\n  </g>\n  <!-- Mini Appraisal Sheet Left -->\n  <rect x=\"36\" y=\"55\" width=\"46\" height=\"60\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#E2E8F0\" stroke-width=\"1.2\"/>\n  <line x1=\"44\" y1=\"68\" x2=\"74\" y2=\"68\" stroke=\"#DDD6FE\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n  <line x1=\"44\" y1=\"78\" x2=\"68\" y2=\"78\" stroke=\"#DDD6FE\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n  <line x1=\"44\" y1=\"88\" x2=\"72\" y2=\"88\" stroke=\"#DDD6FE\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n  <rect x=\"44\" y=\"98\" width=\"30\" height=\"7\" rx=\"3.5\" fill=\"#10B981\"/>\n  <!-- Floating Q4 Pill Right -->\n  <rect x=\"156\" y=\"44\" width=\"56\" height=\"20\" rx=\"10\" fill=\"#7C3AED\"/>\n  <text x=\"184\" y=\"58\" font-family=\"Inter, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">Q4 Cycle</text>\n  <!-- Sparkles -->\n  <path d=\"M 28 32 L 30 26 L 32 32 L 38 34 L 32 36 L 30 42 L 28 36 L 22 34 Z\" fill=\"#F59E0B\" opacity=\"0.8\"/>\n</svg>"
+  },
+  "Manager Review": {
+    "category": "Appraisal",
+    "title": "Manager Review",
+    "headline": "No Manager Evaluations Awaiting Review",
+    "subtext": "All direct report appraisals are up to date! When an active cycle requires supervisors to grade competencies, provide developmental feedback, and set goals, review queues will appear right here.",
+    "primaryCta": "+ Open Pending Evaluations",
+    "secondaryCta": "Check Appraisal Schedule",
+    "tip": "\u2728 <strong>Manager Empowerment:</strong> Supervisors can save evaluation drafts and submit scorecard ratings in batches.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"mrGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F8FAFC\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <filter id=\"mrGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.16\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#mrGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Clipboard -->\n  <g filter=\"url(#mrGlow)\">\n    <rect x=\"70\" y=\"38\" width=\"100\" height=\"114\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <!-- Top Clamp -->\n    <rect x=\"95\" y=\"30\" width=\"50\" height=\"16\" rx=\"4\" fill=\"#64748B\"/>\n    <circle cx=\"120\" cy=\"38\" r=\"3.5\" fill=\"#FFFFFF\"/>\n    <!-- Score Sliders Inside -->\n    <text x=\"82\" y=\"62\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#475569\">Leadership</text>\n    <rect x=\"82\" y=\"68\" width=\"76\" height=\"5\" rx=\"2.5\" fill=\"#E2E8F0\"/>\n    <rect x=\"82\" y=\"68\" width=\"62\" height=\"5\" rx=\"2.5\" fill=\"#7C3AED\"/>\n    \n    <text x=\"82\" y=\"86\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#475569\">Operational Impact</text>\n    <rect x=\"82\" y=\"92\" width=\"76\" height=\"5\" rx=\"2.5\" fill=\"#E2E8F0\"/>\n    <rect x=\"82\" y=\"92\" width=\"70\" height=\"5\" rx=\"2.5\" fill=\"#10B981\"/>\n\n    <text x=\"82\" y=\"110\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#475569\">Hospitality Standard</text>\n    <rect x=\"82\" y=\"116\" width=\"76\" height=\"5\" rx=\"2.5\" fill=\"#E2E8F0\"/>\n    <rect x=\"82\" y=\"116\" width=\"54\" height=\"5\" rx=\"2.5\" fill=\"#F59E0B\"/>\n\n    <!-- Sign-off Line -->\n    <line x1=\"82\" y1=\"136\" x2=\"158\" y2=\"136\" stroke=\"#CBD5E1\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/>\n  </g>\n  <!-- Floating Pen -->\n  <g transform=\"rotate(-30 185 85)\">\n    <rect x=\"178\" y=\"55\" width=\"8\" height=\"55\" rx=\"2\" fill=\"#7C3AED\"/>\n    <polygon points=\"178,110 186,110 182,122\" fill=\"#F59E0B\"/>\n    <rect x=\"176\" y=\"65\" width=\"12\" height=\"6\" rx=\"1\" fill=\"#FEF3C7\"/>\n  </g>\n</svg>"
+  },
+  "Side-by-Side Review": {
+    "category": "Appraisal",
+    "title": "Side-by-Side Review",
+    "headline": "No Side-by-Side Comparisons Queued",
+    "subtext": "There are no review calibrations in queue. When appraisals conclude, compare self-evaluations against supervisor ratings side-by-side to eliminate rating bias and calibrate score distributions fairly.",
+    "primaryCta": "+ Start Calibration Session",
+    "secondaryCta": "Select Department Cohort",
+    "tip": "\u2728 <strong>Fair Calibration:</strong> Side-by-side reviews help align rating standards across all hotel departments.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"sbGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#EFF6FF\"/>\n    </linearGradient>\n    <filter id=\"sbGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#3B82F6\" flood-opacity=\"0.16\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#sbGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Card A: Self Review -->\n  <g filter=\"url(#sbGlow)\">\n    <rect x=\"34\" y=\"44\" width=\"76\" height=\"96\" rx=\"8\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <rect x=\"42\" y=\"52\" width=\"60\" height=\"12\" rx=\"6\" fill=\"#EDE9FE\"/>\n    <text x=\"72\" y=\"61\" font-family=\"Inter, sans-serif\" font-size=\"7\" font-weight=\"700\" fill=\"#7C3AED\" text-anchor=\"middle\">Self Review</text>\n    <circle cx=\"72\" cy=\"80\" r=\"12\" fill=\"#F5F3FF\"/>\n    <text x=\"72\" y=\"84\" font-family=\"Inter, sans-serif\" font-size=\"10\" font-weight=\"800\" fill=\"#7C3AED\" text-anchor=\"middle\">4.6</text>\n    <line x1=\"42\" y1=\"102\" x2=\"102\" y2=\"102\" stroke=\"#E2E8F0\" stroke-width=\"2\"/>\n    <line x1=\"42\" y1=\"112\" x2=\"88\" y2=\"112\" stroke=\"#E2E8F0\" stroke-width=\"2\"/>\n  </g>\n  <!-- Card B: Manager Review -->\n  <g filter=\"url(#sbGlow)\">\n    <rect x=\"130\" y=\"44\" width=\"76\" height=\"96\" rx=\"8\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <rect x=\"138\" y=\"52\" width=\"60\" height=\"12\" rx=\"6\" fill=\"#DBEAFE\"/>\n    <text x=\"168\" y=\"61\" font-family=\"Inter, sans-serif\" font-size=\"7\" font-weight=\"700\" fill=\"#2563EB\" text-anchor=\"middle\">Manager Rating</text>\n    <circle cx=\"168\" cy=\"80\" r=\"12\" fill=\"#EFF6FF\"/>\n    <text x=\"168\" y=\"84\" font-family=\"Inter, sans-serif\" font-size=\"10\" font-weight=\"800\" fill=\"#2563EB\" text-anchor=\"middle\">4.8</text>\n    <line x1=\"138\" y1=\"102\" x2=\"198\" y2=\"102\" stroke=\"#E2E8F0\" stroke-width=\"2\"/>\n    <line x1=\"138\" y1=\"112\" x2=\"184\" y2=\"112\" stroke=\"#E2E8F0\" stroke-width=\"2\"/>\n  </g>\n  <!-- Center Comparison Balance Icon -->\n  <circle cx=\"120\" cy=\"92\" r=\"14\" fill=\"#7C3AED\"/>\n  <path d=\"M 114 92 L 126 92 M 117 88 L 114 92 L 117 96 M 123 88 L 126 92 L 123 96\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n</svg>"
+  },
+  "HR Final Review": {
+    "category": "Appraisal",
+    "title": "HR Final Review",
+    "headline": "No HR Final Approvals or Dossiers Pending",
+    "subtext": "Your HR sign-off queue is completely clear. Once managers finalize departmental appraisals, employee dossiers, increment proposals, and promotion recommendations will arrive here for final administrative sign-off.",
+    "primaryCta": "+ Review Completed Cycles",
+    "secondaryCta": "Export Summary Dossier",
+    "tip": "\u2728 <strong>Executive Audit:</strong> Approved reviews automatically feed into payroll compensation and bonus calculations.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"hrGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#FEE2E2\" stop-opacity=\"0.4\"/>\n    </linearGradient>\n    <filter id=\"hrGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.18\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#hrGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- File Dossier Folder -->\n  <g filter=\"url(#hrGlow)\">\n    <rect x=\"65\" y=\"44\" width=\"110\" height=\"100\" rx=\"8\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <path d=\"M 65 44 L 115 44 L 125 56 L 175 56 L 175 144 L 65 144 Z\" fill=\"#F8FAFC\" stroke=\"#E2E8F0\" stroke-width=\"1.2\"/>\n    <line x1=\"80\" y1=\"72\" x2=\"155\" y2=\"72\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n    <line x1=\"80\" y1=\"84\" x2=\"145\" y2=\"84\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n    <line x1=\"80\" y1=\"96\" x2=\"135\" y2=\"96\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n    <!-- Wax Seal Badge -->\n    <circle cx=\"120\" cy=\"120\" r=\"18\" fill=\"#DC2626\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n    <circle cx=\"120\" cy=\"120\" r=\"14\" stroke=\"#FECACA\" stroke-width=\"1\" stroke-dasharray=\"2 2\"/>\n    <path d=\"M 115 120 L 118 123 L 126 115\" stroke=\"#FFFFFF\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  </g>\n  <!-- Floating Star Badge -->\n  <rect x=\"146\" y=\"26\" width=\"66\" height=\"22\" rx=\"11\" fill=\"#7C3AED\"/>\n  <text x=\"179\" y=\"41\" font-family=\"Inter, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">HR Sign-off</text>\n  <!-- Sparkles -->\n  <path d=\"M 28 34 L 30 28 L 32 34 L 38 36 L 32 38 L 30 44 L 28 38 L 22 36 Z\" fill=\"#DC2626\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Manage Pulse Surveys": {
+    "category": "Pulse Surveys",
+    "title": "Manage Pulse Surveys",
+    "headline": "No Pulse Surveys in the Field Right Now",
+    "subtext": "There are no live employee feedback surveys active. Keep a constant pulse on team happiness and workplace culture. When you launch a survey, track anonymous responses and sentiment indicators here.",
+    "primaryCta": "+ Launch New Pulse Survey",
+    "secondaryCta": "Use eNPS Question Bank",
+    "tip": "\u2728 <strong>High Participation:</strong> Micro pulse surveys under 5 questions achieve an average 89% response rate.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"psGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#FDF2F8\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <filter id=\"psGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#EC4899\" flood-opacity=\"0.18\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#psGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Heartbeat Monitor Display -->\n  <g filter=\"url(#psGlow)\">\n    <rect x=\"40\" y=\"44\" width=\"160\" height=\"88\" rx=\"12\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <!-- Heartbeat Line -->\n    <path d=\"M 45 88 L 85 88 L 95 64 L 105 110 L 115 72 L 125 96 L 135 88 L 195 88\" fill=\"none\" stroke=\"#EC4899\" stroke-width=\"3\" stroke-linecap=\"round\"/>\n    <circle cx=\"105\" cy=\"110\" r=\"4\" fill=\"#EC4899\"/>\n    <circle cx=\"95\" cy=\"64\" r=\"4\" fill=\"#7C3AED\"/>\n  </g>\n  <!-- Floating Emoji Ratings -->\n  <circle cx=\"68\" cy=\"138\" r=\"14\" fill=\"#ECFDF5\" stroke=\"#10B981\" stroke-width=\"1.5\"/>\n  <text x=\"68\" y=\"142\" font-size=\"12\" text-anchor=\"middle\">\ud83d\ude0d</text>\n\n  <circle cx=\"120\" cy=\"142\" r=\"16\" fill=\"#FEF3C7\" stroke=\"#F59E0B\" stroke-width=\"1.8\"/>\n  <text x=\"120\" y=\"147\" font-size=\"14\" text-anchor=\"middle\">\ud83d\ude0a</text>\n\n  <circle cx=\"172\" cy=\"138\" r=\"14\" fill=\"#F1F5F9\" stroke=\"#94A3B8\" stroke-width=\"1.5\"/>\n  <text x=\"172\" y=\"142\" font-size=\"12\" text-anchor=\"middle\">\ud83d\udc4d</text>\n  <!-- Floating Score Pill -->\n  <rect x=\"148\" y=\"26\" width=\"64\" height=\"22\" rx=\"11\" fill=\"#7C3AED\"/>\n  <text x=\"180\" y=\"41\" font-family=\"Inter, sans-serif\" font-size=\"10\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">94% eNPS</text>\n</svg>"
+  },
+  "Pending Approvals": {
+    "category": "Workplace",
+    "title": "Pending Approvals",
+    "headline": "Your Approval Queue is Completely Clear",
+    "subtext": "You are completely caught up! When leaver clearances, leave applications, overtime slips, or expense reports require your authorization, actionable approval items will display right here.",
+    "primaryCta": "+ View Approval History",
+    "secondaryCta": "Configure Approval Rules",
+    "tip": "\u2728 <strong>Zero Bottlenecks:</strong> You can set automated delegation rules if you are away on leave or business travel.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"paGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F8FAFC\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <filter id=\"paGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#10B981\" flood-opacity=\"0.2\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#paGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Zero-Inbox Tray Box -->\n  <g filter=\"url(#paGlow)\">\n    <rect x=\"65\" y=\"65\" width=\"110\" height=\"70\" rx=\"8\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <path d=\"M 65 95 L 95 95 C 100 95 105 105 120 105 C 135 105 140 95 145 95 L 175 95\" stroke=\"#CBD5E1\" stroke-width=\"1.5\" fill=\"none\"/>\n    <!-- Big Glowing Green Checkmark Inside -->\n    <circle cx=\"120\" cy=\"55\" r=\"24\" fill=\"#10B981\" stroke=\"#FFFFFF\" stroke-width=\"3\"/>\n    <path d=\"M 112 55 L 117 60 L 128 49\" stroke=\"#FFFFFF\" stroke-width=\"3.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n  </g>\n  <!-- Floating Inbox Zero Pill -->\n  <rect x=\"136\" y=\"24\" width=\"76\" height=\"22\" rx=\"11\" fill=\"#7C3AED\"/>\n  <text x=\"174\" y=\"39\" font-family=\"Inter, sans-serif\" font-size=\"9.5\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">All Clear \u2022 0 In Queue</text>\n  <!-- Sparkles -->\n  <path d=\"M 32 38 L 34 32 L 36 38 L 42 40 L 36 42 L 34 48 L 32 42 L 26 40 Z\" fill=\"#10B981\" opacity=\"0.8\"/>\n</svg>"
+  },
+  "Shift Roster": {
+    "category": "Workplace",
+    "title": "Shift Roster",
+    "headline": "No Shift Schedules Published for this Roster",
+    "subtext": "There are no operational shift rotations published yet. When you construct weekly or monthly rosters, assign morning/night shifts, track rest intervals, and publish schedules to employee mobiles here.",
+    "primaryCta": "+ Build Shift Roster",
+    "secondaryCta": "Copy Previous Week",
+    "tip": "\u2728 <strong>Fatigue Monitoring:</strong> The smart roster engine automatically prevents double-shift and rest-hour violations.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"srGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#EFF6FF\"/>\n    </linearGradient>\n    <filter id=\"srGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.16\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#srGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Timetable Grid -->\n  <g filter=\"url(#srGlow)\">\n    <rect x=\"40\" y=\"44\" width=\"160\" height=\"96\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <rect x=\"40\" y=\"44\" width=\"160\" height=\"24\" rx=\"10\" fill=\"#7C3AED\"/>\n    <!-- Day Headers -->\n    <text x=\"60\" y=\"59\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">MON</text>\n    <text x=\"88\" y=\"59\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">TUE</text>\n    <text x=\"116\" y=\"59\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">WED</text>\n    <text x=\"144\" y=\"59\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">THU</text>\n    <text x=\"172\" y=\"59\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">FRI</text>\n    <!-- Shift Blocks -->\n    <rect x=\"50\" y=\"76\" width=\"20\" height=\"16\" rx=\"4\" fill=\"#DBEAFE\"/>\n    <text x=\"60\" y=\"87\" font-family=\"Inter, sans-serif\" font-size=\"7\" font-weight=\"700\" fill=\"#2563EB\" text-anchor=\"middle\">M1</text>\n\n    <rect x=\"78\" y=\"76\" width=\"20\" height=\"16\" rx=\"4\" fill=\"#DBEAFE\"/>\n    <text x=\"88\" y=\"87\" font-family=\"Inter, sans-serif\" font-size=\"7\" font-weight=\"700\" fill=\"#2563EB\" text-anchor=\"middle\">M1</text>\n\n    <rect x=\"106\" y=\"102\" width=\"20\" height=\"16\" rx=\"4\" fill=\"#EDE9FE\"/>\n    <text x=\"116\" y=\"113\" font-family=\"Inter, sans-serif\" font-size=\"7\" font-weight=\"700\" fill=\"#7C3AED\" text-anchor=\"middle\">N2</text>\n\n    <rect x=\"134\" y=\"102\" width=\"20\" height=\"16\" rx=\"4\" fill=\"#EDE9FE\"/>\n    <text x=\"144\" y=\"113\" font-family=\"Inter, sans-serif\" font-size=\"7\" font-weight=\"700\" fill=\"#7C3AED\" text-anchor=\"middle\">N2</text>\n\n    <rect x=\"162\" y=\"88\" width=\"20\" height=\"16\" rx=\"4\" fill=\"#ECFDF5\"/>\n    <text x=\"172\" y=\"99\" font-family=\"Inter, sans-serif\" font-size=\"7\" font-weight=\"700\" fill=\"#059669\" text-anchor=\"middle\">OFF</text>\n  </g>\n  <!-- Floating Clock -->\n  <circle cx=\"186\" cy=\"40\" r=\"14\" fill=\"#FFFFFF\" stroke=\"#F59E0B\" stroke-width=\"2\"/>\n  <line x1=\"186\" y1=\"40\" x2=\"186\" y2=\"33\" stroke=\"#F59E0B\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n  <line x1=\"186\" y1=\"40\" x2=\"192\" y2=\"40\" stroke=\"#F59E0B\" stroke-width=\"1.8\" stroke-linecap=\"round\"/>\n</svg>"
+  },
+  "Org Chart": {
+    "category": "Workplace",
+    "title": "Org Chart",
+    "headline": "Organization Structure Hasn't Been Mapped Yet",
+    "subtext": "There is no organization chart generated yet. When you define department structures and supervisor relationships, an interactive visual tree diagram of all management tiers will appear here.",
+    "primaryCta": "+ Generate Org Chart",
+    "secondaryCta": "Sync from Department Data",
+    "tip": "\u2728 <strong>Visual Hierarchy:</strong> Export executive reporting charts directly to presentation-ready PDF or vector SVG.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"ocGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <filter id=\"ocGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"4\" stdDeviation=\"6\" flood-color=\"#7C3AED\" flood-opacity=\"0.18\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#ocGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Top Node (GM) -->\n  <g filter=\"url(#ocGlow)\">\n    <rect x=\"90\" y=\"34\" width=\"60\" height=\"28\" rx=\"6\" fill=\"#7C3AED\"/>\n    <text x=\"120\" y=\"51\" font-family=\"Inter, sans-serif\" font-size=\"8.5\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">General Mgr</text>\n  </g>\n  <!-- Branching Lines -->\n  <path d=\"M 120 62 L 120 84 M 55 84 L 185 84 M 55 84 L 55 104 M 120 84 L 120 104 M 185 84 L 185 104\" stroke=\"#A78BFA\" stroke-width=\"2\" stroke-linecap=\"round\"/>\n  <!-- Sub Nodes -->\n  <g filter=\"url(#ocGlow)\">\n    <!-- Node Left -->\n    <rect x=\"25\" y=\"104\" width=\"60\" height=\"32\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.2\"/>\n    <text x=\"55\" y=\"119\" font-family=\"Inter, sans-serif\" font-size=\"7.5\" font-weight=\"700\" fill=\"#0F172A\" text-anchor=\"middle\">Front Office</text>\n    <text x=\"55\" y=\"129\" font-family=\"Inter, sans-serif\" font-size=\"6.5\" font-weight=\"500\" fill=\"#64748B\" text-anchor=\"middle\">12 Staff</text>\n\n    <!-- Node Center -->\n    <rect x=\"90\" y=\"104\" width=\"60\" height=\"32\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.2\"/>\n    <text x=\"120\" y=\"119\" font-family=\"Inter, sans-serif\" font-size=\"7.5\" font-weight=\"700\" fill=\"#0F172A\" text-anchor=\"middle\">Housekeeping</text>\n    <text x=\"120\" y=\"129\" font-family=\"Inter, sans-serif\" font-size=\"6.5\" font-weight=\"500\" fill=\"#64748B\" text-anchor=\"middle\">18 Staff</text>\n\n    <!-- Node Right -->\n    <rect x=\"155\" y=\"104\" width=\"60\" height=\"32\" rx=\"6\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.2\"/>\n    <text x=\"185\" y=\"119\" font-family=\"Inter, sans-serif\" font-size=\"7.5\" font-weight=\"700\" fill=\"#0F172A\" text-anchor=\"middle\">F&amp;B Service</text>\n    <text x=\"185\" y=\"129\" font-family=\"Inter, sans-serif\" font-size=\"6.5\" font-weight=\"500\" fill=\"#64748B\" text-anchor=\"middle\">24 Staff</text>\n  </g>\n</svg>"
+  },
+  "Team Attendance": {
+    "category": "Workplace",
+    "title": "Team Attendance",
+    "headline": "No Clock-in or Attendance Records for Today",
+    "subtext": "There are no attendance punches recorded yet. When team members clock in through mobile GPS geofences, kiosk cards, or biometric devices, live attendance statuses and late logs display here.",
+    "primaryCta": "+ Log Manual Attendance",
+    "secondaryCta": "Configure Geofence Zones",
+    "tip": "\u2728 <strong>Geofence Accuracy:</strong> Real-time GPS verification prevents off-premise punch fraud across hospitality sites.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"taGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#ECFDF5\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <filter id=\"taGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#10B981\" flood-opacity=\"0.2\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#taGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Biometric Scanner Pad -->\n  <g filter=\"url(#taGlow)\">\n    <rect x=\"70\" y=\"44\" width=\"100\" height=\"100\" rx=\"16\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <circle cx=\"120\" cy=\"86\" r=\"28\" fill=\"#F0FDF4\" stroke=\"#10B981\" stroke-width=\"1.5\"/>\n    <!-- Fingerprint / Sensor Wave -->\n    <path d=\"M 120 72 C 112 72 106 78 106 86 C 106 94 112 100 120 100\" stroke=\"#10B981\" stroke-width=\"2.2\" stroke-linecap=\"round\" fill=\"none\"/>\n    <path d=\"M 120 78 C 115 78 112 82 112 86 C 112 91 115 94 120 94\" stroke=\"#10B981\" stroke-width=\"2.2\" stroke-linecap=\"round\" fill=\"none\"/>\n    <path d=\"M 120 84 C 118 84 118 88 120 88\" stroke=\"#10B981\" stroke-width=\"2.2\" stroke-linecap=\"round\" fill=\"none\"/>\n    <!-- Status Time Text -->\n    <rect x=\"80\" y=\"122\" width=\"80\" height=\"14\" rx=\"7\" fill=\"#10B981\"/>\n    <text x=\"120\" y=\"132\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">09:00 AM \u2022 ON TIME</text>\n  </g>\n  <!-- Floating Location Pin -->\n  <circle cx=\"184\" cy=\"46\" r=\"14\" fill=\"#7C3AED\"/>\n  <path d=\"M 184 39 C 180 39 177 42 177 46 C 177 50 184 55 184 55 C 184 55 191 50 191 46 C 191 42 188 39 184 39 Z\" fill=\"#FFFFFF\"/>\n  <circle cx=\"184\" cy=\"46\" r=\"2\" fill=\"#7C3AED\"/>\n</svg>"
+  },
+  "Service Desk": {
+    "category": "Workplace",
+    "title": "Service Desk",
+    "headline": "No Open Support Tickets in the Helpdesk",
+    "subtext": "The internal support queue is calm and clear! When staff raise IT hardware repairs, maintenance requests, uniform replacements, or payroll queries, tickets will triage right here.",
+    "primaryCta": "+ Raise Service Ticket",
+    "secondaryCta": "View Resolved Tickets",
+    "tip": "\u2728 <strong>Fast Triage:</strong> Smart categorization automatically routes technical tickets to IT and facility issues to Engineering.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"sdGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#EFF6FF\"/>\n    </linearGradient>\n    <filter id=\"sdGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#2563EB\" flood-opacity=\"0.16\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#sdGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Support Headset Graphic -->\n  <g filter=\"url(#sdGlow)\">\n    <rect x=\"65\" y=\"55\" width=\"110\" height=\"85\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <!-- Headset Arch -->\n    <path d=\"M 88 95 C 88 74 152 74 152 95\" stroke=\"#7C3AED\" stroke-width=\"4\" stroke-linecap=\"round\" fill=\"none\"/>\n    <rect x=\"82\" y=\"92\" width=\"12\" height=\"20\" rx=\"6\" fill=\"#2563EB\"/>\n    <rect x=\"146\" y=\"92\" width=\"12\" height=\"20\" rx=\"6\" fill=\"#2563EB\"/>\n    <path d=\"M 94 110 C 100 120 120 120 128 116\" stroke=\"#2563EB\" stroke-width=\"2.5\" stroke-linecap=\"round\" fill=\"none\"/>\n    <circle cx=\"130\" cy=\"115\" r=\"3.5\" fill=\"#10B981\"/>\n  </g>\n  <!-- Floating Ticket Badge -->\n  <rect x=\"140\" y=\"28\" width=\"72\" height=\"22\" rx=\"11\" fill=\"#7C3AED\"/>\n  <text x=\"176\" y=\"43\" font-family=\"Inter, sans-serif\" font-size=\"9.5\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">Inbox Zero \u2022 0</text>\n  <!-- Sparkles -->\n  <path d=\"M 28 36 L 30 30 L 32 36 L 38 38 L 32 40 L 30 46 L 28 40 L 22 38 Z\" fill=\"#2563EB\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Task Checklist": {
+    "category": "Workplace",
+    "title": "Task Checklist",
+    "headline": "All Task Checklists Have Been Cleared",
+    "subtext": "There are no pending checklists or operational audits in backlog! When you create recurring task lists for front office inspections, shift handovers, or hygiene protocols, duties will appear here.",
+    "primaryCta": "+ Create Task Checklist",
+    "secondaryCta": "Use Hospitality SOP Checklist",
+    "tip": "\u2728 <strong>Recurring Checklists:</strong> Automate daily opening and closing audit checklists across all properties.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"tcGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#ECFDF5\"/>\n    </linearGradient>\n    <filter id=\"tcGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#10B981\" flood-opacity=\"0.2\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#tcGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Task Clipboard -->\n  <g filter=\"url(#tcGlow)\">\n    <rect x=\"65\" y=\"40\" width=\"110\" height=\"110\" rx=\"10\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <rect x=\"95\" y=\"32\" width=\"50\" height=\"14\" rx=\"4\" fill=\"#64748B\"/>\n    <!-- Checklist Items -->\n    <circle cx=\"82\" cy=\"62\" r=\"6\" fill=\"#10B981\"/>\n    <path d=\"M 79 62 L 81 64 L 85 60\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n    <line x1=\"94\" y1=\"62\" x2=\"155\" y2=\"62\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n\n    <circle cx=\"82\" cy=\"82\" r=\"6\" fill=\"#10B981\"/>\n    <path d=\"M 79 82 L 81 84 L 85 80\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n    <line x1=\"94\" y1=\"82\" x2=\"150\" y2=\"82\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n\n    <circle cx=\"82\" cy=\"102\" r=\"6\" fill=\"#10B981\"/>\n    <path d=\"M 79 102 L 81 104 L 85 100\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n    <line x1=\"94\" y1=\"102\" x2=\"145\" y2=\"102\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n\n    <circle cx=\"82\" cy=\"122\" r=\"6\" fill=\"#10B981\"/>\n    <path d=\"M 79 122 L 81 124 L 85 120\" stroke=\"#FFFFFF\" stroke-width=\"1.5\" stroke-linecap=\"round\"/>\n    <line x1=\"94\" y1=\"122\" x2=\"158\" y2=\"122\" stroke=\"#CBD5E1\" stroke-width=\"2.5\" stroke-linecap=\"round\"/>\n  </g>\n  <!-- Floating 100% Badge -->\n  <circle cx=\"186\" cy=\"46\" r=\"16\" fill=\"#10B981\" stroke=\"#FFFFFF\" stroke-width=\"2\"/>\n  <text x=\"186\" y=\"50\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"800\" fill=\"#FFFFFF\" text-anchor=\"middle\">100%</text>\n</svg>"
+  },
+  "HR Broadcast": {
+    "category": "Workplace",
+    "title": "HR Broadcast",
+    "headline": "No Broadcasts or Company Announcements Sent",
+    "subtext": "There are no company broadcasts in history yet. Send organization-wide updates, policy change alerts, or executive notices across email, SMS, and dashboard popups in one click.",
+    "primaryCta": "+ Compose HR Broadcast",
+    "secondaryCta": "View Broadcast Templates",
+    "tip": "\u2728 <strong>Instant Outreach:</strong> Broadcasts support rich multimedia videos and verify delivery with employee read receipts.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"bcGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#FDF2F8\"/>\n    </linearGradient>\n    <filter id=\"bcGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.2\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#bcGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Megaphone Graphic -->\n  <g filter=\"url(#bcGlow)\">\n    <polygon points=\"65,95 110,65 110,125\" fill=\"#7C3AED\"/>\n    <rect x=\"52\" y=\"86\" width=\"16\" height=\"18\" rx=\"3\" fill=\"#6D28D9\"/>\n    <!-- Megaphone Cone Rim -->\n    <ellipse cx=\"110\" cy=\"95\" rx=\"6\" ry=\"30\" fill=\"#9333EA\"/>\n    <!-- Handle -->\n    <path d=\"M 68 104 L 72 128 L 80 128 L 78 104 Z\" fill=\"#4C1D95\"/>\n    <!-- Concentric Broadcast Waves -->\n    <path d=\"M 126 80 C 132 88 132 102 126 110\" stroke=\"#F59E0B\" stroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\"/>\n    <path d=\"M 136 72 C 146 84 146 106 136 118\" stroke=\"#10B981\" stroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\"/>\n    <path d=\"M 148 64 C 162 80 162 110 148 126\" stroke=\"#38BDF8\" stroke-width=\"3\" stroke-linecap=\"round\" fill=\"none\"/>\n  </g>\n  <!-- Floating Audience Pill -->\n  <rect x=\"136\" y=\"28\" width=\"76\" height=\"22\" rx=\"11\" fill=\"#7C3AED\"/>\n  <text x=\"174\" y=\"43\" font-family=\"Inter, sans-serif\" font-size=\"9.5\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">All 48 Members</text>\n</svg>"
+  },
+  "Document Vault": {
+    "category": "Workplace",
+    "title": "Document Vault",
+    "headline": "No Files Stored in the Document Vault",
+    "subtext": "The secure document vault is currently empty. Protect statutory contracts, visa copies, passport scans, NDAs, and corporate insurance certificates in an encrypted repository with automated renewal alerts.",
+    "primaryCta": "+ Upload Secure Document",
+    "secondaryCta": "Create Folder Hierarchy",
+    "tip": "\u2728 <strong>Expiry Shield:</strong> Automated alerts notify HR 60 and 30 days before passport and labor card renewals.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"dvGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F8FAFC\"/>\n      <stop offset=\"100%\" stop-color=\"#EDE9FE\"/>\n    </linearGradient>\n    <filter id=\"dvGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#7C3AED\" flood-opacity=\"0.18\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#dvGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Bank Vault Door -->\n  <g filter=\"url(#dvGlow)\">\n    <rect x=\"65\" y=\"44\" width=\"110\" height=\"96\" rx=\"16\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"2\"/>\n    <circle cx=\"120\" cy=\"92\" r=\"32\" fill=\"#F8FAFC\" stroke=\"#7C3AED\" stroke-width=\"2.5\"/>\n    <circle cx=\"120\" cy=\"92\" r=\"22\" stroke=\"#CBD5E1\" stroke-width=\"1.5\" stroke-dasharray=\"3 3\"/>\n    <circle cx=\"120\" cy=\"92\" r=\"10\" fill=\"#7C3AED\"/>\n    <!-- Vault Wheel Spokes -->\n    <line x1=\"120\" y1=\"62\" x2=\"120\" y2=\"122\" stroke=\"#7C3AED\" stroke-width=\"2\"/>\n    <line x1=\"90\" y1=\"92\" x2=\"150\" y2=\"92\" stroke=\"#7C3AED\" stroke-width=\"2\"/>\n  </g>\n  <!-- Floating Padlock Pill -->\n  <rect x=\"136\" y=\"24\" width=\"76\" height=\"22\" rx=\"11\" fill=\"#10B981\"/>\n  <text x=\"174\" y=\"39\" font-family=\"Inter, sans-serif\" font-size=\"9\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">AES-256 Encrypted</text>\n  <!-- Sparkles -->\n  <path d=\"M 32 38 L 34 32 L 36 38 L 42 40 L 36 42 L 34 48 L 32 42 L 26 40 Z\" fill=\"#7C3AED\" opacity=\"0.6\"/>\n</svg>"
+  },
+  "Manager Approvals": {
+    "category": "Expenses",
+    "title": "Manager's Approval",
+    "headline": "No Managerial Sign-offs Requiring Attention",
+    "subtext": "There are zero departmental expense claims or petty cash vouchers awaiting review. When supervisors submit travel reimbursements or vendor invoices, items will display here for sign-off.",
+    "primaryCta": "+ View Past Approvals",
+    "secondaryCta": "Review Spending Limits",
+    "tip": "\u2728 <strong>Policy Checks:</strong> Invoices exceeding departmental spending limits are flagged automatically for senior management.",
+    "svg": "<svg width=\"240\" height=\"180\" viewBox=\"0 0 240 180\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <defs>\n    <linearGradient id=\"maGrad\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"100%\">\n      <stop offset=\"0%\" stop-color=\"#F5F3FF\"/>\n      <stop offset=\"100%\" stop-color=\"#FEF3C7\" stop-opacity=\"0.5\"/>\n    </linearGradient>\n    <filter id=\"maGlow\" x=\"-10%\" y=\"-10%\" width=\"120%\" height=\"120%\">\n      <feDropShadow dx=\"0\" dy=\"5\" stdDeviation=\"7\" flood-color=\"#F59E0B\" flood-opacity=\"0.2\"/>\n    </filter>\n  </defs>\n  <rect x=\"10\" y=\"10\" width=\"220\" height=\"160\" rx=\"20\" fill=\"url(#maGrad)\" stroke=\"#DDD6FE\" stroke-width=\"1.5\"/>\n  <!-- Expense Ledger Voucher -->\n  <g filter=\"url(#maGlow)\">\n    <rect x=\"65\" y=\"44\" width=\"110\" height=\"96\" rx=\"8\" fill=\"#FFFFFF\" stroke=\"#CBD5E1\" stroke-width=\"1.5\"/>\n    <rect x=\"65\" y=\"44\" width=\"110\" height=\"20\" rx=\"8\" fill=\"#7C3AED\"/>\n    <text x=\"120\" y=\"58\" font-family=\"Inter, sans-serif\" font-size=\"8.5\" font-weight=\"700\" fill=\"#FFFFFF\" text-anchor=\"middle\">Expense Voucher</text>\n    \n    <text x=\"80\" y=\"80\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"600\" fill=\"#64748B\">Petty Cash Ref</text>\n    <text x=\"156\" y=\"80\" font-family=\"monospace\" font-size=\"8\" font-weight=\"700\" fill=\"#0F172A\" text-anchor=\"end\">AED 0.00</text>\n    \n    <line x1=\"78\" y1=\"88\" x2=\"162\" y2=\"88\" stroke=\"#E2E8F0\" stroke-width=\"1\"/>\n    \n    <text x=\"80\" y=\"104\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"600\" fill=\"#64748B\">Hotel Supply</text>\n    <text x=\"156\" y=\"104\" font-family=\"monospace\" font-size=\"8\" font-weight=\"700\" fill=\"#0F172A\" text-anchor=\"end\">AED 0.00</text>\n\n    <!-- Approved Stamp -->\n    <rect x=\"94\" y=\"118\" width=\"52\" height=\"14\" rx=\"4\" fill=\"#10B981\"/>\n    <text x=\"120\" y=\"128\" font-family=\"Inter, sans-serif\" font-size=\"8\" font-weight=\"800\" fill=\"#FFFFFF\" text-anchor=\"middle\">APPROVED</text>\n  </g>\n  <!-- Floating Currency Token -->\n  <circle cx=\"184\" cy=\"44\" r=\"14\" fill=\"#FEF3C7\" stroke=\"#F59E0B\" stroke-width=\"1.8\"/>\n  <text x=\"184\" y=\"49\" font-family=\"monospace\" font-size=\"10\" font-weight=\"800\" fill=\"#D97706\" text-anchor=\"middle\">$</text>\n</svg>"
+  }
+};
+
+  function renderView2EmptyState(title) {
+    const container = document.getElementById('view2EmptyStateContainer');
+    if (!container) return;
+
+    // Normalizing lookup aliases
+    let key = title;
+    if (key === 'Active Staff' || key === 'Active') key = 'Active';
+    else if (key === 'Exit' || key === 'Exit / Offboarding' || key === 'Exit Offboarding') key = 'Exit';
+    else if (key === 'Pre-boarding' || key === 'Pre Boarding') key = 'Pre Boarding';
+    else if (key === 'Manager Approvals' || key === "Manager's Approval") key = 'Manager Approvals';
+    else if (key === 'HR File Review' || key === 'HR Final Review') key = 'HR Final Review';
+    else if (key === 'Department 2' || key === 'Department Tour') key = 'Department Tour';
+    else if (key === 'Pending Approval' || key === 'Pending Approvals') key = 'Pending Approvals';
+    else if (key === 'One-on-one Check-ins' || key === '1-on-1 Check-ins') key = '1-on-1 Check-ins';
+
+    const state = VIEW2_EMPTY_STATES[key] || VIEW2_EMPTY_STATES[title] || {
+      category: 'Workplace',
+      title: title,
+      headline: `No ${title} Records Found`,
+      subtext: `There are currently no records in ${title}. When you create or assign items for your team, they will display here.`,
+      primaryCta: `+ Create ${title}`,
+      secondaryCta: 'View Documentation',
+      tip: `✨ Manage all ${title} workflows directly from this screen.`,
+      svg: `<svg width="240" height="180" viewBox="0 0 240 180" fill="none"><rect width="240" height="180" rx="20" fill="#F8FAFC"/><circle cx="120" cy="90" r="32" fill="#7C3AED"/></svg>`
+    };
+
+    container.innerHTML = `
+      <div class="view2-empty-state-card">
+        <div class="empty-category-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 19 21 12 17 5 21 12 2"></polygon>
+          </svg>
+          <span>${state.category} • ${state.title}</span>
+        </div>
+
+        <div class="empty-art-box">
+          ${state.svg}
+        </div>
+
+        <h2 class="empty-title">${state.headline}</h2>
+        <p class="empty-desc">${state.subtext}</p>
+
+        <div class="empty-actions-row">
+          <button class="empty-primary-btn" onclick="handleEmptyStateAction('${state.title}', '${state.primaryCta}')">
+            <span>${state.primaryCta}</span>
+          </button>
+          <button class="empty-secondary-btn" onclick="handleEmptyStateAction('${state.title}', '${state.secondaryCta}')">
+            <span>${state.secondaryCta}</span>
+          </button>
+        </div>
+
+        <div class="empty-tip-card">
+          <span style="font-size: 16px; flex-shrink: 0;">💡</span>
+          <div>${state.tip}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function handleEmptyStateAction(screenTitle, actionName) {
+    showToast(`${actionName.replace(/^\+\s*/, '')} action triggered for ${screenTitle}`);
+  }
+
   function selectDonezoNavItem(itemEl) {
     if (!itemEl) return;
     document.querySelectorAll('.donezo-nav-item').forEach(el => el.classList.remove('active'));
@@ -8578,7 +9065,35 @@
     const title = itemEl.getAttribute('data-title') || 'Dashboard';
     const breadcrumb2 = document.getElementById('breadcrumbActiveItem2');
     if (breadcrumb2) breadcrumb2.textContent = title;
-    showToast(`Navigated to ${title} (View 2)`);
+
+    const widgetsContainer = document.getElementById('view2DashboardWidgets');
+    const emptyContainer = document.getElementById('view2EmptyStateContainer');
+    const backBtn = document.getElementById('view2BackDashboardBtn');
+    const pill = document.getElementById('view2AnnouncementPill');
+    const customizeBtn = document.getElementById('view2CustomizeBtn');
+
+    if (title === 'Dashboard') {
+      if (widgetsContainer) widgetsContainer.style.display = 'block';
+      if (emptyContainer) emptyContainer.style.display = 'none';
+      if (backBtn) backBtn.style.display = 'none';
+      if (pill) pill.style.display = 'inline-flex';
+      if (customizeBtn) customizeBtn.style.display = 'inline-flex';
+      showToast('Navigated to Dashboard (View 2)');
+    } else {
+      if (widgetsContainer) widgetsContainer.style.display = 'none';
+      if (emptyContainer) {
+        emptyContainer.style.display = 'flex';
+        renderView2EmptyState(title);
+      }
+      if (backBtn) backBtn.style.display = 'inline-flex';
+      if (pill) pill.style.display = 'none';
+      if (customizeBtn) customizeBtn.style.display = 'none';
+      showToast(`Navigated to ${title} (View 2)`);
+    }
+
+    // Scroll inner canvas to top smoothly
+    const canvas = document.querySelector('.donezo-inner-canvas');
+    if (canvas) canvas.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function selectDonezoNavItemByTitle(title) {
@@ -10199,6 +10714,9 @@
       switchDashboardView(2);
     } else if (params.get('view') === '1' || hash === '#view1' || savedView === '1') {
       switchDashboardView(1);
+    } else {
+      // Default to View 2 (Recommended View)
+      switchDashboardView(2);
     }
     document.querySelectorAll('.donezo-nav-item').forEach(it => {
       if (!it.getAttribute('title')) {
