@@ -6396,17 +6396,6 @@
   <div class="emp-card-lanyard-notch" title="Staff Badge Lanyard Clip Slot"></div>
 
   <div class="emp-card-body">
-    <!-- Corporate Pass Header with Logo and Staff Badge -->
-    <div class="emp-card-pass-header">
-      <div class="emp-card-corp-brand">
-        <div class="emp-card-corp-logo">N</div>
-        <div class="emp-card-corp-title">
-          <span class="emp-card-corp-name">NOISIV CONSULTING</span>
-        </div>
-      </div>
-      <span class="emp-card-staff-badge">STAFF PASS</span>
-    </div>
-
     <!-- Primary ID Identity: Photo/Avatar + Name + Badge Pill -->
     <div class="emp-card-header">
       <div class="emp-card-avatar-wrap">
@@ -6488,42 +6477,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Bottom Authenticity Strip: Barcode + File Link -->
-    <div class="emp-card-auth-footer">
-      <div class="emp-card-barcode-wrap">
-        <svg class="emp-card-barcode-svg" width="94" height="14" viewBox="0 0 94 14" fill="none">
-          <rect x="0" y="0" width="2" height="14" fill="#475569"/>
-          <rect x="4" y="0" width="1" height="14" fill="#475569"/>
-          <rect x="7" y="0" width="3" height="14" fill="#475569"/>
-          <rect x="12" y="0" width="1" height="14" fill="#475569"/>
-          <rect x="15" y="0" width="2" height="14" fill="#475569"/>
-          <rect x="19" y="0" width="4" height="14" fill="#475569"/>
-          <rect x="25" y="0" width="1" height="14" fill="#475569"/>
-          <rect x="28" y="0" width="2" height="14" fill="#475569"/>
-          <rect x="32" y="0" width="1" height="14" fill="#475569"/>
-          <rect x="35" y="0" width="3" height="14" fill="#475569"/>
-          <rect x="40" y="0" width="2" height="14" fill="#475569"/>
-          <rect x="44" y="0" width="1" height="14" fill="#475569"/>
-          <rect x="47" y="0" width="4" height="14" fill="#475569"/>
-          <rect x="53" y="0" width="2" height="14" fill="#475569"/>
-          <rect x="57" y="0" width="1" height="14" fill="#475569"/>
-          <rect x="60" y="0" width="3" height="14" fill="#475569"/>
-          <rect x="65" y="0" width="1" height="14" fill="#475569"/>
-          <rect x="68" y="0" width="2" height="14" fill="#475569"/>
-          <rect x="72" y="0" width="4" height="14" fill="#475569"/>
-          <rect x="78" y="0" width="1" height="14" fill="#475569"/>
-          <rect x="82" y="0" width="3" height="14" fill="#475569"/>
-          <rect x="87" y="0" width="2" height="14" fill="#475569"/>
-          <rect x="91" y="0" width="3" height="14" fill="#475569"/>
-        </svg>
-        <span class="emp-card-barcode-meta" id="empCardBarcodeText">EMP-0482 · SECURE ACCESS</span>
-      </div>
-      <button class="emp-card-action-btn" onclick="openCaseFromHoverCard(event)" title="Open leaver case workspace">
-        <span>View File</span>
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
     </div>
   </div>
 </div>
@@ -8633,10 +8586,6 @@ function showEmployeeHoverCard(triggerEl, empId) {
   const seatEl = document.getElementById('empCardSeatPill');
   if (seatEl) seatEl.textContent = c.seat ? `Seat ${c.seat}` : 'ACTIVE ACCESS';
 
-  // Barcode metadata
-  const barcodeMeta = document.getElementById('empCardBarcodeText');
-  if (barcodeMeta) barcodeMeta.textContent = `${badgeId.replace('#', '')} · ${c.seat || 'DXB-HQ'}`;
-
   // 2. Designation
   const desigVal = c.designation || c.title || 'Specialist';
   const desigField = document.getElementById('empCardDesignation');
@@ -8679,12 +8628,12 @@ function showEmployeeHoverCard(triggerEl, empId) {
 
   const rect = target.getBoundingClientRect();
   const cardRect = card.getBoundingClientRect();
-  const cardWidth = cardRect.width || 320;
-  const cardHeight = cardRect.height || 360;
+  const cardWidth = cardRect.width || 310;
+  const cardHeight = cardRect.height || 260;
 
   const margin = 12;
   let left = rect.right + margin;
-  let top = rect.top - 12;
+  let top = rect.top - 8;
 
   // Collision detection for right edge
   if (left + cardWidth > window.innerWidth - 16) {

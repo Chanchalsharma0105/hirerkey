@@ -74,10 +74,10 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
       hoverTimeoutRef.current = null;
     }
     const rect = e.currentTarget.getBoundingClientRect();
-    const cardWidth = 320;
-    const cardHeight = 360;
+    const cardWidth = 310;
+    const cardHeight = 260;
     let left = rect.right + 12;
-    let top = rect.top - 12;
+    let top = rect.top - 8;
     if (typeof window !== 'undefined') {
       if (left + cardWidth > window.innerWidth - 16) {
         left = rect.left - cardWidth - 12;
@@ -801,69 +801,6 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
           />
 
           <Box sx={{ p: '10px 14px 12px 14px' }}>
-            {/* Corporate Pass Header: Branding + Staff Badge */}
-            <Box
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                pb: 1,
-                mb: 1.25,
-                borderBottom: '1px solid #F1F5F9',
-              }}
-            >
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.85 }}>
-                <Box
-                  sx={{
-                    width: 20,
-                    height: 20,
-                    borderRadius: '6px',
-                    background: 'linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%)',
-                    display: 'grid',
-                    placeItems: 'center',
-                    color: '#FFFFFF',
-                    fontSize: '10px',
-                    fontWeight: 800,
-                    boxShadow: '0 2px 5px rgba(124, 58, 237, 0.3)',
-                  }}
-                >
-                  N
-                </Box>
-                <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.15 }}>
-                  <Typography
-                    sx={{
-                      fontSize: '9px',
-                      fontWeight: 800,
-                      letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
-                      color: '#334155',
-                    }}
-                  >
-                    NOISIV CONSULTING
-                  </Typography>
-                </Box>
-              </Box>
-
-              <Chip
-                size="sm"
-                sx={{
-                  fontSize: '8.5px',
-                  fontWeight: 700,
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  color: '#7C3AED',
-                  bgcolor: '#F5F3FF',
-                  border: '1px solid #DDD6FE',
-                  borderRadius: '999px',
-                  px: 0.8,
-                  py: 0.2,
-                  lineHeight: 1.2,
-                }}
-              >
-                STAFF PASS
-              </Chip>
-            </Box>
-
             {/* Primary ID Section: Avatar + Name + Badge Code & Clearance */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.35 }}>
               <Box sx={{ position: 'relative', flexShrink: 0 }}>
@@ -1242,91 +1179,6 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     </IconButton>
                   </Box>
                 </Box>
-              </Box>
-            </Box>
-
-            {/* Bottom Security Authentication Strip: Barcode + Open Case View */}
-            <Box
-              sx={{
-                mt: 1.25,
-                pt: 1,
-                borderTop: '1px dashed #E2E8F0',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}
-            >
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
-                <svg width="94" height="14" viewBox="0 0 94 14" fill="none">
-                  <rect x="0" y="0" width="2" height="14" fill="#475569" />
-                  <rect x="4" y="0" width="1" height="14" fill="#475569" />
-                  <rect x="7" y="0" width="3" height="14" fill="#475569" />
-                  <rect x="12" y="0" width="1" height="14" fill="#475569" />
-                  <rect x="15" y="0" width="2" height="14" fill="#475569" />
-                  <rect x="19" y="0" width="4" height="14" fill="#475569" />
-                  <rect x="25" y="0" width="1" height="14" fill="#475569" />
-                  <rect x="28" y="0" width="2" height="14" fill="#475569" />
-                  <rect x="32" y="0" width="1" height="14" fill="#475569" />
-                  <rect x="35" y="0" width="3" height="14" fill="#475569" />
-                  <rect x="40" y="0" width="2" height="14" fill="#475569" />
-                  <rect x="44" y="0" width="1" height="14" fill="#475569" />
-                  <rect x="47" y="0" width="4" height="14" fill="#475569" />
-                  <rect x="53" y="0" width="2" height="14" fill="#475569" />
-                  <rect x="57" y="0" width="1" height="14" fill="#475569" />
-                  <rect x="60" y="0" width="3" height="14" fill="#475569" />
-                  <rect x="65" y="0" width="1" height="14" fill="#475569" />
-                  <rect x="68" y="0" width="2" height="14" fill="#475569" />
-                  <rect x="72" y="0" width="4" height="14" fill="#475569" />
-                  <rect x="78" y="0" width="1" height="14" fill="#475569" />
-                  <rect x="82" y="0" width="3" height="14" fill="#475569" />
-                  <rect x="87" y="0" width="2" height="14" fill="#475569" />
-                  <rect x="91" y="0" width="3" height="14" fill="#475569" />
-                </svg>
-                <Typography
-                  sx={{
-                    fontFamily: 'JetBrains Mono, monospace',
-                    fontSize: '7.5px',
-                    fontWeight: 500,
-                    color: '#94A3B8',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  {`EMP-${hoveredCase.id.toString().padStart(4, '0')} · ${hoveredCase.seat || 'DXB-HQ'}`}
-                </Typography>
-              </Box>
-
-              <Box
-                component="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  onOpenCase(hoveredCase.id);
-                }}
-                sx={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  color: '#7C3AED',
-                  bgcolor: '#F5F3FF',
-                  border: '1px solid #DDD6FE',
-                  borderRadius: '6px',
-                  px: 1,
-                  py: '3px',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
-                  '&:hover': {
-                    bgcolor: '#EDE9FE',
-                    borderColor: '#C4B5FD',
-                    color: '#6D28D9',
-                    transform: 'translateY(-1px)',
-                  },
-                }}
-              >
-                <span>View File</span>
-                <FiChevronRight size={11} />
-              </Box>
             </Box>
           </Box>
         </Box>
