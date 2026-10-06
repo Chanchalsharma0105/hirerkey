@@ -12846,6 +12846,7 @@
 
   // Initialize active view from URL search param (?view=3), hash (#view3), or localStorage
   window.addEventListener('DOMContentLoaded', () => {
+    localStorage.removeItem('hirerkey_dashboard_bg_tone');
     const params = new URLSearchParams(window.location.search);
     const hash = window.location.hash;
     const savedView = localStorage.getItem('hirerkey_dashboard_active_view');
