@@ -1626,6 +1626,191 @@
       transform: translateY(-1px);
     }
 
+    /* =========================================================================
+       EMPLOYEE HOVER CARD: FORMAT 2 (Aisha Noor - Curved Purple Wave Style)
+       ========================================================================= */
+    .emp-card-wave-wrap {
+      position: relative;
+      background: #FFFFFF;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .emp-card-wave-header {
+      position: relative;
+      width: 100%;
+      height: 64px;
+      overflow: hidden;
+    }
+
+    .emp-card-wave-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .emp-card-wave-avatar-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      margin-top: -34px;
+      z-index: 2;
+    }
+
+    .emp-card-wave-avatar-ring {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: #DDD6FE;
+      border: 3.5px solid #FFFFFF;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.22), 0 1px 3px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .emp-card-wave-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .emp-card-wave-avatar-fallback {
+      font-size: 20px;
+      font-weight: 700;
+      color: #6D28D9;
+      display: none;
+    }
+
+    .emp-card-wave-status-dot {
+      position: absolute;
+      bottom: 2px;
+      right: calc(50% - 31px);
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.3);
+      z-index: 3;
+    }
+
+    .emp-card-wave-name {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #0F172A;
+      text-align: center;
+      margin-top: 7px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .emp-card-wave-pill-wrap {
+      text-align: center;
+      margin-top: 5px;
+      margin-bottom: 11px;
+    }
+
+    .emp-card-wave-pill {
+      background: #EDE9FE;
+      color: #5B21B6;
+      border: 1px solid #DDD6FE;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2.5px 14px;
+      border-radius: 999px;
+      display: inline-block;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+    }
+
+    .emp-card-wave-meta-list {
+      padding: 0 16px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5.5px;
+    }
+
+    .emp-card-wave-row {
+      display: grid;
+      grid-template-columns: 84px 10px 1fr;
+      align-items: center;
+      font-size: 11.5px;
+      line-height: 1.35;
+    }
+
+    .emp-card-wave-label {
+      color: #475569;
+      font-weight: 600;
+      white-space: nowrap;
+      font-family: var(--font-inter);
+      font-size: 11.5px;
+    }
+
+    .emp-card-wave-colon {
+      color: #64748B;
+      font-weight: 600;
+      text-align: center;
+      font-size: 11.5px;
+    }
+
+    .emp-card-wave-val {
+      color: #0F172A;
+      font-weight: 600;
+      font-size: 11.5px;
+      word-break: break-word;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .emp-card-wave-val.font-mono {
+      font-family: var(--font-mono), monospace !important;
+      font-size: 11px;
+      color: #6D28D9;
+      font-weight: 600;
+    }
+
+    .emp-card-wave-link {
+      color: #2563EB;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11.5px;
+      transition: color 0.15s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .emp-card-wave-link:hover {
+      color: #1D4ED8;
+      text-decoration: underline;
+    }
+
+    .emp-card-wave-copy-btn {
+      background: none;
+      border: none;
+      padding: 1.5px 3.5px;
+      cursor: pointer;
+      color: #94A3B8;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .emp-card-wave-copy-btn:hover {
+      color: #7C3AED;
+      background: #EDE9FE;
+    }
+
     /* Position & Seat */
     .position-title {
       font-weight: 500;
@@ -6390,92 +6575,183 @@
   <span id="toastText">Action completed successfully.</span>
 </div>
 
-<!-- Employee Hover Card (Screen 1 departures list - Corporate ID Card / Staff Pass) -->
+<!-- Employee Hover Card (Screen 1 departures list) -->
 <div id="employeeHoverCard" class="employee-hover-card" style="display: none;" onmouseenter="handleCardMouseEnter()" onmouseleave="scheduleHideEmpCard()">
-  <!-- Top Lanyard Slot Notch Cutout Accent -->
-  <div class="emp-card-lanyard-notch" title="Staff Badge Lanyard Clip Slot"></div>
+  <!-- VIEW 1: Corporate ID Badge Style (Mark D'Souza - Row 1) -->
+  <div id="empCardFormat1">
+    <!-- Top Lanyard Slot Notch Cutout Accent -->
+    <div class="emp-card-lanyard-notch" title="Staff Badge Lanyard Clip Slot"></div>
 
-  <div class="emp-card-body">
-    <!-- Primary ID Identity: Photo/Avatar + Name + Badge Pill -->
-    <div class="emp-card-header">
-      <div class="emp-card-avatar-wrap">
-        <div class="emp-card-avatar" id="empCardAvatar">SK</div>
-        <span class="emp-card-status-dot" title="Active Employee"></span>
+    <div class="emp-card-body">
+      <!-- Primary ID Identity: Photo/Avatar + Name + Badge Pill -->
+      <div class="emp-card-header">
+        <div class="emp-card-avatar-wrap">
+          <div class="emp-card-avatar" id="empCardAvatar">MD</div>
+          <span class="emp-card-status-dot" title="Active Employee"></span>
+        </div>
+        <div class="emp-card-id-text-wrap">
+          <div class="emp-card-name" id="empCardName">Mark Dsouza</div>
+          <div class="emp-card-badge-row">
+            <span class="emp-card-badge-pill" id="empCardBadgePill">#EMP-0005</span>
+            <span class="emp-card-clearance-pill" id="empCardSeatPill">Seat SO-07</span>
+          </div>
+        </div>
       </div>
-      <div class="emp-card-id-text-wrap">
-        <div class="emp-card-name" id="empCardName">Sara Khan</div>
-        <div class="emp-card-badge-row">
-          <span class="emp-card-badge-pill" id="empCardBadgePill">#EMP-0482</span>
-          <span class="emp-card-clearance-pill" id="empCardSeatPill">Seat FDM-01</span>
+
+      <!-- Details Box: All 5 user-required attributes cleanly organized -->
+      <div class="emp-card-details">
+        <!-- 1. Designation -->
+        <div class="emp-card-field">
+          <div class="emp-card-field-icon" title="Designation">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <div class="emp-card-field-content">
+            <span class="emp-card-label">Designation</span>
+            <span class="emp-card-value" id="empCardDesignation">Security Officer</span>
+          </div>
+        </div>
+
+        <!-- 2. Department -->
+        <div class="emp-card-field">
+          <div class="emp-card-field-icon" title="Department">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/><path d="M14 9h1"/><path d="M14 13h1"/><path d="M14 17h1"/></svg>
+          </div>
+          <div class="emp-card-field-content">
+            <span class="emp-card-label">Department</span>
+            <span class="emp-card-value" id="empCardDepartment">Security</span>
+          </div>
+        </div>
+
+        <!-- 3. Position -->
+        <div class="emp-card-field">
+          <div class="emp-card-field-icon" title="Position">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="emp-card-field-content">
+            <span class="emp-card-label">Position</span>
+            <span class="emp-card-value font-mono" id="empCardPosition">Safety & Security Specialist · Seat SO-07</span>
+          </div>
+        </div>
+
+        <!-- 4. Email -->
+        <div class="emp-card-field">
+          <div class="emp-card-field-icon" title="Email">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="emp-card-field-content">
+            <span class="emp-card-label">Email</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px;">
+              <a href="mailto:mark.dsouza@noisiv.com" class="emp-card-link" id="empCardEmailLink">mark.dsouza@noisiv.com</a>
+              <button class="emp-card-copy-btn" id="empCardCopyEmailBtn" title="Copy email" onclick="copyCardEmail(event)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Contact -->
+        <div class="emp-card-field">
+          <div class="emp-card-field-icon" title="Contact">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="emp-card-field-content">
+            <span class="emp-card-label">Contact</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px;">
+              <a href="tel:+971566204451" class="emp-card-link" id="empCardContactLink">+971 56 620 4451</a>
+              <button class="emp-card-copy-btn" id="empCardCopyPhoneBtn" title="Copy contact" onclick="copyCardPhone(event)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Details Box: All 5 user-required attributes cleanly organized -->
-    <div class="emp-card-details">
-      <!-- 1. Designation -->
-      <div class="emp-card-field">
-        <div class="emp-card-field-icon" title="Designation">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-        </div>
-        <div class="emp-card-field-content">
-          <span class="emp-card-label">Designation</span>
-          <span class="emp-card-value" id="empCardDesignation">Front Desk Manager</span>
-        </div>
+  <!-- VIEW 2: Curved Purple Wave Style (Aisha Noor - Row 2) -->
+  <div id="empCardFormat2" class="emp-card-wave-wrap" style="display: none;">
+    <!-- Curved Wave Header -->
+    <div class="emp-card-wave-header">
+      <svg viewBox="0 0 320 64" preserveAspectRatio="none" class="emp-card-wave-svg">
+        <defs>
+          <linearGradient id="aishaWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#9185F8" />
+            <stop offset="100%" stop-color="#7C3AED" />
+          </linearGradient>
+        </defs>
+        <path d="M0,0 L320,0 L320,40 Q160,64 0,40 Z" fill="url(#aishaWaveGrad)" />
+      </svg>
+    </div>
+
+    <!-- Centered Overlapping Circular Avatar -->
+    <div class="emp-card-wave-avatar-container">
+      <div class="emp-card-wave-avatar-ring">
+        <img src="./aisha_avatar.png" alt="Aisha Noor" class="emp-card-wave-avatar-img" id="empCardWaveAvatarImg" onerror="this.onerror=null; this.src='public/aisha_avatar_clean.png';" />
+        <span class="emp-card-wave-avatar-fallback" id="empCardWaveAvatarFallback">AN</span>
+      </div>
+      <span class="emp-card-wave-status-dot" title="Active Employee"></span>
+    </div>
+
+    <!-- Centered Name: AISHA NOOR -->
+    <div class="emp-card-wave-name" id="empCardWaveName">AISHA NOOR</div>
+
+    <!-- Centered Lavender Pill Chip: Front Office -->
+    <div class="emp-card-wave-pill-wrap">
+      <span class="emp-card-wave-pill" id="empCardWavePill">Front Office</span>
+    </div>
+
+    <!-- Colon-Aligned Key-Value Metadata List -->
+    <div class="emp-card-wave-meta-list">
+      <!-- ID No -->
+      <div class="emp-card-wave-row">
+        <span class="emp-card-wave-label">ID No</span>
+        <span class="emp-card-wave-colon">:</span>
+        <span class="emp-card-wave-val font-mono" id="empCardWaveId">#EMP-0003</span>
       </div>
 
-      <!-- 2. Department -->
-      <div class="emp-card-field">
-        <div class="emp-card-field-icon" title="Department">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/><path d="M14 9h1"/><path d="M14 13h1"/><path d="M14 17h1"/></svg>
-        </div>
-        <div class="emp-card-field-content">
-          <span class="emp-card-label">Department</span>
-          <span class="emp-card-value" id="empCardDepartment">Front Office</span>
-        </div>
+      <!-- Designation -->
+      <div class="emp-card-wave-row">
+        <span class="emp-card-wave-label">Designation</span>
+        <span class="emp-card-wave-colon">:</span>
+        <span class="emp-card-wave-val" id="empCardWaveDesignation">Guest Relations Executive</span>
       </div>
 
-      <!-- 3. Position -->
-      <div class="emp-card-field">
-        <div class="emp-card-field-icon" title="Position">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </div>
-        <div class="emp-card-field-content">
-          <span class="emp-card-label">Position</span>
-          <span class="emp-card-value font-mono" id="empCardPosition">Senior Specialist · Seat FDM-01</span>
-        </div>
+      <!-- Department -->
+      <div class="emp-card-wave-row">
+        <span class="emp-card-wave-label">Department</span>
+        <span class="emp-card-wave-colon">:</span>
+        <span class="emp-card-wave-val" id="empCardWaveDepartment">Front Office</span>
       </div>
 
-      <!-- 4. Email -->
-      <div class="emp-card-field">
-        <div class="emp-card-field-icon" title="Email">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div class="emp-card-field-content">
-          <span class="emp-card-label">Email</span>
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px;">
-            <a href="mailto:sara.khan@noisiv.com" class="emp-card-link" id="empCardEmailLink">sara.khan@noisiv.com</a>
-            <button class="emp-card-copy-btn" id="empCardCopyEmailBtn" title="Copy email" onclick="copyCardEmail(event)">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
-          </div>
-        </div>
+      <!-- Position -->
+      <div class="emp-card-wave-row">
+        <span class="emp-card-wave-label">Position</span>
+        <span class="emp-card-wave-colon">:</span>
+        <span class="emp-card-wave-val" id="empCardWavePosition">Guest Services Associate · Seat GR-04</span>
       </div>
 
-      <!-- 5. Contact -->
-      <div class="emp-card-field">
-        <div class="emp-card-field-icon" title="Contact">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        </div>
-        <div class="emp-card-field-content">
-          <span class="emp-card-label">Contact</span>
-          <div style="display: flex; align-items: center; justify-content: space-between; gap: 6px;">
-            <a href="tel:+971504928812" class="emp-card-link" id="empCardContactLink">+971 50 492 8812</a>
-            <button class="emp-card-copy-btn" id="empCardCopyPhoneBtn" title="Copy contact" onclick="copyCardPhone(event)">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            </button>
-          </div>
-        </div>
+      <!-- E-mail -->
+      <div class="emp-card-wave-row">
+        <span class="emp-card-wave-label">E-mail</span>
+        <span class="emp-card-wave-colon">:</span>
+        <span class="emp-card-wave-val">
+          <a href="mailto:aisha.noor@noisiv.com" class="emp-card-wave-link" id="empCardWaveEmailLink">aisha.noor@noisiv.com</a>
+          <button class="emp-card-wave-copy-btn" id="empCardWaveCopyEmailBtn" title="Copy email" onclick="copyCardWaveEmail(event)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </span>
+      </div>
+
+      <!-- Phone -->
+      <div class="emp-card-wave-row">
+        <span class="emp-card-wave-label">Phone</span>
+        <span class="emp-card-wave-colon">:</span>
+        <span class="emp-card-wave-val">
+          <a href="tel:+971547123390" class="emp-card-wave-link" id="empCardWavePhoneLink">+971 54 712 3390</a>
+          <button class="emp-card-wave-copy-btn" id="empCardWaveCopyPhoneBtn" title="Copy phone" onclick="copyCardWavePhone(event)">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </span>
       </div>
     </div>
   </div>
@@ -6630,6 +6906,90 @@ function toggleNotificationsMenu(event) {
 
 let cases = [
   {
+    id: 5,
+    name: 'Mark Dsouza',
+    ini: 'MD',
+    title: 'Security Officer',
+    designation: 'Security Officer',
+    position: 'Safety & Security Specialist · Seat SO-07',
+    email: 'mark.dsouza@noisiv.com',
+    contact: '+971 56 620 4451',
+    seat: 'SO-07',
+    dept: 'Security',
+    manager: 'Capt. Tariq Al-Hashimi · Security Head',
+    tenure: '4 yrs 1 mo',
+    leaveBalance: 0,
+    reason: 'Retirement',
+    startDate: '31 Jul 2026',
+    noticeGivenDate: '31 Jul 2026',
+    lwd: '31 Aug 2026',
+    dueText: 'Left 15 days ago',
+    dueTone: 'neu',
+    stage: 3, // Closed
+    stageName: 'Closed',
+    stageTone: 'ok',
+    successor: 'Ravi Kumar',
+    handover: [],
+    clearance: [
+      { dept: 'IT', title: 'Security cameras credentials revoked', approver: 'Zaid Al-Harbi', notes: 'Revoked.', done: true, status: 'approved' },
+      { dept: 'Admin', title: 'Uniform & security badge returned', approver: 'Tariq Mansoor', notes: 'Returned.', done: true, status: 'approved' },
+      { dept: 'Finance', title: 'Settlement disbursed', approver: 'Amina El-Sayed', notes: 'Bank transfer done.', done: true, status: 'approved' },
+      { dept: 'Line manager', title: 'Exit sign-off', approver: 'Capt. Tariq', notes: 'Signed.', done: true, status: 'approved' }
+    ],
+    exitInterviewStatus: 'completed',
+    settlement: {
+      leaveDays: 0,
+      encashmentAmount: '0',
+      recoveriesAmount: '0',
+      netPayable: '0',
+      currency: 'AED',
+      status: 'paid',
+      lettersGenerated: true
+    }
+  },
+  {
+    id: 3,
+    name: 'Aisha Noor',
+    ini: 'AN',
+    title: 'Guest Relations Executive',
+    designation: 'Guest Relations Executive',
+    position: 'Guest Services Associate · Seat GR-04',
+    email: 'aisha.noor@noisiv.com',
+    contact: '+971 54 712 3390',
+    seat: 'GR-04',
+    dept: 'Front Office',
+    manager: 'Sara Khan · Front Desk Manager',
+    tenure: '1 yr 4 mos',
+    leaveBalance: 5.0,
+    reason: 'Terminated',
+    startDate: '12 Sep 2026',
+    noticeGivenDate: '12 Sep 2026',
+    lwd: '12 Sep 2026',
+    dueText: 'Left 3 days ago',
+    dueTone: 'neu',
+    stage: 2, // Exited · clearing
+    stageName: 'Exited · clearing',
+    stageTone: 'bad',
+    successor: null,
+    handover: [],
+    clearance: [
+      { dept: 'IT', title: 'System access terminated', approver: 'Zaid Al-Harbi', notes: 'Access cut off on 12 Sep.', done: true, status: 'approved' },
+      { dept: 'Admin', title: 'Badge and keycard return', approver: 'Tariq Mansoor', notes: 'Returned to security.', done: true, status: 'approved' },
+      { dept: 'Finance', title: 'Final deductions calculated', approver: 'Amina El-Sayed', notes: 'Zero dues.', done: true, status: 'approved' },
+      { dept: 'Line manager', title: 'Operational sign-off', approver: 'Sara Khan', notes: 'Signed.', done: true, status: 'approved' }
+    ],
+    exitInterviewStatus: 'skipped',
+    settlement: {
+      leaveDays: 5.0,
+      encashmentAmount: '1,500',
+      recoveriesAmount: '0',
+      netPayable: '1,500',
+      currency: 'AED',
+      status: 'paid',
+      lettersGenerated: true
+    }
+  },
+  {
     id: 1,
     name: 'Sara Khan',
     ini: 'SK',
@@ -6728,48 +7088,6 @@ let cases = [
     }
   },
   {
-    id: 3,
-    name: 'Aisha Noor',
-    ini: 'AN',
-    title: 'Guest Relations Executive',
-    designation: 'Guest Relations Executive',
-    position: 'Guest Services Associate · Seat GR-04',
-    email: 'aisha.noor@noisiv.com',
-    contact: '+971 54 712 3390',
-    seat: 'GR-04',
-    dept: 'Front Office',
-    manager: 'Sara Khan · Front Desk Manager',
-    tenure: '1 yr 4 mos',
-    leaveBalance: 5.0,
-    reason: 'Terminated',
-    startDate: '12 Sep 2026',
-    noticeGivenDate: '12 Sep 2026',
-    lwd: '12 Sep 2026',
-    dueText: 'Left 3 days ago',
-    dueTone: 'neu',
-    stage: 2, // Exited · clearing
-    stageName: 'Exited · clearing',
-    stageTone: 'bad',
-    successor: null,
-    handover: [],
-    clearance: [
-      { dept: 'IT', title: 'System access terminated', approver: 'Zaid Al-Harbi', notes: 'Access cut off on 12 Sep.', done: true, status: 'approved' },
-      { dept: 'Admin', title: 'Badge and keycard return', approver: 'Tariq Mansoor', notes: 'Returned to security.', done: true, status: 'approved' },
-      { dept: 'Finance', title: 'Final deductions calculated', approver: 'Amina El-Sayed', notes: 'Zero dues.', done: true, status: 'approved' },
-      { dept: 'Line manager', title: 'Operational sign-off', approver: 'Sara Khan', notes: 'Signed.', done: true, status: 'approved' }
-    ],
-    exitInterviewStatus: 'skipped',
-    settlement: {
-      leaveDays: 5.0,
-      encashmentAmount: '1,500',
-      recoveriesAmount: '0',
-      netPayable: '1,500',
-      currency: 'AED',
-      status: 'paid',
-      lettersGenerated: true
-    }
-  },
-  {
     id: 4,
     name: 'Leena Joseph',
     ini: 'LJ',
@@ -6812,51 +7130,8 @@ let cases = [
       status: 'in_progress',
       lettersGenerated: true
     }
-  },
-  {
-    id: 5,
-    name: 'Mark Dsouza',
-    ini: 'MD',
-    title: 'Security Officer',
-    designation: 'Security Officer',
-    position: 'Safety & Security Specialist · Seat SO-07',
-    email: 'mark.dsouza@noisiv.com',
-    contact: '+971 56 620 4451',
-    seat: 'SO-07',
-    dept: 'Security',
-    manager: 'Capt. Tariq Al-Hashimi · Security Head',
-    tenure: '4 yrs 1 mo',
-    leaveBalance: 0,
-    reason: 'Retirement',
-    startDate: '31 Jul 2026',
-    noticeGivenDate: '31 Jul 2026',
-    lwd: '31 Aug 2026',
-    dueText: 'Left 15 days ago',
-    dueTone: 'neu',
-    stage: 3, // Closed
-    stageName: 'Closed',
-    stageTone: 'ok',
-    successor: 'Ravi Kumar',
-    handover: [],
-    clearance: [
-      { dept: 'IT', title: 'Security cameras credentials revoked', approver: 'Zaid Al-Harbi', notes: 'Revoked.', done: true, status: 'approved' },
-      { dept: 'Admin', title: 'Uniform & security badge returned', approver: 'Tariq Mansoor', notes: 'Returned.', done: true, status: 'approved' },
-      { dept: 'Finance', title: 'Settlement disbursed', approver: 'Amina El-Sayed', notes: 'Bank transfer done.', done: true, status: 'approved' },
-      { dept: 'Line manager', title: 'Exit sign-off', approver: 'Capt. Tariq', notes: 'Signed.', done: true, status: 'approved' }
-    ],
-    exitInterviewStatus: 'completed',
-    settlement: {
-      leaveDays: 0,
-      encashmentAmount: '0',
-      recoveriesAmount: '0',
-      netPayable: '0',
-      currency: 'AED',
-      status: 'paid',
-      lettersGenerated: true
-    }
   }
 ];
-
 let activeScope = 'progress';
 let activeMenuId = null;
 let currentScreen = 'list';
@@ -8569,52 +8844,97 @@ function showEmployeeHoverCard(triggerEl, empId) {
   const card = document.getElementById('employeeHoverCard');
   if (!card) return;
 
-  // 1. Employee Name
-  const nameEl = document.getElementById('empCardName');
-  if (nameEl) nameEl.textContent = c.name;
+  const isAisha = (c.name && c.name.toLowerCase().includes('aisha')) || c.id === 3;
 
-  // Initials / Avatar
-  const avatarEl = document.getElementById('empCardAvatar');
-  if (avatarEl) avatarEl.textContent = c.ini || c.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+  const f1 = document.getElementById('empCardFormat1');
+  const f2 = document.getElementById('empCardFormat2');
 
-  // Employee Badge ID
-  const badgeId = `#EMP-${c.id.toString().padStart(4, '0')}`;
-  const badgeEl = document.getElementById('empCardBadgePill');
-  if (badgeEl) badgeEl.textContent = badgeId;
+  if (isAisha) {
+    if (f1) f1.style.display = 'none';
+    if (f2) f2.style.display = 'block';
 
-  // Seat Clearance Tag
-  const seatEl = document.getElementById('empCardSeatPill');
-  if (seatEl) seatEl.textContent = c.seat ? `Seat ${c.seat}` : 'ACTIVE ACCESS';
+    const waveName = document.getElementById('empCardWaveName');
+    if (waveName) waveName.textContent = c.name.toUpperCase();
 
-  // 2. Designation
-  const desigVal = c.designation || c.title || 'Specialist';
-  const desigField = document.getElementById('empCardDesignation');
-  if (desigField) desigField.textContent = desigVal;
+    const wavePill = document.getElementById('empCardWavePill');
+    if (wavePill) wavePill.textContent = c.dept || c.department || 'Front Office';
 
-  // 3. Department
-  const deptVal = c.dept || c.department || 'Operations';
-  const deptField = document.getElementById('empCardDepartment');
-  if (deptField) deptField.textContent = deptVal;
+    const waveId = document.getElementById('empCardWaveId');
+    if (waveId) waveId.textContent = `#EMP-${c.id.toString().padStart(4, '0')}`;
 
-  // 4. Position
-  const posVal = c.position || `Senior Specialist · Seat ${c.seat}`;
-  const posField = document.getElementById('empCardPosition');
-  if (posField) posField.textContent = posVal;
+    const waveDesig = document.getElementById('empCardWaveDesignation');
+    if (waveDesig) waveDesig.textContent = c.designation || c.title || 'Guest Relations Executive';
 
-  // 5. Email
-  const emailVal = c.email || `${c.name.toLowerCase().replace(/[^a-z0-9]/g, '.')}@noisiv.com`;
-  const emailLink = document.getElementById('empCardEmailLink');
-  if (emailLink) {
-    emailLink.textContent = emailVal;
-    emailLink.href = `mailto:${emailVal}`;
-  }
+    const waveDept = document.getElementById('empCardWaveDepartment');
+    if (waveDept) waveDept.textContent = c.dept || c.department || 'Front Office';
 
-  // 6. Contact
-  const contactVal = c.contact || '+971 50 492 8812';
-  const contactLink = document.getElementById('empCardContactLink');
-  if (contactLink) {
-    contactLink.textContent = contactVal;
-    contactLink.href = `tel:${contactVal.replace(/\s+/g, '')}`;
+    const wavePos = document.getElementById('empCardWavePosition');
+    if (wavePos) wavePos.textContent = c.position || `Specialist · Seat ${c.seat || 'GR-04'}`;
+
+    const emailVal = c.email || 'aisha.noor@noisiv.com';
+    const waveEmailLink = document.getElementById('empCardWaveEmailLink');
+    if (waveEmailLink) {
+      waveEmailLink.textContent = emailVal;
+      waveEmailLink.href = `mailto:${emailVal}`;
+    }
+
+    const phoneVal = c.contact || c.phone || '+971 54 712 3390';
+    const wavePhoneLink = document.getElementById('empCardWavePhoneLink');
+    if (wavePhoneLink) {
+      wavePhoneLink.textContent = phoneVal;
+      wavePhoneLink.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
+    }
+  } else {
+    if (f1) f1.style.display = 'block';
+    if (f2) f2.style.display = 'none';
+
+    // 1. Employee Name
+    const nameEl = document.getElementById('empCardName');
+    if (nameEl) nameEl.textContent = c.name;
+
+    // Initials / Avatar
+    const avatarEl = document.getElementById('empCardAvatar');
+    if (avatarEl) avatarEl.textContent = c.ini || c.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+
+    // Employee Badge ID
+    const badgeId = `#EMP-${c.id.toString().padStart(4, '0')}`;
+    const badgeEl = document.getElementById('empCardBadgePill');
+    if (badgeEl) badgeEl.textContent = badgeId;
+
+    // Seat Clearance Tag
+    const seatEl = document.getElementById('empCardSeatPill');
+    if (seatEl) seatEl.textContent = c.seat ? `Seat ${c.seat}` : 'ACTIVE ACCESS';
+
+    // 2. Designation
+    const desigVal = c.designation || c.title || 'Specialist';
+    const desigField = document.getElementById('empCardDesignation');
+    if (desigField) desigField.textContent = desigVal;
+
+    // 3. Department
+    const deptVal = c.dept || c.department || 'Operations';
+    const deptField = document.getElementById('empCardDepartment');
+    if (deptField) deptField.textContent = deptVal;
+
+    // 4. Position
+    const posVal = c.position || `Senior Specialist · Seat ${c.seat}`;
+    const posField = document.getElementById('empCardPosition');
+    if (posField) posField.textContent = posVal;
+
+    // 5. Email
+    const emailVal = c.email || `${c.name.toLowerCase().replace(/[^a-z0-9]/g, '.')}@noisiv.com`;
+    const emailLink = document.getElementById('empCardEmailLink');
+    if (emailLink) {
+      emailLink.textContent = emailVal;
+      emailLink.href = `mailto:${emailVal}`;
+    }
+
+    // 6. Contact
+    const contactVal = c.contact || '+971 50 492 8812';
+    const contactLink = document.getElementById('empCardContactLink');
+    if (contactLink) {
+      contactLink.textContent = contactVal;
+      contactLink.href = `tel:${contactVal.replace(/\s+/g, '')}`;
+    }
   }
 
   card.setAttribute('data-current-emp-id', c.id);
@@ -8628,8 +8948,8 @@ function showEmployeeHoverCard(triggerEl, empId) {
 
   const rect = target.getBoundingClientRect();
   const cardRect = card.getBoundingClientRect();
-  const cardWidth = cardRect.width || 310;
-  const cardHeight = cardRect.height || 260;
+  const cardWidth = cardRect.width || 320;
+  const cardHeight = cardRect.height || 310;
 
   const margin = 12;
   let left = rect.right + margin;
@@ -8673,6 +8993,34 @@ function copyCardEmail(e) {
 function copyCardPhone(e) {
   e.stopPropagation();
   const phone = document.getElementById('empCardContactLink').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(phone).then(() => {
+      showToast(`✓ Copied contact: ${phone}`);
+    }).catch(() => {
+      showToast(`Contact: ${phone}`);
+    });
+  } else {
+    showToast(`Contact: ${phone}`);
+  }
+}
+
+function copyCardWaveEmail(e) {
+  e.stopPropagation();
+  const email = document.getElementById('empCardWaveEmailLink').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(email).then(() => {
+      showToast(`✓ Copied email: ${email}`);
+    }).catch(() => {
+      showToast(`Email: ${email}`);
+    });
+  } else {
+    showToast(`Email: ${email}`);
+  }
+}
+
+function copyCardWavePhone(e) {
+  e.stopPropagation();
+  const phone = document.getElementById('empCardWavePhoneLink').textContent;
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(phone).then(() => {
       showToast(`✓ Copied contact: ${phone}`);

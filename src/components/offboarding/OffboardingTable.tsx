@@ -786,21 +786,231 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
             },
           }}
         >
-          {/* Top Lanyard Slot Notch Cutout Accent */}
-          <Box
-            sx={{
-              width: 38,
-              height: 5,
-              borderRadius: '999px',
-              bgcolor: '#CBD5E1',
-              mx: 'auto',
-              mt: 1,
-              mb: 0.5,
-              boxShadow: 'inset 0 1.5px 2px rgba(15, 23, 42, 0.35), 0 1px 0 rgba(255, 255, 255, 0.9)',
-            }}
-          />
+          {((hoveredCase.name && hoveredCase.name.toLowerCase().includes('aisha')) || hoveredCase.id === 3) ? (
+            /* Format 2: Curved Purple Wave Style (Aisha Noor - Row 2) */
+            <Box sx={{ position: 'relative', bgcolor: '#FFFFFF', overflow: 'hidden', borderRadius: '16px' }}>
+              {/* Curved Wave Header */}
+              <Box sx={{ position: 'relative', width: '100%', height: 64, overflow: 'hidden' }}>
+                <svg viewBox="0 0 320 64" preserveAspectRatio="none" style={{ width: '100%', height: '100%', display: 'block' }}>
+                  <defs>
+                    <linearGradient id="aishaWaveGradJoy" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#9185F8" />
+                      <stop offset="100%" stopColor="#7C3AED" />
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,0 L320,0 L320,40 Q160,64 0,40 Z" fill="url(#aishaWaveGradJoy)" />
+                </svg>
+              </Box>
 
-          <Box sx={{ p: '10px 14px 12px 14px' }}>
+              {/* Centered Overlapping Circular Avatar */}
+              <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', mt: '-34px', zIndex: 2 }}>
+                <Box
+                  sx={{
+                    width: 68,
+                    height: 68,
+                    borderRadius: '50%',
+                    bgcolor: '#DDD6FE',
+                    border: '3.5px solid #FFFFFF',
+                    boxShadow: '0 4px 14px rgba(124, 58, 237, 0.22), 0 1px 3px rgba(15, 23, 42, 0.08)',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <img
+                    src="/aisha_avatar.png"
+                    alt={hoveredCase.name}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = '/aisha_avatar_clean.png';
+                    }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 2,
+                    right: 'calc(50% - 31px)',
+                    width: 11,
+                    height: 11,
+                    borderRadius: '50%',
+                    bgcolor: '#10B981',
+                    border: '2px solid #FFFFFF',
+                    boxShadow: '0 0 0 1px rgba(16, 185, 129, 0.3)',
+                    zIndex: 3,
+                  }}
+                />
+              </Box>
+
+              {/* Centered Name: AISHA NOOR */}
+              <Typography
+                sx={{
+                  fontSize: '15.5px',
+                  fontWeight: 800,
+                  color: '#0F172A',
+                  textAlign: 'center',
+                  mt: '7px',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  lineHeight: 1.2,
+                  fontFamily: 'Inter, system-ui, sans-serif',
+                }}
+              >
+                {hoveredCase.name.toUpperCase()}
+              </Typography>
+
+              {/* Centered Lavender Pill Chip */}
+              <Box sx={{ textAlign: 'center', mt: '5px', mb: '11px' }}>
+                <Box
+                  component="span"
+                  sx={{
+                    bgcolor: '#EDE9FE',
+                    color: '#5B21B6',
+                    border: '1px solid #DDD6FE',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    px: '14px',
+                    py: '2.5px',
+                    borderRadius: '999px',
+                    display: 'inline-block',
+                    letterSpacing: '0.02em',
+                    lineHeight: 1.25,
+                  }}
+                >
+                  {hoveredCase.department || 'Front Office'}
+                </Box>
+              </Box>
+
+              {/* Colon-Aligned Key-Value Metadata List */}
+              <Box sx={{ px: 2, pb: 1.75, display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {/* ID No */}
+                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>ID No</Typography>
+                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                  <Typography sx={{ color: '#6D28D9', fontWeight: 600, fontSize: '11px', fontFamily: 'JetBrains Mono, monospace' }}>
+                    {`#EMP-${hoveredCase.id.toString().padStart(4, '0')}`}
+                  </Typography>
+                </Box>
+
+                {/* Designation */}
+                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Designation</Typography>
+                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                  <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
+                    {hoveredCase.designation || hoveredCase.title}
+                  </Typography>
+                </Box>
+
+                {/* Department */}
+                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Department</Typography>
+                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                  <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
+                    {hoveredCase.department}
+                  </Typography>
+                </Box>
+
+                {/* Position */}
+                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Position</Typography>
+                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                  <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
+                    {hoveredCase.position || `Specialist · Seat ${hoveredCase.seat}`}
+                  </Typography>
+                </Box>
+
+                {/* E-mail */}
+                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>E-mail</Typography>
+                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
+                    <Typography
+                      component="a"
+                      href={`mailto:${hoveredCase.email || 'aisha.noor@noisiv.com'}`}
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        color: '#2563EB',
+                        fontWeight: 600,
+                        fontSize: '11.5px',
+                        textDecoration: 'none',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        '&:hover': { textDecoration: 'underline', color: '#1D4ED8' },
+                      }}
+                    >
+                      {hoveredCase.email || 'aisha.noor@noisiv.com'}
+                    </Typography>
+                    <IconButton
+                      size="sm"
+                      variant="plain"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCopy(hoveredCase.email || 'aisha.noor@noisiv.com', 'email');
+                      }}
+                      sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'email' ? '#16A34A' : '#94A3B8', '&:hover': { color: '#7C3AED', bgcolor: '#EDE9FE' } }}
+                    >
+                      {copiedField === 'email' ? <FiCheck size={12} /> : <FiCopy size={11} />}
+                    </IconButton>
+                  </Box>
+                </Box>
+
+                {/* Phone */}
+                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
+                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Phone</Typography>
+                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
+                    <Typography
+                      component="a"
+                      href={`tel:${(hoveredCase.contact || hoveredCase.phone || '+971 54 712 3390').replace(/\s+/g, '')}`}
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        color: '#2563EB',
+                        fontWeight: 600,
+                        fontSize: '11.5px',
+                        textDecoration: 'none',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        '&:hover': { textDecoration: 'underline', color: '#1D4ED8' },
+                      }}
+                    >
+                      {hoveredCase.contact || hoveredCase.phone || '+971 54 712 3390'}
+                    </Typography>
+                    <IconButton
+                      size="sm"
+                      variant="plain"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCopy(hoveredCase.contact || hoveredCase.phone || '+971 54 712 3390', 'contact');
+                      }}
+                      sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'contact' ? '#16A34A' : '#94A3B8', '&:hover': { color: '#7C3AED', bgcolor: '#EDE9FE' } }}
+                    >
+                      {copiedField === 'contact' ? <FiCheck size={12} /> : <FiCopy size={11} />}
+                    </IconButton>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          ) : (
+            /* Format 1: Corporate ID Badge Style (Mark D'Souza - Row 1) */
+            <>
+              {/* Top Lanyard Slot Notch Cutout Accent */}
+              <Box
+                sx={{
+                  width: 38,
+                  height: 5,
+                  borderRadius: '999px',
+                  bgcolor: '#CBD5E1',
+                  mx: 'auto',
+                  mt: 1,
+                  mb: 0.5,
+                  boxShadow: 'inset 0 1.5px 2px rgba(15, 23, 42, 0.35), 0 1px 0 rgba(255, 255, 255, 0.9)',
+                }}
+              />
+
+              <Box sx={{ p: '10px 14px 12px 14px' }}>
             {/* Primary ID Section: Avatar + Name + Badge Code & Clearance */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.35 }}>
               <Box sx={{ position: 'relative', flexShrink: 0 }}>
@@ -1179,8 +1389,9 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     </IconButton>
                   </Box>
                 </Box>
-            </Box>
-          </Box>
+              </Box>
+            </>
+          )}
         </Box>
       )}
     </Box>
