@@ -789,18 +789,8 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
           {((hoveredCase.name && hoveredCase.name.toLowerCase().includes('aisha')) || hoveredCase.id === 3) ? (
             /* Format 2: Curved Purple Wave Style (Aisha Noor - Row 2) */
             <Box sx={{ position: 'relative', bgcolor: '#FFFFFF', overflow: 'hidden', borderRadius: '16px' }}>
-              {/* Curved Wave Header */}
-              <Box sx={{ position: 'relative', width: '100%', height: 64, overflow: 'hidden' }}>
-                <svg viewBox="0 0 320 64" preserveAspectRatio="none" style={{ width: '100%', height: '100%', display: 'block' }}>
-                  <defs>
-                    <linearGradient id="aishaWaveGradJoy" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#9185F8" />
-                      <stop offset="100%" stopColor="#7C3AED" />
-                    </linearGradient>
-                  </defs>
-                  <path d="M0,0 L320,0 L320,40 Q160,64 0,40 Z" fill="url(#aishaWaveGradJoy)" />
-                </svg>
-              </Box>
+              {/* Straight Purple Header (Straight bottom edge, no curve) */}
+              <Box sx={{ width: '100%', height: 52, bgcolor: '#7C3AED', background: 'linear-gradient(135deg, #9185F8 0%, #7C3AED 100%)' }} />
 
               {/* Centered Overlapping Circular Avatar */}
               <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', mt: '-34px', zIndex: 2 }}>
@@ -860,8 +850,24 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 {hoveredCase.name.toUpperCase()}
               </Typography>
 
-              {/* Centered Lavender Pill Chip */}
-              <Box sx={{ textAlign: 'center', mt: '5px', mb: '11px' }}>
+              {/* Centered Badges Row: ID Chip + Department Chip */}
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.9, mt: '5px', mb: '12px' }}>
+                <Typography
+                  sx={{
+                    fontFamily: 'JetBrains Mono, monospace',
+                    fontSize: '10.5px',
+                    fontWeight: 600,
+                    color: '#6D28D9',
+                    bgcolor: '#F5F3FF',
+                    border: '1px solid #DDD6FE',
+                    borderRadius: '5px',
+                    px: 0.75,
+                    py: '1.5px',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {`#EMP-${hoveredCase.id.toString().padStart(4, '0')}`}
+                </Typography>
                 <Box
                   component="span"
                   sx={{
@@ -870,8 +876,8 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     border: '1px solid #DDD6FE',
                     fontSize: '11px',
                     fontWeight: 600,
-                    px: '14px',
-                    py: '2.5px',
+                    px: '12px',
+                    py: '2px',
                     borderRadius: '999px',
                     display: 'inline-block',
                     letterSpacing: '0.02em',
@@ -882,32 +888,14 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 </Box>
               </Box>
 
-              {/* Colon-Aligned Key-Value Metadata List */}
+              {/* Colon-Aligned Key-Value Metadata List: Only Designation, Position, Email, Phone */}
               <Box sx={{ px: 2, pb: 1.75, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                {/* ID No */}
-                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
-                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>ID No</Typography>
-                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
-                  <Typography sx={{ color: '#6D28D9', fontWeight: 600, fontSize: '11px', fontFamily: 'JetBrains Mono, monospace' }}>
-                    {`#EMP-${hoveredCase.id.toString().padStart(4, '0')}`}
-                  </Typography>
-                </Box>
-
                 {/* Designation */}
                 <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
                   <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Designation</Typography>
                   <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
                   <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
                     {hoveredCase.designation || hoveredCase.title}
-                  </Typography>
-                </Box>
-
-                {/* Department */}
-                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
-                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Department</Typography>
-                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
-                  <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
-                    {hoveredCase.department}
                   </Typography>
                 </Box>
 

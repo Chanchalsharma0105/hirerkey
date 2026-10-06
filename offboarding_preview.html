@@ -1639,7 +1639,8 @@
     .emp-card-wave-header {
       position: relative;
       width: 100%;
-      height: 64px;
+      height: 52px;
+      background: linear-gradient(135deg, #9185F8 0%, #7C3AED 100%);
       overflow: hidden;
     }
 
@@ -6668,20 +6669,10 @@
     </div>
   </div>
 
-  <!-- VIEW 2: Curved Purple Wave Style (Aisha Noor - Row 2) -->
+  <!-- VIEW 2: Straight Purple Header Style (Aisha Noor - Row 2) -->
   <div id="empCardFormat2" class="emp-card-wave-wrap" style="display: none;">
-    <!-- Curved Wave Header -->
-    <div class="emp-card-wave-header">
-      <svg viewBox="0 0 320 64" preserveAspectRatio="none" class="emp-card-wave-svg">
-        <defs>
-          <linearGradient id="aishaWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#9185F8" />
-            <stop offset="100%" stop-color="#7C3AED" />
-          </linearGradient>
-        </defs>
-        <path d="M0,0 L320,0 L320,40 Q160,64 0,40 Z" fill="url(#aishaWaveGrad)" />
-      </svg>
-    </div>
+    <!-- Straight Purple Header (Straight bottom edge, no curve) -->
+    <div class="emp-card-wave-header"></div>
 
     <!-- Centered Overlapping Circular Avatar -->
     <div class="emp-card-wave-avatar-container">
@@ -6695,32 +6686,19 @@
     <!-- Centered Name: AISHA NOOR -->
     <div class="emp-card-wave-name" id="empCardWaveName">AISHA NOOR</div>
 
-    <!-- Centered Lavender Pill Chip: Front Office -->
-    <div class="emp-card-wave-pill-wrap">
+    <!-- Centered Badges Row: ID Chip + Department Chip -->
+    <div class="emp-card-wave-pill-wrap" style="display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 5px; margin-bottom: 12px;">
+      <span class="emp-card-badge-pill" id="empCardWaveIdPill">#EMP-0003</span>
       <span class="emp-card-wave-pill" id="empCardWavePill">Front Office</span>
     </div>
 
-    <!-- Colon-Aligned Key-Value Metadata List -->
+    <!-- Colon-Aligned Key-Value Metadata List: Only Designation, Position, Email, Phone -->
     <div class="emp-card-wave-meta-list">
-      <!-- ID No -->
-      <div class="emp-card-wave-row">
-        <span class="emp-card-wave-label">ID No</span>
-        <span class="emp-card-wave-colon">:</span>
-        <span class="emp-card-wave-val font-mono" id="empCardWaveId">#EMP-0003</span>
-      </div>
-
       <!-- Designation -->
       <div class="emp-card-wave-row">
         <span class="emp-card-wave-label">Designation</span>
         <span class="emp-card-wave-colon">:</span>
         <span class="emp-card-wave-val" id="empCardWaveDesignation">Guest Relations Executive</span>
-      </div>
-
-      <!-- Department -->
-      <div class="emp-card-wave-row">
-        <span class="emp-card-wave-label">Department</span>
-        <span class="emp-card-wave-colon">:</span>
-        <span class="emp-card-wave-val" id="empCardWaveDepartment">Front Office</span>
       </div>
 
       <!-- Position -->
@@ -8856,17 +8834,14 @@ function showEmployeeHoverCard(triggerEl, empId) {
     const waveName = document.getElementById('empCardWaveName');
     if (waveName) waveName.textContent = c.name.toUpperCase();
 
+    const waveIdPill = document.getElementById('empCardWaveIdPill');
+    if (waveIdPill) waveIdPill.textContent = `#EMP-${c.id.toString().padStart(4, '0')}`;
+
     const wavePill = document.getElementById('empCardWavePill');
     if (wavePill) wavePill.textContent = c.dept || c.department || 'Front Office';
 
-    const waveId = document.getElementById('empCardWaveId');
-    if (waveId) waveId.textContent = `#EMP-${c.id.toString().padStart(4, '0')}`;
-
     const waveDesig = document.getElementById('empCardWaveDesignation');
     if (waveDesig) waveDesig.textContent = c.designation || c.title || 'Guest Relations Executive';
-
-    const waveDept = document.getElementById('empCardWaveDepartment');
-    if (waveDept) waveDept.textContent = c.dept || c.department || 'Front Office';
 
     const wavePos = document.getElementById('empCardWavePosition');
     if (wavePos) wavePos.textContent = c.position || `Specialist · Seat ${c.seat || 'GR-04'}`;
