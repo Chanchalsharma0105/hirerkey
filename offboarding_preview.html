@@ -1279,22 +1279,22 @@
 
     .employee-hover-card {
       position: fixed;
-      width: 310px;
+      width: 320px;
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: 14px;
-      box-shadow: 0 14px 34px -4px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(15, 23, 42, 0.04);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px -8px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04);
       z-index: 99999;
       pointer-events: auto;
       overflow: hidden;
-      animation: empCardFadeIn 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: empCardFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
       font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     @keyframes empCardFadeIn {
       from {
         opacity: 0;
-        transform: translateY(4px) scale(0.98);
+        transform: translateY(6px) scale(0.97);
       }
       to {
         opacity: 1;
@@ -1302,16 +1302,136 @@
       }
     }
 
-    .emp-card-body {
-      padding: 14px 14px 14px 14px;
+    /* Top Lanyard Slot Notch Accent */
+    .emp-card-lanyard-notch {
+      width: 38px;
+      height: 5px;
+      border-radius: 999px;
+      background: #CBD5E1;
+      margin: 8px auto 0 auto;
+      box-shadow: inset 0 1.5px 2px rgba(15, 23, 42, 0.35), 0 1px 0 rgba(255, 255, 255, 0.9);
       position: relative;
     }
 
+    .emp-card-body {
+      padding: 10px 14px 12px 14px;
+      position: relative;
+    }
+
+    /* Corporate Pass Header */
+    .emp-card-pass-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 9px;
+      margin-bottom: 11px;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .emp-card-corp-brand {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .emp-card-corp-logo {
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      display: grid;
+      place-items: center;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      box-shadow: 0 2px 5px rgba(124, 58, 237, 0.3);
+    }
+
+    .emp-card-corp-title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .emp-card-corp-name {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #334155;
+    }
+
+    .emp-card-corp-type {
+      font-size: 7.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7C3AED;
+    }
+
+    /* Digital Smart Chip & NFC Contactless Icon */
+    .emp-card-chip-nfc {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .emp-card-smartchip {
+      width: 22px;
+      height: 16px;
+      border-radius: 3.5px;
+      background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 55%, #D97706 100%);
+      border: 1px solid #D97706;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), 0 1px 2px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .emp-card-smartchip::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      background: rgba(180, 83, 9, 0.45);
+      top: 50%;
+      left: 0;
+    }
+
+    .emp-card-smartchip::after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      background: rgba(180, 83, 9, 0.45);
+      left: 50%;
+      top: 0;
+    }
+
+    .emp-card-chip-core {
+      width: 7px;
+      height: 7px;
+      border-radius: 1.5px;
+      background: #F59E0B;
+      border: 1px solid #B45309;
+      z-index: 1;
+    }
+
+    .emp-card-nfc-icon {
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+    }
+
+    /* Primary Identity: Avatar + Name + Badge Code */
     .emp-card-header {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 11px;
     }
 
     .emp-card-avatar-wrap {
@@ -1320,17 +1440,17 @@
     }
 
     .emp-card-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 11px;
-      background: #EDE9FE;
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%);
       color: #6D28D9;
       font-weight: 700;
-      font-size: 14.5px;
+      font-size: 16px;
       display: grid;
       place-items: center;
       border: 2px solid #FFFFFF;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+      box-shadow: 0 3px 8px rgba(109, 40, 217, 0.15), 0 0 0 1px #E2E8F0;
       font-family: var(--font-inter);
     }
 
@@ -1338,41 +1458,94 @@
       position: absolute;
       bottom: -1px;
       right: -1px;
-      width: 9px;
-      height: 9px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: #10B981;
-      border: 1.5px solid #FFFFFF;
-      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.2);
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.25);
+    }
+
+    .emp-card-id-text-wrap {
+      flex: 1;
+      min-width: 0;
     }
 
     .emp-card-name {
-      font-size: 15.5px;
+      font-size: 15px;
       font-weight: 700;
       color: #0F172A;
       line-height: 1.25;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.015em;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
+    .emp-card-badge-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .emp-card-badge-pill {
+      font-family: var(--font-mono), monospace !important;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #6D28D9;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      border-radius: 5px;
+      padding: 1px 6px;
+      line-height: 1.2;
+    }
+
+    .emp-card-clearance-pill {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #059669;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      border-radius: 4px;
+      padding: 1px 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .emp-card-clearance-pill::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+
+    /* Structured Details Box */
     .emp-card-details {
       background: #F8FAFC;
-      border: 1px solid #EDF2F7;
-      border-radius: 10px;
-      padding: 10px 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 11px;
+      padding: 9px 11px;
       display: flex;
       flex-direction: column;
-      gap: 9px;
+      gap: 8px;
     }
 
     .emp-card-field {
       display: flex;
       align-items: flex-start;
-      gap: 9px;
+      gap: 8px;
     }
 
     .emp-card-field-icon {
-      width: 22px;
-      height: 22px;
+      width: 21px;
+      height: 21px;
       border-radius: 6px;
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
@@ -1389,18 +1562,18 @@
     }
 
     .emp-card-label {
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: #94A3B8;
       display: block;
       line-height: 1.1;
-      margin-bottom: 1px;
+      margin-bottom: 1.5px;
     }
 
     .emp-card-value {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 600;
       color: #1E293B;
       line-height: 1.35;
@@ -1409,12 +1582,12 @@
 
     .emp-card-value.font-mono {
       font-family: var(--font-mono), monospace !important;
-      font-size: 11.5px;
+      font-size: 11px;
       color: #334155;
     }
 
     .emp-card-link {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       color: #2563EB;
       text-decoration: none;
@@ -1430,7 +1603,7 @@
     .emp-card-copy-btn {
       background: none;
       border: none;
-      padding: 2px;
+      padding: 2px 4px;
       cursor: pointer;
       color: #94A3B8;
       display: flex;
@@ -1442,6 +1615,58 @@
     .emp-card-copy-btn:hover {
       color: #7C3AED;
       background: #EDE9FE;
+    }
+
+    /* Bottom Authenticity & Barcode Strip */
+    .emp-card-auth-footer {
+      margin-top: 10px;
+      padding-top: 9px;
+      border-top: 1px dashed #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .emp-card-barcode-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .emp-card-barcode-svg {
+      display: block;
+    }
+
+    .emp-card-barcode-meta {
+      font-family: var(--font-mono), monospace !important;
+      font-size: 7.5px;
+      font-weight: 500;
+      color: #94A3B8;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .emp-card-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #7C3AED;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      border-radius: 6px;
+      padding: 4px 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .emp-card-action-btn:hover {
+      background: #EDE9FE;
+      border-color: #C4B5FD;
+      color: #6D28D9;
+      transform: translateY(-1px);
     }
 
     /* Position & Seat */
@@ -6208,19 +6433,51 @@
   <span id="toastText">Action completed successfully.</span>
 </div>
 
-<!-- Employee Hover Card (Screen 1 departures list) -->
+<!-- Employee Hover Card (Screen 1 departures list - Corporate ID Card / Staff Pass) -->
 <div id="employeeHoverCard" class="employee-hover-card" style="display: none;" onmouseenter="handleCardMouseEnter()" onmouseleave="scheduleHideEmpCard()">
+  <!-- Top Lanyard Slot Notch Cutout Accent -->
+  <div class="emp-card-lanyard-notch" title="Staff Badge Lanyard Clip Slot"></div>
+
   <div class="emp-card-body">
-    <!-- Header: Profile Avatar and Name side by side -->
+    <!-- Corporate Pass Header with Logo and Smart Chip / NFC -->
+    <div class="emp-card-pass-header">
+      <div class="emp-card-corp-brand">
+        <div class="emp-card-corp-logo">N</div>
+        <div class="emp-card-corp-title">
+          <span class="emp-card-corp-name">NOISIV CONSULTING</span>
+          <span class="emp-card-corp-type">CORPORATE STAFF PASS</span>
+        </div>
+      </div>
+      <div class="emp-card-chip-nfc">
+        <div class="emp-card-smartchip" title="Digital Smart Security Chip">
+          <div class="emp-card-chip-core"></div>
+        </div>
+        <div class="emp-card-nfc-icon" title="NFC Contactless Access Enabled">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <path d="M4 10a12 12 0 0 1 16 0"/>
+            <path d="M7 13a8 8 0 0 1 10 0"/>
+            <path d="M10 16a4 4 0 0 1 4 0"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Primary ID Identity: Photo/Avatar + Name + Badge Pill -->
     <div class="emp-card-header">
       <div class="emp-card-avatar-wrap">
         <div class="emp-card-avatar" id="empCardAvatar">SK</div>
         <span class="emp-card-status-dot" title="Active Employee"></span>
       </div>
-      <div class="emp-card-name" id="empCardName">Sara Khan</div>
+      <div class="emp-card-id-text-wrap">
+        <div class="emp-card-name" id="empCardName">Sara Khan</div>
+        <div class="emp-card-badge-row">
+          <span class="emp-card-badge-pill" id="empCardBadgePill">#EMP-0482</span>
+          <span class="emp-card-clearance-pill" id="empCardSeatPill">Seat FDM-01</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Details Box: All 5 attributes cleanly organized -->
+    <!-- Details Box: All 5 user-required attributes cleanly organized -->
     <div class="emp-card-details">
       <!-- 1. Designation -->
       <div class="emp-card-field">
@@ -6286,6 +6543,42 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Bottom Authenticity Strip: Barcode + File Link -->
+    <div class="emp-card-auth-footer">
+      <div class="emp-card-barcode-wrap">
+        <svg class="emp-card-barcode-svg" width="94" height="14" viewBox="0 0 94 14" fill="none">
+          <rect x="0" y="0" width="2" height="14" fill="#475569"/>
+          <rect x="4" y="0" width="1" height="14" fill="#475569"/>
+          <rect x="7" y="0" width="3" height="14" fill="#475569"/>
+          <rect x="12" y="0" width="1" height="14" fill="#475569"/>
+          <rect x="15" y="0" width="2" height="14" fill="#475569"/>
+          <rect x="19" y="0" width="4" height="14" fill="#475569"/>
+          <rect x="25" y="0" width="1" height="14" fill="#475569"/>
+          <rect x="28" y="0" width="2" height="14" fill="#475569"/>
+          <rect x="32" y="0" width="1" height="14" fill="#475569"/>
+          <rect x="35" y="0" width="3" height="14" fill="#475569"/>
+          <rect x="40" y="0" width="2" height="14" fill="#475569"/>
+          <rect x="44" y="0" width="1" height="14" fill="#475569"/>
+          <rect x="47" y="0" width="4" height="14" fill="#475569"/>
+          <rect x="53" y="0" width="2" height="14" fill="#475569"/>
+          <rect x="57" y="0" width="1" height="14" fill="#475569"/>
+          <rect x="60" y="0" width="3" height="14" fill="#475569"/>
+          <rect x="65" y="0" width="1" height="14" fill="#475569"/>
+          <rect x="68" y="0" width="2" height="14" fill="#475569"/>
+          <rect x="72" y="0" width="4" height="14" fill="#475569"/>
+          <rect x="78" y="0" width="1" height="14" fill="#475569"/>
+          <rect x="82" y="0" width="3" height="14" fill="#475569"/>
+          <rect x="87" y="0" width="2" height="14" fill="#475569"/>
+          <rect x="91" y="0" width="3" height="14" fill="#475569"/>
+        </svg>
+        <span class="emp-card-barcode-meta" id="empCardBarcodeText">EMP-0482 · SECURE ACCESS</span>
+      </div>
+      <button class="emp-card-action-btn" onclick="openCaseFromHoverCard(event)" title="Open leaver case workspace">
+        <span>View File</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
     </div>
   </div>
 </div>
@@ -8386,6 +8679,19 @@ function showEmployeeHoverCard(triggerEl, empId) {
   const avatarEl = document.getElementById('empCardAvatar');
   if (avatarEl) avatarEl.textContent = c.ini || c.name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
 
+  // Employee Badge ID
+  const badgeId = `#EMP-${c.id.toString().padStart(4, '0')}`;
+  const badgeEl = document.getElementById('empCardBadgePill');
+  if (badgeEl) badgeEl.textContent = badgeId;
+
+  // Seat Clearance Tag
+  const seatEl = document.getElementById('empCardSeatPill');
+  if (seatEl) seatEl.textContent = c.seat ? `Seat ${c.seat}` : 'ACTIVE ACCESS';
+
+  // Barcode metadata
+  const barcodeMeta = document.getElementById('empCardBarcodeText');
+  if (barcodeMeta) barcodeMeta.textContent = `${badgeId.replace('#', '')} · ${c.seat || 'DXB-HQ'}`;
+
   // 2. Designation
   const desigVal = c.designation || c.title || 'Specialist';
   const desigField = document.getElementById('empCardDesignation');
@@ -8428,12 +8734,12 @@ function showEmployeeHoverCard(triggerEl, empId) {
 
   const rect = target.getBoundingClientRect();
   const cardRect = card.getBoundingClientRect();
-  const cardWidth = cardRect.width || 310;
-  const cardHeight = cardRect.height || 260;
+  const cardWidth = cardRect.width || 320;
+  const cardHeight = cardRect.height || 360;
 
   const margin = 12;
   let left = rect.right + margin;
-  let top = rect.top - 8;
+  let top = rect.top - 12;
 
   // Collision detection for right edge
   if (left + cardWidth > window.innerWidth - 16) {
