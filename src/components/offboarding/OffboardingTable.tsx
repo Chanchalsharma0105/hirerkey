@@ -73,9 +73,10 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
     }
-    const rect = e.currentTarget.getBoundingClientRect();
-    const cardWidth = 310;
-    const cardHeight = 260;
+    const isRahul = (caseItem.name && caseItem.name.toLowerCase().includes('rahul')) || caseItem.id === 2;
+    const isLeena = !isRahul && ((caseItem.name && caseItem.name.toLowerCase().includes('leena')) || caseItem.id === 4);
+    const cardWidth = isRahul ? 280 : isLeena ? 380 : 310;
+    const cardHeight = isRahul ? 470 : isLeena ? 220 : 260;
     let left = rect.right + 12;
     let top = rect.top - 8;
     if (typeof window !== 'undefined') {
@@ -762,8 +763,9 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
 
       {/* Floating Employee Hover Card (Supports 3 distinct card styles: Format 1 Badge for Mark, Format 2 Straight Header for Aisha, Format 3 Glassmorphism for Leena) */}
       {hoveredCase && hoverPos && (() => {
-        const isLeena = (hoveredCase.name && hoveredCase.name.toLowerCase().includes('leena')) || hoveredCase.id === 4;
-        const isAisha = !isLeena && ((hoveredCase.name && hoveredCase.name.toLowerCase().includes('aisha')) || hoveredCase.id === 3);
+        const isRahul = (hoveredCase.name && hoveredCase.name.toLowerCase().includes('rahul')) || hoveredCase.id === 2;
+        const isLeena = !isRahul && ((hoveredCase.name && hoveredCase.name.toLowerCase().includes('leena')) || hoveredCase.id === 4);
+        const isAisha = !isRahul && !isLeena && ((hoveredCase.name && hoveredCase.name.toLowerCase().includes('aisha')) || hoveredCase.id === 3);
 
         return (
           <Box
@@ -773,11 +775,14 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
               position: 'fixed',
               top: hoverPos.top,
               left: hoverPos.left,
-              width: isLeena ? 380 : 320,
+              width: isRahul ? 280 : isLeena ? 380 : 320,
+              height: isRahul ? 470 : undefined,
               bgcolor: '#FFFFFF',
               border: '1px solid #E2E8F0',
-              borderRadius: isLeena ? '20px' : '16px',
-              boxShadow: isLeena
+              borderRadius: isRahul ? '24px' : isLeena ? '20px' : '16px',
+              boxShadow: isRahul
+                ? '0 20px 48px -10px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(15, 23, 42, 0.06)'
+                : isLeena
                 ? '0 24px 50px -12px rgba(0, 23, 65, 0.22), 0 4px 12px rgba(15, 23, 42, 0.05)'
                 : '0 20px 40px -8px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04)',
               zIndex: 99999,
@@ -791,7 +796,256 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
               },
             }}
           >
-            {isLeena ? (
+            {isRahul ? (
+              /* Format 4: Wavy Purple Portrait Badge Style (Rahul Mehta - Row 2 per media_1791311646540.png) */
+              <Box
+                sx={{
+                  position: 'relative',
+                  width: '100%',
+                  height: 470,
+                  bgcolor: '#FFFFFF',
+                  overflow: 'hidden',
+                  borderRadius: '24px',
+                  fontFamily: 'Inter, system-ui, sans-serif',
+                  boxSizing: 'border-box',
+                }}
+              >
+                {/* Background Waves (Top & Bottom Layered Waves) */}
+                <svg
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                  viewBox="0 0 280 470"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  preserveAspectRatio="none"
+                >
+                  {/* Top Lavender Layer */}
+                  <path d="M 0 0 L 280 0 L 280 125 C 235 125, 175 110, 125 112 C 70 114, 25 112, 0 110 Z" fill="#E5E3F1" />
+                  {/* Top Purple Layer */}
+                  <path d="M 0 0 L 280 0 L 280 108 C 235 108, 195 90, 140 70 C 90 50, 45 42, 0 45 Z" fill="#79499F" />
+
+                  {/* Bottom Lavender Layer */}
+                  <path d="M 0 470 L 280 470 L 280 395 C 220 420, 160 415, 100 390 C 50 370, 20 375, 0 378 Z" fill="#E5E3F1" />
+                  {/* Bottom Purple Layer */}
+                  <path d="M 0 470 L 280 470 L 280 455 C 220 458, 160 445, 100 425 C 50 405, 20 400, 0 400 Z" fill="#79499F" />
+                </svg>
+
+                {/* Top-Right Brand Logo inside Purple Wave */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 22,
+                    right: 22,
+                    zIndex: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '3px',
+                    userSelect: 'none',
+                  }}
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C12 2 15.5 5.5 15.5 9.5C15.5 12.5 13.5 14.5 12 14.5C10.5 14.5 8.5 12.5 8.5 9.5C8.5 5.5 12 2 12 2Z" fill="#FFFFFF" fillOpacity={0.95} />
+                    <path d="M12 7.5C12 7.5 13.8 9.5 13.8 11.5C13.8 13 12.8 14 12 14C11.2 14 10.2 13 10.2 11.5C10.2 9.5 12 7.5 12 7.5Z" fill="#79499F" />
+                  </svg>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      color: '#FFFFFF',
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      lineHeight: 1.15,
+                      textAlign: 'center',
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
+                    <span>Salford</span>
+                    <Box component="span" sx={{ fontSize: '9px', fontWeight: 700, opacity: 0.95 }}>
+                      & Co.
+                    </Box>
+                  </Box>
+                </Box>
+
+                {/* Centered Overlapping Avatar Photo */}
+                <Box sx={{ position: 'relative', zIndex: 3, display: 'flex', justifyContent: 'center', mt: '64px' }}>
+                  <Box
+                    sx={{
+                      width: 116,
+                      height: 116,
+                      borderRadius: '50%',
+                      bgcolor: '#FFFFFF',
+                      border: '4.5px solid #79499F',
+                      boxShadow: '0 8px 24px rgba(121, 73, 159, 0.28)',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      position: 'relative',
+                    }}
+                  >
+                    <img
+                      src="./rahul_avatar.png"
+                      alt={hoveredCase.name}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = 'public/rahul_avatar.png';
+                      }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                    />
+                  </Box>
+                </Box>
+
+                {/* Middle Identity Section */}
+                <Box sx={{ position: 'relative', zIndex: 3, mt: '28px', textAlign: 'center', px: 2 }}>
+                  <Typography
+                    sx={{
+                      fontSize: '17px',
+                      fontWeight: 900,
+                      color: '#79499F',
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {hoveredCase.name.toUpperCase()}
+                  </Typography>
+                  <Box sx={{ width: 180, height: '2.5px', bgcolor: '#79499F', borderRadius: '2px', my: 1, mx: 'auto' }} />
+                  <Typography
+                    sx={{
+                      fontSize: '12px',
+                      fontWeight: 800,
+                      color: '#79499F',
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase',
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {(hoveredCase.designation || hoveredCase.title || 'SOUS CHEF').toUpperCase()}
+                  </Typography>
+                </Box>
+
+                {/* Key-Value Metadata Section */}
+                <Box sx={{ position: 'relative', zIndex: 3, mt: '22px', px: '28px', display: 'flex', flexDirection: 'column', gap: '7px' }}>
+                  {/* 1. ID */}
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '66px 12px 1fr', alignItems: 'center', fontSize: '13px', lineHeight: 1.35 }}>
+                    <Typography sx={{ fontSize: '12.5px', fontWeight: 800, color: '#79499F', textAlign: 'right', letterSpacing: '0.03em' }}>
+                      ID
+                    </Typography>
+                    <Typography sx={{ fontSize: '13px', fontWeight: 800, color: '#79499F', textAlign: 'center' }}>:</Typography>
+                    <Typography sx={{ fontSize: '13px', fontWeight: 800, color: '#262626', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: '0.02em' }}>
+                      123-456-7890
+                    </Typography>
+                  </Box>
+
+                  {/* 2. EXPIRE */}
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '66px 12px 1fr', alignItems: 'center', fontSize: '13px', lineHeight: 1.35 }}>
+                    <Typography sx={{ fontSize: '12.5px', fontWeight: 800, color: '#79499F', textAlign: 'right', letterSpacing: '0.03em' }}>
+                      EXPIRE
+                    </Typography>
+                    <Typography sx={{ fontSize: '13px', fontWeight: 800, color: '#79499F', textAlign: 'center' }}>:</Typography>
+                    <Typography sx={{ fontSize: '13px', fontWeight: 800, color: '#262626', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', letterSpacing: '0.02em' }}>
+                      12-12-2028
+                    </Typography>
+                  </Box>
+
+                  {/* 3. PHONE */}
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '66px 12px 1fr', alignItems: 'center', fontSize: '13px', lineHeight: 1.35 }}>
+                    <Typography sx={{ fontSize: '12.5px', fontWeight: 800, color: '#79499F', textAlign: 'right', letterSpacing: '0.03em' }}>
+                      PHONE
+                    </Typography>
+                    <Typography sx={{ fontSize: '13px', fontWeight: 800, color: '#79499F', textAlign: 'center' }}>:</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '4px', minWidth: 0 }}>
+                      <Typography
+                        component="a"
+                        href={`tel:${(hoveredCase.contact || hoveredCase.phone || '+123-456-7890').replace(/\s+/g, '')}`}
+                        onClick={(e) => e.stopPropagation()}
+                        sx={{
+                          fontSize: '13px',
+                          fontWeight: 800,
+                          color: '#262626',
+                          textDecoration: 'none',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          letterSpacing: '0.02em',
+                          '&:hover': { color: '#79499F', textDecoration: 'underline' },
+                        }}
+                      >
+                        {hoveredCase.contact || hoveredCase.phone || '+123-456-7890'}
+                      </Typography>
+                      <IconButton
+                        size="sm"
+                        variant="plain"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopy(hoveredCase.contact || hoveredCase.phone || '+123-456-7890', 'contact');
+                        }}
+                        sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'contact' ? '#16A34A' : '#94A3B8', '&:hover': { color: '#79499F', bgcolor: '#EDE9FE' } }}
+                      >
+                        {copiedField === 'contact' ? <FiCheck size={12} /> : <FiCopy size={11} />}
+                      </IconButton>
+                    </Box>
+                  </Box>
+                </Box>
+
+                {/* Bottom Wave Footer Bar */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: 12,
+                    left: 18,
+                    right: 18,
+                    zIndex: 3,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: '9px',
+                      fontWeight: 500,
+                      color: '#FFFFFF',
+                      opacity: 0.9,
+                      letterSpacing: '0.01em',
+                      userSelect: 'none',
+                    }}
+                  >
+                    www.reallygreatsite.com
+                  </Typography>
+                  <Box
+                    sx={{
+                      width: 46,
+                      height: 28,
+                      borderRadius: '14px',
+                      bgcolor: '#686874',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
+                    }}
+                    title="Authorized Access Pass"
+                  >
+                    <svg width="18" height="14" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3 15L1.5 5L7 9.5L12 2L17 9.5L22.5 5L21 15H3Z" fill="#FFFFFF" />
+                      <rect x="3" y="16" width="18" height="2" rx="0.5" fill="#FFFFFF" />
+                      <circle cx="1.5" cy="4" r="1.5" fill="#FFFFFF" />
+                      <circle cx="12" cy="1.5" r="1.5" fill="#FFFFFF" />
+                      <circle cx="22.5" cy="4" r="1.5" fill="#FFFFFF" />
+                    </svg>
+                  </Box>
+                </Box>
+              </Box>
+            ) : isLeena ? (
               /* Format 3: Curved Arc & Navy Wave Style (Leena Joseph - Row 4 per media_1791308293272.png) */
               <Box
                 sx={{
