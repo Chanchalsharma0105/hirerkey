@@ -4742,27 +4742,30 @@
       background: #F5F3FF;
     }
 
-    .font-inline-custom-wrap {
+    .font-custom-select-pill {
       display: inline-flex;
       align-items: center;
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
+      gap: 5px;
+      padding: 3px 6px;
       border-radius: 7px;
-      padding: 2px 4px 2px 6px;
-      gap: 4px;
+      border: 1.5px solid #E2E8F0;
+      background: #F8FAFC;
+      cursor: pointer;
       transition: all var(--transition-fast);
+      user-select: none;
+      position: relative;
     }
 
-    .font-inline-custom-wrap:focus-within {
+    .font-custom-select-pill:hover {
       background: #FFFFFF;
-      border-color: #7C3AED;
-      box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+      border-color: #CBD5E1;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
     }
 
-    .font-inline-custom-wrap.active {
+    .font-custom-select-pill.active {
       background: #FFFFFF;
       border-color: #7C3AED;
-      box-shadow: 0 1px 4px rgba(124, 58, 237, 0.12);
+      box-shadow: 0 1px 6px rgba(124, 58, 237, 0.18);
     }
 
     .custom-font-indicator {
@@ -4772,21 +4775,26 @@
       font-weight: 800;
     }
 
-    .font-inline-input {
+    .font-custom-dropdown {
       border: none;
       background: transparent;
       font-size: 11px;
-      font-weight: 500;
-      color: #0F172A;
-      width: 76px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
       outline: none;
-      padding: 2px 0;
+      padding: 2px 2px;
       font-family: inherit;
+      max-width: 120px;
     }
 
-    .font-inline-input::placeholder {
-      color: #94A3B8;
-      font-size: 10.5px;
+    .font-custom-dropdown:hover {
+      color: #0F172A;
+    }
+
+    .font-custom-select-pill.active .font-custom-dropdown {
+      color: #7C3AED;
+      font-weight: 700;
     }
 
     .font-browse-more-btn {
@@ -5689,10 +5697,53 @@
               <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
               <span>System UI</span>
             </button>
-            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+            <div class="font-custom-select-pill" id="fontCustomSelectPill1" title="Choose from extended font library or type custom font">
               <span class="font-indicator-chip custom-font-indicator">Aa</span>
-              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
-              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+              <select class="font-custom-dropdown" id="fontCustomDropdown1" onchange="handleCustomFontDropdownSelect(this.value)" title="Select any font from 30+ options">
+                <option value="" disabled selected>Select Font ▾</option>
+                <optgroup label="🌟 Featured &amp; User Requested">
+                  <option value="Avenir Book">★ Avenir Book</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                </optgroup>
+                <optgroup label="✨ Modern SaaS &amp; Geometric">
+                  <option value="Inter">Inter (Linear / Vercel)</option>
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                  <option value="Geist">Geist (Vercel Design)</option>
+                  <option value="Outfit">Outfit</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="DM Sans">DM Sans</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="Satoshi">Satoshi</option>
+                  <option value="Cabinet Grotesk">Cabinet Grotesk</option>
+                  <option value="General Sans">General Sans</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                </optgroup>
+                <optgroup label="💼 Clean Neo-Grotesque &amp; UI">
+                  <option value="Roboto">Roboto (Google)</option>
+                  <option value="Helvetica Neue">Helvetica Neue</option>
+                  <option value="Arial">Arial</option>
+                  <option value="System UI">System UI (Apple SF Pro)</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Lato">Lato</option>
+                  <option value="Raleway">Raleway</option>
+                  <option value="Work Sans">Work Sans</option>
+                  <option value="Nunito Sans">Nunito Sans</option>
+                </optgroup>
+                <optgroup label="🎨 Editorial &amp; Display">
+                  <option value="Clash Display">Clash Display</option>
+                  <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                  <option value="Cinzel">Cinzel</option>
+                </optgroup>
+                <optgroup label="💻 Monospace &amp; Code">
+                  <option value="JetBrains Mono">JetBrains Mono</option>
+                  <option value="Fira Code">Fira Code</option>
+                  <option value="Roboto Mono">Roboto Mono</option>
+                </optgroup>
+                <option value="__custom_write_in__">✍️ Custom Font Studio / Type...</option>
+              </select>
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (Live Cards &amp; Search)">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="1"></circle>
                   <circle cx="19" cy="12" r="1"></circle>
@@ -6790,10 +6841,53 @@
               <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
               <span>System UI</span>
             </button>
-            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+            <div class="font-custom-select-pill" id="fontCustomSelectPill2" title="Choose from extended font library or type custom font">
               <span class="font-indicator-chip custom-font-indicator">Aa</span>
-              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
-              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+              <select class="font-custom-dropdown" id="fontCustomDropdown2" onchange="handleCustomFontDropdownSelect(this.value)" title="Select any font from 30+ options">
+                <option value="" disabled selected>Select Font ▾</option>
+                <optgroup label="🌟 Featured &amp; User Requested">
+                  <option value="Avenir Book">★ Avenir Book</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                </optgroup>
+                <optgroup label="✨ Modern SaaS &amp; Geometric">
+                  <option value="Inter">Inter (Linear / Vercel)</option>
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                  <option value="Geist">Geist (Vercel Design)</option>
+                  <option value="Outfit">Outfit</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="DM Sans">DM Sans</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="Satoshi">Satoshi</option>
+                  <option value="Cabinet Grotesk">Cabinet Grotesk</option>
+                  <option value="General Sans">General Sans</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                </optgroup>
+                <optgroup label="💼 Clean Neo-Grotesque &amp; UI">
+                  <option value="Roboto">Roboto (Google)</option>
+                  <option value="Helvetica Neue">Helvetica Neue</option>
+                  <option value="Arial">Arial</option>
+                  <option value="System UI">System UI (Apple SF Pro)</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Lato">Lato</option>
+                  <option value="Raleway">Raleway</option>
+                  <option value="Work Sans">Work Sans</option>
+                  <option value="Nunito Sans">Nunito Sans</option>
+                </optgroup>
+                <optgroup label="🎨 Editorial &amp; Display">
+                  <option value="Clash Display">Clash Display</option>
+                  <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                  <option value="Cinzel">Cinzel</option>
+                </optgroup>
+                <optgroup label="💻 Monospace &amp; Code">
+                  <option value="JetBrains Mono">JetBrains Mono</option>
+                  <option value="Fira Code">Fira Code</option>
+                  <option value="Roboto Mono">Roboto Mono</option>
+                </optgroup>
+                <option value="__custom_write_in__">✍️ Custom Font Studio / Type...</option>
+              </select>
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (Live Cards &amp; Search)">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="1"></circle>
                   <circle cx="19" cy="12" r="1"></circle>
@@ -7889,10 +7983,53 @@
               <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
               <span>System UI</span>
             </button>
-            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+            <div class="font-custom-select-pill" id="fontCustomSelectPill3" title="Choose from extended font library or type custom font">
               <span class="font-indicator-chip custom-font-indicator">Aa</span>
-              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
-              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+              <select class="font-custom-dropdown" id="fontCustomDropdown3" onchange="handleCustomFontDropdownSelect(this.value)" title="Select any font from 30+ options">
+                <option value="" disabled selected>Select Font ▾</option>
+                <optgroup label="🌟 Featured &amp; User Requested">
+                  <option value="Avenir Book">★ Avenir Book</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                </optgroup>
+                <optgroup label="✨ Modern SaaS &amp; Geometric">
+                  <option value="Inter">Inter (Linear / Vercel)</option>
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                  <option value="Geist">Geist (Vercel Design)</option>
+                  <option value="Outfit">Outfit</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="DM Sans">DM Sans</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="Satoshi">Satoshi</option>
+                  <option value="Cabinet Grotesk">Cabinet Grotesk</option>
+                  <option value="General Sans">General Sans</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                </optgroup>
+                <optgroup label="💼 Clean Neo-Grotesque &amp; UI">
+                  <option value="Roboto">Roboto (Google)</option>
+                  <option value="Helvetica Neue">Helvetica Neue</option>
+                  <option value="Arial">Arial</option>
+                  <option value="System UI">System UI (Apple SF Pro)</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Lato">Lato</option>
+                  <option value="Raleway">Raleway</option>
+                  <option value="Work Sans">Work Sans</option>
+                  <option value="Nunito Sans">Nunito Sans</option>
+                </optgroup>
+                <optgroup label="🎨 Editorial &amp; Display">
+                  <option value="Clash Display">Clash Display</option>
+                  <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                  <option value="Cinzel">Cinzel</option>
+                </optgroup>
+                <optgroup label="💻 Monospace &amp; Code">
+                  <option value="JetBrains Mono">JetBrains Mono</option>
+                  <option value="Fira Code">Fira Code</option>
+                  <option value="Roboto Mono">Roboto Mono</option>
+                </optgroup>
+                <option value="__custom_write_in__">✍️ Custom Font Studio / Type...</option>
+              </select>
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (Live Cards &amp; Search)">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="1"></circle>
                   <circle cx="19" cy="12" r="1"></circle>
@@ -9015,10 +9152,53 @@
               <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
               <span>System UI</span>
             </button>
-            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+            <div class="font-custom-select-pill" id="fontCustomSelectPill4" title="Choose from extended font library or type custom font">
               <span class="font-indicator-chip custom-font-indicator">Aa</span>
-              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
-              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+              <select class="font-custom-dropdown" id="fontCustomDropdown4" onchange="handleCustomFontDropdownSelect(this.value)" title="Select any font from 30+ options">
+                <option value="" disabled selected>Select Font ▾</option>
+                <optgroup label="🌟 Featured &amp; User Requested">
+                  <option value="Avenir Book">★ Avenir Book</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                </optgroup>
+                <optgroup label="✨ Modern SaaS &amp; Geometric">
+                  <option value="Inter">Inter (Linear / Vercel)</option>
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                  <option value="Geist">Geist (Vercel Design)</option>
+                  <option value="Outfit">Outfit</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="DM Sans">DM Sans</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="Satoshi">Satoshi</option>
+                  <option value="Cabinet Grotesk">Cabinet Grotesk</option>
+                  <option value="General Sans">General Sans</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                </optgroup>
+                <optgroup label="💼 Clean Neo-Grotesque &amp; UI">
+                  <option value="Roboto">Roboto (Google)</option>
+                  <option value="Helvetica Neue">Helvetica Neue</option>
+                  <option value="Arial">Arial</option>
+                  <option value="System UI">System UI (Apple SF Pro)</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Lato">Lato</option>
+                  <option value="Raleway">Raleway</option>
+                  <option value="Work Sans">Work Sans</option>
+                  <option value="Nunito Sans">Nunito Sans</option>
+                </optgroup>
+                <optgroup label="🎨 Editorial &amp; Display">
+                  <option value="Clash Display">Clash Display</option>
+                  <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                  <option value="Cinzel">Cinzel</option>
+                </optgroup>
+                <optgroup label="💻 Monospace &amp; Code">
+                  <option value="JetBrains Mono">JetBrains Mono</option>
+                  <option value="Fira Code">Fira Code</option>
+                  <option value="Roboto Mono">Roboto Mono</option>
+                </optgroup>
+                <option value="__custom_write_in__">✍️ Custom Font Studio / Type...</option>
+              </select>
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (Live Cards &amp; Search)">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="1"></circle>
                   <circle cx="19" cy="12" r="1"></circle>
@@ -10116,10 +10296,53 @@
               <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
               <span>System UI</span>
             </button>
-            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+            <div class="font-custom-select-pill" id="fontCustomSelectPill5" title="Choose from extended font library or type custom font">
               <span class="font-indicator-chip custom-font-indicator">Aa</span>
-              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
-              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+              <select class="font-custom-dropdown" id="fontCustomDropdown5" onchange="handleCustomFontDropdownSelect(this.value)" title="Select any font from 30+ options">
+                <option value="" disabled selected>Select Font ▾</option>
+                <optgroup label="🌟 Featured &amp; User Requested">
+                  <option value="Avenir Book">★ Avenir Book</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                </optgroup>
+                <optgroup label="✨ Modern SaaS &amp; Geometric">
+                  <option value="Inter">Inter (Linear / Vercel)</option>
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                  <option value="Geist">Geist (Vercel Design)</option>
+                  <option value="Outfit">Outfit</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="DM Sans">DM Sans</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="Satoshi">Satoshi</option>
+                  <option value="Cabinet Grotesk">Cabinet Grotesk</option>
+                  <option value="General Sans">General Sans</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                </optgroup>
+                <optgroup label="💼 Clean Neo-Grotesque &amp; UI">
+                  <option value="Roboto">Roboto (Google)</option>
+                  <option value="Helvetica Neue">Helvetica Neue</option>
+                  <option value="Arial">Arial</option>
+                  <option value="System UI">System UI (Apple SF Pro)</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Lato">Lato</option>
+                  <option value="Raleway">Raleway</option>
+                  <option value="Work Sans">Work Sans</option>
+                  <option value="Nunito Sans">Nunito Sans</option>
+                </optgroup>
+                <optgroup label="🎨 Editorial &amp; Display">
+                  <option value="Clash Display">Clash Display</option>
+                  <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                  <option value="Cinzel">Cinzel</option>
+                </optgroup>
+                <optgroup label="💻 Monospace &amp; Code">
+                  <option value="JetBrains Mono">JetBrains Mono</option>
+                  <option value="Fira Code">Fira Code</option>
+                  <option value="Roboto Mono">Roboto Mono</option>
+                </optgroup>
+                <option value="__custom_write_in__">✍️ Custom Font Studio / Type...</option>
+              </select>
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (Live Cards &amp; Search)">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="1"></circle>
                   <circle cx="19" cy="12" r="1"></circle>
@@ -11190,10 +11413,53 @@
               <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
               <span>System UI</span>
             </button>
-            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+            <div class="font-custom-select-pill" id="fontCustomSelectPill6" title="Choose from extended font library or type custom font">
               <span class="font-indicator-chip custom-font-indicator">Aa</span>
-              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
-              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+              <select class="font-custom-dropdown" id="fontCustomDropdown6" onchange="handleCustomFontDropdownSelect(this.value)" title="Select any font from 30+ options">
+                <option value="" disabled selected>Select Font ▾</option>
+                <optgroup label="🌟 Featured &amp; User Requested">
+                  <option value="Avenir Book">★ Avenir Book</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                </optgroup>
+                <optgroup label="✨ Modern SaaS &amp; Geometric">
+                  <option value="Inter">Inter (Linear / Vercel)</option>
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                  <option value="Geist">Geist (Vercel Design)</option>
+                  <option value="Outfit">Outfit</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="DM Sans">DM Sans</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="Satoshi">Satoshi</option>
+                  <option value="Cabinet Grotesk">Cabinet Grotesk</option>
+                  <option value="General Sans">General Sans</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                </optgroup>
+                <optgroup label="💼 Clean Neo-Grotesque &amp; UI">
+                  <option value="Roboto">Roboto (Google)</option>
+                  <option value="Helvetica Neue">Helvetica Neue</option>
+                  <option value="Arial">Arial</option>
+                  <option value="System UI">System UI (Apple SF Pro)</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Lato">Lato</option>
+                  <option value="Raleway">Raleway</option>
+                  <option value="Work Sans">Work Sans</option>
+                  <option value="Nunito Sans">Nunito Sans</option>
+                </optgroup>
+                <optgroup label="🎨 Editorial &amp; Display">
+                  <option value="Clash Display">Clash Display</option>
+                  <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                  <option value="Cinzel">Cinzel</option>
+                </optgroup>
+                <optgroup label="💻 Monospace &amp; Code">
+                  <option value="JetBrains Mono">JetBrains Mono</option>
+                  <option value="Fira Code">Fira Code</option>
+                  <option value="Roboto Mono">Roboto Mono</option>
+                </optgroup>
+                <option value="__custom_write_in__">✍️ Custom Font Studio / Type...</option>
+              </select>
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (Live Cards &amp; Search)">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <circle cx="12" cy="12" r="1"></circle>
                   <circle cx="19" cy="12" r="1"></circle>
@@ -11849,35 +12115,104 @@
     </div>
     
     <div class="modal-body" style="overflow-y: auto; flex: 1; padding: 20px 24px; display: flex; flex-direction: column; gap: 18px;">
-      <!-- Custom Font Write-in Input & Quick Pills -->
-      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px;">
-        <label style="display: block; font-size: 12.5px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">
-          Custom Font Engine — Live Keystroke Preview
-        </label>
-        <p style="font-size: 11.5px; color: #64748B; margin-bottom: 10px;">
-          Type any font installed on your system or from Google Fonts. The entire dashboard and preview below will update live as you type!
-        </p>
-        <div style="display: flex; gap: 8px; align-items: center;">
-          <div style="flex: 1; position: relative;">
-            <input type="text" id="modalCustomFontInput" class="customFontNameInput" placeholder="Type font name: e.g. Avenir Book, Helvetica Neue, Satoshi, Futura, Cabinet Grotesk, Roboto Mono..." oninput="setCustomDashboardFont(this.value)" style="width: 100%; padding: 10px 14px 10px 38px; border: 1.5px solid #CBD5E1; border-radius: 9px; font-size: 13.5px; font-family: inherit; outline: none; transition: border-color 0.2s; background: #FFFFFF;">
-            <svg style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #7C3AED;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="4 7 4 4 20 4 20 7"></polyline>
-              <line x1="9" y1="20" x2="15" y2="20"></line>
-              <line x1="12" y1="4" x2="12" y2="20"></line>
-            </svg>
-          </div>
-          <button type="button" onclick="setDashboardFont('avenir')" style="padding: 10px 14px; background: #EDE9FE; color: #6D28D9; border: 1px solid #DDD6FE; border-radius: 9px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;">
-            ★ Pick Avenir Book
-          </button>
+      <!-- Custom Font Selector Dropdown & Live Input -->
+      <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 18px 20px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <label style="font-size: 13.5px; font-weight: 700; color: #0F172A; display: flex; align-items: center; gap: 6px;">
+            <span>Custom Font Selector &amp; Real-Time Engine</span>
+          </label>
+          <span style="font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; background: #EDE9FE; color: #6D28D9;">
+            30+ Selectable Fonts
+          </span>
         </div>
-        <div style="display: flex; align-items: center; gap: 6px; margin-top: 10px; flex-wrap: wrap;">
-          <span style="font-size: 11px; font-weight: 600; color: #64748B;">Popular Suggestions:</span>
-          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Avenir Book')">Avenir Book</button>
+        <p style="font-size: 12px; color: #64748B; margin-bottom: 14px; line-height: 1.5;">
+          Choose any font directly from the dropdown selector below, or type any font name from your Mac/Google Fonts for instant live preview:
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px;">
+          <!-- Option 1: Dropdown Selector -->
+          <div style="background: #FFFFFF; border: 1.5px solid #DDD6FE; border-radius: 10px; padding: 12px 14px; box-shadow: 0 1px 3px rgba(124, 58, 237, 0.08);">
+            <label style="display: block; font-size: 11.5px; font-weight: 700; color: #7C3AED; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.03em;">
+              Option 1: Select Font from Dropdown
+            </label>
+            <div style="position: relative;">
+              <select id="modalFontSelectDropdown" onchange="handleCustomFontDropdownSelect(this.value)" style="width: 100%; padding: 9px 12px 9px 34px; border: 1.5px solid #CBD5E1; border-radius: 8px; font-size: 13px; font-weight: 600; color: #0F172A; background: #FFFFFF; cursor: pointer; outline: none; transition: border-color 0.2s;">
+                <option value="" disabled selected>— Click to Select Any Font —</option>
+                <optgroup label="🌟 Featured &amp; User Requested">
+                  <option value="Avenir Book">★ Avenir Book</option>
+                  <option value="Avenir Next">Avenir Next</option>
+                </optgroup>
+                <optgroup label="✨ Modern SaaS &amp; Geometric">
+                  <option value="Inter">Inter (Linear / Vercel)</option>
+                  <option value="Plus Jakarta Sans">Plus Jakarta Sans</option>
+                  <option value="Geist">Geist (Vercel Design)</option>
+                  <option value="Outfit">Outfit</option>
+                  <option value="Poppins">Poppins</option>
+                  <option value="DM Sans">DM Sans</option>
+                  <option value="Manrope">Manrope</option>
+                  <option value="Satoshi">Satoshi</option>
+                  <option value="Cabinet Grotesk">Cabinet Grotesk</option>
+                  <option value="General Sans">General Sans</option>
+                  <option value="Space Grotesk">Space Grotesk</option>
+                </optgroup>
+                <optgroup label="💼 Clean Neo-Grotesque &amp; UI">
+                  <option value="Roboto">Roboto (Google)</option>
+                  <option value="Helvetica Neue">Helvetica Neue</option>
+                  <option value="Arial">Arial</option>
+                  <option value="System UI">System UI (Apple SF Pro)</option>
+                  <option value="Open Sans">Open Sans</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Lato">Lato</option>
+                  <option value="Raleway">Raleway</option>
+                  <option value="Work Sans">Work Sans</option>
+                  <option value="Nunito Sans">Nunito Sans</option>
+                </optgroup>
+                <optgroup label="🎨 Editorial &amp; Display">
+                  <option value="Clash Display">Clash Display</option>
+                  <option value="Bricolage Grotesque">Bricolage Grotesque</option>
+                  <option value="Playfair Display">Playfair Display</option>
+                  <option value="Cinzel">Cinzel</option>
+                </optgroup>
+                <optgroup label="💻 Monospace &amp; Code">
+                  <option value="JetBrains Mono">JetBrains Mono</option>
+                  <option value="Fira Code">Fira Code</option>
+                  <option value="Roboto Mono">Roboto Mono</option>
+                </optgroup>
+              </select>
+              <svg style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #7C3AED; pointer-events: none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Option 2: Live Write-in Input -->
+          <div style="background: #FFFFFF; border: 1.5px solid #E2E8F0; border-radius: 10px; padding: 12px 14px;">
+            <label style="display: block; font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.03em;">
+              Option 2: Or Type Custom Font Name
+            </label>
+            <div style="position: relative;">
+              <input type="text" id="modalCustomFontInput" class="customFontNameInput" placeholder="Type name: e.g. Avenir, Futura, Calibri..." oninput="setCustomDashboardFont(this.value)" style="width: 100%; padding: 9px 12px 9px 34px; border: 1.5px solid #CBD5E1; border-radius: 8px; font-size: 13px; font-family: inherit; outline: none; background: #FFFFFF; transition: border-color 0.2s;">
+              <svg style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #64748B; pointer-events: none;" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 7 4 4 20 4 20 7"></polyline>
+                <line x1="9" y1="20" x2="15" y2="20"></line>
+                <line x1="12" y1="4" x2="12" y2="20"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Popular One-Click Chips -->
+        <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+          <span style="font-size: 11px; font-weight: 600; color: #64748B;">Quick-Select Chips:</span>
+          <button type="button" class="quick-font-tag" onclick="setDashboardFont('avenir')">★ Avenir Book</button>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Avenir Next')">Avenir Next</button>
+          <button type="button" class="quick-font-tag" onclick="setDashboardFont('inter')">Inter</button>
+          <button type="button" class="quick-font-tag" onclick="setDashboardFont('jakarta')">Jakarta Sans</button>
           <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Helvetica Neue')">Helvetica Neue</button>
           <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Satoshi')">Satoshi</button>
-          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Montserrat')">Montserrat</button>
           <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Cabinet Grotesk')">Cabinet Grotesk</button>
           <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('General Sans')">General Sans</button>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Playfair Display')">Playfair Display</button>
           <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('JetBrains Mono')">JetBrains Mono</button>
         </div>
       </div>
@@ -12368,6 +12703,42 @@
     }
   };
 
+  // Map of font display names to preset keys
+  const FONT_NAME_TO_PRESET_MAP = {
+    'avenir book': 'avenir',
+    'avenir next': 'avenir',
+    'inter': 'inter',
+    'plus jakarta sans': 'jakarta',
+    'geist': 'geist',
+    'outfit': 'outfit',
+    'poppins': 'poppins',
+    'dm sans': 'dmsans',
+    'manrope': 'manrope',
+    'space grotesk': 'space',
+    'roboto': 'roboto',
+    'system ui': 'system',
+    'satoshi': 'satoshi',
+    'montserrat': 'montserrat',
+    'open sans': 'opensans',
+    'helvetica neue': 'helvetica',
+    'jetbrains mono': 'mono'
+  };
+
+  function handleCustomFontDropdownSelect(fontValue) {
+    if (!fontValue) return;
+    if (fontValue === '__custom_write_in__') {
+      openFontStudioModal();
+      return;
+    }
+
+    const lower = fontValue.toLowerCase().trim();
+    if (FONT_NAME_TO_PRESET_MAP[lower] && DASHBOARD_FONT_PRESETS[FONT_NAME_TO_PRESET_MAP[lower]]) {
+      setDashboardFont(FONT_NAME_TO_PRESET_MAP[lower]);
+    } else {
+      setCustomDashboardFont(fontValue);
+    }
+  }
+
   function setDashboardFont(fontKey, silent = false) {
     const preset = DASHBOARD_FONT_PRESETS[fontKey];
     if (!preset) return;
@@ -12386,20 +12757,41 @@
       const isMatch = btn.getAttribute('data-font') === fontKey;
       btn.classList.toggle('active', isMatch);
     });
-    document.querySelectorAll('.font-inline-custom-wrap').forEach(wrap => {
+    document.querySelectorAll('.font-custom-select-pill').forEach(wrap => {
       wrap.classList.remove('active');
     });
-    document.querySelectorAll('.font-inline-input').forEach(inp => {
+
+    // 4. Sync dropdown selectors across toolbars and modal
+    document.querySelectorAll('.font-custom-dropdown, #modalFontSelectDropdown').forEach(sel => {
+      let matched = false;
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value.toLowerCase() === preset.name.toLowerCase() || sel.options[i].value.toLowerCase() === fontKey.toLowerCase()) {
+          sel.selectedIndex = i;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        sel.selectedIndex = 0;
+      }
+    });
+
+    // 5. Clear custom text inputs
+    document.querySelectorAll('#modalCustomFontInput, .customFontNameInput').forEach(inp => {
       inp.value = '';
     });
 
-    // 4. Update modal cards active state
+    // 6. Update modal cards active state
     document.querySelectorAll('.font-studio-card').forEach(card => {
       const isMatch = card.getAttribute('data-font') === fontKey;
       card.classList.toggle('active', isMatch);
+      const btn = card.querySelector('.font-card-apply-btn');
+      if (btn) {
+        btn.textContent = isMatch ? '✓ Selected' : `Select ${card.querySelector('.font-card-name')?.textContent || 'Font'}`;
+      }
     });
 
-    // 5. Update modal live sample box
+    // 7. Update modal live sample box
     const liveSample = document.getElementById('modalFontLiveSample');
     if (liveSample) {
       liveSample.style.fontFamily = preset.family;
@@ -12409,7 +12801,7 @@
       if (descEl) descEl.textContent = preset.description;
     }
 
-    // 6. Persist preference
+    // 8. Persist preference
     localStorage.setItem('hirerkey_dashboard_font', fontKey);
     localStorage.removeItem('hirerkey_dashboard_custom_font');
 
@@ -12437,14 +12829,40 @@
     document.querySelectorAll('.font-selector-pill').forEach(btn => {
       btn.classList.remove('active');
     });
-    document.querySelectorAll('.font-inline-custom-wrap').forEach(wrap => {
+    document.querySelectorAll('.font-custom-select-pill').forEach(wrap => {
       wrap.classList.add('active');
     });
-    document.querySelectorAll('.font-inline-input, #modalCustomFontInput').forEach(inp => {
+
+    // 4. Sync dropdown selectors across toolbars and modal
+    document.querySelectorAll('.font-custom-dropdown, #modalFontSelectDropdown').forEach(sel => {
+      let matched = false;
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value.toLowerCase() === trimmed.toLowerCase()) {
+          sel.selectedIndex = i;
+          matched = true;
+          break;
+        }
+      }
+      if (!matched) {
+        // If font not in dropdown options, add temporary custom option or keep at 0
+        let customOpt = sel.querySelector('option[data-dynamic-custom="true"]');
+        if (!customOpt) {
+          customOpt = document.createElement('option');
+          customOpt.setAttribute('data-dynamic-custom', 'true');
+          sel.insertBefore(customOpt, sel.firstChild);
+        }
+        customOpt.value = trimmed;
+        customOpt.textContent = `Custom: ${trimmed}`;
+        sel.value = trimmed;
+      }
+    });
+
+    // 5. Update custom input
+    document.querySelectorAll('#modalCustomFontInput, .customFontNameInput').forEach(inp => {
       if (inp.value !== trimmed) inp.value = trimmed;
     });
 
-    // 4. Update modal sample box
+    // 6. Update modal sample box
     const liveSample = document.getElementById('modalFontLiveSample');
     if (liveSample) {
       liveSample.style.fontFamily = customStack;
@@ -12454,7 +12872,7 @@
       if (descEl) descEl.textContent = "Custom font live rendering";
     }
 
-    // 5. Persist
+    // 7. Persist
     localStorage.setItem('hirerkey_dashboard_font', 'custom');
     localStorage.setItem('hirerkey_dashboard_custom_font', trimmed);
 
