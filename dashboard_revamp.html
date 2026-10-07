@@ -8,7 +8,7 @@
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700&family=Nunito+Sans:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
@@ -4596,6 +4596,375 @@
       }
     }
 
+
+    /* ==========================================================================
+       AVENIR BOOK ALIASING & FALLBACKS
+       Native macOS Avenir Book / Avenir Next with high-fidelity geometric fallbacks
+       ========================================================================== */
+    @font-face {
+      font-family: 'Avenir Book';
+      src: local('Avenir Book'), local('Avenir-Book'), local('Avenir Next Regular'), local('Avenir Next'), local('Avenir');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Avenir Book';
+      src: local('Avenir Next Medium'), local('Avenir Medium'), local('Avenir-Medium');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Avenir Book';
+      src: local('Avenir Next Demi Bold'), local('Avenir Next Bold'), local('Avenir Heavy'), local('Avenir-Heavy');
+      font-weight: 600 700;
+      font-style: normal;
+    }
+
+    /* ==========================================================================
+       FONT SELECTOR & TYPOGRAPHY STUDIO BAR
+       Interactive toolbar control to choose from famous fonts & custom fonts
+       ========================================================================== */
+    .dashboard-customizer-cluster {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .font-selector-bar {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 10px;
+      padding: 3px 6px;
+      gap: 4px;
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+      flex-shrink: 0;
+    }
+
+    .font-selector-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #64748B;
+      padding: 0 4px;
+      user-select: none;
+    }
+
+    .font-selector-label svg {
+      color: var(--brand-primary);
+    }
+
+    .font-selector-pills {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      flex-wrap: wrap;
+    }
+
+    .font-selector-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 8px;
+      border-radius: 7px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .font-selector-pill:hover {
+      background: rgba(255, 255, 255, 0.95);
+      color: #0F172A;
+      border-color: #E2E8F0;
+    }
+
+    .font-selector-pill.active {
+      background: #FFFFFF;
+      color: var(--brand-primary);
+      font-weight: 600;
+      border-color: #DDD6FE;
+      box-shadow: 0 1px 4px rgba(124, 58, 237, 0.12);
+    }
+
+    .font-indicator-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 17px;
+      height: 17px;
+      padding: 0 3px;
+      border-radius: 4px;
+      background: #F1F5F9;
+      color: #475569;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+      transition: all var(--transition-fast);
+    }
+
+    .font-selector-pill:hover .font-indicator-chip {
+      background: #EDE9FE;
+      color: #6D28D9;
+    }
+
+    .font-selector-pill.active .font-indicator-chip {
+      background: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.25);
+    }
+
+    .font-fav-star {
+      color: #F59E0B;
+      font-size: 10.5px;
+      margin-left: -2px;
+      filter: drop-shadow(0 1px 2px rgba(245, 158, 11, 0.3));
+    }
+
+    .font-pill-avenir {
+      border-color: #EDE9FE;
+      background: rgba(245, 243, 255, 0.6);
+    }
+
+    .font-pill-avenir:hover {
+      background: #F5F3FF;
+    }
+
+    .font-inline-custom-wrap {
+      display: inline-flex;
+      align-items: center;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 7px;
+      padding: 2px 4px 2px 6px;
+      gap: 4px;
+      transition: all var(--transition-fast);
+    }
+
+    .font-inline-custom-wrap:focus-within {
+      background: #FFFFFF;
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+    }
+
+    .font-inline-custom-wrap.active {
+      background: #FFFFFF;
+      border-color: #7C3AED;
+      box-shadow: 0 1px 4px rgba(124, 58, 237, 0.12);
+    }
+
+    .custom-font-indicator {
+      background: conic-gradient(from 0deg, #7C3AED, #EC4899, #3B82F6, #7C3AED);
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 800;
+    }
+
+    .font-inline-input {
+      border: none;
+      background: transparent;
+      font-size: 11px;
+      font-weight: 500;
+      color: #0F172A;
+      width: 76px;
+      outline: none;
+      padding: 2px 0;
+      font-family: inherit;
+    }
+
+    .font-inline-input::placeholder {
+      color: #94A3B8;
+      font-size: 10.5px;
+    }
+
+    .font-browse-more-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: none;
+      background: transparent;
+      color: #64748B;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      padding: 0;
+    }
+
+    .font-browse-more-btn:hover {
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    /* Modal Typography Studio Grid & Cards */
+    .font-studio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 12px;
+    }
+
+    .font-studio-card {
+      border: 1.5px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .font-studio-card:hover {
+      border-color: #C4B5FD;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .font-studio-card.active {
+      border-color: #7C3AED;
+      background: #FAF8FF;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.16);
+    }
+
+    .font-studio-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .font-card-name {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+
+    .font-card-foundry {
+      display: block;
+      font-size: 10.5px;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .font-card-badge {
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #F1F5F9;
+      color: #475569;
+      white-space: nowrap;
+    }
+
+    .font-card-badge-gold {
+      background: #FEF3C7;
+      color: #B45309;
+      border: 1px solid #FDE68A;
+    }
+
+    .font-card-sample {
+      font-size: 12px;
+      color: #334155;
+      line-height: 1.4;
+      padding: 6px 8px;
+      background: #F8FAFC;
+      border-radius: 6px;
+      border: 1px dashed #E2E8F0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .font-studio-card.active .font-card-sample {
+      background: #FFFFFF;
+      border-color: #DDD6FE;
+    }
+
+    .font-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 4px;
+    }
+
+    .font-card-active-check {
+      font-size: 11px;
+      font-weight: 700;
+      color: #7C3AED;
+      display: none;
+    }
+
+    .font-studio-card.active .font-card-active-check {
+      display: inline-block;
+    }
+
+    .font-card-apply-btn {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      margin-left: auto;
+    }
+
+    .font-studio-card:hover .font-card-apply-btn {
+      color: #7C3AED;
+      border-color: #DDD6FE;
+    }
+
+    .font-studio-card.active .font-card-apply-btn {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+    }
+
+    .quick-font-tag {
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      font-size: 11px;
+      font-weight: 500;
+      color: #475569;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .quick-font-tag:hover {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border-color: #DDD6FE;
+    }
+
+    /* Universal font-family cascade to ensure all elements react to font choice */
+    body, button, input, textarea, select, optgroup,
+    .dashboard-card, .metric-value, .metric-label, .table-modern,
+    .donezo-nav-item, .sidebar-nav-item, .header-title, .breadcrumbs-wrap,
+    .banner-greeting-text, .broadcast-item-title, .status-badge {
+      font-family: var(--font-main);
+    }
+
 </style>
 </head>
 <body>
@@ -5217,7 +5586,8 @@
             <span>View 6: Diagonal Gradient</span>
           </button>
         </div>
-        <div class="canvas-tone-bar" id="canvasToneBar1">
+        <div class="dashboard-customizer-cluster">
+<div class="canvas-tone-bar" id="canvasToneBar1">
           <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -5263,6 +5633,75 @@
               <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
             </label>
           </div>
+        </div>
+        <div class="font-selector-bar" id="fontSelectorBar1">
+          <div class="font-selector-label" title="Live dashboard font typography selector">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+            <span>Font:</span>
+          </div>
+          <div class="font-selector-pills">
+            <button type="button" class="font-selector-pill font-pill-avenir" data-font="avenir" onclick="setDashboardFont('avenir')" title="Avenir Book / Avenir Next — Classic geometric elegance (User requested)">
+              <span class="font-indicator-chip" style="font-family: 'Avenir Book', 'Avenir Next', 'Avenir', sans-serif;">Av</span>
+              <span>Avenir Book</span>
+              <span class="font-fav-star" title="Requested font">★</span>
+            </button>
+            <button type="button" class="font-selector-pill active" data-font="inter" onclick="setDashboardFont('inter')" title="Inter — Ultra-crisp modern interface font">
+              <span class="font-indicator-chip" style="font-family: 'Inter', sans-serif;">In</span>
+              <span>Inter</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="jakarta" onclick="setDashboardFont('jakarta')" title="Plus Jakarta Sans — Geometric punchy SaaS font">
+              <span class="font-indicator-chip" style="font-family: 'Plus Jakarta Sans', sans-serif;">Jk</span>
+              <span>Jakarta Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="geist" onclick="setDashboardFont('geist')" title="Geist — Vercel modern design system">
+              <span class="font-indicator-chip" style="font-family: 'Geist', sans-serif;">Ge</span>
+              <span>Geist</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="outfit" onclick="setDashboardFont('outfit')" title="Outfit — Geometric airy modern display">
+              <span class="font-indicator-chip" style="font-family: 'Outfit', sans-serif;">Ou</span>
+              <span>Outfit</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="poppins" onclick="setDashboardFont('poppins')" title="Poppins — Warm friendly geometric sans">
+              <span class="font-indicator-chip" style="font-family: 'Poppins', sans-serif;">Po</span>
+              <span>Poppins</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="dmsans" onclick="setDashboardFont('dmsans')" title="DM Sans — Contemporary clean fintech sans">
+              <span class="font-indicator-chip" style="font-family: 'DM Sans', sans-serif;">DM</span>
+              <span>DM Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="manrope" onclick="setDashboardFont('manrope')" title="Manrope — Modern Swiss neo-grotesque">
+              <span class="font-indicator-chip" style="font-family: 'Manrope', sans-serif;">Mn</span>
+              <span>Manrope</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="space" onclick="setDashboardFont('space')" title="Space Grotesk — Tech & modern edge">
+              <span class="font-indicator-chip" style="font-family: 'Space Grotesk', sans-serif;">Sp</span>
+              <span>Space Grotesk</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="roboto" onclick="setDashboardFont('roboto')" title="Roboto — Google clean interface font">
+              <span class="font-indicator-chip" style="font-family: 'Roboto', sans-serif;">Ro</span>
+              <span>Roboto</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="system" onclick="setDashboardFont('system')" title="System UI — Native Apple macOS SF Pro">
+              <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
+              <span>System UI</span>
+            </button>
+            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+              <span class="font-indicator-chip custom-font-indicator">Aa</span>
+              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -6248,7 +6687,8 @@
               <span>View 6: Diagonal Gradient</span>
             </button>
           </div>
-        <div class="canvas-tone-bar" id="canvasToneBar2">
+        <div class="dashboard-customizer-cluster">
+<div class="canvas-tone-bar" id="canvasToneBar2">
           <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -6294,6 +6734,75 @@
               <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
             </label>
           </div>
+        </div>
+        <div class="font-selector-bar" id="fontSelectorBar2">
+          <div class="font-selector-label" title="Live dashboard font typography selector">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+            <span>Font:</span>
+          </div>
+          <div class="font-selector-pills">
+            <button type="button" class="font-selector-pill font-pill-avenir" data-font="avenir" onclick="setDashboardFont('avenir')" title="Avenir Book / Avenir Next — Classic geometric elegance (User requested)">
+              <span class="font-indicator-chip" style="font-family: 'Avenir Book', 'Avenir Next', 'Avenir', sans-serif;">Av</span>
+              <span>Avenir Book</span>
+              <span class="font-fav-star" title="Requested font">★</span>
+            </button>
+            <button type="button" class="font-selector-pill active" data-font="inter" onclick="setDashboardFont('inter')" title="Inter — Ultra-crisp modern interface font">
+              <span class="font-indicator-chip" style="font-family: 'Inter', sans-serif;">In</span>
+              <span>Inter</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="jakarta" onclick="setDashboardFont('jakarta')" title="Plus Jakarta Sans — Geometric punchy SaaS font">
+              <span class="font-indicator-chip" style="font-family: 'Plus Jakarta Sans', sans-serif;">Jk</span>
+              <span>Jakarta Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="geist" onclick="setDashboardFont('geist')" title="Geist — Vercel modern design system">
+              <span class="font-indicator-chip" style="font-family: 'Geist', sans-serif;">Ge</span>
+              <span>Geist</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="outfit" onclick="setDashboardFont('outfit')" title="Outfit — Geometric airy modern display">
+              <span class="font-indicator-chip" style="font-family: 'Outfit', sans-serif;">Ou</span>
+              <span>Outfit</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="poppins" onclick="setDashboardFont('poppins')" title="Poppins — Warm friendly geometric sans">
+              <span class="font-indicator-chip" style="font-family: 'Poppins', sans-serif;">Po</span>
+              <span>Poppins</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="dmsans" onclick="setDashboardFont('dmsans')" title="DM Sans — Contemporary clean fintech sans">
+              <span class="font-indicator-chip" style="font-family: 'DM Sans', sans-serif;">DM</span>
+              <span>DM Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="manrope" onclick="setDashboardFont('manrope')" title="Manrope — Modern Swiss neo-grotesque">
+              <span class="font-indicator-chip" style="font-family: 'Manrope', sans-serif;">Mn</span>
+              <span>Manrope</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="space" onclick="setDashboardFont('space')" title="Space Grotesk — Tech & modern edge">
+              <span class="font-indicator-chip" style="font-family: 'Space Grotesk', sans-serif;">Sp</span>
+              <span>Space Grotesk</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="roboto" onclick="setDashboardFont('roboto')" title="Roboto — Google clean interface font">
+              <span class="font-indicator-chip" style="font-family: 'Roboto', sans-serif;">Ro</span>
+              <span>Roboto</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="system" onclick="setDashboardFont('system')" title="System UI — Native Apple macOS SF Pro">
+              <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
+              <span>System UI</span>
+            </button>
+            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+              <span class="font-indicator-chip custom-font-indicator">Aa</span>
+              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
         </div>
         </div>
 
@@ -7277,7 +7786,8 @@
             <span>View 6: Diagonal Gradient</span>
           </button>
         </div>
-        <div class="canvas-tone-bar" id="canvasToneBar3">
+        <div class="dashboard-customizer-cluster">
+<div class="canvas-tone-bar" id="canvasToneBar3">
           <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -7323,6 +7833,75 @@
               <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
             </label>
           </div>
+        </div>
+        <div class="font-selector-bar" id="fontSelectorBar3">
+          <div class="font-selector-label" title="Live dashboard font typography selector">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+            <span>Font:</span>
+          </div>
+          <div class="font-selector-pills">
+            <button type="button" class="font-selector-pill font-pill-avenir" data-font="avenir" onclick="setDashboardFont('avenir')" title="Avenir Book / Avenir Next — Classic geometric elegance (User requested)">
+              <span class="font-indicator-chip" style="font-family: 'Avenir Book', 'Avenir Next', 'Avenir', sans-serif;">Av</span>
+              <span>Avenir Book</span>
+              <span class="font-fav-star" title="Requested font">★</span>
+            </button>
+            <button type="button" class="font-selector-pill active" data-font="inter" onclick="setDashboardFont('inter')" title="Inter — Ultra-crisp modern interface font">
+              <span class="font-indicator-chip" style="font-family: 'Inter', sans-serif;">In</span>
+              <span>Inter</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="jakarta" onclick="setDashboardFont('jakarta')" title="Plus Jakarta Sans — Geometric punchy SaaS font">
+              <span class="font-indicator-chip" style="font-family: 'Plus Jakarta Sans', sans-serif;">Jk</span>
+              <span>Jakarta Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="geist" onclick="setDashboardFont('geist')" title="Geist — Vercel modern design system">
+              <span class="font-indicator-chip" style="font-family: 'Geist', sans-serif;">Ge</span>
+              <span>Geist</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="outfit" onclick="setDashboardFont('outfit')" title="Outfit — Geometric airy modern display">
+              <span class="font-indicator-chip" style="font-family: 'Outfit', sans-serif;">Ou</span>
+              <span>Outfit</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="poppins" onclick="setDashboardFont('poppins')" title="Poppins — Warm friendly geometric sans">
+              <span class="font-indicator-chip" style="font-family: 'Poppins', sans-serif;">Po</span>
+              <span>Poppins</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="dmsans" onclick="setDashboardFont('dmsans')" title="DM Sans — Contemporary clean fintech sans">
+              <span class="font-indicator-chip" style="font-family: 'DM Sans', sans-serif;">DM</span>
+              <span>DM Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="manrope" onclick="setDashboardFont('manrope')" title="Manrope — Modern Swiss neo-grotesque">
+              <span class="font-indicator-chip" style="font-family: 'Manrope', sans-serif;">Mn</span>
+              <span>Manrope</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="space" onclick="setDashboardFont('space')" title="Space Grotesk — Tech & modern edge">
+              <span class="font-indicator-chip" style="font-family: 'Space Grotesk', sans-serif;">Sp</span>
+              <span>Space Grotesk</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="roboto" onclick="setDashboardFont('roboto')" title="Roboto — Google clean interface font">
+              <span class="font-indicator-chip" style="font-family: 'Roboto', sans-serif;">Ro</span>
+              <span>Roboto</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="system" onclick="setDashboardFont('system')" title="System UI — Native Apple macOS SF Pro">
+              <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
+              <span>System UI</span>
+            </button>
+            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+              <span class="font-indicator-chip custom-font-indicator">Aa</span>
+              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -8333,7 +8912,8 @@
             <span>View 6: Diagonal Gradient</span>
           </button>
         </div>
-        <div class="canvas-tone-bar" id="canvasToneBar4">
+        <div class="dashboard-customizer-cluster">
+<div class="canvas-tone-bar" id="canvasToneBar4">
           <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -8379,6 +8959,75 @@
               <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
             </label>
           </div>
+        </div>
+        <div class="font-selector-bar" id="fontSelectorBar4">
+          <div class="font-selector-label" title="Live dashboard font typography selector">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+            <span>Font:</span>
+          </div>
+          <div class="font-selector-pills">
+            <button type="button" class="font-selector-pill font-pill-avenir" data-font="avenir" onclick="setDashboardFont('avenir')" title="Avenir Book / Avenir Next — Classic geometric elegance (User requested)">
+              <span class="font-indicator-chip" style="font-family: 'Avenir Book', 'Avenir Next', 'Avenir', sans-serif;">Av</span>
+              <span>Avenir Book</span>
+              <span class="font-fav-star" title="Requested font">★</span>
+            </button>
+            <button type="button" class="font-selector-pill active" data-font="inter" onclick="setDashboardFont('inter')" title="Inter — Ultra-crisp modern interface font">
+              <span class="font-indicator-chip" style="font-family: 'Inter', sans-serif;">In</span>
+              <span>Inter</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="jakarta" onclick="setDashboardFont('jakarta')" title="Plus Jakarta Sans — Geometric punchy SaaS font">
+              <span class="font-indicator-chip" style="font-family: 'Plus Jakarta Sans', sans-serif;">Jk</span>
+              <span>Jakarta Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="geist" onclick="setDashboardFont('geist')" title="Geist — Vercel modern design system">
+              <span class="font-indicator-chip" style="font-family: 'Geist', sans-serif;">Ge</span>
+              <span>Geist</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="outfit" onclick="setDashboardFont('outfit')" title="Outfit — Geometric airy modern display">
+              <span class="font-indicator-chip" style="font-family: 'Outfit', sans-serif;">Ou</span>
+              <span>Outfit</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="poppins" onclick="setDashboardFont('poppins')" title="Poppins — Warm friendly geometric sans">
+              <span class="font-indicator-chip" style="font-family: 'Poppins', sans-serif;">Po</span>
+              <span>Poppins</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="dmsans" onclick="setDashboardFont('dmsans')" title="DM Sans — Contemporary clean fintech sans">
+              <span class="font-indicator-chip" style="font-family: 'DM Sans', sans-serif;">DM</span>
+              <span>DM Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="manrope" onclick="setDashboardFont('manrope')" title="Manrope — Modern Swiss neo-grotesque">
+              <span class="font-indicator-chip" style="font-family: 'Manrope', sans-serif;">Mn</span>
+              <span>Manrope</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="space" onclick="setDashboardFont('space')" title="Space Grotesk — Tech & modern edge">
+              <span class="font-indicator-chip" style="font-family: 'Space Grotesk', sans-serif;">Sp</span>
+              <span>Space Grotesk</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="roboto" onclick="setDashboardFont('roboto')" title="Roboto — Google clean interface font">
+              <span class="font-indicator-chip" style="font-family: 'Roboto', sans-serif;">Ro</span>
+              <span>Roboto</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="system" onclick="setDashboardFont('system')" title="System UI — Native Apple macOS SF Pro">
+              <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
+              <span>System UI</span>
+            </button>
+            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+              <span class="font-indicator-chip custom-font-indicator">Aa</span>
+              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
 
@@ -9364,7 +10013,8 @@
               <span>View 6: Diagonal Gradient</span>
             </button>
           </div>
-        <div class="canvas-tone-bar" id="canvasToneBar5">
+        <div class="dashboard-customizer-cluster">
+<div class="canvas-tone-bar" id="canvasToneBar5">
           <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -9410,6 +10060,75 @@
               <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
             </label>
           </div>
+        </div>
+        <div class="font-selector-bar" id="fontSelectorBar5">
+          <div class="font-selector-label" title="Live dashboard font typography selector">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+            <span>Font:</span>
+          </div>
+          <div class="font-selector-pills">
+            <button type="button" class="font-selector-pill font-pill-avenir" data-font="avenir" onclick="setDashboardFont('avenir')" title="Avenir Book / Avenir Next — Classic geometric elegance (User requested)">
+              <span class="font-indicator-chip" style="font-family: 'Avenir Book', 'Avenir Next', 'Avenir', sans-serif;">Av</span>
+              <span>Avenir Book</span>
+              <span class="font-fav-star" title="Requested font">★</span>
+            </button>
+            <button type="button" class="font-selector-pill active" data-font="inter" onclick="setDashboardFont('inter')" title="Inter — Ultra-crisp modern interface font">
+              <span class="font-indicator-chip" style="font-family: 'Inter', sans-serif;">In</span>
+              <span>Inter</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="jakarta" onclick="setDashboardFont('jakarta')" title="Plus Jakarta Sans — Geometric punchy SaaS font">
+              <span class="font-indicator-chip" style="font-family: 'Plus Jakarta Sans', sans-serif;">Jk</span>
+              <span>Jakarta Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="geist" onclick="setDashboardFont('geist')" title="Geist — Vercel modern design system">
+              <span class="font-indicator-chip" style="font-family: 'Geist', sans-serif;">Ge</span>
+              <span>Geist</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="outfit" onclick="setDashboardFont('outfit')" title="Outfit — Geometric airy modern display">
+              <span class="font-indicator-chip" style="font-family: 'Outfit', sans-serif;">Ou</span>
+              <span>Outfit</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="poppins" onclick="setDashboardFont('poppins')" title="Poppins — Warm friendly geometric sans">
+              <span class="font-indicator-chip" style="font-family: 'Poppins', sans-serif;">Po</span>
+              <span>Poppins</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="dmsans" onclick="setDashboardFont('dmsans')" title="DM Sans — Contemporary clean fintech sans">
+              <span class="font-indicator-chip" style="font-family: 'DM Sans', sans-serif;">DM</span>
+              <span>DM Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="manrope" onclick="setDashboardFont('manrope')" title="Manrope — Modern Swiss neo-grotesque">
+              <span class="font-indicator-chip" style="font-family: 'Manrope', sans-serif;">Mn</span>
+              <span>Manrope</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="space" onclick="setDashboardFont('space')" title="Space Grotesk — Tech & modern edge">
+              <span class="font-indicator-chip" style="font-family: 'Space Grotesk', sans-serif;">Sp</span>
+              <span>Space Grotesk</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="roboto" onclick="setDashboardFont('roboto')" title="Roboto — Google clean interface font">
+              <span class="font-indicator-chip" style="font-family: 'Roboto', sans-serif;">Ro</span>
+              <span>Roboto</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="system" onclick="setDashboardFont('system')" title="System UI — Native Apple macOS SF Pro">
+              <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
+              <span>System UI</span>
+            </button>
+            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+              <span class="font-indicator-chip custom-font-indicator">Aa</span>
+              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
         </div>
         </div>
 
@@ -10368,7 +11087,8 @@
               <span>View 6: Diagonal Gradient</span>
             </button>
           </div>
-        <div class="canvas-tone-bar" id="canvasToneBar6">
+        <div class="dashboard-customizer-cluster">
+<div class="canvas-tone-bar" id="canvasToneBar6">
           <div class="canvas-tone-label" title="Play with dashboard canvas colors & gradients">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -10414,6 +11134,75 @@
               <input type="color" class="customColorPicker" value="#F4EFFB" onchange="setCustomDashboardBg(this.value)" oninput="setCustomDashboardBg(this.value)">
             </label>
           </div>
+        </div>
+        <div class="font-selector-bar" id="fontSelectorBar6">
+          <div class="font-selector-label" title="Live dashboard font typography selector">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+            <span>Font:</span>
+          </div>
+          <div class="font-selector-pills">
+            <button type="button" class="font-selector-pill font-pill-avenir" data-font="avenir" onclick="setDashboardFont('avenir')" title="Avenir Book / Avenir Next — Classic geometric elegance (User requested)">
+              <span class="font-indicator-chip" style="font-family: 'Avenir Book', 'Avenir Next', 'Avenir', sans-serif;">Av</span>
+              <span>Avenir Book</span>
+              <span class="font-fav-star" title="Requested font">★</span>
+            </button>
+            <button type="button" class="font-selector-pill active" data-font="inter" onclick="setDashboardFont('inter')" title="Inter — Ultra-crisp modern interface font">
+              <span class="font-indicator-chip" style="font-family: 'Inter', sans-serif;">In</span>
+              <span>Inter</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="jakarta" onclick="setDashboardFont('jakarta')" title="Plus Jakarta Sans — Geometric punchy SaaS font">
+              <span class="font-indicator-chip" style="font-family: 'Plus Jakarta Sans', sans-serif;">Jk</span>
+              <span>Jakarta Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="geist" onclick="setDashboardFont('geist')" title="Geist — Vercel modern design system">
+              <span class="font-indicator-chip" style="font-family: 'Geist', sans-serif;">Ge</span>
+              <span>Geist</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="outfit" onclick="setDashboardFont('outfit')" title="Outfit — Geometric airy modern display">
+              <span class="font-indicator-chip" style="font-family: 'Outfit', sans-serif;">Ou</span>
+              <span>Outfit</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="poppins" onclick="setDashboardFont('poppins')" title="Poppins — Warm friendly geometric sans">
+              <span class="font-indicator-chip" style="font-family: 'Poppins', sans-serif;">Po</span>
+              <span>Poppins</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="dmsans" onclick="setDashboardFont('dmsans')" title="DM Sans — Contemporary clean fintech sans">
+              <span class="font-indicator-chip" style="font-family: 'DM Sans', sans-serif;">DM</span>
+              <span>DM Sans</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="manrope" onclick="setDashboardFont('manrope')" title="Manrope — Modern Swiss neo-grotesque">
+              <span class="font-indicator-chip" style="font-family: 'Manrope', sans-serif;">Mn</span>
+              <span>Manrope</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="space" onclick="setDashboardFont('space')" title="Space Grotesk — Tech & modern edge">
+              <span class="font-indicator-chip" style="font-family: 'Space Grotesk', sans-serif;">Sp</span>
+              <span>Space Grotesk</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="roboto" onclick="setDashboardFont('roboto')" title="Roboto — Google clean interface font">
+              <span class="font-indicator-chip" style="font-family: 'Roboto', sans-serif;">Ro</span>
+              <span>Roboto</span>
+            </button>
+            <button type="button" class="font-selector-pill" data-font="system" onclick="setDashboardFont('system')" title="System UI — Native Apple macOS SF Pro">
+              <span class="font-indicator-chip" style="font-family: -apple-system, sans-serif;">🍎</span>
+              <span>System UI</span>
+            </button>
+            <div class="font-inline-custom-wrap" title="Type any font name with live instant preview">
+              <span class="font-indicator-chip custom-font-indicator">Aa</span>
+              <input type="text" class="font-inline-input" placeholder="Custom..." oninput="setCustomDashboardFont(this.value)" onchange="setCustomDashboardFont(this.value)">
+              <button type="button" class="font-browse-more-btn" onclick="openFontStudioModal()" title="Open Full Typography Studio (16+ famous fonts & live cards)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="1"></circle>
+                  <circle cx="19" cy="12" r="1"></circle>
+                  <circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
         </div>
         </div>
 
@@ -11040,6 +11829,390 @@
   </div>
 </div>
 
+<!-- ==========================================================================
+     FONT & TYPOGRAPHY STUDIO MODAL
+     Live preview and selector for 16+ famous fonts + custom font write-in
+     ========================================================================== -->
+<div class="modal-overlay" id="fontStudioModal">
+  <div class="modal-card" style="max-width: 840px; width: 95vw; max-height: 90vh; display: flex; flex-direction: column;">
+    <div class="modal-topbar">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 32px; height: 32px; border-radius: 9px; background: #EDE9FE; color: #7C3AED; display: grid; place-items: center; font-weight: 800; font-size: 15px;">
+          Aa
+        </div>
+        <div>
+          <div class="modal-title" style="margin: 0; line-height: 1.2;">Dashboard Typography Studio</div>
+          <div style="font-size: 11.5px; color: #64748B; margin-top: 2px;">Live typography preview &amp; custom font engine for Hirerkey™</div>
+        </div>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal('fontStudioModal')">✕</button>
+    </div>
+    
+    <div class="modal-body" style="overflow-y: auto; flex: 1; padding: 20px 24px; display: flex; flex-direction: column; gap: 18px;">
+      <!-- Custom Font Write-in Input & Quick Pills -->
+      <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px;">
+        <label style="display: block; font-size: 12.5px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">
+          Custom Font Engine — Live Keystroke Preview
+        </label>
+        <p style="font-size: 11.5px; color: #64748B; margin-bottom: 10px;">
+          Type any font installed on your system or from Google Fonts. The entire dashboard and preview below will update live as you type!
+        </p>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <div style="flex: 1; position: relative;">
+            <input type="text" id="modalCustomFontInput" class="customFontNameInput" placeholder="Type font name: e.g. Avenir Book, Helvetica Neue, Satoshi, Futura, Cabinet Grotesk, Roboto Mono..." oninput="setCustomDashboardFont(this.value)" style="width: 100%; padding: 10px 14px 10px 38px; border: 1.5px solid #CBD5E1; border-radius: 9px; font-size: 13.5px; font-family: inherit; outline: none; transition: border-color 0.2s; background: #FFFFFF;">
+            <svg style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #7C3AED;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 7 4 4 20 4 20 7"></polyline>
+              <line x1="9" y1="20" x2="15" y2="20"></line>
+              <line x1="12" y1="4" x2="12" y2="20"></line>
+            </svg>
+          </div>
+          <button type="button" onclick="setDashboardFont('avenir')" style="padding: 10px 14px; background: #EDE9FE; color: #6D28D9; border: 1px solid #DDD6FE; border-radius: 9px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px;">
+            ★ Pick Avenir Book
+          </button>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px; margin-top: 10px; flex-wrap: wrap;">
+          <span style="font-size: 11px; font-weight: 600; color: #64748B;">Popular Suggestions:</span>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Avenir Book')">Avenir Book</button>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Helvetica Neue')">Helvetica Neue</button>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Satoshi')">Satoshi</button>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Montserrat')">Montserrat</button>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('Cabinet Grotesk')">Cabinet Grotesk</button>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('General Sans')">General Sans</button>
+          <button type="button" class="quick-font-tag" onclick="setCustomDashboardFont('JetBrains Mono')">JetBrains Mono</button>
+        </div>
+      </div>
+
+      <!-- Live Dashboard Preview Card -->
+      <div id="modalFontLiveSample" style="border: 1px solid #E2E8F0; border-radius: 12px; padding: 16px 20px; background: #FFFFFF; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <div>
+            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #7C3AED;">Live Typography Sample</span>
+            <div id="modalFontLiveName" style="font-size: 17px; font-weight: 700; color: #0F172A; margin-top: 2px;">Inter (Default)</div>
+          </div>
+          <span id="modalFontLiveDesc" style="font-size: 11.5px; color: #64748B; max-width: 280px; text-align: right;">Ultra-crisp modern interface font by Rasmus Andersson</span>
+        </div>
+        <div style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 12px;">
+          &ldquo;The future of workforce intelligence: Hirerkey seamlessly unifies leaver offboarding, statutory AED settlements, and operational handovers.&rdquo;
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <span style="padding: 4px 10px; background: #EDE9FE; color: #6D28D9; border-radius: 6px; font-size: 12px; font-weight: 600;">Active Leavers: 8</span>
+          <span style="padding: 4px 10px; background: #ECFDF5; color: #059669; border-radius: 6px; font-size: 12px; font-weight: 600;">Clearance: 100% Ready</span>
+          <span style="padding: 4px 10px; background: #F1F5F9; color: #475569; border-radius: 6px; font-size: 12px; font-weight: 600;">14,280.00 AED Settlement</span>
+          <button type="button" style="padding: 5px 12px; background: #7C3AED; color: #FFFFFF; border-radius: 6px; font-size: 12px; font-weight: 600; margin-left: auto; border: none; cursor: pointer;">Primary Action</button>
+        </div>
+      </div>
+
+      <!-- Famous Fonts Grid -->
+      <div>
+        <div style="font-size: 13px; font-weight: 700; color: #0F172A; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+          <span>Curated Famous Fonts (Click to Apply Instantly)</span>
+          <span style="font-size: 11.5px; color: #64748B; font-weight: normal;">16 Precision SaaS Typefaces</span>
+        </div>
+        <div class="font-studio-grid">
+          <!-- 1. Avenir Book (Featured) -->
+          <div class="font-studio-card" data-font="avenir" onclick="setDashboardFont('avenir')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Avenir Book', 'Avenir Next', sans-serif;">Avenir Book</span>
+                <span class="font-card-foundry">Adrian Frutiger · Geometric Classic</span>
+              </div>
+              <span class="font-card-badge font-card-badge-gold">★ Requested</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Avenir Book', 'Avenir Next', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Avenir</button>
+            </div>
+          </div>
+
+          <!-- 2. Inter -->
+          <div class="font-studio-card active" data-font="inter" onclick="setDashboardFont('inter')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Inter', sans-serif;">Inter</span>
+                <span class="font-card-foundry">Rasmus Andersson · Precision UI</span>
+              </div>
+              <span class="font-card-badge">Default</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Inter', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Inter</button>
+            </div>
+          </div>
+
+          <!-- 3. Plus Jakarta Sans -->
+          <div class="font-studio-card" data-font="jakarta" onclick="setDashboardFont('jakarta')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Plus Jakarta Sans', sans-serif;">Plus Jakarta Sans</span>
+                <span class="font-card-foundry">Tokotype · Modern SaaS Favorite</span>
+              </div>
+              <span class="font-card-badge">Geometric</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Jakarta</button>
+            </div>
+          </div>
+
+          <!-- 4. Geist -->
+          <div class="font-studio-card" data-font="geist" onclick="setDashboardFont('geist')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Geist', sans-serif;">Geist</span>
+                <span class="font-card-foundry">Vercel · Enterprise Design System</span>
+              </div>
+              <span class="font-card-badge">Tech Clean</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Geist', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Geist</button>
+            </div>
+          </div>
+
+          <!-- 5. Outfit -->
+          <div class="font-studio-card" data-font="outfit" onclick="setDashboardFont('outfit')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Outfit', sans-serif;">Outfit</span>
+                <span class="font-card-foundry">Outfit.io · Airy Luxury Display</span>
+              </div>
+              <span class="font-card-badge">Modern</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Outfit', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Outfit</button>
+            </div>
+          </div>
+
+          <!-- 6. Poppins -->
+          <div class="font-studio-card" data-font="poppins" onclick="setDashboardFont('poppins')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Poppins', sans-serif;">Poppins</span>
+                <span class="font-card-foundry">Indian Type Foundry · Friendly Geometric</span>
+              </div>
+              <span class="font-card-badge">Popular</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Poppins', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Poppins</button>
+            </div>
+          </div>
+
+          <!-- 7. DM Sans -->
+          <div class="font-studio-card" data-font="dmsans" onclick="setDashboardFont('dmsans')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'DM Sans', sans-serif;">DM Sans</span>
+                <span class="font-card-foundry">Colophon · Modern Fintech Standard</span>
+              </div>
+              <span class="font-card-badge">Fintech</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'DM Sans', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply DM Sans</button>
+            </div>
+          </div>
+
+          <!-- 8. Manrope -->
+          <div class="font-studio-card" data-font="manrope" onclick="setDashboardFont('manrope')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Manrope', sans-serif;">Manrope</span>
+                <span class="font-card-foundry">Mikhail Sharanda · Semi-grotesque</span>
+              </div>
+              <span class="font-card-badge">Swiss UI</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Manrope', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Manrope</button>
+            </div>
+          </div>
+
+          <!-- 9. Space Grotesk -->
+          <div class="font-studio-card" data-font="space" onclick="setDashboardFont('space')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Space Grotesk', sans-serif;">Space Grotesk</span>
+                <span class="font-card-foundry">Florian Karsten · Tech Display</span>
+              </div>
+              <span class="font-card-badge">Tech / AI</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Space Grotesk', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Space</button>
+            </div>
+          </div>
+
+          <!-- 10. Roboto -->
+          <div class="font-studio-card" data-font="roboto" onclick="setDashboardFont('roboto')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Roboto', sans-serif;">Roboto</span>
+                <span class="font-card-foundry">Christian Robertson · Google Standard</span>
+              </div>
+              <span class="font-card-badge">Google</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Roboto', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Roboto</button>
+            </div>
+          </div>
+
+          <!-- 11. System UI (Apple SF Pro) -->
+          <div class="font-studio-card" data-font="system" onclick="setDashboardFont('system')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: -apple-system, sans-serif;">System UI (SF Pro)</span>
+                <span class="font-card-foundry">Apple · Native OS Hardware Accel</span>
+              </div>
+              <span class="font-card-badge">Apple OS</span>
+            </div>
+            <div class="font-card-sample" style="font-family: -apple-system, sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply System UI</button>
+            </div>
+          </div>
+
+          <!-- 12. Satoshi -->
+          <div class="font-studio-card" data-font="satoshi" onclick="setDashboardFont('satoshi')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Satoshi', sans-serif;">Satoshi</span>
+                <span class="font-card-foundry">Fontshare · Swiss Neo-Grotesk</span>
+              </div>
+              <span class="font-card-badge">Design</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Satoshi', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Satoshi</button>
+            </div>
+          </div>
+
+          <!-- 13. Montserrat -->
+          <div class="font-studio-card" data-font="montserrat" onclick="setDashboardFont('montserrat')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Montserrat', sans-serif;">Montserrat</span>
+                <span class="font-card-foundry">Julieta Ulanovsky · Geometric Classic</span>
+              </div>
+              <span class="font-card-badge">Urban</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Montserrat', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Montserrat</button>
+            </div>
+          </div>
+
+          <!-- 14. Open Sans -->
+          <div class="font-studio-card" data-font="opensans" onclick="setDashboardFont('opensans')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Open Sans', sans-serif;">Open Sans</span>
+                <span class="font-card-foundry">Steve Matteson · Neutral Humanist</span>
+              </div>
+              <span class="font-card-badge">Clean</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Open Sans', sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Open Sans</button>
+            </div>
+          </div>
+
+          <!-- 15. Helvetica Neue -->
+          <div class="font-studio-card" data-font="helvetica" onclick="setDashboardFont('helvetica')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'Helvetica Neue', Helvetica, sans-serif;">Helvetica Neue</span>
+                <span class="font-card-foundry">Max Miedinger · Timeless Swiss</span>
+              </div>
+              <span class="font-card-badge">Timeless</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'Helvetica Neue', Helvetica, sans-serif;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Helvetica</button>
+            </div>
+          </div>
+
+          <!-- 16. JetBrains Mono -->
+          <div class="font-studio-card" data-font="mono" onclick="setDashboardFont('mono')">
+            <div class="font-studio-card-head">
+              <div>
+                <span class="font-card-name" style="font-family: 'JetBrains Mono', monospace;">JetBrains Mono</span>
+                <span class="font-card-foundry">JetBrains · Developer &amp; Data Mono</span>
+              </div>
+              <span class="font-card-badge">Code / Numbers</span>
+            </div>
+            <div class="font-card-sample" style="font-family: 'JetBrains Mono', monospace;">
+              Hirerkey Employee Intelligence &amp; Offboarding
+            </div>
+            <div class="font-card-footer">
+              <span class="font-card-active-check">✓ Active</span>
+              <button type="button" class="font-card-apply-btn">Apply Mono</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Footer Actions -->
+    <div style="padding: 14px 24px; border-top: 1px solid #E2E8F0; background: #FAF8FF; display: flex; justify-content: space-between; align-items: center;">
+      <button type="button" onclick="setDashboardFont('inter')" style="padding: 8px 16px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 12.5px; font-weight: 500; color: #475569; background: #FFFFFF; cursor: pointer;">
+        Reset to Default (Inter)
+      </button>
+      <button type="button" onclick="closeModal('fontStudioModal')" style="padding: 8px 22px; background: #7C3AED; color: #FFFFFF; border-radius: 8px; font-size: 12.5px; font-weight: 600; border: none; cursor: pointer; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.28);">
+        Done Choosing
+      </button>
+    </div>
+  </div>
+</div>
+
+
 <!-- Toast element for feedback -->
 <div class="action-toast" id="actionToast">
   <span id="toastMessage">Action completed</span>
@@ -11091,6 +12264,230 @@
   // ==========================================================================
   // CANVAS BACKGROUND TONE SWITCHER WITH CUSTOM COLOR PICKER
   // ==========================================================================
+  
+  // ==========================================================================
+  // DASHBOARD TYPOGRAPHY & FONT SELECTOR ENGINE
+  // Live font switcher with famous fonts, Avenir Book & custom font write-in
+  // ==========================================================================
+  const DASHBOARD_FONT_PRESETS = {
+    avenir: {
+      name: 'Avenir Book',
+      family: "'Avenir Book', 'Avenir Next', 'Avenir', 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+      weight: '400',
+      description: "Classic geometric elegance by Adrian Frutiger (User requested)"
+    },
+    inter: {
+      name: 'Inter',
+      family: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+      weight: '400',
+      description: "Ultra-crisp modern interface font by Rasmus Andersson"
+    },
+    jakarta: {
+      name: 'Plus Jakarta Sans',
+      family: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+      weight: '500',
+      description: "Modern geometric SaaS favorite by Tokotype"
+    },
+    geist: {
+      name: 'Geist',
+      family: "'Geist', -apple-system, BlinkMacSystemFont, sans-serif",
+      weight: '400',
+      description: "Vercel's precision design system typeface"
+    },
+    outfit: {
+      name: 'Outfit',
+      family: "'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+      weight: '400',
+      description: "Clean geometric font inspired by modern luxury & tech"
+    },
+    poppins: {
+      name: 'Poppins',
+      family: "'Poppins', sans-serif",
+      weight: '400',
+      description: "Beloved worldwide friendly geometric sans by Indian Type Foundry"
+    },
+    dmsans: {
+      name: 'DM Sans',
+      family: "'DM Sans', sans-serif",
+      weight: '400',
+      description: "Contemporary clean sans designed by Colophon Foundry"
+    },
+    manrope: {
+      name: 'Manrope',
+      family: "'Manrope', sans-serif",
+      weight: '500',
+      description: "Modern semi-grotesque sans by Mikhail Sharanda"
+    },
+    space: {
+      name: 'Space Grotesk',
+      family: "'Space Grotesk', sans-serif",
+      weight: '500',
+      description: "Modern tech aesthetic by Florian Karsten"
+    },
+    roboto: {
+      name: 'Roboto',
+      family: "'Roboto', -apple-system, BlinkMacSystemFont, sans-serif",
+      weight: '400',
+      description: "Iconic clean neo-grotesque interface font by Google"
+    },
+    system: {
+      name: 'System UI',
+      family: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+      weight: '400',
+      description: "Native Apple macOS & operating system optimized typography"
+    },
+    satoshi: {
+      name: 'Satoshi',
+      family: "'Satoshi', 'Inter', -apple-system, sans-serif",
+      weight: '500',
+      description: "Neo-grotesque type family inspired by Swiss modernist graphic design"
+    },
+    montserrat: {
+      name: 'Montserrat',
+      family: "'Montserrat', sans-serif",
+      weight: '500',
+      description: "Iconic urban geometric sans by Julieta Ulanovsky"
+    },
+    opensans: {
+      name: 'Open Sans',
+      family: "'Open Sans', sans-serif",
+      weight: '400',
+      description: "Friendly humanist typeface by Steve Matteson"
+    },
+    helvetica: {
+      name: 'Helvetica Neue',
+      family: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+      weight: '400',
+      description: "The timeless Swiss modernist icon"
+    },
+    mono: {
+      name: 'JetBrains Mono',
+      family: "'JetBrains Mono', monospace",
+      weight: '400',
+      description: "High-precision developer & tabular mono typeface"
+    }
+  };
+
+  function setDashboardFont(fontKey, silent = false) {
+    const preset = DASHBOARD_FONT_PRESETS[fontKey];
+    if (!preset) return;
+
+    // 1. Update CSS root variable
+    document.documentElement.style.setProperty('--font-main', preset.family);
+
+    // 2. Direct style updates for immediate repaint across entire document
+    document.body.style.fontFamily = preset.family;
+    document.querySelectorAll('input, textarea, button, select').forEach(el => {
+      el.style.fontFamily = preset.family;
+    });
+
+    // 3. Update active pill indicators across all toolbars (all 6 views)
+    document.querySelectorAll('.font-selector-pill').forEach(btn => {
+      const isMatch = btn.getAttribute('data-font') === fontKey;
+      btn.classList.toggle('active', isMatch);
+    });
+    document.querySelectorAll('.font-inline-custom-wrap').forEach(wrap => {
+      wrap.classList.remove('active');
+    });
+    document.querySelectorAll('.font-inline-input').forEach(inp => {
+      inp.value = '';
+    });
+
+    // 4. Update modal cards active state
+    document.querySelectorAll('.font-studio-card').forEach(card => {
+      const isMatch = card.getAttribute('data-font') === fontKey;
+      card.classList.toggle('active', isMatch);
+    });
+
+    // 5. Update modal live sample box
+    const liveSample = document.getElementById('modalFontLiveSample');
+    if (liveSample) {
+      liveSample.style.fontFamily = preset.family;
+      const nameEl = document.getElementById('modalFontLiveName');
+      if (nameEl) nameEl.textContent = preset.name;
+      const descEl = document.getElementById('modalFontLiveDesc');
+      if (descEl) descEl.textContent = preset.description;
+    }
+
+    // 6. Persist preference
+    localStorage.setItem('hirerkey_dashboard_font', fontKey);
+    localStorage.removeItem('hirerkey_dashboard_custom_font');
+
+    if (!silent) {
+      showToast(`Dashboard font set to: ${preset.name}`);
+    }
+  }
+
+  function setCustomDashboardFont(customFontName, silent = false) {
+    if (!customFontName || !customFontName.trim()) return;
+    const trimmed = customFontName.trim();
+    loadGoogleFontDynamically(trimmed);
+    const customStack = `'${trimmed}', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
+
+    // 1. Update CSS root variable
+    document.documentElement.style.setProperty('--font-main', customStack);
+
+    // 2. Direct style updates for immediate repaint
+    document.body.style.fontFamily = customStack;
+    document.querySelectorAll('input, textarea, button, select').forEach(el => {
+      el.style.fontFamily = customStack;
+    });
+
+    // 3. Update active states
+    document.querySelectorAll('.font-selector-pill').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.querySelectorAll('.font-inline-custom-wrap').forEach(wrap => {
+      wrap.classList.add('active');
+    });
+    document.querySelectorAll('.font-inline-input, #modalCustomFontInput').forEach(inp => {
+      if (inp.value !== trimmed) inp.value = trimmed;
+    });
+
+    // 4. Update modal sample box
+    const liveSample = document.getElementById('modalFontLiveSample');
+    if (liveSample) {
+      liveSample.style.fontFamily = customStack;
+      const nameEl = document.getElementById('modalFontLiveName');
+      if (nameEl) nameEl.textContent = `${trimmed} (Custom)`;
+      const descEl = document.getElementById('modalFontLiveDesc');
+      if (descEl) descEl.textContent = "Custom font live rendering";
+    }
+
+    // 5. Persist
+    localStorage.setItem('hirerkey_dashboard_font', 'custom');
+    localStorage.setItem('hirerkey_dashboard_custom_font', trimmed);
+
+    if (!silent) {
+      showToast(`Custom font applied: ${trimmed}`);
+    }
+  }
+
+  function loadGoogleFontDynamically(fontName) {
+    if (!fontName) return;
+    const clean = fontName.trim().replace(/['"]/g, '');
+    const slug = clean.toLowerCase().replace(/\s+/g, '-');
+    const existingId = 'dynamic-font-' + slug;
+    if (document.getElementById(existingId)) return;
+
+    const link = document.createElement('link');
+    link.id = existingId;
+    link.rel = 'stylesheet';
+    link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(clean).replace(/%20/g, '+')}:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap`;
+    document.head.appendChild(link);
+  }
+
+  function openFontStudioModal() {
+    const modal = document.getElementById('fontStudioModal');
+    if (modal) {
+      modal.classList.add('open');
+      const input = document.getElementById('modalCustomFontInput');
+      if (input) {
+        setTimeout(() => input.focus(), 120);
+      }
+    }
+  }
+
   const DASHBOARD_BG_PRESETS = {
     pearl: {
       name: 'Pearl Grey',
@@ -13402,7 +14799,19 @@
   // Initialize active view from URL search param (?view=3), hash (#view3), or localStorage
   window.addEventListener('DOMContentLoaded', () => {
     localStorage.removeItem('hirerkey_dashboard_bg_tone');
+    // Restore saved dashboard font if user selected one
+    const savedFont = localStorage.getItem('hirerkey_dashboard_font');
+    const savedCustomFont = localStorage.getItem('hirerkey_dashboard_custom_font');
+    if (savedFont === 'custom' && savedCustomFont) {
+      setCustomDashboardFont(savedCustomFont, true);
+    } else if (savedFont && DASHBOARD_FONT_PRESETS[savedFont]) {
+      setDashboardFont(savedFont, true);
+    } else {
+      setDashboardFont('inter', true);
+    }
+
     // Restore saved canvas background tone if user selected one
+
     const savedTone = localStorage.getItem('hirerkey_dashboard_bg_tone');
     const savedCustom = localStorage.getItem('hirerkey_dashboard_bg_custom');
     if (savedTone === 'custom' && savedCustom) {
