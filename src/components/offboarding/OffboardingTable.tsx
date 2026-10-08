@@ -78,7 +78,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
     const isRahul = !isSara && ((caseItem.name && caseItem.name.toLowerCase().includes('rahul')) || caseItem.id === 2);
     const isLeena = !isSara && !isRahul && ((caseItem.name && caseItem.name.toLowerCase().includes('leena')) || caseItem.id === 4);
     const cardWidth = isSara ? 300 : isRahul ? 312 : isLeena ? 380 : 310;
-    const cardHeight = isSara ? 490 : isRahul ? 140 : isLeena ? 185 : 260;
+    const cardHeight = isSara ? 490 : isRahul ? 140 : isLeena ? 130 : 260;
     let left = rect.right + 12;
     let top = rect.top - 8;
     if (typeof window !== 'undefined') {
@@ -782,13 +782,13 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
               height: isSara ? 490 : undefined,
               bgcolor: '#FFFFFF',
               border: isLeena ? '1px solid #EBE8F6' : '1px solid #E2E8F0',
-              borderRadius: isSara ? '26px' : isRahul ? '14px' : isLeena ? '18px' : '16px',
+              borderRadius: isSara ? '26px' : isRahul ? '14px' : isLeena ? '16px' : '16px',
               boxShadow: isRahul
                 ? '0 12px 28px -6px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
                 : isSara
                 ? '0 20px 48px -10px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(15, 23, 42, 0.06)'
                 : isLeena
-                ? '0 14px 34px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
+                ? '0 12px 30px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
                 : '0 20px 40px -8px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04)',
               zIndex: 99999,
               overflow: 'hidden',
@@ -1303,7 +1303,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 </Box>
               </Box>
             ) : isLeena ? (
-              /* Format 3: Split-Tone Modern ID Card (Leena Joseph - Row 4 per media_1791441334564.png) */
+              /* Format 3: Split-Tone Modern ID Card (Leena Joseph - Row 4) */
               <Box
                 sx={{
                   position: 'relative',
@@ -1314,29 +1314,32 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                   bgcolor: '#FFFFFF',
                   fontFamily: 'Inter, system-ui, sans-serif',
                   boxSizing: 'border-box',
+                  overflow: 'hidden',
                 }}
               >
                 {/* Left Panel: Soft Lavender Profile Column */}
                 <Box
                   sx={{
-                    flex: '0 0 44%',
-                    width: '44%',
+                    flex: '0 0 135px',
+                    width: 135,
+                    maxWidth: 135,
                     bgcolor: '#F6F3FE',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
                     textAlign: 'center',
-                    p: '18px 12px',
+                    p: '14px 8px',
                     boxSizing: 'border-box',
+                    overflow: 'hidden',
                   }}
                 >
                   {/* Circular Avatar with Online Status Dot */}
-                  <Box sx={{ position: 'relative', width: 54, height: 54, mb: '8px' }}>
+                  <Box sx={{ position: 'relative', width: 48, height: 48, mb: '7px', flexShrink: 0 }}>
                     <Box
                       sx={{
-                        width: 54,
-                        height: 54,
+                        width: 48,
+                        height: 48,
                         borderRadius: '50%',
                         overflow: 'hidden',
                         bgcolor: '#EDE9FE',
@@ -1361,12 +1364,12 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                         position: 'absolute',
                         bottom: 1,
                         right: 1,
-                        width: 11,
-                        height: 11,
+                        width: 10,
+                        height: 10,
                         borderRadius: '50%',
                         bgcolor: '#22C55E',
                         border: '2px solid #FFFFFF',
-                        boxShadow: '0 1px 3px rgba(34, 197, 94, 0.35)',
+                        boxShadow: '0 1px 2px rgba(0, 0, 0, 0.12)',
                       }}
                     />
                   </Box>
@@ -1374,7 +1377,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                   {/* Name */}
                   <Typography
                     sx={{
-                      fontSize: '14.5px',
+                      fontSize: '13.5px',
                       fontWeight: 700,
                       color: '#0F172A',
                       lineHeight: 1.25,
@@ -1382,7 +1385,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                      maxWidth: '100%',
+                      maxWidth: '120px',
                     }}
                   >
                     {hoveredCase.name || 'Leena Joseph'}
@@ -1391,38 +1394,38 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                   {/* Email */}
                   <Typography
                     component="a"
-                    href={`mailto:${hoveredCase.email || 'leena.joseph@hirerkey.com'}`}
+                    href={`mailto:${hoveredCase.email || 'leena.joseph@noisiv.com'}`}
                     onClick={(e) => e.stopPropagation()}
                     sx={{
-                      fontSize: '11.5px',
+                      fontSize: '10.5px',
                       fontWeight: 400,
                       color: '#64748B',
-                      mt: '3px',
+                      mt: '2px',
                       textDecoration: 'none',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                      maxWidth: '100%',
+                      maxWidth: '120px',
                       '&:hover': { color: '#7C3AED', textDecoration: 'underline' },
                     }}
                   >
-                    {hoveredCase.email || 'leena.joseph@hirerkey.com'}
+                    {hoveredCase.email || 'leena.joseph@noisiv.com'}
                   </Typography>
 
                   {/* Role Pill */}
                   <Box
                     sx={{
-                      mt: '8px',
+                      mt: '6px',
                       display: 'inline-flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      px: '12px',
-                      py: '3px',
+                      px: '9px',
+                      py: '2px',
                       bgcolor: '#EFE9FE',
                       color: '#6D28D9',
-                      fontSize: '11px',
+                      fontSize: '10px',
                       fontWeight: 600,
-                      borderRadius: '7px',
+                      borderRadius: '6px',
                       letterSpacing: '-0.01em',
                       lineHeight: 1.2,
                     }}
@@ -1431,46 +1434,27 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                   </Box>
                 </Box>
 
-                {/* Right Panel: Clean White Metadata List */}
+                {/* Right Panel: Clean White Metadata List (Department, Designation, Position) */}
                 <Box
                   sx={{
-                    flex: '1',
+                    flex: 1,
+                    width: 'calc(100% - 135px)',
+                    maxWidth: 'calc(100% - 135px)',
                     bgcolor: '#FFFFFF',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
-                    gap: '13px',
-                    p: '18px 20px 18px 22px',
+                    gap: '10px',
+                    p: '14px 16px 14px 14px',
                     boxSizing: 'border-box',
+                    minWidth: 0,
+                    overflow: 'hidden',
                   }}
                 >
-                  {/* 1. Designation (Briefcase) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '11px', minWidth: 0 }} title="Designation">
-                    <Box sx={{ width: 18, height: 18, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="7" width="20" height="14" rx="2" />
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                      </svg>
-                    </Box>
-                    <Typography
-                      sx={{
-                        fontSize: '12.5px',
-                        fontWeight: 600,
-                        color: '#0F172A',
-                        letterSpacing: '-0.01em',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}
-                    >
-                      {hoveredCase.designation || hoveredCase.title || 'Product Manager'}
-                    </Typography>
-                  </Box>
-
-                  {/* 2. Department (Office Building) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '11px', minWidth: 0 }} title="Department">
-                    <Box sx={{ width: 18, height: 18, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  {/* 1. Department (Office Building) */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Department">
+                    <Box sx={{ width: 15, height: 15, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M6 22V7a3 3 0 0 1 6 0v15" />
                         <path d="M12 12h4a2 2 0 0 1 2 2v8" />
                         <path d="M9 18h.01" />
@@ -1480,23 +1464,52 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     </Box>
                     <Typography
                       sx={{
-                        fontSize: '12.5px',
+                        fontSize: '11px',
                         fontWeight: 600,
                         color: '#0F172A',
                         letterSpacing: '-0.01em',
+                        lineHeight: 1.3,
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
+                        minWidth: 0,
+                        flex: 1,
                       }}
                     >
-                      {hoveredCase.department || 'Product'}
+                      {hoveredCase.department || 'Housekeeping'}
                     </Typography>
                   </Box>
 
-                  {/* 3. Hierarchy Level (Users/Team) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '11px', minWidth: 0 }} title="Hierarchy Level">
-                    <Box sx={{ width: 18, height: 18, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  {/* 2. Designation (Briefcase) */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Designation">
+                    <Box sx={{ width: 15, height: 15, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                      </svg>
+                    </Box>
+                    <Typography
+                      sx={{
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        color: '#0F172A',
+                        letterSpacing: '-0.01em',
+                        lineHeight: 1.3,
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        minWidth: 0,
+                        flex: 1,
+                      }}
+                    >
+                      {hoveredCase.designation || hoveredCase.title || 'Housekeeping Supervisor'}
+                    </Typography>
+                  </Box>
+
+                  {/* 3. Position (Team / Position) */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Position">
+                    <Box sx={{ width: 15, height: 15, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                         <circle cx="9" cy="7" r="4" />
                         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -1505,43 +1518,19 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     </Box>
                     <Typography
                       sx={{
-                        fontSize: '12.5px',
+                        fontSize: '11px',
                         fontWeight: 600,
                         color: '#0F172A',
                         letterSpacing: '-0.01em',
+                        lineHeight: 1.3,
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
+                        minWidth: 0,
+                        flex: 1,
                       }}
                     >
-                      Manager
-                    </Typography>
-                  </Box>
-
-                  {/* 4. Employee ID Code (ID Card Badge [A ≡]) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '11px', minWidth: 0 }} title="Employee ID Code">
-                    <Box sx={{ width: 18, height: 18, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="4" width="18" height="16" rx="3" />
-                        <path d="M7 15l1.8-6.5h.4L11 15" />
-                        <path d="M7.7 13.2h2.6" />
-                        <line x1="14" y1="10" x2="18" y2="10" />
-                        <line x1="14" y1="14" x2="18" y2="14" />
-                      </svg>
-                    </Box>
-                    <Typography
-                      sx={{
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        color: '#475569',
-                        fontFamily: 'JetBrains Mono, monospace',
-                        letterSpacing: '0.02em',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}
-                    >
-                      HK-EMP-0234
+                      {hoveredCase.position || `Operations Supervisor · Seat ${hoveredCase.seat || 'HKS-03'}`}
                     </Typography>
                   </Box>
                 </Box>

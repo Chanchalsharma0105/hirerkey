@@ -2186,7 +2186,7 @@
       text-overflow: ellipsis;
     }
 
-    /* Split-Tone Modern ID Card Modifier for Container (Leena Joseph - Row 3/4 per media_1791441334564.png) */
+    /* Split-Tone Modern ID Card Modifier for Container (Leena Joseph - Row 3/4) */
     .employee-hover-card.is-arc,
     .employee-hover-card.is-split {
       width: 380px !important;
@@ -2194,15 +2194,16 @@
       min-height: auto !important;
       background: #FFFFFF !important;
       border: 1px solid #EBE8F6 !important;
-      border-radius: 18px !important;
+      border-radius: 16px !important;
       overflow: hidden !important;
-      box-shadow: 0 14px 34px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+      box-shadow: 0 12px 30px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04) !important;
       padding: 0 !important;
+      box-sizing: border-box !important;
     }
 
     /* =========================================================================
        EMPLOYEE HOVER CARD: FORMAT 3 (Leena Joseph - Split-Tone Modern ID Card)
-       Directly inspired by media_1791441334564.png
+       Compact, sleek 3-field layout (Department, Designation, Position)
        ========================================================================= */
     .emp-card-split-wrap {
       position: relative;
@@ -2212,34 +2213,37 @@
       align-items: stretch;
       background: #FFFFFF;
       box-sizing: border-box;
+      overflow: hidden;
       font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     /* Left Panel: Soft Lavender Profile Section */
     .emp-card-split-left {
-      flex: 0 0 44%;
-      width: 44%;
+      flex: 0 0 135px;
+      width: 135px;
+      max-width: 135px;
       background: #F6F3FE;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 18px 12px;
+      padding: 14px 8px;
       box-sizing: border-box;
+      overflow: hidden;
     }
 
     .emp-card-split-avatar-wrap {
       position: relative;
-      width: 54px;
-      height: 54px;
-      margin-bottom: 10px;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 7px;
       flex-shrink: 0;
     }
 
     .emp-card-split-avatar-img {
-      width: 54px;
-      height: 54px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
@@ -2247,12 +2251,12 @@
     }
 
     .emp-card-split-avatar-fallback {
-      width: 54px;
-      height: 54px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: #EDE9FE;
       color: #6D28D9;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
       display: none;
       align-items: center;
@@ -2263,8 +2267,8 @@
       position: absolute;
       bottom: 1px;
       right: 1px;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: #22C55E;
       border: 2px solid #FFFFFF;
@@ -2272,29 +2276,29 @@
     }
 
     .emp-card-split-name {
-      font-size: 14.5px;
-      font-weight: 800;
+      font-size: 13.5px;
+      font-weight: 700;
       color: #0F172A;
-      line-height: 1.2;
-      margin-bottom: 3px;
+      line-height: 1.25;
+      margin-bottom: 2px;
       letter-spacing: -0.01em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 140px;
+      max-width: 120px;
     }
 
     .emp-card-split-email {
-      font-size: 11.5px;
+      font-size: 10.5px;
       color: #64748B;
       font-weight: 400;
       line-height: 1.25;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       letter-spacing: -0.01em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 140px;
+      max-width: 120px;
       text-decoration: none;
       transition: color 0.15s ease;
     }
@@ -2307,12 +2311,12 @@
     .emp-card-split-pill {
       display: inline-flex;
       align-items: center;
-      padding: 3px 12px;
+      padding: 2px 9px;
       background: #EFE9FE;
       color: #6D28D9;
-      border-radius: 7px;
-      font-size: 11px;
-      font-weight: 700;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.01em;
     }
@@ -2320,25 +2324,32 @@
     /* Right Panel: White Metadata List Section */
     .emp-card-split-right {
       flex: 1;
+      width: calc(100% - 135px);
+      max-width: calc(100% - 135px);
       background: #FFFFFF;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 13px;
-      padding: 18px 20px 18px 22px;
+      gap: 10px;
+      padding: 14px 16px 14px 14px;
       box-sizing: border-box;
+      min-width: 0;
+      overflow: hidden;
     }
 
     .emp-card-split-row {
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 8px;
       min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .emp-card-split-icon {
-      width: 18px;
-      height: 18px;
+      width: 15px;
+      height: 15px;
       flex-shrink: 0;
       color: #7C3AED;
       display: flex;
@@ -2347,24 +2358,16 @@
     }
 
     .emp-card-split-text {
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 600;
       color: #0F172A;
       letter-spacing: -0.01em;
+      line-height: 1.3;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .emp-card-split-code {
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #0F172A;
-      font-family: var(--font-mono, monospace);
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      min-width: 0;
+      flex: 1;
     }
 
 
@@ -7304,23 +7307,12 @@
       <span class="emp-card-split-pill" id="empCardSplitPill">Manager</span>
     </div>
 
-    <!-- Right Panel: Clean White Metadata List -->
+    <!-- Right Panel: Clean White Metadata List (Department, Designation, Position) -->
     <div class="emp-card-split-right">
-      <!-- 1. Designation (Briefcase) -->
-      <div class="emp-card-split-row" title="Designation">
-        <div class="emp-card-split-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2" />
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-          </svg>
-        </div>
-        <span class="emp-card-split-text" id="empCardSplitDesignation">Product Manager</span>
-      </div>
-
-      <!-- 2. Department (Office Building) -->
+      <!-- 1. Department (Office Building) -->
       <div class="emp-card-split-row" title="Department">
         <div class="emp-card-split-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 22V7a3 3 0 0 1 6 0v15" />
             <path d="M12 12h4a2 2 0 0 1 2 2v8" />
             <path d="M9 18h.01" />
@@ -7328,34 +7320,31 @@
             <path d="M9 10h.01" />
           </svg>
         </div>
-        <span class="emp-card-split-text" id="empCardSplitDept">Product</span>
+        <span class="emp-card-split-text" id="empCardSplitDept">Housekeeping</span>
       </div>
 
-      <!-- 3. Level (Users/Team) -->
-      <div class="emp-card-split-row" title="Hierarchy Level">
+      <!-- 2. Designation (Briefcase) -->
+      <div class="emp-card-split-row" title="Designation">
         <div class="emp-card-split-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+        </div>
+        <span class="emp-card-split-text" id="empCardSplitDesignation">Housekeeping Supervisor</span>
+      </div>
+
+      <!-- 3. Position (Team / Position) -->
+      <div class="emp-card-split-row" title="Position">
+        <div class="emp-card-split-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
             <circle cx="9" cy="7" r="4" />
             <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
           </svg>
         </div>
-        <span class="emp-card-split-text" id="empCardSplitLevel">Manager</span>
-      </div>
-
-      <!-- 4. Employee Code / ID (ID Card Badge [A ≡]) -->
-      <div class="emp-card-split-row" title="Employee ID Code">
-        <div class="emp-card-split-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="16" rx="3" />
-            <path d="M7 15l1.8-6.5h.4L11 15" />
-            <path d="M7.7 13.2h2.6" />
-            <line x1="14" y1="10" x2="18" y2="10" />
-            <line x1="14" y1="14" x2="18" y2="14" />
-          </svg>
-        </div>
-        <span class="emp-card-split-code" id="empCardSplitCode">HK-EMP-0234</span>
+        <span class="emp-card-split-text" id="empCardSplitPosition">Operations Supervisor · Seat HKS-03</span>
       </div>
     </div>
   </div>
@@ -9735,32 +9724,28 @@ function showEmployeeHoverCard(triggerEl, empId) {
     // 2. Email
     const splitEmail = document.getElementById('empCardSplitEmail');
     if (splitEmail) {
-      const emailVal = c.email || 'leena.joseph@hirerkey.com';
+      const emailVal = c.email || 'leena.joseph@noisiv.com';
       splitEmail.textContent = emailVal;
       splitEmail.href = `mailto:${emailVal}`;
     }
 
     // 3. Pill (Role / Level)
     const splitPill = document.getElementById('empCardSplitPill');
-    if (splitPill) splitPill.textContent = 'Manager';
+    if (splitPill) splitPill.textContent = c.level || 'Manager';
 
-    // 4. Designation
-    const splitDesig = document.getElementById('empCardSplitDesignation');
-    if (splitDesig) splitDesig.textContent = c.designation || c.title || 'Product Manager';
-
-    // 5. Department
+    // 4. Department
     const splitDept = document.getElementById('empCardSplitDept');
-    if (splitDept) splitDept.textContent = c.dept || c.department || 'Product';
+    if (splitDept) splitDept.textContent = c.dept || c.department || 'Housekeeping';
 
-    // 6. Level / Team
-    const splitLevel = document.getElementById('empCardSplitLevel');
-    if (splitLevel) splitLevel.textContent = 'Manager';
+    // 5. Designation
+    const splitDesig = document.getElementById('empCardSplitDesignation');
+    if (splitDesig) splitDesig.textContent = c.designation || c.title || 'Housekeeping Supervisor';
 
-    // 7. Employee Code
-    const splitCode = document.getElementById('empCardSplitCode');
-    if (splitCode) splitCode.textContent = 'HK-EMP-0234';
+    // 6. Position
+    const splitPos = document.getElementById('empCardSplitPosition');
+    if (splitPos) splitPos.textContent = c.position || `Operations Supervisor · Seat ${c.seat || 'HKS-03'}`;
 
-    // 8. Avatar Image & Fallback
+    // 7. Avatar Image & Fallback
     const splitAvatarImg = document.getElementById('empCardSplitAvatarImg');
     if (splitAvatarImg && c.avatar) {
       splitAvatarImg.src = c.avatar;
