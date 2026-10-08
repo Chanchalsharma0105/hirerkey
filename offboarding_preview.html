@@ -1990,259 +1990,187 @@
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
-    /* Portrait Wavy Badge Modifier for Container */
-    .employee-hover-card.is-wavy {
-      width: 280px !important;
-      height: 470px !important;
+    /* Left-Spine Corporate ID Card Modifier for Container (Rahul Mehta - Row 4/2) per media_1791438916703.jpg */
+    .employee-hover-card.is-wavy,
+    .employee-hover-card.is-spine {
+      width: 350px !important;
+      height: auto !important;
+      min-height: auto !important;
       background: #FFFFFF !important;
       border: 1px solid #E2E8F0 !important;
-      border-radius: 24px !important;
+      border-left: 7px solid #5C52E5 !important;
+      border-radius: 18px !important;
       overflow: hidden !important;
-      box-shadow: 0 20px 48px -10px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(15, 23, 42, 0.06) !important;
+      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.16), 0 2px 8px rgba(15, 23, 42, 0.05) !important;
       padding: 0 !important;
     }
 
     /* =========================================================================
-       EMPLOYEE HOVER CARD: FORMAT 4 (Rahul Mehta - Wavy Purple Badge Style)
-       Directly inspired by media_1791311646540.png
+       EMPLOYEE HOVER CARD: FORMAT 4 (Rahul Mehta - Left-Spine Corporate ID Card)
+       Directly inspired by media_1791438916703.jpg
        ========================================================================= */
-    .emp-card-wavy-wrap {
+    .emp-card-spine-wrap {
       position: relative;
       width: 100%;
-      height: 470px;
       background: #FFFFFF;
-      overflow: hidden;
-      border-radius: 24px;
-      font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       box-sizing: border-box;
+      padding: 16px 18px 16px 16px;
+      font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
-    .emp-card-wavy-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .emp-card-wavy-logo {
-      position: absolute;
-      top: 22px;
-      right: 22px;
-      z-index: 2;
+    .emp-card-spine-top {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      user-select: none;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .emp-card-wavy-brand-text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: #FFFFFF;
-      font-family: var(--font-inter), sans-serif;
-      font-size: 11px;
-      font-weight: 800;
-      line-height: 1.15;
-      text-align: center;
-      letter-spacing: -0.01em;
-    }
-
-    .wavy-brand-sub {
-      font-size: 9px;
-      font-weight: 700;
-      opacity: 0.95;
-    }
-
-    .emp-card-wavy-avatar-container {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      justify-content: center;
-      margin-top: 64px;
-    }
-
-    .emp-card-wavy-avatar-ring {
-      width: 116px;
-      height: 116px;
-      border-radius: 50%;
-      background: #FFFFFF;
-      border: 4.5px solid #79499F;
-      box-shadow: 0 8px 24px rgba(121, 73, 159, 0.28);
-      overflow: hidden;
+    .emp-card-spine-profile {
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .emp-card-wavy-avatar-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .emp-card-wavy-avatar-fallback {
-      font-size: 32px;
-      font-weight: 800;
-      color: #79499F;
-      display: none;
-    }
-
-    .emp-card-wavy-identity {
-      position: relative;
-      z-index: 3;
-      margin-top: 28px;
-      text-align: center;
-      padding: 0 16px;
-    }
-
-    .emp-card-wavy-name {
-      font-size: 17px;
-      font-weight: 900;
-      color: #79499F;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      line-height: 1.2;
-    }
-
-    .emp-card-wavy-divider {
-      width: 180px;
-      height: 2.5px;
-      background: #79499F;
-      border-radius: 2px;
-      margin: 8px auto 8px auto;
-    }
-
-    .emp-card-wavy-title {
-      font-size: 12px;
-      font-weight: 800;
-      color: #79499F;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.2;
-    }
-
-    .emp-card-wavy-meta {
-      position: relative;
-      z-index: 3;
-      margin-top: 22px;
-      padding: 0 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .emp-card-wavy-meta-row {
-      display: grid;
-      grid-template-columns: 66px 12px 1fr;
-      align-items: center;
-      font-size: 13px;
-      line-height: 1.35;
-    }
-
-    .wavy-meta-label {
-      font-size: 12.5px;
-      font-weight: 800;
-      color: #79499F;
-      text-align: right;
-      letter-spacing: 0.03em;
-    }
-
-    .wavy-meta-colon {
-      font-size: 13px;
-      font-weight: 800;
-      color: #79499F;
-      text-align: center;
-    }
-
-    .wavy-meta-val {
-      font-size: 13px;
-      font-weight: 800;
-      color: #262626;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      letter-spacing: 0.02em;
-    }
-
-    .wavy-meta-val-interactive {
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      gap: 14px;
       min-width: 0;
     }
 
-    .wavy-meta-link {
-      font-size: 13px;
-      font-weight: 800;
-      color: #262626;
-      text-decoration: none;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      letter-spacing: 0.02em;
-      transition: color 0.15s ease;
+    .emp-card-spine-avatar-wrap {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
     }
 
-    .wavy-meta-link:hover {
-      color: #79499F;
-      text-decoration: underline;
-    }
-
-    .wavy-meta-copy-btn {
-      background: none;
-      border: none;
-      padding: 2px;
-      cursor: pointer;
-      color: #94A3B8;
-      display: inline-flex;
-      align-items: center;
-      border-radius: 4px;
-      transition: all 0.15s ease;
-      opacity: 0.7;
-    }
-
-    .wavy-meta-copy-btn:hover {
-      opacity: 1;
-      color: #79499F;
+    .emp-card-spine-avatar-img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
       background: #EDE9FE;
     }
 
-    .emp-card-wavy-footer {
-      position: absolute;
-      bottom: 12px;
-      left: 18px;
-      right: 18px;
-      z-index: 3;
-      display: flex;
+    .emp-card-spine-avatar-fallback {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: #6D28D9;
+      font-size: 20px;
+      font-weight: 800;
+      display: none;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
     }
 
-    .emp-card-wavy-site {
-      font-size: 9px;
-      font-weight: 500;
-      color: #FFFFFF;
-      opacity: 0.9;
-      letter-spacing: 0.01em;
-      user-select: none;
+    .emp-card-spine-status-dot {
+      position: absolute;
+      bottom: 1px;
+      right: 1px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #22C55E;
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
-    .emp-card-wavy-badge {
-      width: 46px;
-      height: 28px;
-      border-radius: 14px;
-      background: #686874;
+    .emp-card-spine-info {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .emp-card-spine-name {
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.25;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+    }
+
+    .emp-card-spine-email {
+      font-size: 13px;
+      color: #64748B;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 7px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .emp-card-spine-email:hover {
+      color: #5C52E5;
+      text-decoration: underline;
+    }
+
+    .emp-card-spine-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 12px;
+      background: #F3EEFF;
+      color: #6D28D9;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .emp-card-spine-sparkle {
+      color: #64748B;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      margin-top: 4px;
+      flex-shrink: 0;
+      opacity: 0.85;
+    }
+
+    .emp-card-spine-divider {
+      height: 1px;
+      background: #F1F5F9;
+      margin: 14px 0 13px 0;
+      border: none;
+    }
+
+    .emp-card-spine-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 11px 16px;
+    }
+
+    .emp-card-spine-grid-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .emp-card-spine-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .emp-card-spine-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Arc Wave & Navy Branding Modifier for Container */
@@ -7507,88 +7435,88 @@
     </div>
   </div>
 
-  <!-- VIEW 4: Wavy Purple Portrait Badge Style (Rahul Mehta - Row 2 / ID 2) per media_1791311646540.png -->
-  <div id="empCardFormat4" class="emp-card-wavy-wrap" style="display: none;">
-    <!-- Background Waves (Top & Bottom Layered Waves) -->
-    <svg class="emp-card-wavy-bg" viewBox="0 0 280 470" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <!-- Top Lavender Layer -->
-      <path d="M 0 0 L 280 0 L 280 125 C 235 125, 175 110, 125 112 C 70 114, 25 112, 0 110 Z" fill="#E5E3F1" />
-      <!-- Top Purple Layer -->
-      <path d="M 0 0 L 280 0 L 280 108 C 235 108, 195 90, 140 70 C 90 50, 45 42, 0 45 Z" fill="#79499F" />
-
-      <!-- Bottom Lavender Layer -->
-      <path d="M 0 470 L 280 470 L 280 395 C 220 420, 160 415, 100 390 C 50 370, 20 375, 0 378 Z" fill="#E5E3F1" />
-      <!-- Bottom Purple Layer -->
-      <path d="M 0 470 L 280 470 L 280 455 C 220 458, 160 445, 100 425 C 50 405, 20 400, 0 400 Z" fill="#79499F" />
-    </svg>
-
-    <!-- Top-Right Brand Logo inside Purple Wave -->
-    <div class="emp-card-wavy-logo">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2C12 2 15.5 5.5 15.5 9.5C15.5 12.5 13.5 14.5 12 14.5C10.5 14.5 8.5 12.5 8.5 9.5C8.5 5.5 12 2 12 2Z" fill="#FFFFFF" fill-opacity="0.95" />
-        <path d="M12 7.5C12 7.5 13.8 9.5 13.8 11.5C13.8 13 12.8 14 12 14C11.2 14 10.2 13 10.2 11.5C10.2 9.5 12 7.5 12 7.5Z" fill="#79499F" />
-      </svg>
-      <div class="emp-card-wavy-brand-text">
-        <span>Salford</span>
-        <span class="wavy-brand-sub">& Co.</span>
-      </div>
-    </div>
-
-    <!-- Centered Overlapping Avatar Photo -->
-    <div class="emp-card-wavy-avatar-container">
-      <div class="emp-card-wavy-avatar-ring">
-        <img src="./rahul_avatar.png" alt="Rahul Mehta" class="emp-card-wavy-avatar-img" id="empCardWavyAvatarImg" onerror="this.onerror=null; this.src='public/rahul_avatar.png';" />
-        <span class="emp-card-wavy-avatar-fallback" id="empCardWavyAvatarFallback">RM</span>
-      </div>
-    </div>
-
-    <!-- Middle Identity Section -->
-    <div class="emp-card-wavy-identity">
-      <div class="emp-card-wavy-name" id="empCardWavyName">RAHUL MEHTA</div>
-      <div class="emp-card-wavy-divider"></div>
-      <div class="emp-card-wavy-title" id="empCardWavyTitle">SOUS CHEF</div>
-    </div>
-
-    <!-- Key-Value Metadata Section -->
-    <div class="emp-card-wavy-meta">
-      <!-- 1. ID -->
-      <div class="emp-card-wavy-meta-row">
-        <span class="wavy-meta-label">ID</span>
-        <span class="wavy-meta-colon">:</span>
-        <span class="wavy-meta-val" id="empCardWavyId">123-456-7890</span>
-      </div>
-
-      <!-- 2. EXPIRE -->
-      <div class="emp-card-wavy-meta-row">
-        <span class="wavy-meta-label">EXPIRE</span>
-        <span class="wavy-meta-colon">:</span>
-        <span class="wavy-meta-val" id="empCardWavyExpire">12-12-2028</span>
-      </div>
-
-      <!-- 3. PHONE -->
-      <div class="emp-card-wavy-meta-row">
-        <span class="wavy-meta-label">PHONE</span>
-        <span class="wavy-meta-colon">:</span>
-        <div class="wavy-meta-val-interactive">
-          <a href="tel:+971523819940" class="wavy-meta-link" id="empCardWavyPhoneLink">+123-456-7890</a>
-          <button class="wavy-meta-copy-btn" id="empCardWavyCopyPhoneBtn" title="Copy phone" onclick="copyCardWavyPhone(event)">
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
+  <!-- VIEW 4: Left-Spine Corporate ID Card (Rahul Mehta - Row 4/2) per media_1791438916703.jpg -->
+  <div id="empCardFormat4" class="emp-card-spine-wrap" style="display: none;">
+    <!-- Top Section: Avatar + Name + Email + Role Pill + Sparkle Icon -->
+    <div class="emp-card-spine-top">
+      <div class="emp-card-spine-profile">
+        <div class="emp-card-spine-avatar-wrap">
+          <img src="./rahul_avatar.png" alt="Rahul Mehta" class="emp-card-spine-avatar-img" id="empCardSpineAvatarImg" onerror="this.onerror=null; this.src='public/rahul_avatar.png';" />
+          <div class="emp-card-spine-avatar-fallback" id="empCardSpineAvatarFallback">RM</div>
+          <span class="emp-card-spine-status-dot" title="Active Online"></span>
+        </div>
+        <div class="emp-card-spine-info">
+          <div class="emp-card-spine-name" id="empCardSpineName">Rahul Mehta</div>
+          <a href="mailto:rahul.mehta@hirerkey.com" class="emp-card-spine-email" id="empCardSpineEmail">rahul..@hirerkey.com</a>
+          <span class="emp-card-spine-pill" id="empCardSpinePill">Manager</span>
         </div>
       </div>
+      <div class="emp-card-spine-sparkle" title="Verified Member">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="#64748B">
+          <circle cx="12" cy="12" r="2.2" />
+          <circle cx="12" cy="4" r="1.8" />
+          <circle cx="12" cy="20" r="1.8" />
+          <circle cx="4" cy="12" r="1.8" />
+          <circle cx="20" cy="12" r="1.8" />
+        </svg>
+      </div>
     </div>
 
-    <!-- Bottom Wave Footer Bar -->
-    <div class="emp-card-wavy-footer">
-      <span class="emp-card-wavy-site">www.reallygreatsite.com</span>
-      <div class="emp-card-wavy-badge" title="Authorized Access Pass">
-        <svg width="18" height="14" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 15L1.5 5L7 9.5L12 2L17 9.5L22.5 5L21 15H3Z" fill="#FFFFFF"/>
-          <rect x="3" y="16" width="18" height="2" rx="0.5" fill="#FFFFFF"/>
-          <circle cx="1.5" cy="4" r="1.5" fill="#FFFFFF"/>
-          <circle cx="12" cy="1.5" r="1.5" fill="#FFFFFF"/>
-          <circle cx="22.5" cy="4" r="1.5" fill="#FFFFFF"/>
-        </svg>
+    <!-- Subtle Horizontal Divider -->
+    <div class="emp-card-spine-divider"></div>
+
+    <!-- Bottom 2x2 Metadata Grid -->
+    <div class="emp-card-spine-grid">
+      <!-- 1. Designation (Briefcase) -->
+      <div class="emp-card-spine-grid-item" title="Designation">
+        <div class="emp-card-spine-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+        </div>
+        <span class="emp-card-spine-text" id="empCardSpineDesignation">Product Manager</span>
+      </div>
+
+      <!-- 2. Department (Office Building) -->
+      <div class="emp-card-spine-grid-item" title="Department">
+        <div class="emp-card-spine-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 22V7a3 3 0 0 1 6 0v15" />
+            <path d="M12 12h4a2 2 0 0 1 2 2v8" />
+            <path d="M9 18h.01" />
+            <path d="M9 14h.01" />
+            <path d="M9 10h.01" />
+          </svg>
+        </div>
+        <span class="emp-card-spine-text" id="empCardSpineDept">Product</span>
+      </div>
+
+      <!-- 3. Level (Users/Team) -->
+      <div class="emp-card-spine-grid-item" title="Hierarchy Level">
+        <div class="emp-card-spine-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+        </div>
+        <span class="emp-card-spine-text" id="empCardSpineLevel">Manager</span>
+      </div>
+
+      <!-- 4. Employee Code / ID (ID Card Badge [A ≡]) -->
+      <div class="emp-card-spine-grid-item" title="Employee ID Code">
+        <div class="emp-card-spine-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="3" />
+            <path d="M7 15l1.8-6.5h.4L11 15" />
+            <path d="M7.7 13.2h2.6" />
+            <line x1="14" y1="10" x2="18" y2="10" />
+            <line x1="14" y1="14" x2="18" y2="14" />
+          </svg>
+        </div>
+        <span class="emp-card-spine-text" id="empCardSpineCode">HK-EMP-0234</span>
       </div>
     </div>
   </div>
@@ -9830,6 +9758,7 @@ function showEmployeeHoverCard(triggerEl, empId) {
     card.classList.remove('is-glass');
     card.classList.remove('is-arc');
     card.classList.remove('is-oceanic');
+    card.classList.add('is-spine');
     card.classList.add('is-wavy');
     if (f1) f1.style.display = 'none';
     if (f2) f2.style.display = 'none';
@@ -9837,24 +9766,30 @@ function showEmployeeHoverCard(triggerEl, empId) {
     if (f4) f4.style.display = 'block';
     if (f5) f5.style.display = 'none';
 
-    const wavyName = document.getElementById('empCardWavyName');
-    if (wavyName) wavyName.textContent = c.name.toUpperCase();
+    const spineName = document.getElementById('empCardSpineName');
+    if (spineName) spineName.textContent = c.name || 'Rahul Mehta';
 
-    const wavyTitle = document.getElementById('empCardWavyTitle');
-    if (wavyTitle) wavyTitle.textContent = (c.designation || c.title || 'SOUS CHEF').toUpperCase();
-
-    const wavyId = document.getElementById('empCardWavyId');
-    if (wavyId) wavyId.textContent = '123-456-7890';
-
-    const wavyExpire = document.getElementById('empCardWavyExpire');
-    if (wavyExpire) wavyExpire.textContent = '12-12-2028';
-
-    const phoneVal = c.contact || c.phone || '+123-456-7890';
-    const wavyPhoneLink = document.getElementById('empCardWavyPhoneLink');
-    if (wavyPhoneLink) {
-      wavyPhoneLink.textContent = phoneVal;
-      wavyPhoneLink.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
+    const spineEmail = document.getElementById('empCardSpineEmail');
+    if (spineEmail) {
+      const emailText = c.email ? (c.email.length > 22 ? c.email.substring(0, 7) + '..@' + (c.email.split('@')[1] || 'hirerkey.com') : c.email) : 'rahul..@hirerkey.com';
+      spineEmail.textContent = emailText;
+      spineEmail.href = `mailto:${c.email || 'rahul.mehta@hirerkey.com'}`;
     }
+
+    const spinePill = document.getElementById('empCardSpinePill');
+    if (spinePill) spinePill.textContent = 'Manager';
+
+    const spineDesignation = document.getElementById('empCardSpineDesignation');
+    if (spineDesignation) spineDesignation.textContent = c.designation || c.title || 'Product Manager';
+
+    const spineDept = document.getElementById('empCardSpineDept');
+    if (spineDept) spineDept.textContent = c.dept || c.department || 'Product';
+
+    const spineLevel = document.getElementById('empCardSpineLevel');
+    if (spineLevel) spineLevel.textContent = 'Manager';
+
+    const spineCode = document.getElementById('empCardSpineCode');
+    if (spineCode) spineCode.textContent = 'HK-EMP-0234';
   } else if (isLeena) {
     card.classList.remove('is-glass');
     card.classList.remove('is-arc');
