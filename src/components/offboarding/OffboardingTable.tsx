@@ -782,7 +782,6 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
               height: isSara ? 490 : undefined,
               bgcolor: '#FFFFFF',
               border: '1px solid #E2E8F0',
-              borderLeft: isRahul ? '4.5px solid #7C3AED' : '1px solid #E2E8F0',
               borderRadius: isSara ? '26px' : isRahul ? '14px' : isLeena ? '20px' : '16px',
               boxShadow: isRahul
                 ? '0 12px 28px -6px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
@@ -1049,13 +1048,13 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 </Box>
               </Box>
             ) : isRahul ? (
-              /* Format 4: Sleek Left-Spine ID Card (Rahul Mehta - Row 4/2) */
+              /* Format 4: Sleek Corporate ID Card (Rahul Mehta - Row 4/2) */
               <Box
                 sx={{
                   position: 'relative',
                   width: '100%',
                   bgcolor: '#FFFFFF',
-                  p: '12px 14px 11px 13px',
+                  p: '12px 14px',
                   boxSizing: 'border-box',
                   fontFamily: 'Inter, system-ui, sans-serif',
                 }}
