@@ -5823,17 +5823,26 @@
           <!-- Card 1: Broadcast -->
           <div class="dashboard-card" id="broadcastCard">
             <div class="card-header">
-              <div class="card-title-group">
-                <div class="card-icon-pill">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
-                    <path d="M12 2v2"></path>
-                    <path d="M4.93 4.93l1.41 1.41"></path>
-                    <path d="M17.66 6.34l1.41-1.41"></path>
-                    <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
-                  </svg>
+              <div class="card-title-group" style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="card-icon-pill">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
+                      <path d="M12 2v2"></path>
+                      <path d="M4.93 4.93l1.41 1.41"></path>
+                      <path d="M17.66 6.34l1.41-1.41"></path>
+                      <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
+                    </svg>
+                  </div>
+                  <h2 class="card-title">Broadcast</h2>
                 </div>
-                <h2 class="card-title">Broadcast</h2><a href="hr_broadcast.html" style="margin-left: auto; font-size: 12px; font-weight: 600; color: var(--brand-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">Activity Feed &rarr;</a>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button type="button" class="btn-new-broadcast" onclick="openModal('broadcastModal')" style="font-size: 11.5px; font-weight: 600; color: #7C3AED; background: #F5F3FF; border: 1px solid #DDD6FE; padding: 4px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-family: inherit;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    <span>+ New Broadcast</span>
+                  </button>
+                  <a href="hr_broadcast.html" style="font-size: 12px; font-weight: 600; color: var(--brand-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">Activity Feed &rarr;</a>
+                </div>
               </div>
             </div>
 
@@ -8109,17 +8118,26 @@
           <!-- Card 1: Broadcast -->
           <div class="dashboard-card" id="broadcastCard3">
             <div class="card-header">
-              <div class="card-title-group">
-                <div class="card-icon-pill">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
-                    <path d="M12 2v2"></path>
-                    <path d="M4.93 4.93l1.41 1.41"></path>
-                    <path d="M17.66 6.34l1.41-1.41"></path>
-                    <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
-                  </svg>
+              <div class="card-title-group" style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="card-icon-pill">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
+                      <path d="M12 2v2"></path>
+                      <path d="M4.93 4.93l1.41 1.41"></path>
+                      <path d="M17.66 6.34l1.41-1.41"></path>
+                      <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
+                    </svg>
+                  </div>
+                  <h2 class="card-title">Broadcast</h2>
                 </div>
-                <h2 class="card-title">Broadcast</h2>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button type="button" class="btn-new-broadcast" onclick="openModal('broadcastModal')" style="font-size: 11.5px; font-weight: 600; color: #7C3AED; background: #F5F3FF; border: 1px solid #DDD6FE; padding: 4px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-family: inherit;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    <span>+ New Broadcast</span>
+                  </button>
+                  <a href="hr_broadcast.html" style="font-size: 12px; font-weight: 600; color: var(--brand-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">Activity Feed &rarr;</a>
+                </div>
               </div>
             </div>
 
@@ -9278,17 +9296,26 @@
           <!-- Card 1: Broadcast -->
           <div class="dashboard-card" id="broadcastCard4">
             <div class="card-header">
-              <div class="card-title-group">
-                <div class="card-icon-pill">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
-                    <path d="M12 2v2"></path>
-                    <path d="M4.93 4.93l1.41 1.41"></path>
-                    <path d="M17.66 6.34l1.41-1.41"></path>
-                    <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
-                  </svg>
+              <div class="card-title-group" style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <div class="card-icon-pill">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
+                      <path d="M12 2v2"></path>
+                      <path d="M4.93 4.93l1.41 1.41"></path>
+                      <path d="M17.66 6.34l1.41-1.41"></path>
+                      <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
+                    </svg>
+                  </div>
+                  <h2 class="card-title">Broadcast</h2>
                 </div>
-                <h2 class="card-title">Broadcast</h2>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <button type="button" class="btn-new-broadcast" onclick="openModal('broadcastModal')" style="font-size: 11.5px; font-weight: 600; color: #7C3AED; background: #F5F3FF; border: 1px solid #DDD6FE; padding: 4px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-family: inherit;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    <span>+ New Broadcast</span>
+                  </button>
+                  <a href="hr_broadcast.html" style="font-size: 12px; font-weight: 600; color: var(--brand-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">Activity Feed &rarr;</a>
+                </div>
               </div>
             </div>
 
@@ -12037,61 +12064,167 @@
 </div>
 
 <!-- 5. Create HR Broadcast Modal -->
-<div class="modal-overlay" id="broadcastModal">
-  <div class="modal-card" style="max-width: 540px;">
-    <div class="modal-topbar">
-      <div class="modal-title">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--brand-primary)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-        </svg>
-        <span>Create HR Broadcast</span>
+<!-- Create Broadcast Modal (Matching media_1791531204832.jpg) -->
+<div class="modal-overlay" id="broadcastModal" onclick="if(event.target===this)closeModal('broadcastModal')">
+  <div class="modal-card" style="max-width: 640px; border-radius: 16px; padding: 24px 26px; box-shadow: 0 24px 56px -12px rgba(15, 23, 42, 0.25);">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #EDE9FE; color: #7C3AED; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 17px; font-weight: 700; color: #0F172A; letter-spacing: -0.01em; margin: 0; line-height: 1.25;">Send Broadcast</h3>
+          <p style="font-size: 12.5px; color: #64748B; margin: 2px 0 0 0; line-height: 1.3;">Share an update with your teams</p>
+        </div>
       </div>
-      <button class="modal-close-btn" onclick="closeModal('broadcastModal')">✕</button>
+      <button type="button" class="modal-close-btn" onclick="closeModal('broadcastModal')" title="Close (Esc)" style="width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; color: #64748B; cursor: pointer; background: none; border: none;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
     </div>
-    <div class="modal-body" style="padding: 22px;">
-      <form id="newBroadcastForm" onsubmit="event.preventDefault(); submitNewBroadcast();">
-        <div style="margin-bottom: 14px;">
-          <label style="display: block; font-size: 12.5px; font-weight: 600; color: var(--text-heading); margin-bottom: 6px;">Broadcast Title</label>
-          <input type="text" id="broadcastTitleInput" placeholder="e.g. Q4 Company All-Hands & Strategy Updates" style="width: 100%; padding: 9px 12px; border: 1px solid var(--border-card); border-radius: 8px; font-size: 13.5px; outline: none;" required>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+
+    <form id="newBroadcastForm" onsubmit="event.preventDefault(); submitNewBroadcast();">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <!-- Row 1: Dual Column: Audience & Priority -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <!-- Audience -->
           <div>
-            <label style="display: block; font-size: 12.5px; font-weight: 600; color: var(--text-heading); margin-bottom: 6px;">Target Audience</label>
-            <select id="broadcastAudienceSelect" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border-card); border-radius: 8px; font-size: 13px; background: #FFF; outline: none;">
-              <option value="All Employees (248)">All Employees (248)</option>
-              <option value="Engineering & Product (84)">Engineering & Product (84)</option>
-              <option value="Sales & Marketing (62)">Sales & Marketing (62)</option>
-              <option value="Operations & HR (35)">Operations & HR (35)</option>
-              <option value="Leadership & Managers (22)">Leadership & Managers (22)</option>
-            </select>
+            <label style="display: block; font-size: 12.5px; font-weight: 600; color: #0F172A; margin-bottom: 6px;">Audience</label>
+            <div style="position: relative; height: 42px; border: 1px solid #E2E8F0; border-radius: 10px; background: #FFFFFF; display: flex; align-items: center; padding: 0 12px; gap: 10px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+              <select id="broadcastAudienceSelect" style="flex: 1; height: 100%; border: none; outline: none; background: transparent; font-size: 13.5px; font-weight: 500; color: #0F172A; appearance: none; padding-right: 20px; cursor: pointer; font-family: inherit;">
+                <option value="All" selected>All</option>
+                <option value="Engineering & Product">Engineering & Product</option>
+                <option value="Sales & Marketing">Sales & Marketing</option>
+                <option value="Operations & HR">Operations & HR</option>
+                <option value="Leadership Only">Leadership Only</option>
+              </select>
+              <div style="position: absolute; right: 12px; pointer-events: none; color: #64748B; display: flex; align-items: center;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
           </div>
+
+          <!-- Priority -->
           <div>
-            <label style="display: block; font-size: 12.5px; font-weight: 600; color: var(--text-heading); margin-bottom: 6px;">Broadcast Category</label>
-            <select id="broadcastCategorySelect" style="width: 100%; padding: 8px 10px; border: 1px solid var(--border-card); border-radius: 8px; font-size: 13px; background: #FFF; outline: none;">
-              <option value="Company Wide Announcement">📢 Company Announcement</option>
-              <option value="Policy & Benefits Update">📜 Policy & Benefits</option>
-              <option value="Townhall & Leadership">🎙️ Townhall & Leadership</option>
-              <option value="Culture & Celebrations">🎉 Culture & Celebrations</option>
-            </select>
+            <label style="display: block; font-size: 12.5px; font-weight: 600; color: #0F172A; margin-bottom: 6px;">Priority</label>
+            <div style="position: relative; height: 42px; border: 1px solid #E2E8F0; border-radius: 10px; background: #FFFFFF; display: flex; align-items: center; padding: 0 12px; gap: 10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+              </svg>
+              <select id="broadcastPrioritySelect" style="flex: 1; height: 100%; border: none; outline: none; background: transparent; font-size: 13.5px; font-weight: 500; color: #0F172A; appearance: none; padding-right: 20px; cursor: pointer; font-family: inherit;">
+                <option value="Low" selected>Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+              <div style="position: absolute; right: 12px; pointer-events: none; color: #64748B; display: flex; align-items: center;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+            </div>
           </div>
         </div>
-        <div style="margin-bottom: 16px;">
-          <label style="display: block; font-size: 12.5px; font-weight: 600; color: var(--text-heading); margin-bottom: 6px;">Message Content</label>
-          <textarea id="broadcastContentInput" rows="4" placeholder="Type your broadcast announcement here... Team members will receive real-time notifications." style="width: 100%; padding: 10px 12px; border: 1px solid var(--border-card); border-radius: 8px; font-size: 13px; font-family: inherit; resize: vertical; outline: none; line-height: 1.5;" required></textarea>
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--border-subtle);">
-          <div style="display: flex; gap: 8px;">
-            <button type="button" class="alert-action-btn" style="padding: 6px 12px; font-size: 12px;" onclick="showToast('Attachment dialog opened: 📄 PDF, 🖼️ Images supported')">📎 Attach File</button>
-            <button type="button" class="alert-action-btn" style="padding: 6px 12px; font-size: 12px;" onclick="showToast('Video recorder ready: 🎥 1080p WebRTC initialized')">🎥 Record Video</button>
+
+        <!-- Hidden Category for backward compatibility -->
+        <input type="hidden" id="broadcastCategorySelect" value="Company Announcement">
+
+        <!-- Row 2: Subject * with Inline AI Assist Button -->
+        <div>
+          <label style="display: block; font-size: 12.5px; font-weight: 600; color: #0F172A; margin-bottom: 6px;">Subject <span style="color: #EF4444;">*</span></label>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="text" id="broadcastTitleInput" placeholder="Short, clear title for your message" required style="flex: 1; height: 42px; padding: 0 14px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 13.5px; color: #0F172A; background: #FFFFFF; outline: none; font-family: inherit;">
+            <button type="button" onclick="triggerAiAssistDashboard()" title="Generate or polish subject with HyIQ AI" style="height: 42px; padding: 0 16px; border-radius: 10px; background: #F5F3FF; border: 1px solid #DDD6FE; color: #7C3AED; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; flex-shrink: 0; font-family: inherit;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+              </svg>
+              <span>AI Assist</span>
+            </button>
           </div>
-          <div style="display: flex; gap: 8px;">
-            <button type="button" class="alert-action-btn" onclick="closeModal('broadcastModal')">Cancel</button>
-            <button type="submit" style="background: var(--brand-primary); color: #FFFFFF; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);">Publish Broadcast</button>
+        </div>
+
+        <!-- Row 3: Message * Textarea with Bottom Formatting Toolbar and Character Counter -->
+        <div>
+          <label style="display: block; font-size: 12.5px; font-weight: 600; color: #0F172A; margin-bottom: 6px;">Message <span style="color: #EF4444;">*</span></label>
+          <div style="border: 1px solid #E2E8F0; border-radius: 10px; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column;">
+            <textarea id="broadcastContentInput" placeholder="Write your message here..." oninput="updateDashboardCharCount(this.value)" maxlength="2000" required style="width: 100%; border: none; outline: none; padding: 12px 14px; font-size: 13.5px; color: #0F172A; min-height: 105px; resize: vertical; line-height: 1.5; font-family: inherit; background: transparent; box-sizing: border-box;"></textarea>
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-top: 1px solid #F1F5F9; background: #FFFFFF;">
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <button type="button" onclick="insertFormattingDashboard('**')" title="Bold" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none;"><strong>B</strong></button>
+                <button type="button" onclick="insertFormattingDashboard('*')" title="Italic" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none;"><em>I</em></button>
+                <button type="button" onclick="insertFormattingDashboard('<u>', '</u>')" title="Underline" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none;"><u>U</u></button>
+                <button type="button" onclick="insertFormattingDashboard('\n- ')" title="Bulleted List" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none; display: inline-flex; align-items: center;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1.5" fill="currentColor"/><circle cx="3" cy="12" r="1.5" fill="currentColor"/><circle cx="3" cy="18" r="1.5" fill="currentColor"/></svg>
+                </button>
+                <button type="button" onclick="insertFormattingDashboard('\n1. ')" title="Numbered List" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none; display: inline-flex; align-items: center;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h2v4M4 14h2.5a1.5 1.5 0 0 1 0 3H4v3h3"/></svg>
+                </button>
+                <button type="button" onclick="insertFormattingDashboard('[', '](url)')" title="Insert Link" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none; display: inline-flex; align-items: center;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </button>
+              </div>
+              <div id="dashBroadcastCharCount" style="font-size: 11.5px; color: #64748B; font-weight: 400;">0 / 2000 characters</div>
+            </div>
           </div>
         </div>
-      </form>
-    </div>
+
+        <!-- Row 4: Attachment Dropzone + Sources Row -->
+        <div>
+          <label style="display: block; font-size: 12.5px; font-weight: 600; color: #0F172A; margin-bottom: 6px;">Attachment</label>
+          <div onclick="document.getElementById('dashFileInput').click()" style="border: 1.5px dashed #CBD5E1; border-radius: 10px; padding: 18px 20px; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 14px; box-sizing: border-box;">
+            <div style="width: 40px; height: 40px; border-radius: 50%; background: #F3EEFF; color: #7C3AED; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/>
+              </svg>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; line-height: 1.35;">
+              <div style="font-size: 13px; color: #0F172A; font-weight: 500;">Drag and drop files here, or <span style="color: #7C3AED; font-weight: 600; text-decoration: underline;">click to upload</span></div>
+              <div style="font-size: 11.5px; color: #64748B; margin-top: 2px;">Any format • Max file size 20MB</div>
+            </div>
+          </div>
+          <input type="file" id="dashFileInput" style="display: none;" onchange="handleDashFileUpload(this.files)" multiple>
+
+          <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+            <span style="font-size: 12px; font-weight: 500; color: #64748B; margin-right: 2px;">Add from</span>
+            <button type="button" class="btn-source-pill active" onclick="document.getElementById('dashFileInput').click()" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 8px; background: #F3EEFF; border: 1px solid #DDD6FE; font-size: 12px; font-weight: 600; color: #7C3AED; cursor: pointer; font-family: inherit;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <span>My Device</span>
+            </button>
+            <button type="button" onclick="showToast('Attached Google Drive document: Q4_Townhall_SlideDeck.pdf'); addDashAttachedChip('Q4_Townhall_SlideDeck.pdf', '3.2 MB')" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E2E8F0; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; font-family: inherit;">
+              <svg width="14" height="14" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44c-.8 1.4-1.2 2.95-1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>
+              <span>Google Drive</span>
+            </button>
+            <button type="button" onclick="showToast('Attached OneDrive document: Benefits_Eligibility_Matrix.xlsx'); addDashAttachedChip('Benefits_Eligibility_Matrix.xlsx', '840 KB')" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E2E8F0; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; font-family: inherit;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#0078D4"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+              <span>OneDrive</span>
+            </button>
+          </div>
+          <div id="dashAttachedChips" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;"></div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #EEF2F6;">
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #4B5563; font-weight: 500; background: #F3EEFF; border-radius: 10px; padding: 10px 14px; flex: 1;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <span>This message will be sent to all selected audience members.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
+          <button type="button" onclick="closeModal('broadcastModal')" style="height: 40px; padding: 0 18px; border-radius: 10px; border: 1px solid #E2E8F0; background: #FFFFFF; color: #374151; font-size: 13.5px; font-weight: 600; cursor: pointer; font-family: inherit;">Cancel</button>
+          <button type="submit" style="height: 40px; padding: 0 20px; border-radius: 10px; border: none; background: #7C3AED; color: #FFFFFF; font-size: 13.5px; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 2px 6px rgba(124, 58, 237, 0.28); font-family: inherit;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            <span>Send Broadcast</span>
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 
@@ -14670,6 +14803,11 @@
     closeAllModalsAndPopovers();
     const m = document.getElementById(id);
     if (m) m.classList.add('open');
+    if (id === 'broadcastModal') {
+      const titleInp = document.getElementById('broadcastTitleInput');
+      if (titleInp) setTimeout(() => titleInp.focus(), 100);
+      updateDashboardCharCount(document.getElementById('broadcastContentInput')?.value || '');
+    }
   }
 
   function closeModal(id) {
@@ -14684,6 +14822,90 @@
     document.getElementById('workspacePopover2')?.classList.remove('open');
     document.getElementById('workspacePopover3')?.classList.remove('open');
     document.getElementById('workspacePopover4')?.classList.remove('open');
+  }
+
+  let dashAttachedFiles = [];
+
+  function triggerAiAssistDashboard() {
+    const titleInp = document.getElementById('broadcastTitleInput');
+    const contentInp = document.getElementById('broadcastContentInput');
+    const currentTitle = titleInp ? titleInp.value.trim() : '';
+
+    const suggestions = [
+      { title: "Organisation Health & Safety Protocol Update", content: "Please review the refreshed health and safety operational protocols effective immediately for all office locations." },
+      { title: "Quarterly Town Hall & Product Roadmap Announcement", content: "Join our executive leadership team for our quarterly business update, key achievement awards, and upcoming product releases." },
+      { title: "Remote Working Allowance & Equipment Policy", content: "We are pleased to introduce enhanced monthly remote work reimbursements and ergonomic equipment allowances." }
+    ];
+
+    const pick = suggestions[Math.floor(Math.random() * suggestions.length)];
+    if (titleInp && !currentTitle) {
+      titleInp.value = pick.title;
+    } else if (titleInp) {
+      titleInp.value = currentTitle.replace(/\b\w/g, l => l.toUpperCase()) + " — Official Circular";
+    }
+
+    if (contentInp && !contentInp.value.trim()) {
+      contentInp.value = pick.content;
+      updateDashboardCharCount(contentInp.value);
+    }
+
+    showToast("✨ HyIQ AI generated polished announcement text!");
+  }
+
+  function updateDashboardCharCount(val) {
+    const el = document.getElementById('dashBroadcastCharCount');
+    if (el) {
+      el.textContent = `${(val || '').length} / 2000 characters`;
+    }
+  }
+
+  function insertFormattingDashboard(before, after = '') {
+    const textarea = document.getElementById('broadcastContentInput');
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    const selected = text.substring(start, end) || "text";
+
+    textarea.value = text.substring(0, start) + before + selected + after + text.substring(end);
+    textarea.focus();
+    textarea.setSelectionRange(start + before.length, start + before.length + selected.length);
+    updateDashboardCharCount(textarea.value);
+  }
+
+  function handleDashFileUpload(fileList) {
+    if (!fileList || fileList.length === 0) return;
+    for (let i = 0; i < fileList.length; i++) {
+      const f = fileList[i];
+      const sizeStr = f.size > 1024 * 1024 ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` : `${Math.round(f.size / 1024)} KB`;
+      addDashAttachedChip(f.name, sizeStr);
+    }
+    showToast(`Attached ${fileList.length} file(s) from device`);
+  }
+
+  function addDashAttachedChip(name, size) {
+    if (!dashAttachedFiles.some(f => f.name === name)) {
+      dashAttachedFiles.push({ name, size });
+      renderDashAttachedChips();
+    }
+  }
+
+  function removeDashAttachedChip(idx) {
+    dashAttachedFiles.splice(idx, 1);
+    renderDashAttachedChips();
+  }
+
+  function renderDashAttachedChips() {
+    const container = document.getElementById('dashAttachedChips');
+    if (!container) return;
+    container.innerHTML = dashAttachedFiles.map((f, i) => `
+      <div style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 8px; background: #F3EEFF; border: 1px solid #DDD6FE; font-size: 11.5px; font-weight: 500; color: #6D28D9;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        <span style="max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtml(f.name)}</span>
+        <span style="font-size: 10px; color: #8B5CF6;">(${escapeHtml(f.size)})</span>
+        <span onclick="removeDashAttachedChip(${i})" style="margin-left: 2px; cursor: pointer; color: #8B5CF6; font-size: 11px; font-weight: 700; padding: 0 2px;" title="Remove attachment">✕</span>
+      </div>
+    `).join('');
   }
 
   function submitNewBroadcast() {
@@ -14751,6 +14973,9 @@
       }, 2500);
     });
     document.getElementById('newBroadcastForm')?.reset();
+    dashAttachedFiles = [];
+    renderDashAttachedChips();
+    updateDashboardCharCount('');
   }
 
   window.onclick = function(e) {

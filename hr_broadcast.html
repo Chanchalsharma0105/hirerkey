@@ -2053,15 +2053,18 @@
 
     .modal-container {
       background: #FFFFFF;
-      border-radius: 14px;
-      width: 620px;
+      border-radius: 16px;
+      width: 640px;
       max-width: 95vw;
-      max-height: 90vh;
+      max-height: 92vh;
       display: flex;
       flex-direction: column;
-      box-shadow: var(--shadow-modal);
+      box-shadow: 0 24px 56px -12px rgba(15, 23, 42, 0.25);
+      border: 1px solid rgba(226, 232, 240, 0.85);
       animation: modalScale 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
       overflow: hidden;
+      padding: 24px 26px;
+      box-sizing: border-box;
     }
 
     @keyframes modalScale {
@@ -2070,11 +2073,11 @@
     }
 
     .modal-header {
-      padding: 18px 24px;
-      border-bottom: 1px solid #EEF2F6;
+      padding: 0 0 18px 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-shrink: 0;
     }
 
     .modal-header-left {
@@ -2084,29 +2087,31 @@
     }
 
     .modal-header-badge {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: #F5F3FF;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #EDE9FE;
       color: #7C3AED;
-      display: grid;
-      place-items: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
 
     .modal-title {
       font-size: 17px;
       font-weight: 700;
-      color: var(--text-heading);
+      color: #0F172A;
       letter-spacing: -0.01em;
       margin: 0;
-      line-height: 1.3;
+      line-height: 1.25;
     }
 
     .modal-subtitle {
       font-size: 12.5px;
-      color: var(--text-muted);
-      margin: 0;
+      color: #64748B;
+      margin: 2px 0 0 0;
+      line-height: 1.3;
     }
 
     .modal-close-btn {
@@ -2115,7 +2120,7 @@
       border-radius: 8px;
       display: grid;
       place-items: center;
-      color: #94A3B8;
+      color: #64748B;
       cursor: pointer;
       transition: all var(--transition-fast);
       background: none;
@@ -2128,7 +2133,7 @@
     }
 
     .modal-body {
-      padding: 22px 24px;
+      padding: 0;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
@@ -2147,74 +2152,112 @@
       gap: 6px;
     }
 
-    .form-label-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
     .form-label {
-      display: flex;
-      align-items: center;
-      gap: 6px;
       font-size: 12.5px;
       font-weight: 600;
-      color: var(--text-heading);
+      color: #0F172A;
       margin: 0;
     }
 
-    .modal-select-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
+    .required-star {
+      color: #EF4444;
+      margin-left: 2px;
     }
 
-    .modal-select-wrap .select-chevron {
+    .modal-select-field {
+      position: relative;
+      height: 42px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 10px;
+      transition: all var(--transition-fast);
+      box-sizing: border-box;
+    }
+
+    .modal-select-field:focus-within {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+    }
+
+    .modal-field-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .modal-select-field .form-select {
+      flex: 1;
+      height: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #0F172A;
+      appearance: none;
+      padding-right: 20px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .modal-field-chevron {
       position: absolute;
       right: 12px;
       pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: #64748B;
     }
 
-    .form-input,
-    .form-select {
-      width: 100%;
-      height: 40px;
-      padding: 0 12px;
+    .modal-subject-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .subject-input {
+      flex: 1;
+      height: 42px;
+      padding: 0 14px;
       border: 1px solid #E2E8F0;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 13.5px;
-      color: var(--text-heading);
+      color: #0F172A;
       background: #FFFFFF;
+      outline: none;
       transition: all var(--transition-fast);
+      box-sizing: border-box;
+      font-family: inherit;
     }
 
-    .form-select {
-      appearance: none;
-      padding-right: 32px;
-      cursor: pointer;
-    }
-
-    .form-input:focus,
-    .form-select:focus,
-    .editor-box:focus-within {
-      border-color: var(--brand-primary);
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    .subject-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
     }
 
     .btn-ai-assist {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 3px 10px;
-      border-radius: 6px;
+      height: 42px;
+      padding: 0 16px;
+      border-radius: 10px;
       background: #F5F3FF;
       border: 1px solid #DDD6FE;
       color: #7C3AED;
-      font-size: 11.5px;
+      font-size: 13px;
       font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       cursor: pointer;
+      flex-shrink: 0;
       transition: all var(--transition-fast);
+      box-sizing: border-box;
+      font-family: inherit;
     }
 
     .btn-ai-assist:hover {
@@ -2223,28 +2266,55 @@
       transform: translateY(-1px);
     }
 
-    /* Message Editor Box with Toolbar */
+    /* Message Editor Box */
     .editor-box {
       border: 1px solid #E2E8F0;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
       background: #FFFFFF;
-      transition: border-color var(--transition-fast);
+      transition: all var(--transition-fast);
       display: flex;
       flex-direction: column;
+      box-sizing: border-box;
     }
 
-    .editor-toolbar {
+    .editor-box:focus-within {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+    }
+
+    .editor-textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 12px 14px;
+      font-size: 13.5px;
+      color: #0F172A;
+      min-height: 105px;
+      resize: vertical;
+      line-height: 1.5;
+      font-family: inherit;
+      background: transparent;
+      box-sizing: border-box;
+    }
+
+    .editor-toolbar-bottom {
       display: flex;
       align-items: center;
-      gap: 2px;
-      padding: 6px 10px;
-      background: #F8FAFC;
-      border-bottom: 1px solid #EEF2F6;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-top: 1px solid #F1F5F9;
+      background: #FFFFFF;
+    }
+
+    .editor-toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
     .toolbar-btn {
-      padding: 4px 8px;
+      padding: 4px 7px;
       border-radius: 5px;
       font-size: 12px;
       font-weight: 600;
@@ -2252,137 +2322,140 @@
       cursor: pointer;
       background: none;
       border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       transition: background var(--transition-fast);
     }
 
     .toolbar-btn:hover {
-      background: #E2E8F0;
+      background: #F1F5F9;
       color: #0F172A;
     }
 
-    .toolbar-sep {
-      width: 1px;
-      height: 16px;
-      background: #E2E8F0;
-      margin: 0 4px;
-    }
-
-    .editor-textarea {
-      width: 100%;
-      border: none;
-      outline: none;
-      padding: 12px;
-      font-size: 13.5px;
-      color: var(--text-heading);
-      min-height: 110px;
-      resize: vertical;
-      line-height: 1.5;
-      font-family: inherit;
-      background: transparent;
-    }
-
-    .editor-footer {
-      display: flex;
-      justify-content: flex-end;
-      padding: 6px 12px;
-      border-top: 1px solid #F1F5F9;
-      background: #FFFFFF;
-    }
-
     .editor-counter {
-      font-size: 11px;
-      color: #94A3B8;
+      font-size: 11.5px;
+      color: #64748B;
+      font-weight: 400;
     }
 
     /* Modal Dropzone */
     .modal-dropzone {
       border: 1.5px dashed #CBD5E1;
       border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-      background: #F8FAFC;
+      padding: 18px 20px;
+      background: #FFFFFF;
       cursor: pointer;
       transition: all var(--transition-fast);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
+      gap: 14px;
+      box-sizing: border-box;
     }
 
     .modal-dropzone:hover {
-      border-color: var(--brand-primary);
-      background: #F5F3FF;
+      border-color: #7C3AED;
+      background: #FAF8FF;
     }
 
-    .modal-dropzone-icon {
-      color: var(--brand-primary);
-      display: grid;
-      place-items: center;
-      margin-bottom: 2px;
+    .modal-dropzone-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #F3EEFF;
+      color: #7C3AED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .modal-dropzone-text-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.35;
     }
 
     .modal-dropzone-text {
       font-size: 13px;
+      color: #0F172A;
+      font-weight: 500;
+    }
+
+    .dropzone-link {
+      color: #7C3AED;
       font-weight: 600;
-      color: var(--text-heading);
+      text-decoration: underline;
     }
 
     .modal-dropzone-sub {
       font-size: 11.5px;
-      color: var(--text-muted);
+      color: #64748B;
+      margin-top: 2px;
     }
 
     .modal-sources-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin-top: 6px;
+      margin-top: 10px;
     }
 
     .sources-label {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 500;
-      color: #94A3B8;
+      color: #64748B;
+      margin-right: 2px;
     }
 
-    .btn-source-chip {
+    .btn-source-pill {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
-      border-radius: 6px;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 8px;
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 500;
-      color: #475569;
+      color: #334155;
       cursor: pointer;
       transition: all var(--transition-fast);
+      font-family: inherit;
     }
 
-    .btn-source-chip:hover {
+    .btn-source-pill:hover {
       border-color: #CBD5E1;
       color: #0F172A;
       background: #F8FAFC;
+    }
+
+    .btn-source-pill.active {
+      background: #F3EEFF;
+      border-color: #DDD6FE;
+      color: #7C3AED;
+      font-weight: 600;
     }
 
     .modal-attached-chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin-top: 6px;
+      margin-top: 8px;
     }
 
     .modal-attached-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #F5F3FF;
+      background: #F3EEFF;
       border: 1px solid #DDD6FE;
-      border-radius: 6px;
-      padding: 4px 8px;
+      border-radius: 8px;
+      padding: 4px 10px;
       font-size: 12px;
-      color: var(--brand-primary);
+      color: #7C3AED;
       font-weight: 500;
     }
 
@@ -2396,40 +2469,46 @@
 
     /* Modal Footer */
     .modal-footer {
-      padding: 16px 24px;
-      border-top: 1px solid #EEF2F6;
+      padding: 16px 0 0 0;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      background: #FFFFFF;
+      gap: 16px;
+      flex-shrink: 0;
     }
 
     .modal-info-pill {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       font-size: 12px;
-      color: #64748B;
+      color: #4B5563;
+      font-weight: 500;
+      background: #F3EEFF;
+      border-radius: 10px;
+      padding: 10px 14px;
+      flex: 1;
     }
 
     .modal-footer-btns {
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-shrink: 0;
     }
 
     .btn-modal-cancel {
-      height: 38px;
-      padding: 0 16px;
-      border-radius: 8px;
+      height: 40px;
+      padding: 0 18px;
+      border-radius: 10px;
       border: 1px solid #E2E8F0;
       background: #FFFFFF;
-      color: #475569;
-      font-size: 13px;
+      color: #374151;
+      font-size: 13.5px;
       font-weight: 600;
       cursor: pointer;
       transition: all var(--transition-fast);
+      font-family: inherit;
     }
 
     .btn-modal-cancel:hover {
@@ -2439,25 +2518,26 @@
     }
 
     .btn-modal-send {
-      height: 38px;
-      padding: 0 18px;
-      border-radius: 8px;
+      height: 40px;
+      padding: 0 20px;
+      border-radius: 10px;
       border: none;
-      background: var(--brand-primary);
+      background: #7C3AED;
       color: #FFFFFF;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.28);
       transition: all var(--transition-fast);
+      font-family: inherit;
     }
 
     .btn-modal-send:hover {
-      background: var(--brand-primary-hover);
-      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.35);
+      background: #6D28D9;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.38);
     }
 
     /* Toast Notification */
@@ -3177,7 +3257,8 @@
     <div class="modal-header">
       <div class="modal-header-left">
         <div class="modal-header-badge">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Bullhorn / Megaphone icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
             <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
           </svg>
@@ -3188,103 +3269,129 @@
         </div>
       </div>
       <button type="button" class="modal-close-btn" onclick="closeCreateModal()" title="Close (Esc)">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     </div>
 
     <form id="newBroadcastForm" onsubmit="handleSendBroadcast(event)">
       <div class="modal-body">
         
-        <!-- Dual Column: Audience & Priority -->
+        <!-- Row 1: Dual Column: Audience & Priority -->
         <div class="modal-dual-col">
           <!-- Audience -->
           <div class="form-group">
-            <label class="form-label" for="modalAudienceSelect">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-              <span>Audience *</span>
-            </label>
-            <div class="modal-select-wrap">
+            <label class="form-label" for="modalAudienceSelect">Audience</label>
+            <div class="modal-select-field">
+              <div class="modal-field-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
               <select class="form-select" id="modalAudienceSelect">
-                <option value="All" selected>All Employees</option>
+                <option value="All" selected>All</option>
                 <option value="Engineering & Product">Engineering & Product</option>
                 <option value="Sales & Marketing">Sales & Marketing</option>
                 <option value="Operations & HR">Operations & HR</option>
-                <option value="Leadership">Leadership Only</option>
+                <option value="Leadership Only">Leadership Only</option>
               </select>
-              <svg class="select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <div class="modal-field-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
             </div>
           </div>
 
           <!-- Priority -->
           <div class="form-group">
-            <label class="form-label" for="modalPrioritySelect">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
-              <span>Priority *</span>
-            </label>
-            <div class="modal-select-wrap">
+            <label class="form-label" for="modalPrioritySelect">Priority</label>
+            <div class="modal-select-field">
+              <div class="modal-field-icon">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6D28D9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+                </svg>
+              </div>
               <select class="form-select" id="modalPrioritySelect" onchange="handleModalPriorityChange(this.value)">
-                <option value="Low" selected>🟢 Low</option>
-                <option value="Medium">🟡 Medium</option>
-                <option value="High">🔴 High</option>
+                <option value="Low" selected>Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
               </select>
-              <svg class="select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <div class="modal-field-chevron">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Subject * with AI Assist Button -->
+        <!-- Row 2: Subject * with Inline AI Assist Button -->
         <div class="form-group">
-          <div class="form-label-row">
-            <label class="form-label" for="inputBcTitle">Subject *</label>
+          <label class="form-label" for="inputBcTitle">Subject <span class="required-star">*</span></label>
+          <div class="modal-subject-row">
+            <input type="text" class="form-input subject-input" id="inputBcTitle" placeholder="Short, clear title for your message" required>
             <button type="button" class="btn-ai-assist" onclick="triggerAiAssist()" title="Generate or polish subject with HyIQ AI">
-              <span class="ai-sparkle">✨</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+              </svg>
               <span>AI Assist</span>
             </button>
           </div>
-          <input type="text" class="form-input" id="inputBcTitle" placeholder="e.g. Annual policy update" required>
         </div>
 
-        <!-- Message * Textarea with Formatting Toolbar and Character Counter -->
+        <!-- Row 3: Message * Textarea with Bottom Formatting Toolbar and Character Counter -->
         <div class="form-group">
-          <label class="form-label" for="inputBcMessage">Message *</label>
+          <label class="form-label" for="inputBcMessage">Message <span class="required-star">*</span></label>
           <div class="editor-box">
-            <div class="editor-toolbar">
-              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('**')" title="Bold"><strong>B</strong></button>
-              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('*')" title="Italic"><em>I</em></button>
-              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('<u>', '</u>')" title="Underline"><u>U</u></button>
-              <div class="toolbar-sep"></div>
-              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('\n- ')" title="Bullet List">• List</button>
-              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('[', '](url)')" title="Insert Link">🔗 Link</button>
-            </div>
-            <textarea class="editor-textarea" id="inputBcMessage" placeholder="Type your broadcast message clearly. Staff members will receive this via notification feed and mobile push..." oninput="updateModalCharCount(this.value)" maxlength="2000" required></textarea>
-            <div class="editor-footer">
-              <span class="editor-counter" id="modalCharCount">0 / 2000</span>
+            <textarea class="editor-textarea" id="inputBcMessage" placeholder="Write your message here..." oninput="updateModalCharCount(this.value)" maxlength="2000" required></textarea>
+            <div class="editor-toolbar-bottom">
+              <div class="editor-toolbar-left">
+                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('**')" title="Bold"><strong>B</strong></button>
+                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('*')" title="Italic"><em>I</em></button>
+                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('<u>', '</u>')" title="Underline"><u>U</u></button>
+                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('\n- ')" title="Bulleted List">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1.5" fill="currentColor"/><circle cx="3" cy="12" r="1.5" fill="currentColor"/><circle cx="3" cy="18" r="1.5" fill="currentColor"/></svg>
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('\n1. ')" title="Numbered List">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h2v4M4 14h2.5a1.5 1.5 0 0 1 0 3H4v3h3"/></svg>
+                </button>
+                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('[', '](url)')" title="Insert Link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                </button>
+              </div>
+              <div class="editor-counter" id="modalCharCount">0 / 2000 characters</div>
             </div>
           </div>
         </div>
 
-        <!-- Attachments Dropzone + Sources Row -->
+        <!-- Row 4: Attachment Dropzone + Sources Row -->
         <div class="form-group">
-          <label class="form-label">Attachments</label>
-          <div class="modal-dropzone" onclick="simulateModalUpload('device')">
-            <div class="modal-dropzone-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <label class="form-label">Attachment</label>
+          <div class="modal-dropzone" onclick="document.getElementById('hiddenFileInput').click()">
+            <div class="modal-dropzone-circle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m16 16-4-4-4 4"/>
+              </svg>
             </div>
-            <div class="modal-dropzone-text">Drop files here or click to browse</div>
-            <div class="modal-dropzone-sub">Supported formats: PDF, DOCX, XLSX, PNG (Up to 25MB)</div>
+            <div class="modal-dropzone-text-group">
+              <div class="modal-dropzone-text">Drag and drop files here, or <span class="dropzone-link">click to upload</span></div>
+              <div class="modal-dropzone-sub">Any format • Max file size 20MB</div>
+            </div>
           </div>
+          <input type="file" id="hiddenFileInput" style="display: none;" onchange="handleModalFileUpload(this.files)" multiple>
+          
           <div class="modal-sources-row">
-            <span class="sources-label">Add from:</span>
-            <button type="button" class="btn-source-chip" onclick="simulateModalUpload('device')">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <span class="sources-label">Add from</span>
+            <button type="button" class="btn-source-pill active" onclick="document.getElementById('hiddenFileInput').click()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               <span>My Device</span>
             </button>
-            <button type="button" class="btn-source-chip" onclick="simulateModalUpload('gdrive')">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 22 22 22"></polygon></svg>
+            <button type="button" class="btn-source-pill" onclick="simulateModalUpload('gdrive')">
+              <svg width="14" height="14" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44c-.8 1.4-1.2 2.95-1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>
               <span>Google Drive</span>
             </button>
-            <button type="button" class="btn-source-chip" onclick="simulateModalUpload('onedrive')">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+            <button type="button" class="btn-source-pill" onclick="simulateModalUpload('onedrive')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#0078D4"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
               <span>OneDrive</span>
             </button>
           </div>
@@ -3296,13 +3403,17 @@
       <!-- Modal Footer -->
       <div class="modal-footer">
         <div class="modal-info-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
           <span>This message will be sent to all selected audience members.</span>
         </div>
         <div class="modal-footer-btns">
           <button type="button" class="btn-modal-cancel" onclick="closeCreateModal()">Cancel</button>
           <button type="submit" class="btn-modal-send">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
             <span>Send Broadcast</span>
           </button>
         </div>
@@ -4077,8 +4188,22 @@
   function updateModalCharCount(val) {
     const countEl = document.getElementById("modalCharCount");
     if (countEl) {
-      countEl.innerText = `${(val || "").length} / 2000`;
+      countEl.innerText = `${(val || "").length} / 2000 characters`;
     }
+  }
+
+  function handleModalFileUpload(fileList) {
+    if (!fileList || fileList.length === 0) return;
+    for (let i = 0; i < fileList.length; i++) {
+      const f = fileList[i];
+      const sizeStr = f.size > 1024 * 1024 ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` : `${Math.round(f.size / 1024)} KB`;
+      const fileObj = { name: f.name, size: sizeStr, type: f.name.split('.').pop() || 'file' };
+      if (!modalAttachedFilesSimulated.some(existing => existing.name === fileObj.name)) {
+        modalAttachedFilesSimulated.push(fileObj);
+      }
+    }
+    renderModalAttachedChips();
+    showToast(`Attached ${fileList.length} file(s) from device`);
   }
 
   // Source upload simulator
