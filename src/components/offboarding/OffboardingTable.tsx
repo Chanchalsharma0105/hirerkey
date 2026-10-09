@@ -77,8 +77,9 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
     const isSara = (caseItem.name && caseItem.name.toLowerCase().includes('sara')) || caseItem.id === 1;
     const isRahul = !isSara && ((caseItem.name && caseItem.name.toLowerCase().includes('rahul')) || caseItem.id === 2);
     const isLeena = !isSara && !isRahul && ((caseItem.name && caseItem.name.toLowerCase().includes('leena')) || caseItem.id === 4);
-    const cardWidth = isSara ? 300 : isRahul ? 345 : isLeena ? 410 : 310;
-    const cardHeight = isSara ? 490 : isRahul ? 140 : isLeena ? 140 : 260;
+    const isAisha = !isSara && !isRahul && !isLeena && ((caseItem.name && caseItem.name.toLowerCase().includes('aisha')) || caseItem.id === 3);
+    const cardWidth = (isSara || isLeena) ? 415 : isAisha ? 450 : isRahul ? 345 : 310;
+    const cardHeight = isSara ? 130 : isRahul ? 140 : isLeena ? 140 : isAisha ? 190 : 260;
     let left = rect.right + 12;
     let top = rect.top - 8;
     if (typeof window !== 'undefined') {
@@ -778,19 +779,17 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
               position: 'fixed',
               top: hoverPos.top,
               left: hoverPos.left,
-              width: isSara ? 300 : isRahul ? 345 : isLeena ? 410 : isAisha ? 400 : 320,
-              height: isSara ? 490 : isLeena ? 140 : undefined,
+              width: (isSara || isLeena) ? 415 : isAisha ? 450 : isRahul ? 345 : 320,
+              height: isLeena ? 140 : undefined,
               bgcolor: '#FFFFFF',
-              border: isLeena ? '1px solid #EBE8F6' : isAisha ? '1px solid #EEF2F6' : '1px solid #E2E8F0',
-              borderRadius: isSara ? '26px' : isRahul ? '14px' : isLeena ? '18px' : isAisha ? '16px' : '16px',
+              border: isLeena ? '1px solid #EBE8F6' : (isAisha || isSara) ? '1px solid #EEF2F6' : '1px solid #E2E8F0',
+              borderRadius: isRahul ? '14px' : isLeena ? '18px' : '16px',
               boxShadow: isRahul
                 ? '0 12px 28px -6px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
-                : isSara
-                ? '0 20px 48px -10px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(15, 23, 42, 0.06)'
+                : (isSara || isAisha)
+                ? '0 16px 36px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
                 : isLeena
                 ? '0 16px 36px -8px rgba(15, 23, 42, 0.11), 0 2px 6px rgba(15, 23, 42, 0.04)'
-                : isAisha
-                ? '0 16px 36px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
                 : '0 20px 40px -8px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04)',
               zIndex: 99999,
               overflow: 'hidden',
@@ -804,249 +803,198 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
             }}
           >
             {isSara ? (
-              /* Format 5: Oceanic Geometric Badge Style (Sara Khan - Row 5 per media_1791352602983.png) */
+              /* Format 5: Compact Horizontal Profile Style (Sara Khan - Row 1 / ID 1 per media_1791547902745.png) */
               <Box
                 sx={{
                   position: 'relative',
                   width: '100%',
-                  height: 490,
                   bgcolor: '#FFFFFF',
-                  overflow: 'hidden',
-                  borderRadius: '26px',
-                  fontFamily: 'Inter, system-ui, sans-serif',
+                  p: '16px 18px',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '15px',
                   boxSizing: 'border-box',
+                  borderRadius: '16px',
+                  fontFamily: 'Inter, system-ui, sans-serif',
                 }}
               >
-                {/* Background Waves & Low-Poly Facet Watermarks */}
-                <svg
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    pointerEvents: 'none',
-                    zIndex: 1,
-                  }}
-                  viewBox="0 0 300 490"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  preserveAspectRatio="none"
-                >
-                  {/* Faceted Low-Poly Prism Watermark */}
-                  <g opacity="0.04" stroke="#0B2545" strokeWidth="0.75" fill="none">
-                    <polygon points="0,0 120,40 60,160 0,110" />
-                    <polygon points="120,40 240,0 200,120 60,160" />
-                    <polygon points="240,0 300,60 260,180 200,120" />
-                    <polygon points="260,180 300,240 220,280 200,120" />
-                    <polygon points="0,200 80,260 40,360 0,330" />
-                    <polygon points="80,260 180,320 120,420 40,360" />
-                    <polygon points="180,320 300,310 240,430 120,420" />
-                    <polygon points="240,430 300,410 300,490 190,490" />
-                  </g>
-
-                  {/* Top-Left Sweeping Wave Ribbons */}
-                  <path d="M 0 0 L 160 0 C 120 70, 70 120, 0 160 Z" fill="#E0F2FE" />
-                  <path d="M 0 0 L 135 0 C 100 60, 60 100, 0 135 Z" fill="#74BACB" />
-                  <path d="M 0 0 L 75 0 C 55 35, 35 55, 0 75 Z" fill="#183E62" />
-                  <path d="M 0 145 C 75 110, 110 75, 145 0" stroke="#38BDF8" strokeWidth="2" fill="none" opacity="0.7" />
-
-                  {/* Bottom-Right Sweeping Wave Ribbons */}
-                  <path d="M 300 490 L 140 490 C 180 420, 230 370, 300 330 Z" fill="#E0F2FE" />
-                  <path d="M 300 490 L 165 490 C 200 430, 240 390, 300 355 Z" fill="#74BACB" />
-                  <path d="M 300 490 L 225 490 C 245 455, 265 435, 300 415 Z" fill="#183E62" />
-                  <path d="M 155 490 C 225 425, 265 385, 300 345" stroke="#38BDF8" strokeWidth="2" fill="none" opacity="0.7" />
-                </svg>
-
-                {/* Top Centered Brand Logo (Winged Emblem + BORCELLE) */}
-                <Box
-                  sx={{
-                    position: 'relative',
-                    zIndex: 2,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    mt: '18px',
-                    userSelect: 'none',
-                  }}
-                >
-                  <svg width="44" height="34" viewBox="0 0 48 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M24 16 C20 10, 12 5, 2 8 C8 14, 15 16, 20 20 Z" fill="#38BDF8" />
-                    <path d="M23 18 C18 13, 10 11, 4 14 C10 19, 16 20, 20 23 Z" fill="#0284C7" />
-                    <path d="M22 21 C18 17, 12 17, 8 20 C13 23, 17 24, 20 25 Z" fill="#183E62" />
-                    <path d="M24 16 C28 10, 36 5, 46 8 C40 14, 33 16, 28 20 Z" fill="#38BDF8" />
-                    <path d="M25 18 C30 13, 38 11, 44 14 C38 19, 32 20, 28 23 Z" fill="#0284C7" />
-                    <path d="M26 21 C30 17, 36 17, 40 20 C35 23, 31 24, 28 25 Z" fill="#183E62" />
-                    <path d="M24 6 L22 14 L24 22 L26 14 Z" fill="#183E62" />
-                    <circle cx="24" cy="10" r="2.5" fill="#38BDF8" />
-                    <path d="M24 22 L21 28 L24 26 L27 28 Z" fill="#0284C7" />
-                  </svg>
-                  <Typography
-                    sx={{
-                      fontSize: '13px',
-                      fontWeight: 900,
-                      color: '#183E62',
-                      letterSpacing: '0.14em',
-                      textTransform: 'uppercase',
-                      mt: '4px',
-                      lineHeight: 1.1,
-                      fontFamily: 'Inter, sans-serif',
-                    }}
-                  >
-                    BORCELLE
-                  </Typography>
-                </Box>
-
-                {/* Centered Circular Avatar Photo */}
-                <Box sx={{ position: 'relative', zIndex: 3, display: 'flex', justifyContent: 'center', mt: '12px' }}>
+                {/* Circular Avatar with Online Status Dot */}
+                <Box sx={{ position: 'relative', width: 52, height: 52, flexShrink: 0 }}>
                   <Box
                     sx={{
-                      width: 132,
-                      height: 132,
+                      width: 52,
+                      height: 52,
                       borderRadius: '50%',
-                      bgcolor: '#FFFFFF',
-                      border: '3px solid #183E62',
-                      boxShadow: '0 8px 24px rgba(24, 62, 98, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8) inset',
+                      bgcolor: '#EDE9FE',
                       overflow: 'hidden',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      position: 'relative',
                     }}
                   >
                     <img
-                      src="./sara_avatar.png"
+                      src={hoveredCase.avatar || '/sara_avatar.png'}
                       alt={hoveredCase.name}
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'public/sara_avatar.png';
+                        (e.target as HTMLImageElement).src = '/sara_avatar.png';
                       }}
                       style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                     />
                   </Box>
-                </Box>
-
-                {/* Middle Identity Section */}
-                <Box sx={{ position: 'relative', zIndex: 3, mt: '18px', textAlign: 'center', px: 2 }}>
-                  <Typography
-                    sx={{
-                      fontSize: '18px',
-                      fontWeight: 900,
-                      color: '#183E62',
-                      letterSpacing: '0.05em',
-                      textTransform: 'uppercase',
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {hoveredCase.name.toUpperCase()}
-                  </Typography>
-                  <Box sx={{ width: 170, height: '2px', bgcolor: '#183E62', borderRadius: '1px', my: '6px', mx: 'auto' }} />
-                  <Typography
-                    sx={{
-                      fontSize: '12px',
-                      fontWeight: 800,
-                      color: '#183E62',
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {(hoveredCase.designation || hoveredCase.title || 'FRONT DESK MANAGER').toUpperCase()}
-                  </Typography>
-                </Box>
-
-                {/* Barcode & ID Section */}
-                <Box sx={{ position: 'relative', zIndex: 3, mt: '18px', textAlign: 'center', px: '20px' }}>
-                  <Typography
-                    sx={{
-                      fontSize: '12px',
-                      fontWeight: 700,
-                      color: '#183E62',
-                      letterSpacing: '0.04em',
-                      mb: '6px',
-                    }}
-                  >
-                    ID 123-456-7890
-                  </Typography>
                   <Box
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleCopy('123-456-7890', 'email');
-                    }}
                     sx={{
-                      width: 170,
-                      mx: 'auto',
-                      cursor: 'pointer',
-                      p: '2px',
-                      borderRadius: '4px',
-                      transition: 'transform 0.15s ease, opacity 0.15s ease',
-                      '&:hover': {
-                        transform: 'scale(1.02)',
-                        opacity: 0.85,
-                      },
+                      position: 'absolute',
+                      bottom: 0,
+                      right: 0,
+                      width: 13,
+                      height: 13,
+                      borderRadius: '50%',
+                      bgcolor: '#10B981',
+                      border: '2.5px solid #FFFFFF',
+                      boxShadow: '0 1px 2px rgba(0, 0, 0, 0.12)',
                     }}
-                    title="Click to copy employee ID"
-                  >
-                    <svg style={{ width: '100%', height: 34, display: 'block' }} viewBox="0 0 170 34" fill="#183E62" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="0" y="0" width="170" height="1.5" />
-                      <rect x="0" y="32.5" width="170" height="1.5" />
-                      <rect x="5" y="3" width="3" height="28" />
-                      <rect x="11" y="3" width="1.5" height="28" />
-                      <rect x="15" y="3" width="4" height="28" />
-                      <rect x="22" y="3" width="2" height="28" />
-                      <rect x="27" y="3" width="1.5" height="28" />
-                      <rect x="31" y="3" width="5" height="28" />
-                      <rect x="39" y="3" width="2" height="28" />
-                      <rect x="44" y="3" width="3.5" height="28" />
-                      <rect x="50" y="3" width="1.5" height="28" />
-                      <rect x="54" y="3" width="4" height="28" />
-                      <rect x="61" y="3" width="2" height="28" />
-                      <rect x="66" y="3" width="1.5" height="28" />
-                      <rect x="70" y="3" width="5" height="28" />
-                      <rect x="78" y="3" width="2" height="28" />
-                      <rect x="83" y="3" width="3" height="28" />
-                      <rect x="89" y="3" width="1.5" height="28" />
-                      <rect x="93" y="3" width="4" height="28" />
-                      <rect x="100" y="3" width="2" height="28" />
-                      <rect x="105" y="3" width="1.5" height="28" />
-                      <rect x="109" y="3" width="5" height="28" />
-                      <rect x="117" y="3" width="2" height="28" />
-                      <rect x="122" y="3" width="3.5" height="28" />
-                      <rect x="128" y="3" width="1.5" height="28" />
-                      <rect x="132" y="3" width="4" height="28" />
-                      <rect x="139" y="3" width="2" height="28" />
-                      <rect x="144" y="3" width="1.5" height="28" />
-                      <rect x="148" y="3" width="5" height="28" />
-                      <rect x="156" y="3" width="2" height="28" />
-                      <rect x="161" y="3" width="4" height="28" />
-                    </svg>
-                  </Box>
+                  />
                 </Box>
 
-                {/* Bottom-Right Crown Badge */}
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: 12,
-                    right: 18,
-                    zIndex: 3,
-                    width: 46,
-                    height: 28,
-                    borderRadius: '14px',
-                    bgcolor: '#354E5B',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
-                  }}
-                  title="Authorized Access Pass"
-                >
-                  <svg width="18" height="14" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 15L1.5 5L7 9.5L12 2L17 9.5L22.5 5L21 15H3Z" fill="#FFFFFF" />
-                    <rect x="3" y="16" width="18" height="2" rx="0.5" fill="#FFFFFF" />
-                    <circle cx="1.5" cy="4" r="1.5" fill="#FFFFFF" />
-                    <circle cx="12" cy="1.5" r="1.5" fill="#FFFFFF" />
-                    <circle cx="22.5" cy="4" r="1.5" fill="#FFFFFF" />
-                  </svg>
+                {/* Right Profile Metadata Column */}
+                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 0, flex: 1 }}>
+                  {/* Line 1: Name */}
+                  <Typography
+                    sx={{
+                      fontSize: '16px',
+                      fontWeight: 700,
+                      color: '#0F172A',
+                      lineHeight: 1.25,
+                      letterSpacing: '-0.01em',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      fontFamily: 'Inter, system-ui, sans-serif',
+                    }}
+                  >
+                    {hoveredCase.name}
+                  </Typography>
+
+                  {/* Line 2: Title • Department */}
+                  <Box
+                    sx={{
+                      mt: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: '13px',
+                      fontWeight: 500,
+                      color: '#1E293B',
+                      lineHeight: 1.3,
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      maxWidth: '100%',
+                      fontFamily: 'Inter, system-ui, sans-serif',
+                    }}
+                  >
+                    <Typography component="span" sx={{ fontSize: '13px', fontWeight: 500, color: '#1E293B' }}>
+                      {hoveredCase.designation || hoveredCase.title || 'Front Desk Manager'}
+                    </Typography>
+                    <Typography component="span" sx={{ mx: '6px', color: '#94A3B8', fontSize: '12px' }}>
+                      •
+                    </Typography>
+                    <Typography component="span" sx={{ fontSize: '13px', fontWeight: 500, color: '#1E293B' }}>
+                      {hoveredCase.department || 'Front Office'}
+                    </Typography>
+                  </Box>
+
+                  {/* Line 3: Email • Phone */}
+                  <Box
+                    sx={{
+                      mt: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: '12.5px',
+                      fontWeight: 400,
+                      color: '#64748B',
+                      lineHeight: 1.3,
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      maxWidth: '100%',
+                      fontFamily: 'Inter, system-ui, sans-serif',
+                    }}
+                  >
+                    <Typography
+                      component="a"
+                      href={`mailto:${hoveredCase.email || 'sara.khan@noisiv.com'}`}
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        fontSize: '12.5px',
+                        color: '#64748B',
+                        textDecoration: 'none',
+                        '&:hover': { color: '#6366F1', textDecoration: 'underline' },
+                      }}
+                    >
+                      {hoveredCase.email || 'sara.khan@noisiv.com'}
+                    </Typography>
+                    <Typography component="span" sx={{ mx: '6px', color: '#94A3B8', fontSize: '12px' }}>
+                      •
+                    </Typography>
+                    <Typography
+                      component="a"
+                      href={`tel:${(hoveredCase.phone || hoveredCase.contact || '+971 50 492 8812').replace(/\s+/g, '')}`}
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        fontSize: '12.5px',
+                        color: '#64748B',
+                        textDecoration: 'none',
+                        '&:hover': { color: '#6366F1', textDecoration: 'underline' },
+                      }}
+                    >
+                      {hoveredCase.phone || hoveredCase.contact || '+971 50 492 8812'}
+                    </Typography>
+                  </Box>
+
+                  {/* Line 4: Dual Badges (Role Pill | Seat Chip) */}
+                  <Box sx={{ mt: '8px', display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'nowrap' }}>
+                    <Box
+                      component="span"
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        px: 1.5,
+                        py: '3.5px',
+                        bgcolor: '#EEF2FF',
+                        color: '#6366F1',
+                        border: '1px solid rgba(99, 102, 241, 0.14)',
+                        borderRadius: '8px',
+                        fontSize: '11.5px',
+                        fontWeight: 600,
+                        lineHeight: 1.2,
+                        letterSpacing: '-0.01em',
+                        whiteSpace: 'nowrap',
+                        fontFamily: 'Inter, system-ui, sans-serif',
+                      }}
+                    >
+                      {hoveredCase.level || 'Manager'}
+                    </Box>
+                    <Box
+                      component="span"
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        px: 1.25,
+                        py: '3.5px',
+                        bgcolor: '#FFFFFF',
+                        border: '1px solid #C7D2FE',
+                        color: '#6366F1',
+                        borderRadius: '8px',
+                        fontFamily: 'JetBrains Mono, monospace',
+                        fontSize: '11.5px',
+                        fontWeight: 600,
+                        lineHeight: 1.2,
+                        letterSpacing: '0.02em',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {hoveredCase.seat || 'FDM-01'}
+                    </Box>
+                  </Box>
                 </Box>
               </Box>
             ) : isRahul ? (
@@ -1667,7 +1615,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                         href={`mailto:${hoveredCase.email || 'aisha.noor@noisiv.com'}`}
                         onClick={(e) => e.stopPropagation()}
                         sx={{
-                          fontSize: '13px',
+                          fontSize: '12.5px',
                           color: '#64748B',
                           fontWeight: 400,
                           lineHeight: 1.3,
@@ -1779,7 +1727,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
                       <Typography
                         sx={{
-                          fontSize: '13.5px',
+                          fontSize: '13px',
                           fontWeight: 700,
                           color: '#0F172A',
                           lineHeight: 1.25,
