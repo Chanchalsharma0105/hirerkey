@@ -77,8 +77,8 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
     const isSara = (caseItem.name && caseItem.name.toLowerCase().includes('sara')) || caseItem.id === 1;
     const isRahul = !isSara && ((caseItem.name && caseItem.name.toLowerCase().includes('rahul')) || caseItem.id === 2);
     const isLeena = !isSara && !isRahul && ((caseItem.name && caseItem.name.toLowerCase().includes('leena')) || caseItem.id === 4);
-    const cardWidth = isSara ? 300 : isRahul ? 312 : isLeena ? 380 : 310;
-    const cardHeight = isSara ? 490 : isRahul ? 140 : isLeena ? 130 : 260;
+    const cardWidth = isSara ? 300 : isRahul ? 312 : isLeena ? 410 : 310;
+    const cardHeight = isSara ? 490 : isRahul ? 140 : isLeena ? 140 : 260;
     let left = rect.right + 12;
     let top = rect.top - 8;
     if (typeof window !== 'undefined') {
@@ -778,17 +778,17 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
               position: 'fixed',
               top: hoverPos.top,
               left: hoverPos.left,
-              width: isSara ? 300 : isRahul ? 312 : isLeena ? 380 : 320,
-              height: isSara ? 490 : undefined,
+              width: isSara ? 300 : isRahul ? 312 : isLeena ? 410 : 320,
+              height: isSara ? 490 : isLeena ? 140 : undefined,
               bgcolor: '#FFFFFF',
               border: isLeena ? '1px solid #EBE8F6' : '1px solid #E2E8F0',
-              borderRadius: isSara ? '26px' : isRahul ? '14px' : isLeena ? '16px' : '16px',
+              borderRadius: isSara ? '26px' : isRahul ? '14px' : isLeena ? '18px' : '16px',
               boxShadow: isRahul
                 ? '0 12px 28px -6px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
                 : isSara
                 ? '0 20px 48px -10px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(15, 23, 42, 0.06)'
                 : isLeena
-                ? '0 12px 30px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
+                ? '0 16px 36px -8px rgba(15, 23, 42, 0.11), 0 2px 6px rgba(15, 23, 42, 0.04)'
                 : '0 20px 40px -8px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04)',
               zIndex: 99999,
               overflow: 'hidden',
@@ -1308,6 +1308,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 sx={{
                   position: 'relative',
                   width: '100%',
+                  height: '100%',
                   display: 'flex',
                   flexDirection: 'row',
                   alignItems: 'stretch',
@@ -1320,10 +1321,11 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 {/* Left Panel: Soft Lavender Profile Column */}
                 <Box
                   sx={{
-                    flex: '0 0 135px',
-                    width: 135,
-                    maxWidth: 135,
-                    bgcolor: '#F6F3FE',
+                    flex: '0 0 160px',
+                    width: 160,
+                    maxWidth: 160,
+                    background: 'linear-gradient(180deg, #F8F5FF 0%, #F3EEFD 100%)',
+                    borderRight: '1px solid #EBE8F6',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -1335,7 +1337,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                   }}
                 >
                   {/* Circular Avatar with Online Status Dot */}
-                  <Box sx={{ position: 'relative', width: 48, height: 48, mb: '7px', flexShrink: 0 }}>
+                  <Box sx={{ position: 'relative', width: 48, height: 48, mb: '6px', flexShrink: 0 }}>
                     <Box
                       sx={{
                         width: 48,
@@ -1377,25 +1379,26 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                   {/* Name */}
                   <Typography
                     sx={{
-                      fontSize: '13.5px',
+                      fontSize: '14px',
                       fontWeight: 700,
                       color: '#0F172A',
                       lineHeight: 1.25,
-                      letterSpacing: '-0.01em',
+                      letterSpacing: '-0.015em',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                      maxWidth: '120px',
+                      maxWidth: '148px',
                     }}
                   >
                     {hoveredCase.name || 'Leena Joseph'}
                   </Typography>
 
-                  {/* Email */}
+                  {/* Email - Full without truncation */}
                   <Typography
                     component="a"
                     href={`mailto:${hoveredCase.email || 'leena.joseph@noisiv.com'}`}
                     onClick={(e) => e.stopPropagation()}
+                    title={hoveredCase.email || 'leena.joseph@noisiv.com'}
                     sx={{
                       fontSize: '10.5px',
                       fontWeight: 400,
@@ -1403,34 +1406,71 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                       mt: '2px',
                       textDecoration: 'none',
                       whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      maxWidth: '120px',
+                      maxWidth: '148px',
+                      letterSpacing: '-0.01em',
+                      lineHeight: 1.25,
                       '&:hover': { color: '#7C3AED', textDecoration: 'underline' },
                     }}
                   >
                     {hoveredCase.email || 'leena.joseph@noisiv.com'}
                   </Typography>
 
-                  {/* Role Pill */}
+                  {/* Dual-Chip Row: Role Pill + Position Code Chip */}
                   <Box
                     sx={{
-                      mt: '6px',
-                      display: 'inline-flex',
+                      mt: '7px',
+                      display: 'flex',
+                      gap: '6px',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      px: '9px',
-                      py: '2px',
-                      bgcolor: '#EFE9FE',
-                      color: '#6D28D9',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      borderRadius: '6px',
-                      letterSpacing: '-0.01em',
-                      lineHeight: 1.2,
+                      flexWrap: 'nowrap',
                     }}
                   >
-                    Manager
+                    {/* Role Pill */}
+                    <Box
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        px: '8px',
+                        py: '2px',
+                        bgcolor: '#EFE9FE',
+                        border: '1px solid rgba(124, 58, 237, 0.12)',
+                        color: '#6D28D9',
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        borderRadius: '6px',
+                        letterSpacing: '-0.01em',
+                        lineHeight: 1.2,
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      Manager
+                    </Box>
+
+                    {/* Position Code Chip */}
+                    <Box
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        px: '7px',
+                        py: '2px',
+                        bgcolor: '#FFFFFF',
+                        border: '1px solid #DDD6FE',
+                        color: '#6D28D9',
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: '10px',
+                        fontWeight: 600,
+                        borderRadius: '6px',
+                        letterSpacing: '0.02em',
+                        lineHeight: 1.2,
+                        whiteSpace: 'nowrap',
+                        boxShadow: '0 1px 2px rgba(109, 40, 217, 0.05)',
+                      }}
+                    >
+                      {hoveredCase.seat || 'HKS-03'}
+                    </Box>
                   </Box>
                 </Box>
 
@@ -1438,21 +1478,21 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 <Box
                   sx={{
                     flex: 1,
-                    width: 'calc(100% - 135px)',
-                    maxWidth: 'calc(100% - 135px)',
+                    width: 'calc(100% - 160px)',
+                    maxWidth: 'calc(100% - 160px)',
                     bgcolor: '#FFFFFF',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
-                    gap: '10px',
-                    p: '14px 16px 14px 14px',
+                    gap: '11px',
+                    p: '16px 18px 16px 16px',
                     boxSizing: 'border-box',
                     minWidth: 0,
                     overflow: 'hidden',
                   }}
                 >
                   {/* 1. Department (Office Building) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Department">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '9px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Department">
                     <Box sx={{ width: 15, height: 15, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M6 22V7a3 3 0 0 1 6 0v15" />
@@ -1464,7 +1504,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     </Box>
                     <Typography
                       sx={{
-                        fontSize: '11px',
+                        fontSize: '11.5px',
                         fontWeight: 600,
                         color: '#0F172A',
                         letterSpacing: '-0.01em',
@@ -1481,7 +1521,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                   </Box>
 
                   {/* 2. Designation (Briefcase) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Designation">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '9px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Designation">
                     <Box sx={{ width: 15, height: 15, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <rect x="2" y="7" width="20" height="14" rx="2" />
@@ -1490,7 +1530,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     </Box>
                     <Typography
                       sx={{
-                        fontSize: '11px',
+                        fontSize: '11.5px',
                         fontWeight: 600,
                         color: '#0F172A',
                         letterSpacing: '-0.01em',
@@ -1506,8 +1546,8 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     </Typography>
                   </Box>
 
-                  {/* 3. Position (Team / Position) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Position">
+                  {/* 3. Position (Team / Position - Position Title ONLY) */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '9px', minWidth: 0, width: '100%', overflow: 'hidden' }} title="Position">
                     <Box sx={{ width: 15, height: 15, color: '#7C3AED', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -1518,7 +1558,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     </Box>
                     <Typography
                       sx={{
-                        fontSize: '11px',
+                        fontSize: '11.5px',
                         fontWeight: 600,
                         color: '#0F172A',
                         letterSpacing: '-0.01em',
@@ -1530,7 +1570,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                         flex: 1,
                       }}
                     >
-                      {hoveredCase.position || `Operations Supervisor · Seat ${hoveredCase.seat || 'HKS-03'}`}
+                      {(hoveredCase.position ? hoveredCase.position.split('·')[0].trim() : 'Operations Supervisor')}
                     </Typography>
                   </Box>
                 </Box>

@@ -161,7 +161,7 @@ export const INITIAL_OFFBOARDING_CASES: OffboardingCase[] = [
     initials: 'LJ',
     title: 'Housekeeping Supervisor',
     designation: 'Housekeeping Supervisor',
-    position: 'Operations Supervisor · Seat HKS-03',
+    position: 'Operations Supervisor',
     email: 'leena.joseph@noisiv.com',
     contact: '+971 55 904 1128',
     phone: '+971 55 904 1128',
