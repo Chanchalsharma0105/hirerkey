@@ -1627,189 +1627,276 @@
     }
 
     /* =========================================================================
-       EMPLOYEE HOVER CARD: FORMAT 2 (Aisha Noor - Curved Purple Wave Style)
+       EMPLOYEE HOVER CARD: FORMAT 2 (Aisha Noor - Quad Grid Metadata Style)
+       Directly inspired by media_1791547643632.png
        ========================================================================= */
-    .emp-card-wave-wrap {
+    .employee-hover-card.is-aisha {
+      width: 400px !important;
+      min-width: 400px !important;
+      height: auto !important;
+      min-height: auto !important;
+      background: #FFFFFF !important;
+      border: 1px solid #EEF2F6 !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
+    }
+
+    .emp-card-quad-wrap {
       position: relative;
       background: #FFFFFF;
-      overflow: hidden;
+      width: 100%;
       border-radius: 16px;
-    }
-
-    .emp-card-wave-header {
-      position: relative;
-      width: 100%;
-      height: 52px;
-      background: linear-gradient(135deg, #9185F8 0%, #7C3AED 100%);
       overflow: hidden;
+      font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      box-sizing: border-box;
     }
 
-    .emp-card-wave-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    .emp-card-wave-avatar-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      margin-top: -34px;
-      z-index: 2;
-    }
-
-    .emp-card-wave-avatar-ring {
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      background: #DDD6FE;
-      border: 3.5px solid #FFFFFF;
-      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.22), 0 1px 3px rgba(15, 23, 42, 0.08);
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .emp-card-wave-avatar-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .emp-card-wave-avatar-fallback {
-      font-size: 20px;
-      font-weight: 700;
-      color: #6D28D9;
-      display: none;
-    }
-
-    .emp-card-wave-status-dot {
-      position: absolute;
-      bottom: 2px;
-      right: calc(50% - 31px);
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: #10B981;
-      border: 2px solid #FFFFFF;
-      box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.3);
-      z-index: 3;
-    }
-
-    .emp-card-wave-name {
-      font-size: 15.5px;
-      font-weight: 800;
-      color: #0F172A;
-      text-align: center;
-      margin-top: 7px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.2;
-    }
-
-    .emp-card-wave-pill-wrap {
-      text-align: center;
-      margin-top: 5px;
-      margin-bottom: 11px;
-    }
-
-    .emp-card-wave-pill {
-      background: #EDE9FE;
-      color: #5B21B6;
-      border: 1px solid #DDD6FE;
-      font-size: 11px;
-      font-weight: 600;
-      padding: 2.5px 14px;
-      border-radius: 999px;
-      display: inline-block;
-      letter-spacing: 0.02em;
-      line-height: 1.25;
-    }
-
-    .emp-card-wave-meta-list {
-      padding: 0 16px 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 5.5px;
-    }
-
-    .emp-card-wave-row {
-      display: grid;
-      grid-template-columns: 84px 10px 1fr;
-      align-items: center;
-      font-size: 11.5px;
-      line-height: 1.35;
-    }
-
-    .emp-card-wave-label {
-      color: #475569;
-      font-weight: 600;
-      white-space: nowrap;
-      font-family: var(--font-inter);
-      font-size: 11.5px;
-    }
-
-    .emp-card-wave-colon {
-      color: #64748B;
-      font-weight: 600;
-      text-align: center;
-      font-size: 11.5px;
-    }
-
-    .emp-card-wave-val {
-      color: #0F172A;
-      font-weight: 600;
-      font-size: 11.5px;
-      word-break: break-word;
+    .emp-card-quad-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 4px;
+      padding: 16px 18px 14px 18px;
+      gap: 12px;
+      box-sizing: border-box;
+    }
+
+    .emp-card-quad-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       min-width: 0;
+      flex: 1;
     }
 
-    .emp-card-wave-val.font-mono {
-      font-family: var(--font-mono), monospace !important;
-      font-size: 11px;
+    .emp-card-quad-avatar-wrap {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .emp-card-quad-avatar-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #EDE9FE;
+    }
+
+    .emp-card-quad-avatar-fallback {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #EDE9FE;
       color: #6D28D9;
-      font-weight: 600;
+      font-size: 16px;
+      font-weight: 800;
+      display: none;
+      align-items: center;
+      justify-content: center;
     }
 
-    .emp-card-wave-link {
-      color: #2563EB;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 11.5px;
-      transition: color 0.15s ease;
+    .emp-card-quad-status-dot {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 2.5px solid #FFFFFF;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .emp-card-quad-identity {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .emp-card-quad-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .emp-card-wave-link:hover {
-      color: #1D4ED8;
+    .emp-card-quad-email {
+      font-size: 13px;
+      color: #64748B;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-top: 3px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .emp-card-quad-email:hover {
+      color: #6366F1;
       text-decoration: underline;
     }
 
-    .emp-card-wave-copy-btn {
-      background: none;
-      border: none;
-      padding: 1.5px 3.5px;
-      cursor: pointer;
-      color: #94A3B8;
-      display: inline-flex;
+    .emp-card-quad-actions {
+      display: flex;
       align-items: center;
-      border-radius: 4px;
-      transition: all 0.15s ease;
+      gap: 7px;
       flex-shrink: 0;
     }
 
-    .emp-card-wave-copy-btn:hover {
-      color: #7C3AED;
-      background: #EDE9FE;
+    .emp-card-quad-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3.5px 12px;
+      background: #EEF2FF;
+      color: #6366F1;
+      border: 1px solid rgba(99, 102, 241, 0.14);
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .emp-card-quad-seat {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3.5px 10px;
+      background: #FFFFFF;
+      border: 1px solid #C7D2FE;
+      color: #6366F1;
+      border-radius: 8px;
+      font-family: var(--font-mono, monospace);
+      font-size: 11.5px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+
+    .emp-card-quad-more-btn {
+      background: transparent;
+      border: none;
+      padding: 4px;
+      margin-left: 2px;
+      cursor: pointer;
+      color: #64748B;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      line-height: 1;
+    }
+
+    .emp-card-quad-more-btn:hover {
+      color: #0F172A;
+      background: #F1F5F9;
+    }
+
+    .emp-card-quad-divider {
+      width: 100%;
+      height: 1px;
+      background: #F1F5F9;
+      border: none;
+      margin: 0;
+    }
+
+    .emp-card-quad-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      box-sizing: border-box;
+    }
+
+    .emp-card-quad-cell {
+      padding: 13px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      box-sizing: border-box;
+      min-width: 0;
+    }
+
+    .emp-card-quad-cell-tl {
+      border-right: 1px solid #F1F5F9;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .emp-card-quad-cell-tr {
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .emp-card-quad-cell-bl {
+      border-right: 1px solid #F1F5F9;
+    }
+
+    .emp-card-quad-cell-br {
+    }
+
+    .emp-card-quad-icon {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .emp-card-quad-meta {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .emp-card-quad-val {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .emp-card-quad-lbl {
+      font-size: 12px;
+      font-weight: 400;
+      color: #64748B;
+      line-height: 1.25;
+      margin-top: 3px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .emp-card-quad-link {
+      text-decoration: none;
+      color: #0F172A;
+      transition: color 0.15s ease;
+    }
+
+    .emp-card-quad-link:hover {
+      color: #6366F1;
+      text-decoration: underline;
     }
 
     /* Oceanic Geometric Badge Modifier for Container */
@@ -7299,67 +7386,98 @@
     </div>
   </div>
 
-  <!-- VIEW 2: Straight Purple Header Style (Aisha Noor - Row 2) -->
-  <div id="empCardFormat2" class="emp-card-wave-wrap" style="display: none;">
-    <!-- Straight Purple Header (Straight bottom edge, no curve) -->
-    <div class="emp-card-wave-header"></div>
-
-    <!-- Centered Overlapping Circular Avatar -->
-    <div class="emp-card-wave-avatar-container">
-      <div class="emp-card-wave-avatar-ring">
-        <img src="./aisha_avatar.png" alt="Aisha Noor" class="emp-card-wave-avatar-img" id="empCardWaveAvatarImg" onerror="this.onerror=null; this.src='public/aisha_avatar_clean.png';" />
-        <span class="emp-card-wave-avatar-fallback" id="empCardWaveAvatarFallback">AN</span>
+  <!-- VIEW 2: Quad Grid Metadata Style (Aisha Noor - Row 2 / ID 3 per media_1791547643632.png) -->
+  <div id="empCardFormat2" class="emp-card-quad-wrap" style="display: none;">
+    <!-- Top Header Profile Section -->
+    <div class="emp-card-quad-header">
+      <div class="emp-card-quad-profile">
+        <div class="emp-card-quad-avatar-wrap">
+          <img src="./aisha_avatar.png" alt="Aisha Noor" class="emp-card-quad-avatar-img" id="empCardAishaAvatarImg" onerror="this.onerror=null; this.src='public/aisha_avatar_clean.png';" />
+          <div class="emp-card-quad-avatar-fallback" id="empCardAishaAvatarFallback">AN</div>
+          <span class="emp-card-quad-status-dot" title="Active Employee"></span>
+        </div>
+        <div class="emp-card-quad-identity">
+          <div class="emp-card-quad-name" id="empCardAishaName">Aisha Noor</div>
+          <a href="mailto:aisha.noor@noisiv.com" class="emp-card-quad-email" id="empCardAishaEmail">aisha.noor@noisiv.com</a>
+        </div>
       </div>
-      <span class="emp-card-wave-status-dot" title="Active Employee"></span>
+      <div class="emp-card-quad-actions">
+        <span class="emp-card-quad-pill" id="empCardAishaPill">Manager</span>
+        <span class="emp-card-quad-seat" id="empCardAishaSeat">GR-04</span>
+        <button type="button" class="emp-card-quad-more-btn" title="More options" aria-label="More options">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <circle cx="12" cy="5" r="1.8"/>
+            <circle cx="12" cy="12" r="1.8"/>
+            <circle cx="12" cy="19" r="1.8"/>
+          </svg>
+        </button>
+      </div>
     </div>
 
-    <!-- Centered Name: AISHA NOOR -->
-    <div class="emp-card-wave-name" id="empCardWaveName">AISHA NOOR</div>
+    <!-- Horizontal Divider Line -->
+    <div class="emp-card-quad-divider"></div>
 
-    <!-- Centered Badges Row: ID Chip + Department Chip -->
-    <div class="emp-card-wave-pill-wrap" style="display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 5px; margin-bottom: 12px;">
-      <span class="emp-card-badge-pill" id="empCardWaveIdPill">#EMP-0003</span>
-      <span class="emp-card-wave-pill" id="empCardWavePill">Front Office</span>
-    </div>
-
-    <!-- Colon-Aligned Key-Value Metadata List: Only Designation, Position, Email, Phone -->
-    <div class="emp-card-wave-meta-list">
-      <!-- Designation -->
-      <div class="emp-card-wave-row">
-        <span class="emp-card-wave-label">Designation</span>
-        <span class="emp-card-wave-colon">:</span>
-        <span class="emp-card-wave-val" id="empCardWaveDesignation">Guest Relations Executive</span>
+    <!-- 2x2 Metadata Grid with cross borders -->
+    <div class="emp-card-quad-grid">
+      <!-- Quadrant 1: Top-Left (Job Title) -->
+      <div class="emp-card-quad-cell emp-card-quad-cell-tl">
+        <div class="emp-card-quad-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2"/>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+          </svg>
+        </div>
+        <div class="emp-card-quad-meta">
+          <div class="emp-card-quad-val" id="empCardAishaJobTitle">Guest Relations Executive</div>
+          <div class="emp-card-quad-lbl">Job Title</div>
+        </div>
       </div>
 
-      <!-- Position -->
-      <div class="emp-card-wave-row">
-        <span class="emp-card-wave-label">Position</span>
-        <span class="emp-card-wave-colon">:</span>
-        <span class="emp-card-wave-val" id="empCardWavePosition">Guest Services Associate · Seat GR-04</span>
+      <!-- Quadrant 2: Top-Right (Department) -->
+      <div class="emp-card-quad-cell emp-card-quad-cell-tr">
+        <div class="emp-card-quad-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/>
+            <path d="M6 12H4a2 2 0 0 0-2 2v8h4"/>
+            <path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/>
+            <path d="M10 6h4"/>
+            <path d="M10 10h4"/>
+            <path d="M10 14h4"/>
+            <path d="M10 18h4"/>
+          </svg>
+        </div>
+        <div class="emp-card-quad-meta">
+          <div class="emp-card-quad-val" id="empCardAishaDept">Front Office</div>
+          <div class="emp-card-quad-lbl">Department</div>
+        </div>
       </div>
 
-      <!-- E-mail -->
-      <div class="emp-card-wave-row">
-        <span class="emp-card-wave-label">E-mail</span>
-        <span class="emp-card-wave-colon">:</span>
-        <span class="emp-card-wave-val">
-          <a href="mailto:aisha.noor@noisiv.com" class="emp-card-wave-link" id="empCardWaveEmailLink">aisha.noor@noisiv.com</a>
-          <button class="emp-card-wave-copy-btn" id="empCardWaveCopyEmailBtn" title="Copy email" onclick="copyCardWaveEmail(event)">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-        </span>
+      <!-- Quadrant 3: Bottom-Left (Reporting to) -->
+      <div class="emp-card-quad-cell emp-card-quad-cell-bl">
+        <div class="emp-card-quad-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+            <rect x="15" y="14" width="6" height="7" rx="1.5"/>
+          </svg>
+        </div>
+        <div class="emp-card-quad-meta">
+          <div class="emp-card-quad-val" id="empCardAishaReporting">Sara Khan</div>
+          <div class="emp-card-quad-lbl">Reporting to</div>
+        </div>
       </div>
 
-      <!-- Phone -->
-      <div class="emp-card-wave-row">
-        <span class="emp-card-wave-label">Phone</span>
-        <span class="emp-card-wave-colon">:</span>
-        <span class="emp-card-wave-val">
-          <a href="tel:+971547123390" class="emp-card-wave-link" id="empCardWavePhoneLink">+971 54 712 3390</a>
-          <button class="emp-card-wave-copy-btn" id="empCardWaveCopyPhoneBtn" title="Copy phone" onclick="copyCardWavePhone(event)">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          </button>
-        </span>
+      <!-- Quadrant 4: Bottom-Right (Phone) -->
+      <div class="emp-card-quad-cell emp-card-quad-cell-br">
+        <div class="emp-card-quad-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+        </div>
+        <div class="emp-card-quad-meta">
+          <a href="tel:+971547123390" class="emp-card-quad-val emp-card-quad-link" id="empCardAishaPhone">+971 54 712 3390</a>
+          <div class="emp-card-quad-lbl">Phone</div>
+        </div>
       </div>
     </div>
   </div>
@@ -9726,6 +9844,9 @@ function showEmployeeHoverCard(triggerEl, empId) {
     card.classList.remove('is-glass');
     card.classList.remove('is-arc');
     card.classList.remove('is-wavy');
+    card.classList.remove('is-spine');
+    card.classList.remove('is-split');
+    card.classList.remove('is-aisha');
     card.classList.add('is-oceanic');
     if (f1) f1.style.display = 'none';
     if (f2) f2.style.display = 'none';
@@ -9745,6 +9866,8 @@ function showEmployeeHoverCard(triggerEl, empId) {
     card.classList.remove('is-glass');
     card.classList.remove('is-arc');
     card.classList.remove('is-oceanic');
+    card.classList.remove('is-split');
+    card.classList.remove('is-aisha');
     card.classList.add('is-spine');
     card.classList.add('is-wavy');
     if (f1) f1.style.display = 'none';
@@ -9793,6 +9916,7 @@ function showEmployeeHoverCard(triggerEl, empId) {
     card.classList.remove('is-wavy');
     card.classList.remove('is-oceanic');
     card.classList.remove('is-spine');
+    card.classList.remove('is-aisha');
     card.classList.add('is-split');
     if (f1) f1.style.display = 'none';
     if (f2) f2.style.display = 'none';
@@ -9850,45 +9974,75 @@ function showEmployeeHoverCard(triggerEl, empId) {
     card.classList.remove('is-arc');
     card.classList.remove('is-wavy');
     card.classList.remove('is-oceanic');
+    card.classList.remove('is-spine');
+    card.classList.remove('is-split');
+    card.classList.add('is-aisha');
     if (f1) f1.style.display = 'none';
     if (f2) f2.style.display = 'block';
     if (f5) f5.style.display = 'none';
     if (f4) f4.style.display = 'none';
     if (f3) f3.style.display = 'none';
 
-    const waveName = document.getElementById('empCardWaveName');
-    if (waveName) waveName.textContent = c.name.toUpperCase();
+    // 1. Name
+    const aishaName = document.getElementById('empCardAishaName');
+    if (aishaName) aishaName.textContent = c.name || 'Aisha Noor';
 
-    const waveIdPill = document.getElementById('empCardWaveIdPill');
-    if (waveIdPill) waveIdPill.textContent = `#EMP-${c.id.toString().padStart(4, '0')}`;
-
-    const wavePill = document.getElementById('empCardWavePill');
-    if (wavePill) wavePill.textContent = c.dept || c.department || 'Front Office';
-
-    const waveDesig = document.getElementById('empCardWaveDesignation');
-    if (waveDesig) waveDesig.textContent = c.designation || c.title || 'Guest Relations Executive';
-
-    const wavePos = document.getElementById('empCardWavePosition');
-    if (wavePos) wavePos.textContent = c.position || `Specialist · Seat ${c.seat || 'GR-04'}`;
-
-    const emailVal = c.email || 'aisha.noor@noisiv.com';
-    const waveEmailLink = document.getElementById('empCardWaveEmailLink');
-    if (waveEmailLink) {
-      waveEmailLink.textContent = emailVal;
-      waveEmailLink.href = `mailto:${emailVal}`;
+    // 2. Email
+    const aishaEmail = document.getElementById('empCardAishaEmail');
+    if (aishaEmail) {
+      const emailVal = c.email || 'aisha.noor@noisiv.com';
+      aishaEmail.textContent = emailVal;
+      aishaEmail.href = `mailto:${emailVal}`;
     }
 
-    const phoneVal = c.contact || c.phone || '+971 54 712 3390';
-    const wavePhoneLink = document.getElementById('empCardWavePhoneLink');
-    if (wavePhoneLink) {
-      wavePhoneLink.textContent = phoneVal;
-      wavePhoneLink.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
+    // 3. Role / Level Pill
+    const aishaPill = document.getElementById('empCardAishaPill');
+    if (aishaPill) aishaPill.textContent = c.level || c.role || 'Manager';
+
+    // 4. Seat Chip
+    const aishaSeat = document.getElementById('empCardAishaSeat');
+    if (aishaSeat) aishaSeat.textContent = c.seat || 'GR-04';
+
+    // 5. Job Title (Quadrant 1)
+    const aishaJobTitle = document.getElementById('empCardAishaJobTitle');
+    if (aishaJobTitle) aishaJobTitle.textContent = c.designation || c.title || 'Guest Relations Executive';
+
+    // 6. Department (Quadrant 2)
+    const aishaDept = document.getElementById('empCardAishaDept');
+    if (aishaDept) aishaDept.textContent = c.dept || c.department || 'Front Office';
+
+    // 7. Reporting To (Quadrant 3)
+    const aishaReporting = document.getElementById('empCardAishaReporting');
+    if (aishaReporting) {
+      const mgr = c.manager ? c.manager.split('·')[0].trim() : 'Sara Khan';
+      aishaReporting.textContent = mgr;
+    }
+
+    // 8. Phone (Quadrant 4)
+    const aishaPhone = document.getElementById('empCardAishaPhone');
+    if (aishaPhone) {
+      const phoneVal = c.contact || c.phone || '+971 54 712 3390';
+      aishaPhone.textContent = phoneVal;
+      aishaPhone.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
+    }
+
+    // 9. Avatar Image & Fallback
+    const aishaAvatarImg = document.getElementById('empCardAishaAvatarImg');
+    if (aishaAvatarImg && c.avatar) {
+      aishaAvatarImg.src = c.avatar;
+    }
+    const aishaAvatarFallback = document.getElementById('empCardAishaAvatarFallback');
+    if (aishaAvatarFallback) {
+      aishaAvatarFallback.textContent = c.ini || 'AN';
     }
   } else {
     card.classList.remove('is-glass');
     card.classList.remove('is-arc');
     card.classList.remove('is-wavy');
     card.classList.remove('is-oceanic');
+    card.classList.remove('is-spine');
+    card.classList.remove('is-split');
+    card.classList.remove('is-aisha');
     if (f1) f1.style.display = 'block';
     if (f5) f5.style.display = 'none';
     if (f4) f4.style.display = 'none';

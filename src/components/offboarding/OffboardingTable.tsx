@@ -778,17 +778,19 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
               position: 'fixed',
               top: hoverPos.top,
               left: hoverPos.left,
-              width: isSara ? 300 : isRahul ? 345 : isLeena ? 410 : 320,
+              width: isSara ? 300 : isRahul ? 345 : isLeena ? 410 : isAisha ? 400 : 320,
               height: isSara ? 490 : isLeena ? 140 : undefined,
               bgcolor: '#FFFFFF',
-              border: isLeena ? '1px solid #EBE8F6' : '1px solid #E2E8F0',
-              borderRadius: isSara ? '26px' : isRahul ? '14px' : isLeena ? '18px' : '16px',
+              border: isLeena ? '1px solid #EBE8F6' : isAisha ? '1px solid #EEF2F6' : '1px solid #E2E8F0',
+              borderRadius: isSara ? '26px' : isRahul ? '14px' : isLeena ? '18px' : isAisha ? '16px' : '16px',
               boxShadow: isRahul
                 ? '0 12px 28px -6px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
                 : isSara
                 ? '0 20px 48px -10px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(15, 23, 42, 0.06)'
                 : isLeena
                 ? '0 16px 36px -8px rgba(15, 23, 42, 0.11), 0 2px 6px rgba(15, 23, 42, 0.04)'
+                : isAisha
+                ? '0 16px 36px -8px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04)'
                 : '0 20px 40px -8px rgba(15, 23, 42, 0.18), 0 0 0 1px rgba(124, 58, 237, 0.06), 0 2px 4px rgba(15, 23, 42, 0.04)',
               zIndex: 99999,
               overflow: 'hidden',
@@ -1597,200 +1599,372 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 </Box>
               </Box>
             ) : isAisha ? (
-              /* Format 2: Straight Purple Header Style (Aisha Noor - Row 2) */
-              <Box sx={{ position: 'relative', bgcolor: '#FFFFFF', overflow: 'hidden', borderRadius: '16px' }}>
-              {/* Straight Purple Header (Straight bottom edge, no curve) */}
-              <Box sx={{ width: '100%', height: 52, bgcolor: '#7C3AED', background: 'linear-gradient(135deg, #9185F8 0%, #7C3AED 100%)' }} />
-
-              {/* Centered Overlapping Circular Avatar */}
-              <Box sx={{ position: 'relative', display: 'flex', justifyContent: 'center', mt: '-34px', zIndex: 2 }}>
+              /* Format 2: Quad Grid Metadata Style (Aisha Noor - Row 2 per media_1791547643632.png) */
+              <Box sx={{ position: 'relative', bgcolor: '#FFFFFF', overflow: 'hidden', borderRadius: '16px', width: '100%' }}>
+                {/* Top Profile Header Bar */}
                 <Box
                   sx={{
-                    width: 68,
-                    height: 68,
-                    borderRadius: '50%',
-                    bgcolor: '#DDD6FE',
-                    border: '3.5px solid #FFFFFF',
-                    boxShadow: '0 4px 14px rgba(124, 58, 237, 0.22), 0 1px 3px rgba(15, 23, 42, 0.08)',
-                    overflow: 'hidden',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: 'space-between',
+                    p: '16px 18px 14px 18px',
+                    gap: 1.5,
                   }}
                 >
-                  <img
-                    src="/aisha_avatar.png"
-                    alt={hoveredCase.name}
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/aisha_avatar_clean.png';
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, minWidth: 0, flex: 1 }}>
+                    <Box sx={{ position: 'relative', width: 48, height: 48, flexShrink: 0 }}>
+                      <Box
+                        sx={{
+                          width: 48,
+                          height: 48,
+                          borderRadius: '50%',
+                          bgcolor: '#EDE9FE',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        <img
+                          src={hoveredCase.avatar || '/aisha_avatar.png'}
+                          alt={hoveredCase.name}
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = '/aisha_avatar_clean.png';
+                          }}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        />
+                      </Box>
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          bottom: 0,
+                          right: 0,
+                          width: 12,
+                          height: 12,
+                          borderRadius: '50%',
+                          bgcolor: '#10B981',
+                          border: '2.5px solid #FFFFFF',
+                          boxShadow: '0 1px 2px rgba(0, 0, 0, 0.12)',
+                        }}
+                      />
+                    </Box>
+
+                    <Box sx={{ minWidth: 0, display: 'flex', flexDirection: 'column' }}>
+                      <Typography
+                        sx={{
+                          fontSize: '16px',
+                          fontWeight: 700,
+                          color: '#0F172A',
+                          lineHeight: 1.2,
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        {hoveredCase.name}
+                      </Typography>
+                      <Typography
+                        component="a"
+                        href={`mailto:${hoveredCase.email || 'aisha.noor@noisiv.com'}`}
+                        onClick={(e) => e.stopPropagation()}
+                        sx={{
+                          fontSize: '13px',
+                          color: '#64748B',
+                          fontWeight: 400,
+                          lineHeight: 1.3,
+                          mt: '3px',
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          textDecoration: 'none',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                          '&:hover': { color: '#6366F1', textDecoration: 'underline' },
+                        }}
+                      >
+                        {hoveredCase.email || 'aisha.noor@noisiv.com'}
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Header Actions: Role Pill + Seat Chip + More Menu */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.9, flexShrink: 0 }}>
+                    <Box
+                      component="span"
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        px: 1.5,
+                        py: '3.5px',
+                        bgcolor: '#EEF2FF',
+                        color: '#6366F1',
+                        border: '1px solid rgba(99, 102, 241, 0.14)',
+                        borderRadius: '8px',
+                        fontSize: '11.5px',
+                        fontWeight: 600,
+                        lineHeight: 1.2,
+                        letterSpacing: '-0.01em',
+                        whiteSpace: 'nowrap',
+                        fontFamily: 'Inter, system-ui, sans-serif',
+                      }}
+                    >
+                      {hoveredCase.level || 'Manager'}
+                    </Box>
+                    <Box
+                      component="span"
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        px: 1.25,
+                        py: '3.5px',
+                        bgcolor: '#FFFFFF',
+                        border: '1px solid #C7D2FE',
+                        color: '#6366F1',
+                        borderRadius: '8px',
+                        fontFamily: 'JetBrains Mono, monospace',
+                        fontSize: '11.5px',
+                        fontWeight: 600,
+                        lineHeight: 1.2,
+                        letterSpacing: '0.02em',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {hoveredCase.seat || 'GR-04'}
+                    </Box>
+                    <IconButton
+                      size="sm"
+                      variant="plain"
+                      sx={{
+                        p: 0.5,
+                        color: '#64748B',
+                        minWidth: 'auto',
+                        minHeight: 'auto',
+                        borderRadius: '6px',
+                        '&:hover': { color: '#0F172A', bgcolor: '#F1F5F9' },
+                      }}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <circle cx="12" cy="5" r="1.8" />
+                        <circle cx="12" cy="12" r="1.8" />
+                        <circle cx="12" cy="19" r="1.8" />
+                      </svg>
+                    </IconButton>
+                  </Box>
+                </Box>
+
+                {/* Horizontal Divider Line */}
+                <Box sx={{ width: '100%', height: 1, bgcolor: '#F1F5F9' }} />
+
+                {/* 2x2 Metadata Grid with cross borders */}
+                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
+                  {/* Quadrant 1: Top-Left (Job Title) */}
+                  <Box
+                    sx={{
+                      p: '13px 18px',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1.5,
+                      borderRight: '1px solid #F1F5F9',
+                      borderBottom: '1px solid #F1F5F9',
+                      minWidth: 0,
                     }}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    bottom: 2,
-                    right: 'calc(50% - 31px)',
-                    width: 11,
-                    height: 11,
-                    borderRadius: '50%',
-                    bgcolor: '#10B981',
-                    border: '2px solid #FFFFFF',
-                    boxShadow: '0 0 0 1px rgba(16, 185, 129, 0.3)',
-                    zIndex: 3,
-                  }}
-                />
-              </Box>
+                  >
+                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                      </svg>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                      <Typography
+                        sx={{
+                          fontSize: '13.5px',
+                          fontWeight: 700,
+                          color: '#0F172A',
+                          lineHeight: 1.25,
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        {hoveredCase.designation || hoveredCase.title || 'Guest Relations Executive'}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#64748B',
+                          lineHeight: 1.25,
+                          mt: '3px',
+                          letterSpacing: '-0.01em',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        Job Title
+                      </Typography>
+                    </Box>
+                  </Box>
 
-              {/* Centered Name: AISHA NOOR */}
-              <Typography
-                sx={{
-                  fontSize: '15.5px',
-                  fontWeight: 800,
-                  color: '#0F172A',
-                  textAlign: 'center',
-                  mt: '7px',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  lineHeight: 1.2,
-                  fontFamily: 'Inter, system-ui, sans-serif',
-                }}
-              >
-                {hoveredCase.name.toUpperCase()}
-              </Typography>
+                  {/* Quadrant 2: Top-Right (Department) */}
+                  <Box
+                    sx={{
+                      p: '13px 18px',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1.5,
+                      borderBottom: '1px solid #F1F5F9',
+                      minWidth: 0,
+                    }}
+                  >
+                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                        <path d="M6 12H4a2 2 0 0 0-2 2v8h4" />
+                        <path d="M18 9h2a2 2 0 0 1 2 2v11h-4" />
+                        <path d="M10 6h4" />
+                        <path d="M10 10h4" />
+                        <path d="M10 14h4" />
+                        <path d="M10 18h4" />
+                      </svg>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                      <Typography
+                        sx={{
+                          fontSize: '13.5px',
+                          fontWeight: 700,
+                          color: '#0F172A',
+                          lineHeight: 1.25,
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        {hoveredCase.department || 'Front Office'}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#64748B',
+                          lineHeight: 1.25,
+                          mt: '3px',
+                          letterSpacing: '-0.01em',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        Department
+                      </Typography>
+                    </Box>
+                  </Box>
 
-              {/* Centered Badges Row: ID Chip + Department Chip */}
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.9, mt: '5px', mb: '12px' }}>
-                <Typography
-                  sx={{
-                    fontFamily: 'JetBrains Mono, monospace',
-                    fontSize: '10.5px',
-                    fontWeight: 600,
-                    color: '#6D28D9',
-                    bgcolor: '#F5F3FF',
-                    border: '1px solid #DDD6FE',
-                    borderRadius: '5px',
-                    px: 0.75,
-                    py: '1.5px',
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {`#EMP-${hoveredCase.id.toString().padStart(4, '0')}`}
-                </Typography>
-                <Box
-                  component="span"
-                  sx={{
-                    bgcolor: '#EDE9FE',
-                    color: '#5B21B6',
-                    border: '1px solid #DDD6FE',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    px: '12px',
-                    py: '2px',
-                    borderRadius: '999px',
-                    display: 'inline-block',
-                    letterSpacing: '0.02em',
-                    lineHeight: 1.25,
-                  }}
-                >
-                  {hoveredCase.department || 'Front Office'}
-                </Box>
-              </Box>
+                  {/* Quadrant 3: Bottom-Left (Reporting to) */}
+                  <Box
+                    sx={{
+                      p: '13px 18px',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1.5,
+                      borderRight: '1px solid #F1F5F9',
+                      minWidth: 0,
+                    }}
+                  >
+                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                        <rect x="15" y="14" width="6" height="7" rx="1.5" />
+                      </svg>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                      <Typography
+                        sx={{
+                          fontSize: '13.5px',
+                          fontWeight: 700,
+                          color: '#0F172A',
+                          lineHeight: 1.25,
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        {hoveredCase.manager ? hoveredCase.manager.split('·')[0].trim() : 'Sara Khan'}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#64748B',
+                          lineHeight: 1.25,
+                          mt: '3px',
+                          letterSpacing: '-0.01em',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        Reporting to
+                      </Typography>
+                    </Box>
+                  </Box>
 
-              {/* Colon-Aligned Key-Value Metadata List: Only Designation, Position, Email, Phone */}
-              <Box sx={{ px: 2, pb: 1.75, display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                {/* Designation */}
-                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
-                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Designation</Typography>
-                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
-                  <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
-                    {hoveredCase.designation || hoveredCase.title}
-                  </Typography>
-                </Box>
-
-                {/* Position */}
-                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
-                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Position</Typography>
-                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
-                  <Typography sx={{ color: '#0F172A', fontWeight: 600, fontSize: '11.5px' }}>
-                    {hoveredCase.position || `Specialist · Seat ${hoveredCase.seat}`}
-                  </Typography>
-                </Box>
-
-                {/* E-mail */}
-                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
-                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>E-mail</Typography>
-                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
-                    <Typography
-                      component="a"
-                      href={`mailto:${hoveredCase.email || 'aisha.noor@noisiv.com'}`}
-                      onClick={(e) => e.stopPropagation()}
-                      sx={{
-                        color: '#2563EB',
-                        fontWeight: 600,
-                        fontSize: '11.5px',
-                        textDecoration: 'none',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        '&:hover': { textDecoration: 'underline', color: '#1D4ED8' },
-                      }}
-                    >
-                      {hoveredCase.email || 'aisha.noor@noisiv.com'}
-                    </Typography>
-                    <IconButton
-                      size="sm"
-                      variant="plain"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCopy(hoveredCase.email || 'aisha.noor@noisiv.com', 'email');
-                      }}
-                      sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'email' ? '#16A34A' : '#94A3B8', '&:hover': { color: '#7C3AED', bgcolor: '#EDE9FE' } }}
-                    >
-                      {copiedField === 'email' ? <FiCheck size={12} /> : <FiCopy size={11} />}
-                    </IconButton>
+                  {/* Quadrant 4: Bottom-Right (Phone) */}
+                  <Box
+                    sx={{
+                      p: '13px 18px',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1.5,
+                      minWidth: 0,
+                    }}
+                  >
+                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                      <Typography
+                        component="a"
+                        href={`tel:${(hoveredCase.phone || hoveredCase.contact || '+971 54 712 3390').replace(/\s+/g, '')}`}
+                        onClick={(e) => e.stopPropagation()}
+                        sx={{
+                          fontSize: '13.5px',
+                          fontWeight: 700,
+                          color: '#0F172A',
+                          lineHeight: 1.25,
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          textDecoration: 'none',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                          '&:hover': { color: '#6366F1', textDecoration: 'underline' },
+                        }}
+                      >
+                        {hoveredCase.phone || hoveredCase.contact || '+971 54 712 3390'}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#64748B',
+                          lineHeight: 1.25,
+                          mt: '3px',
+                          letterSpacing: '-0.01em',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        Phone
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
-
-                {/* Phone */}
-                <Box sx={{ display: 'grid', gridTemplateColumns: '84px 10px 1fr', alignItems: 'center', fontSize: '11.5px', lineHeight: 1.35 }}>
-                  <Typography sx={{ color: '#475569', fontWeight: 600, fontSize: '11.5px', whiteSpace: 'nowrap' }}>Phone</Typography>
-                  <Typography sx={{ color: '#64748B', fontWeight: 600, fontSize: '11.5px', textAlign: 'center' }}>:</Typography>
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 0.5, minWidth: 0 }}>
-                    <Typography
-                      component="a"
-                      href={`tel:${(hoveredCase.contact || hoveredCase.phone || '+971 54 712 3390').replace(/\s+/g, '')}`}
-                      onClick={(e) => e.stopPropagation()}
-                      sx={{
-                        color: '#2563EB',
-                        fontWeight: 600,
-                        fontSize: '11.5px',
-                        textDecoration: 'none',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        '&:hover': { textDecoration: 'underline', color: '#1D4ED8' },
-                      }}
-                    >
-                      {hoveredCase.contact || hoveredCase.phone || '+971 54 712 3390'}
-                    </Typography>
-                    <IconButton
-                      size="sm"
-                      variant="plain"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleCopy(hoveredCase.contact || hoveredCase.phone || '+971 54 712 3390', 'contact');
-                      }}
-                      sx={{ minWidth: 20, minHeight: 20, p: 0.25, color: copiedField === 'contact' ? '#16A34A' : '#94A3B8', '&:hover': { color: '#7C3AED', bgcolor: '#EDE9FE' } }}
-                    >
-                      {copiedField === 'contact' ? <FiCheck size={12} /> : <FiCopy size={11} />}
-                    </IconButton>
-                  </Box>
-                </Box>
               </Box>
-            </Box>
           ) : (
             /* Format 1: Corporate ID Badge Style (Mark D'Souza - Row 1) */
             <>
