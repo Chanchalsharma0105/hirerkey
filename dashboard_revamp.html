@@ -12150,21 +12150,7 @@
           <label style="display: block; font-size: 12.5px; font-weight: 600; color: #0F172A; margin-bottom: 6px;">Message <span style="color: #EF4444;">*</span></label>
           <div style="border: 1px solid #E2E8F0; border-radius: 10px; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column;">
             <textarea id="broadcastContentInput" placeholder="Write your message here..." oninput="updateDashboardCharCount(this.value)" maxlength="2000" required style="width: 100%; border: none; outline: none; padding: 12px 14px; font-size: 13.5px; color: #0F172A; min-height: 105px; resize: vertical; line-height: 1.5; font-family: inherit; background: transparent; box-sizing: border-box;"></textarea>
-            <div style="display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; border-top: 1px solid #F1F5F9; background: #FFFFFF;">
-              <div style="display: flex; align-items: center; gap: 4px;">
-                <button type="button" onclick="insertFormattingDashboard('**')" title="Bold" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none;"><strong>B</strong></button>
-                <button type="button" onclick="insertFormattingDashboard('*')" title="Italic" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none;"><em>I</em></button>
-                <button type="button" onclick="insertFormattingDashboard('<u>', '</u>')" title="Underline" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none;"><u>U</u></button>
-                <button type="button" onclick="insertFormattingDashboard('\n- ')" title="Bulleted List" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none; display: inline-flex; align-items: center;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1.5" fill="currentColor"/><circle cx="3" cy="12" r="1.5" fill="currentColor"/><circle cx="3" cy="18" r="1.5" fill="currentColor"/></svg>
-                </button>
-                <button type="button" onclick="insertFormattingDashboard('\n1. ')" title="Numbered List" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none; display: inline-flex; align-items: center;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h2v4M4 14h2.5a1.5 1.5 0 0 1 0 3H4v3h3"/></svg>
-                </button>
-                <button type="button" onclick="insertFormattingDashboard('[', '](url)')" title="Insert Link" style="padding: 4px 7px; border-radius: 5px; font-size: 12px; font-weight: 600; color: #475569; cursor: pointer; background: none; border: none; display: inline-flex; align-items: center;">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                </button>
-              </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; padding: 8px 12px; border-top: 1px solid #F1F5F9; background: #FFFFFF;">
               <div id="dashBroadcastCharCount" style="font-size: 11.5px; color: #64748B; font-weight: 400;">0 / 2000 characters</div>
             </div>
           </div>

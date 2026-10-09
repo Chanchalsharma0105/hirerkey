@@ -2301,7 +2301,7 @@
     .editor-toolbar-bottom {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       padding: 8px 12px;
       border-top: 1px solid #F1F5F9;
       background: #FFFFFF;
@@ -3345,20 +3345,6 @@
           <div class="editor-box">
             <textarea class="editor-textarea" id="inputBcMessage" placeholder="Write your message here..." oninput="updateModalCharCount(this.value)" maxlength="2000" required></textarea>
             <div class="editor-toolbar-bottom">
-              <div class="editor-toolbar-left">
-                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('**')" title="Bold"><strong>B</strong></button>
-                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('*')" title="Italic"><em>I</em></button>
-                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('<u>', '</u>')" title="Underline"><u>U</u></button>
-                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('\n- ')" title="Bulleted List">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1.5" fill="currentColor"/><circle cx="3" cy="12" r="1.5" fill="currentColor"/><circle cx="3" cy="18" r="1.5" fill="currentColor"/></svg>
-                </button>
-                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('\n1. ')" title="Numbered List">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/><path d="M4 6h2v4M4 14h2.5a1.5 1.5 0 0 1 0 3H4v3h3"/></svg>
-                </button>
-                <button type="button" class="toolbar-btn" onclick="insertFormattingModal('[', '](url)')" title="Insert Link">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-                </button>
-              </div>
               <div class="editor-counter" id="modalCharCount">0 / 2000 characters</div>
             </div>
           </div>
