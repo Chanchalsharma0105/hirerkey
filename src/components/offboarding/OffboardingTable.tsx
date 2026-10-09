@@ -77,7 +77,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
     const isSara = (caseItem.name && caseItem.name.toLowerCase().includes('sara')) || caseItem.id === 1;
     const isRahul = !isSara && ((caseItem.name && caseItem.name.toLowerCase().includes('rahul')) || caseItem.id === 2);
     const isLeena = !isSara && !isRahul && ((caseItem.name && caseItem.name.toLowerCase().includes('leena')) || caseItem.id === 4);
-    const cardWidth = isSara ? 300 : isRahul ? 312 : isLeena ? 410 : 310;
+    const cardWidth = isSara ? 300 : isRahul ? 345 : isLeena ? 410 : 310;
     const cardHeight = isSara ? 490 : isRahul ? 140 : isLeena ? 140 : 260;
     let left = rect.right + 12;
     let top = rect.top - 8;
@@ -778,7 +778,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
               position: 'fixed',
               top: hoverPos.top,
               left: hoverPos.left,
-              width: isSara ? 300 : isRahul ? 312 : isLeena ? 410 : 320,
+              width: isSara ? 300 : isRahul ? 345 : isLeena ? 410 : 320,
               height: isSara ? 490 : isLeena ? 140 : undefined,
               bgcolor: '#FFFFFF',
               border: isLeena ? '1px solid #EBE8F6' : '1px solid #E2E8F0',
@@ -1103,7 +1103,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                       />
                     </Box>
 
-                    {/* Employee Info: Name + Email + Role Pill */}
+                    {/* Employee Info: Name + Email + Dual Chips (Manager + Seat Code) */}
                     <Box sx={{ minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                       <Typography
                         sx={{
@@ -1116,14 +1116,14 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                           whiteSpace: 'nowrap',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
-                          maxWidth: 180,
+                          maxWidth: 215,
                         }}
                       >
                         {hoveredCase.name}
                       </Typography>
                       <Typography
                         component="a"
-                        href={`mailto:${hoveredCase.email || 'rahul.mehta@hirerkey.com'}`}
+                        href={`mailto:${hoveredCase.email || 'rahul.mehta@noisiv.com'}`}
                         onClick={(e) => e.stopPropagation()}
                         sx={{
                           fontSize: '11.5px',
@@ -1136,32 +1136,53 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                           whiteSpace: 'nowrap',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
-                          maxWidth: 180,
+                          maxWidth: 215,
                           '&:hover': { color: '#7C3AED', textDecoration: 'underline' },
                         }}
                       >
-                        {hoveredCase.email
-                          ? hoveredCase.email.length > 20
-                            ? hoveredCase.email.substring(0, 6) + '..@' + (hoveredCase.email.split('@')[1] || 'hirerkey.com')
-                            : hoveredCase.email
-                          : 'rahul..@hirerkey.com'}
+                        {hoveredCase.email || 'rahul.mehta@noisiv.com'}
                       </Typography>
-                      <Box
-                        sx={{
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          px: '8px',
-                          py: '2px',
-                          bgcolor: '#F3EEFF',
-                          color: '#6D28D9',
-                          borderRadius: '6px',
-                          fontSize: '10.5px',
-                          fontWeight: 700,
-                          lineHeight: 1.2,
-                          letterSpacing: '-0.01em',
-                        }}
-                      >
-                        Manager
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: '6px', flexWrap: 'nowrap' }}>
+                        <Box
+                          sx={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            px: '8px',
+                            py: '2px',
+                            bgcolor: '#F3EEFF',
+                            border: '1px solid rgba(124, 58, 237, 0.12)',
+                            color: '#6D28D9',
+                            borderRadius: '6px',
+                            fontSize: '10px',
+                            fontWeight: 600,
+                            lineHeight: 1.2,
+                            letterSpacing: '-0.01em',
+                            whiteSpace: 'nowrap',
+                          }}
+                        >
+                          Manager
+                        </Box>
+                        <Box
+                          sx={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            px: '7px',
+                            py: '2px',
+                            bgcolor: '#FFFFFF',
+                            border: '1px solid #DDD6FE',
+                            color: '#6D28D9',
+                            borderRadius: '6px',
+                            fontFamily: 'JetBrains Mono, monospace',
+                            fontSize: '10px',
+                            fontWeight: 600,
+                            lineHeight: 1.2,
+                            letterSpacing: '0.02em',
+                            whiteSpace: 'nowrap',
+                            boxShadow: '0 1px 2px rgba(109, 40, 217, 0.05)',
+                          }}
+                        >
+                          {hoveredCase.seat || 'SC-02'}
+                        </Box>
                       </Box>
                     </Box>
                   </Box>
@@ -1219,7 +1240,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                         textOverflow: 'ellipsis',
                       }}
                     >
-                      {hoveredCase.designation || hoveredCase.title || 'Product Manager'}
+                      {hoveredCase.designation || hoveredCase.title || 'Sous Chef'}
                     </Typography>
                   </Box>
 
@@ -1245,12 +1266,39 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                         textOverflow: 'ellipsis',
                       }}
                     >
-                      {hoveredCase.department || hoveredCase.dept || 'Product'}
+                      {hoveredCase.department || hoveredCase.dept || 'Kitchen'}
                     </Typography>
                   </Box>
 
-                  {/* 3. Level (Users/Team) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '7px', minWidth: 0 }} title="Hierarchy Level">
+                  {/* 3. Contact (Phone) */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '7px', minWidth: 0 }} title="Contact">
+                    <Box sx={{ width: 15, height: 15, color: '#475569', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
+                    </Box>
+                    <Typography
+                      component="a"
+                      href={`tel:${(hoveredCase.contact || hoveredCase.phone || '+971 52 381 9940').replace(/\s+/g, '')}`}
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        color: '#1E293B',
+                        letterSpacing: '-0.01em',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        textDecoration: 'none',
+                        '&:hover': { color: '#7C3AED', textDecoration: 'underline' },
+                      }}
+                    >
+                      {hoveredCase.contact || hoveredCase.phone || '+971 52 381 9940'}
+                    </Typography>
+                  </Box>
+
+                  {/* 4. Position (Team / Position Name) */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '7px', minWidth: 0 }} title="Position">
                     <Box sx={{ width: 15, height: 15, color: '#475569', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -1270,34 +1318,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                         textOverflow: 'ellipsis',
                       }}
                     >
-                      Manager
-                    </Typography>
-                  </Box>
-
-                  {/* 4. Employee Code / ID (ID Card Badge [A ≡]) */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '7px', minWidth: 0 }} title="Employee ID Code">
-                    <Box sx={{ width: 15, height: 15, color: '#475569', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="3" y="4" width="18" height="16" rx="3" />
-                        <path d="M7 15l1.8-6.5h.4L11 15" />
-                        <path d="M7.7 13.2h2.6" />
-                        <line x1="14" y1="10" x2="18" y2="10" />
-                        <line x1="14" y1="14" x2="18" y2="14" />
-                      </svg>
-                    </Box>
-                    <Typography
-                      sx={{
-                        fontSize: '11px',
-                        fontWeight: 600,
-                        color: '#475569',
-                        fontFamily: 'JetBrains Mono, monospace',
-                        letterSpacing: '0.02em',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                      }}
-                    >
-                      HK-EMP-0234
+                      {hoveredCase.position ? hoveredCase.position.split('·')[0].trim() : 'Culinary Production Lead'}
                     </Typography>
                   </Box>
                 </Box>

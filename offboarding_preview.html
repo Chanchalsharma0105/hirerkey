@@ -1993,7 +1993,7 @@
     /* Sleek Corporate ID Card Modifier for Container (Rahul Mehta - Row 4/2) */
     .employee-hover-card.is-wavy,
     .employee-hover-card.is-spine {
-      width: 312px !important;
+      width: 345px !important;
       height: auto !important;
       min-height: auto !important;
       background: #FFFFFF !important;
@@ -2089,7 +2089,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 185px;
+      max-width: 215px;
     }
 
     .emp-card-spine-email {
@@ -2102,7 +2102,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      max-width: 185px;
+      max-width: 215px;
       text-decoration: none;
       transition: color 0.15s ease;
     }
@@ -2112,17 +2112,43 @@
       text-decoration: underline;
     }
 
+    .emp-card-spine-chips {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: nowrap;
+    }
+
     .emp-card-spine-pill {
       display: inline-flex;
       align-items: center;
       padding: 2px 8px;
       background: #F3EEFF;
+      border: 1px solid rgba(124, 58, 237, 0.12);
       color: #6D28D9;
       border-radius: 6px;
-      font-size: 10.5px;
-      font-weight: 700;
+      font-size: 10px;
+      font-weight: 600;
       line-height: 1.2;
       letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .emp-card-spine-seat-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 7px;
+      background: #FFFFFF;
+      border: 1px solid #DDD6FE;
+      color: #6D28D9;
+      border-radius: 6px;
+      font-family: var(--font-mono, monospace);
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      box-shadow: 0 1px 2px rgba(109, 40, 217, 0.05);
     }
 
     .emp-card-spine-sparkle {
@@ -2173,6 +2199,23 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .emp-card-spine-link {
+      font-size: 11px;
+      font-weight: 600;
+      color: #1E293B;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .emp-card-spine-link:hover {
+      color: #7C3AED;
+      text-decoration: underline;
     }
 
     .emp-card-spine-code {
@@ -7380,9 +7423,9 @@
     </div>
   </div>
 
-  <!-- VIEW 4: Left-Spine Corporate ID Card (Rahul Mehta - Row 4/2) per media_1791438916703.jpg -->
+  <!-- VIEW 4: Sleek Corporate ID Card (Rahul Mehta - Row 4/2) -->
   <div id="empCardFormat4" class="emp-card-spine-wrap" style="display: none;">
-    <!-- Top Section: Avatar + Name + Email + Role Pill + Sparkle Icon -->
+    <!-- Top Section: Avatar + Name + Email + Dual Chips + Sparkle Icon -->
     <div class="emp-card-spine-top">
       <div class="emp-card-spine-profile">
         <div class="emp-card-spine-avatar-wrap">
@@ -7392,8 +7435,11 @@
         </div>
         <div class="emp-card-spine-info">
           <div class="emp-card-spine-name" id="empCardSpineName">Rahul Mehta</div>
-          <a href="mailto:rahul.mehta@hirerkey.com" class="emp-card-spine-email" id="empCardSpineEmail">rahul..@hirerkey.com</a>
-          <span class="emp-card-spine-pill" id="empCardSpinePill">Manager</span>
+          <a href="mailto:rahul.mehta@noisiv.com" class="emp-card-spine-email" id="empCardSpineEmail">rahul.mehta@noisiv.com</a>
+          <div class="emp-card-spine-chips">
+            <span class="emp-card-spine-pill" id="empCardSpinePill">Manager</span>
+            <span class="emp-card-spine-seat-chip" id="empCardSpineSeatChip">SC-02</span>
+          </div>
         </div>
       </div>
       <div class="emp-card-spine-sparkle" title="Verified Member">
@@ -7420,7 +7466,7 @@
             <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
           </svg>
         </div>
-        <span class="emp-card-spine-text" id="empCardSpineDesignation">Product Manager</span>
+        <span class="emp-card-spine-text" id="empCardSpineDesignation">Sous Chef</span>
       </div>
 
       <!-- 2. Department (Office Building) -->
@@ -7434,11 +7480,21 @@
             <path d="M9 10h.01" />
           </svg>
         </div>
-        <span class="emp-card-spine-text" id="empCardSpineDept">Product</span>
+        <span class="emp-card-spine-text" id="empCardSpineDept">Kitchen</span>
       </div>
 
-      <!-- 3. Level (Users/Team) -->
-      <div class="emp-card-spine-grid-item" title="Hierarchy Level">
+      <!-- 3. Contact (Phone) -->
+      <div class="emp-card-spine-grid-item" title="Contact">
+        <div class="emp-card-spine-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+        </div>
+        <a href="tel:+971523819940" class="emp-card-spine-link" id="empCardSpineContact">+971 52 381 9940</a>
+      </div>
+
+      <!-- 4. Position (Team / Position Name) -->
+      <div class="emp-card-spine-grid-item" title="Position">
         <div class="emp-card-spine-icon">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -7447,21 +7503,7 @@
             <path d="M16 3.13a4 4 0 0 1 0 7.75" />
           </svg>
         </div>
-        <span class="emp-card-spine-text" id="empCardSpineLevel">Manager</span>
-      </div>
-
-      <!-- 4. Employee Code / ID (ID Card Badge [A ≡]) -->
-      <div class="emp-card-spine-grid-item" title="Employee ID Code">
-        <div class="emp-card-spine-icon">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="4" width="18" height="16" rx="3" />
-            <path d="M7 15l1.8-6.5h.4L11 15" />
-            <path d="M7.7 13.2h2.6" />
-            <line x1="14" y1="10" x2="18" y2="10" />
-            <line x1="14" y1="14" x2="18" y2="14" />
-          </svg>
-        </div>
-        <span class="emp-card-spine-code" id="empCardSpineCode">HK-EMP-0234</span>
+        <span class="emp-card-spine-text" id="empCardSpinePosition">Culinary Production Lead</span>
       </div>
     </div>
   </div>
@@ -9716,25 +9758,35 @@ function showEmployeeHoverCard(triggerEl, empId) {
 
     const spineEmail = document.getElementById('empCardSpineEmail');
     if (spineEmail) {
-      const emailText = c.email ? (c.email.length > 22 ? c.email.substring(0, 7) + '..@' + (c.email.split('@')[1] || 'hirerkey.com') : c.email) : 'rahul..@hirerkey.com';
+      const emailText = c.email || 'rahul.mehta@noisiv.com';
       spineEmail.textContent = emailText;
-      spineEmail.href = `mailto:${c.email || 'rahul.mehta@hirerkey.com'}`;
+      spineEmail.href = `mailto:${emailText}`;
     }
 
     const spinePill = document.getElementById('empCardSpinePill');
-    if (spinePill) spinePill.textContent = 'Manager';
+    if (spinePill) spinePill.textContent = c.level || 'Manager';
+
+    const spineSeatChip = document.getElementById('empCardSpineSeatChip');
+    if (spineSeatChip) spineSeatChip.textContent = c.seat || 'SC-02';
 
     const spineDesignation = document.getElementById('empCardSpineDesignation');
-    if (spineDesignation) spineDesignation.textContent = c.designation || c.title || 'Product Manager';
+    if (spineDesignation) spineDesignation.textContent = c.designation || c.title || 'Sous Chef';
 
     const spineDept = document.getElementById('empCardSpineDept');
-    if (spineDept) spineDept.textContent = c.dept || c.department || 'Product';
+    if (spineDept) spineDept.textContent = c.dept || c.department || 'Kitchen';
 
-    const spineLevel = document.getElementById('empCardSpineLevel');
-    if (spineLevel) spineLevel.textContent = 'Manager';
+    const spineContact = document.getElementById('empCardSpineContact');
+    if (spineContact) {
+      const contactVal = c.contact || c.phone || '+971 52 381 9940';
+      spineContact.textContent = contactVal;
+      spineContact.href = `tel:${contactVal.replace(/\s+/g, '')}`;
+    }
 
-    const spineCode = document.getElementById('empCardSpineCode');
-    if (spineCode) spineCode.textContent = 'HK-EMP-0234';
+    const spinePosition = document.getElementById('empCardSpinePosition');
+    if (spinePosition) {
+      const rawPos = c.position || 'Culinary Production Lead';
+      spinePosition.textContent = rawPos.split('·')[0].trim();
+    }
   } else if (isLeena) {
     card.classList.remove('is-glass');
     card.classList.remove('is-arc');
