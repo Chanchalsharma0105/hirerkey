@@ -1706,7 +1706,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
 
                 {/* 2x2 Metadata Grid with cross borders */}
                 <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}>
-                  {/* Quadrant 1: Top-Left (Job Title) */}
+                  {/* Quadrant 1: Top-Left (Contact) */}
                   <Box
                     sx={{
                       p: '13px 18px',
@@ -1715,158 +1715,6 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                       gap: 1.5,
                       borderRight: '1px solid #F1F5F9',
                       borderBottom: '1px solid #F1F5F9',
-                      minWidth: 0,
-                    }}
-                  >
-                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                        <rect x="2" y="7" width="20" height="14" rx="2" />
-                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-                      </svg>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
-                      <Typography
-                        sx={{
-                          fontSize: '13px',
-                          fontWeight: 700,
-                          color: '#0F172A',
-                          lineHeight: 1.25,
-                          letterSpacing: '-0.01em',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          fontFamily: 'Inter, system-ui, sans-serif',
-                        }}
-                      >
-                        {hoveredCase.designation || hoveredCase.title || 'Guest Relations Executive'}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: '12px',
-                          fontWeight: 400,
-                          color: '#64748B',
-                          lineHeight: 1.25,
-                          mt: '3px',
-                          letterSpacing: '-0.01em',
-                          fontFamily: 'Inter, system-ui, sans-serif',
-                        }}
-                      >
-                        Job Title
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  {/* Quadrant 2: Top-Right (Department) */}
-                  <Box
-                    sx={{
-                      p: '13px 18px',
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: 1.5,
-                      borderBottom: '1px solid #F1F5F9',
-                      minWidth: 0,
-                    }}
-                  >
-                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                        <path d="M6 12H4a2 2 0 0 0-2 2v8h4" />
-                        <path d="M18 9h2a2 2 0 0 1 2 2v11h-4" />
-                        <path d="M10 6h4" />
-                        <path d="M10 10h4" />
-                        <path d="M10 14h4" />
-                        <path d="M10 18h4" />
-                      </svg>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
-                      <Typography
-                        sx={{
-                          fontSize: '13.5px',
-                          fontWeight: 700,
-                          color: '#0F172A',
-                          lineHeight: 1.25,
-                          letterSpacing: '-0.01em',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          fontFamily: 'Inter, system-ui, sans-serif',
-                        }}
-                      >
-                        {hoveredCase.department || 'Front Office'}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: '12px',
-                          fontWeight: 400,
-                          color: '#64748B',
-                          lineHeight: 1.25,
-                          mt: '3px',
-                          letterSpacing: '-0.01em',
-                          fontFamily: 'Inter, system-ui, sans-serif',
-                        }}
-                      >
-                        Department
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  {/* Quadrant 3: Bottom-Left (Reporting to) */}
-                  <Box
-                    sx={{
-                      p: '13px 18px',
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: 1.5,
-                      borderRight: '1px solid #F1F5F9',
-                      minWidth: 0,
-                    }}
-                  >
-                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
-                        <rect x="15" y="14" width="6" height="7" rx="1.5" />
-                      </svg>
-                    </Box>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
-                      <Typography
-                        sx={{
-                          fontSize: '13.5px',
-                          fontWeight: 700,
-                          color: '#0F172A',
-                          lineHeight: 1.25,
-                          letterSpacing: '-0.01em',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
-                          fontFamily: 'Inter, system-ui, sans-serif',
-                        }}
-                      >
-                        {hoveredCase.manager ? hoveredCase.manager.split('·')[0].trim() : 'Sara Khan'}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: '12px',
-                          fontWeight: 400,
-                          color: '#64748B',
-                          lineHeight: 1.25,
-                          mt: '3px',
-                          letterSpacing: '-0.01em',
-                          fontFamily: 'Inter, system-ui, sans-serif',
-                        }}
-                      >
-                        Reporting to
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  {/* Quadrant 4: Bottom-Right (Phone) */}
-                  <Box
-                    sx={{
-                      p: '13px 18px',
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: 1.5,
                       minWidth: 0,
                     }}
                   >
@@ -1907,7 +1755,160 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                           fontFamily: 'Inter, system-ui, sans-serif',
                         }}
                       >
-                        Phone
+                        Contact
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Quadrant 2: Top-Right (Department) */}
+                  <Box
+                    sx={{
+                      p: '13px 18px',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1.5,
+                      borderBottom: '1px solid #F1F5F9',
+                      minWidth: 0,
+                    }}
+                  >
+                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                        <path d="M6 12H4a2 2 0 0 0-2 2v8h4" />
+                        <path d="M18 9h2a2 2 0 0 1 2 2v11h-4" />
+                        <path d="M10 6h4" />
+                        <path d="M10 10h4" />
+                        <path d="M10 14h4" />
+                        <path d="M10 18h4" />
+                      </svg>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                      <Typography
+                        sx={{
+                          fontSize: '13.5px',
+                          fontWeight: 700,
+                          color: '#0F172A',
+                          lineHeight: 1.25,
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        {hoveredCase.department || hoveredCase.dept || 'Front Office'}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#64748B',
+                          lineHeight: 1.25,
+                          mt: '3px',
+                          letterSpacing: '-0.01em',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        Department
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Quadrant 3: Bottom-Left (Position) */}
+                  <Box
+                    sx={{
+                      p: '13px 18px',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1.5,
+                      borderRight: '1px solid #F1F5F9',
+                      minWidth: 0,
+                    }}
+                  >
+                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      </svg>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                      <Typography
+                        sx={{
+                          fontSize: '13px',
+                          fontWeight: 700,
+                          color: '#0F172A',
+                          lineHeight: 1.25,
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        {(hoveredCase.position ? hoveredCase.position.split('·')[0].trim() : 'Guest Services Associate')}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#64748B',
+                          lineHeight: 1.25,
+                          mt: '3px',
+                          letterSpacing: '-0.01em',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        Position
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Quadrant 4: Bottom-Right (Designation) */}
+                  <Box
+                    sx={{
+                      p: '13px 18px',
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1.5,
+                      minWidth: 0,
+                    }}
+                  >
+                    <Box sx={{ width: 20, height: 20, flexShrink: 0, color: '#1E293B', display: 'flex', alignItems: 'center', justifyContent: 'center', mt: '1px' }}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="2" y="7" width="20" height="14" rx="2" />
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                      </svg>
+                    </Box>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                      <Typography
+                        sx={{
+                          fontSize: '13px',
+                          fontWeight: 700,
+                          color: '#0F172A',
+                          lineHeight: 1.25,
+                          letterSpacing: '-0.01em',
+                          whiteSpace: 'nowrap',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        {hoveredCase.designation || hoveredCase.title || 'Guest Relations Executive'}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: 400,
+                          color: '#64748B',
+                          lineHeight: 1.25,
+                          mt: '3px',
+                          letterSpacing: '-0.01em',
+                          fontFamily: 'Inter, system-ui, sans-serif',
+                        }}
+                      >
+                        Designation
                       </Typography>
                     </Box>
                   </Box>
