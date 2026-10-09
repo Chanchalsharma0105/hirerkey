@@ -12185,22 +12185,6 @@
             </div>
           </div>
           <input type="file" id="dashFileInput" style="display: none;" onchange="handleDashFileUpload(this.files)" multiple>
-
-          <div style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
-            <span style="font-size: 12px; font-weight: 500; color: #64748B; margin-right: 2px;">Add from</span>
-            <button type="button" class="btn-source-pill active" onclick="document.getElementById('dashFileInput').click()" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 8px; background: #F3EEFF; border: 1px solid #DDD6FE; font-size: 12px; font-weight: 600; color: #7C3AED; cursor: pointer; font-family: inherit;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              <span>My Device</span>
-            </button>
-            <button type="button" onclick="showToast('Attached Google Drive document: Q4_Townhall_SlideDeck.pdf'); addDashAttachedChip('Q4_Townhall_SlideDeck.pdf', '3.2 MB')" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E2E8F0; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; font-family: inherit;">
-              <svg width="14" height="14" viewBox="0 0 87.3 78"><path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/><path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44c-.8 1.4-1.2 2.95-1.2 4.5h27.5z" fill="#00ac47"/><path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/><path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/><path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/><path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 28h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/></svg>
-              <span>Google Drive</span>
-            </button>
-            <button type="button" onclick="showToast('Attached OneDrive document: Benefits_Eligibility_Matrix.xlsx'); addDashAttachedChip('Benefits_Eligibility_Matrix.xlsx', '840 KB')" style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 8px; background: #FFFFFF; border: 1px solid #E2E8F0; font-size: 12px; font-weight: 500; color: #334155; cursor: pointer; font-family: inherit;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#0078D4"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
-              <span>OneDrive</span>
-            </button>
-          </div>
           <div id="dashAttachedChips" style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;"></div>
         </div>
 
