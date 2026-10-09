@@ -1,0 +1,4264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey™ — HR Broadcast Activity</title>
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..800&family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       HIRERKEY PRODUCTION DESIGN TOKENS
+       ========================================================================== */
+    :root {
+      /* Brand Palette */
+      --brand-primary: #7C3AED;
+      --brand-primary-hover: #6D28D9;
+      --brand-primary-dark: #5B21B6;
+      --brand-light: #F5F3FF;
+      --brand-subtle: #EDE9FE;
+      --brand-pill-bg: #F3EEFF;
+      --brand-pill-active: #6D28D9;
+      
+      /* Canvas & Surfaces */
+      --bg-dashboard: #F4EFFB;       /* Lavender Mist Canvas */
+      --bg-surface: #FFFFFF;         /* Crisp pure white surface */
+      --bg-surface-subtle: #F8FAFC;  /* Subtle grey for inputs & badges */
+      --bg-surface-hover: #F1F5F9;   /* Hover background */
+      
+      /* Typography */
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-brand: 'Plus Jakarta Sans', var(--font-main);
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+      
+      --text-heading: #0F172A;       /* Slate 900 */
+      --text-body: #334155;          /* Slate 700 */
+      --text-muted: #64748B;         /* Slate 500 */
+      --text-subtle: #94A3B8;        /* Slate 400 */
+      --text-light: #FFFFFF;
+      
+      /* Borders & Dividers */
+      --border-subtle: #EEF2F6;
+      --border-card: rgba(226, 232, 240, 0.85);
+      --border-focus: #C4B5FD;
+      
+      /* Priority Semantic Colors */
+      --priority-high-bg: #FEE2E2;
+      --priority-high-text: #EF4444;
+      --priority-high-dot: #EF4444;
+
+      --priority-med-bg: #FEF3C7;
+      --priority-med-text: #D97706;
+      --priority-med-dot: #F59E0B;
+
+      --priority-low-bg: #F1F5F9;
+      --priority-low-text: #475569;
+      --priority-low-dot: #94A3B8;
+
+      /* Audience Chip Colors */
+      --chip-audience-bg: #F3EEFF;
+      --chip-audience-text: #7C3AED;
+
+      --chip-marketing-bg: #FFF7ED;
+      --chip-marketing-text: #C2410C;
+
+      --chip-uiux-bg: #EFF6FF;
+      --chip-uiux-text: #1D4ED8;
+
+      --chip-grade-bg: #F0FDF4;
+      --chip-grade-text: #15803D;
+
+      /* Elevation & Shadows */
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-hover: 0 4px 14px rgba(15, 23, 42, 0.05);
+      --shadow-dropdown: 0 14px 34px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
+      --shadow-drawer: -8px 0 32px rgba(15, 23, 42, 0.14);
+      --shadow-modal: 0 24px 48px -12px rgba(15, 23, 42, 0.22);
+      
+      /* Radii */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+      
+      /* Transitions */
+      --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-dashboard);
+      color: var(--text-body);
+      line-height: 1.5;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    input, select, textarea {
+      font-family: inherit;
+      border: none;
+      outline: none;
+      background: none;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(203, 213, 225, 0.6);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    /* ==========================================================================
+       LAYOUT: FLOATING WHITE SIDEBAR ISLAND + LAVENDER CANVAS
+       ========================================================================== */
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+      background-color: var(--bg-dashboard);
+      box-sizing: border-box;
+    }
+
+    /* Elevated Floating White Island Card */
+    .app-sidebar {
+      width: 218px;
+      min-width: 218px;
+      max-width: 218px;
+      height: calc(100vh - 36px);
+      position: sticky;
+      top: 18px;
+      margin: 18px 0 18px 18px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      box-shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+      border: 1px solid rgba(226, 232, 240, 0.7);
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      overflow: visible;
+      box-sizing: border-box;
+      transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1), min-width 0.25s cubic-bezier(0.4, 0, 0.2, 1), max-width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Sidebar Header */
+    .donezo-sidebar-header {
+      padding: 16px 14px 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .donezo-brand-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      min-width: 0;
+    }
+
+    .brand-wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      font-family: var(--font-brand);
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      position: relative;
+      line-height: 1;
+    }
+
+    .logo-hirer {
+      color: #0F172A;
+    }
+
+    .logo-key-wrap {
+      position: relative;
+      color: #0F172A;
+      display: inline-block;
+    }
+
+    .logo-swoosh {
+      position: absolute;
+      left: -13px;
+      bottom: -5px;
+      width: calc(100% + 15px);
+      height: 11px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .brand-version-badge {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      display: inline-block;
+    }
+
+    /* Quick Menu Search */
+    .donezo-search-area {
+      padding: 0 14px 10px 14px;
+      flex-shrink: 0;
+    }
+
+    .donezo-search-pill {
+      display: flex;
+      align-items: center;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      height: 35px;
+      padding: 0 8px 0 10px;
+      gap: 7px;
+      transition: all var(--transition-fast);
+      position: relative;
+      cursor: text;
+    }
+
+    .donezo-search-pill:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+    }
+
+    .donezo-search-pill:focus-within {
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .donezo-search-pill svg.search-icon {
+      color: #94A3B8;
+      flex-shrink: 0;
+      transition: color var(--transition-fast);
+    }
+
+    .donezo-search-pill:focus-within svg.search-icon {
+      color: var(--brand-primary);
+    }
+
+    .donezo-search-pill input {
+      width: 100%;
+      font-size: 12.5px;
+      font-weight: 400;
+      color: #0F172A;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+
+    .donezo-search-pill input::placeholder {
+      color: #94A3B8;
+      font-size: 12px;
+    }
+
+    .sidebar-kbd {
+      font-size: 10.5px;
+      font-family: var(--font-mono);
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    /* Scrollable Navigation */
+    .donezo-nav-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 4px 0 10px 0;
+      display: flex;
+      flex-direction: column;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(203, 213, 225, 0.3) transparent;
+    }
+
+    .donezo-nav-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .donezo-nav-scroll::-webkit-scrollbar-thumb {
+      background: rgba(203, 213, 225, 0.3);
+      border-radius: 4px;
+    }
+
+    /* Category Accordion Header */
+    .donezo-nav-category {
+      display: flex;
+      flex-direction: column;
+      margin-top: 14px;
+    }
+
+    .donezo-nav-category:first-of-type {
+      margin-top: 10px;
+    }
+
+    .donezo-cat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 18px 5px 18px;
+      cursor: pointer;
+      user-select: none;
+      transition: all var(--transition-fast);
+    }
+
+    .donezo-cat-header:hover .donezo-cat-title {
+      color: #1E293B;
+    }
+
+    .donezo-cat-header:hover .donezo-cat-chevron {
+      color: #475569;
+    }
+
+    .donezo-cat-title {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.065em;
+      color: #64748B;
+      transition: color var(--transition-fast);
+    }
+
+    .donezo-cat-chevron {
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      transition: transform var(--transition-fast), color var(--transition-fast);
+    }
+
+    .donezo-nav-category.collapsed .donezo-cat-chevron {
+      transform: rotate(-90deg);
+    }
+
+    .donezo-cat-items {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      overflow: hidden;
+      transition: max-height 0.25s ease, opacity 0.2s ease;
+      max-height: 600px;
+    }
+
+    .donezo-nav-category.collapsed .donezo-cat-items {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .donezo-nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7.5px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      text-decoration: none;
+      transition: background 0.22s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease, box-shadow 0.22s ease;
+      position: relative;
+      cursor: pointer;
+      background: #FFFFFF;
+      margin-bottom: 1.5px;
+    }
+
+    .donezo-nav-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scaleY(0);
+      transform-origin: center;
+      width: 3.5px;
+      height: 18px;
+      background: linear-gradient(180deg, #A78BFA 0%, #7C3AED 100%);
+      border-radius: 0 3px 3px 0;
+      box-shadow: 0 0 6px rgba(124, 58, 237, 0.35);
+      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .donezo-nav-item:not(.active):hover::before {
+      transform: translateY(-50%) scaleY(1);
+      opacity: 0.95;
+    }
+
+    .donezo-nav-item:hover {
+      color: #0F172A;
+      background: linear-gradient(90deg, rgba(124, 58, 237, 0.05) 0%, rgba(248, 250, 252, 0.95) 100%);
+    }
+
+    .donezo-nav-item:hover .donezo-nav-item-left {
+      transform: translateX(3px);
+    }
+
+    .donezo-nav-item:hover .donezo-nav-icon {
+      color: var(--brand-primary);
+      transform: scale(1.12);
+      filter: drop-shadow(0 2px 5px rgba(124, 58, 237, 0.22));
+    }
+
+    .donezo-nav-item:not(.active):hover .donezo-nav-label {
+      color: #0F172A;
+      font-weight: 600;
+    }
+
+    /* Active Item */
+    .donezo-nav-item.active {
+      color: var(--brand-primary) !important;
+      font-weight: 700;
+      background: rgba(124, 58, 237, 0.06) !important;
+    }
+
+    .donezo-nav-item.active:hover {
+      color: var(--brand-primary) !important;
+      background: rgba(124, 58, 237, 0.1) !important;
+    }
+
+    .donezo-nav-item.active .donezo-nav-label {
+      color: var(--brand-primary) !important;
+      font-weight: 700;
+    }
+
+    .donezo-nav-item.active::before {
+      transform: translateY(-50%) scaleY(1) !important;
+      width: 4px;
+      height: 24px;
+      background: var(--brand-primary);
+      border-radius: 0 3px 3px 0;
+      box-shadow: 0 0 8px rgba(124, 58, 237, 0.45);
+      opacity: 1 !important;
+    }
+
+    .donezo-nav-item.active .donezo-nav-icon {
+      color: var(--brand-primary) !important;
+    }
+
+    .donezo-nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .donezo-nav-icon {
+      color: #475569;
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.2s ease, filter 0.2s ease;
+    }
+
+    .donezo-nav-label {
+      font-size: 13px;
+      color: inherit;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.2s ease, font-weight 0.2s ease;
+    }
+
+    .donezo-task-badge {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 1.5px 6px;
+      border-radius: 6px;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
+    }
+
+    /* Bottom Property Switcher */
+    .donezo-sidebar-footer {
+      border-top: 1px solid #EEF2F6;
+      padding: 10px 12px 14px 12px;
+      background: #FFFFFF;
+      position: relative;
+      flex-shrink: 0;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      box-sizing: border-box;
+      z-index: 60;
+    }
+
+    .donezo-workspace-switcher {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      width: 100%;
+      box-sizing: border-box;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    }
+
+    .donezo-workspace-switcher:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
+    }
+
+    .workspace-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .workspace-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+    }
+
+    .workspace-text-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .workspace-category-label {
+      font-size: 10px;
+      color: #94A3B8;
+      font-weight: 500;
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .workspace-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+    }
+
+    .workspace-unfold-icon {
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .donezo-workspace-popover {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 10px;
+      right: 10px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      box-shadow: 0 12px 28px -4px rgba(15, 23, 42, 0.16);
+      padding: 6px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 100;
+      animation: fadeIn 0.18s ease;
+    }
+
+    .donezo-workspace-popover.open {
+      display: flex;
+    }
+
+    .workspace-popover-header {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+      padding: 6px 8px 4px 8px;
+    }
+
+    .workspace-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12.5px;
+      color: var(--text-heading);
+      font-weight: 500;
+      transition: background var(--transition-fast);
+    }
+
+    .workspace-option:hover {
+      background: #F8FAFC;
+    }
+
+    .workspace-option.active {
+      background: var(--brand-light);
+      color: var(--brand-primary);
+      font-weight: 600;
+    }
+
+    /* Collapsed sidebar mode */
+    .app-sidebar.collapsed {
+      width: 68px;
+      min-width: 68px;
+      max-width: 68px;
+    }
+
+    .app-sidebar.collapsed .donezo-sidebar-header {
+      padding: 16px 8px 10px 8px;
+      justify-content: center;
+    }
+
+    .app-sidebar.collapsed .donezo-brand-container,
+    .app-sidebar.collapsed .donezo-cat-header,
+    .app-sidebar.collapsed .donezo-nav-label,
+    .app-sidebar.collapsed .donezo-task-badge,
+    .app-sidebar.collapsed .workspace-text-group,
+    .app-sidebar.collapsed .workspace-unfold-icon,
+    .app-sidebar.collapsed .donezo-search-pill input,
+    .app-sidebar.collapsed .donezo-search-pill .sidebar-kbd {
+      display: none !important;
+    }
+
+    .app-sidebar.collapsed .donezo-search-area {
+      padding: 2px 8px 6px 8px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .app-sidebar.collapsed .donezo-search-pill {
+      width: 44px;
+      height: 38px;
+      margin: 0 auto;
+      padding: 0;
+      justify-content: center;
+      border-radius: 10px;
+      background: transparent;
+      border: 1px solid transparent;
+      color: #64748B;
+    }
+
+    .app-sidebar.collapsed .donezo-cat-items {
+      max-height: none !important;
+      opacity: 1 !important;
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      width: 100%;
+    }
+
+    .app-sidebar.collapsed .donezo-nav-item {
+      width: 44px;
+      height: 44px;
+      min-height: 44px;
+      padding: 0;
+      margin: 2px auto;
+      justify-content: center;
+      border-radius: 10px;
+      background: transparent;
+      color: #475569;
+    }
+
+    .app-sidebar.collapsed .donezo-nav-item::before {
+      display: none !important;
+    }
+
+    .app-sidebar.collapsed .donezo-nav-item-left {
+      gap: 0;
+      justify-content: center;
+    }
+
+    .app-sidebar.collapsed .donezo-workspace-switcher {
+      justify-content: center;
+      padding: 6px;
+    }
+
+    /* ==========================================================================
+       MAIN VIEWPORT WRAPPER
+       ========================================================================== */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      min-height: 100vh;
+      background: var(--bg-dashboard);
+      padding: 18px 24px 24px 18px;
+      box-sizing: border-box;
+    }
+
+    /* Floating Topbar Header */
+    .topbar {
+      height: auto;
+      min-height: 44px;
+      background: transparent;
+      border: none;
+      padding: 0 0 16px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 50;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .menu-toggle-btn,
+    .screen-toggle-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #64748B;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      background: #FFFFFF;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .menu-toggle-btn:hover,
+    .screen-toggle-btn:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: var(--brand-primary);
+    }
+
+    .topbar-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(203, 213, 225, 0.8);
+      margin: 0 2px;
+      flex-shrink: 0;
+    }
+
+    /* Global Search ("Search this page" filters all broadcasts) */
+    .topbar-search {
+      position: relative;
+      height: 38px;
+      width: 280px;
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 8px;
+      padding: 0 12px 0 10px;
+      gap: 8px;
+      transition: all var(--transition-fast);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .topbar-search:focus-within {
+      width: 320px;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .topbar-search svg.search-icon {
+      color: #94A3B8;
+      flex-shrink: 0;
+      transition: color var(--transition-fast);
+    }
+
+    .topbar-search:focus-within svg.search-icon {
+      color: var(--brand-primary);
+    }
+
+    .topbar-search input {
+      width: 100%;
+      font-size: 13px;
+      color: var(--text-heading);
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    .topbar-search input::placeholder {
+      color: #94A3B8;
+      font-size: 13px;
+    }
+
+    .topbar-search-clear {
+      color: #94A3B8;
+      display: none;
+      place-items: center;
+      cursor: pointer;
+      font-size: 11px;
+      padding: 2px;
+      border-radius: 4px;
+    }
+
+    .topbar-search-clear:hover {
+      color: #475569;
+      background: #E2E8F0;
+    }
+
+    /* Topbar Right Actions */
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-ask-hyiq {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 38px;
+      padding: 0 14px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-ask-hyiq:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+    }
+
+    .btn-voice-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 38px;
+      padding: 0 12px;
+      border-radius: var(--radius-full);
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .btn-voice-capsule:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+    }
+
+    .voice-bars {
+      display: flex;
+      align-items: center;
+      gap: 2.5px;
+      height: 15px;
+    }
+
+    .voice-bar {
+      width: 2.5px;
+      border-radius: 2px;
+      animation: voicePulse 1.2s ease-in-out infinite alternate;
+    }
+
+    .voice-bar-1 { height: 10px; background: #7C3AED; animation-delay: 0.1s; }
+    .voice-bar-2 { height: 15px; background: #8B5CF6; animation-delay: 0.25s; }
+    .voice-bar-3 { height: 13px; background: #6D28D9; animation-delay: 0.4s; }
+    .voice-bar-4 { height: 9px; background: #A78BFA; animation-delay: 0.15s; }
+
+    @keyframes voicePulse {
+      0% { transform: scaleY(0.4); opacity: 0.7; }
+      100% { transform: scaleY(1.15); opacity: 1; }
+    }
+
+    .btn-voice-text {
+      color: #334155;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .voice-shortcut {
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #64748B;
+    }
+
+    .header-notif-wrap {
+      position: relative;
+    }
+
+    .notification-btn {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #334155;
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .notification-btn:hover {
+      color: var(--brand-primary);
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .notification-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: #DC2626;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9999px;
+      display: grid;
+      place-items: center;
+      border: 2px solid #FFFFFF;
+      padding: 0 4px;
+      line-height: 1;
+      box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+    }
+
+    .user-profile-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 2px 8px 2px 4px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      background: transparent;
+      user-select: none;
+    }
+
+    .user-profile-btn:hover {
+      background: #FFFFFF;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+    }
+
+    .user-avatar-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1.5px solid #E2E8F0;
+      background: #FEF3C7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .user-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-heading);
+      letter-spacing: -0.01em;
+    }
+
+    .user-chevron {
+      color: #94A3B8;
+      transition: transform var(--transition-fast);
+    }
+
+    .profile-popover {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      width: 240px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: var(--shadow-dropdown);
+      padding: 6px;
+      display: none;
+      z-index: 150;
+      animation: fadeIn 0.18s ease;
+    }
+
+    .profile-popover.open {
+      display: block;
+    }
+
+    .dropdown-action-item {
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--text-body);
+      font-weight: 500;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .dropdown-action-item:hover {
+      background: #F8FAFC;
+      color: var(--brand-primary);
+    }
+
+    .dropdown-action-item.danger:hover {
+      background: #FEF2F2;
+      color: #DC2626;
+    }
+
+    .dropdown-divider {
+      height: 1px;
+      background: #EEF2F6;
+      margin: 4px 0;
+    }
+
+    /* ==========================================================================
+       PAGE CONTAINER & HEADER
+       ========================================================================== */
+    .page-container {
+      padding: 4px 0 32px 0;
+      max-width: 1440px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .breadcrumb-nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    .breadcrumb-link:hover {
+      color: var(--brand-primary);
+    }
+
+    .breadcrumb-sep {
+      color: var(--text-subtle);
+      font-size: 11px;
+    }
+
+    .breadcrumb-current {
+      color: var(--text-heading);
+      font-weight: 600;
+    }
+
+    .page-header-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+
+    .page-subtitle {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      letter-spacing: -0.01em;
+    }
+
+    /* ==========================================================================
+       CLEAN CONTROL BAR (REFRESH + FILTERS + + NEW BROADCAST CTA ONLY)
+       Showing count & Analytics buttons removed per user instructions
+       ========================================================================== */
+    .control-row {
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 12px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 2px 6px rgba(15, 23, 42, 0.02);
+      flex-wrap: wrap;
+    }
+
+    /* Left Group: Refresh + Filters */
+    .control-row-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-refresh-bar {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      display: grid;
+      place-items: center;
+      color: #64748B;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .btn-refresh-bar:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+      color: var(--brand-primary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-refresh-bar.rotating svg {
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .filter-divider {
+      width: 1px;
+      height: 22px;
+      background: #E2E8F0;
+      margin: 0 2px;
+      flex-shrink: 0;
+    }
+
+    .filter-dropdown-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-select-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .filter-select {
+      height: 36px;
+      padding: 0 26px 0 10px;
+      border-radius: 8px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-body);
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-select:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+    }
+
+    .filter-select:focus {
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .filter-select-icon {
+      position: absolute;
+      right: 9px;
+      pointer-events: none;
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+    }
+
+    .clear-all-filters-btn {
+      font-size: 12px;
+      color: var(--brand-primary);
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: background var(--transition-fast);
+    }
+
+    .clear-all-filters-btn:hover {
+      background: var(--brand-light);
+    }
+
+    /* Center Group: Inline Analytics Summary Pill (NO BUTTON!) */
+    .control-row-center {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bar-analytics-pill {
+      display: inline-flex;
+      align-items: center;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .analytics-stat {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .analytics-stat strong {
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .analytics-stat.total-sent strong { color: #92400E; }
+    .analytics-stat.this-month strong { color: #0284C7; }
+    .analytics-stat.high-priority strong { color: #DC2626; }
+
+    .analytics-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    .dot-total { background: #F59E0B; }
+    .dot-month { background: #0EA5E9; }
+    .dot-priority { background: #EF4444; }
+
+    .analytics-sep {
+      color: #CBD5E1;
+      font-size: 11px;
+    }
+
+    /* Right Group: Broadcast Button Only */
+    .control-row-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .btn-primary-new {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 36px;
+      padding: 0 15px;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+      flex-shrink: 0;
+    }
+
+    .btn-primary-new:hover {
+      background: var(--brand-primary-hover);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       BROADCAST ACTIVITY FEED ROWS (EXACT REVERT TO MEDIA_1791448249384.PNG)
+       3-Line Structure:
+         Line 1: Title + Priority Badge (e.g. • Low / • High)
+         Line 2: Preview snippet with purple "Read more" ... and on far right: "01-10 · 6:07 PM    ⋮"
+         Line 3: Audience & file attachment chips
+       ========================================================================== */
+    /* ==========================================================================
+       BROADCAST ACTIVITY FEED: 3-LINE ROW WITH STRAIGHT-LINE RIGHT META
+       - Line 1: Broadcast Title
+       - Line 2: Message preview snippet + Read more directly at end of sentence
+       - Line 3: Audience & Attachment chips
+       - Right: Priority tag + Date/time + Kebab menu aligned in a straight line
+       ========================================================================== */
+    .broadcast-feed {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .broadcast-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 12px;
+      padding: 13px 18px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      position: relative;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .broadcast-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+      transform: translateY(-1px);
+    }
+
+    .broadcast-card.selected {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.15);
+      background: #FCFAFF;
+    }
+
+    /* Column 1: Category Icon removed per user request */
+    .col-category-icon {
+      display: none !important;
+    }
+
+    /* Column 2: Title & Message Preview */
+    .col-title-message {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .card-broadcast-title {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .card-broadcast-snippet {
+      font-size: 13px;
+      color: #64748B;
+      line-height: 1.45;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin: 0;
+    }
+
+    /* Column 3: Metadata (Audience chip [All] + Priority chip, Bottom: Attachment chip) */
+    .col-metadata {
+      flex-shrink: 0;
+      width: 215px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .metadata-top-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .metadata-bottom-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip-audience {
+      font-size: 11.5px;
+      font-weight: 600;
+      background: #F1F5F9;
+      color: #475569;
+      padding: 2.5px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      line-height: 1.25;
+    }
+
+    .chip-priority {
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 2.5px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      line-height: 1.25;
+    }
+
+    .chip-priority.priority-low {
+      background: #ECFDF5;
+      color: #10B981;
+    }
+    .chip-priority.priority-low .priority-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+
+    .chip-priority.priority-medium {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+    .chip-priority.priority-medium .priority-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #F59E0B;
+    }
+
+    .chip-priority.priority-high {
+      background: #FEE2E2;
+      color: #EF4444;
+    }
+    .chip-priority.priority-high .priority-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #EF4444;
+    }
+
+    .chip-attachment {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #475569;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      max-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+    }
+
+    /* Column 4: Sender Info (34px photo avatar, By [Name], Date & Time) */
+    .col-sender-info {
+      flex-shrink: 0;
+      width: 195px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sender-avatar-img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid #EEF2F6;
+      flex-shrink: 0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+    }
+
+    .sender-avatar-initials {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: var(--brand-primary);
+      font-weight: 700;
+      font-size: 12px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .sender-text-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .sender-by-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1E293B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+
+    .sender-datetime {
+      font-size: 11.5px;
+      color: #94A3B8;
+      white-space: nowrap;
+      line-height: 1.25;
+    }
+
+    /* Column 5: Action Menu (Far Right ••• button) */
+    .col-action-menu {
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-more-dots {
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border-radius: 6px;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-more-dots:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .action-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+      width: 160px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      box-shadow: var(--shadow-dropdown);
+      padding: 4px;
+      display: none;
+      z-index: 100;
+      animation: fadeIn 0.15s ease;
+    }
+
+    .action-dropdown-menu.open {
+      display: block;
+    }
+
+    .action-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--text-heading);
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .action-menu-item:hover {
+      background: #F8FAFC;
+    }
+
+    .action-menu-item.danger {
+      color: #DC2626;
+    }
+
+    .action-menu-item.danger:hover {
+      background: #FEF2F2;
+    }
+
+    /* ==========================================================================
+       EMPTY & ZERO FILTER STATES
+       ========================================================================== */
+    .empty-state-box {
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 12px;
+      padding: 48px 24px;
+      text-align: center;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .empty-state-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: var(--brand-light);
+      color: var(--brand-primary);
+      display: grid;
+      place-items: center;
+      margin-bottom: 4px;
+    }
+
+    .empty-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .empty-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      max-width: 420px;
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       PAGINATION BAR
+       ========================================================================== */
+    .pagination-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding: 10px 4px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .pagination-pages {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .page-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all var(--transition-fast);
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: var(--text-body);
+    }
+
+    .page-btn:hover {
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .page-btn.active {
+      background: var(--brand-primary);
+      border-color: var(--brand-primary);
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    .page-btn.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       RIGHT-SIDE DETAIL DRAWER (580px)
+       ========================================================================== */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.35);
+      backdrop-filter: blur(2px);
+      z-index: 200;
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+    }
+
+    .drawer-overlay.open {
+      display: block;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-container {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 580px;
+      max-width: 90vw;
+      background: #FFFFFF;
+      z-index: 210;
+      box-shadow: var(--shadow-drawer);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform var(--transition-smooth);
+      pointer-events: none;
+    }
+
+    .drawer-container.open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .drawer-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #EEF2F6;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+    }
+
+    .drawer-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .drawer-category-pill {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--brand-primary);
+    }
+
+    .drawer-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-heading);
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .drawer-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #94A3B8;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .drawer-close-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .drawer-sender-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+    }
+
+    .drawer-sender-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .drawer-sender-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .drawer-sender-role {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .drawer-date {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .drawer-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94A3B8;
+      margin-bottom: 8px;
+    }
+
+    .drawer-audience-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .drawer-message-content {
+      font-size: 14px;
+      color: var(--text-heading);
+      line-height: 1.65;
+      white-space: pre-line;
+      background: #FFFFFF;
+      padding: 16px;
+      border: 1px solid #EEF2F6;
+      border-radius: 10px;
+    }
+
+    .drawer-attachments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .drawer-attachment-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      background: #F8FAFC;
+      transition: all var(--transition-fast);
+    }
+
+    .drawer-attachment-item:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .drawer-att-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .drawer-att-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: #EDE9FE;
+      color: var(--brand-primary);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .drawer-att-filename {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .drawer-att-filesize {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .btn-download-att {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand-primary);
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #FFFFFF;
+      border: 1px solid #DDD6FE;
+    }
+
+    .btn-download-att:hover {
+      background: var(--brand-light);
+    }
+
+    .drawer-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #EEF2F6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+    }
+
+    .drawer-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-drawer-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 36px;
+      padding: 0 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: var(--text-body);
+    }
+
+    .btn-drawer-action:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: var(--text-heading);
+    }
+
+    .btn-drawer-action.danger {
+      color: #DC2626;
+      border-color: #FCA5A5;
+      background: #FEF2F2;
+    }
+
+    .btn-drawer-action.danger:hover {
+      background: #FEE2E2;
+      border-color: #F87171;
+    }
+
+    /* ==========================================================================
+       CREATE NEW BROADCAST MODAL (Matching media_1791527904661.jpg)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 250;
+      display: none;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-normal);
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: grid;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-container {
+      background: #FFFFFF;
+      border-radius: 14px;
+      width: 620px;
+      max-width: 95vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-modal);
+      animation: modalScale 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      overflow: hidden;
+    }
+
+    @keyframes modalScale {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid #EEF2F6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-header-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #F5F3FF;
+      color: #7C3AED;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .modal-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.01em;
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .modal-subtitle {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .modal-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #94A3B8;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      background: none;
+      border: none;
+    }
+
+    .modal-close-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .modal-body {
+      padding: 22px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-dual-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-heading);
+      margin: 0;
+    }
+
+    .modal-select-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .modal-select-wrap .select-chevron {
+      position: absolute;
+      right: 12px;
+      pointer-events: none;
+      color: #64748B;
+    }
+
+    .form-input,
+    .form-select {
+      width: 100%;
+      height: 40px;
+      padding: 0 12px;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      font-size: 13.5px;
+      color: var(--text-heading);
+      background: #FFFFFF;
+      transition: all var(--transition-fast);
+    }
+
+    .form-select {
+      appearance: none;
+      padding-right: 32px;
+      cursor: pointer;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .editor-box:focus-within {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .btn-ai-assist {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      color: #7C3AED;
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-ai-assist:hover {
+      background: #EDE9FE;
+      border-color: #C4B5FD;
+      transform: translateY(-1px);
+    }
+
+    /* Message Editor Box with Toolbar */
+    .editor-box {
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FFFFFF;
+      transition: border-color var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .editor-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 6px 10px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #EEF2F6;
+    }
+
+    .toolbar-btn {
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: background var(--transition-fast);
+    }
+
+    .toolbar-btn:hover {
+      background: #E2E8F0;
+      color: #0F172A;
+    }
+
+    .toolbar-sep {
+      width: 1px;
+      height: 16px;
+      background: #E2E8F0;
+      margin: 0 4px;
+    }
+
+    .editor-textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      padding: 12px;
+      font-size: 13.5px;
+      color: var(--text-heading);
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.5;
+      font-family: inherit;
+      background: transparent;
+    }
+
+    .editor-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 6px 12px;
+      border-top: 1px solid #F1F5F9;
+      background: #FFFFFF;
+    }
+
+    .editor-counter {
+      font-size: 11px;
+      color: #94A3B8;
+    }
+
+    /* Modal Dropzone */
+    .modal-dropzone {
+      border: 1.5px dashed #CBD5E1;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      background: #F8FAFC;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .modal-dropzone:hover {
+      border-color: var(--brand-primary);
+      background: #F5F3FF;
+    }
+
+    .modal-dropzone-icon {
+      color: var(--brand-primary);
+      display: grid;
+      place-items: center;
+      margin-bottom: 2px;
+    }
+
+    .modal-dropzone-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-heading);
+    }
+
+    .modal-dropzone-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    .modal-sources-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .sources-label {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #94A3B8;
+    }
+
+    .btn-source-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      font-size: 11.5px;
+      font-weight: 500;
+      color: #475569;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-source-chip:hover {
+      border-color: #CBD5E1;
+      color: #0F172A;
+      background: #F8FAFC;
+    }
+
+    .modal-attached-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .modal-attached-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 12px;
+      color: var(--brand-primary);
+      font-weight: 500;
+    }
+
+    .modal-attached-remove {
+      cursor: pointer;
+      color: #EF4444;
+      font-weight: 700;
+      font-size: 12px;
+      margin-left: 2px;
+    }
+
+    /* Modal Footer */
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #EEF2F6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #FFFFFF;
+    }
+
+    .modal-info-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .modal-footer-btns {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-modal-cancel {
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #475569;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-modal-cancel:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    .btn-modal-send {
+      height: 38px;
+      padding: 0 18px;
+      border-radius: 8px;
+      border: none;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-modal-send:hover {
+      background: var(--brand-primary-hover);
+      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.35);
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast-msg {
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: slideInUp 0.25s ease;
+      pointer-events: auto;
+    }
+
+    .toast-msg.success {
+      background: #0F172A;
+      border-left: 4px solid #10B981;
+    }
+
+    .toast-msg.danger {
+      background: #0F172A;
+      border-left: 4px solid #EF4444;
+    }
+
+    @keyframes slideInUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 1080px) {
+      .app-sidebar {
+        position: fixed;
+        left: 0;
+        top: 18px;
+        z-index: 200;
+      }
+      .control-row {
+        gap: 12px;
+      }
+      .control-row-right {
+        margin-left: 0;
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-layout">
+  
+  <!-- ==========================================================================
+       1. LEFT SIDE MENU (ELEVATED PURE WHITE FLOATING CARD)
+       ========================================================================== -->
+  <aside class="app-sidebar donezo-sidebar" id="appSidebar">
+    
+    <!-- 1. Header with Hirerkey Logo & Version Badge -->
+    <div class="donezo-sidebar-header">
+      <a href="dashboard_revamp.html" class="brand-container donezo-brand-container" title="Hirerkey Dashboard">
+        <div class="brand-wordmark">
+          <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+        </div>
+        <span class="brand-version-badge">v24.0.0</span>
+      </a>
+    </div>
+
+    <!-- Quick Menu Search -->
+    <div class="sidebar-search-area donezo-search-area">
+      <div class="sidebar-search-pill donezo-search-pill" id="donezoSearchPill" title="Search menus (⌘K)" onclick="focusSidebarSearch()">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" placeholder="Search..." id="sidebarSearchInput" oninput="filterSidebarMenu(this.value)" autocomplete="off" spellcheck="false">
+        <kbd class="sidebar-kbd">⌘K</kbd>
+      </div>
+    </div>
+
+    <!-- 2. Scrollable Navigation -->
+    <nav class="donezo-nav-scroll" id="sidebarNavList">
+      
+      <!-- Standalone Dashboard Item -->
+      <a href="dashboard_revamp.html" class="donezo-nav-item" data-title="Dashboard" title="Dashboard">
+        <div class="donezo-nav-item-left">
+          <span class="donezo-nav-icon">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="3" y="3" width="7.5" height="7.5" rx="2"></rect>
+              <rect x="13.5" y="3" width="7.5" height="7.5" rx="2"></rect>
+              <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"></rect>
+              <rect x="3" y="13.5" width="7.5" height="7.5" rx="2"></rect>
+            </svg>
+          </span>
+          <span class="donezo-nav-label">Dashboard</span>
+        </div>
+      </a>
+
+      <!-- 1. Intelligence -->
+      <div class="donezo-nav-category" data-cat="intelligence">
+        <div class="donezo-cat-header" onclick="toggleDonezoCategory(this)">
+          <span class="donezo-cat-title">Intelligence</span>
+          <span class="donezo-cat-chevron">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="donezo-cat-items">
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Analytics Hub" onclick="showToast('Analytics Hub opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path><path d="M4 20h16"></path></svg>
+              </span>
+              <span class="donezo-nav-label">Analytics Hub</span>
+            </div>
+          </a>
+          <a href="hyiq_preview.html" class="donezo-nav-item" data-title="HyIQ Studio">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </span>
+              <span class="donezo-nav-label">HyIQ Studio</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Knowledge Hub" onclick="showToast('Knowledge Hub opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><circle cx="12" cy="9" r="2.5"></circle><path d="M9 14h6"></path></svg>
+              </span>
+              <span class="donezo-nav-label">Knowledge Hub</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Onboarding -->
+      <div class="donezo-nav-category" data-cat="onboarding">
+        <div class="donezo-cat-header" onclick="toggleDonezoCategory(this)">
+          <span class="donezo-cat-title">Onboarding</span>
+          <span class="donezo-cat-chevron">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="donezo-cat-items">
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Orientation" onclick="showToast('Orientation module opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg>
+              </span>
+              <span class="donezo-nav-label">Orientation</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Department Tour" onclick="showToast('Department Tour module opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path><line x1="9" y1="7" x2="9" y2="7.01"></line><line x1="15" y1="7" x2="15" y2="7.01"></line></svg>
+              </span>
+              <span class="donezo-nav-label">Department Tour</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. All Employees -->
+      <div class="donezo-nav-category" data-cat="all-employees">
+        <div class="donezo-cat-header" onclick="toggleDonezoCategory(this)">
+          <span class="donezo-cat-title">All Employees</span>
+          <span class="donezo-cat-chevron">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="donezo-cat-items">
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Pre Boarding" onclick="showToast('Pre Boarding view opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+              </span>
+              <span class="donezo-nav-label">Pre Boarding</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Active" onclick="showToast('Active staff view opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg>
+              </span>
+              <span class="donezo-nav-label">Active</span>
+            </div>
+          </a>
+          <a href="offboarding_preview.html" class="donezo-nav-item" data-title="Off-boarding">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+              </span>
+              <span class="donezo-nav-label">Off-boarding</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Exit" onclick="showToast('Exit workflow opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+              </span>
+              <span class="donezo-nav-label">Exit</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. Performance Tools -->
+      <div class="donezo-nav-category" data-cat="performance-tools">
+        <div class="donezo-cat-header" onclick="toggleDonezoCategory(this)">
+          <span class="donezo-cat-title">Performance Tools</span>
+          <span class="donezo-cat-chevron">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="donezo-cat-items">
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="1-on-1 Check-ins" onclick="showToast('1-on-1 Check-ins module opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </span>
+              <span class="donezo-nav-label">1-on-1 Check-ins</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Create Appraisals" onclick="showToast('Create Appraisals tool opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+              </span>
+              <span class="donezo-nav-label">Create Appraisals</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. Workplace (HR Broadcast ACTIVE) -->
+      <div class="donezo-nav-category" data-cat="workplace">
+        <div class="donezo-cat-header" onclick="toggleDonezoCategory(this)">
+          <span class="donezo-cat-title">Workplace</span>
+          <span class="donezo-cat-chevron">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+        </div>
+        <div class="donezo-cat-items">
+          <a href="hr_broadcast.html" class="donezo-nav-item active" data-title="HR Broadcast" title="HR Broadcast Activity">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </span>
+              <span class="donezo-nav-label">HR Broadcast</span>
+            </div>
+          </a>
+          <a href="approval_flows_preview.html" class="donezo-nav-item" data-title="Pending Approvals">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              </span>
+              <span class="donezo-nav-label">Pending Approvals</span>
+            </div>
+            <span class="donezo-task-badge">5</span>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Shift Roster" onclick="showToast('Shift Roster opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              </span>
+              <span class="donezo-nav-label">Shift Roster</span>
+            </div>
+          </a>
+          <a href="javascript:void(0)" class="donezo-nav-item" data-title="Org Chart" onclick="showToast('Org Chart opened')">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="4" rx="1"></rect><rect x="2" y="17" width="6" height="4" rx="1"></rect><rect x="16" y="17" width="6" height="4" rx="1"></rect><path d="M12 7v5m0 0H5v5m7-5h9v5"></path></svg>
+              </span>
+              <span class="donezo-nav-label">Org Chart</span>
+            </div>
+          </a>
+          <a href="property_settings_preview.html" class="donezo-nav-item" data-title="Property Settings">
+            <div class="donezo-nav-item-left">
+              <span class="donezo-nav-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </span>
+              <span class="donezo-nav-label">Property Settings</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- 3. Bottom Property / Workspace Switcher -->
+    <div class="donezo-sidebar-footer">
+      <div class="donezo-workspace-switcher" id="orgSwitcherBtn" onclick="toggleOrgSwitcher()">
+        <div class="workspace-info">
+          <div class="workspace-avatar noisiv-avatar" title="(TEST) Noisiv Consulting">
+            <svg class="noisiv-emblem-svg" viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="noisivBgGrad" cx="42%" cy="38%" r="60%">
+                  <stop offset="0%" stop-color="#281347"/>
+                  <stop offset="65%" stop-color="#140827"/>
+                  <stop offset="100%" stop-color="#080312"/>
+                </radialGradient>
+              </defs>
+              <circle cx="16" cy="16" r="14.2" fill="url(#noisivBgGrad)"/>
+              <rect x="8.2" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+              <rect x="20.6" y="7.5" width="3.2" height="17" rx="1.6" fill="#FFFFFF"/>
+              <line x1="6.8" y1="5.2" x2="25.2" y2="26.8" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+              <circle cx="16" cy="16" r="14.2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+            </svg>
+          </div>
+          <div class="workspace-text-group">
+            <span class="workspace-category-label">Property</span>
+            <span class="workspace-title" id="currentOrgTitle">(TEST) Noisiv Con...</span>
+          </div>
+        </div>
+        <span class="workspace-unfold-icon">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 9l5-5 5 5"></path>
+            <path d="M7 15l5 5 5-5"></path>
+          </svg>
+        </span>
+      </div>
+
+      <!-- Popover menu -->
+      <div class="donezo-workspace-popover" id="workspacePopover">
+        <div class="workspace-popover-header">Properties & Workspaces</div>
+        <div class="workspace-option active" onclick="selectWorkspace('(TEST) Noisiv Con...')">
+          <span>(TEST) Noisiv Consulting</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <div class="workspace-option" onclick="selectWorkspace('Acme Corp Global')">
+          <span>Acme Corp Global</span>
+        </div>
+        <div class="workspace-option" onclick="selectWorkspace('Hirerkey Tech Demo')">
+          <span>Hirerkey Tech Demo</span>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ==========================================================================
+       MAIN VIEWPORT WRAPPER
+       ========================================================================== -->
+  <div class="main-wrapper">
+    
+    <!-- FLOATING TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <!-- Sidebar Toggle [ ◫ ] -->
+        <button class="menu-toggle-btn" id="topbarSidebarToggle" title="Toggle Sidebar" onclick="toggleSidebarFull()">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+            <line x1="9" y1="3" x2="9" y2="21"></line>
+          </svg>
+        </button>
+
+        <!-- Display view icon [ 🖥 ] -->
+        <button class="screen-toggle-btn" title="Display View" onclick="showToast('Display presentation mode toggled')">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </button>
+
+        <div class="topbar-divider"></div>
+
+        <!-- Global Search ("Search this page" filters all broadcasts) -->
+        <div class="topbar-search">
+          <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" placeholder="Search this page" id="globalPageSearch" oninput="handleSearch(this.value)" autocomplete="off">
+          <span class="topbar-search-clear" id="topbarSearchClear" onclick="clearSearch()">✕</span>
+        </div>
+      </div>
+
+      <!-- Right Actions (Ask HyIQ, Voice, Bell 55, Profile) -->
+      <div class="topbar-right">
+        <!-- [ 🤖 Ask HyIQ ] -->
+        <button class="btn-ask-hyiq" title="Ask HyIQ AI Assistant" onclick="showToast('HyIQ Assistant opened')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3.5" y="6" width="17" height="15" rx="7.5" fill="#FFFFFF"/>
+            <circle cx="8.5" cy="12.5" r="1.8" fill="#7C3AED"/>
+            <circle cx="15.5" cy="12.5" r="1.8" fill="#7C3AED"/>
+            <path d="M9.5 15.8C10.5 17.2 13.5 17.2 14.5 15.8" stroke="#7C3AED" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span>Ask HyIQ</span>
+        </button>
+
+        <!-- [ 📶 Voice ⌘⇧Space ] -->
+        <button class="btn-voice-capsule" title="HyIQ Voice Command (⌘ Space)" onclick="showToast('Listening for HyIQ voice command...')">
+          <div class="voice-bars">
+            <div class="voice-bar voice-bar-1"></div>
+            <div class="voice-bar voice-bar-2"></div>
+            <div class="voice-bar voice-bar-3"></div>
+            <div class="voice-bar voice-bar-4"></div>
+          </div>
+          <span class="btn-voice-text">Voice</span>
+          <kbd class="voice-shortcut">⌘⇧Space</kbd>
+        </button>
+
+        <!-- Notification Bell with Badge 55 -->
+        <div class="header-notif-wrap">
+          <button class="notification-btn" title="55 Unread Notifications" onclick="showToast('You have 55 unread notifications')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-count">55</span>
+          </button>
+        </div>
+
+        <!-- User Profile (Chanchal Sharma) -->
+        <div style="position: relative;">
+          <div class="user-profile-btn" onclick="toggleProfileMenu()">
+            <div class="user-avatar-wrap">
+              <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=120&h=120&q=80" alt="Chanchal Sharma" class="user-avatar-img">
+            </div>
+            <span class="user-name">Chanchal Sharma</span>
+            <svg class="user-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </div>
+
+          <!-- Dropdown -->
+          <div class="profile-popover" id="profilePopover">
+            <div style="padding: 10px 12px; border-bottom: 1px solid var(--border-subtle);">
+              <div style="font-weight: 700; color: var(--text-heading); font-size: 13.5px;">Chanchal Sharma</div>
+              <div style="font-size: 11.5px; color: var(--text-muted);">Administrator • Noisiv Consulting</div>
+            </div>
+            <div style="padding: 6px 0;">
+              <a href="javascript:void(0)" class="dropdown-action-item" onclick="showToast('Profile clicked')">My Profile</a>
+              <a href="javascript:void(0)" class="dropdown-action-item" onclick="showToast('Account Settings clicked')">Account Settings</a>
+              <div class="dropdown-divider"></div>
+              <a href="javascript:void(0)" class="dropdown-action-item danger" onclick="showToast('Sign out clicked')">Log Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==========================================================================
+       PAGE CONTAINER
+       ========================================================================== -->
+    <main class="page-container">
+      
+      <!-- Subtle Breadcrumb -->
+      <nav class="breadcrumb-nav">
+        <a href="dashboard_revamp.html" class="breadcrumb-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+          <span>Home</span>
+        </a>
+        <span class="breadcrumb-sep">→</span>
+        <span class="breadcrumb-current">HR Broadcast</span>
+      </nav>
+
+      <!-- Clean Calm Page Header (Stat cards removed per user request) -->
+      <div class="page-header-row">
+        <h1 class="page-title">HR Broadcast</h1>
+        <p class="page-subtitle">Keep everyone aligned with timely updates and announcements.</p>
+      </div>
+
+      <!-- ==========================================================================
+           CLEAN UNIFIED CONTROL BAR (REFRESH + FILTERS + + NEW BROADCAST CTA ONLY)
+           Count text & Analytics removed per user request
+           ========================================================================== -->
+      <div class="control-row">
+        
+        <!-- Left: Refresh Button + Dropdown Filters -->
+        <div class="control-row-left">
+          
+          <!-- Refresh in this bar -->
+          <button class="btn-refresh-bar" id="refreshBtn" title="Refresh broadcasts feed" onclick="refreshList()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"/>
+            </svg>
+          </button>
+
+          <div class="filter-divider"></div>
+
+          <!-- Filters Group -->
+          <div class="filter-dropdown-group">
+            
+            <!-- Audience Filter -->
+            <div class="filter-select-wrap">
+              <select class="filter-select" id="filterAudience" onchange="applyFilters()">
+                <option value="all">Audience: All</option>
+                <option value="all-employees">All Employees</option>
+                <option value="department">Department</option>
+                <option value="grade">Grade</option>
+                <option value="designation">Designation</option>
+                <option value="custom">Custom Group</option>
+              </select>
+              <span class="filter-select-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </div>
+
+            <!-- Priority Filter -->
+            <div class="filter-select-wrap">
+              <select class="filter-select" id="filterPriority" onchange="applyFilters()">
+                <option value="all">Priority: All</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+              <span class="filter-select-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </div>
+
+            <!-- Date Filter -->
+            <div class="filter-select-wrap">
+              <select class="filter-select" id="filterDate" onchange="applyFilters()">
+                <option value="all">Date: All Time</option>
+                <option value="today">Today</option>
+                <option value="this-week">This Week</option>
+                <option value="this-month">This Month</option>
+              </select>
+              <span class="filter-select-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </div>
+
+            <!-- Status Filter -->
+            <div class="filter-select-wrap">
+              <select class="filter-select" id="filterStatus" onchange="applyFilters()">
+                <option value="all">Status: All</option>
+                <option value="sent">Sent</option>
+                <option value="draft">Draft</option>
+                <option value="scheduled">Scheduled</option>
+              </select>
+              <span class="filter-select-icon">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </span>
+            </div>
+
+          </div>
+
+          <button class="clear-all-filters-btn" id="clearAllFiltersBtn" onclick="resetAllFilters()">Clear filters</button>
+        </div>
+
+        <!-- Center: Quick Analytics Summary Pill (NO BUTTON!) -->
+        <div class="control-row-center">
+          <div class="bar-analytics-pill" title="Broadcast Quick Analytics">
+            <span class="analytics-stat total-sent">
+              <span class="analytics-dot dot-total"></span>
+              <strong id="statTotalSent">55</strong> Sent
+            </span>
+            <span class="analytics-sep">·</span>
+            <span class="analytics-stat this-month">
+              <span class="analytics-dot dot-month"></span>
+              <strong id="statThisMonth">5</strong> This Month
+            </span>
+            <span class="analytics-sep">·</span>
+            <span class="analytics-stat high-priority">
+              <span class="analytics-dot dot-priority"></span>
+              <strong id="statHighPriority">24</strong> High Priority
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: + New Broadcast Primary CTA -->
+        <div class="control-row-right">
+          <button class="btn-primary-new" id="btnNewBroadcastBar" onclick="openCreateModal()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>+ New Broadcast</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ==========================================================================
+           BROADCAST ACTIVITY FEED LIST CONTAINER
+           Exact match to media_1791448249384.png
+           ========================================================================== -->
+      <div class="broadcast-feed" id="broadcastListContainer">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Filter No Results State -->
+      <div class="empty-state-box" id="zeroFilterResults">
+        <div class="empty-state-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+        <h3 class="empty-title">No broadcasts match your filters</h3>
+        <p class="empty-desc">Try clearing your filters or search keywords to view other organisation broadcasts.</p>
+        <button class="btn-drawer-action" onclick="resetAllFilters()">Reset All Filters</button>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state-box" id="emptyState">
+        <div class="empty-state-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </div>
+        <h3 class="empty-title">Nothing broadcast yet</h3>
+        <p class="empty-desc">Your organisation-wide updates will appear here once you send your first broadcast.</p>
+        <button class="btn-primary-new" onclick="openCreateModal()">+ Create Broadcast</button>
+      </div>
+
+      <!-- Pagination Footer -->
+      <div class="pagination-bar" id="paginationBar">
+        <div>
+          Showing page <span id="currentPageNum">1</span> of <span id="totalPageNum">1</span>
+        </div>
+        <div class="pagination-pages" id="paginationPages">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+</div>
+
+<!-- ==========================================================================
+     SLIDE-OVER DETAIL DRAWER (580px RIGHT-SIDE DRAWER)
+     ========================================================================== -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+
+<aside class="drawer-container" id="broadcastDetailDrawer" aria-label="Broadcast Detail">
+  <!-- Header -->
+  <div class="drawer-header">
+    <div class="drawer-header-left">
+      <span class="drawer-category-pill" id="drawerCategory">Company Wide Announcement</span>
+      <h2 class="drawer-title" id="drawerTitle">Welcome to hirerkey Notifications!</h2>
+      <div style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
+        <span class="priority-badge priority-high" id="drawerPriorityBadge">
+          <span class="dot"></span>
+          <span id="drawerPriorityText">High</span>
+        </span>
+        <span style="font-size: 12px; color: var(--text-muted);" id="drawerDeliveryBadge">Delivered Immediately</span>
+      </div>
+    </div>
+    <button class="drawer-close-btn" onclick="closeDrawer()" title="Close Drawer (Esc)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+
+  <!-- Body -->
+  <div class="drawer-body">
+    <!-- Sender Info Card -->
+    <div class="drawer-sender-box">
+      <div class="drawer-sender-info">
+        <img src="" alt="" class="sender-avatar" id="drawerSenderAvatar" style="display: none;">
+        <div class="sender-initials" id="drawerSenderInitials" style="display: none;">SD</div>
+        <div>
+          <div class="drawer-sender-name" id="drawerSenderName">Subhadeep Datta</div>
+          <div class="drawer-sender-role" id="drawerSenderRole">Business Head • HR</div>
+        </div>
+      </div>
+      <div class="drawer-date" id="drawerDateTime">01-10 · 6:07 PM</div>
+    </div>
+
+    <!-- Audience Targeted -->
+    <div>
+      <div class="drawer-section-title">Audience Targeted</div>
+      <div class="drawer-audience-chips" id="drawerAudienceChips">
+        <!-- Injected chips -->
+      </div>
+    </div>
+
+    <!-- Full Message Body -->
+    <div>
+      <div class="drawer-section-title">Broadcast Message</div>
+      <div class="drawer-message-content" id="drawerMessageText">
+        <!-- Full message body text -->
+      </div>
+    </div>
+
+    <!-- Attachments Section -->
+    <div id="drawerAttachmentsSection">
+      <div class="drawer-section-title">Attachments (<span id="drawerAttCount">0</span>)</div>
+      <div class="drawer-attachments-list" id="drawerAttachmentsList">
+        <!-- Attachments items injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Actions -->
+  <div class="drawer-footer">
+    <div class="drawer-footer-left">
+      <button class="btn-drawer-action danger" id="drawerDeleteBtn" onclick="deleteCurrentBroadcast()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+        <span>Delete</span>
+      </button>
+      <button class="btn-drawer-action" onclick="duplicateCurrentBroadcast()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+        <span>Duplicate</span>
+      </button>
+    </div>
+    <button class="btn-drawer-action" onclick="closeDrawer()">Close</button>
+  </div>
+</aside>
+
+<!-- ==========================================================================
+     CREATE NEW BROADCAST MODAL (Matching media_1791527904661.jpg)
+     ========================================================================== -->
+<div class="modal-overlay" id="createBroadcastModal" onclick="if(event.target===this)closeCreateModal()">
+  <div class="modal-container">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <div class="modal-header-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="modal-title">Send Broadcast</h3>
+          <p class="modal-subtitle">Share an update with your teams</p>
+        </div>
+      </div>
+      <button type="button" class="modal-close-btn" onclick="closeCreateModal()" title="Close (Esc)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <form id="newBroadcastForm" onsubmit="handleSendBroadcast(event)">
+      <div class="modal-body">
+        
+        <!-- Dual Column: Audience & Priority -->
+        <div class="modal-dual-col">
+          <!-- Audience -->
+          <div class="form-group">
+            <label class="form-label" for="modalAudienceSelect">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+              <span>Audience *</span>
+            </label>
+            <div class="modal-select-wrap">
+              <select class="form-select" id="modalAudienceSelect">
+                <option value="All" selected>All Employees</option>
+                <option value="Engineering & Product">Engineering & Product</option>
+                <option value="Sales & Marketing">Sales & Marketing</option>
+                <option value="Operations & HR">Operations & HR</option>
+                <option value="Leadership">Leadership Only</option>
+              </select>
+              <svg class="select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+
+          <!-- Priority -->
+          <div class="form-group">
+            <label class="form-label" for="modalPrioritySelect">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+              <span>Priority *</span>
+            </label>
+            <div class="modal-select-wrap">
+              <select class="form-select" id="modalPrioritySelect" onchange="handleModalPriorityChange(this.value)">
+                <option value="Low" selected>🟢 Low</option>
+                <option value="Medium">🟡 Medium</option>
+                <option value="High">🔴 High</option>
+              </select>
+              <svg class="select-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subject * with AI Assist Button -->
+        <div class="form-group">
+          <div class="form-label-row">
+            <label class="form-label" for="inputBcTitle">Subject *</label>
+            <button type="button" class="btn-ai-assist" onclick="triggerAiAssist()" title="Generate or polish subject with HyIQ AI">
+              <span class="ai-sparkle">✨</span>
+              <span>AI Assist</span>
+            </button>
+          </div>
+          <input type="text" class="form-input" id="inputBcTitle" placeholder="e.g. Annual policy update" required>
+        </div>
+
+        <!-- Message * Textarea with Formatting Toolbar and Character Counter -->
+        <div class="form-group">
+          <label class="form-label" for="inputBcMessage">Message *</label>
+          <div class="editor-box">
+            <div class="editor-toolbar">
+              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('**')" title="Bold"><strong>B</strong></button>
+              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('*')" title="Italic"><em>I</em></button>
+              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('<u>', '</u>')" title="Underline"><u>U</u></button>
+              <div class="toolbar-sep"></div>
+              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('\n- ')" title="Bullet List">• List</button>
+              <button type="button" class="toolbar-btn" onclick="insertFormattingModal('[', '](url)')" title="Insert Link">🔗 Link</button>
+            </div>
+            <textarea class="editor-textarea" id="inputBcMessage" placeholder="Type your broadcast message clearly. Staff members will receive this via notification feed and mobile push..." oninput="updateModalCharCount(this.value)" maxlength="2000" required></textarea>
+            <div class="editor-footer">
+              <span class="editor-counter" id="modalCharCount">0 / 2000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attachments Dropzone + Sources Row -->
+        <div class="form-group">
+          <label class="form-label">Attachments</label>
+          <div class="modal-dropzone" onclick="simulateModalUpload('device')">
+            <div class="modal-dropzone-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            </div>
+            <div class="modal-dropzone-text">Drop files here or click to browse</div>
+            <div class="modal-dropzone-sub">Supported formats: PDF, DOCX, XLSX, PNG (Up to 25MB)</div>
+          </div>
+          <div class="modal-sources-row">
+            <span class="sources-label">Add from:</span>
+            <button type="button" class="btn-source-chip" onclick="simulateModalUpload('device')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              <span>My Device</span>
+            </button>
+            <button type="button" class="btn-source-chip" onclick="simulateModalUpload('gdrive')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 22 22 22"></polygon></svg>
+              <span>Google Drive</span>
+            </button>
+            <button type="button" class="btn-source-chip" onclick="simulateModalUpload('onedrive')">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+              <span>OneDrive</span>
+            </button>
+          </div>
+          <div class="modal-attached-chips" id="modalAttachedChips"></div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <div class="modal-info-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>This message will be sent to all selected audience members.</span>
+        </div>
+        <div class="modal-footer-btns">
+          <button type="button" class="btn-modal-cancel" onclick="closeCreateModal()">Cancel</button>
+          <button type="submit" class="btn-modal-send">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            <span>Send Broadcast</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ==========================================================================
+     APPLICATION JAVASCRIPT: DATA STORE & INTERACTIVITY
+     ========================================================================== -->
+<script>
+  // ==========================================================================
+  // 1. DATASET (Exact match to media_1791529725648.png)
+  // ==========================================================================
+  const initialBroadcasts = [
+    {
+      id: "bc-1",
+      title: "Annual policy update",
+      senderName: "Uneet Kumar",
+      senderRole: "Chief Human Resources Officer",
+      senderAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "05 May 2026, 10:30 AM",
+      timestamp: new Date("2026-05-05T10:30:00"),
+      category: "Policy Update",
+      priority: "Low",
+      audience: "All",
+      preview: "Please review the updated remote work guidelines, data privacy compliance, and code of conduct for the fiscal year 2026-2027.",
+      fullMessage: "Dear Team,\n\nPlease review our refreshed organisational policies covering remote work protocols, data privacy governance, and employee code of conduct for the 2026-2027 operating cycle.\n\nAll staff are required to acknowledge receipt by the end of next week.\n\nWarm regards,\nUneet Kumar\nCHRO",
+      attachments: [
+        { name: "Policy_Update.pdf", size: "1.4 MB", type: "pdf" }
+      ],
+      status: "sent"
+    },
+    {
+      id: "bc-2",
+      title: "Holiday announcement",
+      senderName: "Priya Sharma",
+      senderRole: "Head of People Operations",
+      senderAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "02 May 2026, 04:15 PM",
+      timestamp: new Date("2026-05-02T16:15:00"),
+      category: "Holiday Announcement",
+      priority: "High",
+      audience: "All",
+      preview: "The upcoming Friday is declared an official public holiday. Emergency contact numbers and on-call rotations are attached.",
+      fullMessage: "Hi Everyone,\n\nWe are pleased to declare this coming Friday as an official company-wide holiday. Enjoy the well-deserved long weekend with family and friends!\n\nFor critical tier-1 support and engineering teams, on-call schedules and emergency escalation channels are detailed in the attached document.",
+      attachments: [
+        { name: "Holiday_List.pdf", size: "820 KB", type: "pdf" }
+      ],
+      status: "sent"
+    },
+    {
+      id: "bc-3",
+      title: "Team meeting reminder",
+      senderName: "Rahul Verma",
+      senderRole: "VP of Engineering",
+      senderAvatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "01 May 2026, 09:00 AM",
+      timestamp: new Date("2026-05-01T09:00:00"),
+      category: "Team Meeting Reminder",
+      priority: "Medium",
+      audience: "All",
+      preview: "Monthly engineering alignment and product roadmap sync scheduled for 11:00 AM in Conference Hall A & Google Meet.",
+      fullMessage: "Good morning,\n\nThis is a quick reminder for today's monthly Engineering & Product All-Hands at 11:00 AM IST in Conference Hall A and streaming on Google Meet.\n\nWe will review sprint velocity, Q2 architecture goals, and open Q&A. Agenda is attached.",
+      attachments: [
+        { name: "Agenda.pdf", size: "450 KB", type: "pdf" }
+      ],
+      status: "sent"
+    },
+    {
+      id: "bc-4",
+      title: "System maintenance",
+      senderName: "Neha Singh",
+      senderRole: "Principal DevOps Architect",
+      senderAvatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "28 Apr 2026, 06:20 PM",
+      timestamp: new Date("2026-04-28T18:20:00"),
+      category: "System Maintenance",
+      priority: "Medium",
+      audience: "All",
+      preview: "Scheduled core database upgrades and patch deployment this Saturday from 02:00 AM to 05:00 AM UTC. Services will have intermittent downtime.",
+      fullMessage: "Notice of Maintenance:\n\nOur platform infrastructure will undergo scheduled core database maintenance and security upgrades this Saturday between 02:00 AM and 05:00 AM UTC.\n\nExpected downtime is approximately 45 minutes. Please ensure critical batch jobs are paused prior to the maintenance window.",
+      attachments: [
+        { name: "Downtime_Schedule.pdf", size: "1.2 MB", type: "pdf" },
+        { name: "Runbook_Procedures.pdf", size: "840 KB", type: "pdf" }
+      ],
+      status: "sent"
+    },
+    {
+      id: "bc-5",
+      title: "Employee of the Month",
+      senderName: "Amit Patel",
+      senderRole: "Director of Talent & Culture",
+      senderAvatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "26 Apr 2026, 11:45 AM",
+      timestamp: new Date("2026-04-26T11:45:00"),
+      category: "Employee of the Month",
+      priority: "Low",
+      audience: "All",
+      preview: "Celebrating our Q1 standout contributors! Congratulations to Sarah Jenkins and Carlos Gomez for stellar delivery on Cloud Migration.",
+      fullMessage: "Team Spotlight,\n\nJoin us in congratulating our standout performers for Q1! Sarah Jenkins and Carlos Gomez have been awarded Employee of the Month honors for their remarkable leadership during our zero-downtime Cloud Migration initiative.\n\nRead their story and commendations in the circular attached.",
+      attachments: [
+        { name: "Announcement.pdf", size: "2.1 MB", type: "pdf" }
+      ],
+      status: "sent"
+    },
+    {
+      id: "bc-6",
+      title: "Wellness session",
+      senderName: "Sneha Gupta",
+      senderRole: "Workplace Experience Lead",
+      senderAvatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "24 Apr 2026, 02:30 PM",
+      timestamp: new Date("2026-04-24T14:30:00"),
+      category: "Wellness Session",
+      priority: "Low",
+      audience: "All",
+      preview: "Join our virtual ergonomic wellness & mindfulness workshop with certified therapist Dr. Kavita Nair this Thursday at 3 PM.",
+      fullMessage: "Hello Everyone,\n\nTake a pause and recharge! Sneha Gupta invites you to our April Wellness & Ergonomics Workshop led by Dr. Kavita Nair. We will explore desk ergonomics, breathing exercises, and mental resilience techniques.\n\nSession guide and Google Calendar invite attached.",
+      attachments: [
+        { name: "Wellness_Guide.pdf", size: "950 KB", type: "pdf" }
+      ],
+      status: "sent"
+    },
+    {
+      id: "bc-7",
+      title: "New benefits program",
+      senderName: "Karan Mehta",
+      senderRole: "Benefits & Total Rewards Manager",
+      senderAvatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "20 Apr 2026, 01:10 PM",
+      timestamp: new Date("2026-04-20T13:10:00"),
+      category: "New Benefits Program",
+      priority: "Medium",
+      audience: "All",
+      preview: "Comprehensive health insurance upgrades, gym stipend vouchers, and mental wellness coverage enhancements are now live for all full-time employees.",
+      fullMessage: "Dear Colleagues,\n\nWe are excited to roll out our upgraded Benefits Package effective May 1st. Enhancements include expanded OPD coverage, monthly fitness stipend allocations, and 24/7 mental wellness support consultations.\n\nCheck the attached enrollment deck for plan comparisons and policy details.",
+      attachments: [
+        { name: "Benefits_Details.pdf", size: "3.4 MB", type: "pdf" }
+      ],
+      status: "sent"
+    },
+    {
+      id: "bc-8",
+      title: "Office relocation update",
+      senderName: "Uneet Kumar",
+      senderRole: "Chief Human Resources Officer",
+      senderAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "18 Apr 2026, 05:40 PM",
+      timestamp: new Date("2026-04-18T17:40:00"),
+      category: "Office Relocation Update",
+      priority: "High",
+      audience: "All",
+      preview: "Phase 1 movement to the new downtown tech park campus commences next Monday. Shuttle bus routes, parking permits, and desk allocation attached.",
+      fullMessage: "Attention All Employees,\n\nPhase 1 migration to our brand new Downtown Tech Hub campus commences next Monday, April 27th. Please pack non-essential desk personal effects by Friday 4 PM.\n\nShuttle schedules, public transit subsidies, building badge procedures, and hot-desk maps are detailed in the attached brief.",
+      attachments: [
+        { name: "New_Office_Details.pdf", size: "4.8 MB", type: "pdf" }
+      ],
+      status: "sent"
+    }
+  ];
+
+  let broadcasts = [...initialBroadcasts];
+  let filteredBroadcasts = [...broadcasts];
+  let currentSelectedBroadcastId = null;
+  let currentPage = 1;
+  const rowsPerPage = 8;
+  let currentSearchQuery = "";
+  let modalAttachedFilesSimulated = [];
+
+  // ==========================================================================
+  // 2. CATEGORY METADATA (Matching pastel tints & tinted icons from reference)
+  // ==========================================================================
+  function getCategoryMeta(category) {
+    const cat = (category || "").toLowerCase();
+    if (cat.includes("policy")) {
+      return {
+        bg: "#EEF2FF",
+        iconColor: "#6366F1",
+        svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`
+      };
+    }
+    if (cat.includes("holiday")) {
+      return {
+        bg: "#E0F2FE",
+        iconColor: "#0284C7",
+        svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0284C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`
+      };
+    }
+    if (cat.includes("meeting") || cat.includes("reminder")) {
+      return {
+        bg: "#FFF7ED",
+        iconColor: "#EA580C",
+        svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><line x1="9" y1="11" x2="15" y2="11"></line><line x1="9" y1="15" x2="13" y2="15"></line></svg>`
+      };
+    }
+    if (cat.includes("maintenance") || cat.includes("system")) {
+      return {
+        bg: "#ECFDF5",
+        iconColor: "#10B981",
+        svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`
+      };
+    }
+    if (cat.includes("employee") || cat.includes("month") || cat.includes("star")) {
+      return {
+        bg: "#F5F3FF",
+        iconColor: "#8B5CF6",
+        svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`
+      };
+    }
+    if (cat.includes("wellness")) {
+      return {
+        bg: "#FFF1F2",
+        iconColor: "#F43F5E",
+        svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F43F5E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`
+      };
+    }
+    if (cat.includes("benefit") || cat.includes("program")) {
+      return {
+        bg: "#EFF6FF",
+        iconColor: "#2563EB",
+        svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>`
+      };
+    }
+    if (cat.includes("relocation") || cat.includes("office")) {
+      return {
+        bg: "#EEF2FF",
+        iconColor: "#6366F1",
+        svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>`
+      };
+    }
+    return {
+      bg: "#EEF2FF",
+      iconColor: "#6366F1",
+      svg: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>`
+    };
+  }
+
+  // ==========================================================================
+  // 3. STATS CALCULATION
+  // ==========================================================================
+  function updateSummaryStats() {
+    const totalSent = broadcasts.length;
+    const thisMonth = broadcasts.filter(b => {
+      const now = new Date();
+      return b.timestamp.getMonth() === now.getMonth() || b.timestamp.getMonth() === 4; // May 2026
+    }).length;
+    const highPriority = broadcasts.filter(b => b.priority.toLowerCase() === "high").length;
+
+    const elTotal = document.getElementById("statTotalSent");
+    const elMonth = document.getElementById("statThisMonth");
+    const elPriority = document.getElementById("statHighPriority");
+    if (elTotal) elTotal.innerText = totalSent;
+    if (elMonth) elMonth.innerText = thisMonth;
+    if (elPriority) elPriority.innerText = highPriority;
+  }
+
+  // ==========================================================================
+  // 4. INITIALIZATION ON DOM READY
+  // ==========================================================================
+  document.addEventListener("DOMContentLoaded", () => {
+    updateSummaryStats();
+    renderBroadcastList();
+  });
+
+  // ==========================================================================
+  // 5. RENDERING 5-COLUMN ROW CARDS (Exact match to media_1791529725648.png)
+  // ==========================================================================
+  function renderBroadcastList() {
+    const container = document.getElementById("broadcastListContainer");
+    const emptyState = document.getElementById("emptyState");
+    const zeroState = document.getElementById("zeroFilterResults");
+    const paginationBar = document.getElementById("paginationBar");
+
+    if (broadcasts.length === 0) {
+      if (container) container.style.display = "none";
+      if (zeroState) zeroState.style.display = "none";
+      if (emptyState) emptyState.style.display = "flex";
+      if (paginationBar) paginationBar.style.display = "none";
+      return;
+    }
+
+    if (filteredBroadcasts.length === 0) {
+      if (container) container.style.display = "none";
+      if (emptyState) emptyState.style.display = "none";
+      if (zeroState) zeroState.style.display = "flex";
+      if (paginationBar) paginationBar.style.display = "none";
+      return;
+    }
+
+    if (emptyState) emptyState.style.display = "none";
+    if (zeroState) zeroState.style.display = "none";
+    if (container) container.style.display = "flex";
+    if (paginationBar) paginationBar.style.display = "flex";
+
+    // Paginate
+    const startIndex = (currentPage - 1) * rowsPerPage;
+    const paginatedItems = filteredBroadcasts.slice(startIndex, startIndex + rowsPerPage);
+
+    container.innerHTML = paginatedItems.map(item => {
+      const isSelected = item.id === currentSelectedBroadcastId ? 'selected' : '';
+
+      // Column 4 Avatar
+      const avatarHtml = item.senderAvatar 
+        ? `<img src="${item.senderAvatar}" alt="${item.senderName}" class="sender-avatar-img">`
+        : `<div class="sender-avatar-initials">${(item.senderName || "HR").substring(0, 2).toUpperCase()}</div>`;
+
+      // Column 3 Attachment Chip
+      let attachmentBadgeHtml = "";
+      if (item.attachments && item.attachments.length > 0) {
+        if (item.attachments.length === 1) {
+          attachmentBadgeHtml = `
+            <span class="chip-attachment" title="${item.attachments[0].name}">
+              📄 ${item.attachments[0].name}
+            </span>
+          `;
+        } else {
+          attachmentBadgeHtml = `
+            <span class="chip-attachment" title="${item.attachments.map(a => a.name).join(', ')}">
+              📎 ${item.attachments.length} attachments
+            </span>
+          `;
+        }
+      }
+
+      const priorityLower = (item.priority || "Low").toLowerCase();
+
+      return `
+        <div class="broadcast-card ${isSelected}" onclick="openDrawer('${item.id}')" id="row-${item.id}">
+          <!-- Title & Message Preview -->
+          <div class="col-title-message">
+            <h3 class="card-broadcast-title">${item.title}</h3>
+            <p class="card-broadcast-snippet">${item.preview}</p>
+          </div>
+
+          <!-- Column 3: Metadata (Audience chip [All] + Priority chip, Bottom: Attachment chip) -->
+          <div class="col-metadata">
+            <div class="metadata-top-row">
+              <span class="chip-audience">All</span>
+              <span class="chip-priority priority-${priorityLower}">
+                <span class="priority-dot"></span>
+                <span>${item.priority}</span>
+              </span>
+            </div>
+            <div class="metadata-bottom-row">
+              ${attachmentBadgeHtml}
+            </div>
+          </div>
+
+          <!-- Column 4: Sender Info (34px avatar, By [Name], Date & Time) -->
+          <div class="col-sender-info">
+            ${avatarHtml}
+            <div class="sender-text-stack">
+              <span class="sender-by-name">By ${item.senderName}</span>
+              <span class="sender-datetime">${item.dateFormatted}</span>
+            </div>
+          </div>
+
+          <!-- Column 5: Action Menu (••• button with dropdown) -->
+          <div class="col-action-menu" onclick="event.stopPropagation()">
+            <button class="btn-more-dots" onclick="toggleRowMenu('${item.id}', event)" title="More options">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <circle cx="5" cy="12" r="2.2"></circle>
+                <circle cx="12" cy="12" r="2.2"></circle>
+                <circle cx="19" cy="12" r="2.2"></circle>
+              </svg>
+            </button>
+            <div class="action-dropdown-menu" id="menu-${item.id}">
+              <div class="action-menu-item" onclick="openDrawer('${item.id}')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>View Details</span>
+              </div>
+              <div class="action-menu-item" onclick="duplicateBroadcastItem('${item.id}')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span>Duplicate</span>
+              </div>
+              <div class="action-menu-item danger" onclick="deleteBroadcastItem('${item.id}')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <span>Delete</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+
+    renderPaginationControls();
+  }
+
+  // ==========================================================================
+  // 6. PAGINATION CONTROLS
+  // ==========================================================================
+  function renderPaginationControls() {
+    const totalPages = Math.ceil(filteredBroadcasts.length / rowsPerPage) || 1;
+    const paginationPages = document.getElementById("paginationPages");
+
+    if (!paginationPages) return;
+
+    let pagesHtml = `
+      <button class="page-btn ${currentPage === 1 ? 'disabled' : ''}" onclick="goToPage(${currentPage - 1})">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+      </button>
+    `;
+
+    for (let p = 1; p <= totalPages; p++) {
+      pagesHtml += `
+        <button class="page-btn ${currentPage === p ? 'active' : ''}" onclick="goToPage(${p})">${p}</button>
+      `;
+    }
+
+    pagesHtml += `
+      <button class="page-btn ${currentPage === totalPages ? 'disabled' : ''}" onclick="goToPage(${currentPage + 1})">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    `;
+
+    paginationPages.innerHTML = pagesHtml;
+    const elCur = document.getElementById("currentPageNum");
+    const elTot = document.getElementById("totalPageNum");
+    if (elCur) elCur.innerText = currentPage;
+    if (elTot) elTot.innerText = totalPages;
+  }
+
+  function goToPage(page) {
+    const totalPages = Math.ceil(filteredBroadcasts.length / rowsPerPage) || 1;
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    renderBroadcastList();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ==========================================================================
+  // 7. FILTERING & SEARCH
+  // ==========================================================================
+  function handleSearch(query) {
+    currentSearchQuery = query.trim().toLowerCase();
+    const clearBtn = document.getElementById("topbarSearchClear");
+    if (clearBtn) clearBtn.style.display = currentSearchQuery ? "grid" : "none";
+    applyFilters();
+  }
+
+  function clearSearch() {
+    const inp = document.getElementById("globalPageSearch");
+    if (inp) inp.value = "";
+    handleSearch("");
+  }
+
+  function applyFilters() {
+    const audienceFilter = (document.getElementById("filterAudience")?.value || "all").toLowerCase();
+    const priorityFilter = (document.getElementById("filterPriority")?.value || "all").toLowerCase();
+    const dateFilter = (document.getElementById("filterDate")?.value || "all").toLowerCase();
+    const statusFilter = (document.getElementById("filterStatus")?.value || "all").toLowerCase();
+
+    const hasActiveFilters = audienceFilter !== "all" || priorityFilter !== "all" || dateFilter !== "all" || statusFilter !== "all" || currentSearchQuery !== "";
+    const clearBtn = document.getElementById("clearAllFiltersBtn");
+    if (clearBtn) clearBtn.style.display = hasActiveFilters ? "block" : "none";
+
+    filteredBroadcasts = broadcasts.filter(bc => {
+      // 1. Text Search across Title, Message, Sender, Category
+      if (currentSearchQuery) {
+        const titleMatch = (bc.title || "").toLowerCase().includes(currentSearchQuery);
+        const messageMatch = (bc.fullMessage || "").toLowerCase().includes(currentSearchQuery);
+        const senderMatch = (bc.senderName || "").toLowerCase().includes(currentSearchQuery);
+        const categoryMatch = (bc.category || "").toLowerCase().includes(currentSearchQuery);
+        if (!titleMatch && !messageMatch && !senderMatch && !categoryMatch) {
+          return false;
+        }
+      }
+
+      // 2. Audience Filter
+      if (audienceFilter !== "all") {
+        const audStr = (bc.audience || "").toLowerCase();
+        if (audienceFilter === "all-employees" && !audStr.includes("all")) return false;
+        if (audienceFilter === "department" && audStr.includes("all")) return false;
+      }
+
+      // 3. Priority Filter
+      if (priorityFilter !== "all") {
+        if ((bc.priority || "").toLowerCase() !== priorityFilter) return false;
+      }
+
+      // 4. Status Filter
+      if (statusFilter !== "all") {
+        if ((bc.status || "").toLowerCase() !== statusFilter) return false;
+      }
+
+      // 5. Date Filter
+      if (dateFilter === "today") {
+        const today = new Date().toDateString();
+        if (bc.timestamp.toDateString() !== today) return false;
+      } else if (dateFilter === "this-week") {
+        const diffDays = (new Date() - bc.timestamp) / (1000 * 3600 * 24);
+        if (diffDays > 7) return false;
+      } else if (dateFilter === "this-month") {
+        const currentMonth = new Date().getMonth();
+        if (bc.timestamp.getMonth() !== currentMonth && bc.timestamp.getMonth() !== 4) return false;
+      }
+
+      return true;
+    });
+
+    currentPage = 1;
+    renderBroadcastList();
+  }
+
+  function resetAllFilters() {
+    const fAud = document.getElementById("filterAudience");
+    const fPrio = document.getElementById("filterPriority");
+    const fDate = document.getElementById("filterDate");
+    const fStat = document.getElementById("filterStatus");
+    const fSearch = document.getElementById("globalPageSearch");
+    const fClearSearch = document.getElementById("topbarSearchClear");
+    const fClearBtn = document.getElementById("clearAllFiltersBtn");
+
+    if (fAud) fAud.value = "all";
+    if (fPrio) fPrio.value = "all";
+    if (fDate) fDate.value = "all";
+    if (fStat) fStat.value = "all";
+    if (fSearch) fSearch.value = "";
+    currentSearchQuery = "";
+    if (fClearSearch) fClearSearch.style.display = "none";
+    if (fClearBtn) fClearBtn.style.display = "none";
+
+    applyFilters();
+    showToast("Filters reset to default");
+  }
+
+  // ==========================================================================
+  // 8. DETAIL DRAWER (Smooth slide-over, full details)
+  // ==========================================================================
+  function openDrawer(bcId) {
+    const bc = broadcasts.find(b => b.id === bcId);
+    if (!bc) return;
+
+    currentSelectedBroadcastId = bcId;
+
+    // Highlight card
+    document.querySelectorAll(".broadcast-card").forEach(r => r.classList.remove("selected"));
+    const selectedRow = document.getElementById(`row-${bcId}`);
+    if (selectedRow) selectedRow.classList.add("selected");
+
+    // Populate drawer elements
+    const dTitle = document.getElementById("drawerTitle");
+    const dCat = document.getElementById("drawerCategory");
+    const dDate = document.getElementById("drawerDateTime");
+    const dMsg = document.getElementById("drawerMessageText");
+    const dAvatar = document.getElementById("drawerSenderAvatar");
+    const dInitials = document.getElementById("drawerSenderInitials");
+    const dSender = document.getElementById("drawerSenderName");
+    const dRole = document.getElementById("drawerSenderRole");
+    const dBadge = document.getElementById("drawerPriorityBadge");
+    const dPriorityText = document.getElementById("drawerPriorityText");
+    const dAudienceChips = document.getElementById("drawerAudienceChips");
+    const dAttList = document.getElementById("drawerAttachmentsList");
+    const dAttSection = document.getElementById("drawerAttachmentsSection");
+    const dAttCount = document.getElementById("drawerAttCount");
+
+    if (dTitle) dTitle.innerText = bc.title;
+    if (dCat) dCat.innerText = bc.category || "Company Announcement";
+    if (dDate) dDate.innerText = bc.dateFormatted;
+    if (dMsg) dMsg.innerText = bc.fullMessage;
+
+    // Sender
+    if (bc.senderAvatar && dAvatar && dInitials) {
+      dAvatar.src = bc.senderAvatar;
+      dAvatar.style.display = "block";
+      dInitials.style.display = "none";
+    } else if (dAvatar && dInitials) {
+      dAvatar.style.display = "none";
+      dInitials.innerText = (bc.senderName || "HR").substring(0, 2).toUpperCase();
+      dInitials.style.display = "grid";
+    }
+    if (dSender) dSender.innerText = bc.senderName;
+    if (dRole) dRole.innerText = bc.senderRole || "Organisation Admin";
+
+    // Priority badge
+    if (dBadge) dBadge.className = `priority-badge priority-${(bc.priority || "low").toLowerCase()}`;
+    if (dPriorityText) dPriorityText.innerText = `${bc.priority}`;
+
+    // Audience chips
+    if (dAudienceChips) {
+      dAudienceChips.innerHTML = `<span class="chip-audience">All Employees</span>`;
+    }
+
+    // Attachments
+    const attCount = bc.attachments ? bc.attachments.length : 0;
+    if (dAttCount) dAttCount.innerText = attCount;
+
+    if (bc.attachments && bc.attachments.length > 0 && dAttSection && dAttList) {
+      dAttSection.style.display = "block";
+      dAttList.innerHTML = bc.attachments.map(att => `
+        <div class="drawer-attachment-item">
+          <div class="drawer-att-left">
+            <div class="drawer-att-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            </div>
+            <div>
+              <div class="drawer-att-filename">${att.name}</div>
+              <div class="drawer-att-filesize">${att.size}</div>
+            </div>
+          </div>
+          <button class="btn-download-att" onclick="downloadAttachment('${att.name}')">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>Download</span>
+          </button>
+        </div>
+      `).join("");
+    } else if (dAttSection && dAttList) {
+      dAttSection.style.display = "none";
+      dAttList.innerHTML = "";
+    }
+
+    // Open drawer
+    const drawerOverlay = document.getElementById("drawerOverlay");
+    const drawerContainer = document.getElementById("broadcastDetailDrawer");
+    if (drawerOverlay) drawerOverlay.classList.add("open");
+    if (drawerContainer) drawerContainer.classList.add("open");
+    closeAllMenus();
+  }
+
+  function closeDrawer() {
+    const drawerOverlay = document.getElementById("drawerOverlay");
+    const drawerContainer = document.getElementById("broadcastDetailDrawer");
+    if (drawerOverlay) drawerOverlay.classList.remove("open");
+    if (drawerContainer) drawerContainer.classList.remove("open");
+    currentSelectedBroadcastId = null;
+    document.querySelectorAll(".broadcast-card").forEach(r => r.classList.remove("selected"));
+  }
+
+  function deleteCurrentBroadcast() {
+    if (!currentSelectedBroadcastId) return;
+    deleteBroadcastItem(currentSelectedBroadcastId);
+    closeDrawer();
+  }
+
+  function duplicateCurrentBroadcast() {
+    if (!currentSelectedBroadcastId) return;
+    duplicateBroadcastItem(currentSelectedBroadcastId);
+    closeDrawer();
+  }
+
+  function downloadAttachment(filename) {
+    showToast(`Downloading attachment: ${filename}`);
+  }
+
+  // ==========================================================================
+  // 9. ACTIONS: DUPLICATE, DELETE, ROW MENU
+  // ==========================================================================
+  function deleteBroadcastItem(id) {
+    broadcasts = broadcasts.filter(b => b.id !== id);
+    updateSummaryStats();
+    applyFilters();
+    showToast("Broadcast deleted successfully", "danger");
+    closeAllMenus();
+  }
+
+  function duplicateBroadcastItem(id) {
+    const orig = broadcasts.find(b => b.id === id);
+    if (!orig) return;
+
+    const copy = {
+      ...orig,
+      id: "bc-" + Date.now(),
+      title: `${orig.title} (Copy)`,
+      dateFormatted: "Just now",
+      timestamp: new Date()
+    };
+
+    broadcasts.unshift(copy);
+    updateSummaryStats();
+    applyFilters();
+    showToast("Broadcast duplicated and added to top of feed");
+    closeAllMenus();
+  }
+
+  function toggleRowMenu(id, e) {
+    e.stopPropagation();
+    const menu = document.getElementById(`menu-${id}`);
+    if (!menu) return;
+    const isOpen = menu.classList.contains("open");
+    closeAllMenus();
+    if (!isOpen) menu.classList.add("open");
+  }
+
+  function closeAllMenus() {
+    document.querySelectorAll(".action-dropdown-menu").forEach(m => m.classList.remove("open"));
+    const pop = document.getElementById("profilePopover");
+    if (pop) pop.classList.remove("open");
+    const wsPop = document.getElementById("workspacePopover");
+    if (wsPop) wsPop.classList.remove("open");
+  }
+
+  document.addEventListener("click", () => {
+    closeAllMenus();
+  });
+
+  // ==========================================================================
+  // 10. CREATION MODAL LOGIC (Matching media_1791527904661.jpg)
+  // ==========================================================================
+  function openCreateModal() {
+    const modal = document.getElementById("createBroadcastModal");
+    if (modal) modal.classList.add("open");
+    const titleInput = document.getElementById("inputBcTitle");
+    if (titleInput) {
+      setTimeout(() => titleInput.focus(), 100);
+    }
+    modalAttachedFilesSimulated = [];
+    renderModalAttachedChips();
+    updateModalCharCount("");
+  }
+
+  function closeCreateModal() {
+    const modal = document.getElementById("createBroadcastModal");
+    if (modal) modal.classList.remove("open");
+    const form = document.getElementById("newBroadcastForm");
+    if (form) form.reset();
+    modalAttachedFilesSimulated = [];
+    renderModalAttachedChips();
+    updateModalCharCount("");
+  }
+
+  function handleModalPriorityChange(val) {
+    // Priority select changed
+  }
+
+  // AI Assist feature
+  function triggerAiAssist() {
+    const titleInp = document.getElementById("inputBcTitle");
+    const msgInp = document.getElementById("inputBcMessage");
+    const currentTitle = titleInp ? titleInp.value.trim() : "";
+
+    const aiSuggestions = [
+      { title: "Organisation Health & Safety Protocol Update", msg: "Please review the refreshed health and safety operational protocols effective immediately for all office locations." },
+      { title: "Quarterly Town Hall & Product Roadmap Announcement", msg: "Join our executive leadership team for our quarterly business update, key achievement awards, and upcoming product releases." },
+      { title: "Remote Working Allowance & Equipment Policy", msg: "We are pleased to introduce enhanced monthly remote work reimbursements and ergonomic equipment allowances." }
+    ];
+
+    const pick = aiSuggestions[Math.floor(Math.random() * aiSuggestions.length)];
+    if (titleInp && !currentTitle) {
+      titleInp.value = pick.title;
+    } else if (titleInp) {
+      titleInp.value = currentTitle.replace(/\b\w/g, l => l.toUpperCase()) + " — Official Circular";
+    }
+
+    if (msgInp && !msgInp.value.trim()) {
+      msgInp.value = pick.msg;
+      updateModalCharCount(msgInp.value);
+    }
+
+    showToast("✨ HyIQ AI generated polished announcement text!");
+  }
+
+  // Formatting tools in modal
+  function insertFormattingModal(before, after = '') {
+    const textarea = document.getElementById("inputBcMessage");
+    if (!textarea) return;
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    const selected = text.substring(start, end) || "text";
+    
+    textarea.value = text.substring(0, start) + before + selected + after + text.substring(end);
+    textarea.focus();
+    textarea.setSelectionRange(start + before.length, start + before.length + selected.length);
+    updateModalCharCount(textarea.value);
+  }
+
+  function updateModalCharCount(val) {
+    const countEl = document.getElementById("modalCharCount");
+    if (countEl) {
+      countEl.innerText = `${(val || "").length} / 2000`;
+    }
+  }
+
+  // Source upload simulator
+  function simulateModalUpload(source) {
+    const sourceFiles = {
+      device: { name: "Organisation_Policy_Brief.pdf", size: "1.6 MB", type: "pdf" },
+      gdrive: { name: "Quarterly_Townhall_SlideDeck.pdf", size: "3.2 MB", type: "pdf" },
+      onedrive: { name: "Benefits_Eligibility_Matrix.xlsx", size: "840 KB", type: "sheet" }
+    };
+
+    const file = sourceFiles[source] || sourceFiles.device;
+    if (!modalAttachedFilesSimulated.some(f => f.name === file.name)) {
+      modalAttachedFilesSimulated.push(file);
+      renderModalAttachedChips();
+      showToast(`Attached from ${source.toUpperCase()}: ${file.name}`);
+    } else {
+      showToast(`File already attached: ${file.name}`);
+    }
+  }
+
+  function renderModalAttachedChips() {
+    const container = document.getElementById("modalAttachedChips");
+    if (!container) return;
+    container.innerHTML = modalAttachedFilesSimulated.map((f, i) => `
+      <div class="modal-attached-pill">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+        <span>${f.name}</span>
+        <span class="modal-attached-remove" onclick="removeModalAttachedFile(${i})">✕</span>
+      </div>
+    `).join("");
+  }
+
+  function removeModalAttachedFile(idx) {
+    modalAttachedFilesSimulated.splice(idx, 1);
+    renderModalAttachedChips();
+  }
+
+  // Form Submission
+  function handleSendBroadcast(e) {
+    e.preventDefault();
+    const title = (document.getElementById("inputBcTitle")?.value || "").trim();
+    const message = (document.getElementById("inputBcMessage")?.value || "").trim();
+    const audience = document.getElementById("modalAudienceSelect")?.value || "All";
+    const priority = document.getElementById("modalPrioritySelect")?.value || "Low";
+
+    if (!title || !message) {
+      showToast("Please provide both subject and message content", "danger");
+      return;
+    }
+
+    // Determine category from title
+    let category = "Company Announcement";
+    const titleLower = title.toLowerCase();
+    if (titleLower.includes("policy")) category = "Policy Update";
+    else if (titleLower.includes("holiday")) category = "Holiday Announcement";
+    else if (titleLower.includes("meeting")) category = "Team Meeting Reminder";
+    else if (titleLower.includes("maintenance")) category = "System Maintenance";
+    else if (titleLower.includes("wellness")) category = "Wellness Session";
+    else if (titleLower.includes("benefit")) category = "New Benefits Program";
+    else if (titleLower.includes("relocation") || titleLower.includes("office")) category = "Office Relocation Update";
+    else if (titleLower.includes("employee")) category = "Employee of the Month";
+
+    const newBc = {
+      id: "bc-" + Date.now(),
+      title: title,
+      senderName: "Uneet Kumar",
+      senderRole: "Chief Human Resources Officer",
+      senderAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "Just now",
+      timestamp: new Date(),
+      category: category,
+      priority: priority,
+      audience: audience,
+      preview: message.length > 120 ? message.substring(0, 115).trim() + "..." : message,
+      fullMessage: message,
+      attachments: [...modalAttachedFilesSimulated],
+      status: "sent"
+    };
+
+    broadcasts.unshift(newBc);
+    updateSummaryStats();
+    applyFilters();
+    closeCreateModal();
+    showToast("✈ Broadcast sent successfully to all selected audience members!", "success");
+  }
+
+  // ==========================================================================
+  // 11. REFRESH & SYNC
+  // ==========================================================================
+  function refreshList() {
+    const btn = document.getElementById("refreshBtn");
+    if (btn) btn.classList.add("rotating");
+    setTimeout(() => {
+      if (btn) btn.classList.remove("rotating");
+      renderBroadcastList();
+      showToast("Broadcast activity feed synced ⟳");
+    }, 500);
+  }
+
+  // ==========================================================================
+  // 12. SIDEBAR NAVIGATION & WORKSPACE SWITCHING
+  // ==========================================================================
+  function toggleSidebarFull() {
+    const sidebar = document.getElementById("appSidebar");
+    if (sidebar) sidebar.classList.toggle("collapsed");
+  }
+
+  function focusSidebarSearch() {
+    const sidebar = document.getElementById("appSidebar");
+    if (sidebar && sidebar.classList.contains("collapsed")) {
+      sidebar.classList.remove("collapsed");
+    }
+    setTimeout(() => {
+      const inp = document.getElementById("sidebarSearchInput");
+      if (inp) inp.focus();
+    }, 150);
+  }
+
+  function filterSidebarMenu(query) {
+    const q = query.trim().toLowerCase();
+    const items = document.querySelectorAll(".donezo-cat-items .donezo-nav-item");
+    items.forEach(item => {
+      const title = (item.getAttribute("data-title") || item.innerText).toLowerCase();
+      item.style.display = title.includes(q) ? "flex" : "none";
+    });
+  }
+
+  function toggleDonezoCategory(headerEl) {
+    const cat = headerEl.parentElement;
+    if (cat) cat.classList.toggle("collapsed");
+  }
+
+  function toggleOrgSwitcher() {
+    const pop = document.getElementById("workspacePopover");
+    if (pop) pop.classList.toggle("open");
+  }
+
+  function selectWorkspace(name) {
+    const titleEl = document.getElementById("currentOrgTitle");
+    if (titleEl) titleEl.innerText = name;
+    showToast(`Switched workspace to: ${name}`);
+    closeAllMenus();
+  }
+
+  function toggleProfileMenu() {
+    const pop = document.getElementById("profilePopover");
+    if (pop) pop.classList.toggle("open");
+  }
+
+  // ==========================================================================
+  // 13. TOAST NOTIFICATIONS
+  // ==========================================================================
+  function showToast(text, type = "info") {
+    const container = document.getElementById("toastContainer");
+    if (!container) return;
+    const toast = document.createElement("div");
+    toast.className = `toast-msg ${type}`;
+    toast.innerHTML = `<span>${text}</span>`;
+    container.appendChild(toast);
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateY(10px)";
+      toast.style.transition = "all 0.3s ease";
+      setTimeout(() => toast.remove(), 300);
+    }, 3200);
+  }
+
+  // Keybindings
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeDrawer();
+      closeCreateModal();
+      closeAllMenus();
+    }
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+      e.preventDefault();
+      focusSidebarSearch();
+    }
+  });
+</script>
+
+</body>
+</html>
