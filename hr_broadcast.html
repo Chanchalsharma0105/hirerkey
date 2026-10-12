@@ -3476,13 +3476,74 @@
     .v2-item-meta-line {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
       font-size: 12px;
       color: #94A3B8;
-      margin-top: 2px;
+      margin-top: 3px;
+      flex-wrap: wrap;
+    }
+
+    .v2-item-creator-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #64748B;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .v2-item-author-avatar {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid #E2E8F0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+      background: #EDE9FE;
+    }
+
+    .v2-item-author-fallback {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: #6D28D9;
+      font-size: 8.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .v2-item-creator-text {
+      color: #64748B;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .v2-item-creator-name {
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .v2-item-meta-sep {
+      color: #CBD5E1;
+      font-size: 10px;
+      user-select: none;
+    }
+
+    .v2-item-date {
+      color: #94A3B8;
+      font-size: 12px;
     }
 
     .v2-item-author-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       color: #64748B;
     }
 
@@ -5439,6 +5500,10 @@
       const cfg = getV2SquircleConfig(b);
       const prioClass = `priority-${(b.priority || 'low').toLowerCase()}`;
       const attachCount = b.attachments ? b.attachments.length : 0;
+      const initials = (b.senderName || 'HR').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+      const creatorAvatarHtml = b.senderAvatar
+        ? `<img src="${b.senderAvatar}" alt="${escapeHtml(b.senderName)}" class="v2-item-author-avatar" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='inline-flex';" /><span class="v2-item-author-fallback" style="display: none;">${initials}</span>`
+        : `<span class="v2-item-author-fallback">${initials}</span>`;
 
       return `
         <div class="v2-row-item ${isSelected ? 'selected' : ''}" id="v2Row-${b.id}" onclick="selectV2Broadcast('${b.id}')">
@@ -5452,8 +5517,14 @@
             </div>
             <div class="v2-item-snippet">${escapeHtml(b.preview || b.fullMessage || '')}</div>
             <div class="v2-item-meta-line">
-              <span class="v2-item-author-date">${escapeHtml(b.senderName)} · ${b.dateFormatted}</span>
+              <span class="v2-item-creator-chip">
+                ${creatorAvatarHtml}
+                <span class="v2-item-creator-text">Created by <strong class="v2-item-creator-name">${escapeHtml(b.senderName)}</strong></span>
+              </span>
+              <span class="v2-item-meta-sep">•</span>
+              <span class="v2-item-date">${b.dateFormatted}</span>
               ${attachCount > 0 ? `
+                <span class="v2-item-meta-sep">•</span>
                 <span class="v2-item-attach-count">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
                   ${attachCount} attachment${attachCount > 1 ? 's' : ''}
