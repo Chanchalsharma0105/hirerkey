@@ -2038,6 +2038,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      width: 100%;
       max-width: 100%;
     }
 
@@ -2048,6 +2049,8 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 100%;
+      display: inline-block;
     }
 
     .drawer-emp-link:hover {
@@ -4122,7 +4125,663 @@
         margin-left: 0;
         width: 100%;
         justify-content: flex-end;
+    /* ==========================================================================
+       VIEW 3: SPOTLIGHT WIDGET STYLING (Single High-Priority Broadcast Canvas)
+       ========================================================================== */
+    .v3-tab-live-pulse {
+      width: 6.5px;
+      height: 6.5px;
+      border-radius: 50%;
+      background: #EF4444;
+      display: inline-block;
+      margin-right: 2px;
+      box-shadow: 0 0 0 rgba(239, 68, 68, 0.5);
+      animation: v3PulseDot 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    @keyframes v3PulseDot {
+      0%, 100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+        transform: scale(1);
       }
+      50% {
+        box-shadow: 0 0 0 5px rgba(239, 68, 68, 0);
+        transform: scale(1.2);
+      }
+    }
+
+    .v3-widget-view-wrap {
+      width: 100%;
+      padding-bottom: 48px;
+      animation: fadeInFast 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v3-widget-canvas {
+      width: 100%;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .v3-widget-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08), 0 4px 16px rgba(15, 23, 42, 0.03);
+      overflow: hidden;
+      transition: box-shadow var(--transition-normal);
+      position: relative;
+    }
+
+    .v3-widget-card:hover {
+      box-shadow: 0 24px 50px -10px rgba(15, 23, 42, 0.11), 0 2px 6px rgba(15, 23, 42, 0.05);
+    }
+
+    .v3-accent-strip {
+      height: 4px;
+      width: 100%;
+      background: linear-gradient(90deg, #EF4444 0%, #F59E0B 45%, #7C3AED 100%);
+    }
+
+    /* Top Alert Ribbon */
+    .v3-widget-ribbon {
+      background: #FEF2F2;
+      border-bottom: 1px solid #FECACA;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .v3-ribbon-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .v3-priority-pulse-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 11px;
+      background: #DC2626;
+      color: #FFFFFF;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+    }
+
+    .v3-pulse-dot {
+      position: relative;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #FFFFFF;
+    }
+
+    .v3-pulse-ring {
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.65);
+      animation: v3Pulse 1.8s infinite cubic-bezier(0.24, 0, 0.38, 1);
+    }
+
+    @keyframes v3Pulse {
+      0% { transform: scale(0.6); opacity: 1; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+
+    .v3-ribbon-dot {
+      color: #F87171;
+      font-size: 12px;
+    }
+
+    .v3-time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #991B1B;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .v3-ribbon-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .v3-audience-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3.5px 10px;
+      background: #FFFFFF;
+      border: 1px solid #FECACA;
+      border-radius: var(--radius-full);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #991B1B;
+    }
+
+    .v3-pinned-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3.5px 9px;
+      background: #FEE2E2;
+      border: 1px solid #FCA5A5;
+      border-radius: var(--radius-full);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #B91C1C;
+      letter-spacing: 0.04em;
+    }
+
+    /* Inner Body */
+    .v3-widget-inner {
+      padding: 28px 32px 24px 32px;
+    }
+
+    .v3-widget-header {
+      margin-bottom: 20px;
+    }
+
+    .v3-widget-title {
+      font-size: 25px;
+      font-weight: 750;
+      color: var(--text-heading);
+      line-height: 1.3;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+
+    /* Format 5 Creator Employee Card */
+    .v3-emp-card {
+      background: #F8FAFC;
+      border: 1px solid #EEF2F6;
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 24px;
+      transition: border-color var(--transition-fast), background-color var(--transition-fast);
+    }
+
+    .v3-emp-card:hover {
+      background: #F1F5F9;
+      border-color: #E2E8F0;
+    }
+
+    .v3-emp-avatar-wrap {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+    }
+
+    .v3-emp-avatar-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #EDE9FE;
+    }
+
+    .v3-emp-avatar-fallback {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: #6D28D9;
+      font-size: 15px;
+      font-weight: 800;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .v3-emp-status-dot {
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+    }
+
+    .v3-emp-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .v3-emp-row-one {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .v3-emp-name {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+    }
+
+    .v3-emp-chips {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .v3-emp-pill {
+      padding: 2.5px 9px;
+      background: #EEF2FF;
+      color: #6366F1;
+      border: 1px solid rgba(99, 102, 241, 0.16);
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .v3-emp-code {
+      padding: 2.5px 8px;
+      background: #FFFFFF;
+      border: 1px solid #C7D2FE;
+      color: #6366F1;
+      border-radius: 6px;
+      font-family: var(--font-mono, monospace);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .v3-emp-title-row {
+      display: flex;
+      align-items: center;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    .v3-emp-dot {
+      margin: 0 6px;
+      color: #94A3B8;
+      font-size: 11px;
+    }
+
+    .v3-emp-contact-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .v3-emp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #64748B;
+      text-decoration: none;
+      transition: color var(--transition-fast);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .v3-emp-link:hover {
+      color: var(--brand-primary);
+      text-decoration: underline;
+    }
+
+    /* Message Content */
+    .v3-message-container {
+      margin-bottom: 24px;
+    }
+
+    .v3-message-body {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: #334155;
+      white-space: pre-line;
+      word-break: break-word;
+    }
+
+    /* Attachments */
+    .v3-attachments-section {
+      background: #FAF5FF;
+      border: 1px solid #F3E8FF;
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 26px;
+    }
+
+    .v3-attachments-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .v3-attachments-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6B21A8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .v3-attachments-count {
+      font-size: 12px;
+      font-weight: 600;
+      color: #9333EA;
+    }
+
+    .v3-attachments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+
+    .v3-att-card {
+      background: #FFFFFF;
+      border: 1px solid #E9D5FF;
+      border-radius: 10px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      transition: all var(--transition-fast);
+    }
+
+    .v3-att-card:hover {
+      border-color: #C084FC;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .v3-att-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .v3-att-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: #F3EEFF;
+      color: #7C3AED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .v3-att-meta {
+      min-width: 0;
+    }
+
+    .v3-att-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .v3-att-size {
+      font-size: 11px;
+      color: #64748B;
+    }
+
+    .v3-att-btn-download {
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      flex-shrink: 0;
+    }
+
+    .v3-att-btn-download:hover {
+      background: var(--brand-primary);
+      border-color: var(--brand-primary);
+      color: #FFFFFF;
+    }
+
+    /* Action Bar */
+    .v3-action-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid #EEF2F6;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .v3-action-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .v3-btn-ack {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9.5px 18px;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border: 1px solid var(--brand-primary-hover);
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+      transition: all var(--transition-fast);
+    }
+
+    .v3-btn-ack:hover {
+      background: var(--brand-primary-hover);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+      transform: translateY(-1px);
+    }
+
+    .v3-btn-ack.acknowledged {
+      background: #ECFDF5;
+      color: #059669;
+      border-color: #A7F3D0;
+      box-shadow: none;
+      cursor: default;
+      transform: none;
+    }
+
+    .v3-ack-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      color: #065F46;
+    }
+
+    .v3-action-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .v3-btn-tool {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .v3-btn-tool:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    /* Footer Pinned Notice */
+    .v3-widget-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      color: #94A3B8;
+      padding-top: 14px;
+      border-top: 1px dashed #F1F5F9;
+      flex-wrap: wrap;
+    }
+
+    .v3-footer-left {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .v3-footer-link {
+      color: var(--brand-primary);
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color var(--transition-fast);
+    }
+
+    .v3-footer-link:hover {
+      color: var(--brand-primary-hover);
+      text-decoration: underline;
+    }
+
+    /* Empty State */
+    .v3-empty-state-card {
+      max-width: 620px;
+      margin: 40px auto;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 48px 36px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .v3-empty-icon-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px auto;
+    }
+
+    .v3-empty-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+
+    .v3-empty-desc {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.6;
+      max-width: 440px;
+      margin: 0 auto 24px auto;
+    }
+
+    .v3-empty-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .v3-empty-btn-primary {
+      padding: 9px 18px;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .v3-empty-btn-primary:hover {
+      background: var(--brand-primary-hover);
+    }
+
+    .v3-empty-btn-secondary {
+      padding: 9px 18px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      color: #334155;
+      border-radius: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .v3-empty-btn-secondary:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
     }
   </style>
 </head>
@@ -4540,7 +5199,7 @@
         <div class="page-header-left">
           <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
             <h1 class="page-title" style="margin-bottom: 0;">HR Broadcast</h1>
-            <!-- Dual View Switcher -->
+            <!-- 3-Way View Switcher -->
             <div class="screen-switcher-bar" id="broadcastViewSwitcher">
               <button class="screen-tab" id="btnView1" onclick="switchBroadcastView('view1')">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
@@ -4550,6 +5209,11 @@
                 <span class="screen-tab-dot"></span>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1.5"></rect><rect x="14" y="3" width="7" height="18" rx="1.5"></rect></svg>
                 <span>View 2 (Workspace)</span>
+              </button>
+              <button class="screen-tab" id="btnView3" onclick="switchBroadcastView('view3')" title="Spotlight Widget — Latest High Priority Broadcast">
+                <span class="v3-tab-live-pulse" id="v3LiveDot"></span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span>View 3 (Widget)</span>
               </button>
             </div>
           </div>
@@ -4733,6 +5397,194 @@
 
       </div>
 
+      <!-- ==========================================================================
+           VIEW 3: SPOTLIGHT WIDGET VIEW (SINGLE HIGH-PRIORITY BROADCAST)
+           Strictly 1 High-Priority Broadcast — No List Clutter
+           ========================================================================== -->
+      <div id="view3Container" class="broadcast-view-mode v3-widget-view-wrap" style="display: none;">
+
+        <!-- Active Single Broadcast Card Container -->
+        <div class="v3-widget-canvas" id="v3WidgetCanvas">
+          <article class="v3-widget-card" id="v3WidgetCard">
+
+            <!-- 1. Top Gradient Accent Strip -->
+            <div class="v3-accent-strip"></div>
+
+            <!-- 2. Top Alert Ribbon -->
+            <div class="v3-widget-ribbon">
+              <div class="v3-ribbon-left">
+                <div class="v3-priority-pulse-badge">
+                  <span class="v3-pulse-dot">
+                    <span class="v3-pulse-ring"></span>
+                  </span>
+                  <span class="v3-pulse-label">CRITICAL ANNOUNCEMENT</span>
+                </div>
+                <span class="v3-ribbon-dot">•</span>
+                <div class="v3-time-badge" id="v3BroadcastTime">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                  </svg>
+                  <span id="v3TimeText">02 May 2026, 04:15 PM</span>
+                </div>
+              </div>
+
+              <div class="v3-ribbon-right">
+                <div class="v3-audience-pill" id="v3AudiencePill">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <span id="v3AudienceText">All Employees</span>
+                </div>
+                <div class="v3-pinned-chip" title="Pinned until next high-priority announcement">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 3l1 1-2 5 3 3v2h-6v7l-1 1-1-1v-7H4v-2l3-3-2-5 1-1 4 2z"/>
+                  </svg>
+                  <span>PINNED</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Inner Body -->
+            <div class="v3-widget-inner">
+
+              <!-- 3. Hero Headline -->
+              <header class="v3-widget-header">
+                <h1 class="v3-widget-title" id="v3BroadcastTitle">Holiday announcement</h1>
+              </header>
+
+              <!-- 4. Creator Profile Card (Format 5 Compact ID Card) -->
+              <div class="v3-emp-card">
+                <div class="v3-emp-avatar-wrap">
+                  <img src="" alt="" class="v3-emp-avatar-img" id="v3SenderAvatar" onerror="this.onerror=null; this.style.display='none'; document.getElementById('v3SenderFallback').style.display='flex';" />
+                  <div class="v3-emp-avatar-fallback" id="v3SenderFallback">PS</div>
+                  <span class="v3-emp-status-dot" title="Active Online"></span>
+                </div>
+                <div class="v3-emp-info">
+                  <div class="v3-emp-row-one">
+                    <span class="v3-emp-name" id="v3SenderName">Priya Sharma</span>
+                    <div class="v3-emp-chips">
+                      <span class="v3-emp-pill" id="v3SenderPill">Manager</span>
+                      <span class="v3-emp-code" id="v3SenderCode">#EMP-0004</span>
+                    </div>
+                  </div>
+                  <div class="v3-emp-title-row">
+                    <span id="v3SenderRole">Head of People Operations</span>
+                    <span class="v3-emp-dot">•</span>
+                    <span id="v3SenderDept">People Operations</span>
+                  </div>
+                  <div class="v3-emp-contact-row">
+                    <a href="mailto:priya.sharma@noisiv.com" class="v3-emp-link" id="v3SenderEmail" title="priya.sharma@noisiv.com">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                      <span id="v3SenderEmailText">priya.sharma@noisiv.com</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 5. Broadcast Message Body -->
+              <div class="v3-message-container">
+                <div class="v3-message-body" id="v3MessageContent">
+                  <!-- Full broadcast message rendered with linebreaks -->
+                </div>
+              </div>
+
+              <!-- 6. Attachments Showcase -->
+              <div class="v3-attachments-section" id="v3AttachmentsSection" style="display: none;">
+                <div class="v3-attachments-header">
+                  <span class="v3-attachments-label">Attached Documents</span>
+                  <span class="v3-attachments-count" id="v3AttachmentsCount">1 File</span>
+                </div>
+                <div class="v3-attachments-grid" id="v3AttachmentsGrid">
+                  <!-- Injected dynamically -->
+                </div>
+              </div>
+
+              <!-- 7. Bottom Action & Confirmation Bar -->
+              <div class="v3-action-bar">
+                <div class="v3-action-left">
+                  <button class="v3-btn-ack" id="v3BtnAck" onclick="toggleV3Acknowledgment()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span id="v3BtnAckText">I have read and acknowledged this</span>
+                  </button>
+                  <div class="v3-ack-status-badge" id="v3AckStatusBadge" style="display: none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Acknowledged by you</span>
+                  </div>
+                </div>
+
+                <div class="v3-action-right">
+                  <button class="v3-btn-tool" onclick="copyV3BroadcastLink()" title="Copy direct link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                    <span>Copy Link</span>
+                  </button>
+                  <button class="v3-btn-tool" onclick="window.print()" title="Print announcement">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                      <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    <span>Print</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- 8. Pinned Notice Footer -->
+              <footer class="v3-widget-footer">
+                <div class="v3-footer-left">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>This high-priority broadcast remains pinned in this widget until superseded by the next urgent announcement.</span>
+                </div>
+                <a href="javascript:void(0)" class="v3-footer-link" onclick="switchBroadcastView('view2')">
+                  <span>Browse all updates in Workspace View</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </a>
+              </footer>
+
+            </div>
+          </article>
+        </div>
+
+        <!-- Empty State (When no High Priority Broadcast exists) -->
+        <div class="v3-empty-state-card" id="v3EmptyState" style="display: none;">
+          <div class="v3-empty-icon-wrap">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              <polyline points="9 12 11 14 15 10"></polyline>
+            </svg>
+          </div>
+          <h3 class="v3-empty-title">No Active High-Priority Broadcasts</h3>
+          <p class="v3-empty-desc">All systems and policies are currently operating normally. General announcements can be viewed in the Feed or Workspace.</p>
+          <div class="v3-empty-actions">
+            <button class="v3-empty-btn-primary" onclick="switchBroadcastView('view2')">
+              <span>Go to Workspace View</span>
+            </button>
+            <button class="v3-empty-btn-secondary" onclick="openCreateModal()">
+              <span>+ Create Announcement</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
     </main>
 
   </div>
@@ -4875,11 +5727,9 @@
           <span id="drawerSenderDept">Human Resources</span>
         </div>
 
-        <!-- Line 4: Email • Phone -->
+        <!-- Line 4: Email -->
         <div class="drawer-emp-contact-row">
-          <a href="mailto:uneet.kumar@noisiv.com" class="drawer-emp-link" id="drawerSenderEmail">uneet.kumar@noisiv.com</a>
-          <span class="drawer-emp-dot">•</span>
-          <a href="tel:+971504928812" class="drawer-emp-link" id="drawerSenderPhone">+971 50 492 8812</a>
+          <a href="mailto:uneet.kumar@noisiv.com" class="drawer-emp-link" id="drawerSenderEmail" title="uneet.kumar@noisiv.com">uneet.kumar@noisiv.com</a>
         </div>
       </div>
     </div>
@@ -5836,6 +6686,263 @@
     };
   }
 
+  const globalSenderDirectory = {
+    "Sara Khan": {
+      pill: "Manager",
+      code: "#EMP-0001",
+      role: "Front Desk Manager",
+      dept: "Front Office",
+      email: "sara.khan@noisiv.com"
+    },
+    "Uneet Kumar": {
+      pill: "Executive",
+      code: "#EMP-0012",
+      role: "Chief Human Resources Officer",
+      dept: "Human Resources",
+      email: "uneet.kumar@noisiv.com"
+    },
+    "Amit Patel": {
+      pill: "Executive",
+      code: "#EMP-0005",
+      role: "Director of Talent & Culture",
+      dept: "Talent & Culture",
+      email: "amit.patel@noisiv.com"
+    },
+    "Priya Sharma": {
+      pill: "Manager",
+      code: "#EMP-0004",
+      role: "Head of People Operations",
+      dept: "People Operations",
+      email: "priya.sharma@noisiv.com"
+    },
+    "Rahul Verma": {
+      pill: "Executive",
+      code: "#EMP-0008",
+      role: "VP of Engineering",
+      dept: "Engineering",
+      email: "rahul.verma@noisiv.com"
+    },
+    "Neha Singh": {
+      pill: "Lead",
+      code: "#EMP-0019",
+      role: "Principal DevOps Architect",
+      dept: "Cloud & Infrastructure",
+      email: "neha.singh@noisiv.com"
+    },
+    "Subhadeep Datta": {
+      pill: "Executive",
+      code: "#EMP-0002",
+      role: "Business Head • HR",
+      dept: "Business Operations",
+      email: "subhadeep.datta@noisiv.com"
+    },
+    "Sneha Gupta": {
+      pill: "Lead",
+      code: "#EMP-0023",
+      role: "Workplace Experience Lead",
+      dept: "Workplace Experience",
+      email: "sneha.gupta@noisiv.com"
+    },
+    "Karan Mehta": {
+      pill: "Manager",
+      code: "#EMP-0015",
+      role: "Benefits & Total Rewards Manager",
+      dept: "Total Rewards",
+      email: "karan.mehta@noisiv.com"
+    }
+  };
+
+  function getSenderMeta(senderName, senderRole, bcId) {
+    if (globalSenderDirectory[senderName]) {
+      return globalSenderDirectory[senderName];
+    }
+    const roleLower = (senderRole || '').toLowerCase();
+    const pill = roleLower.includes('chief') || roleLower.includes('vp') || roleLower.includes('head') ? 'Executive' : (roleLower.includes('lead') ? 'Lead' : 'Manager');
+    const numericId = (bcId || '01').replace(/\D/g, '').padStart(4, '0');
+    return {
+      pill: pill,
+      code: `#EMP-${numericId}`,
+      role: senderRole || "Chief Human Resources Officer",
+      dept: "Human Resources",
+      email: `${(senderName || 'user').toLowerCase().replace(/\s+/g, '.')}@noisiv.com`
+    };
+  }
+
+  // ==========================================================================
+  // VIEW 3 CONTROLLER: SINGLE HIGH-PRIORITY BROADCAST SPOTLIGHT
+  // ==========================================================================
+  function getLatestHighPriorityBroadcast() {
+    const highList = broadcasts
+      .filter(b => (b.priority || '').toLowerCase() === 'high' && b.status !== 'archived')
+      .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    return highList.length > 0 ? highList[0] : null;
+  }
+
+  function updateV3LivePulse() {
+    const pulseDot = document.getElementById('v3LiveDot');
+    const hasHigh = broadcasts.some(b => (b.priority || '').toLowerCase() === 'high' && b.status !== 'archived');
+    if (pulseDot) {
+      pulseDot.style.display = hasHigh ? 'inline-block' : 'none';
+    }
+  }
+
+  function renderView3Widget() {
+    const canvas = document.getElementById('v3WidgetCanvas');
+    const emptyState = document.getElementById('v3EmptyState');
+    const activeBc = getLatestHighPriorityBroadcast();
+
+    updateV3LivePulse();
+
+    if (!activeBc) {
+      if (canvas) canvas.style.display = 'none';
+      if (emptyState) emptyState.style.display = 'block';
+      return;
+    }
+
+    if (canvas) canvas.style.display = 'block';
+    if (emptyState) emptyState.style.display = 'none';
+
+    // Title, Date & Audience
+    const titleEl = document.getElementById('v3BroadcastTitle');
+    const timeEl = document.getElementById('v3TimeText');
+    const audEl = document.getElementById('v3AudienceText');
+    const msgEl = document.getElementById('v3MessageContent');
+
+    if (titleEl) titleEl.innerText = activeBc.title || 'High Priority Announcement';
+    if (timeEl) timeEl.innerText = activeBc.dateFormatted || '';
+    if (audEl) audEl.innerText = activeBc.audience === 'All' ? 'All Employees' : (activeBc.audience || 'All Employees');
+    if (msgEl) msgEl.innerText = activeBc.fullMessage || activeBc.preview || '';
+
+    // Sender Info (Format 5 Compact ID Card)
+    const sMeta = getSenderMeta(activeBc.senderName, activeBc.senderRole, activeBc.id);
+    const dSender = document.getElementById('v3SenderName');
+    const dPill = document.getElementById('v3SenderPill');
+    const dCode = document.getElementById('v3SenderCode');
+    const dRole = document.getElementById('v3SenderRole');
+    const dDept = document.getElementById('v3SenderDept');
+    const dEmail = document.getElementById('v3SenderEmail');
+    const dEmailText = document.getElementById('v3SenderEmailText');
+    const dAvatar = document.getElementById('v3SenderAvatar');
+    const dFallback = document.getElementById('v3SenderFallback');
+
+    if (dSender) dSender.innerText = activeBc.senderName || 'Uneet Kumar';
+    if (dPill) dPill.innerText = sMeta.pill;
+    if (dCode) dCode.innerText = sMeta.code;
+    if (dRole) dRole.innerText = activeBc.senderRole || sMeta.role;
+    if (dDept) dDept.innerText = sMeta.dept;
+    if (dEmail) {
+      dEmail.href = `mailto:${sMeta.email}`;
+      dEmail.title = sMeta.email;
+    }
+    if (dEmailText) dEmailText.innerText = sMeta.email;
+
+    if (activeBc.senderAvatar && dAvatar && dFallback) {
+      dAvatar.src = activeBc.senderAvatar;
+      dAvatar.style.display = 'block';
+      dFallback.style.display = 'none';
+    } else if (dAvatar && dFallback) {
+      dAvatar.style.display = 'none';
+      const initials = (activeBc.senderName || 'HR').split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+      dFallback.innerText = initials || 'UK';
+      dFallback.style.display = 'flex';
+    }
+
+    // Attachments Showcase
+    const attSection = document.getElementById('v3AttachmentsSection');
+    const attCount = document.getElementById('v3AttachmentsCount');
+    const attGrid = document.getElementById('v3AttachmentsGrid');
+
+    if (activeBc.attachments && activeBc.attachments.length > 0) {
+      if (attSection) attSection.style.display = 'block';
+      if (attCount) attCount.innerText = `${activeBc.attachments.length} File${activeBc.attachments.length > 1 ? 's' : ''}`;
+      if (attGrid) {
+        attGrid.innerHTML = activeBc.attachments.map(att => `
+          <div class="v3-att-card">
+            <div class="v3-att-left">
+              <div class="v3-att-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+              </div>
+              <div class="v3-att-meta">
+                <div class="v3-att-title" title="${escapeHtml(att.name)}">${escapeHtml(att.name)}</div>
+                <div class="v3-att-size">${escapeHtml(att.size || 'Document')}</div>
+              </div>
+            </div>
+            <button class="v3-att-btn-download" onclick="downloadAttachment('${escapeHtml(att.name)}')" title="Download ${escapeHtml(att.name)}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </button>
+          </div>
+        `).join('');
+      }
+    } else if (attSection) {
+      attSection.style.display = 'none';
+    }
+
+    // Acknowledgment Check
+    updateV3AckUI(activeBc.id);
+  }
+
+  function updateV3AckUI(bcId) {
+    const btn = document.getElementById('v3BtnAck');
+    const btnText = document.getElementById('v3BtnAckText');
+    const badge = document.getElementById('v3AckStatusBadge');
+    if (!btn) return;
+
+    let isAck = false;
+    try {
+      isAck = localStorage.getItem(`hirerkey_ack_${bcId}`) === 'true';
+    } catch(e) {}
+
+    if (isAck) {
+      btn.classList.add('acknowledged');
+      if (btnText) btnText.innerText = 'Acknowledged';
+      if (badge) badge.style.display = 'inline-flex';
+    } else {
+      btn.classList.remove('acknowledged');
+      if (btnText) btnText.innerText = 'I have read and acknowledged this';
+      if (badge) badge.style.display = 'none';
+    }
+  }
+
+  function toggleV3Acknowledgment() {
+    const activeBc = getLatestHighPriorityBroadcast();
+    if (!activeBc) return;
+    const key = `hirerkey_ack_${activeBc.id}`;
+    let isAck = false;
+    try {
+      isAck = localStorage.getItem(key) === 'true';
+      if (!isAck) {
+        localStorage.setItem(key, 'true');
+        showToast('✓ You have acknowledged this broadcast announcement.', 'success');
+      } else {
+        localStorage.removeItem(key);
+        showToast('Acknowledgment reset.');
+      }
+    } catch(e) {}
+    updateV3AckUI(activeBc.id);
+  }
+
+  function copyV3BroadcastLink() {
+    const activeBc = getLatestHighPriorityBroadcast();
+    if (!activeBc) return;
+    const url = `${window.location.origin}${window.location.pathname}#spotlight=${activeBc.id}`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('✓ Spotlight broadcast link copied to clipboard!', 'success');
+      }).catch(() => {
+        showToast(`Spotlight broadcast: ${activeBc.title}`);
+      });
+    } else {
+      showToast(`Spotlight broadcast: ${activeBc.title}`);
+    }
+  }
+
   function switchBroadcastView(viewName) {
     currentBroadcastView = viewName;
     try {
@@ -5844,31 +6951,46 @@
 
     const v1 = document.getElementById('view1Container');
     const v2 = document.getElementById('view2Container');
+    const v3 = document.getElementById('view3Container');
     const btn1 = document.getElementById('btnView1');
     const btn2 = document.getElementById('btnView2');
+    const btn3 = document.getElementById('btnView3');
+
+    // Reset all tabs
+    [btn1, btn2, btn3].forEach(b => {
+      if (b) {
+        b.classList.remove('active');
+        b.classList.remove('screen-tab-recommended');
+      }
+    });
 
     if (viewName === 'view1') {
       if (v1) v1.style.display = 'block';
       if (v2) v2.style.display = 'none';
+      if (v3) v3.style.display = 'none';
       if (btn1) {
         btn1.classList.add('active');
         btn1.classList.add('screen-tab-recommended');
       }
-      if (btn2) {
-        btn2.classList.remove('active');
-        btn2.classList.remove('screen-tab-recommended');
-      }
       renderBroadcastList();
+    } else if (viewName === 'view3') {
+      if (v1) v1.style.display = 'none';
+      if (v2) v2.style.display = 'none';
+      if (v3) v3.style.display = 'block';
+      if (btn3) {
+        btn3.classList.add('active');
+        btn3.classList.add('screen-tab-recommended');
+      }
+      renderView3Widget();
     } else {
+      // Default to View 2
+      currentBroadcastView = 'view2';
       if (v1) v1.style.display = 'none';
       if (v2) v2.style.display = 'flex';
+      if (v3) v3.style.display = 'none';
       if (btn2) {
         btn2.classList.add('active');
         btn2.classList.add('screen-tab-recommended');
-      }
-      if (btn1) {
-        btn1.classList.remove('active');
-        btn1.classList.remove('screen-tab-recommended');
       }
       updateV2Badges();
       renderV2BroadcastList();
@@ -6084,6 +7206,7 @@
     updateFilterTriggersUI();
     renderBroadcastList();
     renderV2BroadcastList();
+    updateV3LivePulse();
     // Default to view2 per user instruction, or restore preference
     const savedView = localStorage.getItem('hirerkey_broadcast_view') || 'view2';
     switchBroadcastView(savedView);
@@ -6494,91 +7617,8 @@
     const dPill = document.getElementById("drawerSenderPill");
     const dCode = document.getElementById("drawerSenderCode");
     const dEmail = document.getElementById("drawerSenderEmail");
-    const dPhone = document.getElementById("drawerSenderPhone");
 
-    const senderDirectory = {
-      "Sara Khan": {
-        pill: "Manager",
-        code: "#EMP-0001",
-        role: "Front Desk Manager",
-        dept: "Front Office",
-        email: "sara.khan@noisiv.com",
-        phone: "+971 50 492 8812"
-      },
-      "Uneet Kumar": {
-        pill: "Executive",
-        code: "#EMP-0012",
-        role: "Chief Human Resources Officer",
-        dept: "Human Resources",
-        email: "uneet.kumar@noisiv.com",
-        phone: "+971 50 492 8812"
-      },
-      "Amit Patel": {
-        pill: "Executive",
-        code: "#EMP-0005",
-        role: "Director of Talent & Culture",
-        dept: "Talent & Culture",
-        email: "amit.patel@noisiv.com",
-        phone: "+971 50 519 2381"
-      },
-      "Priya Sharma": {
-        pill: "Manager",
-        code: "#EMP-0004",
-        role: "Head of People Operations",
-        dept: "People Operations",
-        email: "priya.sharma@noisiv.com",
-        phone: "+971 50 832 1944"
-      },
-      "Rahul Verma": {
-        pill: "Executive",
-        code: "#EMP-0008",
-        role: "VP of Engineering",
-        dept: "Engineering",
-        email: "rahul.verma@noisiv.com",
-        phone: "+971 50 711 3920"
-      },
-      "Neha Singh": {
-        pill: "Lead",
-        code: "#EMP-0019",
-        role: "Principal DevOps Architect",
-        dept: "Cloud & Infrastructure",
-        email: "neha.singh@noisiv.com",
-        phone: "+971 50 624 8190"
-      },
-      "Subhadeep Datta": {
-        pill: "Executive",
-        code: "#EMP-0002",
-        role: "Business Head • HR",
-        dept: "Business Operations",
-        email: "subhadeep.datta@noisiv.com",
-        phone: "+971 50 382 9104"
-      },
-      "Sneha Gupta": {
-        pill: "Lead",
-        code: "#EMP-0023",
-        role: "Workplace Experience Lead",
-        dept: "Workplace Experience",
-        email: "sneha.gupta@noisiv.com",
-        phone: "+971 50 918 2743"
-      },
-      "Karan Mehta": {
-        pill: "Manager",
-        code: "#EMP-0015",
-        role: "Benefits & Total Rewards Manager",
-        dept: "Total Rewards",
-        email: "karan.mehta@noisiv.com",
-        phone: "+971 50 442 8192"
-      }
-    };
-
-    const sMeta = senderDirectory[bc.senderName] || {
-      pill: (bc.senderRole || '').toLowerCase().includes('chief') || (bc.senderRole || '').toLowerCase().includes('vp') || (bc.senderRole || '').toLowerCase().includes('head') ? 'Executive' : 'Manager',
-      code: `#EMP-${(bc.id || '01').replace(/\D/g, '').padStart(4, '0')}`,
-      role: bc.senderRole || "Chief Human Resources Officer",
-      dept: "Human Resources",
-      email: `${(bc.senderName || 'user').toLowerCase().replace(/\s+/g, '.')}@noisiv.com`,
-      phone: "+971 50 492 8812"
-    };
+    const sMeta = getSenderMeta(bc.senderName, bc.senderRole, bc.id);
 
     if (dSender) dSender.innerText = bc.senderName || "Uneet Kumar";
     if (dPill) dPill.innerText = sMeta.pill;
@@ -6588,10 +7628,7 @@
     if (dEmail) {
       dEmail.innerText = sMeta.email;
       dEmail.href = `mailto:${sMeta.email}`;
-    }
-    if (dPhone) {
-      dPhone.innerText = sMeta.phone;
-      dPhone.href = `tel:${sMeta.phone.replace(/\s+/g, '')}`;
+      dEmail.title = sMeta.email;
     }
 
     // Avatar / Fallback
@@ -6917,8 +7954,16 @@
     updateV2Badges();
     applyFilters();
     renderV2BroadcastList();
+    updateV3LivePulse();
+    if (currentBroadcastView === 'view3') {
+      renderView3Widget();
+    }
     closeCreateModal();
-    showToast("✈ Broadcast sent successfully to all selected audience members!", "success");
+    if ((newBc.priority || '').toLowerCase() === 'high') {
+      showToast("✈ High-Priority broadcast published and pinned to Spotlight Widget!", "success");
+    } else {
+      showToast("✈ Broadcast sent successfully to all selected audience members!", "success");
+    }
   }
 
   // ==========================================================================
