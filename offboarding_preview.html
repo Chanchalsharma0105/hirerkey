@@ -7666,16 +7666,13 @@
 
     <!-- Right Profile Metadata Column -->
     <div class="emp-card-compact-info">
-      <!-- Line 1: Name + Employee Code -->
-      <div class="emp-card-compact-name-row">
-        <span class="emp-card-compact-name" id="empCardSaraName">Sara Khan</span>
-        <span class="emp-card-compact-code" id="empCardSaraCode">#EMP-0001</span>
-      </div>
+      <!-- Line 1: Name -->
+      <div class="emp-card-compact-name" id="empCardSaraName">Sara Khan</div>
 
-      <!-- Line 2: Dual Badges (Role Pill | Seat Chip) directly below Name -->
+      <!-- Line 2: Dual Badges (Role Pill | Employee Code Chip instead of position code) directly below Name -->
       <div class="emp-card-compact-chips">
         <span class="emp-card-compact-pill" id="empCardSaraPill">Manager</span>
-        <span class="emp-card-compact-seat" id="empCardSaraSeat">FDM-01</span>
+        <span class="emp-card-compact-seat" id="empCardSaraSeat">#EMP-0001</span>
       </div>
 
       <!-- Line 3: Title • Department -->
@@ -9809,22 +9806,20 @@ function showEmployeeHoverCard(triggerEl, empId) {
     if (f4) f4.style.display = 'none';
     if (f5) f5.style.display = 'flex';
 
-    // 1. Name & Employee Code
+    // 1. Name
     const saraName = document.getElementById('empCardSaraName');
     if (saraName) saraName.textContent = c.name || 'Sara Khan';
 
-    const saraCode = document.getElementById('empCardSaraCode');
-    if (saraCode) {
-      const empNum = c.id ? c.id.toString().padStart(4, '0') : '0001';
-      saraCode.textContent = `#EMP-${empNum}`;
-    }
-
-    // 2. Role Pill & Seat Chip
+    // 2. Role Pill & Employee Code Chip (replaces position code)
     const saraPill = document.getElementById('empCardSaraPill');
     if (saraPill) saraPill.textContent = c.level || 'Manager';
 
+    const empNum = c.id ? c.id.toString().padStart(4, '0') : '0001';
+    const empCodeVal = `#EMP-${empNum}`;
     const saraSeat = document.getElementById('empCardSaraSeat');
-    if (saraSeat) saraSeat.textContent = c.seat || 'FDM-01';
+    if (saraSeat) saraSeat.textContent = empCodeVal;
+    const saraCode = document.getElementById('empCardSaraCode');
+    if (saraCode) saraCode.textContent = empCodeVal;
 
     // 3. Title & Department
     const saraTitle = document.getElementById('empCardSaraTitle');

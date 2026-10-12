@@ -855,47 +855,24 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
 
                 {/* Right Profile Metadata Column */}
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 0, flex: 1 }}>
-                  {/* Line 1: Name + Employee Code */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '7px', width: '100%', lineHeight: 1.25 }}>
-                    <Typography
-                      sx={{
-                        fontSize: '15.5px',
-                        fontWeight: 700,
-                        color: '#0F172A',
-                        lineHeight: 1.25,
-                        letterSpacing: '-0.01em',
-                        whiteSpace: 'nowrap',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        fontFamily: 'Inter, system-ui, sans-serif',
-                      }}
-                    >
-                      {hoveredCase.name}
-                    </Typography>
-                    <Box
-                      component="span"
-                      sx={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        px: '6.5px',
-                        py: '1.5px',
-                        bgcolor: '#F1F5F9',
-                        border: '1px solid #E2E8F0',
-                        borderRadius: '6px',
-                        fontFamily: 'JetBrains Mono, monospace',
-                        fontSize: '11px',
-                        fontWeight: 600,
-                        color: '#64748B',
-                        letterSpacing: '0.02em',
-                        lineHeight: 1.2,
-                        userSelect: 'all',
-                      }}
-                    >
-                      {`#EMP-${(hoveredCase.id || 1).toString().padStart(4, '0')}`}
-                    </Box>
-                  </Box>
+                  {/* Line 1: Name */}
+                  <Typography
+                    sx={{
+                      fontSize: '15.5px',
+                      fontWeight: 700,
+                      color: '#0F172A',
+                      lineHeight: 1.25,
+                      letterSpacing: '-0.01em',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      fontFamily: 'Inter, system-ui, sans-serif',
+                    }}
+                  >
+                    {hoveredCase.name}
+                  </Typography>
 
-                  {/* Line 2: Dual Badges (Role Pill | Seat Chip) directly below Name */}
+                  {/* Line 2: Dual Badges (Role Pill | Employee Code Chip instead of position code) directly below Name */}
                   <Box sx={{ mt: '5px', display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'nowrap' }}>
                     <Box
                       component="span"
@@ -939,7 +916,7 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      {hoveredCase.seat || 'FDM-01'}
+                      {`#EMP-${(hoveredCase.id || 1).toString().padStart(4, '0')}`}
                     </Box>
                   </Box>
 
