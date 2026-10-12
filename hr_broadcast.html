@@ -4479,11 +4479,6 @@
           </div>
         </main>
 
-        <!-- Right Side: Detail Panel (NOT permanently opened; opens on broadcast click, closable with [X]) -->
-        <aside class="v2-detail-card" id="v2DetailCard" style="display: none;">
-          <!-- Dynamically populated by JS on broadcast row click -->
-        </aside>
-
       </div>
 
     </main>
@@ -4591,6 +4586,10 @@
   <!-- Header -->
   <div class="drawer-header">
     <div class="drawer-header-left">
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+        <span class="drawer-category-pill" id="drawerCategoryPill">BROADCAST</span>
+        <span class="v2-priority-pill" id="drawerPriorityPill" style="display: none;"></span>
+      </div>
       <h2 class="drawer-title" id="drawerTitle">Welcome to hirerkey Notifications!</h2>
     </div>
     <button class="drawer-close-btn" onclick="closeDrawer()" title="Close Drawer (Esc)">
@@ -5472,141 +5471,11 @@
 
   function selectV2Broadcast(id) {
     v2SelectedId = id;
-
-    // Update row highlighting
-    document.querySelectorAll('.v2-row-item').forEach(el => el.classList.remove('selected'));
-    const targetRow = document.getElementById(`v2Row-${id}`);
-    if (targetRow) targetRow.classList.add('selected');
-
-    const bc = broadcasts.find(b => b.id === id);
-    if (!bc) return;
-
-    const detailCard = document.getElementById('v2DetailCard');
-    if (!detailCard) return;
-
-    const cfg = getV2SquircleConfig(bc);
-    const prioClass = `priority-${(bc.priority || 'low').toLowerCase()}`;
-    const attachments = bc.attachments || [];
-
-    detailCard.innerHTML = `
-      <!-- Top Bar: Squircle + Priority Pill, Action buttons [Edit], [...], [✕] -->
-      <div class="v2-detail-top-bar">
-        <div class="v2-detail-badge-group">
-          <div class="v2-detail-squircle ${cfg.className}">
-            ${cfg.svg}
-          </div>
-          <span class="v2-priority-pill ${prioClass}">
-            <span class="v2-pill-dot"></span>
-            <span>${bc.priority}</span>
-          </span>
-        </div>
-        <div class="v2-detail-actions">
-          <button class="v2-btn-edit" onclick="handleEditV2Broadcast('${bc.id}')" title="Edit broadcast">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            <span>Edit</span>
-          </button>
-          <button class="v2-btn-icon-sq" title="More options" onclick="handleV2DetailMore('${bc.id}')">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-          </button>
-          <button class="v2-btn-icon-sq" title="Close detail (Esc)" onclick="closeV2Detail()">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Title -->
-      <h2 class="v2-detail-title">${escapeHtml(bc.title)}</h2>
-
-      <!-- Author Row -->
-      <div class="v2-detail-author-row">
-        <img src="${bc.senderAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'}" class="v2-detail-author-img" alt="${escapeHtml(bc.senderName)}">
-        <span style="font-weight: 600; color: #0F172A;">${escapeHtml(bc.senderName)}</span>
-        <span class="v2-detail-dot">·</span>
-        <span>${escapeHtml(bc.senderRole || 'Human Resources')}</span>
-      </div>
-
-      <!-- 3 Metric Pills: Audience, Sent date, Attachments -->
-      <div class="v2-detail-metrics-row">
-        <div class="v2-metric-pill">
-          <span class="v2-metric-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </span>
-          <div class="v2-metric-stack">
-            <span class="v2-metric-val">${bc.audience === 'All' ? 'All Employees' : escapeHtml(bc.audience)}</span>
-            <span class="v2-metric-sub">Audience</span>
-          </div>
-        </div>
-        <div class="v2-metric-pill">
-          <span class="v2-metric-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </span>
-          <div class="v2-metric-stack">
-            <span class="v2-metric-val">${(bc.dateFormatted || '').split(',')[0] || '05 May 2026'}</span>
-            <span class="v2-metric-sub">Sent on</span>
-          </div>
-        </div>
-        <div class="v2-metric-pill">
-          <span class="v2-metric-icon">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-          </span>
-          <div class="v2-metric-stack">
-            <span class="v2-metric-val">${attachments.length} ${attachments.length === 1 ? 'File' : 'Files'}</span>
-            <span class="v2-metric-sub">Attachments</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Message Body -->
-      <div class="v2-detail-message-body">${escapeHtml(bc.fullMessage || bc.preview || '')}</div>
-
-      <!-- Attachments List -->
-      ${attachments.length > 0 ? `
-        <div class="v2-detail-attach-title">Attachments (${attachments.length})</div>
-        <div class="v2-detail-attach-list" style="margin-bottom: 20px;">
-          ${attachments.map(att => `
-            <div class="v2-detail-attach-item">
-              <div class="v2-attach-left">
-                <div class="v2-attach-icon-sq ${(att.name || '').endsWith('.pdf') ? 'pdf' : 'doc'}">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                </div>
-                <div class="v2-attach-meta">
-                  <span class="v2-attach-name" title="${escapeHtml(att.name)}">${escapeHtml(att.name)}</span>
-                  <span class="v2-attach-size">${att.size || '1.2 MB'}</span>
-                </div>
-              </div>
-              <button class="v2-attach-download-btn" title="Download ${escapeHtml(att.name)}" onclick="downloadAttachment('${escapeHtml(att.name)}')">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              </button>
-            </div>
-          `).join('')}
-        </div>
-      ` : ''}
-
-      <!-- Delivery Stats Card (Bottom) -->
-      <div class="v2-detail-stats-card">
-        <div class="v2-stats-card-left">
-          <div class="v2-stats-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <div style="display: flex; flex-direction: column;">
-            <span style="font-size: 13px; font-weight: 700; color: #0F172A;">Delivered to 342 employees</span>
-            <span style="font-size: 11.5px; color: #64748B;">100% delivery rate · 0 bounces</span>
-          </div>
-        </div>
-        <button class="v2-btn-edit" style="font-size: 11.5px; padding: 4px 10px;" onclick="showToast('Delivery report generated for ${escapeHtml(bc.title)}')">
-          <span>Report</span>
-        </button>
-      </div>
-    `;
-
-    detailCard.style.display = 'flex';
+    openDrawer(id);
   }
 
   function closeV2Detail() {
-    v2SelectedId = null;
-    document.querySelectorAll('.v2-row-item').forEach(el => el.classList.remove('selected'));
-    const detailCard = document.getElementById('v2DetailCard');
-    if (detailCard) detailCard.style.display = 'none';
+    closeDrawer();
   }
 
   function handleEditV2Broadcast(id) {
@@ -6007,11 +5876,17 @@
     if (!bc) return;
 
     currentSelectedBroadcastId = bcId;
+    v2SelectedId = bcId;
 
-    // Highlight card
+    // Highlight card in View 1
     document.querySelectorAll(".broadcast-card").forEach(r => r.classList.remove("selected"));
     const selectedRow = document.getElementById(`row-${bcId}`);
     if (selectedRow) selectedRow.classList.add("selected");
+
+    // Highlight row in View 2
+    document.querySelectorAll(".v2-row-item").forEach(r => r.classList.remove("selected"));
+    const selectedV2Row = document.getElementById(`v2Row-${bcId}`);
+    if (selectedV2Row) selectedV2Row.classList.add("selected");
 
     // Populate drawer elements
     const dTitle = document.getElementById("drawerTitle");
@@ -6025,10 +5900,20 @@
     const dAttList = document.getElementById("drawerAttachmentsList");
     const dAttSection = document.getElementById("drawerAttachmentsSection");
     const dAttCount = document.getElementById("drawerAttCount");
+    const dPrio = document.getElementById("drawerPriorityPill");
 
     if (dTitle) dTitle.innerText = bc.title;
     if (dDate) dDate.innerText = bc.dateFormatted;
-    if (dMsg) dMsg.innerText = bc.fullMessage;
+    if (dMsg) dMsg.innerText = bc.fullMessage || bc.preview || "";
+
+    // Priority badge
+    if (dPrio && bc.priority) {
+      dPrio.className = `v2-priority-pill priority-${bc.priority.toLowerCase()}`;
+      dPrio.innerHTML = `<span class="v2-pill-dot"></span><span>${bc.priority}</span>`;
+      dPrio.style.display = "inline-flex";
+    } else if (dPrio) {
+      dPrio.style.display = "none";
+    }
 
     // Sender
     if (bc.senderAvatar && dAvatar && dInitials) {
@@ -6045,7 +5930,8 @@
 
     // Audience chips
     if (dAudienceChips) {
-      dAudienceChips.innerHTML = `<span class="chip-audience">All Employees</span>`;
+      const audLabel = bc.audience === 'All' ? 'All Employees' : (bc.audience || 'All Employees');
+      dAudienceChips.innerHTML = `<span class="chip-audience">${escapeHtml(audLabel)}</span>`;
     }
 
     // Attachments
@@ -6074,7 +5960,9 @@
     if (drawerOverlay) drawerOverlay.classList.remove("open");
     if (drawerContainer) drawerContainer.classList.remove("open");
     currentSelectedBroadcastId = null;
+    v2SelectedId = null;
     document.querySelectorAll(".broadcast-card").forEach(r => r.classList.remove("selected"));
+    document.querySelectorAll(".v2-row-item").forEach(r => r.classList.remove("selected"));
   }
 
   function deleteCurrentBroadcast() {
