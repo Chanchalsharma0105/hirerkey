@@ -5498,7 +5498,7 @@
     rowsContainer.innerHTML = list.map(b => {
       const isSelected = v2SelectedId === b.id;
       const cfg = getV2SquircleConfig(b);
-      const prioClass = `priority-${(b.priority || 'low').toLowerCase()}`;
+      const isHighPriority = (b.priority || '').toLowerCase() === 'high';
       const attachCount = b.attachments ? b.attachments.length : 0;
       const initials = (b.senderName || 'HR').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
       const creatorAvatarHtml = b.senderAvatar
@@ -5510,10 +5510,12 @@
           <div class="v2-item-body">
             <div class="v2-item-header-line">
               <span class="v2-item-title">${escapeHtml(b.title)}</span>
-              <span class="v2-priority-pill ${prioClass}">
-                <span class="v2-pill-dot"></span>
-                <span>${b.priority}</span>
-              </span>
+              ${isHighPriority ? `
+                <span class="v2-priority-pill priority-high">
+                  <span class="v2-pill-dot"></span>
+                  <span>${b.priority}</span>
+                </span>
+              ` : ''}
             </div>
             <div class="v2-item-snippet">${escapeHtml(b.preview || b.fullMessage || '')}</div>
             <div class="v2-item-meta-line">
@@ -5674,10 +5676,12 @@
           <div class="col-metadata">
             <div class="metadata-top-row">
               <span class="chip-audience">All</span>
-              <span class="chip-priority priority-${priorityLower}">
-                <span class="priority-dot"></span>
-                <span>${item.priority}</span>
-              </span>
+              ${priorityLower === 'high' ? `
+                <span class="chip-priority priority-high">
+                  <span class="priority-dot"></span>
+                  <span>${item.priority}</span>
+                </span>
+              ` : ''}
             </div>
             <div class="metadata-bottom-row">
               ${attachmentBadgeHtml}
@@ -5977,9 +5981,9 @@
     if (dDate) dDate.innerText = bc.dateFormatted;
     if (dMsg) dMsg.innerText = bc.fullMessage || bc.preview || "";
 
-    // Priority badge
-    if (dPrio && bc.priority) {
-      dPrio.className = `v2-priority-pill priority-${bc.priority.toLowerCase()}`;
+    // Priority badge - only show if High priority
+    if (dPrio && (bc.priority || '').toLowerCase() === 'high') {
+      dPrio.className = `v2-priority-pill priority-high`;
       dPrio.innerHTML = `<span class="v2-pill-dot"></span><span>${bc.priority}</span>`;
       dPrio.style.display = "inline-flex";
     } else if (dPrio) {
