@@ -5443,10 +5443,6 @@
 
       return `
         <div class="v2-row-item ${isSelected ? 'selected' : ''}" id="v2Row-${b.id}" onclick="selectV2Broadcast('${b.id}')">
-          <input type="checkbox" class="v2-checkbox" onclick="event.stopPropagation()">
-          <div class="v2-item-squircle ${cfg.className}">
-            ${cfg.svg}
-          </div>
           <div class="v2-item-body">
             <div class="v2-item-header-line">
               <span class="v2-item-title">${escapeHtml(b.title)}</span>
