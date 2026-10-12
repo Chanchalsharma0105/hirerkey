@@ -1830,10 +1830,10 @@
     }
 
     .drawer-header {
-      padding: 18px 24px;
+      padding: 16px 24px;
       border-bottom: 1px solid #EEF2F6;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
       position: relative;
@@ -1842,8 +1842,8 @@
 
     .drawer-header-left {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      flex-direction: column;
+      gap: 4px;
       min-width: 0;
     }
 
@@ -1853,6 +1853,13 @@
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--brand-primary);
+    }
+
+    .drawer-header-date {
+      font-size: 12px;
+      font-weight: 500;
+      color: #64748B;
+      line-height: 1.3;
     }
 
     .drawer-close-btn {
@@ -4796,8 +4803,11 @@
   <!-- Header -->
   <div class="drawer-header">
     <div class="drawer-header-left">
-      <span class="drawer-category-pill" id="drawerCategoryPill">BROADCAST</span>
-      <span class="v2-priority-pill" id="drawerPriorityPill" style="display: none;"></span>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="drawer-category-pill" id="drawerCategoryPill">BROADCAST</span>
+        <span class="v2-priority-pill" id="drawerPriorityPill" style="display: none;"></span>
+      </div>
+      <div class="drawer-header-date" id="drawerDateTime">05 May 2026, 10:30 AM</div>
     </div>
     <button class="drawer-close-btn" onclick="closeDrawer()" title="Close Drawer (Esc)">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -4839,12 +4849,7 @@
       </div>
     </div>
 
-    <!-- 2. Timestamp (Bottom-Right Corner below the card) -->
-    <div class="drawer-emp-date-row">
-      <span class="drawer-emp-date-text" id="drawerDateTime">05 May 2026, 10:30 AM</span>
-    </div>
-
-    <!-- 3. Audience Targeted -->
+    <!-- 2. Audience Targeted -->
     <div>
       <div class="drawer-section-title">Audience Targeted</div>
       <div class="drawer-audience-chips" id="drawerAudienceChips">
