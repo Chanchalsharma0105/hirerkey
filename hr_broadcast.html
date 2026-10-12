@@ -4298,7 +4298,7 @@
         <div class="page-header-right">
           <button class="btn-primary-new" onclick="openCreateModal()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>+ New Broadcast</span>
+            <span>New Broadcast</span>
           </button>
         </div>
       </div>
@@ -4308,31 +4308,16 @@
            ========================================================================== -->
       <div id="view1Container" class="broadcast-view-mode" style="display: none;">
 
-        <!-- CLEAN UNIFIED CONTROL BAR (REFRESH + FILTERS + + NEW BROADCAST CTA ONLY) -->
+        <!-- CLEAN UNIFIED CONTROL BAR (REFRESH + FILTERS IN CORNER) -->
       <div class="control-row">
         
-        <!-- Left: Refresh Button + Dropdown Filters -->
+        <!-- Left: Refresh Button Only -->
         <div class="control-row-left">
-          
-          <!-- Refresh in this bar -->
           <button class="btn-refresh-bar" id="refreshBtn" title="Refresh broadcasts feed" onclick="refreshList()">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"/>
             </svg>
           </button>
-
-          <div class="filter-divider"></div>
-
-          <!-- Single Unified Filter Button matching Service Desk dashboard -->
-          <button class="btn-filter-trigger" id="v1FilterBtn" onclick="openFilterDrawer()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
-            </svg>
-            <span>Filters</span>
-            <span class="filter-badge" id="v1FilterBadge" style="display: none;">0</span>
-          </button>
-
-          <button class="clear-all-filters-btn" id="clearAllFiltersBtn" onclick="resetAllFilters()" style="display: none;">Clear filters</button>
         </div>
 
         <!-- Center: Quick Analytics Summary Pill (NO BUTTON!) -->
@@ -4355,11 +4340,15 @@
           </div>
         </div>
 
-        <!-- Right: + New Broadcast Primary CTA -->
+        <!-- Right: Filters in Corner (Below Broadcast Button, matching Service Desk) -->
         <div class="control-row-right">
-          <button class="btn-primary-new" id="btnNewBroadcastBar" onclick="openCreateModal()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-            <span>New Broadcast</span>
+          <button class="clear-all-filters-btn" id="clearAllFiltersBtn" onclick="resetAllFilters()" style="display: none;">Clear filters</button>
+          <button class="btn-filter-trigger" id="v1FilterBtn" onclick="openFilterDrawer()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            <span>Filters</span>
+            <span class="filter-badge" id="v1FilterBadge" style="display: none;">0</span>
           </button>
         </div>
 
