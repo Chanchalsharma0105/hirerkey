@@ -2748,6 +2748,824 @@
       to { transform: translateY(0); opacity: 1; }
     }
 
+    /* ==========================================================================
+       VIEW SWITCHER HEADER STYLES
+       ========================================================================== */
+    .screen-switcher-bar {
+      display: inline-flex;
+      align-items: center;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .screen-tab {
+      padding: 6px 13px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      background: transparent;
+      color: #64748B;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      user-select: none;
+      font-family: inherit;
+    }
+
+    .screen-tab:hover {
+      color: #0F172A;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .screen-tab.active {
+      background: #FFFFFF;
+      color: var(--brand-primary);
+      box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+      border-color: #E2E8F0;
+    }
+
+    .screen-tab-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--brand-primary);
+    }
+
+    .screen-tab.screen-tab-recommended {
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.22);
+      color: #5B21B6;
+      font-weight: 700;
+      position: relative;
+      gap: 7px;
+    }
+
+    .screen-tab.screen-tab-recommended.active {
+      background: #FFFFFF;
+      color: #7C3AED;
+      border-color: #DDD6FE;
+      box-shadow: 0 1px 4px rgba(124, 58, 237, 0.12);
+    }
+
+    .page-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .page-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .page-header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* ==========================================================================
+       VIEW 2 WORKSPACE STYLES (MATCHING media_1791789629255.png)
+       ========================================================================== */
+    .v2-workspace-wrap {
+      display: flex;
+      align-items: stretch;
+      gap: 16px;
+      width: 100%;
+      min-height: calc(100vh - 220px);
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    /* 1. Left Categories Sub-Sidebar (4 Options Only) */
+    .v2-categories-card {
+      width: 220px;
+      min-width: 220px;
+      max-width: 220px;
+      background: #FFFFFF;
+      border: 1px solid #EEF2F6;
+      border-radius: 14px;
+      padding: 12px 10px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+    }
+
+    .v2-cat-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .v2-cat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #334155;
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-sizing: border-box;
+      text-align: left;
+    }
+
+    .v2-cat-item:hover {
+      background: #F8FAFC;
+      color: #0F172A;
+    }
+
+    .v2-cat-item.active {
+      background: #F5F3FF;
+      color: #7C3AED;
+      border-color: rgba(124, 58, 237, 0.14);
+      font-weight: 600;
+    }
+
+    .v2-cat-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .v2-cat-icon.icon-purple { color: #7C3AED; }
+    .v2-cat-icon.icon-slate { color: #64748B; }
+    .v2-cat-icon.icon-red { color: #EF4444; }
+
+    .v2-cat-title {
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+
+    .v2-cat-badge {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      min-width: 18px;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .v2-cat-badge.badge-purple {
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .v2-cat-badge.badge-slate {
+      background: #F1F5F9;
+      color: #64748B;
+    }
+
+    .v2-cat-badge.badge-red {
+      background: #FEE2E2;
+      color: #EF4444;
+    }
+
+    /* 2. Middle/Main Broadcast Canvas */
+    .v2-main-card {
+      flex: 1;
+      min-width: 0;
+      background: #FFFFFF;
+      border: 1px solid #EEF2F6;
+      border-radius: 14px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-sizing: border-box;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .v2-toolbar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border-bottom: 1px solid #EEF2F6;
+      gap: 14px;
+      box-sizing: border-box;
+    }
+
+    .v2-search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 9px;
+      padding: 7px 12px;
+      flex: 1;
+      max-width: 320px;
+      transition: all 0.15s ease;
+      box-sizing: border-box;
+    }
+
+    .v2-search-input-wrap:focus-within {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .v2-search-icon {
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    .v2-search-input-wrap input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 13px;
+      color: #0F172A;
+      width: 100%;
+      font-family: inherit;
+    }
+
+    .v2-search-input-wrap input::placeholder {
+      color: #94A3B8;
+    }
+
+    .v2-sort-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 9px;
+      padding: 7px 12px;
+      position: relative;
+      cursor: pointer;
+      box-sizing: border-box;
+    }
+
+    .v2-sort-prefix-icon {
+      color: #64748B;
+      flex-shrink: 0;
+    }
+
+    .v2-sort-wrap select {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      appearance: none;
+      padding-right: 18px;
+      font-family: inherit;
+    }
+
+    .v2-sort-chevron {
+      position: absolute;
+      right: 10px;
+      pointer-events: none;
+      color: #64748B;
+    }
+
+    .v2-broadcast-rows {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      max-height: calc(100vh - 230px);
+      box-sizing: border-box;
+    }
+
+    .v2-row-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      border-bottom: 1px solid #F1F5F9;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .v2-row-item:hover {
+      background: #F8FAFC;
+    }
+
+    .v2-row-item.selected {
+      background: #F5F3FF;
+      border-left: 3.5px solid #7C3AED;
+      padding-left: 14.5px;
+    }
+
+    .v2-checkbox {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      accent-color: #7C3AED;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .v2-item-squircle {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .v2-item-squircle.sq-green { background: #ECFDF5; color: #10B981; }
+    .v2-item-squircle.sq-red { background: #FEF2F2; color: #EF4444; }
+    .v2-item-squircle.sq-blue { background: #EFF6FF; color: #3B82F6; }
+    .v2-item-squircle.sq-purple { background: #FAF5FF; color: #A855F7; }
+    .v2-item-squircle.sq-cyan { background: #F0F9FF; color: #0EA5E9; }
+    .v2-item-squircle.sq-rose { background: #FFF1F2; color: #F43F5E; }
+    .v2-item-squircle.sq-indigo { background: #EEF2FF; color: #6366F1; }
+
+    .v2-item-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .v2-item-header-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .v2-item-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.3;
+    }
+
+    .v2-priority-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7.5px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4.5px;
+      line-height: 1.2;
+      flex-shrink: 0;
+    }
+
+    .v2-priority-pill.priority-high {
+      background: #FEE2E2;
+      color: #EF4444;
+    }
+    .v2-priority-pill.priority-high .v2-pill-dot {
+      background: #EF4444;
+    }
+
+    .v2-priority-pill.priority-medium {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+    .v2-priority-pill.priority-medium .v2-pill-dot {
+      background: #F59E0B;
+    }
+
+    .v2-priority-pill.priority-low {
+      background: #ECFDF5;
+      color: #059669;
+    }
+    .v2-priority-pill.priority-low .v2-pill-dot {
+      background: #10B981;
+    }
+
+    .v2-pill-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    .v2-item-snippet {
+      font-size: 13px;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.4;
+    }
+
+    .v2-item-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 2px;
+    }
+
+    .v2-item-author-date {
+      color: #64748B;
+    }
+
+    .v2-item-attach-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #94A3B8;
+    }
+
+    .v2-item-more-btn {
+      background: transparent;
+      border: none;
+      padding: 4px 6px;
+      border-radius: 6px;
+      color: #94A3B8;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      align-self: center;
+    }
+
+    .v2-item-more-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    /* 3. Right Side Detail Card (Collapsible, Not permanent) */
+    .v2-detail-card {
+      width: 440px;
+      min-width: 440px;
+      max-width: 460px;
+      background: #FFFFFF;
+      border: 1px solid #EEF2F6;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      max-height: calc(100vh - 220px);
+      padding: 24px;
+      box-sizing: border-box;
+      animation: v2SlideInRight 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes v2SlideInRight {
+      from { opacity: 0; transform: translateX(16px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .v2-detail-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .v2-detail-badge-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .v2-detail-squircle {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .v2-detail-squircle.sq-green { background: #ECFDF5; color: #10B981; }
+    .v2-detail-squircle.sq-red { background: #FEF2F2; color: #EF4444; }
+    .v2-detail-squircle.sq-blue { background: #EFF6FF; color: #3B82F6; }
+    .v2-detail-squircle.sq-purple { background: #FAF5FF; color: #A855F7; }
+    .v2-detail-squircle.sq-cyan { background: #F0F9FF; color: #0EA5E9; }
+    .v2-detail-squircle.sq-rose { background: #FFF1F2; color: #F43F5E; }
+    .v2-detail-squircle.sq-indigo { background: #EEF2FF; color: #6366F1; }
+
+    .v2-detail-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .v2-btn-edit {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #0F172A;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .v2-btn-edit:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+    }
+
+    .v2-btn-icon-sq {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .v2-btn-icon-sq:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .v2-detail-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.3;
+      margin: 0 0 10px 0;
+    }
+
+    .v2-detail-author-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .v2-detail-author-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .v2-detail-dot {
+      color: #CBD5E1;
+    }
+
+    .v2-detail-metrics-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid #F1F5F9;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .v2-metric-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      background: #F8FAFC;
+      border: 1px solid #EEF2F6;
+      border-radius: 9px;
+      flex: 1;
+      min-width: 110px;
+    }
+
+    .v2-metric-icon {
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .v2-metric-stack {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v2-metric-val {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+
+    .v2-metric-sub {
+      font-size: 11px;
+      color: #94A3B8;
+      line-height: 1.2;
+      margin-top: 1px;
+    }
+
+    .v2-detail-message-body {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #334155;
+      margin-bottom: 22px;
+      white-space: pre-line;
+    }
+
+    .v2-detail-attach-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 10px;
+    }
+
+    .v2-detail-attach-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: #FFFFFF;
+      border: 1px solid #EEF2F6;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .v2-detail-attach-item:hover {
+      border-color: #E2E8F0;
+      background: #FAFAFC;
+    }
+
+    .v2-attach-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .v2-attach-icon-sq {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .v2-attach-icon-sq.pdf { background: #FEE2E2; color: #EF4444; }
+    .v2-attach-icon-sq.doc { background: #EFF6FF; color: #3B82F6; }
+
+    .v2-attach-meta {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .v2-attach-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+
+    .v2-attach-size {
+      font-size: 11.5px;
+      color: #94A3B8;
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+
+    .v2-attach-download-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .v2-attach-download-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .v2-detail-stats-card {
+      background: #FAF8FF;
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      gap: 12px;
+    }
+
+    .v2-stats-card-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .v2-stats-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: #EDE9FE;
+      color: #7C3AED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .v2-stats-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v2-stats-label {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.2;
+    }
+
+    .v2-stats-num {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .v2-stats-link-btn {
+      background: transparent;
+      border: none;
+      color: #7C3AED;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+
+    .v2-stats-link-btn:hover {
+      background: rgba(124, 58, 237, 0.08);
+    }
+
+    .v2-empty-state {
+      padding: 48px 24px;
+      text-align: center;
+      color: #94A3B8;
+      font-size: 14px;
+    }
+
     @media (max-width: 1080px) {
       .app-sidebar {
         position: fixed;
@@ -3175,16 +3993,40 @@
         <span class="breadcrumb-current">HR Broadcast</span>
       </nav>
 
-      <!-- Clean Calm Page Header (Stat cards removed per user request) -->
+      <!-- Page Header with Dual View Switcher and + New Broadcast CTA -->
       <div class="page-header-row">
-        <h1 class="page-title">HR Broadcast</h1>
-        <p class="page-subtitle">Keep everyone aligned with timely updates and announcements.</p>
+        <div class="page-header-left">
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <h1 class="page-title" style="margin-bottom: 0;">HR Broadcast</h1>
+            <!-- Dual View Switcher -->
+            <div class="screen-switcher-bar" id="broadcastViewSwitcher">
+              <button class="screen-tab" id="btnView1" onclick="switchBroadcastView('view1')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+                <span>View 1 (Feed)</span>
+              </button>
+              <button class="screen-tab active screen-tab-recommended" id="btnView2" onclick="switchBroadcastView('view2')">
+                <span class="screen-tab-dot"></span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1.5"></rect><rect x="14" y="3" width="7" height="18" rx="1.5"></rect></svg>
+                <span>View 2 (Workspace)</span>
+              </button>
+            </div>
+          </div>
+          <p class="page-subtitle">Share important updates, announcements, and information with your team.</p>
+        </div>
+        <div class="page-header-right">
+          <button class="btn-primary-new" onclick="openCreateModal()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>+ New Broadcast</span>
+          </button>
+        </div>
       </div>
 
       <!-- ==========================================================================
-           CLEAN UNIFIED CONTROL BAR (REFRESH + FILTERS + + NEW BROADCAST CTA ONLY)
-           Count text & Analytics removed per user request
+           VIEW 1: FEED VIEW (Original Layout)
            ========================================================================== -->
+      <div id="view1Container" class="broadcast-view-mode" style="display: none;">
+
+        <!-- CLEAN UNIFIED CONTROL BAR (REFRESH + FILTERS + + NEW BROADCAST CTA ONLY) -->
       <div class="control-row">
         
         <!-- Left: Refresh Button + Dropdown Filters -->
@@ -3327,6 +4169,95 @@
         <div class="pagination-pages" id="paginationPages">
           <!-- Dynamically populated -->
         </div>
+      </div>
+
+      </div> <!-- end #view1Container -->
+
+      <!-- ==========================================================================
+           VIEW 2: WORKSPACE VIEW (MATCHING media_1791789629255.png)
+           Active by default; Detail panel is NOT permanently open
+           ========================================================================== -->
+      <div id="view2Container" class="broadcast-view-mode v2-workspace-wrap" style="display: flex;">
+        
+        <!-- Left: 4 Categories Only (Audience, Date, Status filters removed per user request) -->
+        <aside class="v2-categories-card">
+          <div class="v2-cat-nav">
+            <!-- 1. All Broadcasts -->
+            <button class="v2-cat-item active" id="v2CatAll" onclick="setV2Category('all', this)">
+              <div class="v2-cat-icon icon-purple">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                </svg>
+              </div>
+              <span class="v2-cat-title">All Broadcasts</span>
+              <span class="v2-cat-badge badge-purple" id="v2BadgeAll">24</span>
+            </button>
+
+            <!-- 2. Sent Broadcasts -->
+            <button class="v2-cat-item" id="v2CatSent" onclick="setV2Category('sent', this)">
+              <div class="v2-cat-icon icon-slate">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                </svg>
+              </div>
+              <span class="v2-cat-title">Sent Broadcasts</span>
+              <span class="v2-cat-badge badge-slate" id="v2BadgeSent">18</span>
+            </button>
+
+            <!-- 3. High Priority -->
+            <button class="v2-cat-item" id="v2CatHigh" onclick="setV2Category('high', this)">
+              <div class="v2-cat-icon icon-red">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <span class="v2-cat-title">High Priority</span>
+              <span class="v2-cat-badge badge-red" id="v2BadgeHigh">4</span>
+            </button>
+
+            <!-- 4. Archived -->
+            <button class="v2-cat-item" id="v2CatArchived" onclick="setV2Category('archived', this)">
+              <div class="v2-cat-icon icon-slate">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/>
+                </svg>
+              </div>
+              <span class="v2-cat-title">Archived</span>
+              <span class="v2-cat-badge badge-slate" id="v2BadgeArchived">6</span>
+            </button>
+          </div>
+        </aside>
+
+        <!-- Middle: Full Broadcast Screen (takes remaining space when detail is closed) -->
+        <main class="v2-main-card" id="v2MainCard">
+          <!-- Toolbar: Search + Sort -->
+          <div class="v2-toolbar-row">
+            <div class="v2-search-input-wrap">
+              <svg class="v2-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" placeholder="Search broadcasts..." id="v2SearchInput" oninput="handleV2Search(this.value)">
+            </div>
+            <div class="v2-sort-wrap">
+              <svg class="v2-sort-prefix-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 15l5 5 5-5M7 9l5-5 5 5"/></svg>
+              <select id="v2SortSelect" onchange="handleV2Sort(this.value)">
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+                <option value="priority">Highest priority</option>
+              </select>
+              <svg class="v2-sort-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+          </div>
+
+          <!-- Broadcast Rows Container -->
+          <div class="v2-broadcast-rows" id="v2BroadcastRows">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </main>
+
+        <!-- Right Side: Detail Panel (NOT permanently opened; opens on broadcast click, closable with [X]) -->
+        <aside class="v2-detail-card" id="v2DetailCard" style="display: none;">
+          <!-- Dynamically populated by JS on broadcast row click -->
+        </aside>
+
       </div>
 
     </main>
@@ -3696,6 +4627,40 @@
         { name: "New_Office_Details.pdf", size: "4.8 MB", type: "pdf" }
       ],
       status: "sent"
+    },
+    {
+      id: "bc-9",
+      title: "Q4 Performance Review Timeline",
+      senderName: "Priya Sharma",
+      senderRole: "Head of People Operations",
+      senderAvatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "15 Jan 2026, 11:00 AM",
+      timestamp: new Date("2026-01-15T11:00:00"),
+      category: "Performance Review",
+      priority: "Medium",
+      audience: "All",
+      preview: "Final deadline for Q4 self-appraisals and 360-degree peer feedback submissions on the portal.",
+      fullMessage: "Hi Team,\n\nPlease ensure your Q4 self-assessments are submitted through the portal before this Friday 6 PM.",
+      attachments: [
+        { name: "Appraisal_Guidelines.pdf", size: "1.1 MB", type: "pdf" }
+      ],
+      status: "archived"
+    },
+    {
+      id: "bc-10",
+      title: "Health & Safety Guidelines Q1",
+      senderName: "Uneet Kumar",
+      senderRole: "Chief Human Resources Officer",
+      senderAvatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80",
+      dateFormatted: "10 Dec 2025, 02:15 PM",
+      timestamp: new Date("2025-12-10T14:15:00"),
+      category: "Health & Safety",
+      priority: "Low",
+      audience: "All",
+      preview: "Standard seasonal flu vaccinations and ergonomic safety measures for all on-site personnel.",
+      fullMessage: "Dear All,\n\nFlu vaccination camps will be set up in the main lobby next week. Participation is optional but encouraged.",
+      attachments: [],
+      status: "archived"
     }
   ];
 
@@ -3795,11 +4760,422 @@
   }
 
   // ==========================================================================
+  // VIEW 2: WORKSPACE LOGIC (media_1791789629255.png)
+  // ==========================================================================
+  let currentBroadcastView = 'view2'; // View 2 is active by default per user requirement
+  let v2CurrentCategory = 'all';      // 'all', 'sent', 'high', 'archived'
+  let v2SearchTerm = '';
+  let v2SortOrder = 'newest';
+  let v2SelectedId = null;
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  function updateV2Badges() {
+    const totalAll = broadcasts.filter(b => b.status !== 'archived').length;
+    const totalSent = broadcasts.filter(b => (b.status || 'sent') === 'sent' && b.status !== 'archived').length;
+    const totalHigh = broadcasts.filter(b => (b.priority || '').toLowerCase() === 'high' && b.status !== 'archived').length;
+    const totalArchived = broadcasts.filter(b => b.status === 'archived').length;
+
+    const bAll = document.getElementById('v2BadgeAll');
+    const bSent = document.getElementById('v2BadgeSent');
+    const bHigh = document.getElementById('v2BadgeHigh');
+    const bArchived = document.getElementById('v2BadgeArchived');
+
+    if (bAll) bAll.innerText = totalAll;
+    if (bSent) bSent.innerText = totalSent;
+    if (bHigh) bHigh.innerText = totalHigh;
+    if (bArchived) bArchived.innerText = totalArchived;
+  }
+
+  function getV2SquircleConfig(bc) {
+    const title = (bc.title || '').toLowerCase();
+    const cat = (bc.category || '').toLowerCase();
+
+    if (title.includes('policy') || cat.includes('policy')) {
+      return {
+        className: 'sq-green',
+        svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>`
+      };
+    }
+    if (title.includes('holiday') || cat.includes('holiday')) {
+      return {
+        className: 'sq-red',
+        svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`
+      };
+    }
+    if (title.includes('meeting') || cat.includes('meeting')) {
+      return {
+        className: 'sq-blue',
+        svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+      };
+    }
+    if (title.includes('maintenance') || cat.includes('maintenance') || title.includes('system')) {
+      return {
+        className: 'sq-purple',
+        svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`
+      };
+    }
+    if (title.includes('employee') || title.includes('month') || cat.includes('employee')) {
+      return {
+        className: 'sq-cyan',
+        svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+      };
+    }
+    if (title.includes('wellness') || cat.includes('wellness')) {
+      return {
+        className: 'sq-green',
+        svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`
+      };
+    }
+    if (title.includes('benefit') || cat.includes('benefit')) {
+      return {
+        className: 'sq-rose',
+        svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>`
+      };
+    }
+    if (title.includes('relocation') || title.includes('office') || cat.includes('relocation')) {
+      return {
+        className: 'sq-indigo',
+        svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22.01"/><line x1="15" y1="22" x2="15" y2="22.01"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="16" y1="6" x2="16.01" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><line x1="16" y1="10" x2="16.01" y2="10"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="16" y1="18" x2="16.01" y2="18"/></svg>`
+      };
+    }
+    return {
+      className: 'sq-purple',
+      svg: `<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>`
+    };
+  }
+
+  function switchBroadcastView(viewName) {
+    currentBroadcastView = viewName;
+    try {
+      localStorage.setItem('hirerkey_broadcast_view', viewName);
+    } catch (e) {}
+
+    const v1 = document.getElementById('view1Container');
+    const v2 = document.getElementById('view2Container');
+    const btn1 = document.getElementById('btnView1');
+    const btn2 = document.getElementById('btnView2');
+
+    if (viewName === 'view1') {
+      if (v1) v1.style.display = 'block';
+      if (v2) v2.style.display = 'none';
+      if (btn1) {
+        btn1.classList.add('active');
+        btn1.classList.add('screen-tab-recommended');
+      }
+      if (btn2) {
+        btn2.classList.remove('active');
+        btn2.classList.remove('screen-tab-recommended');
+      }
+      renderBroadcastList();
+    } else {
+      if (v1) v1.style.display = 'none';
+      if (v2) v2.style.display = 'flex';
+      if (btn2) {
+        btn2.classList.add('active');
+        btn2.classList.add('screen-tab-recommended');
+      }
+      if (btn1) {
+        btn1.classList.remove('active');
+        btn1.classList.remove('screen-tab-recommended');
+      }
+      updateV2Badges();
+      renderV2BroadcastList();
+    }
+  }
+
+  function setV2Category(category, el) {
+    v2CurrentCategory = category;
+    document.querySelectorAll('.v2-cat-item').forEach(btn => btn.classList.remove('active'));
+    if (el) el.classList.add('active');
+    renderV2BroadcastList();
+  }
+
+  function handleV2Search(term) {
+    v2SearchTerm = (term || '').trim().toLowerCase();
+    renderV2BroadcastList();
+  }
+
+  function handleV2Sort(order) {
+    v2SortOrder = order;
+    renderV2BroadcastList();
+  }
+
+  function renderV2BroadcastList() {
+    const rowsContainer = document.getElementById('v2BroadcastRows');
+    if (!rowsContainer) return;
+
+    let list = [...broadcasts];
+
+    // Filter by category
+    if (v2CurrentCategory === 'all') {
+      list = list.filter(b => b.status !== 'archived');
+    } else if (v2CurrentCategory === 'sent') {
+      list = list.filter(b => (b.status || 'sent') === 'sent' && b.status !== 'archived');
+    } else if (v2CurrentCategory === 'high') {
+      list = list.filter(b => (b.priority || '').toLowerCase() === 'high' && b.status !== 'archived');
+    } else if (v2CurrentCategory === 'archived') {
+      list = list.filter(b => b.status === 'archived');
+    }
+
+    // Filter by search query
+    if (v2SearchTerm) {
+      list = list.filter(b =>
+        (b.title || '').toLowerCase().includes(v2SearchTerm) ||
+        (b.preview || '').toLowerCase().includes(v2SearchTerm) ||
+        (b.fullMessage || '').toLowerCase().includes(v2SearchTerm) ||
+        (b.senderName || '').toLowerCase().includes(v2SearchTerm)
+      );
+    }
+
+    // Sort
+    if (v2SortOrder === 'newest') {
+      list.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    } else if (v2SortOrder === 'oldest') {
+      list.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    } else if (v2SortOrder === 'priority') {
+      const pWeight = { 'high': 3, 'medium': 2, 'low': 1 };
+      list.sort((a, b) => (pWeight[(b.priority || '').toLowerCase()] || 0) - (pWeight[(a.priority || '').toLowerCase()] || 0));
+    }
+
+    if (list.length === 0) {
+      rowsContainer.innerHTML = `
+        <div style="padding: 56px 24px; text-align: center; color: #94A3B8;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="margin-bottom: 12px; color: #CBD5E1;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <div style="font-weight: 600; font-size: 14px; color: #475569;">No broadcasts found</div>
+          <div style="font-size: 12.5px; margin-top: 4px; color: #94A3B8;">Try adjusting your search keyword or selected category.</div>
+        </div>
+      `;
+      return;
+    }
+
+    rowsContainer.innerHTML = list.map(b => {
+      const isSelected = v2SelectedId === b.id;
+      const cfg = getV2SquircleConfig(b);
+      const prioClass = `priority-${(b.priority || 'low').toLowerCase()}`;
+      const attachCount = b.attachments ? b.attachments.length : 0;
+
+      return `
+        <div class="v2-row-item ${isSelected ? 'selected' : ''}" id="v2Row-${b.id}" onclick="selectV2Broadcast('${b.id}')">
+          <input type="checkbox" class="v2-checkbox" onclick="event.stopPropagation()">
+          <div class="v2-item-squircle ${cfg.className}">
+            ${cfg.svg}
+          </div>
+          <div class="v2-item-body">
+            <div class="v2-item-header-line">
+              <span class="v2-item-title">${escapeHtml(b.title)}</span>
+              <span class="v2-priority-pill ${prioClass}">
+                <span class="v2-pill-dot"></span>
+                <span>${b.priority}</span>
+              </span>
+            </div>
+            <div class="v2-item-snippet">${escapeHtml(b.preview || b.fullMessage || '')}</div>
+            <div class="v2-item-meta-line">
+              <span class="v2-item-author-date">${escapeHtml(b.senderName)} · ${b.dateFormatted}</span>
+              ${attachCount > 0 ? `
+                <span class="v2-item-attach-count">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                  ${attachCount} attachment${attachCount > 1 ? 's' : ''}
+                </span>
+              ` : ''}
+            </div>
+          </div>
+          <button class="v2-item-more-btn" onclick="event.stopPropagation(); handleV2MoreOptions('${b.id}', this, event)" title="More options">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+          </button>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function selectV2Broadcast(id) {
+    v2SelectedId = id;
+
+    // Update row highlighting
+    document.querySelectorAll('.v2-row-item').forEach(el => el.classList.remove('selected'));
+    const targetRow = document.getElementById(`v2Row-${id}`);
+    if (targetRow) targetRow.classList.add('selected');
+
+    const bc = broadcasts.find(b => b.id === id);
+    if (!bc) return;
+
+    const detailCard = document.getElementById('v2DetailCard');
+    if (!detailCard) return;
+
+    const cfg = getV2SquircleConfig(bc);
+    const prioClass = `priority-${(bc.priority || 'low').toLowerCase()}`;
+    const attachments = bc.attachments || [];
+
+    detailCard.innerHTML = `
+      <!-- Top Bar: Squircle + Priority Pill, Action buttons [Edit], [...], [✕] -->
+      <div class="v2-detail-top-bar">
+        <div class="v2-detail-badge-group">
+          <div class="v2-detail-squircle ${cfg.className}">
+            ${cfg.svg}
+          </div>
+          <span class="v2-priority-pill ${prioClass}">
+            <span class="v2-pill-dot"></span>
+            <span>${bc.priority}</span>
+          </span>
+        </div>
+        <div class="v2-detail-actions">
+          <button class="v2-btn-edit" onclick="handleEditV2Broadcast('${bc.id}')" title="Edit broadcast">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            <span>Edit</span>
+          </button>
+          <button class="v2-btn-icon-sq" title="More options" onclick="handleV2DetailMore('${bc.id}')">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+          </button>
+          <button class="v2-btn-icon-sq" title="Close detail (Esc)" onclick="closeV2Detail()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Title -->
+      <h2 class="v2-detail-title">${escapeHtml(bc.title)}</h2>
+
+      <!-- Author Row -->
+      <div class="v2-detail-author-row">
+        <img src="${bc.senderAvatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'}" class="v2-detail-author-img" alt="${escapeHtml(bc.senderName)}">
+        <span style="font-weight: 600; color: #0F172A;">${escapeHtml(bc.senderName)}</span>
+        <span class="v2-detail-dot">·</span>
+        <span>${escapeHtml(bc.senderRole || 'Human Resources')}</span>
+      </div>
+
+      <!-- 3 Metric Pills: Audience, Sent date, Attachments -->
+      <div class="v2-detail-metrics-row">
+        <div class="v2-metric-pill">
+          <span class="v2-metric-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </span>
+          <div class="v2-metric-stack">
+            <span class="v2-metric-val">${bc.audience === 'All' ? 'All Employees' : escapeHtml(bc.audience)}</span>
+            <span class="v2-metric-sub">Audience</span>
+          </div>
+        </div>
+        <div class="v2-metric-pill">
+          <span class="v2-metric-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <div class="v2-metric-stack">
+            <span class="v2-metric-val">${(bc.dateFormatted || '').split(',')[0] || '05 May 2026'}</span>
+            <span class="v2-metric-sub">Sent on</span>
+          </div>
+        </div>
+        <div class="v2-metric-pill">
+          <span class="v2-metric-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+          </span>
+          <div class="v2-metric-stack">
+            <span class="v2-metric-val">${attachments.length} ${attachments.length === 1 ? 'File' : 'Files'}</span>
+            <span class="v2-metric-sub">Attachments</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Message Body -->
+      <div class="v2-detail-message-body">${escapeHtml(bc.fullMessage || bc.preview || '')}</div>
+
+      <!-- Attachments List -->
+      ${attachments.length > 0 ? `
+        <div class="v2-detail-attach-title">Attachments (${attachments.length})</div>
+        <div class="v2-detail-attach-list" style="margin-bottom: 20px;">
+          ${attachments.map(att => `
+            <div class="v2-detail-attach-item">
+              <div class="v2-attach-left">
+                <div class="v2-attach-icon-sq ${(att.name || '').endsWith('.pdf') ? 'pdf' : 'doc'}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <div class="v2-attach-meta">
+                  <span class="v2-attach-name" title="${escapeHtml(att.name)}">${escapeHtml(att.name)}</span>
+                  <span class="v2-attach-size">${att.size || '1.2 MB'}</span>
+                </div>
+              </div>
+              <button class="v2-attach-download-btn" title="Download ${escapeHtml(att.name)}" onclick="downloadAttachment('${escapeHtml(att.name)}')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+            </div>
+          `).join('')}
+        </div>
+      ` : ''}
+
+      <!-- Delivery Stats Card (Bottom) -->
+      <div class="v2-detail-stats-card">
+        <div class="v2-stats-card-left">
+          <div class="v2-stats-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <span style="font-size: 13px; font-weight: 700; color: #0F172A;">Delivered to 342 employees</span>
+            <span style="font-size: 11.5px; color: #64748B;">100% delivery rate · 0 bounces</span>
+          </div>
+        </div>
+        <button class="v2-btn-edit" style="font-size: 11.5px; padding: 4px 10px;" onclick="showToast('Delivery report generated for ${escapeHtml(bc.title)}')">
+          <span>Report</span>
+        </button>
+      </div>
+    `;
+
+    detailCard.style.display = 'flex';
+  }
+
+  function closeV2Detail() {
+    v2SelectedId = null;
+    document.querySelectorAll('.v2-row-item').forEach(el => el.classList.remove('selected'));
+    const detailCard = document.getElementById('v2DetailCard');
+    if (detailCard) detailCard.style.display = 'none';
+  }
+
+  function handleEditV2Broadcast(id) {
+    const bc = broadcasts.find(b => b.id === id);
+    if (!bc) return;
+    openCreateModal();
+    const titleInput = document.getElementById('inputBcTitle');
+    const messageInput = document.getElementById('inputBcMessage');
+    const audienceSelect = document.getElementById('modalAudienceSelect');
+    const prioritySelect = document.getElementById('modalPrioritySelect');
+    if (titleInput) titleInput.value = bc.title;
+    if (messageInput) messageInput.value = bc.fullMessage || bc.preview;
+    if (audienceSelect) audienceSelect.value = bc.audience || 'All';
+    if (prioritySelect) prioritySelect.value = bc.priority || 'Low';
+    showToast(`Loaded broadcast "${bc.title}" into editor`);
+  }
+
+  function handleV2DetailMore(id) {
+    showToast('Options: Pin, Duplicate, or Export broadcast', 'info');
+  }
+
+  function handleV2MoreOptions(id, el, e) {
+    if (e) e.stopPropagation();
+    const bc = broadcasts.find(b => b.id === id);
+    if (!bc) return;
+    const action = confirm(`Broadcast: "${bc.title}"\n\nClick OK to Duplicate, or Cancel to dismiss.`);
+    if (action) {
+      duplicateBroadcastItem(id);
+    }
+  }
+
+
+  // ==========================================================================
   // 4. INITIALIZATION ON DOM READY
   // ==========================================================================
   document.addEventListener("DOMContentLoaded", () => {
     updateSummaryStats();
+    updateV2Badges();
     renderBroadcastList();
+    renderV2BroadcastList();
+    // Default to view2 per user instruction, or restore preference
+    const savedView = localStorage.getItem('hirerkey_broadcast_view') || 'view2';
+    switchBroadcastView(savedView);
   });
 
   // ==========================================================================
@@ -3982,6 +5358,11 @@
     const clearBtn = document.getElementById("topbarSearchClear");
     if (clearBtn) clearBtn.style.display = currentSearchQuery ? "grid" : "none";
     applyFilters();
+    if (currentBroadcastView === 'view2') {
+      const v2Inp = document.getElementById('v2SearchInput');
+      if (v2Inp) v2Inp.value = query;
+      handleV2Search(query);
+    }
   }
 
   function clearSearch() {
@@ -4263,8 +5644,11 @@
   // ==========================================================================
   function deleteBroadcastItem(id) {
     broadcasts = broadcasts.filter(b => b.id !== id);
+    if (v2SelectedId === id) closeV2Detail();
     updateSummaryStats();
+    updateV2Badges();
     applyFilters();
+    renderV2BroadcastList();
     showToast("Broadcast deleted successfully", "danger");
     closeAllMenus();
   }
@@ -4283,7 +5667,9 @@
 
     broadcasts.unshift(copy);
     updateSummaryStats();
+    updateV2Badges();
     applyFilters();
+    renderV2BroadcastList();
     showToast("Broadcast duplicated and added to top of feed");
     closeAllMenus();
   }
@@ -4480,7 +5866,9 @@
 
     broadcasts.unshift(newBc);
     updateSummaryStats();
+    updateV2Badges();
     applyFilters();
+    renderV2BroadcastList();
     closeCreateModal();
     showToast("✈ Broadcast sent successfully to all selected audience members!", "success");
   }
@@ -4570,6 +5958,7 @@
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       closeDrawer();
+      closeV2Detail();
       closeCreateModal();
       closeAllMenus();
     }
