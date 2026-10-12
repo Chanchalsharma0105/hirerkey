@@ -2749,6 +2749,288 @@
     }
 
     /* ==========================================================================
+       DASHBOARD SLIDE-IN FILTER MODAL / DRAWER STYLES
+       Exact match to media_1791789937766.png & media_1791789937829.png
+       ========================================================================== */
+    .btn-filter-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      box-sizing: border-box;
+      white-space: nowrap;
+      user-select: none;
+    }
+
+    .btn-filter-trigger:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    .btn-filter-trigger.active {
+      background: #F5F3FF;
+      border-color: #DDD6FE;
+      color: #7C3AED;
+    }
+
+    .btn-filter-trigger .filter-badge {
+      background: #7C3AED;
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 9999px;
+      line-height: 1.2;
+    }
+
+    /* Filter Drawer Overlay */
+    .filter-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(2px);
+      z-index: 1050;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .filter-drawer-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Filter Drawer Panel */
+    .filter-drawer-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 400px;
+      max-width: 92vw;
+      background: #FFFFFF;
+      z-index: 1060;
+      box-shadow: -12px 0 36px rgba(15, 23, 42, 0.18);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+
+    .filter-drawer-panel.open {
+      transform: translateX(0);
+    }
+
+    /* Filter Drawer Header (Purple Banner) */
+    .filter-drawer-header {
+      background: #7C3AED;
+      color: #FFFFFF;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .filter-drawer-header-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+    }
+
+    .filter-drawer-header-left svg {
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .filter-drawer-close-btn {
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+      padding: 0;
+    }
+
+    .filter-drawer-close-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Filter Drawer Body */
+    .filter-drawer-body {
+      padding: 22px 20px;
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      box-sizing: border-box;
+    }
+
+    .filter-section-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .filter-section-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .filter-chips-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .filter-chip {
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #334155;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .filter-chip:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    /* Active chip styling matching screenshot media_1791789937829.png */
+    .filter-chip.active {
+      background: #E0F2FE;
+      border-color: #BAE6FD;
+      color: #0284C7;
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(2, 132, 199, 0.08);
+    }
+
+    .filter-chip-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .filter-chip-dot.dot-blue { background: #3B82F6; }
+    .filter-chip-dot.dot-red { background: #EF4444; }
+    .filter-chip-dot.dot-amber { background: #F59E0B; }
+    .filter-chip-dot.dot-green { background: #10B981; }
+
+    /* Filter Drawer Footer */
+    .filter-drawer-footer {
+      padding: 14px 20px;
+      background: #FFFFFF;
+      border-top: 1px solid #EEF2F6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+    }
+
+    .btn-filter-reset {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-filter-reset:hover {
+      background: #F8FAFC;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    .filter-footer-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-filter-cancel {
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-filter-cancel:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .btn-filter-apply {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: inherit;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-filter-apply:hover {
+      background: #6D28D9;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
+    }
+
+    /* ==========================================================================
        VIEW SWITCHER HEADER STYLES
        ========================================================================== */
     .screen-switcher-bar {
@@ -4041,66 +4323,16 @@
 
           <div class="filter-divider"></div>
 
-          <!-- Filters Group -->
-          <div class="filter-dropdown-group">
-            
-            <!-- Audience Filter -->
-            <div class="filter-select-wrap">
-              <select class="filter-select" id="filterAudience" onchange="applyFilters()">
-                <option value="all">Audience: All</option>
-                <option value="all-employees">All Employees</option>
-                <option value="department">Department</option>
-                <option value="grade">Grade</option>
-                <option value="designation">Designation</option>
-                <option value="custom">Custom Group</option>
-              </select>
-              <span class="filter-select-icon">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </span>
-            </div>
+          <!-- Single Unified Filter Button matching Service Desk dashboard -->
+          <button class="btn-filter-trigger" id="v1FilterBtn" onclick="openFilterDrawer()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            <span>Filters</span>
+            <span class="filter-badge" id="v1FilterBadge" style="display: none;">0</span>
+          </button>
 
-            <!-- Priority Filter -->
-            <div class="filter-select-wrap">
-              <select class="filter-select" id="filterPriority" onchange="applyFilters()">
-                <option value="all">Priority: All</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option>
-              </select>
-              <span class="filter-select-icon">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </span>
-            </div>
-
-            <!-- Date Filter -->
-            <div class="filter-select-wrap">
-              <select class="filter-select" id="filterDate" onchange="applyFilters()">
-                <option value="all">Date: All Time</option>
-                <option value="today">Today</option>
-                <option value="this-week">This Week</option>
-                <option value="this-month">This Month</option>
-              </select>
-              <span class="filter-select-icon">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </span>
-            </div>
-
-            <!-- Status Filter -->
-            <div class="filter-select-wrap">
-              <select class="filter-select" id="filterStatus" onchange="applyFilters()">
-                <option value="all">Status: All</option>
-                <option value="sent">Sent</option>
-                <option value="draft">Draft</option>
-                <option value="scheduled">Scheduled</option>
-              </select>
-              <span class="filter-select-icon">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"></polyline></svg>
-              </span>
-            </div>
-
-          </div>
-
-          <button class="clear-all-filters-btn" id="clearAllFiltersBtn" onclick="resetAllFilters()">Clear filters</button>
+          <button class="clear-all-filters-btn" id="clearAllFiltersBtn" onclick="resetAllFilters()" style="display: none;">Clear filters</button>
         </div>
 
         <!-- Center: Quick Analytics Summary Pill (NO BUTTON!) -->
@@ -4236,14 +4468,23 @@
               <svg class="v2-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
               <input type="text" placeholder="Search broadcasts..." id="v2SearchInput" oninput="handleV2Search(this.value)">
             </div>
-            <div class="v2-sort-wrap">
-              <svg class="v2-sort-prefix-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 15l5 5 5-5M7 9l5-5 5 5"/></svg>
-              <select id="v2SortSelect" onchange="handleV2Sort(this.value)">
-                <option value="newest">Newest first</option>
-                <option value="oldest">Oldest first</option>
-                <option value="priority">Highest priority</option>
-              </select>
-              <svg class="v2-sort-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div class="v2-sort-wrap">
+                <svg class="v2-sort-prefix-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 15l5 5 5-5M7 9l5-5 5 5"/></svg>
+                <select id="v2SortSelect" onchange="handleV2Sort(this.value)">
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="priority">Highest priority</option>
+                </select>
+                <svg class="v2-sort-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+              <button class="btn-filter-trigger" id="v2FilterBtn" onclick="openFilterDrawer()">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                <span>Filters</span>
+                <span class="filter-badge" id="v2FilterBadge" style="display: none;">0</span>
+              </button>
             </div>
           </div>
 
@@ -4265,6 +4506,96 @@
   </div>
 
 </div>
+
+<!-- ==========================================================================
+     UNIFIED FILTER DRAWER (MATCHING media_1791789937829.png)
+     ========================================================================== -->
+<div class="filter-drawer-overlay" id="filterDrawerOverlay" onclick="closeFilterDrawer()"></div>
+
+<aside class="filter-drawer-panel" id="filterDrawer" aria-label="Filter Broadcasts">
+  <!-- Header (Purple with Funnel Icon & Close Button) -->
+  <div class="filter-drawer-header">
+    <div class="filter-drawer-header-left">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+      </svg>
+      <span>Filter Broadcasts</span>
+    </div>
+    <button class="filter-drawer-close-btn" onclick="closeFilterDrawer()" title="Close Filter (Esc)">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Body with Categorized Chips -->
+  <div class="filter-drawer-body">
+    <!-- 1. Audience -->
+    <div class="filter-section-group">
+      <h4 class="filter-section-title">Audience</h4>
+      <div class="filter-chips-row" id="filterGroupAudience">
+        <button type="button" class="filter-chip active" data-category="audience" data-val="all" onclick="selectFilterChip('audience', 'all', this)">All Employees</button>
+        <button type="button" class="filter-chip" data-category="audience" data-val="department" onclick="selectFilterChip('audience', 'department', this)">Department</button>
+        <button type="button" class="filter-chip" data-category="audience" data-val="grade" onclick="selectFilterChip('audience', 'grade', this)">Grade</button>
+        <button type="button" class="filter-chip" data-category="audience" data-val="designation" onclick="selectFilterChip('audience', 'designation', this)">Designation</button>
+        <button type="button" class="filter-chip" data-category="audience" data-val="custom" onclick="selectFilterChip('audience', 'custom', this)">Custom Group</button>
+      </div>
+    </div>
+
+    <!-- 2. Status -->
+    <div class="filter-section-group">
+      <h4 class="filter-section-title">Status</h4>
+      <div class="filter-chips-row" id="filterGroupStatus">
+        <button type="button" class="filter-chip active" data-category="status" data-val="all" onclick="selectFilterChip('status', 'all', this)">All Statuses</button>
+        <button type="button" class="filter-chip" data-category="status" data-val="sent" onclick="selectFilterChip('status', 'sent', this)">Sent</button>
+        <button type="button" class="filter-chip" data-category="status" data-val="draft" onclick="selectFilterChip('status', 'draft', this)">Draft</button>
+        <button type="button" class="filter-chip" data-category="status" data-val="scheduled" onclick="selectFilterChip('status', 'scheduled', this)">Scheduled</button>
+        <button type="button" class="filter-chip" data-category="status" data-val="archived" onclick="selectFilterChip('status', 'archived', this)">Archived</button>
+      </div>
+    </div>
+
+    <!-- 3. Priority -->
+    <div class="filter-section-group">
+      <h4 class="filter-section-title">Priority</h4>
+      <div class="filter-chips-row" id="filterGroupPriority">
+        <button type="button" class="filter-chip active" data-category="priority" data-val="all" onclick="selectFilterChip('priority', 'all', this)">All Priorities</button>
+        <button type="button" class="filter-chip" data-category="priority" data-val="high" onclick="selectFilterChip('priority', 'high', this)">
+          <span class="filter-chip-dot dot-red"></span>
+          <span>Urgent / High</span>
+        </button>
+        <button type="button" class="filter-chip" data-category="priority" data-val="medium" onclick="selectFilterChip('priority', 'medium', this)">
+          <span class="filter-chip-dot dot-amber"></span>
+          <span>Medium</span>
+        </button>
+        <button type="button" class="filter-chip" data-category="priority" data-val="low" onclick="selectFilterChip('priority', 'low', this)">
+          <span class="filter-chip-dot dot-green"></span>
+          <span>Regular / Low</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 4. Date Range -->
+    <div class="filter-section-group">
+      <h4 class="filter-section-title">Date</h4>
+      <div class="filter-chips-row" id="filterGroupDate">
+        <button type="button" class="filter-chip active" data-category="date" data-val="all" onclick="selectFilterChip('date', 'all', this)">All Time</button>
+        <button type="button" class="filter-chip" data-category="date" data-val="today" onclick="selectFilterChip('date', 'today', this)">Today</button>
+        <button type="button" class="filter-chip" data-category="date" data-val="this-week" onclick="selectFilterChip('date', 'this-week', this)">This Week</button>
+        <button type="button" class="filter-chip" data-category="date" data-val="this-month" onclick="selectFilterChip('date', 'this-month', this)">This Month</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer with [Reset], [Cancel], [Apply Filters] -->
+  <div class="filter-drawer-footer">
+    <button type="button" class="btn-filter-reset" onclick="resetDraftFilters()">Reset</button>
+    <div class="filter-footer-right">
+      <button type="button" class="btn-filter-cancel" onclick="closeFilterDrawer()">Cancel</button>
+      <button type="button" class="btn-filter-apply" onclick="applyDrawerFilters()">Apply Filters</button>
+    </div>
+  </div>
+</aside>
 
 <!-- ==========================================================================
      SLIDE-OVER DETAIL DRAWER (580px RIGHT-SIDE DRAWER)
@@ -4760,6 +5091,135 @@
   }
 
   // ==========================================================================
+  // UNIFIED FILTER DRAWER SYSTEM (Matching Service Desk media_1791789937829.png)
+  // ==========================================================================
+  const activeFilters = {
+    audience: 'all',  // 'all', 'department', 'grade', 'designation', 'custom'
+    status: 'all',    // 'all', 'sent', 'draft', 'scheduled', 'archived'
+    priority: 'all',  // 'all', 'high', 'medium', 'low'
+    date: 'all'       // 'all', 'today', 'this-week', 'this-month'
+  };
+
+  let draftFilters = { ...activeFilters };
+
+  function openFilterDrawer() {
+    draftFilters = { ...activeFilters };
+    syncFilterChipsUI();
+    const overlay = document.getElementById('filterDrawerOverlay');
+    const drawer = document.getElementById('filterDrawer');
+    if (overlay) overlay.classList.add('open');
+    if (drawer) drawer.classList.add('open');
+  }
+
+  function closeFilterDrawer() {
+    const overlay = document.getElementById('filterDrawerOverlay');
+    const drawer = document.getElementById('filterDrawer');
+    if (overlay) overlay.classList.remove('open');
+    if (drawer) drawer.classList.remove('open');
+  }
+
+  function selectFilterChip(category, value, btnEl) {
+    draftFilters[category] = value;
+    if (btnEl && btnEl.parentElement) {
+      btnEl.parentElement.querySelectorAll('.filter-chip').forEach(b => b.classList.remove('active'));
+      btnEl.classList.add('active');
+    }
+  }
+
+  function resetDraftFilters() {
+    draftFilters = {
+      audience: 'all',
+      status: 'all',
+      priority: 'all',
+      date: 'all'
+    };
+    syncFilterChipsUI();
+  }
+
+  function syncFilterChipsUI() {
+    ['audience', 'status', 'priority', 'date'].forEach(cat => {
+      const val = draftFilters[cat];
+      const chips = document.querySelectorAll(`.filter-chip[data-category="${cat}"]`);
+      chips.forEach(chip => {
+        chip.classList.toggle('active', chip.getAttribute('data-val') === val);
+      });
+    });
+  }
+
+  function applyDrawerFilters() {
+    activeFilters.audience = draftFilters.audience;
+    activeFilters.status = draftFilters.status;
+    activeFilters.priority = draftFilters.priority;
+    activeFilters.date = draftFilters.date;
+
+    updateFilterTriggersUI();
+    applyFilters();
+    renderV2BroadcastList();
+    closeFilterDrawer();
+
+    const activeCount = getActiveFilterCount();
+    if (activeCount > 0) {
+      showToast(`Filters applied (${activeCount} active)`, 'info');
+    } else {
+      showToast('Filters cleared', 'info');
+    }
+  }
+
+  function getActiveFilterCount() {
+    let count = 0;
+    if (activeFilters.audience !== 'all') count++;
+    if (activeFilters.status !== 'all') count++;
+    if (activeFilters.priority !== 'all') count++;
+    if (activeFilters.date !== 'all') count++;
+    return count;
+  }
+
+  function updateFilterTriggersUI() {
+    const count = getActiveFilterCount();
+    const v1Btn = document.getElementById('v1FilterBtn');
+    const v2Btn = document.getElementById('v2FilterBtn');
+    const v1Badge = document.getElementById('v1FilterBadge');
+    const v2Badge = document.getElementById('v2FilterBadge');
+    const clearBtn = document.getElementById('clearAllFiltersBtn');
+
+    if (v1Btn) v1Btn.classList.toggle('active', count > 0);
+    if (v2Btn) v2Btn.classList.toggle('active', count > 0);
+
+    if (v1Badge) {
+      v1Badge.innerText = count;
+      v1Badge.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    if (v2Badge) {
+      v2Badge.innerText = count;
+      v2Badge.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+
+    if (clearBtn) {
+      clearBtn.style.display = (count > 0 || currentSearchQuery !== '') ? 'inline-block' : 'none';
+    }
+  }
+
+  function resetAllFilters() {
+    activeFilters.audience = 'all';
+    activeFilters.status = 'all';
+    activeFilters.priority = 'all';
+    activeFilters.date = 'all';
+    draftFilters = { ...activeFilters };
+
+    currentSearchQuery = '';
+    const gSearch = document.getElementById('globalPageSearch');
+    if (gSearch) gSearch.value = '';
+    const clearSearchBtn = document.getElementById('topbarSearchClear');
+    if (clearSearchBtn) clearSearchBtn.style.display = 'none';
+
+    syncFilterChipsUI();
+    updateFilterTriggersUI();
+    applyFilters();
+    renderV2BroadcastList();
+    showToast('All filters cleared');
+  }
+
+  // ==========================================================================
   // VIEW 2: WORKSPACE LOGIC (media_1791789629255.png)
   // ==========================================================================
   let currentBroadcastView = 'view2'; // View 2 is active by default per user requirement
@@ -4915,7 +5375,7 @@
 
     let list = [...broadcasts];
 
-    // Filter by category
+    // Filter by category (Left Rail)
     if (v2CurrentCategory === 'all') {
       list = list.filter(b => b.status !== 'archived');
     } else if (v2CurrentCategory === 'sent') {
@@ -4924,6 +5384,35 @@
       list = list.filter(b => (b.priority || '').toLowerCase() === 'high' && b.status !== 'archived');
     } else if (v2CurrentCategory === 'archived') {
       list = list.filter(b => b.status === 'archived');
+    }
+
+    // Comprehensive Drawer Filters (matching Service Desk modal)
+    if (activeFilters.audience !== 'all') {
+      list = list.filter(bc => {
+        const audStr = (bc.audience || '').toLowerCase();
+        if (activeFilters.audience === 'department') return !audStr.includes('all');
+        if (activeFilters.audience === 'grade') return audStr.includes('grade');
+        if (activeFilters.audience === 'designation') return audStr.includes('designation');
+        if (activeFilters.audience === 'custom') return audStr.includes('custom');
+        return true;
+      });
+    }
+
+    if (activeFilters.priority !== 'all') {
+      list = list.filter(b => (b.priority || '').toLowerCase() === activeFilters.priority);
+    }
+
+    if (activeFilters.status !== 'all') {
+      list = list.filter(b => (b.status || '').toLowerCase() === activeFilters.status);
+    }
+
+    if (activeFilters.date === 'today') {
+      const today = new Date().toDateString();
+      list = list.filter(b => b.timestamp.toDateString() === today);
+    } else if (activeFilters.date === 'this-week') {
+      list = list.filter(b => (new Date() - b.timestamp) / (1000 * 3600 * 24) <= 7);
+    } else if (activeFilters.date === 'this-month') {
+      list = list.filter(b => b.timestamp.getMonth() === new Date().getMonth() || b.timestamp.getMonth() === 4);
     }
 
     // Filter by search query
@@ -5171,6 +5660,8 @@
   document.addEventListener("DOMContentLoaded", () => {
     updateSummaryStats();
     updateV2Badges();
+    syncFilterChipsUI();
+    updateFilterTriggersUI();
     renderBroadcastList();
     renderV2BroadcastList();
     // Default to view2 per user instruction, or restore preference
@@ -5372,14 +5863,9 @@
   }
 
   function applyFilters() {
-    const audienceFilter = (document.getElementById("filterAudience")?.value || "all").toLowerCase();
-    const priorityFilter = (document.getElementById("filterPriority")?.value || "all").toLowerCase();
-    const dateFilter = (document.getElementById("filterDate")?.value || "all").toLowerCase();
-    const statusFilter = (document.getElementById("filterStatus")?.value || "all").toLowerCase();
-
-    const hasActiveFilters = audienceFilter !== "all" || priorityFilter !== "all" || dateFilter !== "all" || statusFilter !== "all" || currentSearchQuery !== "";
+    const hasActiveFilters = getActiveFilterCount() > 0 || currentSearchQuery !== "";
     const clearBtn = document.getElementById("clearAllFiltersBtn");
-    if (clearBtn) clearBtn.style.display = hasActiveFilters ? "block" : "none";
+    if (clearBtn) clearBtn.style.display = hasActiveFilters ? "inline-block" : "none";
 
     filteredBroadcasts = broadcasts.filter(bc => {
       // 1. Text Search across Title, Message, Sender, Category
@@ -5394,30 +5880,35 @@
       }
 
       // 2. Audience Filter
-      if (audienceFilter !== "all") {
+      if (activeFilters.audience !== "all") {
         const audStr = (bc.audience || "").toLowerCase();
-        if (audienceFilter === "all-employees" && !audStr.includes("all")) return false;
-        if (audienceFilter === "department" && audStr.includes("all")) return false;
+        if (activeFilters.audience === "all-employees" && !audStr.includes("all")) return false;
+        if (activeFilters.audience === "department" && audStr.includes("all")) return false;
+        if (activeFilters.audience === "grade" && !audStr.includes("grade")) return false;
+        if (activeFilters.audience === "designation" && !audStr.includes("designation")) return false;
+        if (activeFilters.audience === "custom" && !audStr.includes("custom")) return false;
       }
 
       // 3. Priority Filter
-      if (priorityFilter !== "all") {
-        if ((bc.priority || "").toLowerCase() !== priorityFilter) return false;
+      if (activeFilters.priority !== "all") {
+        if ((bc.priority || "").toLowerCase() !== activeFilters.priority) return false;
       }
 
       // 4. Status Filter
-      if (statusFilter !== "all") {
-        if ((bc.status || "").toLowerCase() !== statusFilter) return false;
+      if (activeFilters.status !== "all") {
+        if ((bc.status || "").toLowerCase() !== activeFilters.status) return false;
+      } else {
+        if (bc.status === "archived") return false;
       }
 
       // 5. Date Filter
-      if (dateFilter === "today") {
+      if (activeFilters.date === "today") {
         const today = new Date().toDateString();
         if (bc.timestamp.toDateString() !== today) return false;
-      } else if (dateFilter === "this-week") {
+      } else if (activeFilters.date === "this-week") {
         const diffDays = (new Date() - bc.timestamp) / (1000 * 3600 * 24);
         if (diffDays > 7) return false;
-      } else if (dateFilter === "this-month") {
+      } else if (activeFilters.date === "this-month") {
         const currentMonth = new Date().getMonth();
         if (bc.timestamp.getMonth() !== currentMonth && bc.timestamp.getMonth() !== 4) return false;
       }
@@ -5427,28 +5918,6 @@
 
     currentPage = 1;
     renderBroadcastList();
-  }
-
-  function resetAllFilters() {
-    const fAud = document.getElementById("filterAudience");
-    const fPrio = document.getElementById("filterPriority");
-    const fDate = document.getElementById("filterDate");
-    const fStat = document.getElementById("filterStatus");
-    const fSearch = document.getElementById("globalPageSearch");
-    const fClearSearch = document.getElementById("topbarSearchClear");
-    const fClearBtn = document.getElementById("clearAllFiltersBtn");
-
-    if (fAud) fAud.value = "all";
-    if (fPrio) fPrio.value = "all";
-    if (fDate) fDate.value = "all";
-    if (fStat) fStat.value = "all";
-    if (fSearch) fSearch.value = "";
-    currentSearchQuery = "";
-    if (fClearSearch) fClearSearch.style.display = "none";
-    if (fClearBtn) fClearBtn.style.display = "none";
-
-    applyFilters();
-    showToast("Filters reset to default");
   }
 
   // ==========================================================================
@@ -5959,6 +6428,7 @@
     if (e.key === "Escape") {
       closeDrawer();
       closeV2Detail();
+      closeFilterDrawer();
       closeCreateModal();
       closeAllMenus();
     }
