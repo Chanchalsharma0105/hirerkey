@@ -2035,6 +2035,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      width: 100%;
       max-width: 100%;
     }
 
@@ -2045,6 +2046,8 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 100%;
+      display: inline-block;
     }
 
     .drawer-emp-link:hover {
@@ -4840,11 +4843,9 @@
           <span id="drawerSenderDept">Human Resources</span>
         </div>
 
-        <!-- Line 4: Email • Phone -->
+        <!-- Line 4: Email -->
         <div class="drawer-emp-contact-row">
-          <a href="mailto:uneet.kumar@noisiv.com" class="drawer-emp-link" id="drawerSenderEmail">uneet.kumar@noisiv.com</a>
-          <span class="drawer-emp-dot">•</span>
-          <a href="tel:+971504928812" class="drawer-emp-link" id="drawerSenderPhone">+971 50 492 8812</a>
+          <a href="mailto:uneet.kumar@noisiv.com" class="drawer-emp-link" id="drawerSenderEmail" title="uneet.kumar@noisiv.com">uneet.kumar@noisiv.com</a>
         </div>
       </div>
     </div>
@@ -6446,7 +6447,6 @@
     const dPill = document.getElementById("drawerSenderPill");
     const dCode = document.getElementById("drawerSenderCode");
     const dEmail = document.getElementById("drawerSenderEmail");
-    const dPhone = document.getElementById("drawerSenderPhone");
 
     const senderDirectory = {
       "Sara Khan": {
@@ -6540,10 +6540,7 @@
     if (dEmail) {
       dEmail.innerText = sMeta.email;
       dEmail.href = `mailto:${sMeta.email}`;
-    }
-    if (dPhone) {
-      dPhone.innerText = sMeta.phone;
-      dPhone.href = `tel:${sMeta.phone.replace(/\s+/g, '')}`;
+      dEmail.title = sMeta.email;
     }
 
     // Avatar / Fallback
