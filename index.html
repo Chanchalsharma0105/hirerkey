@@ -421,6 +421,10 @@
         <span>📢 HR Broadcast</span>
         <span class="tab-badge">View 2</span>
       </button>
+      <button class="nav-tab-btn" id="tab-broadcast-v3" onclick="loadView('broadcast-v3')">
+        <span>📌 Broadcast Widget</span>
+        <span class="tab-badge">View 3</span>
+      </button>
       <button class="nav-tab-btn" id="tab-offboarding" onclick="loadView('offboarding')">
         <span>🚪 Offboarding Module</span>
         <span class="tab-badge">All Screens</span>
@@ -542,6 +546,33 @@
           </div>
         </div>
 
+        
+        <!-- 3b. HR Broadcast View 3 Widget -->
+        <div class="view-card">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill">SELECTED VIEW: VIEW 3 (WIDGET)</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/hr_broadcast_view3.html</span>
+            </div>
+            <div class="card-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+            </div>
+            <h2 class="card-title">HR Broadcast (View 3 Widget)</h2>
+            <p class="card-desc">Pinned announcement widget inspired by media_1791819237244.png with megaphone squircle header, View all button, date/time, PDF attachment, Subhadeep Datta author profile, and full announcement modal.</p>
+            <ul class="card-features">
+              <li>Header with megaphone squircle and 'View all →' button</li>
+              <li>Inner card with date/time and '•••' options dropdown</li>
+              <li>Attachment box for Push Notifications.pdf (1.2 MB)</li>
+              <li>'Read full announcement →' action opening detailed modal</li>
+              <li>Opted out: High Priority chip and right 3D speaker image</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('broadcast-v3')">Launch in Viewer</button>
+            <a href="views/hr_broadcast_view3.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
         <!-- 4. Offboarding Module -->
         <div class="view-card">
           <div class="card-top">
@@ -607,8 +638,12 @@
         url: 'views/property_settings_view4.html'
       },
       'broadcast': {
-        name: 'HR Broadcast (View 2)',
+        name: 'HR Broadcast (View 2: Workspace)',
         url: 'views/hr_broadcast_view2.html'
+      },
+      'broadcast-v3': {
+        name: 'HR Broadcast (View 3: Widget Inspiration)',
+        url: 'views/hr_broadcast_view3.html'
       },
       'offboarding': {
         name: 'Offboarding Module (All Screens)',
@@ -678,6 +713,7 @@
       if (e.key === '1') loadView('dashboard');
       if (e.key === '2') loadView('property-settings');
       if (e.key === '3') loadView('broadcast');
+      if (e.key === 'w' || e.key === 'W') loadView('broadcast-v3');
       if (e.key === '4') loadView('offboarding');
       if (e.key === '5') loadView('pulse-survey');
       if (e.key === 'g' || e.key === 'G') toggleGridMode();
