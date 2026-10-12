@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey™ — Unified HRMS Platform (Selected Production Views)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #7C3AED;
+      --primary-hover: #6D28D9;
+      --primary-light: #F5F3FF;
+      --primary-border: #DDD6FE;
+      --bg-canvas: #F8FAFC;
+      --surface: #FFFFFF;
+      --border: #E2E8F0;
+      --border-subtle: #EEF2F6;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-canvas);
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      overflow: hidden;
+    }
+
+    /* Master Topbar */
+    .master-header {
+      height: 62px;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1000;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .brand-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      font-weight: 800;
+      font-size: 20px;
+      color: #0F172A;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      user-select: none;
+    }
+    .brand-wordmark .logo-hirer { color: #0F172A; }
+    .brand-wordmark .logo-key-wrap {
+      position: relative;
+      color: #7C3AED;
+      display: inline-block;
+    }
+    .brand-wordmark .logo-swoosh {
+      position: absolute;
+      left: -2px;
+      bottom: -6px;
+      width: calc(100% + 4px);
+      height: 8px;
+    }
+
+    .version-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: #7C3AED;
+      background: #EDE9FE;
+      padding: 3px 8px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #F1F5F9;
+      padding: 4px;
+      border-radius: 12px;
+    }
+
+    .nav-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #475569;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.16s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-tab-btn:hover {
+      color: #0F172A;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .nav-tab-btn.active {
+      background: #FFFFFF;
+      color: #7C3AED;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+    }
+
+    .nav-tab-btn .tab-badge {
+      font-size: 10px;
+      font-weight: 700;
+      background: #EDE9FE;
+      color: #7C3AED;
+      padding: 1px 6px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+    .nav-tab-btn.active .tab-badge {
+      background: #7C3AED;
+      color: #FFFFFF;
+    }
+
+    /* Right Actions */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-view-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #475569;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-view-toggle:hover {
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+    .btn-view-toggle.active {
+      background: #EDE9FE;
+      border-color: #DDD6FE;
+      color: #7C3AED;
+    }
+
+    .btn-open-standalone {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #7C3AED;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-open-standalone:hover {
+      background: #EDE9FE;
+    }
+
+    .org-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+    }
+    .org-emblem {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #7C3AED;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    /* Main View Container */
+    .main-viewport {
+      width: 100%;
+      height: calc(100vh - 62px);
+      position: relative;
+    }
+
+    .view-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #FFFFFF;
+    }
+
+    /* Grid Directory Showcase Mode */
+    .grid-showcase {
+      display: none;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      padding: 36px 40px;
+      background: #F8FAFC;
+    }
+    .grid-showcase.active {
+      display: block;
+    }
+
+    .showcase-header {
+      max-width: 1200px;
+      margin: 0 auto 28px auto;
+    }
+    .showcase-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #0F172A;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .showcase-desc {
+      font-size: 14px;
+      color: #64748B;
+      line-height: 1.5;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .view-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+      position: relative;
+    }
+    .view-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.09);
+      border-color: #CBD5E1;
+    }
+
+    .card-top {
+      margin-bottom: 20px;
+    }
+    .card-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .card-selection-pill {
+      font-size: 11px;
+      font-weight: 700;
+      color: #7C3AED;
+      background: #EDE9FE;
+      padding: 3px 9px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+    .card-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: #F5F3FF;
+      color: #7C3AED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0F172A;
+      margin-bottom: 8px;
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: #64748B;
+      line-height: 1.5;
+    }
+
+    .card-features {
+      list-style: none;
+      margin: 14px 0 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .card-features li {
+      font-size: 12px;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-features li::before {
+      content: "✓";
+      color: #10B981;
+      font-weight: 800;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .btn-launch-viewer {
+      flex: 1;
+      padding: 9px 14px;
+      border-radius: 8px;
+      background: #7C3AED;
+      color: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .btn-launch-viewer:hover {
+      background: #6D28D9;
+    }
+    .btn-card-standalone {
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      color: #475569;
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-card-standalone:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Master App Bar -->
+  <header class="master-header">
+    <div class="brand-section">
+      <a href="javascript:void(0)" onclick="loadView('dashboard')" class="brand-wordmark" title="Hirerkey Enterprise">
+        <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+      </a>
+      <span class="version-tag">SELECTED VIEWS</span>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Selected Production Views">
+      <button class="nav-tab-btn active" id="tab-dashboard" onclick="loadView('dashboard')">
+        <span>📊 Dashboard</span>
+        <span class="tab-badge">View 2</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-property-settings" onclick="loadView('property-settings')">
+        <span>⚙️ Property Settings</span>
+        <span class="tab-badge">View 4</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-broadcast" onclick="loadView('broadcast')">
+        <span>📢 HR Broadcast</span>
+        <span class="tab-badge">View 2</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-offboarding" onclick="loadView('offboarding')">
+        <span>🚪 Offboarding Module</span>
+        <span class="tab-badge">All Screens</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-pulse-survey" onclick="loadView('pulse-survey')">
+        <span>📝 Pulse Survey</span>
+        <span class="tab-badge">Screen 1</span>
+      </button>
+    </nav>
+
+    <!-- Header Right Controls -->
+    <div class="header-actions">
+      <!-- Grid Showcase Toggle -->
+      <button class="btn-view-toggle" id="btnGridToggle" onclick="toggleGridMode()" title="Toggle Showcase Grid Mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>All Views Grid</span>
+      </button>
+
+      <!-- Open Standalone File Link -->
+      <a href="views/dashboard_view2.html" target="_blank" class="btn-open-standalone" id="btnStandaloneLink" title="Open active file in separate browser tab">
+        <span>Open Standalone File</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+
+      <!-- Org Switcher -->
+      <div class="org-pill">
+        <span class="org-emblem">N</span>
+        <span>(TEST) Noisiv Consulting</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Area -->
+  <main class="main-viewport">
+    <!-- Active View IFrame -->
+    <iframe id="activeViewFrame" class="view-frame" src="views/dashboard_view2.html" title="Hirerkey Selected View Frame"></iframe>
+
+    <!-- Grid Showcase Mode -->
+    <div class="grid-showcase" id="gridShowcase">
+      <div class="showcase-header">
+        <h1 class="showcase-title">Selected Production Views Directory</h1>
+        <p class="showcase-desc">Below are the final chosen views for each module. Each view is available as its own clean standalone file inside the <code>views/</code> directory, and can also be previewed interactively inside the main viewer.</p>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- 1. Dashboard Revamp -->
+        <div class="view-card">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill">SELECTED VIEW: VIEW 2</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/dashboard_view2.html</span>
+            </div>
+            <div class="card-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+            </div>
+            <h2 class="card-title">Dashboard Revamp</h2>
+            <p class="card-desc">Modern SaaS / Donezo-inspired layout with sleek white sidebar, pearl grey canvas, Ask HyIQ capsule, Bento KPIs, and pinned high-priority broadcast card.</p>
+            <ul class="card-features">
+              <li>White sleek sidebar (~245px) with collapsible rail (<)</li>
+              <li>Topbar with ⌘K search and Ask HyIQ capsule</li>
+              <li>Greeting hero banner with interactive Bento KPIs</li>
+              <li>Pinned broadcast card with like, ack, and download</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('dashboard')">Launch in Viewer</button>
+            <a href="views/dashboard_view2.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
+        <!-- 2. Property Settings -->
+        <div class="view-card">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill">SELECTED VIEW: VIEW 4</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/property_settings_view4.html</span>
+            </div>
+            <div class="card-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+            <h2 class="card-title">Property Settings</h2>
+            <p class="card-desc">Expandable Hover Rail Overlay layout with left 56px rail expanding to 220px on hover, View 2 header, and all 10 interactive property settings.</p>
+            <ul class="card-features">
+              <li>View 4 Expandable Hover Rail (56px to 220px on hover)</li>
+              <li>View 2 header with setting title, icon, and description</li>
+              <li>All 10 settings: Details, Depts, Grades, Designations, etc.</li>
+              <li>Interactive form and table controls for each setting</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('property-settings')">Launch in Viewer</button>
+            <a href="views/property_settings_view4.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
+        <!-- 3. HR Broadcast -->
+        <div class="view-card">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill">SELECTED VIEW: VIEW 2</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/hr_broadcast_view2.html</span>
+            </div>
+            <div class="card-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            </div>
+            <h2 class="card-title">HR Broadcast</h2>
+            <p class="card-desc">Workspace Master-Detail layout with left categories rail, broadcast rows ordered by "Created by" + avatar + name, and slide-over drawer with Format 5 card.</p>
+            <ul class="card-features">
+              <li>Left 4 categories rail (All, Sent, Scheduled, Drafts)</li>
+              <li>Broadcast rows with "Created by" + avatar + name</li>
+              <li>Detail drawer with Format 5 card (full email, no phone)</li>
+              <li>Date & time aligned directly below category heading</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('broadcast')">Launch in Viewer</button>
+            <a href="views/hr_broadcast_view2.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
+        <!-- 4. Offboarding Module -->
+        <div class="view-card">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill">SELECTED: ALL 5 SCREENS</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/offboarding.html</span>
+            </div>
+            <div class="card-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            </div>
+            <h2 class="card-title">Offboarding Module</h2>
+            <p class="card-desc">Comprehensive 5-screen offboarding system covering departures list, case workspace modal, automation rules, employee view, and exit interview studio.</p>
+            <ul class="card-features">
+              <li>Screen 1: Departures table with Format 5 hover cards</li>
+              <li>Screen 2: Case modal dialog with compact chips & 5 tabs</li>
+              <li>Screen 3: Property settings (offboarding rules)</li>
+              <li>Screen 4: Employee view & Screen 5: Exit interview studio</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('offboarding')">Launch in Viewer</button>
+            <a href="views/offboarding.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
+        <!-- 5. Pulse Survey -->
+        <div class="view-card">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill">SELECTED: SCREEN 1</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/pulse_survey.html</span>
+            </div>
+            <div class="card-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <h2 class="card-title">Pulse Survey</h2>
+            <p class="card-desc">Screen 1 Pulse Survey Creation Studio & Form featuring question builder with NPS, 5-star ratings, HyIQ AI question generation, and live employee preview.</p>
+            <ul class="card-features">
+              <li>Surveys dashboard with KPI metric cards</li>
+              <li>Question builder: 1-5 Star, NPS 1-10, Multiple choice</li>
+              <li>HyIQ AI prompt generation chips</li>
+              <li>Interactive live employee survey preview modal</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('pulse-survey')">Launch in Viewer</button>
+            <a href="views/pulse_survey.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const VIEWS = {
+      'dashboard': {
+        name: 'Dashboard (View 2)',
+        url: 'views/dashboard_view2.html'
+      },
+      'property-settings': {
+        name: 'Property Settings (View 4)',
+        url: 'views/property_settings_view4.html'
+      },
+      'broadcast': {
+        name: 'HR Broadcast (View 2)',
+        url: 'views/hr_broadcast_view2.html'
+      },
+      'offboarding': {
+        name: 'Offboarding Module (All Screens)',
+        url: 'views/offboarding.html'
+      },
+      'pulse-survey': {
+        name: 'Pulse Survey (Screen 1)',
+        url: 'views/pulse_survey.html'
+      }
+    };
+
+    let currentViewKey = 'dashboard';
+    let isGridMode = false;
+
+    function loadView(key) {
+      if (!VIEWS[key]) return;
+      currentViewKey = key;
+
+      // Close grid mode if open
+      if (isGridMode) {
+        toggleGridMode();
+      }
+
+      // Update Tabs UI
+      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
+      const activeBtn = document.getElementById('tab-' + key);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Update IFrame src
+      const frame = document.getElementById('activeViewFrame');
+      if (frame && frame.src !== VIEWS[key].url) {
+        frame.src = VIEWS[key].url;
+      }
+
+      // Update Standalone Link
+      const link = document.getElementById('btnStandaloneLink');
+      if (link) {
+        link.href = VIEWS[key].url;
+      }
+
+      // Update URL hash
+      try {
+        history.replaceState(null, '', '#' + key);
+      } catch(e) {}
+    }
+
+    function toggleGridMode() {
+      isGridMode = !isGridMode;
+      const grid = document.getElementById('gridShowcase');
+      const frame = document.getElementById('activeViewFrame');
+      const toggleBtn = document.getElementById('btnGridToggle');
+
+      if (isGridMode) {
+        grid.classList.add('active');
+        frame.style.display = 'none';
+        toggleBtn.classList.add('active');
+      } else {
+        grid.classList.remove('active');
+        frame.style.display = 'block';
+        toggleBtn.classList.remove('active');
+      }
+    }
+
+    // Keyboard shortcuts
+    window.addEventListener('keydown', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === '1') loadView('dashboard');
+      if (e.key === '2') loadView('property-settings');
+      if (e.key === '3') loadView('broadcast');
+      if (e.key === '4') loadView('offboarding');
+      if (e.key === '5') loadView('pulse-survey');
+      if (e.key === 'g' || e.key === 'G') toggleGridMode();
+    });
+
+    // Check URL hash on load
+    window.addEventListener('DOMContentLoaded', function() {
+      const hash = window.location.hash.replace('#', '');
+      if (hash && VIEWS[hash]) {
+        loadView(hash);
+      } else {
+        loadView('dashboard');
+      }
+    });
+  </script>
+</body>
+</html>
