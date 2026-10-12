@@ -1656,7 +1656,9 @@
       position: absolute;
       top: calc(100% + 4px);
       right: 0;
-      width: 160px;
+      min-width: 175px;
+      width: max-content;
+      max-width: 220px;
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
       border-radius: 8px;
@@ -1665,6 +1667,7 @@
       display: none;
       z-index: 100;
       animation: fadeIn 0.15s ease;
+      white-space: nowrap;
     }
 
     .action-dropdown-menu.open {
@@ -2077,6 +2080,16 @@
       margin: 0;
     }
 
+    .drawer-subject-subtitle {
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748B;
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .drawer-section-title {
       font-size: 12px;
       font-weight: 700;
@@ -2310,8 +2323,30 @@
       border-top: 1px solid #EEF2F6;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: space-between;
       background: #FFFFFF;
+    }
+
+    .btn-drawer-archive {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      color: #475569;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-drawer-archive:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
     }
 
     .drawer-footer-left {
@@ -4857,12 +4892,14 @@
       </div>
     </div>
 
-    <!-- 4. Broadcast Heading (Annual policy update) -->
+    <!-- 3. Broadcast Subject / Title -->
     <div>
+      <div class="drawer-section-title">Subject</div>
       <h2 class="drawer-broadcast-heading" id="drawerTitle">Annual policy update</h2>
+      <div class="drawer-subject-subtitle" id="drawerCategorySub">Policy Update</div>
     </div>
 
-    <!-- 5. Broadcast Message -->
+    <!-- 4. Broadcast Message -->
     <div>
       <div class="drawer-section-title">Broadcast Message</div>
       <div class="drawer-message-content" id="drawerMessageText">
@@ -4881,6 +4918,10 @@
 
   <!-- Footer Actions -->
   <div class="drawer-footer">
+    <button class="btn-drawer-archive" id="drawerArchiveBtn" onclick="toggleArchiveBroadcast(currentSelectedBroadcastId)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+      <span id="drawerArchiveBtnText">Archive</span>
+    </button>
     <button class="btn-drawer-action" onclick="closeDrawer()">Close</button>
   </div>
 </aside>
@@ -5979,9 +6020,21 @@
               ` : ''}
             </div>
           </div>
-          <button class="v2-item-more-btn" onclick="event.stopPropagation(); handleV2MoreOptions('${b.id}', this, event)" title="More options">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-          </button>
+          <div class="col-action-menu" onclick="event.stopPropagation()">
+            <button class="v2-item-more-btn" onclick="toggleRowMenu('v2-${b.id}', event)" title="More options">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+            </button>
+            <div class="action-dropdown-menu" id="menu-v2-${b.id}">
+              <div class="action-menu-item" onclick="event.stopPropagation(); selectV2Broadcast('${b.id}'); closeAllMenus();">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>View Broadcast</span>
+              </div>
+              <div class="action-menu-item" onclick="event.stopPropagation(); toggleArchiveBroadcast('${b.id}'); closeAllMenus();">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+                <span>${(b.status === 'archived') ? 'Unarchive' : 'Archive'}</span>
+              </div>
+            </div>
+          </div>
         </div>
       `;
     }).join('');
@@ -6017,12 +6070,7 @@
 
   function handleV2MoreOptions(id, el, e) {
     if (e) e.stopPropagation();
-    const bc = broadcasts.find(b => b.id === id);
-    if (!bc) return;
-    const action = confirm(`Broadcast: "${bc.title}"\n\nClick OK to Duplicate, or Cancel to dismiss.`);
-    if (action) {
-      duplicateBroadcastItem(id);
-    }
+    toggleRowMenu('v2-' + id, e);
   }
 
 
@@ -6150,25 +6198,21 @@
 
           <!-- Column 5: Action Menu (••• button with dropdown) -->
           <div class="col-action-menu" onclick="event.stopPropagation()">
-            <button class="btn-more-dots" onclick="toggleRowMenu('${item.id}', event)" title="More options">
+            <button class="btn-more-dots" onclick="toggleRowMenu('v1-${item.id}', event)" title="More options">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
                 <circle cx="5" cy="12" r="2.2"></circle>
                 <circle cx="12" cy="12" r="2.2"></circle>
                 <circle cx="19" cy="12" r="2.2"></circle>
               </svg>
             </button>
-            <div class="action-dropdown-menu" id="menu-${item.id}">
-              <div class="action-menu-item" onclick="openDrawer('${item.id}')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                <span>View Details</span>
+            <div class="action-dropdown-menu" id="menu-v1-${item.id}">
+              <div class="action-menu-item" onclick="event.stopPropagation(); openDrawer('${item.id}'); closeAllMenus();">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                <span>View Broadcast</span>
               </div>
-              <div class="action-menu-item" onclick="duplicateBroadcastItem('${item.id}')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                <span>Duplicate</span>
-              </div>
-              <div class="action-menu-item danger" onclick="deleteBroadcastItem('${item.id}')">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                <span>Delete</span>
+              <div class="action-menu-item" onclick="event.stopPropagation(); toggleArchiveBroadcast('${item.id}'); closeAllMenus();">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>
+                <span>${(item.status === 'archived') ? 'Unarchive' : 'Archive'}</span>
               </div>
             </div>
           </div>
@@ -6423,10 +6467,14 @@
     const dAttSection = document.getElementById("drawerAttachmentsSection");
     const dAttCount = document.getElementById("drawerAttCount");
     const dPrio = document.getElementById("drawerPriorityPill");
+    const dCatSub = document.getElementById("drawerCategorySub");
+    const dArchiveText = document.getElementById("drawerArchiveBtnText");
 
     if (dTitle) dTitle.innerText = bc.title;
+    if (dCatSub) dCatSub.innerText = bc.category || "General Broadcast";
     if (dDate) dDate.innerText = bc.dateFormatted;
     if (dMsg) dMsg.innerText = bc.fullMessage || bc.preview || "";
+    if (dArchiveText) dArchiveText.innerText = (bc.status === 'archived') ? 'Unarchive' : 'Archive';
 
     // Priority badge - only show if High priority
     if (dPrio && (bc.priority || '').toLowerCase() === 'high') {
@@ -6647,12 +6695,40 @@
   }
 
   function toggleRowMenu(id, e) {
-    e.stopPropagation();
+    if (e) e.stopPropagation();
     const menu = document.getElementById(`menu-${id}`);
     if (!menu) return;
     const isOpen = menu.classList.contains("open");
     closeAllMenus();
     if (!isOpen) menu.classList.add("open");
+  }
+
+  function toggleArchiveBroadcast(id) {
+    if (!id) return;
+    const bc = broadcasts.find(b => b.id === id);
+    if (!bc) return;
+
+    if (bc.status === 'archived') {
+      bc.status = 'sent';
+      showToast(`📬 Broadcast "${bc.title}" restored from archive to active feed`, 'success');
+    } else {
+      bc.status = 'archived';
+      showToast(`📦 Broadcast "${bc.title}" moved to archive`, 'info');
+    }
+
+    updateSummaryStats();
+    updateV2Badges();
+    applyFilters();
+    renderBroadcastList();
+    renderV2BroadcastList();
+    closeAllMenus();
+
+    if (currentSelectedBroadcastId === id) {
+      const dArchiveText = document.getElementById("drawerArchiveBtnText");
+      if (dArchiveText) {
+        dArchiveText.innerText = (bc.status === 'archived') ? 'Unarchive' : 'Archive';
+      }
+    }
   }
 
   function closeAllMenus() {
