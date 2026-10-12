@@ -2058,21 +2058,6 @@
       text-decoration: underline;
     }
 
-    /* Timestamp aligned below the card on the bottom-right corner */
-    .drawer-emp-date-row {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-top: -10px;
-      margin-bottom: 2px;
-    }
-
-    .drawer-emp-date-text {
-      font-size: 12px;
-      font-weight: 500;
-      color: #64748B;
-    }
-
     /* Broadcast Heading relocated above Broadcast Message */
     .drawer-broadcast-heading {
       font-size: 20px;
@@ -5704,32 +5689,35 @@
   <!-- Body -->
   <div class="drawer-body">
     <!-- 1. Creator Profile Card (Format 5 Compact ID Card) -->
-    <div class="drawer-emp-card">
-      <div class="drawer-emp-avatar-wrap">
-        <img src="" alt="" class="drawer-emp-avatar-img" id="drawerSenderAvatar" onerror="this.onerror=null; this.style.display='none'; document.getElementById('drawerSenderFallback').style.display='flex';" />
-        <div class="drawer-emp-avatar-fallback" id="drawerSenderFallback">UK</div>
-        <span class="drawer-emp-status-dot" title="Active Online"></span>
-      </div>
-      <div class="drawer-emp-info">
-        <!-- Line 1: Name -->
-        <div class="drawer-emp-name" id="drawerSenderName">Uneet Kumar</div>
-
-        <!-- Line 2: Dual Badges (Role Pill | Employee Code Chip) -->
-        <div class="drawer-emp-chips">
-          <span class="drawer-emp-pill" id="drawerSenderPill">Executive</span>
-          <span class="drawer-emp-code" id="drawerSenderCode">#EMP-0012</span>
+    <div>
+      <div class="drawer-section-title">Sent by</div>
+      <div class="drawer-emp-card">
+        <div class="drawer-emp-avatar-wrap">
+          <img src="" alt="" class="drawer-emp-avatar-img" id="drawerSenderAvatar" onerror="this.onerror=null; this.style.display='none'; document.getElementById('drawerSenderFallback').style.display='flex';" />
+          <div class="drawer-emp-avatar-fallback" id="drawerSenderFallback">UK</div>
+          <span class="drawer-emp-status-dot" title="Active Online"></span>
         </div>
+        <div class="drawer-emp-info">
+          <!-- Line 1: Name -->
+          <div class="drawer-emp-name" id="drawerSenderName">Uneet Kumar</div>
 
-        <!-- Line 3: Title • Department -->
-        <div class="drawer-emp-title-row">
-          <span id="drawerSenderRole">Chief Human Resources Officer</span>
-          <span class="drawer-emp-dot">•</span>
-          <span id="drawerSenderDept">Human Resources</span>
-        </div>
+          <!-- Line 2: Dual Badges (Role Pill | Employee Code Chip) -->
+          <div class="drawer-emp-chips">
+            <span class="drawer-emp-pill" id="drawerSenderPill">Executive</span>
+            <span class="drawer-emp-code" id="drawerSenderCode">#EMP-0012</span>
+          </div>
 
-        <!-- Line 4: Email -->
-        <div class="drawer-emp-contact-row">
-          <a href="mailto:uneet.kumar@noisiv.com" class="drawer-emp-link" id="drawerSenderEmail" title="uneet.kumar@noisiv.com">uneet.kumar@noisiv.com</a>
+          <!-- Line 3: Title • Department -->
+          <div class="drawer-emp-title-row">
+            <span id="drawerSenderRole">Chief Human Resources Officer</span>
+            <span class="drawer-emp-dot">•</span>
+            <span id="drawerSenderDept">Human Resources</span>
+          </div>
+
+          <!-- Line 4: Email -->
+          <div class="drawer-emp-contact-row">
+            <a href="mailto:uneet.kumar@noisiv.com" class="drawer-emp-link" id="drawerSenderEmail" title="uneet.kumar@noisiv.com">uneet.kumar@noisiv.com</a>
+          </div>
         </div>
       </div>
     </div>
