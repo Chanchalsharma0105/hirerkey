@@ -819,11 +819,11 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                 }}
               >
                 {/* Circular Avatar with Online Status Dot */}
-                <Box sx={{ position: 'relative', width: 52, height: 52, flexShrink: 0 }}>
+                <Box sx={{ position: 'relative', width: 42, height: 42, flexShrink: 0 }}>
                   <Box
                     sx={{
-                      width: 52,
-                      height: 52,
+                      width: 42,
+                      height: 42,
                       borderRadius: '50%',
                       bgcolor: '#EDE9FE',
                       overflow: 'hidden',
@@ -843,11 +843,11 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                       position: 'absolute',
                       bottom: 0,
                       right: 0,
-                      width: 13,
-                      height: 13,
+                      width: 11,
+                      height: 11,
                       borderRadius: '50%',
                       bgcolor: '#10B981',
-                      border: '2.5px solid #FFFFFF',
+                      border: '2px solid #FFFFFF',
                       boxShadow: '0 1px 2px rgba(0, 0, 0, 0.12)',
                     }}
                   />
@@ -855,101 +855,48 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
 
                 {/* Right Profile Metadata Column */}
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 0, flex: 1 }}>
-                  {/* Line 1: Name */}
-                  <Typography
-                    sx={{
-                      fontSize: '16px',
-                      fontWeight: 700,
-                      color: '#0F172A',
-                      lineHeight: 1.25,
-                      letterSpacing: '-0.01em',
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      fontFamily: 'Inter, system-ui, sans-serif',
-                    }}
-                  >
-                    {hoveredCase.name}
-                  </Typography>
-
-                  {/* Line 2: Title • Department */}
-                  <Box
-                    sx={{
-                      mt: '4px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      fontSize: '13px',
-                      fontWeight: 500,
-                      color: '#1E293B',
-                      lineHeight: 1.3,
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      maxWidth: '100%',
-                      fontFamily: 'Inter, system-ui, sans-serif',
-                    }}
-                  >
-                    <Typography component="span" sx={{ fontSize: '13px', fontWeight: 500, color: '#1E293B' }}>
-                      {hoveredCase.designation || hoveredCase.title || 'Front Desk Manager'}
-                    </Typography>
-                    <Typography component="span" sx={{ mx: '6px', color: '#94A3B8', fontSize: '12px' }}>
-                      •
-                    </Typography>
-                    <Typography component="span" sx={{ fontSize: '13px', fontWeight: 500, color: '#1E293B' }}>
-                      {hoveredCase.department || 'Front Office'}
-                    </Typography>
-                  </Box>
-
-                  {/* Line 3: Email • Phone */}
-                  <Box
-                    sx={{
-                      mt: '4px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      fontSize: '12.5px',
-                      fontWeight: 400,
-                      color: '#64748B',
-                      lineHeight: 1.3,
-                      whiteSpace: 'nowrap',
-                      overflow: 'hidden',
-                      textOverflow: 'ellipsis',
-                      maxWidth: '100%',
-                      fontFamily: 'Inter, system-ui, sans-serif',
-                    }}
-                  >
+                  {/* Line 1: Name + Employee Code */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '7px', width: '100%', lineHeight: 1.25 }}>
                     <Typography
-                      component="a"
-                      href={`mailto:${hoveredCase.email || 'sara.khan@noisiv.com'}`}
-                      onClick={(e) => e.stopPropagation()}
                       sx={{
-                        fontSize: '12.5px',
-                        color: '#64748B',
-                        textDecoration: 'none',
-                        '&:hover': { color: '#6366F1', textDecoration: 'underline' },
+                        fontSize: '15.5px',
+                        fontWeight: 700,
+                        color: '#0F172A',
+                        lineHeight: 1.25,
+                        letterSpacing: '-0.01em',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        fontFamily: 'Inter, system-ui, sans-serif',
                       }}
                     >
-                      {hoveredCase.email || 'sara.khan@noisiv.com'}
+                      {hoveredCase.name}
                     </Typography>
-                    <Typography component="span" sx={{ mx: '6px', color: '#94A3B8', fontSize: '12px' }}>
-                      •
-                    </Typography>
-                    <Typography
-                      component="a"
-                      href={`tel:${(hoveredCase.phone || hoveredCase.contact || '+971 50 492 8812').replace(/\s+/g, '')}`}
-                      onClick={(e) => e.stopPropagation()}
+                    <Box
+                      component="span"
                       sx={{
-                        fontSize: '12.5px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        px: '6.5px',
+                        py: '1.5px',
+                        bgcolor: '#F1F5F9',
+                        border: '1px solid #E2E8F0',
+                        borderRadius: '6px',
+                        fontFamily: 'JetBrains Mono, monospace',
+                        fontSize: '11px',
+                        fontWeight: 600,
                         color: '#64748B',
-                        textDecoration: 'none',
-                        '&:hover': { color: '#6366F1', textDecoration: 'underline' },
+                        letterSpacing: '0.02em',
+                        lineHeight: 1.2,
+                        userSelect: 'all',
                       }}
                     >
-                      {hoveredCase.phone || hoveredCase.contact || '+971 50 492 8812'}
-                    </Typography>
+                      {`#EMP-${(hoveredCase.id || 1).toString().padStart(4, '0')}`}
+                    </Box>
                   </Box>
 
-                  {/* Line 4: Dual Badges (Role Pill | Seat Chip) */}
-                  <Box sx={{ mt: '8px', display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'nowrap' }}>
+                  {/* Line 2: Dual Badges (Role Pill | Seat Chip) directly below Name */}
+                  <Box sx={{ mt: '5px', display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'nowrap' }}>
                     <Box
                       component="span"
                       sx={{
@@ -994,6 +941,82 @@ export const OffboardingTable: React.FC<OffboardingTableProps> = ({
                     >
                       {hoveredCase.seat || 'FDM-01'}
                     </Box>
+                  </Box>
+
+                  {/* Line 3: Title • Department */}
+                  <Box
+                    sx={{
+                      mt: '5px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: '13px',
+                      fontWeight: 500,
+                      color: '#1E293B',
+                      lineHeight: 1.3,
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      maxWidth: '100%',
+                      fontFamily: 'Inter, system-ui, sans-serif',
+                    }}
+                  >
+                    <Typography component="span" sx={{ fontSize: '13px', fontWeight: 500, color: '#1E293B' }}>
+                      {hoveredCase.designation || hoveredCase.title || 'Front Desk Manager'}
+                    </Typography>
+                    <Typography component="span" sx={{ mx: '6px', color: '#94A3B8', fontSize: '12px' }}>
+                      •
+                    </Typography>
+                    <Typography component="span" sx={{ fontSize: '13px', fontWeight: 500, color: '#1E293B' }}>
+                      {hoveredCase.department || 'Front Office'}
+                    </Typography>
+                  </Box>
+
+                  {/* Line 4: Email • Phone */}
+                  <Box
+                    sx={{
+                      mt: '4.5px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: '12.5px',
+                      fontWeight: 400,
+                      color: '#64748B',
+                      lineHeight: 1.3,
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      maxWidth: '100%',
+                      fontFamily: 'Inter, system-ui, sans-serif',
+                    }}
+                  >
+                    <Typography
+                      component="a"
+                      href={`mailto:${hoveredCase.email || 'sara.khan@noisiv.com'}`}
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        fontSize: '12.5px',
+                        color: '#64748B',
+                        textDecoration: 'none',
+                        '&:hover': { color: '#6366F1', textDecoration: 'underline' },
+                      }}
+                    >
+                      {hoveredCase.email || 'sara.khan@noisiv.com'}
+                    </Typography>
+                    <Typography component="span" sx={{ mx: '6px', color: '#94A3B8', fontSize: '12px' }}>
+                      •
+                    </Typography>
+                    <Typography
+                      component="a"
+                      href={`tel:${(hoveredCase.phone || hoveredCase.contact || '+971 50 492 8812').replace(/\s+/g, '')}`}
+                      onClick={(e) => e.stopPropagation()}
+                      sx={{
+                        fontSize: '12.5px',
+                        color: '#64748B',
+                        textDecoration: 'none',
+                        '&:hover': { color: '#6366F1', textDecoration: 'underline' },
+                      }}
+                    >
+                      {hoveredCase.phone || hoveredCase.contact || '+971 50 492 8812'}
+                    </Typography>
                   </Box>
                 </Box>
               </Box>

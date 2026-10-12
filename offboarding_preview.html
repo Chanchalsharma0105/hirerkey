@@ -1933,14 +1933,14 @@
 
     .emp-card-compact-avatar-wrap {
       position: relative;
-      width: 52px;
-      height: 52px;
+      width: 42px;
+      height: 42px;
       flex-shrink: 0;
     }
 
     .emp-card-compact-avatar-img {
-      width: 52px;
-      height: 52px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       object-fit: cover;
       display: block;
@@ -1948,12 +1948,12 @@
     }
 
     .emp-card-compact-avatar-fallback {
-      width: 52px;
-      height: 52px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: #EDE9FE;
       color: #6D28D9;
-      font-size: 18px;
+      font-size: 14px;
       font-weight: 800;
       display: none;
       align-items: center;
@@ -1964,11 +1964,11 @@
       position: absolute;
       bottom: 0px;
       right: 0px;
-      width: 13px;
-      height: 13px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
       background: #10B981;
-      border: 2.5px solid #FFFFFF;
+      border: 2px solid #FFFFFF;
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
     }
 
@@ -1980,20 +1980,50 @@
       flex: 1;
     }
 
+    .emp-card-compact-name-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      width: 100%;
+      line-height: 1.25;
+    }
+
     .emp-card-compact-name {
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 700;
       color: #0F172A;
       line-height: 1.25;
       letter-spacing: -0.01em;
       white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       margin: 0;
     }
 
+    .emp-card-compact-code {
+      display: inline-flex;
+      align-items: center;
+      padding: 1.5px 6.5px;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-family: var(--font-mono, monospace);
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+      user-select: all;
+    }
+
+    .emp-card-compact-chips {
+      margin-top: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
     .emp-card-compact-title-row {
-      margin-top: 4px;
+      margin-top: 5px;
       display: flex;
       align-items: center;
       font-size: 13px;
@@ -2007,7 +2037,7 @@
     }
 
     .emp-card-compact-contact-row {
-      margin-top: 4px;
+      margin-top: 4.5px;
       display: flex;
       align-items: center;
       font-size: 12.5px;
@@ -2040,14 +2070,6 @@
     .emp-card-compact-link:hover {
       color: #6366F1;
       text-decoration: underline;
-    }
-
-    .emp-card-compact-chips {
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: nowrap;
     }
 
     .emp-card-compact-pill {
@@ -7644,27 +7666,30 @@
 
     <!-- Right Profile Metadata Column -->
     <div class="emp-card-compact-info">
-      <!-- Line 1: Name -->
-      <div class="emp-card-compact-name" id="empCardSaraName">Sara Khan</div>
+      <!-- Line 1: Name + Employee Code -->
+      <div class="emp-card-compact-name-row">
+        <span class="emp-card-compact-name" id="empCardSaraName">Sara Khan</span>
+        <span class="emp-card-compact-code" id="empCardSaraCode">#EMP-0001</span>
+      </div>
 
-      <!-- Line 2: Title • Department -->
+      <!-- Line 2: Dual Badges (Role Pill | Seat Chip) directly below Name -->
+      <div class="emp-card-compact-chips">
+        <span class="emp-card-compact-pill" id="empCardSaraPill">Manager</span>
+        <span class="emp-card-compact-seat" id="empCardSaraSeat">FDM-01</span>
+      </div>
+
+      <!-- Line 3: Title • Department -->
       <div class="emp-card-compact-title-row">
         <span id="empCardSaraTitle">Front Desk Manager</span>
         <span class="emp-card-compact-dot">•</span>
         <span id="empCardSaraDept">Front Office</span>
       </div>
 
-      <!-- Line 3: Email • Phone -->
+      <!-- Line 4: Email • Phone -->
       <div class="emp-card-compact-contact-row">
         <a href="mailto:sara.khan@noisiv.com" class="emp-card-compact-link" id="empCardSaraEmail">sara.khan@noisiv.com</a>
         <span class="emp-card-compact-dot">•</span>
         <a href="tel:+971504928812" class="emp-card-compact-link" id="empCardSaraPhone">+971 50 492 8812</a>
-      </div>
-
-      <!-- Line 4: Dual Badges (Role Pill | Seat Chip) -->
-      <div class="emp-card-compact-chips">
-        <span class="emp-card-compact-pill" id="empCardSaraPill">Manager</span>
-        <span class="emp-card-compact-seat" id="empCardSaraSeat">FDM-01</span>
       </div>
     </div>
   </div>
@@ -9784,18 +9809,31 @@ function showEmployeeHoverCard(triggerEl, empId) {
     if (f4) f4.style.display = 'none';
     if (f5) f5.style.display = 'flex';
 
-    // 1. Name
+    // 1. Name & Employee Code
     const saraName = document.getElementById('empCardSaraName');
     if (saraName) saraName.textContent = c.name || 'Sara Khan';
 
-    // 2. Title & Department
+    const saraCode = document.getElementById('empCardSaraCode');
+    if (saraCode) {
+      const empNum = c.id ? c.id.toString().padStart(4, '0') : '0001';
+      saraCode.textContent = `#EMP-${empNum}`;
+    }
+
+    // 2. Role Pill & Seat Chip
+    const saraPill = document.getElementById('empCardSaraPill');
+    if (saraPill) saraPill.textContent = c.level || 'Manager';
+
+    const saraSeat = document.getElementById('empCardSaraSeat');
+    if (saraSeat) saraSeat.textContent = c.seat || 'FDM-01';
+
+    // 3. Title & Department
     const saraTitle = document.getElementById('empCardSaraTitle');
     if (saraTitle) saraTitle.textContent = c.designation || c.title || 'Front Desk Manager';
 
     const saraDept = document.getElementById('empCardSaraDept');
     if (saraDept) saraDept.textContent = c.dept || c.department || 'Front Office';
 
-    // 3. Email & Phone
+    // 4. Email & Phone
     const saraEmail = document.getElementById('empCardSaraEmail');
     if (saraEmail) {
       const emailVal = c.email || 'sara.khan@noisiv.com';
@@ -9809,13 +9847,6 @@ function showEmployeeHoverCard(triggerEl, empId) {
       saraPhone.textContent = phoneVal;
       saraPhone.href = `tel:${phoneVal.replace(/\s+/g, '')}`;
     }
-
-    // 4. Role Pill & Seat Chip
-    const saraPill = document.getElementById('empCardSaraPill');
-    if (saraPill) saraPill.textContent = c.level || 'Manager';
-
-    const saraSeat = document.getElementById('empCardSaraSeat');
-    if (saraSeat) saraSeat.textContent = c.seat || 'FDM-01';
 
     // 5. Avatar
     const saraAvatarImg = document.getElementById('empCardSaraAvatarImg');
