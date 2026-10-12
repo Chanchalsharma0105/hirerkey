@@ -3919,6 +3919,371 @@
       box-shadow: 0 8px 24px rgba(124, 58, 237, 0.08), 0 2px 6px rgba(15, 23, 42, 0.03);
     }
 
+    /* ==========================================================================
+       VIEW 3: HR BROADCAST REDESIGN (MATCHING INSPIRATION SPEC)
+       ========================================================================== */
+    #dashboard-view-3 #broadcastCard3 {
+      background: #FFFFFF;
+      border: 1px solid #EBEFF5;
+      border-radius: 24px;
+      padding: 26px 28px;
+      box-shadow: 0 2px 16px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+      transition: all var(--transition-normal);
+      position: relative;
+    }
+
+    #dashboard-view-3 #broadcastCard3:hover {
+      border-color: #E2E8F0;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.07), 0 2px 8px rgba(15, 23, 42, 0.03);
+    }
+
+    .v3-broadcast-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .v3-broadcast-header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .v3-broadcast-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #F3EEFF;
+      color: #7C3AED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+    }
+
+    .v3-broadcast-header-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v3-broadcast-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: #0F172A;
+      margin: 0;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+    }
+
+    .v3-broadcast-subtitle {
+      font-size: 13.5px;
+      color: #64748B;
+      margin: 2px 0 0 0;
+      font-weight: 400;
+    }
+
+    .v3-btn-view-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FAF5FF;
+      color: #7C3AED;
+      border: 1px solid #EDE9FE;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .v3-btn-view-all:hover {
+      background: #F3EEFF;
+      color: #6D28D9;
+      border-color: #DDD6FE;
+      transform: translateY(-1px);
+    }
+
+    .v3-btn-view-all svg {
+      transition: transform var(--transition-fast);
+    }
+
+    .v3-btn-view-all:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Inner Announcement Card */
+    .v3-broadcast-inner-card {
+      background: #FFFFFF;
+      border: 1px solid #EEF2F6;
+      border-radius: 20px;
+      padding: 24px 26px;
+      position: relative;
+      box-shadow: 0 2px 12px rgba(15, 23, 42, 0.02);
+      transition: all var(--transition-fast);
+    }
+
+    .v3-broadcast-inner-card:hover {
+      border-color: #E2E8F0;
+    }
+
+    .v3-broadcast-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .v3-broadcast-timestamp {
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .v3-btn-more {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      padding: 0;
+    }
+
+    .v3-btn-more:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .v3-announcement-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0F172A;
+      margin: 0 0 10px 0;
+      letter-spacing: -0.015em;
+      line-height: 1.3;
+      font-family: 'Plus Jakarta Sans', var(--font-main);
+    }
+
+    .v3-announcement-body {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #475569;
+      margin: 0 0 20px 0;
+      max-width: 680px;
+    }
+
+    /* PDF Attachment Card */
+    .v3-attachment-card {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 370px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 10px 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
+      transition: all var(--transition-fast);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .v3-attachment-card:hover {
+      border-color: #CBD5E1;
+      background: #FAFAFC;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+      transform: translateY(-1px);
+    }
+
+    .v3-attachment-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .v3-pdf-badge {
+      width: 30px;
+      height: 36px;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .v3-attachment-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v3-attachment-name {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #0F172A;
+      line-height: 1.3;
+    }
+
+    .v3-attachment-size {
+      font-size: 12px;
+      color: #94A3B8;
+      margin-top: 1px;
+    }
+
+    .v3-btn-download {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #F8FAFC;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .v3-attachment-card:hover .v3-btn-download {
+      background: #F3EEFF;
+      border-color: #C4B5FD;
+      color: #7C3AED;
+    }
+
+    /* Bottom Action & Author Row */
+    .v3-broadcast-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 4px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .v3-btn-read-announcement {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #6D28D9;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 12px;
+      padding: 11px 22px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 4px 14px rgba(109, 40, 217, 0.28);
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .v3-btn-read-announcement:hover {
+      background: #5B21B6;
+      box-shadow: 0 6px 20px rgba(91, 33, 182, 0.38);
+      transform: translateY(-1px);
+    }
+
+    .v3-btn-read-announcement svg {
+      transition: transform var(--transition-fast);
+    }
+
+    .v3-btn-read-announcement:hover svg {
+      transform: translateX(3px);
+    }
+
+    .v3-author-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .v3-author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #EDE9FE;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+
+    .v3-author-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v3-author-byline {
+      font-size: 13.5px;
+      color: #334155;
+      line-height: 1.25;
+    }
+
+    .v3-author-byline strong {
+      color: #0F172A;
+      font-weight: 700;
+    }
+
+    .v3-author-title {
+      font-size: 12px;
+      color: #64748B;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    /* Popover Menu for 3-dots */
+    .v3-more-popover {
+      position: absolute;
+      top: 48px;
+      right: 20px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+      padding: 6px;
+      width: 205px;
+      z-index: 50;
+      display: none;
+    }
+
+    .v3-more-popover.open {
+      display: block;
+      animation: fadeInPopover 0.15s ease-out;
+    }
+
+    .v3-popover-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #334155;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      font-family: inherit;
+    }
+
+    .v3-popover-item:hover {
+      background: #F8FAFC;
+      color: #7C3AED;
+    }
+
     #dashboard-view-3 .app-sidebar {
       background: var(--brand-light); /* #F5F3FF - Lightest shade of #7C3AED */
       border-right: 1px solid var(--brand-subtle); /* #EDE9FE */
@@ -8139,71 +8504,127 @@
         <!-- Left Column: Broadcast & Alerts/Actions -->
         <div class="grid-column-left">
 
-          <!-- Card 1: Broadcast -->
+          <!-- Card 1: Broadcast (View 3 HR Broadcast matching Inspiration) -->
           <div class="dashboard-card" id="broadcastCard3">
-            <div class="card-header">
-              <div class="card-title-group" style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <div class="card-icon-pill">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 8c-3.3 0-6 2.7-6 6v3l-2 2h16l-2-2v-3c0-3.3-2.7-6-6-6z"></path>
-                      <path d="M12 2v2"></path>
-                      <path d="M4.93 4.93l1.41 1.41"></path>
-                      <path d="M17.66 6.34l1.41-1.41"></path>
-                      <path d="M9 21v1a3 3 0 0 0 6 0v-1"></path>
-                    </svg>
-                  </div>
-                  <h2 class="card-title">Broadcast</h2>
+            <!-- Broadcast Header -->
+            <div class="v3-broadcast-header">
+              <div class="v3-broadcast-header-left">
+                <div class="v3-broadcast-icon-box" title="HR Broadcast & Organisation Updates">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M19.5 8C20.8 9.2 21.5 10.6 21.5 12C21.5 13.4 20.8 14.8 19.5 16" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M15.5 5.5L7.5 9.5H3.5C2.67 9.5 2 10.17 2 11V13C2 13.83 2.67 14.5 3.5 14.5H7.5L15.5 18.5V5.5Z" fill="#7C3AED" stroke="#7C3AED" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M7 14.5V19.5C7 20.05 7.45 20.5 8 20.5H9.5C10.05 20.5 10.5 20.05 10.5 19.5V16" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="18.5" y1="4.5" x2="20.5" y2="2.5" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="18.5" y1="19.5" x2="20.5" y2="21.5" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
                 </div>
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <button type="button" class="btn-new-broadcast" onclick="openModal('broadcastModal')" style="font-size: 11.5px; font-weight: 600; color: #7C3AED; background: #F5F3FF; border: 1px solid #DDD6FE; padding: 4px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-family: inherit;">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-                    <span>+ New Broadcast</span>
-                  </button>
-                  <a href="javascript:void(0)" onclick="selectView3NavItemByTitle('HR Broadcast')" style="font-size: 12px; font-weight: 600; color: var(--brand-primary); text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">Activity Feed &rarr;</a>
+                <div class="v3-broadcast-header-text">
+                  <h2 class="v3-broadcast-title">Broadcast</h2>
+                  <p class="v3-broadcast-subtitle">Important updates from your organisation</p>
                 </div>
               </div>
+
+              <button type="button" class="v3-btn-view-all" onclick="openModal('viewAllBroadcastsModal')" title="View all broadcasts & announcements">
+                <span>View all</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </button>
             </div>
 
-            <!-- Post Content -->
-            <div class="broadcast-post">
-              <!-- Author Header -->
-              <div class="post-author-row">
-                <div class="author-avatar-wrap">UK</div>
-                <div class="author-meta">
-                  <span class="author-name">Uneet Kumar</span>
-                  <span class="author-role-date">Marketing Manager | 17-08-2026 18:39</span>
-                </div>
-              </div>
-
-              <!-- Message Body -->
-              <div class="post-content">
-                <h3 class="post-title">Testing video</h3>
-                <p class="post-body">this i test</p>
-              </div>
-
-              <!-- Attached Video File Card -->
-              <div class="video-attachment-card" onclick="openVideoModal()">
-                <div class="video-thumb-icon">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            <!-- Inner Announcement Card (Opted out High Priority shift badge & 3D speaker graphic per user request) -->
+            <div class="v3-broadcast-inner-card">
+              <!-- Top Metadata Row -->
+              <div class="v3-broadcast-meta-row">
+                <div class="v3-broadcast-timestamp">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
                   </svg>
-                  <span class="mp4-tag">MP4</span>
+                  <span>01 Oct 2026, 06:07 PM</span>
                 </div>
-                <div class="video-details">
-                  <span class="video-filename">file_exampl...</span>
-                  <span class="video-filemeta">17-08-2026 • 3.0 MB</span>
+
+                <div style="position: relative;">
+                  <button type="button" class="v3-btn-more" id="broadcastMoreBtn3" onclick="toggleBroadcastMoreMenu3(event)" title="More options" aria-label="More options">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <circle cx="5" cy="12" r="2"></circle>
+                      <circle cx="12" cy="12" r="2"></circle>
+                      <circle cx="19" cy="12" r="2"></circle>
+                    </svg>
+                  </button>
+                  <!-- 3-Dots Action Dropdown Menu -->
+                  <div class="v3-more-popover" id="broadcastMoreMenu3">
+                    <button type="button" class="v3-popover-item" onclick="copyAnnouncementLink()">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                      <span>Copy link</span>
+                    </button>
+                    <button type="button" class="v3-popover-item" onclick="showToast('Announcement pinned to top 📌'); toggleBroadcastMoreMenu3(event);">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"></line><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.89A2 2 0 0 1 15 10.77V6a3 3 0 0 0-6 0v4.77a2 2 0 0 1-1.11 1.79l-1.78.89A2 2 0 0 0 5 15.24Z"></path></svg>
+                      <span>Pin to dashboard</span>
+                    </button>
+                    <button type="button" class="v3-popover-item" onclick="downloadPushNotificationsPdf(); toggleBroadcastMoreMenu3(event);">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                      <span>Download PDF</span>
+                    </button>
+                    <button type="button" class="v3-popover-item" onclick="showToast('Marked as unread'); toggleBroadcastMoreMenu3(event);">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                      <span>Mark as unread</span>
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              <!-- Reactions Footer -->
-              <div class="post-reactions">
-                <button class="btn-like" id="likeBroadcastBtn3" onclick="toggleBroadcastLike()">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+              <!-- Main Headline -->
+              <h3 class="v3-announcement-title">Welcome to hirekey Notifications!</h3>
+
+              <!-- Body Paragraph -->
+              <p class="v3-announcement-body">
+                You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.
+              </p>
+
+              <!-- PDF Attachment Card -->
+              <div class="v3-attachment-card" onclick="downloadPushNotificationsPdf()" title="Click to download Push Notifications.pdf (1.2 MB)">
+                <div class="v3-attachment-left">
+                  <div class="v3-pdf-badge">
+                    <svg width="30" height="36" viewBox="0 0 30 36" fill="none">
+                      <path d="M3 4C3 2.89543 3.89543 2 5 2H20.5L28 9.5V32C28 33.1046 27.1046 34 26 34H5C3.89543 34 3 33.1046 3 32V4Z" fill="#FFF5F5" stroke="#EF4444" stroke-width="1.6"/>
+                      <path d="M20 2V10H28" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.6"/>
+                      <rect x="5.5" y="16" width="19" height="10" rx="3" fill="#EF4444"/>
+                      <text x="7.2" y="23.5" fill="#FFFFFF" font-size="7" font-weight="800" font-family="'Inter', system-ui, sans-serif">PDF</text>
+                    </svg>
+                  </div>
+                  <div class="v3-attachment-info">
+                    <span class="v3-attachment-name">Push Notifications.pdf</span>
+                    <span class="v3-attachment-size">1.2 MB</span>
+                  </div>
+                </div>
+                <button type="button" class="v3-btn-download" title="Download Push Notifications.pdf" onclick="event.stopPropagation(); downloadPushNotificationsPdf();">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
                   </svg>
-                  <span id="likeCount3">0</span>
                 </button>
+              </div>
+
+              <!-- Bottom Row: Read Full Announcement Button & Author Attribution -->
+              <div class="v3-broadcast-bottom-row">
+                <button type="button" class="v3-btn-read-announcement" onclick="openModal('announcementDetailModal')" title="Open complete announcement details & guidelines">
+                  <span>Read full announcement</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+
+                <div class="v3-author-group">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep Datta" class="v3-author-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'">
+                  <div class="v3-author-details">
+                    <div class="v3-author-byline">By <strong>Subhadeep Datta</strong></div>
+                    <div class="v3-author-title">Business Head</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -12111,6 +12532,199 @@
   </div>
 </div>
 
+<!-- Modal: Read Full Announcement Details (View 3 HR Broadcast) -->
+<div class="modal-overlay" id="announcementDetailModal" onclick="if(event.target===this)closeModal('announcementDetailModal')">
+  <div class="modal-card" style="max-width: 620px; border-radius: 20px; padding: 26px 28px; box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.28); background: #FFFFFF;">
+    
+    <!-- Modal Header -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #EEF2F6;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 44px; height: 44px; border-radius: 12px; background: #F3EEFF; color: #7C3AED; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M19.5 8C20.8 9.2 21.5 10.6 21.5 12C21.5 13.4 20.8 14.8 19.5 16" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M15.5 5.5L7.5 9.5H3.5C2.67 9.5 2 10.17 2 11V13C2 13.83 2.67 14.5 3.5 14.5H7.5L15.5 18.5V5.5Z" fill="#7C3AED" stroke="#7C3AED" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M7 14.5V19.5C7 20.05 7.45 20.5 8 20.5H9.5C10.05 20.5 10.5 20.05 10.5 19.5V16" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 17px; font-weight: 700; color: #0F172A; margin: 0;">Announcement Details</h3>
+          <span style="font-size: 12px; color: #64748B;">Company Broadcast • Hirerkey Enterprise</span>
+        </div>
+      </div>
+      <button onclick="closeModal('announcementDetailModal')" style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid #E2E8F0; background: #F8FAFC; color: #64748B; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='#FEE2E2'; this.style.color='#EF4444';" onmouseout="this.style.background='#F8FAFC'; this.style.color='#64748B';">
+        ✕
+      </button>
+    </div>
+
+    <!-- Author & Timestamp Row -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep Datta" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1.5px solid #EDE9FE;">
+        <div>
+          <div style="font-size: 14.5px; font-weight: 700; color: #0F172A;">Subhadeep Datta</div>
+          <div style="font-size: 12px; color: #64748B;">Business Head • Executive Leadership</div>
+        </div>
+      </div>
+      <div style="font-size: 12.5px; font-weight: 500; color: #64748B; background: #F8FAFC; padding: 4px 10px; border-radius: 6px; border: 1px solid #E2E8F0;">
+        01 Oct 2026, 06:07 PM
+      </div>
+    </div>
+
+    <!-- Announcement Content -->
+    <div style="margin-bottom: 22px;">
+      <h2 style="font-size: 21px; font-weight: 800; color: #0F172A; margin: 0 0 12px 0; letter-spacing: -0.015em; font-family: 'Plus Jakarta Sans', var(--font-main);">Welcome to hirekey Notifications!</h2>
+      
+      <p style="font-size: 14px; line-height: 1.65; color: #334155; margin: 0 0 14px 0;">
+        You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.
+      </p>
+
+      <div style="background: #FAF5FF; border-left: 3px solid #7C3AED; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px;">
+        <div style="font-size: 13px; font-weight: 600; color: #7C3AED; margin-bottom: 4px;">Key Capabilities Activated:</div>
+        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #4B5563; line-height: 1.6;">
+          <li>Real-time push alerts for leave approvals and shift roster changes.</li>
+          <li>Executive & HR broadcasts delivered directly to your feed.</li>
+          <li>Interactive document previews with one-click download access.</li>
+        </ul>
+      </div>
+
+      <p style="font-size: 13.5px; line-height: 1.6; color: #64748B; margin: 0 0 18px 0;">
+        Please review the attached PDF document below for full setup instructions and preference settings.
+      </p>
+
+      <!-- Attached PDF Box inside Modal -->
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 12px; padding: 12px 18px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 30px; height: 36px; display: flex; align-items: center; justify-content: center;">
+            <svg width="28" height="34" viewBox="0 0 28 34" fill="none">
+              <path d="M2 4C2 2.89543 2.89543 2 4 2H18.5L26 9.5V30C26 31.1046 25.1046 32 24 32H4C2.89543 32 2 31.1046 2 30V4Z" fill="#FFF5F5" stroke="#EF4444" stroke-width="1.5"/>
+              <path d="M18 2V10H26" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5"/>
+              <rect x="4.5" y="15" width="17" height="9" rx="2" fill="#EF4444"/>
+              <text x="6" y="21.5" fill="#FFFFFF" font-size="6.5" font-weight="800" font-family="'Inter', system-ui, sans-serif">PDF</text>
+            </svg>
+          </div>
+          <div>
+            <div style="font-size: 13.5px; font-weight: 600; color: #0F172A;">Push Notifications.pdf</div>
+            <div style="font-size: 12px; color: #94A3B8;">1.2 MB • Official Guide Document</div>
+          </div>
+        </div>
+        <button onclick="downloadPushNotificationsPdf()" style="display: inline-flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #CBD5E1; padding: 7px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600; color: #334155; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#7C3AED'; this.style.color='#7C3AED';" onmouseout="this.style.borderColor='#CBD5E1'; this.style.color='#334155';">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Download (1.2 MB)</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid #EEF2F6;">
+      <button id="likeModalBtn" onclick="toggleModalAnnouncementLike()" style="display: inline-flex; align-items: center; gap: 6px; background: #F8FAFC; border: 1px solid #E2E8F0; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #475569; cursor: pointer; transition: all 0.2s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
+        </svg>
+        <span id="modalLikeCount">24 Likes</span>
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button id="ackAnnouncementBtn" onclick="toggleAcknowledgeAnnouncement()" style="display: inline-flex; align-items: center; gap: 6px; background: #EDE9FE; color: #7C3AED; border: 1px solid #DDD6FE; padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span id="ackBtnText">Acknowledge</span>
+        </button>
+        <button onclick="closeModal('announcementDetailModal')" style="background: #0F172A; color: #FFFFFF; border: none; padding: 9px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s;" onmouseover="this.style.background='#1E293B';" onmouseout="this.style.background='#0F172A';">
+          Close
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal: View All Broadcasts Archive (View 3 HR Broadcast) -->
+<div class="modal-overlay" id="viewAllBroadcastsModal" onclick="if(event.target===this)closeModal('viewAllBroadcastsModal')">
+  <div class="modal-card" style="max-width: 680px; border-radius: 20px; padding: 26px 28px; box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.28); background: #FFFFFF;">
+    
+    <!-- Modal Header -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #EEF2F6;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 44px; height: 44px; border-radius: 14px; background: #F3EEFF; color: #7C3AED; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M19.5 8C20.8 9.2 21.5 10.6 21.5 12C21.5 13.4 20.8 14.8 19.5 16" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M15.5 5.5L7.5 9.5H3.5C2.67 9.5 2 10.17 2 11V13C2 13.83 2.67 14.5 3.5 14.5H7.5L15.5 18.5V5.5Z" fill="#7C3AED" stroke="#7C3AED" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M7 14.5V19.5C7 20.05 7.45 20.5 8 20.5H9.5C10.05 20.5 10.5 20.05 10.5 19.5V16" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3 style="font-size: 18px; font-weight: 700; color: #0F172A; margin: 0;">Broadcast Archive</h3>
+          <span style="font-size: 12.5px; color: #64748B;">All official organisation updates & announcements</span>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" onclick="closeModal('viewAllBroadcastsModal'); openModal('broadcastModal');" style="font-size: 12px; font-weight: 600; color: #7C3AED; background: #F5F3FF; border: 1px solid #DDD6FE; padding: 6px 12px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>+ New Broadcast</span>
+        </button>
+        <button onclick="closeModal('viewAllBroadcastsModal')" style="width: 32px; height: 32px; border-radius: 8px; border: 1px solid #E2E8F0; background: #F8FAFC; color: #64748B; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          ✕
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter Pills -->
+    <div style="display: flex; gap: 8px; margin-bottom: 18px;">
+      <button style="padding: 5px 14px; border-radius: 9999px; background: #7C3AED; color: #FFF; border: none; font-size: 12px; font-weight: 600; cursor: pointer;">All (3)</button>
+      <button style="padding: 5px 14px; border-radius: 9999px; background: #F1F5F9; color: #475569; border: none; font-size: 12px; font-weight: 500; cursor: pointer;" onclick="showToast('Filtered by Announcements')">Announcements</button>
+      <button style="padding: 5px 14px; border-radius: 9999px; background: #F1F5F9; color: #475569; border: none; font-size: 12px; font-weight: 500; cursor: pointer;" onclick="showToast('Filtered by Company Policies')">Company Policies</button>
+      <button style="padding: 5px 14px; border-radius: 9999px; background: #F1F5F9; color: #475569; border: none; font-size: 12px; font-weight: 500; cursor: pointer;" onclick="showToast('Filtered by Town Halls')">Town Halls</button>
+    </div>
+
+    <!-- Broadcast List -->
+    <div style="display: flex; flex-direction: column; gap: 12px; max-height: 420px; overflow-y: auto; padding-right: 4px;">
+      
+      <!-- Item 1 (Active) -->
+      <div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px 18px; background: #FAF5FF; cursor: pointer;" onclick="closeModal('viewAllBroadcastsModal'); openModal('announcementDetailModal');">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 2px 8px; border-radius: 6px;">LATEST</span>
+            <span style="font-size: 12px; color: #64748B;">01 Oct 2026, 06:07 PM</span>
+          </div>
+          <span style="font-size: 12px; color: #7C3AED; font-weight: 600;">View &rarr;</span>
+        </div>
+        <h4 style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0 0 4px 0;">Welcome to hirekey Notifications!</h4>
+        <p style="font-size: 13px; color: #475569; margin: 0 0 8px 0;">You’re now set to receive notifications for important activities and updates in the hirekey app.</p>
+        <div style="font-size: 12px; color: #64748B;">By <strong>Subhadeep Datta</strong> (Business Head) • Attached: Push Notifications.pdf (1.2 MB)</div>
+      </div>
+
+      <!-- Item 2 -->
+      <div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px 18px; background: #FFFFFF; cursor: pointer;" onclick="showToast('Opening Q3 Town Hall Broadcast...')">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 12px; color: #64748B;">24 Sep 2026, 11:30 AM</span>
+          <span style="font-size: 12px; color: #64748B; font-weight: 600;">View &rarr;</span>
+        </div>
+        <h4 style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0 0 4px 0;">Q3 All-Hands Town Hall & Roadmap Review</h4>
+        <p style="font-size: 13px; color: #475569; margin: 0 0 8px 0;">Key presentation slides and Q&A summary from CEO and department leadership.</p>
+        <div style="font-size: 12px; color: #64748B;">By <strong>Uneet Kumar</strong> (Marketing Manager)</div>
+      </div>
+
+      <!-- Item 3 -->
+      <div style="border: 1px solid #E2E8F0; border-radius: 14px; padding: 14px 18px; background: #FFFFFF; cursor: pointer;" onclick="showToast('Opening Workplace Health Guidelines...')">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+          <span style="font-size: 12px; color: #64748B;">18 Sep 2026, 09:15 AM</span>
+          <span style="font-size: 12px; color: #64748B; font-weight: 600;">View &rarr;</span>
+        </div>
+        <h4 style="font-size: 15px; font-weight: 700; color: #0F172A; margin: 0 0 4px 0;">Workplace Health & Hybrid Office Guidelines</h4>
+        <p style="font-size: 13px; color: #475569; margin: 0 0 8px 0;">Updated check-in protocols and flexible roster scheduling for autumn.</p>
+        <div style="font-size: 12px; color: #64748B;">By <strong>HR Operations</strong></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
 <!-- 5. Create HR Broadcast Modal -->
 <!-- Create Broadcast Modal (Matching media_1791531204832.jpg) -->
 <div class="modal-overlay" id="broadcastModal" onclick="if(event.target===this)closeModal('broadcastModal')">
@@ -15016,9 +15630,89 @@
     updateDashboardCharCount('');
   }
 
+  // ==========================================================================
+  // VIEW 3 HR BROADCAST WIDGET INTERACTIONS & MODALS
+  // ==========================================================================
+  function toggleBroadcastMoreMenu3(e) {
+    if (e) e.stopPropagation();
+    const menu = document.getElementById('broadcastMoreMenu3');
+    if (menu) menu.classList.toggle('open');
+  }
+
+  function downloadPushNotificationsPdf() {
+    showToast("Downloading 'Push Notifications.pdf' (1.2 MB)... 📄");
+    setTimeout(() => {
+      showToast("Download complete: Push Notifications.pdf ✅");
+    }, 1200);
+  }
+
+  let modalLiked = false;
+  function toggleModalAnnouncementLike() {
+    modalLiked = !modalLiked;
+    const btn = document.getElementById('likeModalBtn');
+    const count = document.getElementById('modalLikeCount');
+    if (modalLiked) {
+      if (btn) {
+        btn.style.background = '#EDE9FE';
+        btn.style.borderColor = '#C4B5FD';
+        btn.style.color = '#7C3AED';
+      }
+      if (count) count.textContent = '25 Likes';
+      showToast("Liked announcement! 👍");
+    } else {
+      if (btn) {
+        btn.style.background = '#F8FAFC';
+        btn.style.borderColor = '#E2E8F0';
+        btn.style.color = '#475569';
+      }
+      if (count) count.textContent = '24 Likes';
+    }
+  }
+
+  let isAcknowledged = false;
+  function toggleAcknowledgeAnnouncement() {
+    isAcknowledged = !isAcknowledged;
+    const btn = document.getElementById('ackAnnouncementBtn');
+    const text = document.getElementById('ackBtnText');
+    if (isAcknowledged) {
+      if (btn) {
+        btn.style.background = '#DCFCE7';
+        btn.style.borderColor = '#86EFAC';
+        btn.style.color = '#15803D';
+      }
+      if (text) text.textContent = 'Acknowledged ✓';
+      showToast("Announcement acknowledged by Chanchal Sharma! ✓");
+    } else {
+      if (btn) {
+        btn.style.background = '#EDE9FE';
+        btn.style.borderColor = '#DDD6FE';
+        btn.style.color = '#7C3AED';
+      }
+      if (text) text.textContent = 'Acknowledge';
+      showToast("Acknowledgement cleared");
+    }
+  }
+
+  function copyAnnouncementLink() {
+    const url = window.location.origin + window.location.pathname + '?view=3#broadcastCard3';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast("Direct link copied to clipboard! 📋");
+      }).catch(() => {
+        showToast("Link: " + url);
+      });
+    } else {
+      showToast("Direct link ready: " + url);
+    }
+    document.getElementById('broadcastMoreMenu3')?.classList.remove('open');
+  }
+
   window.onclick = function(e) {
     if (e.target.classList.contains('modal-overlay')) {
       e.target.classList.remove('open');
+    }
+    if (!e.target.closest('#broadcastMoreBtn3') && !e.target.closest('#broadcastMoreMenu3')) {
+      document.getElementById('broadcastMoreMenu3')?.classList.remove('open');
     }
     if (window.innerWidth <= 860 && appSidebar && appSidebar.classList.contains('mobile-open')) {
       if (!e.target.closest('#appSidebar') && !e.target.closest('#sidebarCollapseBtn') && !e.target.closest('#mobileSidebarToggle')) {
