@@ -1131,9 +1131,12 @@
 
     .page-header-row {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
-      margin-bottom: 16px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      width: 100%;
     }
 
     .page-title {
@@ -3098,22 +3101,27 @@
 
     .page-header-row {
       display: flex;
-      align-items: flex-start;
+      flex-direction: row;
+      align-items: center;
       justify-content: space-between;
       gap: 16px;
       margin-bottom: 20px;
+      width: 100%;
     }
 
     .page-header-left {
       display: flex;
       flex-direction: column;
       gap: 6px;
+      flex: 1 1 auto;
+      min-width: 0;
     }
 
     .page-header-right {
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-shrink: 0;
     }
 
     /* ==========================================================================
