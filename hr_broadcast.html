@@ -1892,33 +1892,92 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 16px;
+      gap: 12px;
+      padding: 6px 16px 6px 8px;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-radius: 10px;
+      border-radius: 9999px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      box-sizing: border-box;
+      min-height: 44px;
     }
 
     .drawer-sender-info {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .sender-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+      background: #EDE9FE;
+    }
+
+    .sender-initials {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #EDE9FE;
+      color: var(--brand-primary);
+      font-size: 11px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+
+    .drawer-sender-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .drawer-sender-name {
-      font-size: 13.5px;
+      font-size: 13px;
       font-weight: 700;
       color: var(--text-heading);
+      white-space: nowrap;
+      line-height: 1.25;
+    }
+
+    .drawer-sender-dot {
+      color: #CBD5E1;
+      font-size: 11px;
+      user-select: none;
     }
 
     .drawer-sender-role {
       font-size: 12px;
+      font-weight: 500;
       color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
     }
 
     .drawer-date {
-      font-size: 12px;
+      font-size: 11.5px;
+      font-weight: 500;
       color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
       text-align: right;
+      padding-left: 8px;
     }
 
     .drawer-section-title {
@@ -4660,14 +4719,15 @@
 
   <!-- Body -->
   <div class="drawer-body">
-    <!-- Sender Info Card -->
+    <!-- Sender Info Pill -->
     <div class="drawer-sender-box">
       <div class="drawer-sender-info">
         <img src="" alt="" class="sender-avatar" id="drawerSenderAvatar" style="display: none;">
         <div class="sender-initials" id="drawerSenderInitials" style="display: none;">SD</div>
-        <div>
-          <div class="drawer-sender-name" id="drawerSenderName">Subhadeep Datta</div>
-          <div class="drawer-sender-role" id="drawerSenderRole">Business Head • HR</div>
+        <div class="drawer-sender-meta">
+          <span class="drawer-sender-name" id="drawerSenderName">Subhadeep Datta</span>
+          <span class="drawer-sender-dot">•</span>
+          <span class="drawer-sender-role" id="drawerSenderRole">Business Head • HR</span>
         </div>
       </div>
       <div class="drawer-date" id="drawerDateTime">01-10 · 6:07 PM</div>
