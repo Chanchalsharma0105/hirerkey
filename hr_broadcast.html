@@ -5097,6 +5097,24 @@
       margin: 0 0 20px 0;
     }
 
+    /* Attachment Card & Reaction Row */
+    .v3-attachment-interaction-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      margin-top: 16px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .v3-bottom-like-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding-bottom: 2px;
+    }
+
     /* Attachment Card (Matching media_1791870220357.png) */
     .v3-attachment-card {
       display: flex;
@@ -5106,8 +5124,8 @@
       background: #FFFFFF;
       max-width: 320px;
       width: 100%;
-      margin-top: 16px;
-      margin-bottom: 8px;
+      margin-top: 0;
+      margin-bottom: 0;
       overflow: hidden;
       box-sizing: border-box;
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
@@ -6025,21 +6043,31 @@
               You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.
             </p>
 
-            <!-- Attachment Card (Matching media_1791870220357.png) -->
-            <div class="v3-attachment-card" id="v3AttachmentCard" onclick="downloadAttachment('Push notification.png', '1.2 MB')" title="Click to view / download Push notification.png">
-              <div class="v3-att-thumb-wrap">
-                <img src="assets/push_notification_mascot.png" alt="Push notification" class="v3-att-thumb-img" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'" />
-              </div>
-              <div class="v3-att-caption">
-                <div class="v3-att-title-row">
-                  <svg class="v3-att-photo-icon" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                    <polyline points="21 15 16 10 5 21"></polyline>
-                  </svg>
-                  <span class="v3-att-name" id="v3AttachmentName">Push notification.png</span>
+            <!-- Attachment Card & Like Reaction Row -->
+            <div class="v3-attachment-interaction-row">
+              <div class="v3-attachment-card" id="v3AttachmentCard" onclick="downloadAttachment('Push notification.png', '1.2 MB')" title="Click to view / download Push notification.png">
+                <div class="v3-att-thumb-wrap">
+                  <img src="assets/push_notification_mascot.png" alt="Push notification" class="v3-att-thumb-img" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'" />
                 </div>
-                <div class="v3-att-meta-sub" id="v3AttachmentSize">01-10-2026 • 1.2 MB</div>
+                <div class="v3-att-caption">
+                  <div class="v3-att-title-row">
+                    <svg class="v3-att-photo-icon" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                      <polyline points="21 15 16 10 5 21"></polyline>
+                    </svg>
+                    <span class="v3-att-name" id="v3AttachmentName">Push notification.png</span>
+                  </div>
+                  <div class="v3-att-meta-sub" id="v3AttachmentSize">01-10-2026 • 1.2 MB</div>
+                </div>
+              </div>
+
+              <!-- Design 1 Like Reaction Pill -->
+              <div class="v3-bottom-like-wrap">
+                <button type="button" class="v2w-btn-like" id="v1LikeBtn" onclick="toggleV1Like(this)" title="React to broadcast">
+                  <svg class="v2w-like-heart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                  <span class="v2w-like-count" id="v1LikeCount">42</span>
+                </button>
               </div>
             </div>
 
@@ -8840,6 +8868,18 @@
   function toggleV2wLike(btn) {
     const isLiked = btn.classList.toggle('liked');
     const countEl = document.getElementById('v2wLikeCount');
+    let count = parseInt(countEl?.textContent || '42', 10);
+    if (isLiked) {
+      if (countEl) countEl.textContent = count + 1;
+      showToast('❤️ You reacted to this broadcast.');
+    } else {
+      if (countEl) countEl.textContent = Math.max(42, count - 1);
+    }
+  }
+
+  function toggleV1Like(btn) {
+    const isLiked = btn.classList.toggle('liked');
+    const countEl = document.getElementById('v1LikeCount');
     let count = parseInt(countEl?.textContent || '42', 10);
     if (isLiked) {
       if (countEl) countEl.textContent = count + 1;
