@@ -4349,127 +4349,95 @@
       margin: 0 0 20px 0;
     }
 
-    /* Attachment Card */
+    /* Attachment Card (Matching media_1791870220357.png) */
     .v3-attachment-card {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 18px;
+      flex-direction: column;
       border: 1.5px solid #E2E8F0;
-      border-radius: 14px;
+      border-radius: 18px;
       background: #FFFFFF;
-      max-width: 360px;
+      max-width: 320px;
       width: 100%;
-      margin-bottom: 24px;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      overflow: hidden;
       box-sizing: border-box;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+      transition: all 0.18s ease;
       cursor: pointer;
     }
 
     .v3-attachment-card:hover {
       border-color: #CBD5E1;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      transform: translateY(-2px);
     }
 
-    .v3-att-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .v3-att-thumb-wrap {
+      width: 100%;
+      height: 168px;
+      background: #F8FAFC;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid #E2E8F0;
     }
 
-    .v3-pdf-badge {
-      width: 38px;
-      height: 40px;
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
-      border-radius: 9px;
+    .v3-att-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.28s ease;
+    }
+
+    .v3-attachment-card:hover .v3-att-thumb-img {
+      transform: scale(1.025);
+    }
+
+    .v3-att-caption {
+      padding: 13px 16px 14px 16px;
       display: flex;
       flex-direction: column;
+      background: #FFFFFF;
+    }
+
+    .v3-att-title-row {
+      display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 9px;
+    }
+
+    .v3-att-photo-icon {
+      width: 18px;
+      height: 18px;
+      color: #2563EB;
       flex-shrink: 0;
-      color: #DC2626;
-      font-size: 9px;
-      font-weight: 800;
-      font-family: var(--font-mono, monospace);
-      line-height: 1;
-    }
-
-    .v3-pdf-badge svg {
-      margin-bottom: 2px;
-    }
-
-    .v3-att-info {
-      display: flex;
-      flex-direction: column;
     }
 
     .v3-att-name {
-      font-size: 13.5px;
+      font-size: 15px;
       font-weight: 700;
       color: #0F172A;
-      line-height: 1.25;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
     }
 
-    .v3-att-size {
-      font-size: 12px;
-      color: #94A3B8;
-      margin-top: 2px;
+    .v3-att-meta-sub {
+      font-size: 13px;
+      font-weight: 500;
+      color: #64748B;
+      margin-top: 4px;
+      line-height: 1.3;
     }
 
-    .v3-att-download-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      color: #475569;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      flex-shrink: 0;
-    }
-
-    .v3-att-download-btn:hover {
-      background: #EDE9FE;
-      border-color: #DDD6FE;
-      color: #7C3AED;
-    }
-
-    /* Bottom Action Row: Read full announcement button + Author Profile */
+    /* Bottom Row: Creator Profile (aligned to below right corner of attachment) */
     .v3-inner-bottom-row {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       margin-top: 6px;
       padding-top: 4px;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .v3-read-btn {
-      background: #7C3AED;
-      color: #FFFFFF;
-      padding: 13px 26px;
-      border-radius: 12px;
-      font-size: 14px;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.28);
-      transition: all 0.16s ease;
-    }
-
-    .v3-read-btn:hover {
-      background: #6D28D9;
-      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.38);
-      transform: translateY(-1px);
     }
 
     .v3-author-block {
@@ -5299,28 +5267,22 @@
               You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.
             </p>
 
-            <!-- Attachment Card -->
-            <div class="v3-attachment-card" id="v3AttachmentCard" onclick="downloadAttachment('Push Notifications.pdf', '1.2 MB')">
-              <div class="v3-att-left">
-                <div class="v3-pdf-badge">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#DC2626" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                  </svg>
-                  <span>PDF</span>
-                </div>
-                <div class="v3-att-info">
-                  <span class="v3-att-name" id="v3AttachmentName">Push Notifications.pdf</span>
-                  <span class="v3-att-size" id="v3AttachmentSize">1.2 MB</span>
-                </div>
+            <!-- Attachment Card (Matching media_1791870220357.png) -->
+            <div class="v3-attachment-card" id="v3AttachmentCard" onclick="downloadAttachment('Push notification.png', '1.2 MB')" title="Click to view / download Push notification.png">
+              <div class="v3-att-thumb-wrap">
+                <img src="assets/push_notification_mascot.png" alt="Push notification" class="v3-att-thumb-img" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'" />
               </div>
-              <button type="button" class="v3-att-download-btn" title="Download Push Notifications.pdf" onclick="event.stopPropagation(); downloadAttachment('Push Notifications.pdf', '1.2 MB');">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-              </button>
+              <div class="v3-att-caption">
+                <div class="v3-att-title-row">
+                  <svg class="v3-att-photo-icon" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                  <span class="v3-att-name" id="v3AttachmentName">Push notification.png</span>
+                </div>
+                <div class="v3-att-meta-sub" id="v3AttachmentSize">01-10-2026 • 1.2 MB</div>
+              </div>
             </div>
 
             <!-- Bottom Row: Creator Profile (NO speaker image on right) -->
@@ -5808,7 +5770,7 @@
       preview: "You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.",
       fullMessage: "Welcome to hirekey Notifications!\n\nYou’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.\n\nWith Push Notifications enabled, you will receive timely reminders about pending shift rosters, document approvals, appraisal cycles, and team milestones directly on your desktop or mobile device. You can customize your notification preferences anytime via Property Settings.",
       attachments: [
-        { name: "Push Notifications.pdf", size: "1.2 MB", type: "pdf" }
+        { name: "Push notification.png", size: "01-10-2026 • 1.2 MB", type: "image", previewUrl: "assets/push_notification_mascot.png" }
       ]
     },
     {
@@ -6687,8 +6649,13 @@
         dateEl.innerHTML = `<span>${activeBc.dateFormatted}</span>`;
       }
       if (activeBc.attachments && activeBc.attachments.length > 0) {
-        if (attName) attName.innerText = activeBc.attachments[0].name;
-        if (attSize) attSize.innerText = activeBc.attachments[0].size;
+        const att = activeBc.attachments[0];
+        if (attName) attName.innerText = att.name;
+        if (attSize) attSize.innerText = att.size;
+        const thumbImg = document.querySelector('.v3-att-thumb-img');
+        if (thumbImg && att.previewUrl) {
+          thumbImg.src = att.previewUrl;
+        }
       }
       if (authorBlock && activeBc.senderName) {
         authorBlock.innerHTML = `
