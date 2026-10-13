@@ -2186,6 +2186,276 @@
       margin: 16px auto 0 auto;
     }
 
+
+    /* ========================================================================
+       DUAL-DESIGN SCROLLABLE SHOWCASE (DESIGN 1 & DESIGN 2)
+       ======================================================================== */
+    .mobile-comparison-gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      width: 100%;
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 10px 0 80px 0;
+    }
+
+    /* Jump Pills Bar */
+    .m-jump-pills {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .m-jump-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 11.5px;
+      font-weight: 600;
+      text-decoration: none;
+      color: #475569;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      transition: all 0.15s ease;
+    }
+    .m-jump-pill:hover {
+      background: #E2E8F0;
+      color: #0F172A;
+    }
+    .m-jump-pill.active {
+      background: #EDE9FE;
+      color: #7C3AED;
+      border-color: #DDD6FE;
+      font-weight: 700;
+      box-shadow: 0 1px 3px rgba(124, 58, 237, 0.12);
+    }
+    .m-jump-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      animation: pulseGreenDot 2s infinite;
+    }
+    @keyframes pulseGreenDot {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+      70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* Section Headers */
+    .m-design-section {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      scroll-margin-top: 84px;
+    }
+    .m-section-header-card {
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .m-section-tag-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+    .m-version-pill {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .m-version-pill.pill-d1 {
+      background: #EEF2F6;
+      color: #334155;
+      border: 1px solid #CBD5E1;
+    }
+    .m-version-pill.pill-d2 {
+      background: #EDE9FE;
+      color: #7C3AED;
+      border: 1px solid #DDD6FE;
+    }
+    .m-recommended-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #FFFFFF;
+      padding: 3px 9px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+    }
+    .m-version-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0F172A;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .m-version-desc {
+      font-size: 12.5px;
+      color: #64748B;
+      margin: 6px 0 0 0;
+      line-height: 1.45;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Elegant Gallery Section Divider */
+    .m-gallery-divider {
+      width: 100%;
+      max-width: 580px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 8px 0;
+    }
+    .m-divider-line {
+      flex: 1;
+      height: 1px;
+      background: #E2E8F0;
+    }
+    .m-divider-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94A3B8;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: #F8FAFC;
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1px solid #E2E8F0;
+      white-space: nowrap;
+    }
+
+    /* Design 2 Specialized Aesthetics */
+    .phone-frame-d2 {
+      box-shadow: 0 30px 80px -15px rgba(124, 58, 237, 0.32), 0 0 0 1px rgba(255, 255, 255, 0.12), inset 0 0 0 2px #334155;
+    }
+    .screen-d2 {
+      background: linear-gradient(180deg, #FAF8FF 0%, #F5F1FF 40%, #EDE7FF 100%);
+    }
+    .m2-creator-avatar {
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: #7C3AED;
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .m2-stepper-capsules {
+      display: flex;
+      gap: 6px;
+      width: 100%;
+      margin-top: 6px;
+    }
+    .m2-stepper-capsule {
+      flex: 1;
+      height: 5px;
+      border-radius: 100px;
+      background: #E2E8F0;
+      transition: all 0.3s ease;
+    }
+    .m2-stepper-capsule.filled {
+      background: linear-gradient(90deg, #7C3AED 0%, #A855F7 100%);
+      box-shadow: 0 0 8px rgba(124, 58, 237, 0.4);
+    }
+    .m2-card-glow {
+      box-shadow: 0 14px 34px -8px rgba(124, 58, 237, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+      border: 1px solid #EDE9FE !important;
+    }
+
+    /* Design 2 Segmented Pill Track */
+    .m2-segmented-track {
+      background: #F1F5F9;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      margin: 10px 0 12px 0;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.04);
+    }
+    .m2-segment-btn {
+      flex: 1;
+      height: 50px;
+      background: transparent;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+    }
+    .m2-segment-btn:hover {
+      background: rgba(124, 58, 237, 0.08);
+      color: #7C3AED;
+    }
+    .m2-segment-btn.active {
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #4F46E5 100%);
+      color: #FFFFFF !important;
+      font-weight: 800;
+      box-shadow: 0 8px 20px -2px rgba(124, 58, 237, 0.45), 0 2px 6px rgba(124, 58, 237, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      transform: scale(1.04);
+    }
+    .m2-seg-num {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Design 2 Dynamic Sentiment Beacon */
+    .m2-sentiment-beacon {
+      background: #FAF5FF;
+      border: 1px solid #DDD6FE;
+      color: #6D28D9;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 100px;
+      text-align: center;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+      transition: all 0.25s ease;
+    }
+    .m2-anchor-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #7C3AED;
+      vertical-align: middle;
+      margin: 0 3px;
+    }
+
   </style>
 </head>
 <body>
@@ -2407,6 +2677,10 @@
              VIEW 2: MOBILE-BASED RESPONDENT PULSE SURVEY EXPERIENCE
              (Faithfully matching media_1791884579975.png with elevated rating scale)
              ==================================================================== -->
+                <!-- ====================================================================
+             VIEW 2: MOBILE-BASED RESPONDENT PULSE SURVEY EXPERIENCE
+             (Vertical Scrollable Comparison Showcase: Design 1 & Design 2)
+             ==================================================================== -->
         <div id="pulseView2Container" class="pulse-view-panel" style="display: none;">
           
           <!-- Mobile Experience Header Controls Toolbar -->
@@ -2414,290 +2688,579 @@
             <div class="m-toolbar-left">
               <span class="m-toolbar-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-                Mobile Respondent Preview · iPhone 16 Pro (393 × 852)
+                Mobile Respondent Showcase · iPhone 16 Pro (393 × 852)
               </span>
-              <span style="font-size: 12.5px; color: var(--text-muted);">
-                Interactive live respondent taking experience
-              </span>
+              <!-- Comparison Quick-Jump Links -->
+              <div class="m-jump-pills">
+                <a href="#mSectionDesign1" class="m-jump-pill active" onclick="scrollToMobileDesign('mSectionDesign1', event)">
+                  <span>Design 1 · Discrete Tactile Scale</span>
+                </a>
+                <a href="#mSectionDesign2" class="m-jump-pill" onclick="scrollToMobileDesign('mSectionDesign2', event)">
+                  <span class="m-jump-pulse"></span>
+                  <span>Design 2 · Fluid Bento Slider (New)</span>
+                </a>
+              </div>
             </div>
             
             <div class="m-toolbar-right">
               <!-- Reset Survey Button -->
-              <button type="button" class="btn-modal-cancel" onclick="resetMobileSurvey()" style="padding: 6px 12px; font-size: 12px; font-weight: 600;">
+              <button type="button" class="btn-modal-cancel" onclick="resetBothSurveys()" style="padding: 6px 12px; font-size: 12px; font-weight: 600;">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 4px;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                Restart Survey
+                Restart Both Surveys
               </button>
             </div>
           </div>
 
-          <!-- Centered Phone Frame Canvas -->
-          <div class="mobile-device-canvas">
-            
-            <!-- Realistic iPhone 16 Pro Outer Frame -->
-            <div class="mobile-phone-frame">
-              
-              <!-- Hardware Notch / Dynamic Island & Status Bar -->
-              <div class="m-status-bar">
-                <div class="m-status-time">9:41</div>
-                
-                <div class="m-dynamic-island">
-                  <div class="m-camera-lens"></div>
-                  <div class="m-sensor-dot"></div>
-                </div>
+          <!-- Vertical Comparison Showcase Gallery -->
+          <div class="mobile-comparison-gallery">
 
-                <div class="m-status-icons">
-                  <!-- Cellular -->
-                  <svg width="15" height="12" viewBox="0 0 17 12" fill="#0F172A">
-                    <rect x="0" y="9" width="2.5" height="3" rx="0.8"/>
-                    <rect x="4" y="6" width="2.5" height="6" rx="0.8"/>
-                    <rect x="8" y="3" width="2.5" height="9" rx="0.8"/>
-                    <rect x="12" y="0" width="2.5" height="12" rx="0.8"/>
-                  </svg>
-                  <!-- Wi-Fi -->
-                  <svg width="15" height="12" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round">
-                    <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-                    <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
-                    <line x1="12" y1="20" x2="12.01" y2="20"/>
-                  </svg>
-                  <!-- Battery -->
-                  <div class="m-battery-icon">
-                    <div class="m-battery-level"></div>
-                  </div>
+            <!-- ================================================================
+                 SECTION 1: DESIGN 1 — DISCRETE TACTILE SCALE
+                 ================================================================ -->
+            <div class="m-design-section" id="mSectionDesign1">
+              <div class="m-section-header-card">
+                <div class="m-section-tag-row">
+                  <span class="m-version-pill pill-d1">DESIGN 1</span>
+                  <h3 class="m-version-title">Discrete Tactile Numeric Scale</h3>
                 </div>
+                <p class="m-version-desc">
+                  Classic 5-point discrete numeric box grid with active royal purple elevation, clean high/low anchors, and zero emojis.
+                </p>
               </div>
 
-              <!-- Phone Screen Inner Scrollable Viewport -->
-              <div class="mobile-screen-scroll">
+              <!-- Centered Phone Frame Canvas (Phone 1) -->
+              <div class="mobile-device-canvas">
                 
-                <!-- Screen Top Nav & Branding (Matching media_1791884579975.png) -->
-                <div class="m-screen-header">
-                  <div class="m-header-left">
-                    <!-- Back Chevron Button -->
-                    <button type="button" class="m-back-btn" onclick="mobilePrevQuestion()" title="Back">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
-                    </button>
-
-                    <!-- Authentic Noisiv Square Brand Emblem -->
-                    <div class="m-noisiv-brand-logo" title="Noisiv Consulting">
-                      <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-                        <rect width="44" height="44" rx="10" fill="#09090B"/>
-                        <!-- Stylized White & Purple 'N' logo from screenshot -->
-                        <path d="M11 11V33H17.5V20.5L26.5 33H33V11H26.5V23.5L17.5 11H11Z" fill="url(#noisivGrad)"/>
-                        <defs>
-                          <linearGradient id="noisivGrad" x1="11" y1="11" x2="33" y2="33" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#FFFFFF"/>
-                            <stop offset="0.6" stop-color="#EDE9FE"/>
-                            <stop offset="1" stop-color="#A78BFA"/>
-                          </linearGradient>
-                        </defs>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <!-- Right Metadata Badges Stack -->
-                  <div class="m-badges-col">
-                    <div class="m-badge-pill m-badge-time">
-                      <span class="m-badge-emoji">⏰</span>
-                      <span>Less than 2 minutes</span>
-                    </div>
-                    <div class="m-badge-pill m-badge-named">
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                      <span>Named Survey</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Creator Line -->
-                <div class="m-creator-row">
-                  <span>Created by:</span>
-                  <strong class="m-creator-name">Chanchal Sharma</strong>
-                </div>
-
-                <!-- Stepper Label & Coral-to-Purple Progress Bar -->
-                <div class="m-stepper-box">
-                  <div class="m-stepper-label">
-                    Question <strong id="mStepCurrentNumber">1</strong> of 2
-                  </div>
-                  <div class="m-progress-track">
-                    <div class="m-progress-bar-fill" id="mProgressBarFill" style="width: 50%;"></div>
-                  </div>
-                </div>
-
-                <!-- ============================================================
-                     QUESTION 1 VIEW: ON A SCALE OF 1 TO 5, HOW MOTIVATED ARE YOU?
-                     ============================================================ -->
-                <div id="mQuestion1View" class="m-survey-step-view active">
+                <!-- Realistic iPhone 16 Pro Outer Frame -->
+                <div class="mobile-phone-frame">
                   
-                  <!-- Survey White Card -->
-                  <div class="m-survey-white-card">
+                  <!-- Hardware Notch / Dynamic Island & Status Bar -->
+                  <div class="m-status-bar">
+                    <div class="m-status-time">9:41</div>
                     
-                    <!-- Card Title -->
-                    <h3 class="m-card-title">Employee Engagement Survey - 2026-10-13</h3>
+                    <div class="m-dynamic-island">
+                      <div class="m-camera-lens"></div>
+                      <div class="m-sensor-dot"></div>
+                    </div>
 
-                    <!-- Accordion: Purpose of this survey -->
-                    <div class="m-purpose-accordion">
-                      <button type="button" class="m-purpose-toggle" onclick="toggleMobilePurpose()" aria-expanded="false" id="mPurposeToggleBtn">
-                        <span>Purpose of this survey</span>
-                        <svg class="m-purpose-chevron" id="mPurposeChevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                          <polyline points="6 9 12 15 18 9"/>
-                        </svg>
-                      </button>
-                      <div class="m-purpose-dropdown" id="mPurposeDropdown" style="display: none;">
-                        <p>We run this short 2-minute pulse survey bi-weekly to gauge workplace engagement, identify blockers early, and help leadership take immediate action to support your well-being and growth.</p>
+                    <div class="m-status-icons">
+                      <!-- Cellular -->
+                      <svg width="15" height="12" viewBox="0 0 17 12" fill="#0F172A">
+                        <rect x="0" y="9" width="2.5" height="3" rx="0.8"/>
+                        <rect x="4" y="6" width="2.5" height="6" rx="0.8"/>
+                        <rect x="8" y="3" width="2.5" height="9" rx="0.8"/>
+                        <rect x="12" y="0" width="2.5" height="12" rx="0.8"/>
+                      </svg>
+                      <!-- Wi-Fi -->
+                      <svg width="15" height="12" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                        <line x1="12" y1="20" x2="12.01" y2="20"/>
+                      </svg>
+                      <!-- Battery -->
+                      <div class="m-battery-icon">
+                        <div class="m-battery-level"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Phone Screen Inner Scrollable Viewport -->
+                  <div class="mobile-screen-scroll">
+                    
+                    <!-- Screen Top Nav & Branding -->
+                    <div class="m-screen-header">
+                      <div class="m-header-left">
+                        <!-- Back Chevron Button -->
+                        <button type="button" class="m-back-btn" onclick="mobilePrevQuestion1()" title="Back">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                          </svg>
+                        </button>
+
+                        <!-- Authentic Noisiv Square Brand Emblem -->
+                        <div class="m-noisiv-brand-logo" title="Noisiv Consulting">
+                          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                            <rect width="44" height="44" rx="10" fill="#09090B"/>
+                            <path d="M11 11V33H17.5V20.5L26.5 33H33V11H26.5V23.5L17.5 11H11Z" fill="url(#noisivGrad1)"/>
+                            <defs>
+                              <linearGradient id="noisivGrad1" x1="11" y1="11" x2="33" y2="33" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#FFFFFF"/>
+                                <stop offset="0.6" stop-color="#EDE9FE"/>
+                                <stop offset="1" stop-color="#A78BFA"/>
+                              </linearGradient>
+                            </defs>
+                          </svg>
+                        </div>
+                      </div>
+
+                      <!-- Right Metadata Badges Stack -->
+                      <div class="m-badges-col">
+                        <div class="m-badge-pill m-badge-time">
+                          <span class="m-badge-emoji">⏰</span>
+                          <span>Less than 2 minutes</span>
+                        </div>
+                        <div class="m-badge-pill m-badge-named">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                          <span>Named Survey</span>
+                        </div>
                       </div>
                     </div>
 
-                    <!-- Question Headline -->
-                    <h2 class="m-question-headline">
-                      On a scale of 1 to 5, how motivated are you at work?
-                    </h2>
+                    <!-- Creator Line -->
+                    <div class="m-creator-row">
+                      <span>Created by:</span>
+                      <strong class="m-creator-name">Chanchal Sharma</strong>
+                    </div>
 
-                    <!-- ========================================================
-                         ELEVATED RATING COMPONENT (CLEAN 1-5 SCALE WITHOUT EMOJIS)
-                         ======================================================== -->
-                    <div id="ratingBoxScale" class="m-rating-archetype-container">
-                      <div class="m-tactile-scale-grid">
+                    <!-- Stepper Label & Coral-to-Purple Progress Bar -->
+                    <div class="m-stepper-box">
+                      <div class="m-stepper-label">
+                        Question <strong id="m1StepCurrentNumber">1</strong> of 2
+                      </div>
+                      <div class="m-progress-track">
+                        <div class="m-progress-bar-fill" id="m1ProgressBarFill" style="width: 50%;"></div>
+                      </div>
+                    </div>
+
+                    <!-- Question 1 View: On a scale of 1 to 5, how motivated are you? -->
+                    <div id="m1Question1View" class="m-survey-step-view active">
+                      
+                      <!-- Survey White Card -->
+                      <div class="m-survey-white-card">
                         
-                        <!-- Score 1 -->
-                        <button type="button" class="m-scale-box" data-score="1" onclick="selectMobileScore(1)">
-                          <span class="m-scale-num">1</span>
-                        </button>
+                        <!-- Card Title -->
+                        <h3 class="m-card-title">Employee Engagement Survey - 2026-10-13</h3>
 
-                        <!-- Score 2 -->
-                        <button type="button" class="m-scale-box" data-score="2" onclick="selectMobileScore(2)">
-                          <span class="m-scale-num">2</span>
-                        </button>
+                        <!-- Accordion: Purpose of this survey -->
+                        <div class="m-purpose-accordion">
+                          <button type="button" class="m-purpose-toggle" onclick="toggleMobilePurpose1()" aria-expanded="false" id="m1PurposeToggleBtn">
+                            <span>Purpose of this survey</span>
+                            <svg class="m-purpose-chevron" id="m1PurposeChevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                              <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                          </button>
+                          <div class="m-purpose-dropdown" id="m1PurposeDropdown" style="display: none;">
+                            <p>We run this short 2-minute pulse survey bi-weekly to gauge workplace engagement, identify blockers early, and help leadership take immediate action to support your well-being and growth.</p>
+                          </div>
+                        </div>
 
-                        <!-- Score 3 -->
-                        <button type="button" class="m-scale-box" data-score="3" onclick="selectMobileScore(3)">
-                          <span class="m-scale-num">3</span>
-                        </button>
+                        <!-- Question Headline -->
+                        <h2 class="m-question-headline">
+                          On a scale of 1 to 5, how motivated are you at work?
+                        </h2>
 
-                        <!-- Score 4 -->
-                        <button type="button" class="m-scale-box active" data-score="4" onclick="selectMobileScore(4)">
-                          <span class="m-scale-num">4</span>
-                        </button>
+                        <!-- Clean 1-5 Scale without emojis -->
+                        <div class="m-rating-archetype-container">
+                          <div class="m-tactile-scale-grid">
+                            <button type="button" class="m-scale-box" data-score="1" onclick="selectMobileScore1(1)">
+                              <span class="m-scale-num">1</span>
+                            </button>
+                            <button type="button" class="m-scale-box" data-score="2" onclick="selectMobileScore1(2)">
+                              <span class="m-scale-num">2</span>
+                            </button>
+                            <button type="button" class="m-scale-box" data-score="3" onclick="selectMobileScore1(3)">
+                              <span class="m-scale-num">3</span>
+                            </button>
+                            <button type="button" class="m-scale-box active" data-score="4" onclick="selectMobileScore1(4)">
+                              <span class="m-scale-num">4</span>
+                            </button>
+                            <button type="button" class="m-scale-box" data-score="5" onclick="selectMobileScore1(5)">
+                              <span class="m-scale-num">5</span>
+                            </button>
+                          </div>
 
-                        <!-- Score 5 -->
-                        <button type="button" class="m-scale-box" data-score="5" onclick="selectMobileScore(5)">
-                          <span class="m-scale-num">5</span>
-                        </button>
+                          <!-- Scale Low / High Anchor Indicators -->
+                          <div class="m-scale-anchors">
+                            <span class="m-anchor-low">← 1 Very Low</span>
+                            <span class="m-anchor-high">5 Very High →</span>
+                          </div>
+                        </div>
 
-                      </div>
+                        <!-- Subtext Helper -->
+                        <div class="m-helper-subtext" style="margin-top: 18px;">
+                          Select an option that best describes your feeling
+                        </div>
 
-                      <!-- Scale Low / High Anchor Indicators -->
-                      <div class="m-scale-anchors">
-                        <span class="m-anchor-low">← 1 Very Low</span>
-                        <span class="m-anchor-high">5 Very High →</span>
                       </div>
                     </div>
 
-                    <!-- Subtext Helper (Matching media_1791884579975.png) -->
-                    <div class="m-helper-subtext" style="margin-top: 18px;">
-                      Select an option that best describes your feeling
+                    <!-- Question 2 View -->
+                    <div id="m1Question2View" class="m-survey-step-view" style="display: none;">
+                      <div class="m-survey-white-card">
+                        <h3 class="m-card-title">Employee Engagement Survey - 2026-10-13</h3>
+                        
+                        <h2 class="m-question-headline">
+                          What is one thing that could improve your day-to-day work experience?
+                        </h2>
+                        
+                        <p style="font-size: 13px; color: #64748B; margin-bottom: 14px; line-height: 1.45;">
+                          Leadership reviews every pulse response to remove blockers and allocate resources.
+                        </p>
+
+                        <!-- Quick Suggestion Topic Chips -->
+                        <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px;">
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic1('Clearer weekly priorities')">💡 Clearer priorities</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic1('Faster tool and software approvals')">⚙️ Faster tooling</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic1('More flexible core hours')">🌴 Flexible schedule</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic1('Recognition for extra effort')">🏆 Recognition</button>
+                        </div>
+
+                        <!-- Feedback Textarea -->
+                        <div class="m-textarea-wrap">
+                          <textarea id="m1FeedbackText" class="m-feedback-input" placeholder="Share your suggestions, blockers, or encouragement for the team..." rows="4" oninput="updateCharCount1(this)"></textarea>
+                          <div class="m-char-counter"><span id="m1CharCount">0</span> / 300</div>
+                        </div>
+
+                        <div class="m-confidential-lock">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                          <span>Responses are visible only to your HR Admin & General Manager.</span>
+                        </div>
+
+                      </div>
                     </div>
+
+                    <!-- Celebration View -->
+                    <div id="m1CelebrationView" class="m-survey-step-view" style="display: none;">
+                      <div class="m-survey-white-card" style="text-align: center; padding: 32px 20px;">
+                        <div class="m-celebrate-badge">🎉</div>
+                        <h2 style="font-size: 22px; font-weight: 800; color: #0F172A; margin: 12px 0 6px 0;">
+                          Thank you, Chanchal!
+                        </h2>
+                        <p style="font-size: 13.5px; color: #64748B; line-height: 1.5; margin-bottom: 20px;">
+                          Your response has been securely recorded. Leadership appreciates your honest feedback!
+                        </p>
+
+                        <div class="m-summary-recap">
+                          <div class="m-recap-row">
+                            <span class="m-recap-lbl">Motivation Rating</span>
+                            <strong class="m-recap-val" id="m1RecapScore">Score 4 of 5</strong>
+                          </div>
+                          <div class="m-recap-row">
+                            <span class="m-recap-lbl">Survey Policy</span>
+                            <strong class="m-recap-val">🔒 Named Survey · Verified</strong>
+                          </div>
+                        </div>
+
+                        <button type="button" class="btn-create-pulse" onclick="resetMobileSurvey1()" style="width: 100%; justify-content: center; margin-top: 18px; padding: 12px;">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                          Retake Mobile Survey
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Bottom Navigation Actions Row -->
+                    <div class="m-bottom-nav-row" id="m1BottomNavRow">
+                      <button type="button" class="m-nav-prev-btn" id="m1BtnPrev" onclick="mobilePrevQuestion1()" disabled>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                        <span>Previous</span>
+                      </button>
+
+                      <button type="button" class="m-nav-next-btn" id="m1BtnNext" onclick="mobileNextQuestion1()">
+                        <span id="m1BtnNextText">Next Question</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                      </button>
+                    </div>
+
+                    <!-- Footer Tip -->
+                    <div class="m-footer-tip">
+                      Tip: Your honest feedback helps us create a better workplace for everyone!
+                    </div>
+
+                    <!-- Phone Bottom Home Indicator Bar -->
+                    <div class="m-home-indicator"></div>
 
                   </div>
                 </div>
-
-                <!-- ============================================================
-                     QUESTION 2 VIEW: CONSTRUCTIVE OPEN SUGGESTIONS & SUPPORT
-                     ============================================================ -->
-                <div id="mQuestion2View" class="m-survey-step-view" style="display: none;">
-                  <div class="m-survey-white-card">
-                    <h3 class="m-card-title">Employee Engagement Survey - 2026-10-13</h3>
-                    
-                    <h2 class="m-question-headline">
-                      What is one thing that could improve your day-to-day work experience?
-                    </h2>
-                    
-                    <p style="font-size: 13px; color: #64748B; margin-bottom: 14px; line-height: 1.45;">
-                      Leadership reviews every pulse response to remove blockers and allocate resources.
-                    </p>
-
-                    <!-- Quick Suggestion Topic Chips -->
-                    <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px;">
-                      <button type="button" class="m-driver-chip" onclick="addQuickTopic('Clearer weekly priorities')">💡 Clearer priorities</button>
-                      <button type="button" class="m-driver-chip" onclick="addQuickTopic('Faster tool and software approvals')">⚙️ Faster tooling</button>
-                      <button type="button" class="m-driver-chip" onclick="addQuickTopic('More flexible core hours')">🌴 Flexible schedule</button>
-                      <button type="button" class="m-driver-chip" onclick="addQuickTopic('Recognition for extra effort')">🏆 Recognition</button>
-                    </div>
-
-                    <!-- Feedback Textarea -->
-                    <div class="m-textarea-wrap">
-                      <textarea id="mFeedbackText" class="m-feedback-input" placeholder="Share your suggestions, blockers, or encouragement for the team..." rows="4" oninput="updateCharCount(this)"></textarea>
-                      <div class="m-char-counter"><span id="mCharCount">0</span> / 300</div>
-                    </div>
-
-                    <div class="m-confidential-lock">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                      <span>Responses are visible only to your HR Admin & General Manager.</span>
-                    </div>
-
-                  </div>
-                </div>
-
-                <!-- ============================================================
-                     CELEBRATION / COMPLETION SCREEN
-                     ============================================================ -->
-                <div id="mCelebrationView" class="m-survey-step-view" style="display: none;">
-                  <div class="m-survey-white-card" style="text-align: center; padding: 32px 20px;">
-                    <div class="m-celebrate-badge">🎉</div>
-                    <h2 style="font-size: 22px; font-weight: 800; color: #0F172A; margin: 12px 0 6px 0;">
-                      Thank you, Chanchal!
-                    </h2>
-                    <p style="font-size: 13.5px; color: #64748B; line-height: 1.5; margin-bottom: 20px;">
-                      Your response has been securely recorded. Leadership appreciates your honest feedback!
-                    </p>
-
-                    <div class="m-summary-recap">
-                      <div class="m-recap-row">
-                        <span class="m-recap-lbl">Motivation Rating</span>
-                        <strong class="m-recap-val" id="mRecapScore">Score 4 of 5</strong>
-                      </div>
-                      <div class="m-recap-row">
-                        <span class="m-recap-lbl">Survey Policy</span>
-                        <strong class="m-recap-val">🔒 Named Survey · Verified</strong>
-                      </div>
-                    </div>
-
-                    <button type="button" class="btn-create-pulse" onclick="resetMobileSurvey()" style="width: 100%; justify-content: center; margin-top: 18px; padding: 12px;">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                      Retake Mobile Survey
-                    </button>
-                  </div>
-                </div>
-
-                <!-- Bottom Navigation Actions Row (Matching media_1791884579975.png) -->
-                <div class="m-bottom-nav-row" id="mBottomNavRow">
-                  <button type="button" class="m-nav-prev-btn" id="mBtnPrev" onclick="mobilePrevQuestion()" disabled>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-                    <span>Previous</span>
-                  </button>
-
-                  <button type="button" class="m-nav-next-btn" id="mBtnNext" onclick="mobileNextQuestion()">
-                    <span id="mBtnNextText">Next Question</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                  </button>
-                </div>
-
-                <!-- Footer Tip (Matching media_1791884579975.png) -->
-                <div class="m-footer-tip">
-                  Tip: Your honest feedback helps us create a better workplace for everyone!
-                </div>
-
-                <!-- Phone Bottom Home Indicator Bar -->
-                <div class="m-home-indicator"></div>
 
               </div>
             </div>
 
-          </div>
+            <!-- Sleek Gallery Section Divider -->
+            <div class="m-gallery-divider">
+              <span class="m-divider-line"></span>
+              <div class="m-divider-badge">
+                <span>OR EXPLORE ELEVATED SPECIFICATION</span>
+              </div>
+              <span class="m-divider-line"></span>
+            </div>
 
-        </div>
+            <!-- ================================================================
+                 SECTION 2: DESIGN 2 — FLUID BENTO & SEGMENTED SLIDER TRACK
+                 ================================================================ -->
+            <div class="m-design-section" id="mSectionDesign2">
+              <div class="m-section-header-card">
+                <div class="m-section-tag-row">
+                  <span class="m-version-pill pill-d2">DESIGN 2</span>
+                  <span class="m-recommended-badge">✨ NEW PRODUCT DESIGN</span>
+                  <h3 class="m-version-title">Fluid Bento &amp; Segmented Slider Track</h3>
+                </div>
+                <p class="m-version-desc">
+                  Apple Health &amp; Linear inspired unified segmented pill track with dynamic sentiment aura, frosted bento depth, and haptic feedback.
+                </p>
+              </div>
+
+              <!-- Centered Phone Frame Canvas (Phone 2) -->
+              <div class="mobile-device-canvas">
+                
+                <!-- Realistic iPhone 16 Pro Outer Frame (Design 2 with ambient glow) -->
+                <div class="mobile-phone-frame phone-frame-d2">
+                  
+                  <!-- Hardware Notch / Dynamic Island & Status Bar -->
+                  <div class="m-status-bar">
+                    <div class="m-status-time">9:41</div>
+                    
+                    <div class="m-dynamic-island">
+                      <div class="m-camera-lens"></div>
+                      <div class="m-sensor-dot"></div>
+                    </div>
+
+                    <div class="m-status-icons">
+                      <!-- Cellular -->
+                      <svg width="15" height="12" viewBox="0 0 17 12" fill="#0F172A">
+                        <rect x="0" y="9" width="2.5" height="3" rx="0.8"/>
+                        <rect x="4" y="6" width="2.5" height="6" rx="0.8"/>
+                        <rect x="8" y="3" width="2.5" height="9" rx="0.8"/>
+                        <rect x="12" y="0" width="2.5" height="12" rx="0.8"/>
+                      </svg>
+                      <!-- Wi-Fi -->
+                      <svg width="15" height="12" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                        <line x1="12" y1="20" x2="12.01" y2="20"/>
+                      </svg>
+                      <!-- Battery -->
+                      <div class="m-battery-icon">
+                        <div class="m-battery-level"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Phone Screen Inner Scrollable Viewport (Design 2 Theme) -->
+                  <div class="mobile-screen-scroll screen-d2">
+                    
+                    <!-- Screen Top Nav & Branding -->
+                    <div class="m-screen-header">
+                      <div class="m-header-left">
+                        <!-- Back Chevron Button -->
+                        <button type="button" class="m-back-btn" onclick="mobilePrevQuestion2()" title="Back">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                          </svg>
+                        </button>
+
+                        <!-- Authentic Noisiv Square Brand Emblem -->
+                        <div class="m-noisiv-brand-logo" title="Noisiv Consulting">
+                          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                            <rect width="44" height="44" rx="10" fill="#09090B"/>
+                            <path d="M11 11V33H17.5V20.5L26.5 33H33V11H26.5V23.5L17.5 11H11Z" fill="url(#noisivGrad2)"/>
+                            <defs>
+                              <linearGradient id="noisivGrad2" x1="11" y1="11" x2="33" y2="33" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#FFFFFF"/>
+                                <stop offset="0.6" stop-color="#EDE9FE"/>
+                                <stop offset="1" stop-color="#A78BFA"/>
+                              </linearGradient>
+                            </defs>
+                          </svg>
+                        </div>
+                      </div>
+
+                      <!-- Right Metadata Badges Stack -->
+                      <div class="m-badges-col">
+                        <div class="m-badge-pill m-badge-time">
+                          <span class="m-badge-emoji">⏰</span>
+                          <span>Less than 2 minutes</span>
+                        </div>
+                        <div class="m-badge-pill m-badge-named">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                          <span>Named Survey</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Creator Line with Avatar Monogram -->
+                    <div class="m-creator-row">
+                      <span>Created by:</span>
+                      <span style="display: inline-flex; align-items: center; gap: 5px;">
+                        <span class="m2-creator-avatar">CS</span>
+                        <strong class="m-creator-name">Chanchal Sharma</strong>
+                      </span>
+                    </div>
+
+                    <!-- Stepper Label & Dual-Segment Capsule Progress Bar -->
+                    <div class="m-stepper-box">
+                      <div class="m-stepper-label">
+                        Question <strong id="m2StepCurrentNumber">1</strong> of 2 · <span style="color: #7C3AED; font-weight: 700;">Motivation</span>
+                      </div>
+                      <div class="m2-stepper-capsules">
+                        <div class="m2-stepper-capsule filled" id="m2Capsule1"></div>
+                        <div class="m2-stepper-capsule" id="m2Capsule2"></div>
+                      </div>
+                    </div>
+
+                    <!-- Question 1 View: Fluid Bento Card & Segmented Track -->
+                    <div id="m2Question1View" class="m-survey-step-view active">
+                      
+                      <!-- Survey White Card with Lavender Border & Glow -->
+                      <div class="m-survey-white-card m2-card-glow">
+                        
+                        <!-- Card Title -->
+                        <h3 class="m-card-title">Employee Engagement Survey - 2026-10-13</h3>
+
+                        <!-- Accordion: Purpose of this survey -->
+                        <div class="m-purpose-accordion">
+                          <button type="button" class="m-purpose-toggle" onclick="toggleMobilePurpose2()" aria-expanded="false" id="m2PurposeToggleBtn">
+                            <span>Purpose of this survey</span>
+                            <svg class="m-purpose-chevron" id="m2PurposeChevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                              <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                          </button>
+                          <div class="m-purpose-dropdown" id="m2PurposeDropdown" style="display: none;">
+                            <p>We run this short 2-minute pulse survey bi-weekly to gauge workplace engagement, identify blockers early, and help leadership take immediate action to support your well-being and growth.</p>
+                          </div>
+                        </div>
+
+                        <!-- Question Headline -->
+                        <h2 class="m-question-headline">
+                          On a scale of 1 to 5, how motivated are you at work?
+                        </h2>
+
+                        <!-- Showstopper Rating Component: Dynamic Sentiment Beacon -->
+                        <div class="m2-sentiment-beacon" id="m2SentimentBeacon">
+                          <span class="m2-sentiment-icon" id="m2SentimentIcon">⚡</span>
+                          <span class="m2-sentiment-text" id="m2SentimentText">4 · Highly Motivated — Strong momentum &amp; focus</span>
+                        </div>
+
+                        <!-- Showstopper Rating Component: Unified Segmented Pill Track -->
+                        <div class="m-rating-archetype-container">
+                          <div class="m2-segmented-track" id="m2SegmentedTrack">
+                            <button type="button" class="m2-segment-btn" data-score="1" onclick="selectMobileScore2(1)" aria-label="Score 1 Very Low">
+                              <span class="m2-seg-num">1</span>
+                            </button>
+                            <button type="button" class="m2-segment-btn" data-score="2" onclick="selectMobileScore2(2)" aria-label="Score 2 Low">
+                              <span class="m2-seg-num">2</span>
+                            </button>
+                            <button type="button" class="m2-segment-btn" data-score="3" onclick="selectMobileScore2(3)" aria-label="Score 3 Neutral">
+                              <span class="m2-seg-num">3</span>
+                            </button>
+                            <button type="button" class="m2-segment-btn active" data-score="4" onclick="selectMobileScore2(4)" aria-label="Score 4 Highly Motivated">
+                              <span class="m2-seg-num">4</span>
+                            </button>
+                            <button type="button" class="m2-segment-btn" data-score="5" onclick="selectMobileScore2(5)" aria-label="Score 5 Peak Motivation">
+                              <span class="m2-seg-num">5</span>
+                            </button>
+                          </div>
+
+                          <!-- Scale Low / High Anchor Indicators with Glowing Micro-dots -->
+                          <div class="m-scale-anchors">
+                            <span class="m-anchor-low"><span class="m2-anchor-dot"></span> 1 Very Low</span>
+                            <span class="m-anchor-high">5 Very High <span class="m2-anchor-dot"></span></span>
+                          </div>
+                        </div>
+
+                        <!-- Subtext Helper -->
+                        <div class="m-helper-subtext" style="margin-top: 18px;">
+                          Select an option that best describes your feeling
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <!-- Question 2 View -->
+                    <div id="m2Question2View" class="m-survey-step-view" style="display: none;">
+                      <div class="m-survey-white-card m2-card-glow">
+                        <h3 class="m-card-title">Employee Engagement Survey - 2026-10-13</h3>
+                        
+                        <h2 class="m-question-headline">
+                          What is one thing that could improve your day-to-day work experience?
+                        </h2>
+                        
+                        <p style="font-size: 13px; color: #64748B; margin-bottom: 14px; line-height: 1.45;">
+                          Leadership reviews every pulse response to remove blockers and allocate resources.
+                        </p>
+
+                        <!-- Quick Suggestion Topic Chips -->
+                        <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px;">
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic2('Clearer weekly priorities')">💡 Clearer priorities</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic2('Faster tool and software approvals')">⚙️ Faster tooling</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic2('More flexible core hours')">🌴 Flexible schedule</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic2('Recognition for extra effort')">🏆 Recognition</button>
+                        </div>
+
+                        <!-- Feedback Textarea -->
+                        <div class="m-textarea-wrap">
+                          <textarea id="m2FeedbackText" class="m-feedback-input" placeholder="Share your suggestions, blockers, or encouragement for the team..." rows="4" oninput="updateCharCount2(this)"></textarea>
+                          <div class="m-char-counter"><span id="m2CharCount">0</span> / 300</div>
+                        </div>
+
+                        <div class="m-confidential-lock">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                          <span>Responses are visible only to your HR Admin & General Manager.</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <!-- Celebration View -->
+                    <div id="m2CelebrationView" class="m-survey-step-view" style="display: none;">
+                      <div class="m-survey-white-card m2-card-glow" style="text-align: center; padding: 32px 20px;">
+                        <div class="m-celebrate-badge">🎉</div>
+                        <h2 style="font-size: 22px; font-weight: 800; color: #0F172A; margin: 12px 0 6px 0;">
+                          Thank you, Chanchal!
+                        </h2>
+                        <p style="font-size: 13.5px; color: #64748B; line-height: 1.5; margin-bottom: 20px;">
+                          Your response has been securely recorded. Leadership appreciates your honest feedback!
+                        </p>
+
+                        <div class="m-summary-recap">
+                          <div class="m-recap-row">
+                            <span class="m-recap-lbl">Motivation Rating</span>
+                            <strong class="m-recap-val" id="m2RecapScore">Score 4 of 5 (4 · Highly Motivated)</strong>
+                          </div>
+                          <div class="m-recap-row">
+                            <span class="m-recap-lbl">Survey Policy</span>
+                            <strong class="m-recap-val">🔒 Named Survey · Verified</strong>
+                          </div>
+                        </div>
+
+                        <button type="button" class="btn-create-pulse" onclick="resetMobileSurvey2()" style="width: 100%; justify-content: center; margin-top: 18px; padding: 12px;">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                          Retake Mobile Survey
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Bottom Navigation Actions Row -->
+                    <div class="m-bottom-nav-row" id="m2BottomNavRow">
+                      <button type="button" class="m-nav-prev-btn" id="m2BtnPrev" onclick="mobilePrevQuestion2()" disabled>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                        <span>Previous</span>
+                      </button>
+
+                      <button type="button" class="m-nav-next-btn" id="m2BtnNext" onclick="mobileNextQuestion2()">
+                        <span id="m2BtnNextText">Next Question</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                      </button>
+                    </div>
+
+                    <!-- Footer Tip -->
+                    <div class="m-footer-tip">
+                      Tip: Your honest feedback helps us create a better workplace for everyone!
+                    </div>
+
+                    <!-- Phone Bottom Home Indicator Bar -->
+                    <div class="m-home-indicator"></div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div> <!-- end .mobile-comparison-gallery -->
+
+        </div> <!-- end #pulseView2Container -->
 
       </div>
     </main>
@@ -3687,12 +4250,26 @@
     });
   
     // ========================================================================
-    // VIEW 1 & VIEW 2 SWITCHER & MOBILE PULSE SURVEY ENGINE
+        // ========================================================================
+    // VIEW 1 & VIEW 2 SWITCHER & DUAL MOBILE PULSE SURVEY ENGINES
     // ========================================================================
     let currentPulseView = 'view1';
-    let currentMobileStep = 1;
-    let selectedMobileScore = 4;
 
+    // Phone 1 State (Design 1)
+    let currentMobileStep1 = 1;
+    let selectedMobileScore1 = 4;
+
+    // Phone 2 State (Design 2)
+    let currentMobileStep2 = 1;
+    let selectedMobileScore2 = 4;
+
+    const sentimentData2 = {
+      1: { icon: '🔴', text: '1 · Highly Discouraged — Urgent support needed', bg: '#FEF2F2', border: '#FECACA', color: '#DC2626' },
+      2: { icon: '🟠', text: '2 · Somewhat Low — Facing blockers', bg: '#FFF7ED', border: '#FED7AA', color: '#EA580C' },
+      3: { icon: '🟡', text: '3 · Neutral / Balanced — Steady pace', bg: '#FEFCE8', border: '#FEF08A', color: '#CA8A04' },
+      4: { icon: '⚡', text: '4 · Highly Motivated — Strong momentum & focus', bg: '#FAF5FF', border: '#DDD6FE', color: '#6D28D9' },
+      5: { icon: '🚀', text: '5 · Peak Motivation — Energized & inspired', bg: '#ECFDF5', border: '#A7F3D0', color: '#059669' }
+    };
 
     function switchPulseView(viewName) {
       currentPulseView = viewName;
@@ -3715,7 +4292,7 @@
           overlay.style.display = 'none';
         }
         closePulseModal();
-        showToast('📱 Switched to View 2: Mobile Survey Experience');
+        showToast('📱 Switched to View 2: Mobile Survey Experience (Design 1 & Design 2)');
       } else {
         // Switch to View 1 (Desktop Form)
         if (v1) v1.style.display = 'block';
@@ -3733,11 +4310,25 @@
       }
     }
 
-    // Purpose Accordion Toggle
-    function toggleMobilePurpose() {
-      const dropdown = document.getElementById('mPurposeDropdown');
-      const chevron = document.getElementById('mPurposeChevron');
-      const btn = document.getElementById('mPurposeToggleBtn');
+    // Scroll to specific design in View 2
+    function scrollToMobileDesign(sectionId, event) {
+      if (event) event.preventDefault();
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.querySelectorAll('.m-jump-pill').forEach(pill => {
+          pill.classList.toggle('active', pill.getAttribute('href') === `#${sectionId}`);
+        });
+      }
+    }
+
+    // ==========================================
+    // DESIGN 1 (PHONE 1) CONTROLLERS
+    // ==========================================
+    function toggleMobilePurpose1() {
+      const dropdown = document.getElementById('m1PurposeDropdown');
+      const chevron = document.getElementById('m1PurposeChevron');
+      const btn = document.getElementById('m1PurposeToggleBtn');
       if (!dropdown) return;
 
       const isOpen = dropdown.style.display !== 'none';
@@ -3752,84 +4343,59 @@
       }
     }
 
-    // Rating Archetype Switcher
-    function switchRatingArchetype(type) {
-      currentRatingArchetype = type;
-      const boxScale = document.getElementById('ratingBoxScale');
-      const boxMood = document.getElementById('ratingBoxMood');
-      const boxStars = document.getElementById('ratingBoxStars');
-
-      const btnScale = document.getElementById('archBtnScale');
-      const btnMood = document.getElementById('archBtnMood');
-      const btnStars = document.getElementById('archBtnStars');
-
-      if (btnScale) btnScale.classList.toggle('active', type === 'scale');
-      if (btnMood) btnMood.classList.toggle('active', type === 'mood');
-      if (btnStars) btnStars.classList.toggle('active', type === 'stars');
-
-      if (boxScale) boxScale.style.display = (type === 'scale') ? 'block' : 'none';
-      if (boxMood) boxMood.style.display = (type === 'mood') ? 'block' : 'none';
-      if (boxStars) boxStars.style.display = (type === 'stars') ? 'block' : 'none';
-
-      syncActiveMobileRatingUI(selectedMobileScore);
-    }
-
-    // Select Mobile Rating
-    function selectMobileScore(score) {
-      selectedMobileScore = score;
-      syncActiveMobileRatingUI(score);
+    function selectMobileScore1(score) {
+      selectedMobileScore1 = score;
+      const phone1 = document.getElementById('mSectionDesign1');
+      if (phone1) {
+        phone1.querySelectorAll('.m-scale-box').forEach(btn => {
+          const val = parseInt(btn.getAttribute('data-score'), 10);
+          btn.classList.toggle('active', val === score);
+        });
+      }
 
       // Update Recap
-      const recapEl = document.getElementById('mRecapScore');
+      const recapEl = document.getElementById('m1RecapScore');
       if (recapEl) recapEl.textContent = `Score ${score} of 5`;
 
       // Enable Next Button
-      const nextBtn = document.getElementById('mBtnNext');
+      const nextBtn = document.getElementById('m1BtnNext');
       if (nextBtn) nextBtn.disabled = false;
     }
 
-    function syncActiveMobileRatingUI(score) {
-      document.querySelectorAll('.m-scale-box').forEach(btn => {
-        const val = parseInt(btn.getAttribute('data-score'), 10);
-        btn.classList.toggle('active', val === score);
-      });
-    }
-
-    // Step Navigation
-    function mobileNextQuestion() {
-      if (currentMobileStep === 1) {
-        currentMobileStep = 2;
-        updateMobileStepView();
-      } else if (currentMobileStep === 2) {
-        currentMobileStep = 3; // Celebration
-        updateMobileStepView();
-        showToast('🎉 Survey response submitted successfully!');
+    function mobileNextQuestion1() {
+      if (currentMobileStep1 === 1) {
+        currentMobileStep1 = 2;
+        updateMobileStepView1();
+      } else if (currentMobileStep1 === 2) {
+        currentMobileStep1 = 3; // Celebration
+        updateMobileStepView1();
+        showToast('🎉 Design 1 response submitted successfully!');
       }
     }
 
-    function mobilePrevQuestion() {
-      if (currentMobileStep === 2) {
-        currentMobileStep = 1;
-        updateMobileStepView();
-      } else if (currentMobileStep === 3) {
-        currentMobileStep = 2;
-        updateMobileStepView();
+    function mobilePrevQuestion1() {
+      if (currentMobileStep1 === 2) {
+        currentMobileStep1 = 1;
+        updateMobileStepView1();
+      } else if (currentMobileStep1 === 3) {
+        currentMobileStep1 = 2;
+        updateMobileStepView1();
       } else {
         showToast('First question reached');
       }
     }
 
-    function updateMobileStepView() {
-      const q1 = document.getElementById('mQuestion1View');
-      const q2 = document.getElementById('mQuestion2View');
-      const celeb = document.getElementById('mCelebrationView');
-      const prevBtn = document.getElementById('mBtnPrev');
-      const nextBtnText = document.getElementById('mBtnNextText');
-      const bottomNav = document.getElementById('mBottomNavRow');
-      const stepNum = document.getElementById('mStepCurrentNumber');
-      const fillBar = document.getElementById('mProgressBarFill');
+    function updateMobileStepView1() {
+      const q1 = document.getElementById('m1Question1View');
+      const q2 = document.getElementById('m1Question2View');
+      const celeb = document.getElementById('m1CelebrationView');
+      const prevBtn = document.getElementById('m1BtnPrev');
+      const nextBtnText = document.getElementById('m1BtnNextText');
+      const bottomNav = document.getElementById('m1BottomNavRow');
+      const stepNum = document.getElementById('m1StepCurrentNumber');
+      const fillBar = document.getElementById('m1ProgressBarFill');
 
-      if (currentMobileStep === 1) {
+      if (currentMobileStep1 === 1) {
         if (q1) q1.style.display = 'block';
         if (q2) q2.style.display = 'none';
         if (celeb) celeb.style.display = 'none';
@@ -3838,7 +4404,7 @@
         if (bottomNav) bottomNav.style.display = 'flex';
         if (stepNum) stepNum.textContent = '1';
         if (fillBar) fillBar.style.width = '50%';
-      } else if (currentMobileStep === 2) {
+      } else if (currentMobileStep1 === 2) {
         if (q1) q1.style.display = 'none';
         if (q2) q2.style.display = 'block';
         if (celeb) celeb.style.display = 'none';
@@ -3847,7 +4413,7 @@
         if (bottomNav) bottomNav.style.display = 'flex';
         if (stepNum) stepNum.textContent = '2';
         if (fillBar) fillBar.style.width = '100%';
-      } else if (currentMobileStep === 3) {
+      } else if (currentMobileStep1 === 3) {
         if (q1) q1.style.display = 'none';
         if (q2) q2.style.display = 'none';
         if (celeb) celeb.style.display = 'block';
@@ -3857,38 +4423,200 @@
       }
     }
 
-    function addQuickTopic(topic) {
-      const txt = document.getElementById('mFeedbackText');
+    function addQuickTopic1(topic) {
+      const txt = document.getElementById('m1FeedbackText');
       if (!txt) return;
       if (txt.value.trim().length > 0) {
         txt.value = txt.value.trim() + ' • ' + topic;
       } else {
         txt.value = topic;
       }
-      updateCharCount(txt);
+      updateCharCount1(txt);
     }
 
-    function updateCharCount(el) {
-      const countEl = document.getElementById('mCharCount');
+    function updateCharCount1(el) {
+      const countEl = document.getElementById('m1CharCount');
       if (countEl && el) {
         countEl.textContent = el.value.length;
       }
     }
 
-    function resetMobileSurvey() {
-      currentMobileStep = 1;
-      selectedMobileScore = 4;
-      selectMobileScore(4);
-      const txt = document.getElementById('mFeedbackText');
+    function resetMobileSurvey1() {
+      currentMobileStep1 = 1;
+      selectedMobileScore1 = 4;
+      selectMobileScore1(4);
+      const txt = document.getElementById('m1FeedbackText');
       if (txt) txt.value = '';
-      updateCharCount(txt);
-      updateMobileStepView();
-      showToast('↺ Survey reset to Question 1');
+      updateCharCount1(txt);
+      updateMobileStepView1();
+      showToast('↺ Design 1 reset to Question 1');
     }
+
+    // ==========================================
+    // DESIGN 2 (PHONE 2) CONTROLLERS
+    // ==========================================
+    function toggleMobilePurpose2() {
+      const dropdown = document.getElementById('m2PurposeDropdown');
+      const chevron = document.getElementById('m2PurposeChevron');
+      const btn = document.getElementById('m2PurposeToggleBtn');
+      if (!dropdown) return;
+
+      const isOpen = dropdown.style.display !== 'none';
+      if (isOpen) {
+        dropdown.style.display = 'none';
+        if (chevron) chevron.classList.remove('expanded');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      } else {
+        dropdown.style.display = 'block';
+        if (chevron) chevron.classList.add('expanded');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    function selectMobileScore2(score) {
+      selectedMobileScore2 = score;
+      
+      // Update segment button states
+      const phone2 = document.getElementById('mSectionDesign2');
+      if (phone2) {
+        phone2.querySelectorAll('.m2-segment-btn').forEach(btn => {
+          const val = parseInt(btn.getAttribute('data-score'), 10);
+          btn.classList.toggle('active', val === score);
+        });
+      }
+
+      // Update dynamic sentiment beacon
+      const data = sentimentData2[score] || sentimentData2[4];
+      const beacon = document.getElementById('m2SentimentBeacon');
+      const icon = document.getElementById('m2SentimentIcon');
+      const text = document.getElementById('m2SentimentText');
+      if (beacon && data) {
+        beacon.style.backgroundColor = data.bg;
+        beacon.style.borderColor = data.border;
+        beacon.style.color = data.color;
+      }
+      if (icon && data) icon.textContent = data.icon;
+      if (text && data) text.textContent = data.text;
+
+      // Update Recap in Celebration View
+      const recap = document.getElementById('m2RecapScore');
+      if (recap) recap.textContent = `Score ${score} of 5 (${data.text.split('—')[0].trim()})`;
+
+      // Enable Next button
+      const nextBtn = document.getElementById('m2BtnPrev');
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function mobileNextQuestion2() {
+      if (currentMobileStep2 === 1) {
+        currentMobileStep2 = 2;
+        updateMobileStepView2();
+      } else if (currentMobileStep2 === 2) {
+        currentMobileStep2 = 3; // Celebration
+        updateMobileStepView2();
+        showToast('🎉 Design 2 response submitted successfully!');
+      }
+    }
+
+    function mobilePrevQuestion2() {
+      if (currentMobileStep2 === 2) {
+        currentMobileStep2 = 1;
+        updateMobileStepView2();
+      } else if (currentMobileStep2 === 3) {
+        currentMobileStep2 = 2;
+        updateMobileStepView2();
+      } else {
+        showToast('First question reached');
+      }
+    }
+
+    function updateMobileStepView2() {
+      const q1 = document.getElementById('m2Question1View');
+      const q2 = document.getElementById('m2Question2View');
+      const celeb = document.getElementById('m2CelebrationView');
+      const prevBtn = document.getElementById('m2BtnPrev');
+      const nextBtnText = document.getElementById('m2BtnNextText');
+      const bottomNav = document.getElementById('m2BottomNavRow');
+      const stepNum = document.getElementById('m2StepCurrentNumber');
+      const cap1 = document.getElementById('m2Capsule1');
+      const cap2 = document.getElementById('m2Capsule2');
+
+      if (currentMobileStep2 === 1) {
+        if (q1) q1.style.display = 'block';
+        if (q2) q2.style.display = 'none';
+        if (celeb) celeb.style.display = 'none';
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtnText) nextBtnText.textContent = 'Next Question';
+        if (bottomNav) bottomNav.style.display = 'flex';
+        if (stepNum) stepNum.textContent = '1';
+        if (cap1) cap1.classList.add('filled');
+        if (cap2) cap2.classList.remove('filled');
+      } else if (currentMobileStep2 === 2) {
+        if (q1) q1.style.display = 'none';
+        if (q2) q2.style.display = 'block';
+        if (celeb) celeb.style.display = 'none';
+        if (prevBtn) prevBtn.disabled = false;
+        if (nextBtnText) nextBtnText.textContent = 'Submit Survey';
+        if (bottomNav) bottomNav.style.display = 'flex';
+        if (stepNum) stepNum.textContent = '2';
+        if (cap1) cap1.classList.add('filled');
+        if (cap2) cap2.classList.add('filled');
+      } else if (currentMobileStep2 === 3) {
+        if (q1) q1.style.display = 'none';
+        if (q2) q2.style.display = 'none';
+        if (celeb) celeb.style.display = 'block';
+        if (bottomNav) bottomNav.style.display = 'none';
+        if (stepNum) stepNum.textContent = '2';
+        if (cap1) cap1.classList.add('filled');
+        if (cap2) cap2.classList.add('filled');
+      }
+    }
+
+    function addQuickTopic2(topic) {
+      const txt = document.getElementById('m2FeedbackText');
+      if (!txt) return;
+      if (txt.value.trim().length > 0) {
+        txt.value = txt.value.trim() + ' • ' + topic;
+      } else {
+        txt.value = topic;
+      }
+      updateCharCount2(txt);
+    }
+
+    function updateCharCount2(el) {
+      const countEl = document.getElementById('m2CharCount');
+      if (countEl && el) {
+        countEl.textContent = el.value.length;
+      }
+    }
+
+    function resetMobileSurvey2() {
+      currentMobileStep2 = 1;
+      selectedMobileScore2 = 4;
+      selectMobileScore2(4);
+      const txt = document.getElementById('m2FeedbackText');
+      if (txt) txt.value = '';
+      updateCharCount2(txt);
+      updateMobileStepView2();
+      showToast('↺ Design 2 reset to Question 1');
+    }
+
+    function resetBothSurveys() {
+      resetMobileSurvey1();
+      resetMobileSurvey2();
+      showToast('↺ Both mobile survey designs reset to Question 1');
+    }
+
+    // Global Compatibility Aliases
+    window.selectMobileScore = selectMobileScore1;
+    window.mobileNextQuestion = mobileNextQuestion1;
+    window.mobilePrevQuestion = mobilePrevQuestion1;
+    window.toggleMobilePurpose = toggleMobilePurpose1;
+    window.resetMobileSurvey = resetBothSurveys;
 
     // Auto-check URL hash or query param for View 2
     function checkInitialViewMode() {
-      if (window.location.hash === '#view2' || window.location.search.includes('view=2')) {
+      if (window.location.hash.startsWith('#view2') || window.location.hash.startsWith('#mSection') || window.location.search.includes('view=2')) {
         switchPulseView('view2');
       }
     }
