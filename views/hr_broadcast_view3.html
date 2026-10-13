@@ -4125,17 +4125,93 @@
        ========================================================================== */
     .v3-widget-view-wrap {
       width: 100%;
-      padding: 24px 20px 48px 20px;
+      padding: 24px 20px 80px 20px;
       animation: fadeInFast 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      max-height: calc(100vh - 130px);
+      scroll-behavior: smooth;
+    }
+
+    /* ==========================================================================
+       WIDGET COMPARISON SECTION HEADINGS
+       ========================================================================== */
+    .widget-section-divider {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed rgba(203, 213, 225, 0.85);
       box-sizing: border-box;
     }
 
+    .widget-section-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .widget-version-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 3px 9px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .widget-version-pill.pill-design1 {
+      background: #F1F5F9;
+      color: #475569;
+      border: 1px solid #CBD5E1;
+    }
+
+    .widget-version-pill.pill-design2 {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border: 1px solid #DDD6FE;
+    }
+
+    .widget-recommended-badge {
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2.5px 8.5px;
+      border-radius: 9999px;
+      letter-spacing: 0.03em;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+    }
+
+    .widget-version-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0F172A;
+      margin: 0;
+      letter-spacing: -0.015em;
+    }
+
+    .widget-version-desc {
+      font-size: 13px;
+      color: #64748B;
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    /* ==========================================================================
+       DESIGN 1: SPOTLIGHT CARD (CLASSIC)
+       ========================================================================== */
     .v3-outer-card {
       width: 100%;
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
       background: #FFFFFF;
       border: 1px solid rgba(226, 232, 240, 0.9);
@@ -4143,6 +4219,617 @@
       padding: 30px 34px 34px 34px;
       box-shadow: 0 20px 48px -12px rgba(124, 58, 237, 0.08), 0 4px 16px -2px rgba(15, 23, 42, 0.03);
       box-sizing: border-box;
+      transition: all 0.22s ease;
+    }
+
+    .v3-outer-card:hover {
+      box-shadow: 0 24px 54px -10px rgba(124, 58, 237, 0.11), 0 6px 18px rgba(15, 23, 42, 0.04);
+    }
+
+    /* ==========================================================================
+       DESIGN 2: EXECUTIVE SPOTLIGHT BENTO WIDGET
+       ========================================================================== */
+    .v2w-outer-card {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 24px;
+      padding: 0;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 16px 38px -6px rgba(124, 58, 237, 0.08), 0 4px 14px -2px rgba(15, 23, 42, 0.03);
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v2w-outer-card:hover {
+      border-color: rgba(196, 181, 253, 0.85);
+      box-shadow: 0 22px 52px -10px rgba(124, 58, 237, 0.13), 0 6px 20px rgba(15, 23, 42, 0.05);
+      transform: translateY(-2px);
+    }
+
+    /* Top 3.5px Royal Gradient Accent Line */
+    .v2w-accent-stripe {
+      width: 100%;
+      height: 3.5px;
+      background: linear-gradient(90deg, #7C3AED 0%, #9333EA 40%, #C084FC 75%, #38BDF8 100%);
+    }
+
+    /* Widget Header */
+    .v2w-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 28px 18px 28px;
+      border-bottom: 1px solid #F1F5F9;
+      gap: 16px;
+      box-sizing: border-box;
+    }
+
+    .v2w-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .v2w-icon-squircle {
+      width: 44px;
+      height: 44px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.28);
+    }
+
+    .v2w-title-stack {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v2w-title-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .v2w-title {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0F172A;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .v2w-category-chip {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #7C3AED;
+      background: #F3EEFF;
+      border: 1px solid #EDE9FE;
+      padding: 2px 7px;
+      border-radius: 5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .v2w-subtitle {
+      font-size: 13px;
+      color: #64748B;
+      margin: 2px 0 0 0;
+    }
+
+    .v2w-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Live Broadcast Pulse Badge */
+    .v2w-live-pulse-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #FEF2F2;
+      border: 1px solid #FEE2E2;
+      padding: 5px 11px;
+      border-radius: 9999px;
+      box-shadow: 0 1px 3px rgba(239, 68, 68, 0.08);
+    }
+
+    .v2w-pulse-radar {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #EF4444;
+      box-shadow: 0 0 0 rgba(239, 68, 68, 0.5);
+      animation: v2wPulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+    }
+
+    @keyframes v2wPulse {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+      70% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
+    .v2w-live-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #DC2626;
+      letter-spacing: 0.04em;
+    }
+
+    .v2w-priority-tag {
+      font-size: 9.5px;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: #EF4444;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .v2w-options-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      background: #F8FAFC;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .v2w-options-btn:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    /* Bento Split Body */
+    .v2w-bento-body {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      padding: 24px 28px 20px 28px;
+      box-sizing: border-box;
+      align-items: stretch;
+    }
+
+    @media (max-width: 720px) {
+      .v2w-bento-body {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    /* Left Content Wing */
+    .v2w-content-wing {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .v2w-meta-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #64748B;
+    }
+
+    .v2w-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 500;
+    }
+
+    .v2w-meta-dot {
+      color: #CBD5E1;
+    }
+
+    .v2w-meta-audience {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: #F1F5F9;
+      padding: 2px 7px;
+      border-radius: 6px;
+      color: #475569;
+      font-size: 11.5px;
+      font-weight: 500;
+    }
+
+    .v2w-headline {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0F172A;
+      margin: 0;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+      transition: color 0.15s ease;
+    }
+
+    .v2w-headline:hover {
+      color: #7C3AED;
+    }
+
+    .v2w-excerpt {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Executive Author Island */
+    .v2w-author-island {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FAF8FE;
+      border: 1px solid #EDE9FE;
+      border-radius: 12px;
+      padding: 10px 14px;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .v2w-author-left {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .v2w-author-avatar-wrap {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      flex-shrink: 0;
+    }
+
+    .v2w-author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #DDD6FE;
+    }
+
+    .v2w-verified-shield {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #7C3AED;
+      border: 2px solid #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .v2w-author-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v2w-author-name-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .v2w-author-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.25;
+    }
+
+    .v2w-author-role-chip {
+      font-size: 11px;
+      font-weight: 600;
+      color: #7C3AED;
+      background: #EDE9FE;
+      padding: 1.5px 6px;
+      border-radius: 4px;
+      line-height: 1.2;
+    }
+
+    .v2w-author-dept {
+      font-size: 11.5px;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .v2w-author-badge {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #94A3B8;
+      letter-spacing: 0.06em;
+    }
+
+    /* Right Media Wing */
+    .v2w-media-wing {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v2w-attachment-frame {
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      height: 100%;
+      min-height: 200px;
+      transition: all 0.2s ease;
+    }
+
+    .v2w-attachment-frame:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
+    }
+
+    .v2w-media-window {
+      position: relative;
+      width: 100%;
+      height: 155px;
+      background: #F1F5F9;
+      overflow: hidden;
+    }
+
+    .v2w-media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .v2w-attachment-frame:hover .v2w-media-img {
+      transform: scale(1.035);
+    }
+
+    .v2w-frosted-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(15, 23, 42, 0.72);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.02em;
+    }
+
+    .v2w-zoom-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .v2w-zoom-btn:hover {
+      background: #FFFFFF;
+      color: #7C3AED;
+      transform: scale(1.05);
+    }
+
+    .v2w-file-ribbon {
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border-top: 1px solid #E2E8F0;
+      gap: 10px;
+    }
+
+    .v2w-file-details {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .v2w-file-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.25;
+    }
+
+    .v2w-file-sub {
+      font-size: 11.5px;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .v2w-download-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 7px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .v2w-download-chip:hover {
+      background: #EDE9FE;
+      border-color: #DDD6FE;
+      color: #6D28D9;
+    }
+
+    /* Bottom Action Bar */
+    .v2w-action-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 28px 18px 28px;
+      border-top: 1px solid #F1F5F9;
+      background: #FAFAFC;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .v2w-action-left,
+    .v2w-action-right {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    /* Interactive Acknowledge Button */
+    .v2w-btn-ack {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 8px;
+      background: #7C3AED;
+      border: 1px solid #7C3AED;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+    }
+
+    .v2w-btn-ack:hover {
+      background: #6D28D9;
+      border-color: #6D28D9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+    }
+
+    .v2w-btn-ack.acknowledged {
+      background: #ECFDF5;
+      border-color: #A7F3D0;
+      color: #059669;
+      box-shadow: none;
+    }
+
+    .v2w-btn-readmore {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 12px;
+      border-radius: 8px;
+      background: transparent;
+      color: #7C3AED;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .v2w-btn-readmore:hover {
+      background: #F3EEFF;
+    }
+
+    /* Like Counter Pill */
+    .v2w-btn-like {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #64748B;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .v2w-btn-like:hover {
+      border-color: #CBD5E1;
+      color: #E11D48;
+      background: #FFF1F2;
+    }
+
+    .v2w-btn-like.liked {
+      background: #FFF1F2;
+      border-color: #FECDD3;
+      color: #E11D48;
+    }
+
+    .v2w-btn-like.liked svg {
+      fill: #E11D48;
+      stroke: #E11D48;
+    }
+
+    .v2w-btn-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .v2w-btn-icon:hover {
+      border-color: #CBD5E1;
+      color: #0F172A;
+      background: #F8FAFC;
+    }
+
+    .v2w-btn-icon.bookmarked {
+      background: #F5F3FF;
+      border-color: #DDD6FE;
+      color: #7C3AED;
+    }
+    .v2w-btn-icon.bookmarked svg {
+      fill: #7C3AED;
     }
 
     /* Outer Topbar: Megaphone squircle + Title/Subtitle + View All button */
@@ -5170,6 +5857,18 @@
            Strictly 1 High-Priority Broadcast — No List Clutter
            ========================================================================== -->
       <div id="view3Container" class="broadcast-view-mode v3-widget-view-wrap" style="display: flex;">
+
+        <!-- ======================================================================
+             HEADING: DESIGN 1
+             ====================================================================== -->
+        <div class="widget-section-divider">
+          <div class="widget-section-tag-row">
+            <span class="widget-version-pill pill-design1">DESIGN 1</span>
+            <h3 class="widget-version-title">Spotlight Announcement Card</h3>
+          </div>
+          <p class="widget-version-desc">Classic single-column announcement card with author metadata, push notification image preview, and full view modal.</p>
+        </div>
+
         <!-- Outer Card matching media_1791819237244.png -->
         <div class="v3-outer-card">
 
@@ -5249,7 +5948,179 @@
             </div>
 
           </article> <!-- end #v3WidgetCard -->
-        </div> <!-- end .v3-outer-card -->
+        </div> <!-- end .v3-outer-card (Design 1) -->
+
+        <!-- ======================================================================
+             HEADING: DESIGN 2
+             ====================================================================== -->
+        <div class="widget-section-divider" style="margin-top: 16px;">
+          <div class="widget-section-tag-row">
+            <span class="widget-version-pill pill-design2">DESIGN 2</span>
+            <span class="widget-recommended-badge">NEW DESIGN</span>
+            <h3 class="widget-version-title">Executive Bento Spotlight Widget</h3>
+          </div>
+          <p class="widget-version-desc">Asymmetric dual-wing architecture with live broadcast pulse, verified executive author card, interactive quick-action bar (Acknowledge, Like, Share), and framed rich media preview.</p>
+        </div>
+
+        <!-- Design 2 Widget Outer Card -->
+        <div class="v2w-outer-card" id="design2WidgetCard">
+          <!-- 3.5px Top Royal Gradient Accent Line -->
+          <div class="v2w-accent-stripe"></div>
+
+          <!-- Widget Top Bar -->
+          <header class="v2w-topbar">
+            <div class="v2w-topbar-left">
+              <div class="v2w-icon-squircle">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12.5 5.5L6.8 9.8H3C2.45 9.8 2 10.25 2 10.8V13.8C2 14.35 2.45 14.8 3 14.8H6.8L12.5 19.1C13.1 19.55 14 19.12 14 18.35V6.25C14 5.48 13.1 5.05 12.5 5.5Z"/>
+                  <path d="M19 8a6 6 0 0 1 0 8"/>
+                  <path d="M22 6a10 10 0 0 1 0 12"/>
+                </svg>
+              </div>
+              <div class="v2w-title-stack">
+                <div class="v2w-title-row">
+                  <h2 class="v2w-title">Executive Broadcast</h2>
+                  <span class="v2w-category-chip">COMPANY-WIDE</span>
+                </div>
+                <p class="v2w-subtitle">Official organisation announcements & leadership advisories</p>
+              </div>
+            </div>
+
+            <div class="v2w-topbar-right">
+              <!-- Live Priority Pulse Badge -->
+              <div class="v2w-live-pulse-badge" title="High Priority Urgent Broadcast">
+                <span class="v2w-pulse-radar"></span>
+                <span class="v2w-live-label">LIVE BROADCAST</span>
+                <span class="v2w-priority-tag">URGENT</span>
+              </div>
+
+              <!-- Quick Menu Toggle -->
+              <button type="button" class="v2w-options-btn" onclick="toggleV2wMenu(event)" title="Widget options">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle>
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          <!-- Bento Split Body (Left Wing: Story + Author, Right Wing: Attachment Preview) -->
+          <div class="v2w-bento-body">
+            <!-- Left Wing (Content & Executive Card) -->
+            <div class="v2w-content-wing">
+              <!-- Date & Audience Meta Line -->
+              <div class="v2w-meta-line">
+                <span class="v2w-meta-item">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>01 Oct 2026 • 06:07 PM</span>
+                </span>
+                <span class="v2w-meta-dot">•</span>
+                <span class="v2w-meta-audience">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>All Employees (148)</span>
+                </span>
+              </div>
+
+              <!-- Announcement Headline -->
+              <h3 class="v2w-headline" onclick="openFullAnnouncementModal()" title="Click to view full broadcast">
+                Welcome to hirekey Notifications!
+              </h3>
+
+              <!-- Excerpt Narrative -->
+              <p class="v2w-excerpt">
+                You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.
+              </p>
+
+              <!-- Executive Author Identity Island -->
+              <div class="v2w-author-island">
+                <div class="v2w-author-left">
+                  <div class="v2w-author-avatar-wrap">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep Datta" class="v2w-author-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'" />
+                    <span class="v2w-verified-shield" title="Verified Executive Leadership">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </span>
+                  </div>
+                  <div class="v2w-author-details">
+                    <div class="v2w-author-name-row">
+                      <span class="v2w-author-name">Subhadeep Datta</span>
+                      <span class="v2w-author-role-chip">Business Head</span>
+                    </div>
+                    <span class="v2w-author-dept">Executive Leadership • Revenue Growth</span>
+                  </div>
+                </div>
+                <div class="v2w-author-badge">AUTHOR</div>
+              </div>
+            </div>
+
+            <!-- Right Wing (Framed Rich Attachment Showcase) -->
+            <div class="v2w-media-wing">
+              <div class="v2w-attachment-frame" onclick="downloadAttachment('Push notification.png', '1.2 MB')" title="Click to inspect attachment">
+                <!-- Viewport Window -->
+                <div class="v2w-media-window">
+                  <img src="assets/push_notification_mascot.png" alt="Push notification" class="v2w-media-img" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'" />
+                  
+                  <!-- Frosted Glass Tag -->
+                  <div class="v2w-frosted-tag">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    <span>HD VISUAL · 1.2 MB</span>
+                  </div>
+
+                  <!-- Hover Preview Zoom Button -->
+                  <button type="button" class="v2w-zoom-btn" title="Expand Image Preview" onclick="event.stopPropagation(); openFullAnnouncementModal();">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+                  </button>
+                </div>
+
+                <!-- Media Info & Download Ribbon -->
+                <div class="v2w-file-ribbon">
+                  <div class="v2w-file-details">
+                    <span class="v2w-file-name">Push notification.png</span>
+                    <span class="v2w-file-sub">01-10-2026 • 1.2 MB PNG</span>
+                  </div>
+                  <button type="button" class="v2w-download-chip" onclick="event.stopPropagation(); downloadAttachment('Push notification.png', '1.2 MB');" title="Download File">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span>Save</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Interactive Quick-Action Bar -->
+          <footer class="v2w-action-bar">
+            <div class="v2w-action-left">
+              <!-- 1-Click Interactive Acknowledge Button -->
+              <button type="button" class="v2w-btn-ack" id="v2wAckBtn" onclick="toggleV2wAcknowledge(this)">
+                <svg class="v2w-ack-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span class="v2w-ack-text">Acknowledge</span>
+              </button>
+
+              <!-- Expand Modal Trigger -->
+              <button type="button" class="v2w-btn-readmore" onclick="openFullAnnouncementModal()">
+                <span>Read full brief</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </button>
+            </div>
+
+            <div class="v2w-action-right">
+              <!-- Live Reaction Heart Pill -->
+              <button type="button" class="v2w-btn-like" id="v2wLikeBtn" onclick="toggleV2wLike(this)" title="React to broadcast">
+                <svg class="v2w-like-heart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span class="v2w-like-count" id="v2wLikeCount">42</span>
+              </button>
+
+              <!-- Quick Share Trigger -->
+              <button type="button" class="v2w-btn-icon" onclick="copyBroadcastLink()" title="Copy Link to Broadcast">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+              </button>
+
+              <!-- Bookmark Trigger -->
+              <button type="button" class="v2w-btn-icon" onclick="toggleV2wBookmark(this)" title="Bookmark for later">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+              </button>
+            </div>
+          </footer>
+        </div> <!-- end #design2WidgetCard -->
+
       </div> <!-- end #view3Container -->
 
     </main>
@@ -7841,6 +8712,60 @@
       showToast('Link ready: ' + url);
     }
     document.getElementById('v3MoreMenu')?.classList.remove('open');
+  }
+
+  // ==========================================================================
+  // DESIGN 2 WIDGET MICRO-INTERACTIONS
+  // ==========================================================================
+  function toggleV2wAcknowledge(btn) {
+    const isAck = btn.classList.toggle('acknowledged');
+    const textEl = btn.querySelector('.v2w-ack-text');
+    if (isAck) {
+      if (textEl) textEl.textContent = 'Acknowledged ✓';
+      showToast('✓ Broadcast acknowledged! Stored in your activity log.');
+    } else {
+      if (textEl) textEl.textContent = 'Acknowledge';
+      showToast('Acknowledgment removed.');
+    }
+  }
+
+  function toggleV2wLike(btn) {
+    const isLiked = btn.classList.toggle('liked');
+    const countEl = document.getElementById('v2wLikeCount');
+    let count = parseInt(countEl?.textContent || '42', 10);
+    if (isLiked) {
+      if (countEl) countEl.textContent = count + 1;
+      showToast('❤️ You reacted to this broadcast.');
+    } else {
+      if (countEl) countEl.textContent = Math.max(42, count - 1);
+    }
+  }
+
+  function toggleV2wBookmark(btn) {
+    const isMarked = btn.classList.toggle('bookmarked');
+    if (isMarked) {
+      showToast('🔖 Saved to bookmarked broadcasts.');
+    } else {
+      showToast('Removed from bookmarks.');
+    }
+  }
+
+  function copyBroadcastLink() {
+    const url = window.location.href;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('🔗 Broadcast link copied to clipboard!');
+      }).catch(() => {
+        showToast('🔗 Broadcast link: ' + url);
+      });
+    } else {
+      showToast('🔗 Broadcast link: ' + url);
+    }
+  }
+
+  function toggleV2wMenu(e) {
+    if (e && e.stopPropagation) e.stopPropagation();
+    showToast('Widget options: Pin to Dashboard, Export PDF, Notification alerts.');
   }
 
   function closeAnnouncementModal() {
