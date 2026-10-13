@@ -5205,39 +5205,24 @@
           <!-- Inner Card: The Announcement Widget Box -->
           <article class="v3-inner-card" id="v3WidgetCard">
 
-            <!-- Top Meta Row: Date & Time + Three Dots (NO High Priority Chip, per instructions) -->
+            <!-- Top Meta Row: Date & Time on left, Sender Information on right (instead of three dot menu) -->
             <div class="v3-inner-top-row">
               <div class="v3-datetime-text" id="v3BroadcastDate">
                 <span>01 Oct 2026, 06:07 PM</span>
               </div>
 
-              <div class="v3-more-wrap">
-                <button type="button" class="v3-more-btn" id="v3MoreBtn" onclick="toggleV3MoreMenu(event)" title="More options" aria-label="More options">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <circle cx="5" cy="12" r="2"></circle>
-                    <circle cx="12" cy="12" r="2"></circle>
-                    <circle cx="19" cy="12" r="2"></circle>
-                  </svg>
-                </button>
-                <div class="v3-more-menu" id="v3MoreMenu">
-                  <div class="v3-menu-item" onclick="openFullAnnouncementModal()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    <span>View Full Details</span>
-                  </div>
-                  <div class="v3-menu-item" onclick="copyAnnouncementLink()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
-                    <span>Copy Direct Link</span>
-                  </div>
-                  <div class="v3-menu-item" onclick="toggleAcknowledgeAnnouncement()">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span id="v3MenuAckText">Acknowledge</span>
-                  </div>
+              <!-- Sender Information (Moved above where three dot menu was) -->
+              <div class="v3-author-block" id="v3AuthorBlock">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep Datta" class="v3-author-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'" />
+                <div class="v3-author-details">
+                  <div class="v3-author-byline">By <strong>Subhadeep Datta</strong></div>
+                  <div class="v3-author-title">Business Head</div>
                 </div>
               </div>
             </div>
 
             <!-- Title -->
-            <h3 class="v3-announcement-title" id="v3AnnouncementTitle">Welcome to hirekey Notifications!</h3>
+            <h3 class="v3-announcement-title" id="v3AnnouncementTitle" onclick="openFullAnnouncementModal()" style="cursor: pointer;" title="Click to view full announcement">Welcome to hirekey Notifications!</h3>
 
             <!-- Message Snippet -->
             <p class="v3-announcement-snippet" id="v3AnnouncementSnippet">
@@ -5259,17 +5244,6 @@
                   <span class="v3-att-name" id="v3AttachmentName">Push notification.png</span>
                 </div>
                 <div class="v3-att-meta-sub" id="v3AttachmentSize">01-10-2026 • 1.2 MB</div>
-              </div>
-            </div>
-
-            <!-- Bottom Row: Creator Profile (NO speaker image on right) -->
-            <div class="v3-inner-bottom-row">
-              <div class="v3-author-block" id="v3AuthorBlock">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep Datta" class="v3-author-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'" />
-                <div class="v3-author-details">
-                  <div class="v3-author-byline">By <strong>Subhadeep Datta</strong></div>
-                  <div class="v3-author-title">Business Head</div>
-                </div>
               </div>
             </div>
 
