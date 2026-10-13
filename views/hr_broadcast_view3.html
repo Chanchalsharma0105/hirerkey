@@ -4125,16 +4125,76 @@
        ========================================================================== */
     .v3-widget-view-wrap {
       width: 100%;
-      padding: 24px 20px 80px 20px;
+      padding: 24px 20px 100px 20px;
       animation: fadeInFast 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px;
+      gap: 36px;
       box-sizing: border-box;
-      overflow-y: auto;
-      max-height: calc(100vh - 130px);
-      scroll-behavior: smooth;
+      height: auto;
+      min-height: 100%;
+      overflow: visible;
+    }
+
+    /* Jump Pills Navigation */
+    .widget-jump-bar {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      margin-bottom: -10px;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+    }
+
+    .widget-jump-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #94A3B8;
+      letter-spacing: 0.05em;
+    }
+
+    .widget-jump-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #475569;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .widget-jump-pill:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    .widget-jump-pill.active {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border-color: #C4B5FD;
+    }
+
+    .jump-pill-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #7C3AED;
+      display: inline-block;
     }
 
     /* ==========================================================================
@@ -4145,10 +4205,11 @@
       max-width: 760px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      padding-bottom: 4px;
+      gap: 8px;
+      padding-bottom: 12px;
       border-bottom: 1px dashed rgba(203, 213, 225, 0.85);
       box-sizing: border-box;
+      scroll-margin-top: 24px;
     }
 
     .widget-section-tag-row {
@@ -5858,10 +5919,22 @@
            ========================================================================== -->
       <div id="view3Container" class="broadcast-view-mode v3-widget-view-wrap" style="display: flex;">
 
+        <!-- Quick Jump Comparison Pills -->
+        <div class="widget-jump-bar">
+          <span class="widget-jump-label">COMPARE DESIGNS:</span>
+          <a href="#design1Section" class="widget-jump-pill active" onclick="scrollToWidget('design1Section', event)">
+            <span>Design 1 · Spotlight Card</span>
+          </a>
+          <a href="#design2Section" class="widget-jump-pill" onclick="scrollToWidget('design2Section', event)">
+            <span class="jump-pill-pulse"></span>
+            <span>Design 2 · Executive Bento (New)</span>
+          </a>
+        </div>
+
         <!-- ======================================================================
              HEADING: DESIGN 1
              ====================================================================== -->
-        <div class="widget-section-divider">
+        <div class="widget-section-divider" id="design1Section">
           <div class="widget-section-tag-row">
             <span class="widget-version-pill pill-design1">DESIGN 1</span>
             <h3 class="widget-version-title">Spotlight Announcement Card</h3>
@@ -5953,7 +6026,7 @@
         <!-- ======================================================================
              HEADING: DESIGN 2
              ====================================================================== -->
-        <div class="widget-section-divider" style="margin-top: 16px;">
+        <div class="widget-section-divider" id="design2Section" style="margin-top: 24px;">
           <div class="widget-section-tag-row">
             <span class="widget-version-pill pill-design2">DESIGN 2</span>
             <span class="widget-recommended-badge">NEW DESIGN</span>
@@ -8766,6 +8839,16 @@
   function toggleV2wMenu(e) {
     if (e && e.stopPropagation) e.stopPropagation();
     showToast('Widget options: Pin to Dashboard, Export PDF, Notification alerts.');
+  }
+
+  function scrollToWidget(id, e) {
+    if (e) e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.widget-jump-pill').forEach(p => p.classList.remove('active'));
+      if (e && e.currentTarget) e.currentTarget.classList.add('active');
+    }
   }
 
   function closeAnnouncementModal() {
