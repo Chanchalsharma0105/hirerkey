@@ -1825,26 +1825,19 @@
     }
     .m-scale-box {
       flex: 1;
-      height: 66px;
+      height: 52px;
       border-radius: 14px;
       border: 1.5px solid #E2E8F0;
       background: #FFFFFF;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 3px;
       cursor: pointer;
-      padding: 6px 2px;
+      padding: 0;
       transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .m-scale-emoji {
-      font-size: 17px;
-      line-height: 1;
-      transition: transform 0.2s ease;
-    }
     .m-scale-num {
-      font-size: 17px;
+      font-size: 19px;
       font-weight: 800;
       color: #1E293B;
       line-height: 1;
@@ -1859,14 +1852,11 @@
       background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
       border-color: #7C3AED;
       color: #FFFFFF;
-      transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 10px 22px -3px rgba(124, 58, 237, 0.45), 0 2px 6px rgba(124, 58, 237, 0.2);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 8px 20px -3px rgba(124, 58, 237, 0.42), 0 2px 6px rgba(124, 58, 237, 0.18);
     }
     .m-scale-box.active .m-scale-num {
       color: #FFFFFF;
-    }
-    .m-scale-box.active .m-scale-emoji {
-      transform: scale(1.22);
     }
 
     /* Scale Anchors */
@@ -2432,20 +2422,6 @@
             </div>
             
             <div class="m-toolbar-right">
-              <!-- Rating Archetype Switcher -->
-              <div class="m-archetype-switcher" title="Switch Rating Display Archetype">
-                <span style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; letter-spacing: 0.04em;">Rating Style:</span>
-                <button type="button" class="m-arch-btn active" id="archBtnScale" onclick="switchRatingArchetype('scale')">
-                  🔢 Tactile Scale (1–5)
-                </button>
-                <button type="button" class="m-arch-btn" id="archBtnMood" onclick="switchRatingArchetype('mood')">
-                  😊 Mood Emojis
-                </button>
-                <button type="button" class="m-arch-btn" id="archBtnStars" onclick="switchRatingArchetype('stars')">
-                  ⭐ Star Rating
-                </button>
-              </div>
-
               <!-- Reset Survey Button -->
               <button type="button" class="btn-modal-cancel" onclick="resetMobileSurvey()" style="padding: 6px 12px; font-size: 12px; font-weight: 600;">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 4px;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
@@ -2580,40 +2556,33 @@
                     </h2>
 
                     <!-- ========================================================
-                         ELEVATED RATING COMPONENT (THE CORE IMPROVEMENT)
+                         ELEVATED RATING COMPONENT (CLEAN 1-5 SCALE WITHOUT EMOJIS)
                          ======================================================== -->
-                    
-                    <!-- Archetype 1: Tactile 5-Box Scale with Emojis (Default) -->
                     <div id="ratingBoxScale" class="m-rating-archetype-container">
                       <div class="m-tactile-scale-grid">
                         
                         <!-- Score 1 -->
                         <button type="button" class="m-scale-box" data-score="1" onclick="selectMobileScore(1)">
-                          <span class="m-scale-emoji">😫</span>
                           <span class="m-scale-num">1</span>
                         </button>
 
                         <!-- Score 2 -->
                         <button type="button" class="m-scale-box" data-score="2" onclick="selectMobileScore(2)">
-                          <span class="m-scale-emoji">🙁</span>
                           <span class="m-scale-num">2</span>
                         </button>
 
                         <!-- Score 3 -->
                         <button type="button" class="m-scale-box" data-score="3" onclick="selectMobileScore(3)">
-                          <span class="m-scale-emoji">😐</span>
                           <span class="m-scale-num">3</span>
                         </button>
 
                         <!-- Score 4 -->
                         <button type="button" class="m-scale-box active" data-score="4" onclick="selectMobileScore(4)">
-                          <span class="m-scale-emoji">🙂</span>
                           <span class="m-scale-num">4</span>
                         </button>
 
                         <!-- Score 5 -->
                         <button type="button" class="m-scale-box" data-score="5" onclick="selectMobileScore(5)">
-                          <span class="m-scale-emoji">🚀</span>
                           <span class="m-scale-num">5</span>
                         </button>
 
@@ -2622,85 +2591,12 @@
                       <!-- Scale Low / High Anchor Indicators -->
                       <div class="m-scale-anchors">
                         <span class="m-anchor-low">← 1 Very Low</span>
-                        <span class="m-anchor-high">5 Highly Motivated →</span>
+                        <span class="m-anchor-high">5 Very High →</span>
                       </div>
                     </div>
 
-                    <!-- Archetype 2: Expressive Mood Face Avatars (Toggleable) -->
-                    <div id="ratingBoxMood" class="m-rating-archetype-container" style="display: none;">
-                      <div class="m-mood-faces-row">
-                        <button type="button" class="m-mood-face-btn" onclick="selectMobileScore(1)" data-score="1">
-                          <span class="m-mood-large-emoji">😫</span>
-                          <span class="m-mood-tag">Drained</span>
-                        </button>
-                        <button type="button" class="m-mood-face-btn" onclick="selectMobileScore(2)" data-score="2">
-                          <span class="m-mood-large-emoji">🙁</span>
-                          <span class="m-mood-tag">Low</span>
-                        </button>
-                        <button type="button" class="m-mood-face-btn" onclick="selectMobileScore(3)" data-score="3">
-                          <span class="m-mood-large-emoji">😐</span>
-                          <span class="m-mood-tag">Okay</span>
-                        </button>
-                        <button type="button" class="m-mood-face-btn active" onclick="selectMobileScore(4)" data-score="4">
-                          <span class="m-mood-large-emoji">🙂</span>
-                          <span class="m-mood-tag">High</span>
-                        </button>
-                        <button type="button" class="m-mood-face-btn" onclick="selectMobileScore(5)" data-score="5">
-                          <span class="m-mood-large-emoji">🤩</span>
-                          <span class="m-mood-tag">Thriving</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    <!-- Archetype 3: Interactive Star Rating (Toggleable) -->
-                    <div id="ratingBoxStars" class="m-rating-archetype-container" style="display: none;">
-                      <div class="m-stars-track">
-                        <button type="button" class="m-star-btn active" onclick="selectMobileScore(1)" data-score="1">★</button>
-                        <button type="button" class="m-star-btn active" onclick="selectMobileScore(2)" data-score="2">★</button>
-                        <button type="button" class="m-star-btn active" onclick="selectMobileScore(3)" data-score="3">★</button>
-                        <button type="button" class="m-star-btn active" onclick="selectMobileScore(4)" data-score="4">★</button>
-                        <button type="button" class="m-star-btn" onclick="selectMobileScore(5)" data-score="5">★</button>
-                      </div>
-                      <div style="text-align: center; font-size: 13px; font-weight: 700; color: #7C3AED; margin-top: 6px;" id="mStarScoreLabel">
-                        4 of 5 Stars
-                      </div>
-                    </div>
-
-                    <!-- Dynamic Sentiment Validation Feedback Banner -->
-                    <div class="m-sentiment-feedback-card level-4" id="mSentimentCard">
-                      <div class="m-sentiment-badge" id="mSentimentBadge">🟢 4 — High Motivation</div>
-                      <div class="m-sentiment-desc" id="mSentimentDesc">
-                        Feeling energized, confident, and actively engaged with team milestones!
-                      </div>
-                    </div>
-
-                    <!-- Contextual Motivation Drivers (Quick Sentiment Chips) -->
-                    <div class="m-drivers-section" id="mDriversSection">
-                      <div class="m-drivers-header">
-                        <span>What is driving your score today?</span>
-                        <span class="m-drivers-optional">(Optional)</span>
-                      </div>
-                      <div class="m-drivers-chips">
-                        <button type="button" class="m-driver-chip active" onclick="toggleMotivationChip(this)">
-                          ⚡️ Team Energy
-                        </button>
-                        <button type="button" class="m-driver-chip active" onclick="toggleMotivationChip(this)">
-                          🎯 Clear Priorities
-                        </button>
-                        <button type="button" class="m-driver-chip" onclick="toggleMotivationChip(this)">
-                          💡 Manager Support
-                        </button>
-                        <button type="button" class="m-driver-chip" onclick="toggleMotivationChip(this)">
-                          🌱 Growth & Learning
-                        </button>
-                        <button type="button" class="m-driver-chip" onclick="toggleMotivationChip(this)">
-                          ⚖️ Workload Balance
-                        </button>
-                      </div>
-                    </div>
-
-                    <!-- Subtext Helper -->
-                    <div class="m-helper-subtext">
+                    <!-- Subtext Helper (Matching media_1791884579975.png) -->
+                    <div class="m-helper-subtext" style="margin-top: 18px;">
                       Select an option that best describes your feeling
                     </div>
 
@@ -2760,11 +2656,7 @@
                     <div class="m-summary-recap">
                       <div class="m-recap-row">
                         <span class="m-recap-lbl">Motivation Rating</span>
-                        <strong class="m-recap-val" id="mRecapScore">Score 4 of 5 (High) 🟢</strong>
-                      </div>
-                      <div class="m-recap-row">
-                        <span class="m-recap-lbl">Key Drivers</span>
-                        <strong class="m-recap-val" id="mRecapDrivers">Team Energy, Clear Priorities</strong>
+                        <strong class="m-recap-val" id="mRecapScore">Score 4 of 5</strong>
                       </div>
                       <div class="m-recap-row">
                         <span class="m-recap-lbl">Survey Policy</span>
@@ -3800,35 +3692,7 @@
     let currentPulseView = 'view1';
     let currentMobileStep = 1;
     let selectedMobileScore = 4;
-    let currentRatingArchetype = 'scale';
 
-    const sentimentFeedbackData = {
-      1: {
-        badge: '🔴 1 — Very Low Motivation',
-        desc: 'Feeling drained or struggling with major hurdles. Leadership is notified to offer help.',
-        class: 'level-1'
-      },
-      2: {
-        badge: '🟠 2 — Low Motivation',
-        desc: 'Below par. Clearer priorities, tools, or manager support may help unblock you.',
-        class: 'level-2'
-      },
-      3: {
-        badge: '🟡 3 — Neutral Engagement',
-        desc: 'Holding steady, but there is clear opportunity for greater excitement and impact.',
-        class: 'level-3'
-      },
-      4: {
-        badge: '🟢 4 — High Motivation',
-        desc: 'Feeling energized, confident, and actively engaged with team milestones!',
-        class: 'level-4'
-      },
-      5: {
-        badge: '🟣 5 — Supercharged & Thriving! 🚀',
-        desc: 'Highly inspired, crushing deliverables, and championing team energy!',
-        class: 'level-5'
-      }
-    };
 
     function switchPulseView(viewName) {
       currentPulseView = viewName;
@@ -3915,21 +3779,9 @@
       selectedMobileScore = score;
       syncActiveMobileRatingUI(score);
 
-      // Update Sentiment Feedback Card
-      const card = document.getElementById('mSentimentCard');
-      const badge = document.getElementById('mSentimentBadge');
-      const desc = document.getElementById('mSentimentDesc');
-
-      const data = sentimentFeedbackData[score] || sentimentFeedbackData[4];
-      if (card) {
-        card.className = `m-sentiment-feedback-card ${data.class}`;
-      }
-      if (badge) badge.textContent = data.badge;
-      if (desc) desc.textContent = data.desc;
-
       // Update Recap
       const recapEl = document.getElementById('mRecapScore');
-      if (recapEl) recapEl.textContent = `Score ${score} of 5 (${score >= 4 ? 'High' : (score === 3 ? 'Neutral' : 'Low')})`;
+      if (recapEl) recapEl.textContent = `Score ${score} of 5`;
 
       // Enable Next Button
       const nextBtn = document.getElementById('mBtnNext');
@@ -3937,40 +3789,10 @@
     }
 
     function syncActiveMobileRatingUI(score) {
-      // 1. Scale boxes
       document.querySelectorAll('.m-scale-box').forEach(btn => {
         const val = parseInt(btn.getAttribute('data-score'), 10);
         btn.classList.toggle('active', val === score);
       });
-
-      // 2. Mood buttons
-      document.querySelectorAll('.m-mood-face-btn').forEach(btn => {
-        const val = parseInt(btn.getAttribute('data-score'), 10);
-        btn.classList.toggle('active', val === score);
-      });
-
-      // 3. Stars
-      document.querySelectorAll('.m-star-btn').forEach(btn => {
-        const val = parseInt(btn.getAttribute('data-score'), 10);
-        btn.classList.toggle('active', val <= score);
-      });
-      const starLabel = document.getElementById('mStarScoreLabel');
-      if (starLabel) starLabel.textContent = `${score} of 5 Stars`;
-    }
-
-    // Motivation Driver Chips Toggle
-    function toggleMotivationChip(btn) {
-      if (!btn) return;
-      btn.classList.toggle('active');
-      updateRecapDrivers();
-    }
-
-    function updateRecapDrivers() {
-      const activeChips = Array.from(document.querySelectorAll('.m-driver-chip.active')).map(c => c.textContent.trim());
-      const recap = document.getElementById('mRecapDrivers');
-      if (recap) {
-        recap.textContent = activeChips.length > 0 ? activeChips.join(', ') : 'None selected';
-      }
     }
 
     // Step Navigation
