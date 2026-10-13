@@ -2456,6 +2456,264 @@
       margin: 0 3px;
     }
 
+
+    /* Design 3 Specialized Aesthetics: Ergonomic Radial Arc & Liquid Halo Dial */
+    .m-version-pill.pill-d3 {
+      background: #FAF5FF;
+      color: #7C3AED;
+      border: 1px solid #DDD6FE;
+    }
+    .m-flagship-badge {
+      font-size: 10.5px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #4F46E5 100%);
+      color: #FFFFFF;
+      padding: 3px 9px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+    }
+    .phone-frame-d3 {
+      box-shadow: 0 32px 85px -15px rgba(124, 58, 237, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.16), inset 0 0 0 2px #334155;
+    }
+    .screen-d3 {
+      background: linear-gradient(180deg, #FBF9FF 0%, #F5F0FF 45%, #EBE3FF 100%);
+    }
+    .m3-glass-btn {
+      background: rgba(255, 255, 255, 0.85) !important;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(124, 58, 237, 0.1) !important;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+    .m3-creator-avatar {
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .m3-stepper-track {
+      height: 6px;
+      background: #E2E8F0;
+      border-radius: 100px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+    .m3-stepper-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, #7C3AED 0%, #6366F1 50%, #10B981 100%);
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.45);
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .m3-card-glass {
+      position: relative;
+      background: rgba(255, 255, 255, 0.96) !important;
+      backdrop-filter: blur(18px);
+      border: 1.5px solid rgba(221, 214, 254, 0.85) !important;
+      box-shadow: 0 18px 40px -10px rgba(124, 58, 237, 0.16), 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+      border-radius: 22px !important;
+      overflow: hidden;
+    }
+    .m3-chromatic-halo {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
+      pointer-events: none;
+      filter: blur(22px);
+      transition: all 0.4s ease;
+      z-index: 1;
+    }
+
+    /* Halo Sentiment Beacon */
+    .m3-sentiment-beacon {
+      background: #FAF5FF;
+      border: 1.5px solid #DDD6FE;
+      color: #6D28D9;
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 100px;
+      text-align: center;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 3px 10px rgba(124, 58, 237, 0.12);
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Ergonomic Radial Arc Slider Track & Staggered Parabolic Nodes */
+    .m3-radial-arc-wrapper {
+      position: relative;
+      padding: 10px 4px 6px 4px;
+      margin: 12px 0 10px 0;
+      z-index: 2;
+    }
+    .m3-arc-svg-guide {
+      position: absolute;
+      top: 6px;
+      left: 0;
+      width: 100%;
+      height: 52px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .m3-haptic-track {
+      background: rgba(241, 245, 249, 0.7);
+      border: 1.5px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 6px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 5px;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 2px 5px rgba(15, 23, 42, 0.04);
+    }
+    .m3-haptic-node {
+      flex: 1;
+      height: 50px;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 14px;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      user-select: none;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+      position: relative;
+      z-index: 2;
+    }
+    /* Ergonomic parabolic vertical stagger for thumb reach */
+    .m3-haptic-node[data-score="1"] { transform: translateY(5px); }
+    .m3-haptic-node[data-score="2"] { transform: translateY(1px); }
+    .m3-haptic-node[data-score="3"] { transform: translateY(0px); }
+    .m3-haptic-node[data-score="4"] { transform: translateY(1px); }
+    .m3-haptic-node[data-score="5"] { transform: translateY(5px); }
+
+    .m3-haptic-node:hover {
+      border-color: #C4B5FD;
+      background: #FAF5FF;
+      color: #7C3AED;
+      transform: translateY(-2px);
+    }
+    .m3-haptic-node.active {
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 50%, #4F46E5 100%);
+      border-color: #7C3AED;
+      color: #FFFFFF !important;
+      font-weight: 800;
+      box-shadow: 0 10px 24px -2px rgba(124, 58, 237, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+      transform: scale(1.1) translateY(-3px) !important;
+    }
+    .m3-node-pip {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-inter);
+      line-height: 1;
+    }
+    .m3-node-subtag {
+      font-size: 8px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-top: 2px;
+      line-height: 1;
+    }
+    .m3-haptic-node.active .m3-node-subtag {
+      color: #EDE9FE;
+    }
+    .m3-anchor-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin: 0 3px;
+    }
+    .m3-anchor-dot.dot-low {
+      background: #DC2626;
+    }
+    .m3-anchor-dot.dot-high {
+      background: #7C3AED;
+    }
+
+    /* Contextual Catalyst Micro-Chips */
+    .m3-catalysts-box {
+      background: #F8FAFC;
+      border: 1px dashed #DDD6FE;
+      border-radius: 14px;
+      padding: 11px 13px;
+      margin: 14px 0 6px 0;
+      animation: fadeIn 0.22s ease-out;
+      position: relative;
+      z-index: 2;
+    }
+    .m3-catalyst-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 7px;
+    }
+    .m3-catalyst-prompt {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #475569;
+    }
+    .m3-catalyst-optional {
+      font-size: 10px;
+      color: #94A3B8;
+      font-weight: 500;
+    }
+    .m3-catalyst-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .m3-catalyst-chip {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 100px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .m3-catalyst-chip:hover {
+      border-color: #C4B5FD;
+      color: #7C3AED;
+    }
+    .m3-catalyst-chip.active {
+      background: #EDE9FE;
+      border-color: #7C3AED;
+      color: #6D28D9;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(124, 58, 237, 0.18);
+    }
+
   </style>
 </head>
 <body>
@@ -2696,17 +2954,20 @@
                   <span>Design 1 · Discrete Tactile Scale</span>
                 </a>
                 <a href="#mSectionDesign2" class="m-jump-pill" onclick="scrollToMobileDesign('mSectionDesign2', event)">
+                  <span>Design 2 · Fluid Bento Slider</span>
+                </a>
+                <a href="#mSectionDesign3" class="m-jump-pill" onclick="scrollToMobileDesign('mSectionDesign3', event)">
                   <span class="m-jump-pulse"></span>
-                  <span>Design 2 · Fluid Bento Slider (New)</span>
+                  <span>Design 3 · Dynamic Chromatic Aura (Flagship)</span>
                 </a>
               </div>
             </div>
             
             <div class="m-toolbar-right">
               <!-- Reset Survey Button -->
-              <button type="button" class="btn-modal-cancel" onclick="resetBothSurveys()" style="padding: 6px 12px; font-size: 12px; font-weight: 600;">
+              <button type="button" class="btn-modal-cancel" onclick="resetAllThreeSurveys()" style="padding: 6px 12px; font-size: 12px; font-weight: 600;">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 4px;"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
-                Restart Both Surveys
+                Restart All 3 Surveys
               </button>
             </div>
           </div>
@@ -3240,6 +3501,311 @@
 
                       <button type="button" class="m-nav-next-btn" id="m2BtnNext" onclick="mobileNextQuestion2()">
                         <span id="m2BtnNextText">Next Question</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                      </button>
+                    </div>
+
+                    <!-- Footer Tip -->
+                    <div class="m-footer-tip">
+                      Tip: Your honest feedback helps us create a better workplace for everyone!
+                    </div>
+
+                    <!-- Phone Bottom Home Indicator Bar -->
+                    <div class="m-home-indicator"></div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+                      <!-- Sleek Gallery Section Divider 2 -->
+            <div class="m-gallery-divider">
+              <span class="m-divider-line"></span>
+              <div class="m-divider-badge">
+                <span>OR EXPERIENCE BLEEDING-EDGE ERGONOMICS</span>
+              </div>
+              <span class="m-divider-line"></span>
+            </div>
+
+            <!-- ================================================================
+                 SECTION 3: DESIGN 3 — DYNAMIC CHROMATIC AURA & CONTINUOUS HAPTIC SLIDER
+                 ================================================================ -->
+            <div class="m-design-section" id="mSectionDesign3">
+              <div class="m-section-header-card">
+                <div class="m-section-tag-row">
+                  <span class="m-version-pill pill-d3">DESIGN 3</span>
+                  <span class="m-flagship-badge">✨ FLAGSHIP 2026 DESIGN</span>
+                  <h3 class="m-version-title">Dynamic Chromatic Aura &amp; Haptic Slider</h3>
+                </div>
+                <p class="m-version-desc">
+                  Arc &amp; Linear inspired frosted glassmorphism with dynamic ambient aura backplate, magnetic scrub track, and sentiment-adaptive feedback loop.
+                </p>
+              </div>
+
+              <!-- Centered Phone Frame Canvas (Phone 3) -->
+              <div class="mobile-device-canvas">
+                
+                <!-- Realistic iPhone 16 Pro Outer Frame (Design 3 with Chromatic Aura) -->
+                <div class="mobile-phone-frame phone-frame-d3">
+                  
+                  <!-- Hardware Notch / Dynamic Island & Status Bar -->
+                  <div class="m-status-bar">
+                    <div class="m-status-time">9:41</div>
+                    
+                    <div class="m-dynamic-island">
+                      <div class="m-camera-lens"></div>
+                      <div class="m-sensor-dot"></div>
+                    </div>
+
+                    <div class="m-status-icons">
+                      <!-- Cellular -->
+                      <svg width="15" height="12" viewBox="0 0 17 12" fill="#0F172A">
+                        <rect x="0" y="9" width="2.5" height="3" rx="0.8"/>
+                        <rect x="4" y="6" width="2.5" height="6" rx="0.8"/>
+                        <rect x="8" y="3" width="2.5" height="9" rx="0.8"/>
+                        <rect x="12" y="0" width="2.5" height="12" rx="0.8"/>
+                      </svg>
+                      <!-- Wi-Fi -->
+                      <svg width="15" height="12" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+                        <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+                        <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                        <line x1="12" y1="20" x2="12.01" y2="20"/>
+                      </svg>
+                      <!-- Battery -->
+                      <div class="m-battery-icon">
+                        <div class="m-battery-level"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Phone Screen Inner Scrollable Viewport (Design 3 Flagship) -->
+                  <div class="mobile-screen-scroll screen-d3">
+                    
+                    <!-- Screen Top Nav & Branding -->
+                    <div class="m-screen-header">
+                      <div class="m-header-left">
+                        <!-- Back Chevron Button -->
+                        <button type="button" class="m-back-btn m3-glass-btn" onclick="mobilePrevQuestion3()" title="Back">
+                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                          </svg>
+                        </button>
+
+                        <!-- Authentic Noisiv Square Brand Emblem -->
+                        <div class="m-noisiv-brand-logo" title="Noisiv Consulting">
+                          <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+                            <rect width="44" height="44" rx="10" fill="#09090B"/>
+                            <path d="M11 11V33H17.5V20.5L26.5 33H33V11H26.5V23.5L17.5 11H11Z" fill="url(#noisivGrad3)"/>
+                            <defs>
+                              <linearGradient id="noisivGrad3" x1="11" y1="11" x2="33" y2="33" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#FFFFFF"/>
+                                <stop offset="0.6" stop-color="#EDE9FE"/>
+                                <stop offset="1" stop-color="#A78BFA"/>
+                              </linearGradient>
+                            </defs>
+                          </svg>
+                        </div>
+                      </div>
+
+                      <!-- Right Metadata Badges Stack -->
+                      <div class="m-badges-col">
+                        <div class="m-badge-pill m-badge-time">
+                          <span class="m-badge-emoji">⏰</span>
+                          <span>Less than 2 minutes</span>
+                        </div>
+                        <div class="m-badge-pill m-badge-named">
+                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                          <span>Named Survey</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Creator Line with Avatar Monogram -->
+                    <div class="m-creator-row">
+                      <span>Created by:</span>
+                      <span style="display: inline-flex; align-items: center; gap: 5px;">
+                        <span class="m3-creator-avatar">CS</span>
+                        <strong class="m-creator-name">Chanchal Sharma</strong>
+                      </span>
+                    </div>
+
+                    <!-- Stepper Label & Dynamic Luminous Progress Bar -->
+                    <div class="m-stepper-box">
+                      <div class="m-stepper-label" style="display: flex; justify-content: space-between; align-items: center;">
+                        <span>Question <strong id="m3StepCurrentNumber">1</strong> of 2</span>
+                        <span style="font-size: 11px; font-weight: 700; color: #7C3AED; background: #F5F3FF; padding: 2px 8px; border-radius: 6px; border: 1px solid #DDD6FE;" id="m3StepTopicBadge">Motivation Level</span>
+                      </div>
+                      <div class="m3-stepper-track">
+                        <div class="m3-stepper-fill" id="m3ProgressBarFill" style="width: 50%;"></div>
+                      </div>
+                    </div>
+
+                    <!-- Question 1 View: Dynamic Chromatic Aura & Continuous Haptic Track -->
+                    <div id="m3Question1View" class="m-survey-step-view active">
+                      
+                      <!-- Survey Glass Card with Dynamic Chromatic Halo -->
+                      <div class="m-survey-white-card m3-card-glass" id="m3CardContainer">
+                        
+                        <!-- Ambient Chromatic Aura Backlight -->
+                        <div class="m3-chromatic-halo" id="m3ChromaticHalo"></div>
+
+                        <!-- Card Title -->
+                        <h3 class="m-card-title">Employee Engagement Survey - 2026-10-13</h3>
+
+                        <!-- Accordion: Purpose of this survey -->
+                        <div class="m-purpose-accordion">
+                          <button type="button" class="m-purpose-toggle" onclick="toggleMobilePurpose3()" aria-expanded="false" id="m3PurposeToggleBtn">
+                            <span>Purpose of this survey</span>
+                            <svg class="m-purpose-chevron" id="m3PurposeChevron" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                              <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                          </button>
+                          <div class="m-purpose-dropdown" id="m3PurposeDropdown" style="display: none;">
+                            <p>We run this short 2-minute pulse survey bi-weekly to gauge workplace engagement, identify blockers early, and help leadership take immediate action to support your well-being and growth.</p>
+                          </div>
+                        </div>
+
+                        <!-- Question Headline -->
+                        <h2 class="m-question-headline">
+                          On a scale of 1 to 5, how motivated are you at work?
+                        </h2>
+
+                        <!-- Showstopper Rating Component: Dynamic Chromatic Aura Beacon -->
+                        <div class="m3-sentiment-beacon" id="m3SentimentBeacon">
+                          <span class="m3-sentiment-icon" id="m3SentimentIcon">⚡</span>
+                          <span class="m3-sentiment-text" id="m3SentimentText">5 · Peak Motivation — Energized, focused &amp; unstoppable!</span>
+                        </div>
+
+                        <!-- Showstopper Rating Component: Ergonomic Radial Track with Haptic Nodes -->
+                        <div class="m-rating-archetype-container">
+                          <div class="m3-haptic-track" id="m3HapticTrack">
+                            <button type="button" class="m3-haptic-node" data-score="1" onclick="selectMobileScore3(1)" aria-label="Score 1 Exhausted">
+                              <span class="m3-node-pip">1</span>
+                              <span class="m3-node-subtag">Exhausted</span>
+                            </button>
+                            <button type="button" class="m3-haptic-node" data-score="2" onclick="selectMobileScore3(2)" aria-label="Score 2 Struggling">
+                              <span class="m3-node-pip">2</span>
+                              <span class="m3-node-subtag">Low</span>
+                            </button>
+                            <button type="button" class="m3-haptic-node" data-score="3" onclick="selectMobileScore3(3)" aria-label="Score 3 Balanced">
+                              <span class="m3-node-pip">3</span>
+                              <span class="m3-node-subtag">Steady</span>
+                            </button>
+                            <button type="button" class="m3-haptic-node" data-score="4" onclick="selectMobileScore3(4)" aria-label="Score 4 Motivated">
+                              <span class="m3-node-pip">4</span>
+                              <span class="m3-node-subtag">Strong</span>
+                            </button>
+                            <button type="button" class="m3-haptic-node active" data-score="5" onclick="selectMobileScore3(5)" aria-label="Score 5 Peak Flow">
+                              <span class="m3-node-pip">5</span>
+                              <span class="m3-node-subtag">Peak</span>
+                            </button>
+                          </div>
+
+                          <!-- Polarity Anchors with Dual-Tone Glow Dots -->
+                          <div class="m-scale-anchors">
+                            <span class="m-anchor-low"><span class="m3-anchor-dot dot-low"></span> 1 Exhausted / Low</span>
+                            <span class="m-anchor-high">Peak Energy 5 <span class="m3-anchor-dot dot-high"></span></span>
+                          </div>
+                        </div>
+
+                        <!-- Dynamic Contextual Catalyst Micro-Chips (Micro-Interaction) -->
+                        <div class="m3-catalysts-box" id="m3CatalystsBox">
+                          <div class="m3-catalyst-header">
+                            <span class="m3-catalyst-prompt" id="m3CatalystPrompt">What's fueling your momentum?</span>
+                            <span class="m3-catalyst-optional">Tap to tag (optional)</span>
+                          </div>
+                          <div class="m3-catalyst-chips" id="m3CatalystChips">
+                            <!-- Populated dynamically via JS -->
+                          </div>
+                        </div>
+
+                        <!-- Subtext Helper -->
+                        <div class="m-helper-subtext" style="margin-top: 14px;">
+                          Select an option that best describes your feeling
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <!-- Question 2 View: Constructive Feedback & Contextual Chips -->
+                    <div id="m3Question2View" class="m-survey-step-view" style="display: none;">
+                      <div class="m-survey-white-card m3-card-glass">
+                        <h3 class="m-card-title">Employee Engagement Survey - 2026-10-13</h3>
+                        
+                        <h2 class="m-question-headline">
+                          What is one thing that could improve your day-to-day work experience?
+                        </h2>
+                        
+                        <p style="font-size: 13px; color: #64748B; margin-bottom: 14px; line-height: 1.45;">
+                          Leadership reviews every pulse response to remove blockers and allocate resources.
+                        </p>
+
+                        <!-- Quick Suggestion Topic Chips -->
+                        <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 12px;">
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic3('Clearer weekly priorities')">💡 Clearer priorities</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic3('Faster tool and software approvals')">⚙️ Faster tooling</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic3('More flexible core hours')">🌴 Flexible schedule</button>
+                          <button type="button" class="m-driver-chip" onclick="addQuickTopic3('Recognition for extra effort')">🏆 Recognition</button>
+                        </div>
+
+                        <!-- Feedback Textarea -->
+                        <div class="m-textarea-wrap">
+                          <textarea id="m3FeedbackText" class="m-feedback-input" placeholder="Share your suggestions, blockers, or encouragement for the team..." rows="4" oninput="updateCharCount3(this)"></textarea>
+                          <div class="m-char-counter"><span id="m3CharCount">0</span> / 300</div>
+                        </div>
+
+                        <div class="m-confidential-lock">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                          <span>Responses are visible only to your HR Admin & General Manager.</span>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <!-- Celebration View -->
+                    <div id="m3CelebrationView" class="m-survey-step-view" style="display: none;">
+                      <div class="m-survey-white-card m3-card-glass" style="text-align: center; padding: 32px 20px;">
+                        <div class="m-celebrate-badge">🎉</div>
+                        <h2 style="font-size: 22px; font-weight: 800; color: #0F172A; margin: 12px 0 6px 0;">
+                          Thank you, Chanchal!
+                        </h2>
+                        <p style="font-size: 13.5px; color: #64748B; line-height: 1.5; margin-bottom: 20px;">
+                          Your response has been securely recorded. Leadership appreciates your honest feedback!
+                        </p>
+
+                        <div class="m-summary-recap">
+                          <div class="m-recap-row">
+                            <span class="m-recap-lbl">Motivation Rating</span>
+                            <strong class="m-recap-val" id="m3RecapScore">Score 5 of 5 (5 · Peak Motivation)</strong>
+                          </div>
+                          <div class="m-recap-row" id="m3RecapCatalystsRow">
+                            <span class="m-recap-lbl">Tagged Drivers</span>
+                            <strong class="m-recap-val" id="m3RecapCatalysts">Creative Freedom, Inspiring Mission</strong>
+                          </div>
+                          <div class="m-recap-row">
+                            <span class="m-recap-lbl">Survey Policy</span>
+                            <strong class="m-recap-val">🔒 Named Survey · Verified</strong>
+                          </div>
+                        </div>
+
+                        <button type="button" class="btn-create-pulse" onclick="resetMobileSurvey3()" style="width: 100%; justify-content: center; margin-top: 18px; padding: 12px;">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                          Retake Mobile Survey
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- Bottom Navigation Actions Row -->
+                    <div class="m-bottom-nav-row" id="m3BottomNavRow">
+                      <button type="button" class="m-nav-prev-btn" id="m3BtnPrev" onclick="mobilePrevQuestion3()" disabled>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                        <span>Previous</span>
+                      </button>
+
+                      <button type="button" class="m-nav-next-btn" id="m3BtnNext" onclick="mobileNextQuestion3()">
+                        <span id="m3BtnNextText">Next Question</span>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                       </button>
                     </div>
@@ -4292,7 +4858,7 @@
           overlay.style.display = 'none';
         }
         closePulseModal();
-        showToast('📱 Switched to View 2: Mobile Survey Experience (Design 1 & Design 2)');
+        showToast('📱 Switched to View 2: Mobile Survey Experience (Designs 1, 2 & 3)');
       } else {
         // Switch to View 1 (Desktop Form)
         if (v1) v1.style.display = 'block';
@@ -4601,6 +5167,274 @@
       showToast('↺ Design 2 reset to Question 1');
     }
 
+
+    // ==========================================
+    // DESIGN 3 (PHONE 3) CONTROLLERS (FLAGSHIP)
+    // ==========================================
+    let currentMobileStep3 = 1;
+    let selectedMobileScore3 = 5;
+    let selectedMobileCatalysts3 = new Set(['Creative Freedom', 'Inspiring Mission']);
+
+    const sentimentData3 = {
+      1: { 
+        icon: '🔥', 
+        text: '1 · Exhausted & Overwhelmed — Heavy blockers present', 
+        bg: '#FEF2F2', 
+        border: '#FECACA', 
+        color: '#DC2626', 
+        halo: 'rgba(239, 68, 68, 0.25)',
+        prompt: "What's the primary blocker you're facing?",
+        catalysts: ['Workload Volume', 'Unclear Direction', 'Tooling Friction', 'Lack of Support']
+      },
+      2: { 
+        icon: '🌧️', 
+        text: '2 · Struggling / Low Energy — Needs clearer priorities', 
+        bg: '#FFF7ED', 
+        border: '#FED7AA', 
+        color: '#EA580C', 
+        halo: 'rgba(234, 88, 12, 0.25)',
+        prompt: "What's holding you back right now?",
+        catalysts: ['Meeting Overload', 'Delayed Feedback', 'Process Friction', 'Energy Drain']
+      },
+      3: { 
+        icon: '⚖️', 
+        text: '3 · Balanced / Neutral — Steady pace, room to grow', 
+        bg: '#FEFCE8', 
+        border: '#FEF08A', 
+        color: '#CA8A04', 
+        halo: 'rgba(202, 138, 4, 0.22)',
+        prompt: "What would help elevate your rhythm?",
+        catalysts: ['Clearer Priorities', 'More Focus Time', 'Skill Growth', 'Better Tools']
+      },
+      4: { 
+        icon: '🌱', 
+        text: '4 · Motivated & Engaged — Strong team momentum', 
+        bg: '#F0FDF4', 
+        border: '#BBF7D0', 
+        color: '#16A34A', 
+        halo: 'rgba(22, 163, 74, 0.25)',
+        prompt: "What's fueling your momentum?",
+        catalysts: ['Clear Goals', 'Team Support', 'High Autonomy', 'Great Leadership']
+      },
+      5: { 
+        icon: '⚡', 
+        text: '5 · Peak Motivation — Energized, focused & unstoppable!', 
+        bg: '#FAF5FF', 
+        border: '#DDD6FE', 
+        color: '#6D28D9', 
+        halo: 'rgba(124, 58, 237, 0.3)',
+        prompt: "What's driving your peak performance?",
+        catalysts: ['Creative Freedom', 'Inspiring Mission', 'High Recognition', 'Dream Team']
+      }
+    };
+
+    function toggleMobilePurpose3() {
+      const dropdown = document.getElementById('m3PurposeDropdown');
+      const chevron = document.getElementById('m3PurposeChevron');
+      const btn = document.getElementById('m3PurposeToggleBtn');
+      if (!dropdown) return;
+
+      const isOpen = dropdown.style.display !== 'none';
+      if (isOpen) {
+        dropdown.style.display = 'none';
+        if (chevron) chevron.classList.remove('expanded');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      } else {
+        dropdown.style.display = 'block';
+        if (chevron) chevron.classList.add('expanded');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    function selectMobileScore3(score) {
+      selectedMobileScore3 = score;
+      
+      const phone3 = document.getElementById('mSectionDesign3');
+      if (phone3) {
+        phone3.querySelectorAll('.m3-haptic-node').forEach(btn => {
+          const val = parseInt(btn.getAttribute('data-score'), 10);
+          btn.classList.toggle('active', val === score);
+        });
+      }
+
+      // Update dynamic chromatic aura beacon
+      const data = sentimentData3[score] || sentimentData3[5];
+      const beacon = document.getElementById('m3SentimentBeacon');
+      const icon = document.getElementById('m3SentimentIcon');
+      const text = document.getElementById('m3SentimentText');
+      const halo = document.getElementById('m3ChromaticHalo');
+
+      if (beacon && data) {
+        beacon.style.backgroundColor = data.bg;
+        beacon.style.borderColor = data.border;
+        beacon.style.color = data.color;
+      }
+      if (icon && data) icon.textContent = data.icon;
+      if (text && data) text.textContent = data.text;
+      if (halo && data) {
+        halo.style.background = `radial-gradient(circle, ${data.halo} 0%, transparent 70%)`;
+      }
+
+      // Update dynamic catalysts
+      renderMobileCatalysts3(score);
+
+      // Update Recap in Celebration View
+      const recap = document.getElementById('m3RecapScore');
+      if (recap) recap.textContent = `Score ${score} of 5 (${data.text.split('—')[0].trim()})`;
+      updateRecapCatalystsDisplay3();
+
+      // Enable Next button
+      const nextBtn = document.getElementById('m3BtnPrev');
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function renderMobileCatalysts3(score) {
+      const data = sentimentData3[score] || sentimentData3[5];
+      const promptEl = document.getElementById('m3CatalystPrompt');
+      const chipsEl = document.getElementById('m3CatalystChips');
+      if (!chipsEl || !data) return;
+
+      if (promptEl) promptEl.textContent = data.prompt;
+
+      chipsEl.innerHTML = '';
+      data.catalysts.forEach(cat => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'm3-catalyst-chip' + (selectedMobileCatalysts3.has(cat) ? ' active' : '');
+        chip.textContent = cat;
+        chip.onclick = function() {
+          toggleMobileCatalyst3(chip, cat);
+        };
+        chipsEl.appendChild(chip);
+      });
+    }
+
+    function toggleMobileCatalyst3(chipEl, catalystName) {
+      if (selectedMobileCatalysts3.has(catalystName)) {
+        selectedMobileCatalysts3.delete(catalystName);
+        chipEl.classList.remove('active');
+      } else {
+        selectedMobileCatalysts3.add(catalystName);
+        chipEl.classList.add('active');
+      }
+      updateRecapCatalystsDisplay3();
+    }
+
+    function updateRecapCatalystsDisplay3() {
+      const recapCat = document.getElementById('m3RecapCatalysts');
+      const recapRow = document.getElementById('m3RecapCatalystsRow');
+      if (!recapCat || !recapRow) return;
+
+      if (selectedMobileCatalysts3.size > 0) {
+        recapCat.textContent = Array.from(selectedMobileCatalysts3).join(', ');
+        recapRow.style.display = 'flex';
+      } else {
+        recapCat.textContent = 'None selected';
+      }
+    }
+
+    function mobileNextQuestion3() {
+      if (currentMobileStep3 === 1) {
+        currentMobileStep3 = 2;
+        updateMobileStepView3();
+      } else if (currentMobileStep3 === 2) {
+        currentMobileStep3 = 3; // Celebration
+        updateMobileStepView3();
+        showToast('🎉 Design 3 response submitted successfully!');
+      }
+    }
+
+    function mobilePrevQuestion3() {
+      if (currentMobileStep3 === 2) {
+        currentMobileStep3 = 1;
+        updateMobileStepView3();
+      } else if (currentMobileStep3 === 3) {
+        currentMobileStep3 = 2;
+        updateMobileStepView3();
+      } else {
+        showToast('First question reached');
+      }
+    }
+
+    function updateMobileStepView3() {
+      const q1 = document.getElementById('m3Question1View');
+      const q2 = document.getElementById('m3Question2View');
+      const celeb = document.getElementById('m3CelebrationView');
+      const prevBtn = document.getElementById('m3BtnPrev');
+      const nextBtnText = document.getElementById('m3BtnNextText');
+      const bottomNav = document.getElementById('m3BottomNavRow');
+      const stepNum = document.getElementById('m3StepCurrentNumber');
+      const fillBar = document.getElementById('m3ProgressBarFill');
+      const topicBadge = document.getElementById('m3StepTopicBadge');
+
+      if (currentMobileStep3 === 1) {
+        if (q1) q1.style.display = 'block';
+        if (q2) q2.style.display = 'none';
+        if (celeb) celeb.style.display = 'none';
+        if (prevBtn) prevBtn.disabled = true;
+        if (nextBtnText) nextBtnText.textContent = 'Next Question';
+        if (bottomNav) bottomNav.style.display = 'flex';
+        if (stepNum) stepNum.textContent = '1';
+        if (fillBar) fillBar.style.width = '50%';
+        if (topicBadge) topicBadge.textContent = 'Motivation Level';
+      } else if (currentMobileStep3 === 2) {
+        if (q1) q1.style.display = 'none';
+        if (q2) q2.style.display = 'block';
+        if (celeb) celeb.style.display = 'none';
+        if (prevBtn) prevBtn.disabled = false;
+        if (nextBtnText) nextBtnText.textContent = 'Submit Survey';
+        if (bottomNav) bottomNav.style.display = 'flex';
+        if (stepNum) stepNum.textContent = '2';
+        if (fillBar) fillBar.style.width = '100%';
+        if (topicBadge) topicBadge.textContent = 'Feedback & Ideas';
+      } else if (currentMobileStep3 === 3) {
+        if (q1) q1.style.display = 'none';
+        if (q2) q2.style.display = 'none';
+        if (celeb) celeb.style.display = 'block';
+        if (bottomNav) bottomNav.style.display = 'none';
+        if (stepNum) stepNum.textContent = '2';
+        if (fillBar) fillBar.style.width = '100%';
+        if (topicBadge) topicBadge.textContent = 'Completed';
+      }
+    }
+
+    function addQuickTopic3(topic) {
+      const txt = document.getElementById('m3FeedbackText');
+      if (!txt) return;
+      if (txt.value.trim().length > 0) {
+        txt.value = txt.value.trim() + ' • ' + topic;
+      } else {
+        txt.value = topic;
+      }
+      updateCharCount3(txt);
+    }
+
+    function updateCharCount3(el) {
+      const countEl = document.getElementById('m3CharCount');
+      if (countEl && el) {
+        countEl.textContent = el.value.length;
+      }
+    }
+
+    function resetMobileSurvey3() {
+      currentMobileStep3 = 1;
+      selectedMobileScore3 = 5;
+      selectedMobileCatalysts3 = new Set(['Creative Freedom', 'Inspiring Mission']);
+      selectMobileScore3(5);
+      const txt = document.getElementById('m3FeedbackText');
+      if (txt) txt.value = '';
+      updateCharCount3(txt);
+      updateMobileStepView3();
+      showToast('↺ Design 3 reset to Question 1');
+    }
+
+    function resetAllThreeSurveys() {
+      resetMobileSurvey1();
+      resetMobileSurvey2();
+      resetMobileSurvey3();
+      showToast('↺ All 3 mobile survey designs reset to Question 1');
+    }
+
     function resetBothSurveys() {
       resetMobileSurvey1();
       resetMobileSurvey2();
@@ -4612,11 +5446,19 @@
     window.mobileNextQuestion = mobileNextQuestion1;
     window.mobilePrevQuestion = mobilePrevQuestion1;
     window.toggleMobilePurpose = toggleMobilePurpose1;
-    window.resetMobileSurvey = resetBothSurveys;
+    window.resetMobileSurvey = resetAllThreeSurveys;
 
-    // Auto-check URL hash or query param for View 2
+    // Auto-check URL hash or query param for View 2 & View 3
     function checkInitialViewMode() {
-      if (window.location.hash.startsWith('#view2') || window.location.hash.startsWith('#mSection') || window.location.search.includes('view=2')) {
+      if (typeof renderMobileCatalysts3 === 'function') {
+        renderMobileCatalysts3(selectedMobileScore3);
+      }
+      if (window.location.hash.startsWith('#view3') || window.location.hash.startsWith('#mSectionDesign3')) {
+        switchPulseView('view2');
+        setTimeout(() => {
+          scrollToMobileDesign('mSectionDesign3');
+        }, 150);
+      } else if (window.location.hash.startsWith('#view2') || window.location.hash.startsWith('#mSection') || window.location.search.includes('view=2')) {
         switchPulseView('view2');
       }
     }
