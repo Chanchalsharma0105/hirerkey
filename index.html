@@ -433,6 +433,10 @@
         <span>📝 Pulse Survey</span>
         <span class="tab-badge">Screen 1</span>
       </button>
+      <button class="nav-tab-btn" id="tab-preferences" onclick="loadView('preferences')">
+        <span>⚙️ Preferences</span>
+        <span class="tab-badge">2 Views</span>
+      </button>
     </nav>
 
     <!-- Header Right Controls -->
@@ -623,6 +627,31 @@
           </div>
         </div>
 
+        <!-- 6. User Preferences -->
+        <div class="view-card">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill">SELECTED: 2 DESIGN VIEWS</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/preferences.html</span>
+            </div>
+            <div class="card-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            </div>
+            <h2 class="card-title">User Preferences</h2>
+            <p class="card-desc">Comprehensive user preferences with 4 categories (Appearance, Workspace, Ask HyIQ, Keyboard Shortcuts), interactive segmented controls, realistic keycaps, and auto-save pulse.</p>
+            <ul class="card-features">
+              <li>View 1: Floating Capsule Dock with smooth flyout &amp; Centered Card</li>
+              <li>View 2: Split Master-Detail Rail with modern icon categories</li>
+              <li>Realistic Mac/PC keycaps &amp; live Auto-save pulse</li>
+              <li>Instant Side-by-side comparison mode</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('preferences')">Launch in Viewer</button>
+            <a href="views/preferences.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -652,6 +681,10 @@
       'pulse-survey': {
         name: 'Pulse Survey (Screen 1)',
         url: 'views/pulse_survey.html'
+      },
+      'preferences': {
+        name: 'User Preferences (View 1 & View 2)',
+        url: 'views/preferences.html'
       }
     };
 
@@ -716,6 +749,7 @@
       if (e.key === 'w' || e.key === 'W') loadView('broadcast-v3');
       if (e.key === '4') loadView('offboarding');
       if (e.key === '5') loadView('pulse-survey');
+      if (e.key === '6') loadView('preferences');
       if (e.key === 'g' || e.key === 'G') toggleGridMode();
     });
 
