@@ -4139,18 +4139,20 @@
     }
 
     /* ==========================================================================
-       VIEW 3: INSPIRATION BROADCAST WIDGET (MATCHING media_1791819237244.png)
-       - Faithful reproduction of media_1791819237244.png
-       - Opted out: High Priority chip & 3D speaker image on the right
+       VIEW 3: EMPLOYEE BROADCAST MOBILE VIEW (IPHONE 16 PRO)
+       - Strictly View-Only & Like Access for Employees
+       - Zero Creation, Editing, or Management Controls
+       - Design 1: Immersive Announcement Reader (Single Broadcast Focus)
+       - Design 2: Mobile Broadcast Feed Stream (Timeline & In-Feed Like)
        ========================================================================== */
-    .v3-widget-view-wrap {
+    .v3-mobile-view-wrap {
       width: 100%;
-      padding: 24px 20px 100px 20px;
+      padding: 20px 20px 100px 20px;
       animation: fadeInFast 0.22s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 36px;
+      gap: 32px;
       box-sizing: border-box;
       height: auto;
       min-height: 100%;
@@ -4158,30 +4160,37 @@
     }
 
     /* Jump Pills Navigation */
-    .widget-jump-bar {
+    .mobile-jump-bar {
       width: 100%;
-      max-width: 760px;
+      max-width: 820px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 18px;
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-      margin-bottom: -10px;
       box-sizing: border-box;
       flex-wrap: wrap;
     }
 
-    .widget-jump-label {
+    .mobile-jump-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mobile-jump-label {
       font-size: 11px;
       font-weight: 700;
       color: #94A3B8;
       letter-spacing: 0.05em;
     }
 
-    .widget-jump-pill {
+    .mobile-jump-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -4197,49 +4206,141 @@
       transition: all 0.15s ease;
     }
 
-    .widget-jump-pill:hover {
+    .mobile-jump-pill:hover {
       background: #F1F5F9;
       color: #0F172A;
       border-color: #CBD5E1;
     }
 
-    .widget-jump-pill.active {
+    .mobile-jump-pill.active {
       background: #EDE9FE;
       color: #6D28D9;
       border-color: #C4B5FD;
     }
 
-    .jump-pill-pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #7C3AED;
-      display: inline-block;
+    .mobile-jump-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    /* ==========================================================================
-       WIDGET COMPARISON SECTION HEADINGS
-       ========================================================================== */
-    .widget-section-divider {
+    .mobile-policy-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #047857;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* Section Banner */
+    .mobile-hero-banner {
       width: 100%;
-      max-width: 760px;
+      max-width: 820px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
+      padding: 22px 28px;
+      box-shadow: 0 4px 20px -4px rgba(15, 23, 42, 0.05);
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
+      gap: 12px;
+    }
+
+    .mobile-hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .mobile-hero-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #6D28D9;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mobile-hero-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0F172A;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .mobile-hero-desc {
+      font-size: 13.5px;
+      color: #64748B;
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .mobile-policy-pills-row {
+      display: flex;
+      align-items: center;
       gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .mobile-pill-rule {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .mobile-pill-rule.allow {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      color: #166534;
+    }
+
+    .mobile-pill-rule.deny {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #991B1B;
+    }
+
+    /* Section Divider Header */
+    .mobile-section-header {
+      width: 100%;
+      max-width: 820px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
       padding-bottom: 12px;
       border-bottom: 1px dashed rgba(203, 213, 225, 0.85);
       box-sizing: border-box;
       scroll-margin-top: 24px;
     }
 
-    .widget-section-tag-row {
+    .mobile-section-tag-row {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    .widget-version-pill {
+    .mobile-version-tag {
       font-family: var(--font-mono);
       font-size: 11px;
       font-weight: 700;
@@ -4249,30 +4350,19 @@
       text-transform: uppercase;
     }
 
-    .widget-version-pill.pill-design1 {
-      background: #F1F5F9;
-      color: #475569;
-      border: 1px solid #CBD5E1;
-    }
-
-    .widget-version-pill.pill-design2 {
+    .mobile-version-tag.tag-d1 {
       background: #EDE9FE;
       color: #6D28D9;
       border: 1px solid #DDD6FE;
     }
 
-    .widget-recommended-badge {
-      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
-      color: #FFFFFF;
-      font-size: 10.5px;
-      font-weight: 700;
-      padding: 2.5px 8.5px;
-      border-radius: 9999px;
-      letter-spacing: 0.03em;
-      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+    .mobile-version-tag.tag-d2 {
+      background: #F0FDF4;
+      color: #15803D;
+      border: 1px solid #BBF7D0;
     }
 
-    .widget-version-title {
+    .mobile-version-title {
       font-size: 17px;
       font-weight: 700;
       color: #0F172A;
@@ -4280,7 +4370,7 @@
       letter-spacing: -0.015em;
     }
 
-    .widget-version-desc {
+    .mobile-version-desc {
       font-size: 13px;
       color: #64748B;
       margin: 0;
@@ -4288,1285 +4378,1016 @@
     }
 
     /* ==========================================================================
-       DESIGN 1: SPOTLIGHT CARD (CLASSIC)
+       IPHONE 16 PRO HARDWARE CHASSIS
        ========================================================================== */
-    .v3-outer-card {
+    .mobile-phone-canvas {
+      display: flex;
+      justify-content: center;
       width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-      background: #FFFFFF;
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      border-radius: 28px;
-      padding: 30px 34px 34px 34px;
-      box-shadow: 0 20px 48px -12px rgba(124, 58, 237, 0.08), 0 4px 16px -2px rgba(15, 23, 42, 0.03);
-      box-sizing: border-box;
-      transition: all 0.22s ease;
+      padding: 8px 0 24px 0;
     }
 
-    .v3-outer-card:hover {
-      box-shadow: 0 24px 54px -10px rgba(124, 58, 237, 0.11), 0 6px 18px rgba(15, 23, 42, 0.04);
-    }
-
-    /* ==========================================================================
-       DESIGN 2: EXECUTIVE SPOTLIGHT BENTO WIDGET
-       ========================================================================== */
-    .v2w-outer-card {
-      width: 100%;
-      max-width: 760px;
-      margin: 0 auto;
-      background: #FFFFFF;
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      border-radius: 24px;
-      padding: 0;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 16px 38px -6px rgba(124, 58, 237, 0.08), 0 4px 14px -2px rgba(15, 23, 42, 0.03);
-      box-sizing: border-box;
-      overflow: hidden;
+    .mobile-phone-frame {
+      width: 410px;
+      max-width: 100%;
+      background: #0B0F19;
+      border-radius: 52px;
+      padding: 12px;
+      box-shadow: 0 32px 84px -16px rgba(15, 23, 42, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.14), inset 0 0 0 2px #334155;
       position: relative;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+      user-select: none;
     }
 
-    .v2w-outer-card:hover {
-      border-color: rgba(196, 181, 253, 0.85);
-      box-shadow: 0 22px 52px -10px rgba(124, 58, 237, 0.13), 0 6px 20px rgba(15, 23, 42, 0.05);
-      transform: translateY(-2px);
-    }
-
-    /* Top Gradient Accent Line (Removed per design feedback) */
-    .v2w-accent-stripe {
-      display: none;
-    }
-
-    /* Widget Header */
-    .v2w-topbar {
+    /* Phone Status Bar */
+    .m-status-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 22px 28px 18px 28px;
-      border-bottom: 1px solid #F1F5F9;
-      gap: 16px;
-      box-sizing: border-box;
+      padding: 8px 20px 4px 20px;
+      background: #FFFFFF;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      position: relative;
+      z-index: 20;
+      border-bottom: 1px solid #F8FAFC;
     }
 
-    .v2w-topbar-left {
+    .m-status-time {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+      width: 54px;
+    }
+
+    .m-dynamic-island {
+      width: 108px;
+      height: 26px;
+      background: #000000;
+      border-radius: 100px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      justify-content: flex-end;
+      padding-right: 12px;
+      gap: 7px;
     }
 
-    .v2w-icon-squircle {
-      width: 44px;
-      height: 44px;
-      border-radius: 13px;
-      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+    .m-camera-lens {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #111827;
+      box-shadow: inset 0 0 2px #374151;
+    }
+
+    .m-sensor-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #1E293B;
+    }
+
+    .m-status-icons {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 54px;
+      justify-content: flex-end;
+    }
+
+    .m-battery-icon {
+      width: 20px;
+      height: 10px;
+      border: 1.5px solid #0F172A;
+      border-radius: 3px;
+      padding: 1px;
+      position: relative;
+    }
+
+    .m-battery-icon::after {
+      content: '';
+      position: absolute;
+      right: -3px;
+      top: 2px;
+      width: 1.5px;
+      height: 3.5px;
+      background: #0F172A;
+      border-radius: 0 1px 1px 0;
+    }
+
+    .m-battery-level {
+      width: 100%;
+      height: 100%;
+      background: #0F172A;
+      border-radius: 1px;
+    }
+
+    /* Screen Viewport */
+    .mobile-screen-scroll {
+      background: #FAFAFD;
+      border-bottom-left-radius: 40px;
+      border-bottom-right-radius: 40px;
+      padding: 0 0 14px 0;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      height: 720px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+    }
+
+    .mobile-screen-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .mobile-screen-scroll::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.3);
+      border-radius: 4px;
+    }
+
+    /* Mobile Top App Bar */
+    .mb-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #F1F5F9;
+      position: sticky;
+      top: 0;
+      z-index: 15;
+    }
+
+    .mb-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mb-back-btn {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      background: transparent;
+      border: none;
+      color: #64748B;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .mb-brand-monogram {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: #0F172A;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.28);
-    }
-
-    .v2w-title-stack {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .v2w-title-row {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .v2w-title {
-      font-size: 19px;
+      color: #A78BFA;
       font-weight: 800;
+      font-size: 12px;
+    }
+
+    .mb-app-title {
+      font-size: 14px;
+      font-weight: 700;
       color: #0F172A;
       margin: 0;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
     }
 
-    .v2w-category-chip {
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #7C3AED;
-      background: #F3EEFF;
-      border: 1px solid #EDE9FE;
-      padding: 2px 7px;
-      border-radius: 5px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .v2w-subtitle {
-      font-size: 13px;
-      color: #64748B;
-      margin: 2px 0 0 0;
-    }
-
-    .v2w-topbar-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    /* Live Broadcast Pulse Badge */
-    .v2w-live-pulse-badge {
+    .mb-readonly-badge {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      background: #FEF2F2;
-      border: 1px solid #FEE2E2;
-      padding: 5px 11px;
-      border-radius: 9999px;
-      box-shadow: 0 1px 3px rgba(239, 68, 68, 0.08);
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #6D28D9;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      padding: 3px 8px;
+      border-radius: 20px;
+      letter-spacing: 0.02em;
     }
 
-    .v2w-pulse-radar {
+    /* Horizontal Broadcast Selector Inside Mobile Phone */
+    .mb-broadcast-selector-row {
+      display: flex;
+      gap: 6px;
+      padding: 10px 14px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #F1F5F9;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .mb-broadcast-selector-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mb-selector-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .mb-selector-pill:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .mb-selector-pill.active {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border-color: #C4B5FD;
+      font-weight: 700;
+    }
+
+    .mb-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .mb-pill-dot.red { background: #EF4444; }
+    .mb-pill-dot.blue { background: #3B82F6; }
+    .mb-pill-dot.purple { background: #8B5CF6; }
+
+    /* Mobile Reader Content */
+    .mb-reader-content {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-sizing: border-box;
+    }
+
+    .mb-priority-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .mb-priority-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .mb-priority-chip.high {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #DC2626;
+    }
+
+    .mb-priority-chip.general {
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      color: #7C3AED;
+    }
+
+    .mb-beacon-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: #EF4444;
-      box-shadow: 0 0 0 rgba(239, 68, 68, 0.5);
-      animation: v2wPulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+      animation: pulseRed 1.8s infinite;
     }
 
-    @keyframes v2wPulse {
+    @keyframes pulseRed {
       0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
-      70% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
+      70% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
       100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
     }
 
-    .v2w-live-label {
+    .mb-audience-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
       font-size: 11px;
-      font-weight: 700;
-      color: #DC2626;
-      letter-spacing: 0.04em;
-    }
-
-    .v2w-priority-tag {
-      font-size: 9.5px;
-      font-weight: 800;
-      color: #FFFFFF;
-      background: #EF4444;
-      padding: 1px 5px;
-      border-radius: 4px;
-    }
-
-    .v2w-options-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      border: 1px solid #E2E8F0;
-      background: #F8FAFC;
+      font-weight: 600;
       color: #64748B;
+      background: #F1F5F9;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .mb-announcement-headline {
+      font-size: 18.5px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.35;
+      margin: 0;
+      letter-spacing: -0.015em;
+    }
+
+    /* Executive Author Card Mobile */
+    .mb-author-card {
       display: flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .v2w-options-btn:hover {
+      gap: 10px;
+      padding: 10px 12px;
       background: #FFFFFF;
-      border-color: #CBD5E1;
-      color: #0F172A;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
     }
 
-    /* Bento Split Body */
-    .v2w-bento-body {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-      gap: 24px;
-      padding: 24px 28px 20px 28px;
-      box-sizing: border-box;
-      align-items: stretch;
+    .mb-author-avatar-wrap {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
     }
 
-    @media (max-width: 720px) {
-      .v2w-bento-body {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
+    .mb-author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #EDE9FE;
     }
 
-    /* Left Content Wing */
-    .v2w-content-wing {
-      min-width: 0;
+    .mb-author-online-dot {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 1.5px solid #FFFFFF;
+    }
+
+    .mb-author-info {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      gap: 12px;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
     }
 
-    .v2w-meta-line {
+    .mb-author-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mb-author-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mb-author-role-chip {
+      font-size: 10px;
+      font-weight: 600;
+      color: #6D28D9;
+      background: #EDE9FE;
+      padding: 1.5px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .mb-author-sub {
+      font-size: 11px;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mb-meta-date-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: #94A3B8;
+      font-weight: 500;
+    }
+
+    /* Body Text */
+    .mb-body-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #334155;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .mb-body-card p {
+      margin: 0 0 10px 0;
+    }
+    .mb-body-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Media Attachment Mobile Card */
+    .mb-attachment-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+    }
+
+    .mb-attachment-media-wrap {
+      width: 100%;
+      height: 160px;
+      background: #F1F5F9;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mb-attachment-media-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mb-attachment-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mb-attachment-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background: #FFFFFF;
+      gap: 10px;
+    }
+
+    .mb-att-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .mb-att-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mb-att-sub {
+      font-size: 11px;
+      color: #94A3B8;
+    }
+
+    .mb-att-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 10px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       ERGONOMIC THUMB ZONE: LIKE REACTION & SOCIAL BAR
+       ========================================================================== */
+    .mb-sticky-action-dock {
+      position: sticky;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid #E2E8F0;
+      border-radius: 20px 20px 38px 38px;
+      padding: 12px 16px 16px 16px;
+      box-shadow: 0 -8px 28px rgba(15, 23, 42, 0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 30;
+      margin: 16px -16px -14px -16px;
+    }
+
+    .mb-action-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* High-Impact Like Button */
+    .mb-like-pill-btn {
+      flex: 1;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      color: #475569;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .mb-like-pill-btn:hover {
+      border-color: #FECDD3;
+      background: #FFF1F2;
+      color: #E11D48;
+    }
+
+    .mb-like-pill-btn.liked {
+      background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+      border-color: #EF4444;
+      color: #FFFFFF !important;
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.35);
+      transform: scale(1.02);
+    }
+
+    .mb-like-heart-icon {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .mb-like-pill-btn.liked .mb-like-heart-icon {
+      fill: #FFFFFF;
+      stroke: #FFFFFF;
+      animation: heartBounce 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes heartBounce {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.4); }
+      75% { transform: scale(0.92); }
+      100% { transform: scale(1); }
+    }
+
+    .mb-like-count-badge {
+      padding: 2px 7px;
+      border-radius: 20px;
+      background: #F1F5F9;
+      color: #475569;
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .mb-like-pill-btn.liked .mb-like-count-badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    .mb-share-icon-btn {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #F8FAFC;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 12px;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .mb-share-icon-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    /* Social Proof Likers Row */
+    .mb-likers-social-row {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
+    }
+
+    .mb-avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .mb-stack-avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid #FFFFFF;
+      margin-left: -6px;
+      object-fit: cover;
+    }
+    .mb-stack-avatar:first-child {
+      margin-left: 0;
+    }
+
+    .mb-likers-text {
+      font-size: 11px;
       color: #64748B;
-    }
-
-    .v2w-meta-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
       font-weight: 500;
     }
 
-    .v2w-meta-dot {
-      color: #CBD5E1;
+    .mb-likers-text strong {
+      color: #0F172A;
+      font-weight: 700;
     }
 
-    .v2w-meta-audience {
-      display: inline-flex;
+    /* Read-Only Notice Tag */
+    .mb-notice-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      padding: 8px 10px;
+      background: #F8FAFC;
+      border: 1px dashed #CBD5E1;
+      border-radius: 8px;
+      font-size: 10.5px;
+      color: #64748B;
+      line-height: 1.4;
+    }
+
+    .mb-notice-icon {
+      color: #94A3B8;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* Home Indicator */
+    .m-home-bar-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 8px 0 2px 0;
+    }
+
+    .m-home-bar {
+      width: 130px;
+      height: 4.5px;
+      background: #0F172A;
+      border-radius: 100px;
+    }
+
+    /* ==========================================================================
+       DESIGN 2: MOBILE BROADCAST FEED STREAM
+       ========================================================================== */
+    .mb2-feed-header {
+      padding: 12px 16px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #F1F5F9;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mb2-search-box {
+      display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 8px;
+      padding: 7px 12px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+    }
+
+    .mb2-search-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 12.5px;
+      color: #0F172A;
+      width: 100%;
+      font-family: inherit;
+    }
+    .mb2-search-input::placeholder {
+      color: #94A3B8;
+    }
+
+    .mb2-filter-chips {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .mb2-filter-chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mb2-filter-chip {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
       background: #F1F5F9;
-      padding: 2px 7px;
-      border-radius: 6px;
+      border: 1px solid transparent;
       color: #475569;
-      font-size: 11.5px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .mb2-filter-chip.active {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border-color: #DDD6FE;
+      font-weight: 700;
+    }
+
+    .mb2-cards-feed {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mb2-feed-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mb2-feed-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+    .mb2-card-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .mb2-card-author-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mb2-card-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .mb2-card-author-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mb2-card-author-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+
+    .mb2-card-author-dept {
+      font-size: 10.5px;
+      color: #94A3B8;
+    }
+
+    .mb2-card-time {
+      font-size: 10.5px;
+      color: #94A3B8;
       font-weight: 500;
     }
 
-    .v2w-headline {
-      font-size: 20px;
+    .mb2-card-title {
+      font-size: 14.5px;
       font-weight: 800;
       color: #0F172A;
       margin: 0;
       line-height: 1.35;
-      letter-spacing: -0.02em;
-      cursor: pointer;
-      transition: color 0.15s ease;
     }
 
-    .v2w-headline:hover {
-      color: #7C3AED;
-    }
-
-    .v2w-excerpt {
-      font-size: 13.5px;
+    .mb2-card-snippet {
+      font-size: 12px;
       color: #475569;
-      line-height: 1.6;
+      line-height: 1.5;
       margin: 0;
-    }
-
-    /* Executive Author Island */
-    .v2w-author-island {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #FAF8FE;
-      border: 1px solid #EDE9FE;
-      border-radius: 12px;
-      padding: 10px 14px;
-      gap: 12px;
-      margin-top: 6px;
-    }
-
-    .v2w-author-left {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-    }
-
-    .v2w-author-avatar-wrap {
-      position: relative;
-      width: 38px;
-      height: 38px;
-      flex-shrink: 0;
-    }
-
-    .v2w-author-avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 1.5px solid #DDD6FE;
-    }
-
-    .v2w-verified-shield {
-      position: absolute;
-      bottom: -2px;
-      right: -2px;
-      width: 15px;
-      height: 15px;
-      border-radius: 50%;
-      background: #7C3AED;
-      border: 2px solid #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .v2w-author-details {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .v2w-author-name-row {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .v2w-author-name {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #0F172A;
-      line-height: 1.25;
-    }
-
-    .v2w-author-role-chip {
-      font-size: 11px;
-      font-weight: 600;
-      color: #7C3AED;
-      background: #EDE9FE;
-      padding: 1.5px 6px;
-      border-radius: 4px;
-      line-height: 1.2;
-    }
-
-    .v2w-author-dept {
-      font-size: 11.5px;
-      color: #64748B;
-      margin-top: 2px;
-    }
-
-    .v2w-author-badge {
-      display: none;
-    }
-
-    /* ==========================================================================
-       DESIGN 2: ATTACHMENT CAROUSEL & DRAWER
-       ========================================================================== */
-    .v2w-media-wing {
-      min-width: 0;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .v2w-attachment-frame {
-      background: #FFFFFF;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 16px;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-      transition: all 0.2s ease;
-    }
-
-    .v2w-attachment-frame:hover {
-      border-color: #CBD5E1;
-      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
-    }
-
-    .v2w-carousel-viewport {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .v2w-carousel-track {
-      display: flex;
-      width: 100%;
-      transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
-      will-change: transform;
-    }
-
-    .v2w-carousel-slide {
-      flex: 0 0 100%;
-      width: 100%;
-      min-width: 100%;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-    }
-
-    .v2w-media-window {
-      position: relative;
-      width: 100%;
-      height: 155px;
-      background: #F1F5F9;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
-    .v2w-media-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-
-    .v2w-attachment-frame:hover .v2w-media-img {
-      transform: scale(1.03);
-    }
-
-    .v2w-frosted-tag {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(15, 23, 42, 0.72);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: #FFFFFF;
-      font-size: 10.5px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      letter-spacing: 0.02em;
-      z-index: 2;
-    }
-
-    .v2w-carousel-top-actions {
-      position: absolute;
-      top: 10px;
-      right: 10px;
+    .mb2-card-attachment-preview {
       display: flex;
       align-items: center;
-      gap: 6px;
-      z-index: 5;
-    }
-
-    .v2w-carousel-counter {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      color: #FFFFFF;
-      font-size: 10px;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      padding: 3px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.04em;
-    }
-
-    .v2w-zoom-btn {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      color: #334155;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .v2w-zoom-btn:hover {
-      background: #FFFFFF;
-      color: #7C3AED;
-      transform: scale(1.05);
-    }
-
-    /* Carousel Nav Arrows */
-    .v2w-carousel-nav {
-      position: absolute;
-      top: 38%;
-      transform: translateY(-50%);
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      color: #0F172A;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      opacity: 0;
-      transition: all 0.2s ease;
-      z-index: 5;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
-    }
-
-    .v2w-attachment-frame:hover .v2w-carousel-nav {
-      opacity: 1;
-    }
-
-    .v2w-carousel-nav:hover {
-      background: #FFFFFF;
-      color: #7C3AED;
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    .v2w-carousel-nav.prev {
-      left: 8px;
-    }
-
-    .v2w-carousel-nav.next {
-      right: 8px;
-    }
-
-    .v2w-file-ribbon {
-      padding: 11px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #FFFFFF;
-      border-top: 1px solid #E2E8F0;
-      gap: 10px;
-    }
-
-    .v2w-file-details {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .v2w-file-name {
-      font-size: 13px;
-      font-weight: 700;
-      color: #0F172A;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.25;
-    }
-
-    .v2w-file-sub {
-      font-size: 11.5px;
-      color: #64748B;
-      margin-top: 2px;
-    }
-
-    .v2w-download-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 4px 10px;
-      border-radius: 7px;
+      gap: 8px;
+      padding: 6px 10px;
       background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      flex-shrink: 0;
+      border-radius: 8px;
     }
 
-    .v2w-download-chip:hover {
-      background: #F3EEFF;
-      color: #7C3AED;
-      border-color: #DDD6FE;
-    }
-
-    /* Dots Below Attachments (Representing Number of Attachments) */
-    .v2w-carousel-dots {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      margin-top: 11px;
-      padding: 2px 0;
-    }
-
-    .v2w-carousel-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 9999px;
-      background: #CBD5E1;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-      outline: none;
-    }
-
-    .v2w-carousel-dot:hover {
-      background: #94A3B8;
-      transform: scale(1.25);
-    }
-
-    .v2w-carousel-dot.active {
-      width: 22px;
-      height: 7px;
-      background: #7C3AED;
-      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
-    }
-
-    /* Attachments Slide-Over Drawer */
-    .v2w-drawer-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(15, 23, 42, 0.48);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      z-index: 99999;
-      display: none;
-      justify-content: flex-end;
-      opacity: 0;
-      transition: opacity 0.22s ease;
-    }
-
-    .v2w-drawer-overlay.open {
-      display: flex !important;
-      opacity: 1;
-    }
-
-    .v2w-drawer-panel {
-      width: 100%;
-      max-width: 440px;
-      height: 100%;
-      background: #FFFFFF;
-      box-shadow: -12px 0 40px rgba(15, 23, 42, 0.2);
-      display: flex;
-      flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .v2w-drawer-overlay.open .v2w-drawer-panel {
-      transform: translateX(0);
-    }
-
-    .v2w-drawer-header {
-      padding: 20px 24px;
-      border-bottom: 1px solid #EEF2F6;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: #FAF9FE;
-    }
-
-    .v2w-drawer-header-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .v2w-drawer-icon-box {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: #EDE9FE;
-      color: #7C3AED;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .v2w-drawer-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #0F172A;
-      margin: 0;
-    }
-
-    .v2w-drawer-subtitle {
-      font-size: 12px;
-      color: #64748B;
-      display: block;
-      margin-top: 2px;
-    }
-
-    .v2w-drawer-close-btn {
+    .mb2-att-thumb {
       width: 32px;
       height: 32px;
-      border-radius: 8px;
-      border: 1px solid #E2E8F0;
-      background: #FFFFFF;
-      color: #64748B;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .v2w-drawer-close-btn:hover {
-      background: #F1F5F9;
-      color: #0F172A;
-    }
-
-    .v2w-drawer-body {
-      padding: 20px 24px;
-      overflow-y: auto;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .v2w-drawer-card {
-      border: 1px solid #E2E8F0;
-      border-radius: 14px;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      background: #FFFFFF;
-      transition: all 0.18s ease;
-    }
-
-    .v2w-drawer-card:hover {
-      border-color: #DDD6FE;
-      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.08);
-    }
-
-    .v2w-drawer-card-preview {
-      width: 58px;
-      height: 58px;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #F1F5F9;
-      flex-shrink: 0;
-    }
-
-    .v2w-drawer-card-preview img {
-      width: 100%;
-      height: 100%;
+      border-radius: 6px;
       object-fit: cover;
     }
 
-    .v2w-drawer-card-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .v2w-drawer-card-name {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #0F172A;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .v2w-drawer-card-meta {
-      font-size: 11.5px;
-      color: #64748B;
-      margin-top: 3px;
-    }
-
-    .v2w-drawer-item-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 12px;
-      border-radius: 8px;
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      color: #334155;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      flex-shrink: 0;
-    }
-
-    .v2w-drawer-item-btn:hover {
-      background: #F3EEFF;
-      color: #7C3AED;
-      border-color: #DDD6FE;
-    }
-
-    .v2w-drawer-footer {
-      padding: 16px 24px;
-      border-top: 1px solid #EEF2F6;
-      background: #FFFFFF;
-    }
-
-    .v2w-drawer-download-all-btn {
-      width: 100%;
-      padding: 11px 18px;
-      background: #7C3AED;
-      color: #FFFFFF;
-      border: none;
-      border-radius: 10px;
-      font-size: 13.5px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
-      transition: all 0.18s ease;
-    }
-
-    .v2w-drawer-download-all-btn:hover {
-      background: #6D28D9;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.32);
-    }
-
-    /* Bottom Action Bar */
-    .v2w-action-bar {
+    .mb2-card-bottom-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 28px 18px 28px;
       border-top: 1px solid #F1F5F9;
-      background: #FAFAFC;
-      gap: 14px;
-      flex-wrap: wrap;
+      padding-top: 8px;
+      margin-top: 2px;
     }
 
-    .v2w-action-left,
-    .v2w-action-right {
-      display: flex;
-      align-items: center;
-      gap: 9px;
+    .mb2-priority-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+    .mb2-priority-tag.high {
+      background: #FEF2F2;
+      color: #DC2626;
+      border: 1px solid #FECACA;
+    }
+    .mb2-priority-tag.med {
+      background: #FFFBEB;
+      color: #D97706;
+      border: 1px solid #FDE68A;
+    }
+    .mb2-priority-tag.low {
+      background: #F1F5F9;
+      color: #475569;
+      border: 1px solid #E2E8F0;
     }
 
-    /* Interactive Acknowledge Button */
-    .v2w-btn-ack {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 16px;
-      border-radius: 8px;
-      background: #7C3AED;
-      border: 1px solid #7C3AED;
-      color: #FFFFFF;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
-    }
-
-    .v2w-btn-ack:hover {
-      background: #6D28D9;
-      border-color: #6D28D9;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
-    }
-
-    .v2w-btn-ack.acknowledged {
-      background: #ECFDF5;
-      border-color: #A7F3D0;
-      color: #059669;
-      box-shadow: none;
-    }
-
-    .v2w-btn-readmore {
+    .mb2-infeed-like-btn {
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 7px 12px;
+      padding: 5px 10px;
       border-radius: 8px;
-      background: transparent;
-      color: #7C3AED;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
-
-    .v2w-btn-readmore:hover {
-      background: #F3EEFF;
-    }
-
-    /* Like Counter Pill */
-    .v2w-btn-like {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      border-radius: 9999px;
-      background: #FFFFFF;
+      background: #F8FAFC;
       border: 1px solid #E2E8F0;
       color: #64748B;
-      font-size: 12.5px;
-      font-weight: 600;
+      font-size: 11.5px;
+      font-weight: 700;
       cursor: pointer;
       transition: all 0.15s ease;
     }
 
-    .v2w-btn-like:hover {
-      border-color: #CBD5E1;
-      color: #E11D48;
-      background: #FFF1F2;
-    }
-
-    .v2w-btn-like.liked {
+    .mb2-infeed-like-btn:hover {
       background: #FFF1F2;
       border-color: #FECDD3;
       color: #E11D48;
     }
 
-    .v2w-btn-like.liked svg {
-      fill: #E11D48;
-      stroke: #E11D48;
+    .mb2-infeed-like-btn.liked {
+      background: #FEF2F2;
+      border-color: #FCA5A5;
+      color: #DC2626;
     }
 
-    .v2w-btn-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+    .mb2-infeed-like-btn.liked svg {
+      fill: #DC2626;
+    }
+
+    /* Mobile Bottom Navigation Bar (Design 2) */
+    .mb2-bottom-nav {
+      position: sticky;
+      bottom: 0;
       background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      color: #64748B;
+      border-top: 1px solid #E2E8F0;
       display: flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      justify-content: space-around;
+      padding: 8px 10px 4px 10px;
+      z-index: 10;
     }
 
-    .v2w-btn-icon:hover {
-      border-color: #CBD5E1;
-      color: #0F172A;
-      background: #F8FAFC;
-    }
-
-    .v2w-btn-icon.bookmarked {
-      background: #F5F3FF;
-      border-color: #DDD6FE;
-      color: #7C3AED;
-    }
-    .v2w-btn-icon.bookmarked svg {
-      fill: #7C3AED;
-    }
-
-    /* Outer Topbar: Megaphone squircle + Title/Subtitle + View All button */
-    .v3-outer-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 22px;
-    }
-
-    .v3-header-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .v3-megaphone-squircle {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      background: #F3EEFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
-    }
-
-    .v3-header-text {
+    .mb2-nav-item {
       display: flex;
       flex-direction: column;
-    }
-
-    .v3-header-title {
-      font-size: 22px;
-      font-weight: 800;
-      color: #0F172A;
-      margin: 0;
-      letter-spacing: -0.025em;
-      line-height: 1.2;
-    }
-
-    .v3-header-subtitle {
-      font-size: 14px;
-      font-weight: 400;
-      color: #64748B;
-      margin: 3px 0 0 0;
-      line-height: 1.35;
-    }
-
-    .v3-view-all-btn {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 22px;
-      border-radius: 9999px;
-      background: #FAF7FF;
-      border: 1px solid #EDE9FE;
-      color: #7C3AED;
-      font-size: 13.5px;
+      gap: 3px;
+      color: #94A3B8;
+      font-size: 10px;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.18s ease;
       text-decoration: none;
     }
 
-    .v3-view-all-btn:hover {
-      background: #EDE9FE;
-      border-color: #DDD6FE;
-      transform: translateX(2px);
+    .mb2-nav-item.active {
+      color: #7C3AED;
+      font-weight: 700;
     }
 
-    /* Inner Card: The Main Announcement Card */
-    .v3-inner-card {
+    .mb2-nav-item svg {
+      stroke: currentColor;
+    }
+
+    /* Mobile Sheet Dialog (for Design 2 modal reading) */
+    .mb-sheet-dialog {
       background: #FFFFFF;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 22px;
-      padding: 26px 30px 28px 30px;
-      box-sizing: border-box;
-      position: relative;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.02);
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .v3-inner-card:hover {
-      border-color: #CBD5E1;
-      box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.04);
-    }
-
-    /* Top Meta Row: Date & Time + Three Dots Menu (NO High Priority Chip) */
-    .v3-inner-top-row {
+      border-radius: 24px 24px 0 0;
+      width: 100%;
+      max-width: 440px;
+      max-height: 85vh;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .v3-datetime-text {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: #64748B;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .v3-more-wrap {
-      position: relative;
-    }
-
-    .v3-more-btn {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      border: none;
-      background: transparent;
-      color: #64748B;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.15s ease;
-    }
-
-    .v3-more-btn:hover {
-      background: #F1F5F9;
-      color: #0F172A;
-    }
-
-    /* Dropdown Menu for Three Dots */
-    .v3-more-menu {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      margin-top: 6px;
-      background: #FFFFFF;
+      flex-direction: column;
+      overflow: hidden;
+      margin: auto auto 0 auto;
+      box-shadow: 0 -10px 40px rgba(15, 23, 42, 0.25);
       border: 1px solid #E2E8F0;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
-      padding: 6px;
-      min-width: 190px;
-      z-index: 100;
-      display: none;
+      animation: sheetSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .v3-more-menu.open {
-      display: block;
-      animation: fadeInFast 0.15s ease;
+    @keyframes sheetSlideUp {
+      from { transform: translateY(100%); }
+      to { transform: translateY(0); }
     }
 
-    .v3-menu-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      font-size: 12.5px;
-      font-weight: 500;
-      color: #334155;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.12s ease;
-    }
-
-    .v3-menu-item:hover {
-      background: #F8FAFC;
-      color: #0F172A;
-    }
-
-    /* Announcement Title */
-    .v3-announcement-title {
-      font-size: 23px;
-      font-weight: 800;
-      color: #0F172A;
-      line-height: 1.3;
-      margin: 12px 0 10px 0;
-      letter-spacing: -0.02em;
-    }
-
-    /* Announcement Snippet */
-    .v3-announcement-snippet {
-      font-size: 14.5px;
-      color: #475569;
-      line-height: 1.6;
-      margin: 0 0 20px 0;
-    }
-
-    /* Attachment Card & Reaction Row */
-    .v3-attachment-interaction-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
+    .mb-sheet-handle-bar {
       width: 100%;
-      margin-top: 16px;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .v3-bottom-like-wrap {
       display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      padding-bottom: 2px;
+      justify-content: center;
+      padding: 10px 0 4px 0;
     }
 
-    /* Attachment Card (Matching media_1791870220357.png) */
-    .v3-attachment-card {
-      display: flex;
-      flex-direction: column;
-      border: 1.5px solid #E2E8F0;
-      border-radius: 18px;
-      background: #FFFFFF;
-      max-width: 320px;
-      width: 100%;
-      margin-top: 0;
-      margin-bottom: 0;
-      overflow: hidden;
-      box-sizing: border-box;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
-      transition: all 0.18s ease;
-      cursor: pointer;
-    }
-
-    .v3-attachment-card:hover {
-      border-color: #CBD5E1;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-      transform: translateY(-2px);
-    }
-
-    .v3-att-thumb-wrap {
-      width: 100%;
-      height: 168px;
-      background: #F8FAFC;
-      overflow: hidden;
-      position: relative;
-      border-bottom: 1px solid #E2E8F0;
-    }
-
-    .v3-att-thumb-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      transition: transform 0.28s ease;
-    }
-
-    .v3-attachment-card:hover .v3-att-thumb-img {
-      transform: scale(1.025);
-    }
-
-    .v3-att-caption {
-      padding: 13px 16px 14px 16px;
-      display: flex;
-      flex-direction: column;
-      background: #FFFFFF;
-    }
-
-    .v3-att-title-row {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-
-    .v3-att-photo-icon {
-      width: 18px;
-      height: 18px;
-      color: #2563EB;
-      flex-shrink: 0;
-    }
-
-    .v3-att-name {
-      font-size: 15px;
-      font-weight: 700;
-      color: #0F172A;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-
-    .v3-att-meta-sub {
-      font-size: 13px;
-      font-weight: 500;
-      color: #64748B;
-      margin-top: 4px;
-      line-height: 1.3;
-    }
-
-    /* Bottom Row: Creator Profile (aligned to below right corner of attachment) */
-    .v3-inner-bottom-row {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-top: 6px;
-      padding-top: 4px;
-    }
-
-    .v3-author-block {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .v3-author-avatar {
+    .mb-sheet-handle {
       width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #EDE9FE;
-      flex-shrink: 0;
+      height: 4px;
+      border-radius: 100px;
+      background: #CBD5E1;
     }
 
-    .v3-author-details {
+    .mb-sheet-header {
+      padding: 10px 20px 14px 20px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #F1F5F9;
     }
 
-    .v3-author-byline {
-      font-size: 13.5px;
-      color: #64748B;
-      line-height: 1.25;
-    }
-
-    .v3-author-byline strong {
-      color: #0F172A;
-      font-weight: 700;
-    }
-
-    .v3-author-title {
-      font-size: 12px;
-      color: #64748B;
-      margin-top: 2px;
+    .mb-sheet-body {
+      padding: 16px 20px 24px 20px;
+      overflow-y: auto;
+      flex: 1;
     }
 
     /* ==========================================================================
@@ -6093,10 +5914,9 @@
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1.5"></rect><rect x="14" y="3" width="7" height="18" rx="1.5"></rect></svg>
                 <span>View 2 (Workspace)</span>
               </button>
-              <button class="screen-tab" id="btnView3" onclick="switchBroadcastView('view3')" title="Spotlight Widget — Latest High Priority Broadcast">
-                <span class="v3-tab-live-pulse" id="v3LiveDot"></span>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                <span>View 3 (Widget)</span>
+              <button class="screen-tab" id="btnView3" onclick="switchBroadcastView('view3')" title="Mobile View — Employee Broadcast Reader (Read & Like Only)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+                <span>View 3 (Mobile View)</span>
               </button>
             </div>
           </div>
@@ -6284,325 +6104,455 @@
            VIEW 3: SPOTLIGHT WIDGET VIEW (SINGLE HIGH-PRIORITY BROADCAST)
            Strictly 1 High-Priority Broadcast — No List Clutter
            ========================================================================== -->
-      <div id="view3Container" class="broadcast-view-mode v3-widget-view-wrap" style="display: none;">
+      <div id="view3Container" class="broadcast-view-mode v3-mobile-view-wrap" style="display: none;">
 
-        <!-- Quick Jump Comparison Pills -->
-        <div class="widget-jump-bar">
-          <span class="widget-jump-label">COMPARE DESIGNS:</span>
-          <a href="#design1Section" class="widget-jump-pill active" onclick="scrollToWidget('design1Section', event)">
-            <span>Design 1 · Spotlight Card</span>
-          </a>
-          <a href="#design2Section" class="widget-jump-pill" onclick="scrollToWidget('design2Section', event)">
-            <span class="jump-pill-pulse"></span>
-            <span>Design 2 · Executive Bento (New)</span>
-          </a>
+        <!-- Top Navigation Jump Bar -->
+        <div class="mobile-jump-bar">
+          <div class="mobile-jump-left">
+            <span class="mobile-jump-label">MOBILE DESIGNS:</span>
+            <a href="#mobileDesign1Section" class="mobile-jump-pill active" onclick="scrollToMobileDesign('mobileDesign1Section', event)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              <span>Design 1 · Announcement Reader</span>
+            </a>
+            <a href="#mobileDesign2Section" class="mobile-jump-pill" onclick="scrollToMobileDesign('mobileDesign2Section', event)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
+              <span>Design 2 · Mobile Feed Stream</span>
+            </a>
+          </div>
+          <div class="mobile-jump-right">
+            <span class="mobile-policy-tag">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              <span>Employee View Access</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Mobile Experience Policy Banner -->
+        <div class="mobile-hero-banner">
+          <div class="mobile-hero-top">
+            <div class="mobile-hero-badge">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
+              <span>IPHONE 16 PRO · EMPLOYEE APP VIEW</span>
+            </div>
+            <div style="font-size: 11.5px; color: #64748B; font-weight: 500;">
+              Simulated 393 × 852 Viewport
+            </div>
+          </div>
+          <h2 class="mobile-hero-title">Employee Mobile Broadcast Experience</h2>
+          <p class="mobile-hero-desc">
+            In Hirerkey Mobile, employees have dedicated view access to stay informed on critical corporate updates and react with likes. To preserve operational governance, all authoring workflows (publishing, drafting, targeting, and archiving) are exclusive to the desktop web workspace.
+          </p>
+          <div class="mobile-policy-pills-row">
+            <span class="mobile-pill-rule allow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Read Announcements &amp; Briefs</span>
+            </span>
+            <span class="mobile-pill-rule allow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+              <span>React with Like (Heart)</span>
+            </span>
+            <span class="mobile-pill-rule allow">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Inspect Attachments &amp; Guidelines</span>
+            </span>
+            <span class="mobile-pill-rule deny">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <span>No Publishing from Mobile</span>
+            </span>
+            <span class="mobile-pill-rule deny">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              <span>No Editing / Administrative Tools</span>
+            </span>
+          </div>
         </div>
 
         <!-- ======================================================================
-             HEADING: DESIGN 1
+             SECTION 1: DESIGN 1 — IMMERSIVE ANNOUNCEMENT READER
              ====================================================================== -->
-        <div class="widget-section-divider" id="design1Section">
-          <div class="widget-section-tag-row">
-            <span class="widget-version-pill pill-design1">DESIGN 1</span>
-            <h3 class="widget-version-title">Spotlight Announcement Card</h3>
+        <div class="mobile-section-header" id="mobileDesign1Section">
+          <div class="mobile-section-tag-row">
+            <span class="mobile-version-tag tag-d1">DESIGN 1</span>
+            <span style="background: #FAF5FF; color: #7C3AED; border: 1px solid #DDD6FE; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 4px;">FLAGSHIP READER</span>
+            <h3 class="mobile-version-title">Immersive Announcement Reader</h3>
           </div>
-          <p class="widget-version-desc">Classic single-column announcement card with author metadata, push notification image preview, and full view modal.</p>
+          <p class="mobile-version-desc">
+            Focused, distraction-free broadcast reading view. Features verified executive card, rich media frame, and prominent ergonomic thumb-docked Like button with real-time reaction counter.
+          </p>
         </div>
 
-        <!-- Outer Card matching media_1791819237244.png -->
-        <div class="v3-outer-card">
-
-          <!-- Top Header: Megaphone squircle + Broadcast text + View all button -->
-          <header class="v3-outer-header">
-            <div class="v3-header-left">
-              <div class="v3-megaphone-squircle">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <!-- angled megaphone cone & body -->
-                  <path d="M12.5 5.5L6.8 9.8H3C2.45 9.8 2 10.25 2 10.8V13.8C2 14.35 2.45 14.8 3 14.8H6.8L12.5 19.1C13.1 19.55 14 19.12 14 18.35V6.25C14 5.48 13.1 5.05 12.5 5.5Z" fill="#7C3AED" stroke="#7C3AED" stroke-width="1.2" stroke-linejoin="round"/>
-                  <!-- handle -->
-                  <path d="M5.5 14.8V18.2C5.5 18.75 5.95 19.2 6.5 19.2H7.2C7.75 19.2 8.2 18.75 8.2 18.2V14.8" fill="#7C3AED" stroke="#7C3AED" stroke-width="1.2"/>
-                  <!-- sound emission rays -->
-                  <path d="M17 9.5C18.2 10.7 18.2 13.9 17 15.1" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
-                  <path d="M20 7C22.2 9.2 22.2 16.4 20 18.6" stroke="#7C3AED" stroke-width="2.2" stroke-linecap="round"/>
-                </svg>
+        <!-- Phone 1 Canvas -->
+        <div class="mobile-phone-canvas">
+          <div class="mobile-phone-frame">
+            
+            <!-- Hardware Status Bar & Dynamic Island -->
+            <div class="m-status-bar">
+              <span class="m-status-time">9:41</span>
+              <div class="m-dynamic-island">
+                <div class="m-camera-lens"></div>
+                <div class="m-sensor-dot"></div>
               </div>
-              <div class="v3-header-text">
-                <h2 class="v3-header-title">Broadcast</h2>
-                <p class="v3-header-subtitle">Important updates from your organisation</p>
+              <div class="m-status-icons">
+                <svg width="13" height="10" viewBox="0 0 16 12" fill="none"><path d="M1 10.5h2M5 8.5h2M9 5.5h2M13 2h2" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/></svg>
+                <svg width="13" height="10" viewBox="0 0 16 12" fill="none"><path d="M8 9.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM4.5 7a5 5 0 0 1 7 0M2 4.5a8.5 8.5 0 0 1 12 0" stroke="#0F172A" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <div class="m-battery-icon"><div class="m-battery-level"></div></div>
               </div>
             </div>
 
-            <button type="button" class="v3-view-all-btn" onclick="switchBroadcastView('view2')" title="Switch to Full Workspace View">
-              <span>View all</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </button>
-          </header>
+            <!-- Scrollable Viewport -->
+            <div class="mobile-screen-scroll" id="mb1ScreenScroll">
 
-          <!-- Inner Card: The Announcement Widget Box -->
-          <article class="v3-inner-card" id="v3WidgetCard">
-
-            <!-- Top Meta Row: Sender Information on left, Date & Time on right -->
-            <div class="v3-inner-top-row">
-              <!-- Sender Information on Left -->
-              <div class="v3-author-block" id="v3AuthorBlock">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep Datta" class="v3-author-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'" />
-                <div class="v3-author-details">
-                  <div class="v3-author-byline">By <strong>Subhadeep Datta</strong></div>
-                  <div class="v3-author-title">Business Head</div>
+              <!-- App Top Bar -->
+              <div class="mb-top-bar">
+                <div class="mb-bar-left">
+                  <button type="button" class="mb-back-btn" onclick="showToast('Navigating back to employee home...')" title="Back">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                  </button>
+                  <div class="mb-brand-monogram">N</div>
+                  <h4 class="mb-app-title">Broadcast</h4>
                 </div>
+                <span class="mb-readonly-badge">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span>VIEW ONLY</span>
+                </span>
               </div>
 
-              <!-- Date & Time on Right -->
-              <div class="v3-datetime-text" id="v3BroadcastDate">
-                <span>01 Oct 2026, 06:07 PM</span>
-              </div>
-            </div>
-
-            <!-- Title -->
-            <h3 class="v3-announcement-title" id="v3AnnouncementTitle" onclick="openFullAnnouncementModal()" style="cursor: pointer;" title="Click to view full announcement">Welcome to hirekey Notifications!</h3>
-
-            <!-- Message Snippet -->
-            <p class="v3-announcement-snippet" id="v3AnnouncementSnippet">
-              You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.
-            </p>
-
-            <!-- Attachment Card & Like Reaction Row -->
-            <div class="v3-attachment-interaction-row">
-              <div class="v3-attachment-card" id="v3AttachmentCard" onclick="downloadAttachment('Push notification.png', '1.2 MB')" title="Click to view / download Push notification.png">
-                <div class="v3-att-thumb-wrap">
-                  <img src="assets/push_notification_mascot.png" alt="Push notification" class="v3-att-thumb-img" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'" />
-                </div>
-                <div class="v3-att-caption">
-                  <div class="v3-att-title-row">
-                    <svg class="v3-att-photo-icon" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                      <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                      <polyline points="21 15 16 10 5 21"></polyline>
-                    </svg>
-                    <span class="v3-att-name" id="v3AttachmentName">Push notification.png</span>
-                  </div>
-                  <div class="v3-att-meta-sub" id="v3AttachmentSize">01-10-2026 • 1.2 MB</div>
-                </div>
-              </div>
-
-              <!-- Design 1 Like Reaction Pill -->
-              <div class="v3-bottom-like-wrap">
-                <button type="button" class="v2w-btn-like" id="v1LikeBtn" onclick="toggleV1Like(this)" title="React to broadcast">
-                  <svg class="v2w-like-heart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                  <span class="v2w-like-count" id="v1LikeCount">42</span>
+              <!-- In-App Broadcast Selector Pills -->
+              <div class="mb-broadcast-selector-row">
+                <button type="button" class="mb-selector-pill active" id="mbPill-bc-welcome-notifications" onclick="selectMbBroadcast('bc-welcome-notifications')">
+                  <span class="mb-pill-dot red"></span>
+                  <span>Welcome Notifications</span>
+                </button>
+                <button type="button" class="mb-selector-pill" id="mbPill-bc-2" onclick="selectMbBroadcast('bc-2')">
+                  <span class="mb-pill-dot red"></span>
+                  <span>Holiday Announcement</span>
+                </button>
+                <button type="button" class="mb-selector-pill" id="mbPill-bc-1" onclick="selectMbBroadcast('bc-1')">
+                  <span class="mb-pill-dot blue"></span>
+                  <span>Policy Update</span>
+                </button>
+                <button type="button" class="mb-selector-pill" id="mbPill-bc-4" onclick="selectMbBroadcast('bc-4')">
+                  <span class="mb-pill-dot purple"></span>
+                  <span>System Maintenance</span>
                 </button>
               </div>
-            </div>
 
-          </article> <!-- end #v3WidgetCard -->
-        </div> <!-- end .v3-outer-card (Design 1) -->
-
-        <!-- ======================================================================
-             HEADING: DESIGN 2
-             ====================================================================== -->
-        <div class="widget-section-divider" id="design2Section" style="margin-top: 24px;">
-          <div class="widget-section-tag-row">
-            <span class="widget-version-pill pill-design2">DESIGN 2</span>
-            <span class="widget-recommended-badge">NEW DESIGN</span>
-            <h3 class="widget-version-title">Executive Bento Spotlight Widget</h3>
-          </div>
-          <p class="widget-version-desc">Asymmetric dual-wing architecture with live broadcast pulse, verified executive author card, interactive quick-action bar (Read full brief, Like, Share), and framed rich media preview.</p>
-        </div>
-
-        <!-- Design 2 Widget Outer Card -->
-        <div class="v2w-outer-card" id="design2WidgetCard">
-          <!-- Widget Top Bar -->
-          <header class="v2w-topbar">
-            <div class="v2w-topbar-left">
-              <div class="v2w-icon-squircle">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12.5 5.5L6.8 9.8H3C2.45 9.8 2 10.25 2 10.8V13.8C2 14.35 2.45 14.8 3 14.8H6.8L12.5 19.1C13.1 19.55 14 19.12 14 18.35V6.25C14 5.48 13.1 5.05 12.5 5.5Z"/>
-                  <path d="M19 8a6 6 0 0 1 0 8"/>
-                  <path d="M22 6a10 10 0 0 1 0 12"/>
-                </svg>
-              </div>
-              <div class="v2w-title-stack">
-                <div class="v2w-title-row">
-                  <h2 class="v2w-title">Executive Broadcast</h2>
-                  <span class="v2w-category-chip">COMPANY-WIDE</span>
+              <!-- Main Reader Card -->
+              <div class="mb-reader-content">
+                
+                <!-- Priority & Audience Ribbon -->
+                <div class="mb-priority-banner">
+                  <div class="mb-priority-chip high" id="mb1PriorityChip">
+                    <span class="mb-beacon-dot"></span>
+                    <span id="mb1PriorityText">HIGH PRIORITY</span>
+                  </div>
+                  <div class="mb-audience-chip">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    <span id="mb1AudienceText">All Employees (148)</span>
+                  </div>
                 </div>
-                <p class="v2w-subtitle">Official organisation announcements & leadership advisories</p>
-              </div>
-            </div>
 
-          </header>
+                <!-- Headline -->
+                <h3 class="mb-announcement-headline" id="mb1Headline">Welcome to hirekey Notifications!</h3>
 
-          <!-- Bento Split Body (Left Wing: Story + Author, Right Wing: Attachment Preview) -->
-          <div class="v2w-bento-body">
-            <!-- Left Wing (Content & Executive Card) -->
-            <div class="v2w-content-wing">
-              <!-- Date & Audience Meta Line -->
-              <div class="v2w-meta-line">
-                <span class="v2w-meta-item">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  <span>01 Oct 2026 • 06:07 PM</span>
-                </span>
-                <span class="v2w-meta-dot">•</span>
-                <span class="v2w-meta-audience">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                  <span>All Employees (148)</span>
-                </span>
-              </div>
+                <!-- Format 5 Executive Author Card -->
+                <div class="mb-author-card" id="mb1AuthorCard">
+                  <div class="mb-author-avatar-wrap">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep Datta" class="mb-author-avatar" id="mb1AuthorAvatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'" />
+                    <span class="mb-author-online-dot"></span>
+                  </div>
+                  <div class="mb-author-info">
+                    <div class="mb-author-name-row">
+                      <span class="mb-author-name" id="mb1AuthorName">Subhadeep Datta</span>
+                      <span class="mb-author-role-chip" id="mb1AuthorRole">Business Head</span>
+                    </div>
+                    <span class="mb-author-sub" id="mb1AuthorDept">Executive Leadership • Revenue Growth</span>
+                    <div class="mb-meta-date-row">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                      <span id="mb1DateFormatted">01 Oct 2026, 06:07 PM</span>
+                    </div>
+                  </div>
+                </div>
 
-              <!-- Announcement Headline -->
-              <h3 class="v2w-headline" onclick="openFullAnnouncementModal()" title="Click to view full broadcast">
-                Welcome to hirekey Notifications!
-              </h3>
+                <!-- Body Narrative Card -->
+                <div class="mb-body-card" id="mb1BodyCard">
+                  <p id="mb1BodyP1">You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.</p>
+                  <p id="mb1BodyP2">With Push Notifications enabled, you will receive timely reminders about pending shift rosters, document approvals, appraisal cycles, and team milestones directly on your desktop or mobile device. You can customize your notification preferences anytime via Property Settings.</p>
+                </div>
 
-              <!-- Excerpt Narrative -->
-              <p class="v2w-excerpt">
-                You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements, tasks, and more.
-              </p>
-
-              <!-- Executive Author Identity Island -->
-              <div class="v2w-author-island">
-                <div class="v2w-author-left">
-                  <div class="v2w-author-avatar-wrap">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep Datta" class="v2w-author-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'" />
-                    <span class="v2w-verified-shield" title="Verified Executive Leadership">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <!-- Media Attachment Showcase -->
+                <div class="mb-attachment-card" id="mb1AttachmentCard">
+                  <div class="mb-attachment-media-wrap">
+                    <img src="assets/push_notification_mascot.png" alt="Push notification" class="mb-attachment-media-img" id="mb1AttImg" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'" />
+                    <span class="mb-attachment-badge">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                      <span>HD VISUAL</span>
                     </span>
                   </div>
-                  <div class="v2w-author-details">
-                    <div class="v2w-author-name-row">
-                      <span class="v2w-author-name">Subhadeep Datta</span>
-                      <span class="v2w-author-role-chip">Business Head</span>
+                  <div class="mb-attachment-footer">
+                    <div class="mb-att-info">
+                      <span class="mb-att-name" id="mb1AttName">Push notification.png</span>
+                      <span class="mb-att-sub" id="mb1AttSize">01-10-2026 • 1.2 MB PNG</span>
                     </div>
-                    <span class="v2w-author-dept">Executive Leadership • Revenue Growth</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Wing (Framed Rich Attachment Showcase & Carousel Drawer) -->
-            <div class="v2w-media-wing">
-              <div class="v2w-attachment-frame" id="v2wAttachmentFrame" onmouseenter="pauseV2wCarousel()" onmouseleave="resumeV2wCarousel()">
-                
-                <!-- Viewport Window with Carousel Track -->
-                <div class="v2w-carousel-viewport">
-                  <div class="v2w-carousel-track" id="v2wCarouselTrack">
-                    
-                    <!-- Slide 1: Push notification.png -->
-                    <div class="v2w-carousel-slide" onclick="openV2wAttachmentDrawer()" title="Click to open attachment drawer">
-                      <div class="v2w-media-window">
-                        <img src="assets/push_notification_mascot.png" alt="Push notification" class="v2w-media-img" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80'" />
-                        <div class="v2w-frosted-tag">
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                          <span>HD VISUAL · 1.2 MB</span>
-                        </div>
-                      </div>
-                      <div class="v2w-file-ribbon">
-                        <div class="v2w-file-details">
-                          <span class="v2w-file-name">Push notification.png</span>
-                          <span class="v2w-file-sub">01-10-2026 • 1.2 MB PNG</span>
-                        </div>
-                        <button type="button" class="v2w-download-chip" onclick="event.stopPropagation(); downloadAttachment('Push notification.png', '1.2 MB');" title="Download File">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                          <span>Save</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    <!-- Slide 2: Notification_Guidelines.pdf -->
-                    <div class="v2w-carousel-slide" onclick="openV2wAttachmentDrawer()" title="Click to open attachment drawer">
-                      <div class="v2w-media-window">
-                        <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?auto=format&fit=crop&w=600&q=80" alt="Notification Guidelines" class="v2w-media-img" />
-                        <div class="v2w-frosted-tag">
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                          <span>PDF GUIDE · 2.4 MB</span>
-                        </div>
-                      </div>
-                      <div class="v2w-file-ribbon">
-                        <div class="v2w-file-details">
-                          <span class="v2w-file-name">Notification_Guidelines.pdf</span>
-                          <span class="v2w-file-sub">01-10-2026 • 2.4 MB PDF</span>
-                        </div>
-                        <button type="button" class="v2w-download-chip" onclick="event.stopPropagation(); downloadAttachment('Notification_Guidelines.pdf', '2.4 MB');" title="Download File">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                          <span>Save</span>
-                        </button>
-                      </div>
-                    </div>
-
-                    <!-- Slide 3: App_Setup_Walkthrough.png -->
-                    <div class="v2w-carousel-slide" onclick="openV2wAttachmentDrawer()" title="Click to open attachment drawer">
-                      <div class="v2w-media-window">
-                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="App Setup Walkthrough" class="v2w-media-img" />
-                        <div class="v2w-frosted-tag">
-                          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-                          <span>WALKTHROUGH · 850 KB</span>
-                        </div>
-                      </div>
-                      <div class="v2w-file-ribbon">
-                        <div class="v2w-file-details">
-                          <span class="v2w-file-name">App_Setup_Walkthrough.png</span>
-                          <span class="v2w-file-sub">01-10-2026 • 850 KB PNG</span>
-                        </div>
-                        <button type="button" class="v2w-download-chip" onclick="event.stopPropagation(); downloadAttachment('App_Setup_Walkthrough.png', '850 KB');" title="Download File">
-                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                          <span>Save</span>
-                        </button>
-                      </div>
-                    </div>
-
+                    <button type="button" class="mb-att-download-btn" onclick="downloadAttachment('Push notification.png', '1.2 MB')" title="Download Image">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                      <span>Save</span>
+                    </button>
                   </div>
                 </div>
 
-                <!-- Navigation Chevrons -->
-                <button type="button" class="v2w-carousel-nav prev" onclick="event.stopPropagation(); v2wPrevSlide();" title="Previous attachment" aria-label="Previous attachment">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                </button>
-                <button type="button" class="v2w-carousel-nav next" onclick="event.stopPropagation(); v2wNextSlide();" title="Next attachment" aria-label="Next attachment">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                </button>
+                <!-- Ergonomic Thumb Zone: Like Button & Social Proof Dock -->
+                <div class="mb-sticky-action-dock">
+                  <div class="mb-action-main-row">
+                    <!-- Sole Interactive Element on Mobile: The Like Button -->
+                    <button type="button" class="mb-like-pill-btn" id="mb1LikeBtn" onclick="toggleMb1Like(this)" title="Tap to Like this broadcast">
+                      <svg class="mb-like-heart-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                      </svg>
+                      <span id="mb1LikeText">Like</span>
+                      <span class="mb-like-count-badge" id="mb1LikeCount">42</span>
+                    </button>
 
-                <!-- Counter Badge & Drawer Open Button -->
-                <div class="v2w-carousel-top-actions">
-                  <span class="v2w-carousel-counter" id="v2wSlideCounter">1 / 3</span>
-                  <button type="button" class="v2w-zoom-btn" title="Open attachments drawer" onclick="event.stopPropagation(); openV2wAttachmentDrawer();">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
-                  </button>
+                    <!-- Quick Share / Copy Link Trigger -->
+                    <button type="button" class="mb-share-icon-btn" onclick="copyMbBroadcastLink()" title="Copy broadcast link">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                    </button>
+                  </div>
+
+                  <!-- Likers Social Proof -->
+                  <div class="mb-likers-social-row">
+                    <div class="mb-avatar-stack">
+                      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80" alt="Subhadeep" class="mb-stack-avatar" />
+                      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80" alt="Sara" class="mb-stack-avatar" />
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="Priya" class="mb-stack-avatar" />
+                    </div>
+                    <span class="mb-likers-text" id="mb1LikersText">
+                      Liked by <strong>Subhadeep</strong>, <strong>Sara</strong>, and <span id="mb1LikersRest">40 others</span>
+                    </span>
+                  </div>
+
+                  <!-- Policy Notice (Strictly View-Only) -->
+                  <div class="mb-notice-card">
+                    <svg class="mb-notice-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="10" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                    <span>
+                      <strong>View-Only Mobile Access:</strong> Tap the heart to appreciate broadcasts. Broadcast publishing and management tools are available on desktop.
+                    </span>
+                  </div>
+
                 </div>
 
               </div>
 
-              <!-- Dots Representing Number of Attachments (Below Attachments) -->
-              <div class="v2w-carousel-dots" id="v2wCarouselDots" role="tablist" aria-label="Attachment navigation">
-                <button type="button" class="v2w-carousel-dot active" onclick="goToV2wSlide(0)" title="Attachment 1: Push notification.png" aria-label="Slide 1"></button>
-                <button type="button" class="v2w-carousel-dot" onclick="goToV2wSlide(1)" title="Attachment 2: Notification_Guidelines.pdf" aria-label="Slide 2"></button>
-                <button type="button" class="v2w-carousel-dot" onclick="goToV2wSlide(2)" title="Attachment 3: App_Setup_Walkthrough.png" aria-label="Slide 3"></button>
-              </div>
-
             </div>
+
+            <!-- Hardware Home Indicator Bar -->
+            <div class="m-home-bar-wrap">
+              <div class="m-home-bar"></div>
+            </div>
+
           </div>
+        </div>
 
-          <!-- Bottom Interactive Quick-Action Bar -->
-          <footer class="v2w-action-bar">
-            <div class="v2w-action-left">
-              <!-- Expand Modal Trigger -->
-              <button type="button" class="v2w-btn-readmore" onclick="openFullAnnouncementModal()">
-                <span>Read full brief</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </button>
+
+        <!-- ======================================================================
+             SECTION 2: DESIGN 2 — MOBILE BROADCAST FEED STREAM
+             ====================================================================== -->
+        <div class="mobile-section-header" id="mobileDesign2Section" style="margin-top: 24px;">
+          <div class="mobile-section-tag-row">
+            <span class="mobile-version-tag tag-d2">DESIGN 2</span>
+            <span style="background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 4px;">TIMELINE STREAM</span>
+            <h3 class="mobile-version-title">Mobile Broadcast Feed Stream</h3>
+          </div>
+          <p class="mobile-version-desc">
+            Chronological feed experience for employees browsing organisation updates on mobile. Features category filter chips, search, and one-tap in-feed like buttons on each broadcast card.
+          </p>
+        </div>
+
+        <!-- Phone 2 Canvas -->
+        <div class="mobile-phone-canvas">
+          <div class="mobile-phone-frame" style="box-shadow: 0 32px 84px -16px rgba(16, 185, 129, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.14), inset 0 0 0 2px #334155;">
+            
+            <!-- Hardware Status Bar & Dynamic Island -->
+            <div class="m-status-bar">
+              <span class="m-status-time">9:41</span>
+              <div class="m-dynamic-island">
+                <div class="m-camera-lens"></div>
+                <div class="m-sensor-dot"></div>
+              </div>
+              <div class="m-status-icons">
+                <svg width="13" height="10" viewBox="0 0 16 12" fill="none"><path d="M1 10.5h2M5 8.5h2M9 5.5h2M13 2h2" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/></svg>
+                <svg width="13" height="10" viewBox="0 0 16 12" fill="none"><path d="M8 9.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM4.5 7a5 5 0 0 1 7 0M2 4.5a8.5 8.5 0 0 1 12 0" stroke="#0F172A" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <div class="m-battery-icon"><div class="m-battery-level"></div></div>
+              </div>
             </div>
 
-            <div class="v2w-action-right">
-              <!-- Live Reaction Heart Pill -->
-              <button type="button" class="v2w-btn-like" id="v2wLikeBtn" onclick="toggleV2wLike(this)" title="React to broadcast">
-                <svg class="v2w-like-heart" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
-                <span class="v2w-like-count" id="v2wLikeCount">42</span>
-              </button>
+            <!-- Scrollable Viewport -->
+            <div class="mobile-screen-scroll" id="mb2ScreenScroll">
+
+              <!-- App Top Bar -->
+              <div class="mb-top-bar">
+                <div class="mb-bar-left">
+                  <div class="mb-brand-monogram">N</div>
+                  <h4 class="mb-app-title">Broadcasts</h4>
+                  <span style="font-size: 11px; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 2px 7px; border-radius: 10px;">5 Total</span>
+                </div>
+                <span class="mb-readonly-badge">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span>READ &amp; LIKE</span>
+                </span>
+              </div>
+
+              <!-- Search & Filter Area -->
+              <div class="mb2-feed-header">
+                <div class="mb2-search-box">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                  <input type="text" class="mb2-search-input" placeholder="Search broadcasts..." oninput="filterMb2Cards(this.value)" />
+                </div>
+                <div class="mb2-filter-chips">
+                  <button type="button" class="mb2-filter-chip active" onclick="setMb2Filter('all', this)">All (5)</button>
+                  <button type="button" class="mb2-filter-chip" onclick="setMb2Filter('high', this)">High Priority (2)</button>
+                  <button type="button" class="mb2-filter-chip" onclick="setMb2Filter('general', this)">General (1)</button>
+                  <button type="button" class="mb2-filter-chip" onclick="setMb2Filter('policies', this)">Policies (1)</button>
+                </div>
+              </div>
+
+              <!-- Cards Feed -->
+              <div class="mb2-cards-feed" id="mb2CardsFeed">
+                
+                <!-- Card 1 -->
+                <article class="mb2-feed-card" onclick="openMbSheet('bc-welcome-notifications')">
+                  <div class="mb2-card-top-row">
+                    <div class="mb2-card-author-left">
+                      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Subhadeep" class="mb2-card-avatar" />
+                      <div class="mb2-card-author-text">
+                        <span class="mb2-card-author-name">Subhadeep Datta</span>
+                        <span class="mb2-card-author-dept">Business Head</span>
+                      </div>
+                    </div>
+                    <span class="mb2-card-time">01 Oct • 06:07 PM</span>
+                  </div>
+                  <h4 class="mb2-card-title">Welcome to hirekey Notifications!</h4>
+                  <p class="mb2-card-snippet">You’re now set to receive notifications for important activities and updates in the hirekey app. Stay informed about key announcements...</p>
+                  
+                  <div class="mb2-card-attachment-preview">
+                    <img src="assets/push_notification_mascot.png" alt="attachment" class="mb2-att-thumb" onerror="this.src='https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=200&q=80'" />
+                    <div style="display: flex; flex-direction: column; min-width: 0;">
+                      <span style="font-size: 11.5px; font-weight: 700; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Push notification.png</span>
+                      <span style="font-size: 10.5px; color: #94A3B8;">1.2 MB PNG</span>
+                    </div>
+                  </div>
+
+                  <div class="mb2-card-bottom-row">
+                    <span class="mb2-priority-tag high">🔴 High Priority</span>
+                    <button type="button" class="mb2-infeed-like-btn" id="mb2Like-welcome" onclick="event.stopPropagation(); toggleMb2CardLike('bc-welcome-notifications', this);">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                      <span class="mb2-count" id="mb2Count-welcome">42</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="mb2-feed-card" onclick="openMbSheet('bc-2')">
+                  <div class="mb2-card-top-row">
+                    <div class="mb2-card-author-left">
+                      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&h=120&q=80" alt="Priya Sharma" class="mb2-card-avatar" />
+                      <div class="mb2-card-author-text">
+                        <span class="mb2-card-author-name">Priya Sharma</span>
+                        <span class="mb2-card-author-dept">People Operations</span>
+                      </div>
+                    </div>
+                    <span class="mb2-card-time">02 May • 04:15 PM</span>
+                  </div>
+                  <h4 class="mb2-card-title">Holiday announcement</h4>
+                  <p class="mb2-card-snippet">The upcoming Friday is declared an official public holiday. Emergency contact numbers and on-call rotations are attached for support...</p>
+                  
+                  <div class="mb2-card-bottom-row">
+                    <span class="mb2-priority-tag high">🔴 High Priority</span>
+                    <button type="button" class="mb2-infeed-like-btn" id="mb2Like-bc-2" onclick="event.stopPropagation(); toggleMb2CardLike('bc-2', this);">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                      <span class="mb2-count" id="mb2Count-bc-2">38</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="mb2-feed-card" onclick="openMbSheet('bc-1')">
+                  <div class="mb2-card-top-row">
+                    <div class="mb2-card-author-left">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80" alt="Uneet Kumar" class="mb2-card-avatar" />
+                      <div class="mb2-card-author-text">
+                        <span class="mb2-card-author-name">Uneet Kumar</span>
+                        <span class="mb2-card-author-dept">CHRO</span>
+                      </div>
+                    </div>
+                    <span class="mb2-card-time">05 May • 10:30 AM</span>
+                  </div>
+                  <h4 class="mb2-card-title">Annual policy update</h4>
+                  <p class="mb2-card-snippet">Please review the updated remote work guidelines, data privacy compliance, and code of conduct for the fiscal year 2026-2027...</p>
+                  
+                  <div class="mb2-card-bottom-row">
+                    <span class="mb2-priority-tag low">⚪ Low Priority</span>
+                    <button type="button" class="mb2-infeed-like-btn" id="mb2Like-bc-1" onclick="event.stopPropagation(); toggleMb2CardLike('bc-1', this);">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                      <span class="mb2-count" id="mb2Count-bc-1">19</span>
+                    </button>
+                  </div>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="mb2-feed-card" onclick="openMbSheet('bc-4')">
+                  <div class="mb2-card-top-row">
+                    <div class="mb2-card-author-left">
+                      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&h=120&q=80" alt="Neha Singh" class="mb2-card-avatar" />
+                      <div class="mb2-card-author-text">
+                        <span class="mb2-card-author-name">Neha Singh</span>
+                        <span class="mb2-card-author-dept">DevOps Lead</span>
+                      </div>
+                    </div>
+                    <span class="mb2-card-time">28 Apr • 06:20 PM</span>
+                  </div>
+                  <h4 class="mb2-card-title">System maintenance</h4>
+                  <p class="mb2-card-snippet">Scheduled core database upgrades and patch deployment this Saturday from 02:00 AM to 05:00 AM UTC. Intermittent downtime expected...</p>
+                  
+                  <div class="mb2-card-bottom-row">
+                    <span class="mb2-priority-tag med">🟡 Medium</span>
+                    <button type="button" class="mb2-infeed-like-btn" id="mb2Like-bc-4" onclick="event.stopPropagation(); toggleMb2CardLike('bc-4', this);">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                      <span class="mb2-count" id="mb2Count-bc-4">14</span>
+                    </button>
+                  </div>
+                </article>
+
+              </div>
+
+              <!-- Mobile Bottom Nav -->
+              <nav class="mb2-bottom-nav">
+                <div class="mb2-nav-item" onclick="showToast('Home')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                  <span>Home</span>
+                </div>
+                <div class="mb2-nav-item active">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <span>Broadcast</span>
+                </div>
+                <div class="mb2-nav-item" onclick="showToast('Directory')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                  <span>Team</span>
+                </div>
+                <div class="mb2-nav-item" onclick="showToast('Profile')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="7" r="4"></circle><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path></svg>
+                  <span>Profile</span>
+                </div>
+              </nav>
+
             </div>
-          </footer>
-        </div> <!-- end #design2WidgetCard -->
+
+            <!-- Hardware Home Indicator Bar -->
+            <div class="m-home-bar-wrap">
+              <div class="m-home-bar"></div>
+            </div>
+
+          </div>
+        </div>
 
       </div> <!-- end #view3Container -->
 
@@ -8011,44 +7961,347 @@
     }
   }
 
+  // ==========================================================================
+  // VIEW 3: EMPLOYEE MOBILE VIEW LOGIC (READ & LIKE ONLY)
+  // ==========================================================================
+  let mbLikedState = {
+    'bc-welcome-notifications': false,
+    'bc-1': false,
+    'bc-2': false,
+    'bc-3': false,
+    'bc-4': false
+  };
+
+  let mbLikeCounts = {
+    'bc-welcome-notifications': 42,
+    'bc-1': 19,
+    'bc-2': 38,
+    'bc-3': 27,
+    'bc-4': 14
+  };
+
+  let mbActiveBcId = 'bc-welcome-notifications';
+  let mbSheetActiveId = null;
+
+  function initMbLikeState() {
+    try {
+      Object.keys(mbLikeCounts).forEach(id => {
+        const saved = localStorage.getItem('hirerkey_mb_like_' + id);
+        if (saved === 'true') {
+          mbLikedState[id] = true;
+          mbLikeCounts[id] += 1;
+        }
+      });
+    } catch(e) {}
+  }
+
+  function renderView3Mobile() {
+    initMbLikeState();
+    selectMbBroadcast(mbActiveBcId);
+    updateMb1LikeUI();
+    renderMb2FeedCards();
+  }
+
   function renderView3Widget() {
-    updateV3LivePulse();
-    initV2wCarousel();
-    const activeBc = getLatestHighPriorityBroadcast();
+    renderView3Mobile();
+  }
 
-    const titleEl = document.getElementById('v3AnnouncementTitle');
-    const snippetEl = document.getElementById('v3AnnouncementSnippet');
-    const dateEl = document.getElementById('v3BroadcastDate');
-    const attName = document.getElementById('v3AttachmentName');
-    const attSize = document.getElementById('v3AttachmentSize');
-    const authorBlock = document.getElementById('v3AuthorBlock');
+  function selectMbBroadcast(bcId) {
+    mbActiveBcId = bcId;
+    const bc = broadcasts.find(b => b.id === bcId) || broadcasts[0];
+    if (!bc) return;
 
-    if (activeBc) {
-      if (titleEl && activeBc.title) titleEl.innerText = activeBc.title;
-      if (snippetEl && (activeBc.preview || activeBc.fullMessage)) {
-        snippetEl.innerText = activeBc.preview || activeBc.fullMessage;
-      }
-      if (dateEl && activeBc.dateFormatted) {
-        dateEl.innerHTML = `<span>${activeBc.dateFormatted}</span>`;
-      }
-      if (activeBc.attachments && activeBc.attachments.length > 0) {
-        const att = activeBc.attachments[0];
+    // Update pills active state
+    document.querySelectorAll('.mb-selector-pill').forEach(pill => pill.classList.remove('active'));
+    const activePill = document.getElementById('mbPill-' + bcId);
+    if (activePill) activePill.classList.add('active');
+
+    // Update UI elements in Design 1
+    const headline = document.getElementById('mb1Headline');
+    if (headline) headline.innerText = bc.title;
+
+    const authorAvatar = document.getElementById('mb1AuthorAvatar');
+    if (authorAvatar) authorAvatar.src = bc.senderAvatar || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80';
+
+    const authorName = document.getElementById('mb1AuthorName');
+    if (authorName) authorName.innerText = bc.senderName;
+
+    const authorRole = document.getElementById('mb1AuthorRole');
+    if (authorRole) authorRole.innerText = bc.senderRole || 'Leadership';
+
+    const authorDept = document.getElementById('mb1AuthorDept');
+    if (authorDept) authorDept.innerText = bc.category || 'Executive Leadership';
+
+    const dateFormatted = document.getElementById('mb1DateFormatted');
+    if (dateFormatted) dateFormatted.innerText = bc.dateFormatted || 'Recent';
+
+    const priorityChip = document.getElementById('mb1PriorityChip');
+    const priorityText = document.getElementById('mb1PriorityText');
+    const isHigh = (bc.priority || '').toLowerCase() === 'high';
+    if (priorityChip && priorityText) {
+      priorityChip.className = isHigh ? 'mb-priority-chip high' : 'mb-priority-chip general';
+      priorityText.innerText = isHigh ? 'HIGH PRIORITY' : (bc.priority || 'GENERAL').toUpperCase();
+    }
+
+    const bodyCard = document.getElementById('mb1BodyCard');
+    if (bodyCard) {
+      const paragraphs = (bc.fullMessage || bc.preview || '').split('\n\n');
+      bodyCard.innerHTML = paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    }
+
+    const attCard = document.getElementById('mb1AttachmentCard');
+    if (attCard) {
+      if (bc.attachments && bc.attachments.length > 0) {
+        attCard.style.display = 'block';
+        const att = bc.attachments[0];
+        const attName = document.getElementById('mb1AttName');
+        const attSize = document.getElementById('mb1AttSize');
+        const attImg = document.getElementById('mb1AttImg');
         if (attName) attName.innerText = att.name;
         if (attSize) attSize.innerText = att.size;
-        const thumbImg = document.querySelector('.v3-att-thumb-img');
-        if (thumbImg && att.previewUrl) {
-          thumbImg.src = att.previewUrl;
+        if (attImg) {
+          attImg.src = att.previewUrl || 'assets/push_notification_mascot.png';
         }
+      } else {
+        attCard.style.display = 'none';
       }
-      if (authorBlock && activeBc.senderName) {
-        authorBlock.innerHTML = `
-          <img src="${activeBc.senderAvatar || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80'}" alt="${escapeHtml(activeBc.senderName)}" class="v3-author-avatar" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80'" />
-          <div class="v3-author-details">
-            <div class="v3-author-byline">By <strong>${escapeHtml(activeBc.senderName)}</strong></div>
-            <div class="v3-author-title">${escapeHtml(activeBc.senderRole || 'Business Head')}</div>
-          </div>
-        `;
+    }
+
+    updateMb1LikeUI();
+  }
+
+  function updateMb1LikeUI() {
+    const isLiked = !!mbLikedState[mbActiveBcId];
+    const count = mbLikeCounts[mbActiveBcId] || 42;
+
+    const likeBtn = document.getElementById('mb1LikeBtn');
+    const likeText = document.getElementById('mb1LikeText');
+    const likeCount = document.getElementById('mb1LikeCount');
+    const likersRest = document.getElementById('mb1LikersRest');
+
+    if (likeBtn) {
+      if (isLiked) {
+        likeBtn.classList.add('liked');
+      } else {
+        likeBtn.classList.remove('liked');
       }
+    }
+    if (likeText) likeText.innerText = isLiked ? 'Liked' : 'Like';
+    if (likeCount) likeCount.innerText = count;
+    if (likersRest) likersRest.innerText = `${Math.max(0, count - 2)} others`;
+  }
+
+  function toggleMb1Like(btn) {
+    const isLiked = !mbLikedState[mbActiveBcId];
+    mbLikedState[mbActiveBcId] = isLiked;
+    mbLikeCounts[mbActiveBcId] += isLiked ? 1 : -1;
+
+    try {
+      localStorage.setItem('hirerkey_mb_like_' + mbActiveBcId, isLiked ? 'true' : 'false');
+    } catch(e) {}
+
+    updateMb1LikeUI();
+    updateMb2FeedLikeUI(mbActiveBcId);
+
+    if (isLiked) {
+      showToast('❤️ You liked this broadcast!', 'success');
+    } else {
+      showToast('Like removed.');
+    }
+  }
+
+  function toggleMb2CardLike(bcId, btn) {
+    const isLiked = !mbLikedState[bcId];
+    mbLikedState[bcId] = isLiked;
+    mbLikeCounts[bcId] = (mbLikeCounts[bcId] || 20) + (isLiked ? 1 : -1);
+
+    try {
+      localStorage.setItem('hirerkey_mb_like_' + bcId, isLiked ? 'true' : 'false');
+    } catch(e) {}
+
+    if (btn) {
+      if (isLiked) {
+        btn.classList.add('liked');
+      } else {
+        btn.classList.remove('liked');
+      }
+      const countSpan = btn.querySelector('.mb2-count');
+      if (countSpan) countSpan.innerText = mbLikeCounts[bcId];
+    }
+
+    if (bcId === mbActiveBcId) {
+      updateMb1LikeUI();
+    }
+
+    if (isLiked) {
+      showToast('❤️ You liked this broadcast!', 'success');
+    } else {
+      showToast('Like removed.');
+    }
+  }
+
+  function updateMb2FeedLikeUI(bcId) {
+    const isLiked = !!mbLikedState[bcId];
+    const count = mbLikeCounts[bcId] || 20;
+    
+    // Look for matching in-feed button
+    const map = {
+      'bc-welcome-notifications': 'mb2Like-welcome',
+      'bc-2': 'mb2Like-bc-2',
+      'bc-1': 'mb2Like-bc-1',
+      'bc-4': 'mb2Like-bc-4'
+    };
+    const btnId = map[bcId];
+    if (btnId) {
+      const btn = document.getElementById(btnId);
+      if (btn) {
+        if (isLiked) btn.classList.add('liked');
+        else btn.classList.remove('liked');
+        const countSpan = btn.querySelector('.mb2-count');
+        if (countSpan) countSpan.innerText = count;
+      }
+    }
+  }
+
+  function renderMb2FeedCards() {
+    Object.keys(mbLikeCounts).forEach(id => {
+      updateMb2FeedLikeUI(id);
+    });
+  }
+
+  function openMbSheet(bcId) {
+    mbSheetActiveId = bcId;
+    const bc = broadcasts.find(b => b.id === bcId) || broadcasts[0];
+    if (!bc) return;
+
+    const modal = document.getElementById('mbSheetModal');
+    const titleEl = document.getElementById('mbSheetTitle');
+    const avatarEl = document.getElementById('mbSheetAvatar');
+    const authorEl = document.getElementById('mbSheetAuthorName');
+    const deptEl = document.getElementById('mbSheetAuthorDept');
+    const priorityEl = document.getElementById('mbSheetPriority');
+    const bodyEl = document.getElementById('mbSheetBodyText');
+    const likeBtn = document.getElementById('mbSheetLikeBtn');
+    const likeText = document.getElementById('mbSheetLikeText');
+    const likeCount = document.getElementById('mbSheetLikeCount');
+
+    if (titleEl) titleEl.innerText = bc.title;
+    if (avatarEl) avatarEl.src = bc.senderAvatar || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80';
+    if (authorEl) authorEl.innerText = bc.senderName;
+    if (deptEl) deptEl.innerText = `${bc.senderRole || 'Leader'} • ${bc.category || 'Organisation'}`;
+    
+    const isHigh = (bc.priority || '').toLowerCase() === 'high';
+    if (priorityEl) {
+      priorityEl.className = isHigh ? 'mb-priority-chip high' : 'mb-priority-chip general';
+      priorityEl.innerText = isHigh ? 'HIGH PRIORITY' : (bc.priority || 'GENERAL').toUpperCase();
+    }
+
+    if (bodyEl) {
+      const paragraphs = (bc.fullMessage || bc.preview || '').split('\n\n');
+      bodyEl.innerHTML = paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    }
+
+    const isLiked = !!mbLikedState[bcId];
+    const count = mbLikeCounts[bcId] || 20;
+    if (likeBtn) {
+      if (isLiked) likeBtn.classList.add('liked');
+      else likeBtn.classList.remove('liked');
+    }
+    if (likeText) likeText.innerText = isLiked ? 'Liked' : 'Like';
+    if (likeCount) likeCount.innerText = count;
+
+    if (modal) modal.classList.add('open');
+  }
+
+  function closeMbSheet() {
+    const modal = document.getElementById('mbSheetModal');
+    if (modal) modal.classList.remove('open');
+    mbSheetActiveId = null;
+  }
+
+  function toggleMbSheetLike() {
+    if (!mbSheetActiveId) return;
+    const isLiked = !mbLikedState[mbSheetActiveId];
+    mbLikedState[mbSheetActiveId] = isLiked;
+    mbLikeCounts[mbSheetActiveId] = (mbLikeCounts[mbSheetActiveId] || 20) + (isLiked ? 1 : -1);
+
+    try {
+      localStorage.setItem('hirerkey_mb_like_' + mbSheetActiveId, isLiked ? 'true' : 'false');
+    } catch(e) {}
+
+    const likeBtn = document.getElementById('mbSheetLikeBtn');
+    const likeText = document.getElementById('mbSheetLikeText');
+    const likeCount = document.getElementById('mbSheetLikeCount');
+    if (likeBtn) {
+      if (isLiked) likeBtn.classList.add('liked');
+      else likeBtn.classList.remove('liked');
+    }
+    if (likeText) likeText.innerText = isLiked ? 'Liked' : 'Like';
+    if (likeCount) likeCount.innerText = mbLikeCounts[mbSheetActiveId];
+
+    if (mbSheetActiveId === mbActiveBcId) {
+      updateMb1LikeUI();
+    }
+    updateMb2FeedLikeUI(mbSheetActiveId);
+
+    if (isLiked) {
+      showToast('❤️ You liked this broadcast!', 'success');
+    } else {
+      showToast('Like removed.');
+    }
+  }
+
+  function filterMb2Cards(term) {
+    const q = (term || '').trim().toLowerCase();
+    const cards = document.querySelectorAll('#mb2CardsFeed .mb2-feed-card');
+    cards.forEach(c => {
+      const text = c.innerText.toLowerCase();
+      c.style.display = text.includes(q) ? 'flex' : 'none';
+    });
+  }
+
+  function setMb2Filter(cat, btn) {
+    document.querySelectorAll('.mb2-filter-chip').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    const cards = document.querySelectorAll('#mb2CardsFeed .mb2-feed-card');
+    cards.forEach(c => {
+      if (cat === 'all') {
+        c.style.display = 'flex';
+      } else if (cat === 'high') {
+        const isHigh = c.innerText.includes('High Priority');
+        c.style.display = isHigh ? 'flex' : 'none';
+      } else if (cat === 'general') {
+        const isGen = c.innerText.includes('Welcome') || c.innerText.includes('General');
+        c.style.display = isGen ? 'flex' : 'none';
+      } else if (cat === 'policies') {
+        const isPolicy = c.innerText.includes('policy') || c.innerText.includes('Policy');
+        c.style.display = isPolicy ? 'flex' : 'none';
+      }
+    });
+  }
+
+  function copyMbBroadcastLink() {
+    const bc = broadcasts.find(b => b.id === mbActiveBcId) || broadcasts[0];
+    const url = `${window.location.origin}${window.location.pathname}#mobileBroadcast=${bc.id}`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('✓ Broadcast link copied to clipboard!', 'success');
+      }).catch(() => {
+        showToast(`Broadcast: ${bc.title}`);
+      });
+    } else {
+      showToast(`Broadcast: ${bc.title}`);
+    }
+  }
+
+  function scrollToMobileDesign(id, ev) {
+    if (ev) ev.preventDefault();
+    document.querySelectorAll('.mobile-jump-pill').forEach(p => p.classList.remove('active'));
+    if (ev && ev.currentTarget) ev.currentTarget.classList.add('active');
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
@@ -8148,7 +8401,7 @@
         btn3.classList.add('active');
         btn3.classList.add('screen-tab-recommended');
       }
-      renderView3Widget();
+      renderView3Mobile();
     } else {
       // Default to View 2
       currentBroadcastView = 'view2';
@@ -8375,8 +8628,15 @@
     renderBroadcastList();
     renderV2BroadcastList();
     updateV3LivePulse();
-    // Default to view2 per user instruction, or restore preference
-    const savedView = localStorage.getItem('hirerkey_broadcast_view') || 'view2';
+    // Support direct view navigation via URL hash, search param, or restored preference
+    let savedView = 'view2';
+    if (window.location.hash.includes('view3') || window.location.hash.includes('mobile') || window.location.search.includes('view=3')) {
+      savedView = 'view3';
+    } else {
+      try {
+        savedView = localStorage.getItem('hirerkey_broadcast_view') || 'view2';
+      } catch (e) {}
+    }
     switchBroadcastView(savedView);
   }
 
@@ -9489,6 +9749,40 @@
   });
 
 </script>
+
+
+<!-- Mobile Bottom Sheet Reader Modal (Design 2) -->
+<div class="modal-overlay" id="mbSheetModal" onclick="if(event.target===this)closeMbSheet()">
+  <div class="mb-sheet-dialog">
+    <div class="mb-sheet-handle-bar"><div class="mb-sheet-handle"></div></div>
+    <div class="mb-sheet-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span class="mb-readonly-badge">VIEW ONLY</span>
+        <span id="mbSheetPriority" class="mb-priority-chip high" style="padding: 2px 7px; font-size: 10px;">HIGH PRIORITY</span>
+      </div>
+      <button type="button" class="modal-close-btn" onclick="closeMbSheet()" style="width: 28px; height: 28px; font-size: 13px;">✕</button>
+    </div>
+    <div class="mb-sheet-body">
+      <h3 class="mb-announcement-headline" id="mbSheetTitle" style="font-size: 17px; margin-bottom: 12px;">Welcome to hirekey Notifications!</h3>
+      <div class="mb-author-card" style="margin-bottom: 14px;">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" id="mbSheetAvatar" class="mb-author-avatar" style="width: 36px; height: 36px;" />
+        <div class="mb-author-info">
+          <span class="mb-author-name" id="mbSheetAuthorName">Subhadeep Datta</span>
+          <span class="mb-author-sub" id="mbSheetAuthorDept">Business Head • Revenue</span>
+        </div>
+      </div>
+      <div class="mb-body-card" id="mbSheetBodyText" style="margin-bottom: 14px;">
+      </div>
+      <div class="mb-action-main-row" style="margin-top: 10px;">
+        <button type="button" class="mb-like-pill-btn" id="mbSheetLikeBtn" onclick="toggleMbSheetLike()">
+          <svg class="mb-like-heart-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <span id="mbSheetLikeText">Like</span>
+          <span class="mb-like-count-badge" id="mbSheetLikeCount">42</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
