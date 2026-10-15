@@ -1,0 +1,3172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey™ — Modal & Drawer Standardization Showcase</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM TOKENS — HIRERKEY & DONEZO THEME
+       ========================================================================== */
+    :root {
+      --brand-primary: #7C3AED;
+      --brand-primary-hover: #6D28D9;
+      --brand-primary-light: #EDE9FE;
+      --brand-primary-subtle: #F5F3FF;
+      --brand-accent: #6366F1;
+      
+      --bg-dashboard: #F4F6F9;
+      --bg-surface: #FFFFFF;
+      --bg-subtle: #F8FAFC;
+      --bg-card: #FFFFFF;
+      
+      --text-heading: #0F172A;
+      --text-body: #334155;
+      --text-muted: #64748B;
+      --text-subtle: #94A3B8;
+      
+      --border-subtle: #EEF2F6;
+      --border-card: #E2E8F0;
+      --border-focus: #C4B5FD;
+      
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-card: 0 4px 16px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+      --shadow-float: 0 20px 40px -8px rgba(15, 23, 42, 0.16);
+      --shadow-modal: 0 25px 60px -12px rgba(15, 23, 42, 0.28);
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-card: 20px;
+      --radius-full: 9999px;
+      --anim-speed-scale: 1;
+      
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-dashboard);
+      color: var(--text-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Layout Shell */
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    /* --------------------------------------------------------------------------
+       SIDEBAR NAVIGATION (DONEZO FLOATING STYLE)
+       -------------------------------------------------------------------------- */
+    .app-sidebar {
+      width: 260px;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-subtle);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 40;
+    }
+
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 8px 24px 8px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .brand-logo-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      color: #FFFFFF;
+      font-size: 19px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.32);
+    }
+
+    .brand-title-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--brand-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 18px 12px 6px 12px;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px;
+      border-radius: var(--radius-md);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .nav-item:hover {
+      background: var(--bg-subtle);
+      color: var(--text-heading);
+    }
+
+    .nav-item.active {
+      background: var(--brand-primary-light);
+      color: var(--brand-primary);
+      font-weight: 700;
+    }
+
+    .nav-item svg {
+      flex-shrink: 0;
+    }
+
+    .nav-badge-pill {
+      margin-left: auto;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 8px;
+      background: #EDE9FE;
+      color: #6D28D9;
+    }
+
+    .nav-badge-pill.new {
+      background: #DCFCE7;
+      color: #166534;
+      border: 1px solid #BBF7D0;
+    }
+
+    /* --------------------------------------------------------------------------
+       MAIN CONTENT CANVAS & GLOBAL TOPBAR
+       -------------------------------------------------------------------------- */
+    .app-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      background: var(--bg-dashboard);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+    }
+
+    .app-main.canvas-dimmed {
+      transform: scale(0.985);
+      filter: brightness(0.96);
+    }
+
+    .app-topbar {
+      height: 70px;
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 8px 14px;
+      width: 320px;
+      transition: all 0.15s ease;
+    }
+
+    .search-input-wrap:focus-within {
+      border-color: var(--border-focus);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    .search-input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 13px;
+      color: var(--text-heading);
+      width: 100%;
+    }
+
+    .search-kbd {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      padding: 1px 5px;
+      color: var(--text-subtle);
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .topbar-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border-card);
+      background: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+
+    .topbar-btn:hover {
+      background: var(--bg-subtle);
+      color: var(--text-heading);
+    }
+
+    .topbar-btn-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #EF4444;
+    }
+
+    .user-profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 10px 4px 6px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+    }
+
+    .user-avatar-img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .user-name-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    /* --------------------------------------------------------------------------
+       STANDARDIZATION LAB BANNER & MODEL LAUNCHER BAR
+       -------------------------------------------------------------------------- */
+    .lab-banner {
+      background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+      color: #FFFFFF;
+      padding: 24px 32px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .lab-header-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .lab-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #A5B4FC;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .lab-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.025em;
+      margin-bottom: 6px;
+    }
+
+    .lab-desc {
+      font-size: 13.5px;
+      color: #C7D2FE;
+      max-width: 820px;
+      line-height: 1.55;
+    }
+
+    .lab-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .lab-compare-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: #FFFFFF;
+      color: #312E81;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .lab-compare-btn:hover {
+      background: #EEF2FF;
+      transform: translateY(-1px);
+    }
+
+    /* Highlight Revamp Pills Row */
+    .revamp-launchers-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: rgba(124, 58, 237, 0.22);
+      border: 1px solid rgba(196, 181, 253, 0.35);
+      border-radius: var(--radius-md);
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .revamp-badge-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: #FBCFE8;
+      background: rgba(236, 72, 153, 0.25);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .revamp-trigger-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: #FFFFFF;
+      color: #1E1B4B;
+      border-radius: 10px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: all 0.15s ease;
+    }
+
+    .revamp-trigger-pill:hover {
+      background: #EDE9FE;
+      color: #6D28D9;
+      transform: translateY(-1px);
+    }
+
+    /* Model Selector Pills in Banner */
+    .model-pills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .model-pill-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-md);
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .model-pill-card:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .model-pill-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .model-pill-num {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #FBCFE8;
+      font-family: var(--font-mono);
+    }
+
+    .model-pill-name {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .model-pill-sub {
+      font-size: 10.5px;
+      color: #C7D2FE;
+    }
+
+    /* --------------------------------------------------------------------------
+       DASHBOARD WORKSPACE CONTENT
+       -------------------------------------------------------------------------- */
+    .dashboard-content {
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* Metrics Bento Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .metric-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .metric-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .metric-val {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+
+    .metric-label {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .metric-delta {
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: #059669;
+    }
+
+    /* Operations & Activity Table */
+    .content-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-header-bar {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .card-title-group h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.015em;
+    }
+
+    .card-title-group p {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .ops-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .ops-table th {
+      padding: 12px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--bg-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .ops-table td {
+      padding: 16px 20px;
+      font-size: 13.5px;
+      color: var(--text-body);
+      border-bottom: 1px solid var(--border-subtle);
+      vertical-align: middle;
+    }
+
+    .ops-table tr:hover td {
+      background: #FAF8FF;
+    }
+
+    .module-badge-cell {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .module-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .module-name-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .module-title {
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .module-path {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-subtle);
+    }
+
+    .trigger-model-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .trigger-model-btn.m1 {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border-color: #DDD6FE;
+    }
+    .trigger-model-btn.m1:hover {
+      background: #DDD6FE;
+    }
+
+    .trigger-model-btn.m2 {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+    .trigger-model-btn.m2:hover {
+      background: #E2E8F0;
+    }
+
+    .trigger-model-btn.m3 {
+      background: #F8FAFC;
+      color: #334155;
+      border-color: #E2E8F0;
+    }
+    .trigger-model-btn.m3:hover {
+      background: #EEF2F6;
+    }
+
+    .trigger-model-btn.m4 {
+      background: #FEF3C7;
+      color: #92400E;
+      border-color: #FDE68A;
+    }
+    .trigger-model-btn.m4:hover {
+      background: #FDE68A;
+    }
+
+    .trigger-model-btn.m5 {
+      background: #E0E7FF;
+      color: #3730A3;
+      border-color: #C7D2FE;
+    }
+    .trigger-model-btn.m5:hover {
+      background: #C7D2FE;
+    }
+
+    /* Revamp Buttons */
+    .trigger-model-btn.revamp-side {
+      background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(49, 46, 129, 0.25);
+    }
+    .trigger-model-btn.revamp-side:hover {
+      background: #1E1B4B;
+      transform: translateY(-1px);
+    }
+
+    .trigger-model-btn.revamp-center {
+      background: linear-gradient(135deg, #7C3AED 0%, #6366F1 100%);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+    }
+    .trigger-model-btn.revamp-center:hover {
+      background: #6D28D9;
+      transform: translateY(-1px);
+    }
+
+    /* --------------------------------------------------------------------------
+       THE 5 LEGACY OVERLAY PARADIGMS — EXACT CSS ANIMATIONS & STYLES
+       -------------------------------------------------------------------------- */
+
+    /* Generic Backdrop */
+    .modal-backdrop-layer {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      z-index: 100;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.22s ease-out;
+    }
+    .modal-backdrop-layer.open {
+      display: block;
+      opacity: 1;
+    }
+
+    /* Revamp Frosted Backdrop */
+    .modal-backdrop-layer.frosted {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      background: rgba(15, 23, 42, 0.48);
+    }
+
+    /* MODEL 1: FLOATING RIGHT DRAWER WITH PURPLE HEADER */
+    .m1-drawer-wrap {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 520px;
+      max-width: 100vw;
+      padding: 20px;
+      z-index: 110;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+      transform: translateX(100%);
+      transition: transform 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .m1-drawer-wrap.open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .m1-drawer-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-modal);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .m1-purple-header {
+      background: #7C3AED;
+      color: #FFFFFF;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .m1-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .m1-header-icon-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .m1-header-titles {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .m1-header-subtitle {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .m1-header-title {
+      font-size: 15.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .m1-close-btn {
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      transition: background 0.15s ease;
+    }
+    .m1-close-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .m1-drawer-body {
+      padding: 22px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* MODEL 2: FULL-BLEED OVERLAPPING SHEET */
+    .m2-sheet-wrap {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(1140px, 94vw);
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.35);
+      z-index: 110;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+      margin: 0;
+      pointer-events: none;
+      transform: translateX(100%);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .m2-sheet-wrap.open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .m2-sheet-header {
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FAFAFC;
+      flex-shrink: 0;
+    }
+
+    .m2-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .m2-voucher-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      padding: 3px 8px;
+      border-radius: 6px;
+      color: #334155;
+    }
+
+    .m2-header-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-heading);
+    }
+
+    .m2-sheet-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 28px;
+    }
+
+    /* MODEL 3: FLOATING RIGHT DRAWER WITH NEUTRAL WHITE HEADER */
+    .m3-drawer-wrap {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 480px;
+      max-width: 100vw;
+      padding: 24px;
+      z-index: 110;
+      display: flex;
+      flex-direction: column;
+      pointer-events: none;
+      transform: translateX(100%);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+    .m3-drawer-wrap.open {
+      transform: translateX(0);
+      pointer-events: auto;
+    }
+
+    .m3-drawer-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-modal);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .m3-neutral-header {
+      background: #FFFFFF;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .m3-header-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .m3-drawer-body {
+      padding: 22px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* MODEL 4: "CREATE ORIENTATION" RIGHT-SLIDING CENTER SHEET */
+    @keyframes IO {
+      0% {
+        opacity: 0;
+        transform: translateX(calc(-50% + 20%)) translateY(-50%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-50%);
+      }
+    }
+
+    .m4-center-sheet-wrap {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 52vw;
+      max-height: 92vh;
+      background: #FFFFFF;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-card);
+      box-shadow: 0 30px 70px -15px rgba(15, 23, 42, 0.35);
+      z-index: 110;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translateX(-50%) translateY(-50%);
+      box-sizing: border-box;
+    }
+    .m4-center-sheet-wrap.open {
+      display: flex;
+      animation: IO 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .m4-sheet-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .m4-header-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--brand-primary);
+    }
+
+    .m4-sheet-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* MODEL 5: STANDARD THEME CENTER DIALOG */
+    @keyframes htsModalSlideInRight {
+      0% {
+        opacity: 0;
+        transform: translate(-30%, -50%);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .m5-center-dialog-wrap {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 480px;
+      max-width: 90vw;
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-card);
+      box-shadow: 0 25px 60px -12px rgba(15, 23, 42, 0.25);
+      z-index: 110;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box;
+    }
+    .m5-center-dialog-wrap.open {
+      display: flex;
+      animation: htsModalSlideInRight 0.22s ease-out both;
+    }
+
+    .m5-dialog-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .m5-dialog-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .m5-dialog-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .m5-dialog-footer {
+      padding: 14px 22px;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    /* ==========================================================================
+       MODAL APPEARANCE ANIMATIONS (HOW THE MODAL BOX APPEARS)
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       A. SIDE MODAL APPEARANCE ANIMATIONS (M2 OVERLAPPING SHEET)
+       -------------------------------------------------------------------------- */
+    
+    /* S1: Fluid Spring Inertia (Linear / Apple curve) */
+    @keyframes sideAppear_SpringInertia {
+      0% {
+        transform: translate3d(100%, 0, 0);
+        opacity: 0.85;
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+      }
+    }
+
+    /* S2: Parallax Canvas Depth Push */
+    @keyframes sideAppear_ParallaxDepth {
+      0% {
+        transform: translate3d(100%, 0, 0);
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* S3: Elastic Settle (Modern Bouncy) */
+    @keyframes sideAppear_ElasticSettle {
+      0% {
+        transform: translate3d(100%, 0, 0);
+      }
+      72% {
+        transform: translate3d(-10px, 0, 0);
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* S4: Soft Curtain Wipe (Clip-path Reveal) */
+    @keyframes sideAppear_CurtainWipe {
+      0% {
+        transform: translate3d(60px, 0, 0);
+        clip-path: inset(0 0 0 100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+        clip-path: inset(0 0 0 0%);
+        opacity: 1;
+      }
+    }
+
+    /* Side sheet base styles (Exact M2 flush full-bleed layout) */
+    .revamp-side-sheet-wrap {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(1120px, 94vw);
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: -24px 0 60px -12px rgba(15, 23, 42, 0.28), -4px 0 16px 0 rgba(15, 23, 42, 0.08);
+      z-index: 110;
+      display: none;
+      flex-direction: column;
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      border-left: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    .revamp-side-sheet-wrap.open {
+      display: flex;
+    }
+
+    /* Animation classes for Side Sheet */
+    .revamp-side-sheet-wrap.open.anim-side-s1 {
+      animation: sideAppear_SpringInertia calc(0.34s * var(--anim-speed-scale)) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .revamp-side-sheet-wrap.open.anim-side-s2 {
+      animation: sideAppear_ParallaxDepth calc(0.32s * var(--anim-speed-scale)) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .revamp-side-sheet-wrap.open.anim-side-s3 {
+      animation: sideAppear_ElasticSettle calc(0.38s * var(--anim-speed-scale)) cubic-bezier(0.34, 1.25, 0.64, 1) forwards;
+    }
+    .revamp-side-sheet-wrap.open.anim-side-s4 {
+      animation: sideAppear_CurtainWipe calc(0.32s * var(--anim-speed-scale)) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* --------------------------------------------------------------------------
+       B. CENTER MODAL APPEARANCE ANIMATIONS (ZERO HORIZONTAL DRIFT)
+       -------------------------------------------------------------------------- */
+    
+    /* C1: Spring Pop Reveal (Scale Up) */
+    @keyframes centerAppear_SpringPop {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.86);
+      }
+      70% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.02);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.0);
+      }
+    }
+
+    /* C2: Snappy Drop-In (Top-to-Center) */
+    @keyframes centerAppear_DropIn {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -64%) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.0);
+      }
+    }
+
+    /* C3: Soft Float-Up (Bottom-to-Center) */
+    @keyframes centerAppear_FloatUp {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -36%) scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.0);
+      }
+    }
+
+    /* C4: Blur Bloom Focus */
+    @keyframes centerAppear_BlurBloom {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.92);
+        filter: blur(12px);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.0);
+        filter: blur(0px);
+      }
+    }
+
+    /* C5: 3D Perspective Tilt-In */
+    @keyframes centerAppear_PerspectiveTilt {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) perspective(900px) rotateX(10deg) scale(0.94);
+      }
+      100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) perspective(900px) rotateX(0deg) scale(1.0);
+      }
+    }
+
+    /* Center dialog base styles (Exact Hirerkey clean box layout) */
+    .revamp-center-dialog-wrap {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 520px;
+      max-width: 92vw;
+      background: #FFFFFF;
+      border-radius: 16px;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 32px 84px -16px rgba(15, 23, 42, 0.35), 0 10px 24px -6px rgba(124, 58, 237, 0.16);
+      z-index: 110;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      transform: translate(-50%, -50%);
+      box-sizing: border-box;
+    }
+
+    .revamp-center-dialog-wrap.open {
+      display: flex;
+    }
+
+    /* Animation classes for Center Dialog */
+    .revamp-center-dialog-wrap.open.anim-center-c1 {
+      animation: centerAppear_SpringPop calc(0.28s * var(--anim-speed-scale)) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .revamp-center-dialog-wrap.open.anim-center-c2 {
+      animation: centerAppear_DropIn calc(0.22s * var(--anim-speed-scale)) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .revamp-center-dialog-wrap.open.anim-center-c3 {
+      animation: centerAppear_FloatUp calc(0.24s * var(--anim-speed-scale)) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+    .revamp-center-dialog-wrap.open.anim-center-c4 {
+      animation: centerAppear_BlurBloom calc(0.30s * var(--anim-speed-scale)) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .revamp-center-dialog-wrap.open.anim-center-c5 {
+      animation: centerAppear_PerspectiveTilt calc(0.28s * var(--anim-speed-scale)) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* --------------------------------------------------------------------------
+       APPEARANCE TESTER TOOLBAR (INSIDE MODALS & DASHBOARD)
+       -------------------------------------------------------------------------- */
+    .anim-tester-bar {
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 12px;
+      flex-shrink: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .anim-tester-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #A78BFA;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .anim-tester-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .anim-chip-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #E2E8F0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .anim-chip-btn:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+    }
+    .anim-chip-btn.active {
+      background: #7C3AED;
+      border-color: #A78BFA;
+      color: #FFFFFF;
+      box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+    }
+
+    .anim-replay-btn {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #FFFFFF;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);
+      transition: all 0.15s ease;
+    }
+    .anim-replay-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .anim-speed-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: #94A3B8;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .anim-speed-btn.active {
+      background: #F59E0B;
+      color: #0F172A;
+      border-color: #FCD34D;
+      font-weight: 800;
+    }
+
+    .anim-spec-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: #CBD5E1;
+      background: rgba(0, 0, 0, 0.35);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Common Form Utilities */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .form-input {
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-card);
+      background: #FFFFFF;
+      font-size: 13.5px;
+      outline: none;
+      font-family: inherit;
+    }
+    .form-input:focus {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    .form-btn-primary {
+      padding: 9px 18px;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .form-btn-primary:hover {
+      background: var(--brand-primary-hover);
+    }
+
+    .form-btn-secondary {
+      padding: 9px 16px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-body);
+      cursor: pointer;
+    }
+    .form-btn-secondary:hover {
+      background: #F1F5F9;
+    }
+
+    /* Comparison Matrix Modal */
+    .matrix-modal-wrap {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(1200px, 94vw);
+      max-height: 90vh;
+      background: #FFFFFF;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-card);
+      box-shadow: 0 32px 84px -16px rgba(15, 23, 42, 0.35);
+      z-index: 120;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .matrix-modal-wrap.open {
+      display: flex;
+      animation: revampCenterSpringPop 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .matrix-header {
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #F8FAFC;
+    }
+
+    .matrix-body {
+      padding: 28px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .matrix-table th, .matrix-table td {
+      padding: 14px 16px;
+      border: 1px solid var(--border-card);
+      text-align: left;
+    }
+    .matrix-table th {
+      background: #F1F5F9;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- Floating Sidebar Navigation -->
+    <aside class="app-sidebar">
+      <div class="brand-header">
+        <div class="brand-logo-badge">H</div>
+        <div class="brand-title-wrap">
+          <span class="brand-name">Hirerkey™</span>
+          <span class="brand-tag">Ops Suite</span>
+        </div>
+      </div>
+
+      <!-- Core Modules Heading -->
+      <span class="nav-section-title">Core Modules</span>
+      <ul class="nav-list">
+        <li>
+          <a href="#" class="nav-item active">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" onclick="openModel(1); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <span>HR Broadcast</span>
+            <span class="nav-badge-pill">M1</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" onclick="openModel(2); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <span>Expense Claims</span>
+            <span class="nav-badge-pill">M2</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" onclick="openModel(3); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="18" y1="8" x2="23" y2="13"></line><line x1="23" y1="8" x2="18" y2="13"></line></svg>
+            <span>Offboarding</span>
+            <span class="nav-badge-pill">M3</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" onclick="openModel(4); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <span>Orientation Journey</span>
+            <span class="nav-badge-pill">M4</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" onclick="openModel(5); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0 2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+            <span>Property Settings</span>
+            <span class="nav-badge-pill">M5</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- New Revamp Modules Heading (As Requested) -->
+      <span class="nav-section-title" style="margin-top: 14px; color: #7C3AED;">New Modules (Suggested Revamp Animations)</span>
+      <ul class="nav-list">
+        <li>
+          <a href="#" class="nav-item" onclick="openRevampSide('s1'); return false;" style="color: #6D28D9; font-weight: 700;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+            <span>Side Appearance (M2 Overlap)</span>
+            <span class="nav-badge-pill new">S1-S4</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" onclick="openRevampCenter('c1'); return false;" style="color: #4F46E5; font-weight: 700;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="3"></rect><circle cx="12" cy="12" r="3"></circle></svg>
+            <span>Center Appearance (Zero Drift)</span>
+            <span class="nav-badge-pill new">C1-C5</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-item" onclick="openComparisonMatrix(); return false;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            <span>Appearance Animation Lab</span>
+          </a>
+        </li>
+      </ul>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-subtle);">
+        <button type="button" class="form-btn-secondary" style="width: 100%; font-size: 12px;" onclick="openComparisonMatrix()">
+          ⚡ Comparison Matrix
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Canvas Area -->
+    <main class="app-main" id="mainCanvas">
+      
+      <!-- Topbar Header -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <div class="search-input-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" class="search-input" placeholder="Search modules, employees, actions..." />
+            <span class="search-kbd">⌘K</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-btn" title="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span class="topbar-btn-badge"></span>
+          </button>
+          <div class="user-profile-badge">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&h=80&q=80" alt="Chanchal Sharma" class="user-avatar-img" />
+            <span class="user-name-text">Chanchal S.</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Standardization Lab Banner -->
+      <section class="lab-banner">
+        <div class="lab-header-row">
+          <div>
+            <div class="lab-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>DESIGN SYSTEM UNIFICATION LAB</span>
+            </div>
+            <h1 class="lab-title">5 Core Paradigms &amp; Suggested Revamp Animations</h1>
+            <p class="lab-desc">
+              Compare the 5 legacy overlays against the two newly proposed standards: an enhanced fluid edge Side Sheet (inspired by M2 Audit Vouchers) and a zero-drift Spring Pop Center Dialog.
+            </p>
+          </div>
+          <div class="lab-actions-row">
+            <button class="lab-compare-btn" onclick="openComparisonMatrix()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
+              <span>Side-by-Side Matrix</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Revamp Launchers Bar -->
+        <div class="revamp-launchers-bar" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="revamp-badge-tag">HOW MODAL BOX APPEARS</span>
+            <button class="revamp-trigger-pill" onclick="openRevampSide('s1')">
+              <span>🚀 Test Side Appearance (M2 Overlap • S1 Spring)</span>
+            </button>
+            <button class="revamp-trigger-pill" onclick="openRevampCenter('c1')">
+              <span>💎 Test Center Appearance (Spring Pop • C1)</span>
+            </button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.7); border: 1px solid var(--border-card); padding: 4px 10px; border-radius: 8px;">
+            <span style="font-size: 11px; font-weight: 700; color: var(--text-muted);">Speed:</span>
+            <button class="anim-speed-btn" id="bannerSpeed05" onclick="setAnimationSpeed(2.2)" title="Inspect motion in Slow-Mo">0.5x Slow-Mo</button>
+            <button class="anim-speed-btn active" id="bannerSpeed10" onclick="setAnimationSpeed(1.0)">1.0x Normal</button>
+            <button class="anim-speed-btn" id="bannerSpeed15" onclick="setAnimationSpeed(0.65)">1.5x Fast</button>
+          </div>
+        </div>
+
+        <div class="model-pills-grid">
+          <div class="model-pill-card" onclick="openModel(1)">
+            <div class="model-pill-top">
+              <span class="model-pill-num">MODEL 1</span>
+              <span style="font-size: 11px;">🟣</span>
+            </div>
+            <span class="model-pill-name">Purple Right Drawer</span>
+            <span class="model-pill-sub">Floating margin (p: 2.5), purple header</span>
+          </div>
+
+          <div class="model-pill-card" onclick="openModel(2)">
+            <div class="model-pill-top">
+              <span class="model-pill-num">MODEL 2</span>
+              <span style="font-size: 11px;">🔲</span>
+            </div>
+            <span class="model-pill-name">Full-Bleed Sheet (Liked)</span>
+            <span class="model-pill-sub">Flush edge (p: 0), 100vh overlap</span>
+          </div>
+
+          <div class="model-pill-card" onclick="openModel(3)">
+            <div class="model-pill-top">
+              <span class="model-pill-num">MODEL 3</span>
+              <span style="font-size: 11px;">⚪</span>
+            </div>
+            <span class="model-pill-name">Neutral Right Drawer</span>
+            <span class="model-pill-sub">Floating margin, white header</span>
+          </div>
+
+          <div class="model-pill-card" onclick="openModel(4)">
+            <div class="model-pill-top">
+              <span class="model-pill-num">MODEL 4</span>
+              <span style="font-size: 11px;">📐</span>
+            </div>
+            <span class="model-pill-name">Orientation Center Sheet</span>
+            <span class="model-pill-sub">50vw × 100vh, slides from right (+20%)</span>
+          </div>
+
+          <div class="model-pill-card" onclick="openModel(5)">
+            <div class="model-pill-top">
+              <span class="model-pill-num">MODEL 5</span>
+              <span style="font-size: 11px;">🪟</span>
+            </div>
+            <span class="model-pill-name">Theme Slide Dialog</span>
+            <span class="model-pill-sub">480px center, htsModalSlideInRight</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dashboard Body Canvas -->
+      <div class="dashboard-content">
+        
+        <!-- Metrics Row -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <span class="metric-label">Active Employees</span>
+              <div class="metric-icon-box" style="background: #EDE9FE; color: #7C3AED;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              </div>
+            </div>
+            <div class="metric-val">248</div>
+            <div class="metric-delta">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+              <span>+12% this month</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <span class="metric-label">Pending Approvals</span>
+              <div class="metric-icon-box" style="background: #FEF3C7; color: #D97706;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+            </div>
+            <div class="metric-val">14</div>
+            <div class="metric-delta" style="color: #D97706;">
+              <span>5 require immediate audit</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <span class="metric-label">Broadcast Reach</span>
+              <div class="metric-icon-box" style="background: #DCFCE7; color: #16A34A;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+              </div>
+            </div>
+            <div class="metric-val">94.2%</div>
+            <div class="metric-delta">
+              <span>98% delivery rate</span>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-card-top">
+              <span class="metric-label">Standardization</span>
+              <div class="metric-icon-box" style="background: #EEF2FF; color: #4F46E5;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              </div>
+            </div>
+            <div class="metric-val">2 Standards</div>
+            <div class="metric-delta" style="color: #4F46E5;">
+              <span>Replacing 5 models</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SECTION 1: CORE MODULES (LEGACY MODELS M1-M5) -->
+        <div class="content-card">
+          <div class="card-header-bar">
+            <div class="card-title-group">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 2px;">
+                <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; background: #F1F5F9; color: #475569; padding: 2px 7px; border-radius: 4px;">CURRENT ARCHITECTURE</span>
+                <span style="font-size: 11.5px; color: #94A3B8; font-weight: 600;">5 Overlays Active in Production</span>
+              </div>
+              <h3>Core Modules (Current Models)</h3>
+              <p>Each row represents an active module. Click the trigger action button to experience its current opening animation and presentation.</p>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>Target Module</th>
+                  <th>Operational Item</th>
+                  <th>Owner / Sender</th>
+                  <th>Current Paradigm</th>
+                  <th>Live Action Trigger</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Row 1: Model 1 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #EDE9FE; color: #7C3AED;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">HR Broadcast</span>
+                        <span class="module-path">/menu/communication</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Q4 Leadership Townhall</span>
+                    <div style="font-size: 12px; color: #64748B;">Executive notification &amp; slide deck attachments</div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 600;">Uneet Kumar</span>
+                    <div style="font-size: 11px; color: #94A3B8;">CHRO</div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: #EDE9FE; color: #6D28D9;">
+                      🟣 Model 1: Purple Header Drawer
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn m1" onclick="openModel(1)">
+                      <span>Review Broadcast</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 2: Model 2 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #F1F5F9; color: #0F172A;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">Expense Approvals</span>
+                        <span class="module-path">/menu/expenses/manager</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Client Strategy Offsite Claim</span>
+                    <div style="font-size: 12px; color: #64748B;">Total: $1,420.00 • 4 Receipts attached</div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 600;">Rahul Verma</span>
+                    <div style="font-size: 11px; color: #94A3B8;">Product Lead</div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: #F1F5F9; color: #0F172A;">
+                      🔲 Model 2: Full-Bleed Sheet (p: 0)
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn m2" onclick="openModel(2)">
+                      <span>Audit Voucher</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 3: Model 3 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #F8FAFC; color: #334155;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="18" y1="8" x2="23" y2="13"></line><line x1="23" y1="8" x2="18" y2="13"></line></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">Offboarding Clearance</span>
+                        <span class="module-path">/menu/offboarding</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Exit Handover &amp; Device Return</span>
+                    <div style="font-size: 12px; color: #64748B;">3 checklist items remaining (IT &amp; Finance)</div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 600;">Sara Chen</span>
+                    <div style="font-size: 11px; color: #94A3B8;">Senior Engineer</div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: #F8FAFC; color: #334155; border: 1px solid #E2E8F0;">
+                      ⚪ Model 3: Neutral White Drawer
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn m3" onclick="openModel(3)">
+                      <span>Review Clearance</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 4: Model 4 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #FEF3C7; color: #92400E;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">Orientation Journeys</span>
+                        <span class="module-path">/menu/orientation</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Engineering Onboarding Milestone</span>
+                    <div style="font-size: 12px; color: #64748B;">6 sequential activities • AI Fill available</div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 600;">Chanchal Sharma</span>
+                    <div style="font-size: 11px; color: #94A3B8;">Operations Admin</div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: #FEF3C7; color: #92400E;">
+                      📐 Model 4: 50vw Center Sheet (dr)
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn m4" onclick="openModel(4)">
+                      <span>Create Orientation</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- Row 5: Model 5 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #E0E7FF; color: #3730A3;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">Departments &amp; Org</span>
+                        <span class="module-path">/menu/project-settings/departments</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Create New Department</span>
+                    <div style="font-size: 12px; color: #64748B;">Organizational hierarchy &amp; budget code</div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 600;">System Admin</span>
+                    <div style="font-size: 11px; color: #94A3B8;">Configurator</div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: #E0E7FF; color: #3730A3;">
+                      🪟 Model 5: Theme Center Dialog
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn m5" onclick="openModel(5)">
+                      <span>Add Department</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- SECTION 2: NEW MODULES / SUGGEST REVAMP MODULES (AS REQUESTED) -->
+        <div class="content-card" style="border: 2px solid #C4B5FD; box-shadow: 0 8px 32px -4px rgba(124, 58, 237, 0.14);">
+          <div class="card-header-bar" style="background: linear-gradient(135deg, #FAF5FF 0%, #FFFFFF 100%);">
+            <div class="card-title-group">
+              <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; background: #EDE9FE; color: #6D28D9; border: 1px solid #C4B5FD; padding: 2px 8px; border-radius: 4px;">MODAL APPEARANCE ANIMATIONS</span>
+                <span style="font-size: 11px; color: #166534; background: #DCFCE7; border: 1px solid #BBF7D0; font-weight: 700; padding: 2px 8px; border-radius: 4px;">HOW THE MODAL BOX APPEARS</span>
+              </div>
+              <h3 style="color: #1E1B4B; font-size: 18px;">New Modules (Suggested Revamp Animations)</h3>
+              <p>Compare new appearance animations for how the modal box enters the screen. The modal box designs are authentic to Hirerkey — test different entry trajectories, velocities, and spring curves.</p>
+            </div>
+          </div>
+
+          <div class="table-container">
+            <table class="ops-table">
+              <thead>
+                <tr>
+                  <th>Animation Identifier</th>
+                  <th>Modal Box Type</th>
+                  <th>Motion Trajectory &amp; Physics Spec</th>
+                  <th>Interaction Feel</th>
+                  <th>Live Action Trigger</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- SIDE S1 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #1E1B4B; color: #C7D2FE;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">S1: Fluid Spring Inertia</span>
+                        <span class="module-path">Side Sheet • M2 Overlap Revamped</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Right Side Sheet (p: 0)</span>
+                    <div style="font-size: 12px; color: #64748B;">Full-bleed 100vh overlap (Expense Claim box)</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      cubic-bezier(0.16, 1, 0.3, 1) • 340ms
+                      <div style="color: #7C3AED; font-weight: 600;">High initial velocity ➔ Buttery smooth glide to rest</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #EDE9FE; color: #6D28D9; border: 1px solid #C4B5FD;">
+                      🚀 OFFICIAL SIDE STANDARD
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-side" onclick="openRevampSide('s1')">
+                      <span>Test Appearance S1</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- SIDE S2 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #0F172A; color: #38BDF8;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">S2: Parallax Canvas Depth Push</span>
+                        <span class="module-path">Side Sheet • 3D Canvas Push</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Right Side Sheet (p: 0)</span>
+                    <div style="font-size: 12px; color: #64748B;">Full-bleed 100vh overlap (Expense Claim box)</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      Sheet: 320ms • Canvas: scale(0.985)
+                      <div style="color: #0284C7; font-weight: 600;">Main dashboard scales back as sheet glides in</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD;">
+                      macOS / Stripe Depth
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-side" style="background: #0284C7;" onclick="openRevampSide('s2')">
+                      <span>Test Appearance S2</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- SIDE S3 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #065F46; color: #A7F3D0;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">S3: Elastic Settle (Micro-Bounce)</span>
+                        <span class="module-path">Side Sheet • Modern Bouncy</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Right Side Sheet (p: 0)</span>
+                    <div style="font-size: 12px; color: #64748B;">Full-bleed 100vh overlap (Expense Claim box)</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      cubic-bezier(0.34, 1.25, 0.64, 1) • 380ms
+                      <div style="color: #059669; font-weight: 600;">Overshoots edge by -10px, snaps to rest</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0;">
+                      Playful &amp; Tactile
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-side" style="background: #059669;" onclick="openRevampSide('s3')">
+                      <span>Test Appearance S3</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- SIDE S4 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #4C1D95; color: #DDD6FE;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="15" y1="3" x2="15" y2="21"></line></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">S4: Soft Curtain Wipe</span>
+                        <span class="module-path">Side Sheet • Edge Clip Reveal</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Right Side Sheet (p: 0)</span>
+                    <div style="font-size: 12px; color: #64748B;">Full-bleed 100vh overlap (Expense Claim box)</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      clip-path: inset(0 0 0 100% ➔ 0) • 320ms
+                      <div style="color: #6D28D9; font-weight: 600;">Seamless curtain unrolling from right border</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #F3E8FF; color: #6B21A8; border: 1px solid #E9D5FF;">
+                      Clean Geometric Wipe
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-side" style="background: #6D28D9;" onclick="openRevampSide('s4')">
+                      <span>Test Appearance S4</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- CENTER C1 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: linear-gradient(135deg, #7C3AED, #4F46E5); color: #FFFFFF;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="3"></rect><circle cx="12" cy="12" r="3"></circle></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">C1: Spring Pop Reveal</span>
+                        <span class="module-path">Center Dialog • Zero Horizontal Drift</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Center Dialog Box (520px)</span>
+                    <div style="font-size: 12px; color: #64748B;">Standard Hirerkey action dialog</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      scale(0.86 ➔ 1.02 ➔ 1.0) • 280ms
+                      <div style="color: #4F46E5; font-weight: 600;">Appears directly in center • Zero side drift</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #EEF2FF; color: #4338CA; border: 1px solid #C7D2FE;">
+                      💎 OFFICIAL CENTER STANDARD
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-center" onclick="openRevampCenter('c1')">
+                      <span>Test Appearance C1</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- CENTER C2 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #1E293B; color: #38BDF8;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="3"></rect><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">C2: Snappy Drop-In (Top-to-Center)</span>
+                        <span class="module-path">Center Dialog • Raycast / Linear Style</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Center Dialog Box (520px)</span>
+                    <div style="font-size: 12px; color: #64748B;">Standard Hirerkey action dialog</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      translateY(-64% ➔ -50%) • 220ms
+                      <div style="color: #0284C7; font-weight: 600;">Fast vertical drop from top into center</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #E0F2FE; color: #0369A1; border: 1px solid #BAE6FD;">
+                      Crisp &amp; Productive
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-center" style="background: #0284C7;" onclick="openRevampCenter('c2')">
+                      <span>Test Appearance C2</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- CENTER C3 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #15803D; color: #FFFFFF;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="4" width="16" height="16" rx="3"></rect><polyline points="16 12 12 8 8 12"></polyline></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">C3: Soft Float-Up (Bottom-to-Center)</span>
+                        <span class="module-path">Center Dialog • Smooth Elevation</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Center Dialog Box (520px)</span>
+                    <div style="font-size: 12px; color: #64748B;">Standard Hirerkey action dialog</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      translateY(-36% ➔ -50%) • 240ms
+                      <div style="color: #15803D; font-weight: 600;">Gentle upward rise from bottom into center</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #DCFCE7; color: #166534; border: 1px solid #BBF7D0;">
+                      Gentle &amp; Organic
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-center" style="background: #15803D;" onclick="openRevampCenter('c3')">
+                      <span>Test Appearance C3</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- CENTER C4 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #9333EA; color: #FFFFFF;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">C4: Blur Bloom Focus</span>
+                        <span class="module-path">Center Dialog • Frosted Focus Reveal</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Center Dialog Box (520px)</span>
+                    <div style="font-size: 12px; color: #64748B;">Standard Hirerkey action dialog</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      blur(12px ➔ 0px) • 300ms
+                      <div style="color: #9333EA; font-weight: 600;">Blooms into sharp focus + frosted background</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #F3E8FF; color: #7E22CE; border: 1px solid #E9D5FF;">
+                      Atmospheric &amp; Focused
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-center" style="background: #9333EA;" onclick="openRevampCenter('c4')">
+                      <span>Test Appearance C4</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+
+                <!-- CENTER C5 -->
+                <tr>
+                  <td>
+                    <div class="module-badge-cell">
+                      <div class="module-icon" style="background: #475569; color: #FFFFFF;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><polygon points="9 3 15 3 15 21 9 21"></polygon></svg>
+                      </div>
+                      <div class="module-name-wrap">
+                        <span class="module-title">C5: 3D Perspective Tilt-In</span>
+                        <span class="module-path">Center Dialog • macOS Sheet Pitch</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="font-weight: 700; color: #0F172A;">Center Dialog Box (520px)</span>
+                    <div style="font-size: 12px; color: #64748B;">Standard Hirerkey action dialog</div>
+                  </td>
+                  <td>
+                    <div style="font-family: var(--font-mono); font-size: 11px; color: #475569;">
+                      perspective(900px) rotateX(10° ➔ 0°) • 280ms
+                      <div style="color: #475569; font-weight: 600;">Subtle 3D angle flattens forward into screen</div>
+                    </div>
+                  </td>
+                  <td>
+                    <span style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 6px; background: #F1F5F9; color: #334155; border: 1px solid #E2E8F0;">
+                      macOS Sheet Feel
+                    </span>
+                  </td>
+                  <td>
+                    <button class="trigger-model-btn revamp-center" style="background: #475569;" onclick="openRevampCenter('c5')">
+                      <span>Test Appearance C5</span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- ==========================================================================
+       GENERIC BACKDROP LAYER
+       ========================================================================== -->
+  <div class="modal-backdrop-layer" id="globalBackdrop" onclick="closeAllModels()"></div>
+
+  <!-- ==========================================================================
+       MODEL 1: FLOATING RIGHT DRAWER WITH PURPLE HEADER
+       ========================================================================== -->
+  <aside class="m1-drawer-wrap" id="overlayModel1" aria-label="Model 1 Drawer">
+    <div class="m1-drawer-card">
+      <div class="m1-purple-header">
+        <div class="m1-header-left">
+          <div class="m1-header-icon-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <div class="m1-header-titles">
+            <span class="m1-header-subtitle">EXECUTIVE BROADCAST</span>
+            <span class="m1-header-title">Q4 Leadership Townhall</span>
+          </div>
+        </div>
+        <button class="m1-close-btn" onclick="closeAllModels()" title="Close drawer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="m1-drawer-body">
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--border-subtle);">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 11px; font-weight: 700; color: #DC2626; background: #FEF2F2; border: 1px solid #FECACA; padding: 2px 8px; border-radius: 4px;">HIGH PRIORITY</span>
+            <span style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Audience: All Employees</span>
+          </div>
+          <span style="font-size: 11px; color: var(--text-subtle);">Sent 2 hours ago</span>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--text-heading);">Executive Summary</h4>
+          <p style="font-size: 13.5px; line-height: 1.6; color: var(--text-body);">
+            Join us this Thursday at 4:00 PM for our global Q4 townhall. Executive leadership will present quarterly revenue achievements, product roadmap milestones, and new holiday scheduling policies.
+          </p>
+        </div>
+
+        <div style="background: var(--bg-subtle); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 14px;">
+          <span style="font-size: 12px; font-weight: 700; color: var(--text-heading); display: block; margin-bottom: 8px;">Attached Documents (2)</span>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; border: 1px solid var(--border-subtle); padding: 8px 12px; border-radius: 6px;">
+              <span style="font-size: 12.5px; font-weight: 600;">Q4_Townhall_SlideDeck.pdf</span>
+              <span style="font-size: 11px; color: var(--text-subtle);">2.4 MB</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: flex; gap: 10px;">
+          <button class="form-btn-secondary" style="flex: 1;" onclick="closeAllModels()">Dismiss</button>
+          <button class="form-btn-primary" style="flex: 1;" onclick="showToast('❤️ Acknowledged broadcast!')">Acknowledge &amp; Like</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MODEL 2: FULL-BLEED OVERLAPPING SHEET (FLUSH EDGE, NO SPACES)
+       ========================================================================== -->
+  <aside class="m2-sheet-wrap" id="overlayModel2" aria-label="Model 2 Sheet">
+    <div class="m2-sheet-header">
+      <div class="m2-header-meta">
+        <span class="m2-voucher-pill">EXP-2026-8841</span>
+        <h3 class="m2-header-title">Client Strategy Offsite Claim Voucher</h3>
+        <span style="font-size: 11px; font-weight: 700; color: #166534; background: #DCFCE7; border: 1px solid #BBF7D0; padding: 3px 8px; border-radius: 6px;">UNDER AUDIT</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button class="form-btn-secondary" style="padding: 7px 14px; font-size: 12px;" onclick="closeAllModels()">Close Sheet</button>
+        <button class="form-btn-primary" style="padding: 7px 16px; font-size: 12px;" onclick="showToast('Approved voucher EXP-2026-8841')">Approve Voucher</button>
+      </div>
+    </div>
+
+    <div class="m2-sheet-body">
+      <!-- Left Column: Line Items & Claims -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="background: var(--bg-subtle); border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 18px;">
+          <h4 style="font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 12px;">Expense Breakdown</h4>
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border-card); text-align: left; color: var(--text-muted); font-size: 11px; text-transform: uppercase;">
+                <th style="padding: 8px 4px;">Category</th>
+                <th style="padding: 8px 4px;">Description</th>
+                <th style="padding: 8px 4px; text-align: right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border-subtle);">
+                <td style="padding: 10px 4px; font-weight: 600;">Travel &amp; Flights</td>
+                <td style="padding: 10px 4px; color: var(--text-muted);">San Francisco to New York round-trip</td>
+                <td style="padding: 10px 4px; font-weight: 700; text-align: right;">$840.00</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle);">
+                <td style="padding: 10px 4px; font-weight: 600;">Lodging</td>
+                <td style="padding: 10px 4px; color: var(--text-muted);">2 Nights • Marriott Downtown</td>
+                <td style="padding: 10px 4px; font-weight: 700; text-align: right;">$420.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px 4px; font-weight: 600;">Client Meals</td>
+                <td style="padding: 10px 4px; color: var(--text-muted);">Executive dinner with Enterprise partner</td>
+                <td style="padding: 10px 4px; font-weight: 700; text-align: right;">$160.00</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-card); display: flex; justify-content: space-between; font-size: 14px; font-weight: 800;">
+            <span>Total Claimable:</span>
+            <span style="color: var(--brand-primary);">$1,420.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Audit Trail & Proof -->
+      <div style="display: flex; flex-direction: column; gap: 16px; border-left: 1px solid var(--border-subtle); padding-left: 20px;">
+        <h4 style="font-size: 14px; font-weight: 700; color: var(--text-heading);">Approval Hierarchy</h4>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: #16A34A;"></div>
+            <span>Submitted by Rahul Verma (01 Oct)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: #EAB308;"></div>
+            <span>Pending Manager Review (Chanchal S.)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 8px; height: 8px; border-radius: 50%; background: #CBD5E1;"></div>
+            <span>Finance Reimbursement Release</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MODEL 3: FLOATING RIGHT DRAWER WITH NEUTRAL WHITE HEADER
+       ========================================================================== -->
+  <aside class="m3-drawer-wrap" id="overlayModel3" aria-label="Model 3 Drawer">
+    <div class="m3-drawer-card">
+      <div class="m3-neutral-header">
+        <h3 class="m3-header-title">Offboarding Clearance Checklist</h3>
+        <button class="m1-close-btn" style="color: #64748B;" onclick="closeAllModels()" title="Close drawer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="m3-drawer-body">
+        <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-subtle); border-radius: 10px; border: 1px solid var(--border-card);">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&h=80&q=80" alt="Sara Chen" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" />
+          <div>
+            <h4 style="font-size: 14px; font-weight: 700; color: var(--text-heading);">Sara Chen</h4>
+            <span style="font-size: 12px; color: var(--text-muted);">Senior Software Engineer • Last Day: Oct 30</span>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <span style="font-size: 12px; font-weight: 700; color: var(--text-heading); text-transform: uppercase; letter-spacing: 0.04em;">Department Clearances</span>
+          
+          <label style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #FFFFFF; border: 1px solid var(--border-card); border-radius: 8px; cursor: pointer;">
+            <input type="checkbox" checked style="accent-color: var(--brand-primary);" />
+            <span style="font-size: 13px; font-weight: 600;">IT Asset &amp; Laptop Repossession</span>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #FFFFFF; border: 1px solid var(--border-card); border-radius: 8px; cursor: pointer;">
+            <input type="checkbox" checked style="accent-color: var(--brand-primary);" />
+            <span style="font-size: 13px; font-weight: 600;">AWS &amp; GitHub Access Revocation</span>
+          </label>
+
+          <label style="display: flex; align-items: center; gap: 10px; padding: 10px; background: #FFFFFF; border: 1px solid var(--border-card); border-radius: 8px; cursor: pointer;">
+            <input type="checkbox" style="accent-color: var(--brand-primary);" />
+            <span style="font-size: 13px; font-weight: 600;">Finance Final Settlement &amp; Gratuity</span>
+          </label>
+        </div>
+
+        <div style="margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: flex; gap: 10px;">
+          <button class="form-btn-secondary" style="flex: 1;" onclick="closeAllModels()">Cancel</button>
+          <button class="form-btn-primary" style="flex: 1;" onclick="showToast('Updated clearance status!')">Save Clearance</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       MODEL 4: "CREATE ORIENTATION" RIGHT-SLIDING CENTER SHEET
+       ========================================================================== -->
+  <div class="m4-center-sheet-wrap" id="overlayModel4" role="dialog" aria-label="Model 4 Center Sheet">
+    <div class="m4-sheet-header">
+      <h3 class="m4-header-title">Add Orientation Milestone</h3>
+      <button class="m1-close-btn" style="color: #64748B;" onclick="closeAllModels()" title="Close dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="m4-sheet-body">
+      <div class="form-group">
+        <label class="form-label">Milestone Name *</label>
+        <input type="text" class="form-input" value="Engineering First Week Orientation" placeholder="e.g. Welcome & Tech Setup" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Target Department *</label>
+        <select class="form-input">
+          <option>Engineering &amp; DevOps</option>
+          <option>Product &amp; Design</option>
+          <option>Human Resources</option>
+        </select>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; background: #FAF5FF; border: 1px solid #DDD6FE; border-radius: var(--radius-md);">
+        <div>
+          <span style="font-size: 13px; font-weight: 700; color: #6D28D9;">HyIQ Generative Fill</span>
+          <p style="font-size: 11.5px; color: #7C3AED; margin: 0;">Auto-populate best practice orientation activities with AI</p>
+        </div>
+        <button type="button" class="form-btn-primary" style="padding: 6px 12px; font-size: 12px;" onclick="showToast('✨ Auto-generated 4 activities with HyIQ!')">
+          ✨ Auto-Fill
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Orientation Activities</label>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <input type="text" class="form-input" value="1. Complete security compliance training" />
+          <input type="text" class="form-input" value="2. 1-on-1 Meet & Greet with Engineering Buddy" />
+          <input type="text" class="form-input" value="3. Configure development sandbox environment" />
+        </div>
+      </div>
+
+      <div style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-subtle); display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="form-btn-secondary" onclick="closeAllModels()">Cancel</button>
+        <button class="form-btn-primary" onclick="showToast('Added new orientation milestone!')">Create Milestone</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODEL 5: STANDARD THEME CENTER DIALOG
+       ========================================================================== -->
+  <div class="m5-center-dialog-wrap" id="overlayModel5" role="dialog" aria-label="Model 5 Dialog">
+    <div class="m5-dialog-header">
+      <h3 class="m5-dialog-title">Add Department</h3>
+      <button class="m1-close-btn" style="color: #64748B;" onclick="closeAllModels()" title="Close dialog">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="m5-dialog-body">
+      <div class="form-group">
+        <label class="form-label">Department Name *</label>
+        <input type="text" class="form-input" placeholder="e.g. Artificial Intelligence Research" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Head of Department</label>
+        <select class="form-input">
+          <option>Chanchal Sharma (CEO)</option>
+          <option>Uneet Kumar (CHRO)</option>
+          <option>Subhadeep Datta (Business Head)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Cost Center Code</label>
+        <input type="text" class="form-input" placeholder="e.g. CC-AI-2026" />
+      </div>
+    </div>
+
+    <div class="m5-dialog-footer">
+      <button class="form-btn-secondary" onclick="closeAllModels()">Cancel</button>
+      <button class="form-btn-primary" onclick="showToast('Department added successfully!')">Save Department</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       NEW REVAMP OVERLAY 1: REVAMPED SIDE SHEET (M2-INSPIRED OVERLAPPING BOX)
+       ========================================================================== -->
+  <aside class="revamp-side-sheet-wrap anim-side-s1" id="overlayRevampSide" aria-label="Revamped Side Sheet">
+    <!-- Appearance Animation Tester Toolbar -->
+    <div class="anim-tester-bar">
+      <div class="anim-tester-tag">
+        <span>⚡ SIDE APPEARANCE TESTER</span>
+        <span class="anim-spec-badge" id="sideAnimSpecBadge">S1: cubic-bezier(0.16, 1, 0.3, 1) • 340ms</span>
+      </div>
+      <div class="anim-tester-controls">
+        <button class="anim-chip-btn active" id="btnSideS1" onclick="switchSideAnimation('s1')">S1: Spring</button>
+        <button class="anim-chip-btn" id="btnSideS2" onclick="switchSideAnimation('s2')">S2: Parallax</button>
+        <button class="anim-chip-btn" id="btnSideS3" onclick="switchSideAnimation('s3')">S3: Elastic</button>
+        <button class="anim-chip-btn" id="btnSideS4" onclick="switchSideAnimation('s4')">S4: Curtain</button>
+        <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.2); margin: 0 4px;"></div>
+        <button class="anim-replay-btn" onclick="replaySideAnimation()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          <span>Replay Appearance</span>
+        </button>
+        <button class="m1-close-btn" style="color: #FFFFFF; margin-left: 8px;" onclick="closeAllModels()" title="Close sheet">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Authentic Model 2 (Audit Vouchers / Expense Claims) Modal Box Header -->
+    <div class="m2-sheet-header" style="border-bottom: 1px solid var(--border-card); background: #FFFFFF; padding: 18px 28px;">
+      <div class="m2-header-meta">
+        <span class="m2-voucher-pill">EXP-2026-8841</span>
+        <h3 class="m2-header-title" style="font-size: 18px; font-weight: 800; color: var(--text-heading);">Client Strategy Offsite Claim Voucher</h3>
+        <span style="font-size: 11px; font-weight: 700; color: #166534; background: #DCFCE7; border: 1px solid #BBF7D0; padding: 3px 8px; border-radius: 6px;">UNDER AUDIT</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button class="form-btn-secondary" style="padding: 7px 14px; font-size: 12px;" onclick="closeAllModels()">Close Sheet</button>
+        <button class="form-btn-primary" style="padding: 7px 16px; font-size: 12px;" onclick="showToast('Approved voucher EXP-2026-8841')">Approve Voucher</button>
+      </div>
+    </div>
+
+    <!-- Authentic Model 2 (Audit Vouchers / Expense Claims) Modal Box Body -->
+    <div class="m2-sheet-body" style="flex: 1; overflow-y: auto; padding: 28px; display: grid; grid-template-columns: 1fr 340px; gap: 28px; background: #F8FAFC;">
+      <!-- Left Column: Line Items & Claims -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="background: #FFFFFF; border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 22px; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--text-heading);">Expense Breakdown &amp; Proof Receipts</h4>
+            <span style="font-size: 12px; color: var(--brand-primary); font-weight: 700;">4 Receipts Verified</span>
+          </div>
+          <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border-card); text-align: left; color: var(--text-muted); font-size: 11px; text-transform: uppercase;">
+                <th style="padding: 10px 4px;">Category</th>
+                <th style="padding: 10px 4px;">Description</th>
+                <th style="padding: 10px 4px; text-align: right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom: 1px solid var(--border-subtle);">
+                <td style="padding: 12px 4px; font-weight: 700;">Travel &amp; Flights</td>
+                <td style="padding: 12px 4px; color: var(--text-muted);">San Francisco to New York round-trip (Delta DL482)</td>
+                <td style="padding: 12px 4px; font-weight: 800; text-align: right;">$840.00</td>
+              </tr>
+              <tr style="border-bottom: 1px solid var(--border-subtle);">
+                <td style="padding: 12px 4px; font-weight: 700;">Lodging</td>
+                <td style="padding: 12px 4px; color: var(--text-muted);">2 Nights • Marriott Downtown Manhattan</td>
+                <td style="padding: 12px 4px; font-weight: 800; text-align: right;">$420.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 12px 4px; font-weight: 700;">Client Meals</td>
+                <td style="padding: 12px 4px; color: var(--text-muted);">Executive dinner with Enterprise partner</td>
+                <td style="padding: 12px 4px; font-weight: 800; text-align: right;">$160.00</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-card); display: flex; justify-content: space-between; font-size: 15px; font-weight: 800;">
+            <span>Total Claimable:</span>
+            <span style="color: var(--brand-primary); font-size: 17px;">$1,420.00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Audit Trail & Proof -->
+      <div style="display: flex; flex-direction: column; gap: 18px; background: #FFFFFF; border: 1px solid var(--border-card); border-radius: var(--radius-md); padding: 22px;">
+        <h4 style="font-size: 14px; font-weight: 800; color: var(--text-heading);">Approval Hierarchy</h4>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 12.5px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #16A34A; flex-shrink: 0;"></div>
+            <div>
+              <span style="font-weight: 700;">Submitted by Rahul Verma</span>
+              <div style="font-size: 11px; color: var(--text-muted);">Oct 01, 2026 • 10:14 AM</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #EAB308; flex-shrink: 0;"></div>
+            <div>
+              <span style="font-weight: 700;">Pending Manager Review (Chanchal S.)</span>
+              <div style="font-size: 11px; color: var(--text-muted);">Action required</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="width: 10px; height: 10px; border-radius: 50%; background: #CBD5E1; flex-shrink: 0;"></div>
+            <div>
+              <span style="font-weight: 600; color: var(--text-muted);">Finance Reimbursement Release</span>
+              <div style="font-size: 11px; color: var(--text-subtle);">Awaiting approval step 2</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 8px;">
+          <button class="form-btn-primary" style="width: 100%;" onclick="showToast('Approved voucher EXP-2026-8841')">Approve Voucher</button>
+          <button class="form-btn-secondary" style="width: 100%;" onclick="closeAllModels()">Close Sheet</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       NEW REVAMP OVERLAY 2: REVAMPED CENTER DIALOG (AUTHENTIC HIRERKEY BOX)
+       ========================================================================== -->
+  <div class="revamp-center-dialog-wrap anim-center-c1" id="overlayRevampCenter" role="dialog" aria-label="Revamped Center Dialog">
+    <!-- Appearance Animation Tester Toolbar -->
+    <div class="anim-tester-bar">
+      <div class="anim-tester-tag">
+        <span>💎 CENTER APPEARANCE TESTER</span>
+        <span class="anim-spec-badge" id="centerAnimSpecBadge">C1: scale(0.86➔1.02➔1.0) • 280ms</span>
+      </div>
+      <div class="anim-tester-controls">
+        <button class="anim-chip-btn active" id="btnCenterC1" onclick="switchCenterAnimation('c1')">C1: Spring</button>
+        <button class="anim-chip-btn" id="btnCenterC2" onclick="switchCenterAnimation('c2')">C2: Drop</button>
+        <button class="anim-chip-btn" id="btnCenterC3" onclick="switchCenterAnimation('c3')">C3: Float</button>
+        <button class="anim-chip-btn" id="btnCenterC4" onclick="switchCenterAnimation('c4')">C4: Blur</button>
+        <button class="anim-chip-btn" id="btnCenterC5" onclick="switchCenterAnimation('c5')">C5: 3D</button>
+        <div style="width: 1px; height: 16px; background: rgba(255,255,255,0.2); margin: 0 4px;"></div>
+        <button class="anim-replay-btn" onclick="replayCenterAnimation()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+          <span>Replay Appearance</span>
+        </button>
+        <button class="m1-close-btn" style="color: #FFFFFF; margin-left: 8px;" onclick="closeAllModels()" title="Close dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Authentic Hirerkey Center Dialog Header -->
+    <div style="padding: 20px 24px; border-bottom: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: space-between; background: #FFFFFF;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="width: 34px; height: 34px; border-radius: 8px; background: #EDE9FE; color: #7C3AED; display: flex; align-items: center; justify-content: center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="12" cy="12" r="3"></circle></svg>
+        </div>
+        <div>
+          <h3 style="font-size: 16.5px; font-weight: 800; color: var(--text-heading);">Action Confirmation &amp; Record</h3>
+          <span style="font-size: 12px; color: var(--text-muted);">Standard Hirerkey Center Modal Box</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authentic Hirerkey Center Dialog Body -->
+    <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; background: #FFFFFF;">
+      <div class="form-group">
+        <label class="form-label">Action Name / Record Title</label>
+        <input type="text" class="form-input" value="Q4 Operational Calibration &amp; Audit" />
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+        <div class="form-group">
+          <label class="form-label">Assigned Department</label>
+          <select class="form-input">
+            <option>Engineering &amp; Product Architecture</option>
+            <option>People &amp; Talent Operations</option>
+            <option>Finance &amp; Audit Review</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Urgency Level</label>
+          <select class="form-input">
+            <option>Standard Priority</option>
+            <option>High Priority</option>
+            <option>Immediate Audit</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Operational Notes &amp; Justification</label>
+        <textarea class="form-input" rows="3" placeholder="Enter notes or audit approval comments..."></textarea>
+      </div>
+    </div>
+
+    <!-- Authentic Hirerkey Center Dialog Footer -->
+    <div style="padding: 16px 24px; background: var(--bg-subtle); border-top: 1px solid var(--border-subtle); display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+      <button class="form-btn-secondary" onclick="closeAllModels()">Cancel</button>
+      <button class="form-btn-primary" onclick="showToast('Action confirmed successfully!')">Confirm Action</button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       SIDE-BY-SIDE STANDARDIZATION COMPARISON MATRIX MODAL
+       ========================================================================== -->
+  <div class="matrix-modal-wrap" id="overlayMatrix" role="dialog" aria-label="Comparison Matrix">
+    <div class="matrix-header">
+      <div>
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--text-heading);">Modal &amp; Drawer Standardization Decision Matrix</h3>
+        <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 2px;">Evaluate all paradigms side-by-side: the 5 legacy overlays vs. the 2 proposed revamp standards.</p>
+      </div>
+      <button class="m1-close-btn" style="color: #64748B;" onclick="closeAllModels()" title="Close matrix">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="matrix-body">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Paradigm Type</th>
+            <th>Visual Architecture</th>
+            <th>Header Treatment</th>
+            <th>Opening Animation</th>
+            <th>Best-Fit SaaS Use Case</th>
+            <th>Standardization Verdict</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- REVAMP 1 -->
+          <tr style="background: #FAF5FF;">
+            <td style="font-weight: 800; color: #6D28D9;">
+              🚀 REVAMP: Fluid Edge Side Sheet
+            </td>
+            <td>Flush edge (p: 0), 100vh full height, width min(1120px, 94vw)</td>
+            <td>Top gradient stripe + clean white header with breadcrumbs</td>
+            <td><strong>Spring Deceleration (320ms)</strong> + Canvas depth scale</td>
+            <td>Complex audits, Expense vouchers, AI Studio, multi-file inspection</td>
+            <td><strong style="color: #059669;">★ OFFICIAL SIDE STANDARD</strong> (M2-inspired)</td>
+          </tr>
+          <!-- REVAMP 2 -->
+          <tr style="background: #EEF2FF;">
+            <td style="font-weight: 800; color: #4338CA;">
+              💎 REVAMP: Spring Pop Center Dialog
+            </td>
+            <td>Centered (520px max), 20px radius, inner glass stroke</td>
+            <td>Clean card header with Hirerkey purple accent stripe</td>
+            <td><strong>Scale 0.92 ➔ 1.015 ➔ 1.0 (280ms)</strong> + Frosted blur (8px)</td>
+            <td>Quick creations, role elevations, confirmations, 1-4 field forms</td>
+            <td><strong style="color: #059669;">★ OFFICIAL CENTER STANDARD</strong> (Zero side drift)</td>
+          </tr>
+          <!-- Legacy M1 -->
+          <tr>
+            <td style="font-weight: 700;">
+              🟣 Legacy M1: Purple Right Drawer
+            </td>
+            <td>Right anchor, inset margin (p: 2.5), floating card with shadow</td>
+            <td style="color: #6D28D9; font-weight: 700;">Solid Purple (#7C3AED), white text</td>
+            <td>Native right slide (translateX: 0)</td>
+            <td>Inspection views, HR Broadcasts, filters, profile drawers</td>
+            <td><span style="color: #64748B;">Retain as alternative drawer variant</span></td>
+          </tr>
+          <!-- Legacy M2 -->
+          <tr>
+            <td style="font-weight: 700;">
+              🔲 Legacy M2: Full-Bleed Sheet
+            </td>
+            <td>Flush edge (p: 0), 100vh height, wide canvas (min 1140px, 94vw)</td>
+            <td>Integrated canvas header with tabs &amp; status</td>
+            <td>Flush horizontal slide</td>
+            <td>Heavy multi-column workflows, Expense auditing, document extractors</td>
+            <td><strong style="color: #4F46E5;">Precursor to the Revamped Side Sheet</strong></td>
+          </tr>
+          <!-- Legacy M3 -->
+          <tr>
+            <td style="font-weight: 700;">
+              ⚪ Legacy M3: Neutral White Drawer
+            </td>
+            <td>Right anchor, inset margin (p: 3), 480px width</td>
+            <td>Clean white surface, dark text</td>
+            <td>Standard right slide</td>
+            <td>Offboarding clearance, ticket filters, succession planning</td>
+            <td><span style="color: #DC2626;">Replace with Revamped Side Sheet</span></td>
+          </tr>
+          <!-- Legacy M4 -->
+          <tr>
+            <td style="font-weight: 700;">
+              📐 Legacy M4: Orientation Center Sheet
+            </td>
+            <td>50vw width, 92vh height, centered (top/left: 50%)</td>
+            <td>White header with purple title</td>
+            <td>@keyframes IO: slides from +20% right into center</td>
+            <td>Heavy creation wizards (Orientation, Tour, Checklists)</td>
+            <td><span style="color: #DC2626;">Replace with Revamped Side Sheet</span></td>
+          </tr>
+          <!-- Legacy M5 -->
+          <tr>
+            <td style="font-weight: 700;">
+              🪟 Legacy M5: Theme Center Dialog
+            </td>
+            <td>480px width, centered dialog with backdrop</td>
+            <td>Subtle card header</td>
+            <td>@keyframes htsModalSlideInRight (translate -30% to -50%)</td>
+            <td>Quick adds (Department, Grade), confirmations, deletes</td>
+            <td><span style="color: #DC2626;">Replace with Revamped Spring Pop Dialog</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Recommendation Summary Box -->
+      <div style="background: #FAF5FF; border: 1.5px solid #DDD6FE; border-radius: var(--radius-md); padding: 18px 22px;">
+        <h4 style="font-size: 15px; font-weight: 800; color: #581C87; margin-bottom: 6px;">💡 Design System Architect Recommendation</h4>
+        <p style="font-size: 13.5px; line-height: 1.6; color: #4C1D95;">
+          By standardizing on these two proposed standards (<strong>Revamped Side Sheet</strong> for all inspection/multi-step flows and <strong>Revamped Center Dialog</strong> for quick actions/confirmations), Hirerkey eliminates the disorienting horizontal drift on center dialogs and unifies all 61 modules under an effortless, world-class interaction model.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Element -->
+  <div id="toastEl" style="position: fixed; bottom: 24px; right: 24px; background: #0F172A; color: #FFFFFF; padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 600; box-shadow: 0 10px 25px rgba(0,0,0,0.2); z-index: 200; display: none; align-items: center; gap: 8px;">
+    <span id="toastMsg">Notification message</span>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT CONTROLLERS
+       ========================================================================== -->
+  <script>
+    let currentSideAnim = 's1';
+    let currentCenterAnim = 'c1';
+
+    const sideAnimSpecs = {
+      s1: 'S1: cubic-bezier(0.16, 1, 0.3, 1) • 340ms',
+      s2: 'S2: Parallax Canvas Depth Push • 320ms',
+      s3: 'S3: Elastic Settle (-10px bounce) • 380ms',
+      s4: 'S4: Curtain Wipe clip-path • 320ms'
+    };
+
+    const centerAnimSpecs = {
+      c1: 'C1: scale(0.86➔1.02➔1.0) • 280ms',
+      c2: 'C2: translateY(-64%➔-50%) Drop • 220ms',
+      c3: 'C3: translateY(-36%➔-50%) Float • 240ms',
+      c4: 'C4: blur(12px➔0px) Bloom • 300ms',
+      c5: 'C5: perspective(900px) 3D Tilt • 280ms'
+    };
+
+    function openModel(modelNum) {
+      closeAllModels();
+      const backdrop = document.getElementById('globalBackdrop');
+      if (backdrop) backdrop.className = 'modal-backdrop-layer open';
+
+      const targetId = 'overlayModel' + modelNum;
+      const overlay = document.getElementById(targetId);
+      if (overlay) {
+        overlay.classList.add('open');
+        showToast(`Opened Model ${modelNum}: ${getModelName(modelNum)}`);
+      }
+    }
+
+    function openRevampSide(animStyle = 's1') {
+      closeAllModels();
+      const backdrop = document.getElementById('globalBackdrop');
+      const canvas = document.getElementById('mainCanvas');
+      const overlay = document.getElementById('overlayRevampSide');
+
+      if (backdrop) backdrop.className = 'modal-backdrop-layer open';
+      if (animStyle === 's2' && canvas) {
+        canvas.classList.add('canvas-dimmed');
+      }
+
+      currentSideAnim = animStyle;
+      updateSideAnimChips(animStyle);
+
+      if (overlay) {
+        overlay.className = `revamp-side-sheet-wrap open anim-side-${animStyle}`;
+        showToast(`🚀 Testing Side Appearance: ${sideAnimSpecs[animStyle]}`);
+      }
+    }
+
+    function switchSideAnimation(animStyle) {
+      openRevampSide(animStyle);
+    }
+
+    function replaySideAnimation() {
+      const overlay = document.getElementById('overlayRevampSide');
+      const canvas = document.getElementById('mainCanvas');
+      if (!overlay) return;
+
+      overlay.classList.remove('open');
+      if (canvas) canvas.classList.remove('canvas-dimmed');
+      void overlay.offsetWidth; // Force reflow
+
+      overlay.className = `revamp-side-sheet-wrap open anim-side-${currentSideAnim}`;
+      if (currentSideAnim === 's2' && canvas) {
+        canvas.classList.add('canvas-dimmed');
+      }
+      showToast(`🔁 Replayed Side Appearance: ${currentSideAnim.toUpperCase()}`);
+    }
+
+    function updateSideAnimChips(activeKey) {
+      ['s1', 's2', 's3', 's4'].forEach(key => {
+        const btn = document.getElementById(`btnSide${key.toUpperCase()}`);
+        if (btn) {
+          if (key === activeKey) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+      const badge = document.getElementById('sideAnimSpecBadge');
+      if (badge && sideAnimSpecs[activeKey]) {
+        badge.innerText = sideAnimSpecs[activeKey];
+      }
+    }
+
+    function openRevampCenter(animStyle = 'c1') {
+      closeAllModels();
+      const backdrop = document.getElementById('globalBackdrop');
+      const overlay = document.getElementById('overlayRevampCenter');
+
+      if (backdrop) {
+        backdrop.className = animStyle === 'c4' 
+          ? 'modal-backdrop-layer open frosted' 
+          : 'modal-backdrop-layer open';
+      }
+
+      currentCenterAnim = animStyle;
+      updateCenterAnimChips(animStyle);
+
+      if (overlay) {
+        overlay.className = `revamp-center-dialog-wrap open anim-center-${animStyle}`;
+        showToast(`💎 Testing Center Appearance: ${centerAnimSpecs[animStyle]}`);
+      }
+    }
+
+    function switchCenterAnimation(animStyle) {
+      openRevampCenter(animStyle);
+    }
+
+    function replayCenterAnimation() {
+      const overlay = document.getElementById('overlayRevampCenter');
+      if (!overlay) return;
+
+      overlay.classList.remove('open');
+      void overlay.offsetWidth; // Force reflow
+
+      overlay.className = `revamp-center-dialog-wrap open anim-center-${currentCenterAnim}`;
+      showToast(`🔁 Replayed Center Appearance: ${currentCenterAnim.toUpperCase()}`);
+    }
+
+    function updateCenterAnimChips(activeKey) {
+      ['c1', 'c2', 'c3', 'c4', 'c5'].forEach(key => {
+        const btn = document.getElementById(`btnCenter${key.toUpperCase()}`);
+        if (btn) {
+          if (key === activeKey) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+      const badge = document.getElementById('centerAnimSpecBadge');
+      if (badge && centerAnimSpecs[activeKey]) {
+        badge.innerText = centerAnimSpecs[activeKey];
+      }
+    }
+
+    function setAnimationSpeed(speedMultiplier) {
+      document.documentElement.style.setProperty('--anim-speed-scale', speedMultiplier);
+      
+      const speedMap = {
+        2.2: 'bannerSpeed05',
+        1.0: 'bannerSpeed10',
+        0.65: 'bannerSpeed15'
+      };
+
+      Object.entries(speedMap).forEach(([val, btnId]) => {
+        const btn = document.getElementById(btnId);
+        if (btn) {
+          if (parseFloat(val) === speedMultiplier) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      });
+
+      const label = speedMultiplier === 2.2 ? '0.5x Slow-Motion' : (speedMultiplier === 0.65 ? '1.5x Fast' : '1.0x Normal');
+      showToast(`⚡ Animation Speed set to ${label}`);
+    }
+
+    function openComparisonMatrix() {
+      closeAllModels();
+      const backdrop = document.getElementById('globalBackdrop');
+      if (backdrop) backdrop.className = 'modal-backdrop-layer open frosted';
+
+      const matrix = document.getElementById('overlayMatrix');
+      if (matrix) matrix.classList.add('open');
+    }
+
+    function closeAllModels() {
+      const backdrop = document.getElementById('globalBackdrop');
+      if (backdrop) backdrop.className = 'modal-backdrop-layer';
+
+      const canvas = document.getElementById('mainCanvas');
+      if (canvas) canvas.classList.remove('canvas-dimmed');
+
+      document.querySelectorAll('.m1-drawer-wrap, .m2-sheet-wrap, .m3-drawer-wrap, .m4-center-sheet-wrap, .m5-center-dialog-wrap, .revamp-side-sheet-wrap, .revamp-center-dialog-wrap, .matrix-modal-wrap').forEach(el => {
+        el.classList.remove('open');
+      });
+    }
+
+    function getModelName(num) {
+      const names = {
+        1: 'Floating Purple Header Right Drawer',
+        2: 'Full-Bleed Overlapping Sheet',
+        3: 'Floating Neutral White Drawer',
+        4: 'Create Orientation Right-Slide Center Sheet',
+        5: 'Theme Center Dialog (Slide-In-Right)'
+      };
+      return names[num] || 'Overlay';
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastEl');
+      const text = document.getElementById('toastMsg');
+      if (!toast || !text) return;
+      text.innerText = msg;
+      toast.style.display = 'flex';
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+
+    // Keyboard ESC to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeAllModels();
+      }
+    });
+  </script>
+
+</body>
+</html>
