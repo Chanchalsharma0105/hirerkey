@@ -5487,7 +5487,646 @@
       justify-content: space-between;
       background: #FFFFFF;
     }
-</style>
+
+    /* ==========================================================================
+       DESIGN 3 & 4 STYLES: EDITORIAL STORY READER & BENTO STREAM DECK
+       ========================================================================== */
+
+    /* Micro-Interactions & Particle Animations */
+    @keyframes heartPop {
+      0% { transform: scale(1); }
+      35% { transform: scale(1.32); }
+      65% { transform: scale(0.92); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes floatParticle {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.6);
+      }
+      50% {
+        opacity: 1;
+        transform: translate(var(--dx, -10px), -36px) scale(1.2);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--dx2, 14px), -68px) scale(0.8);
+      }
+    }
+
+    @keyframes pulseBeacon {
+      0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+      70% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+    }
+
+    .flying-heart-particle {
+      position: absolute;
+      pointer-events: none;
+      font-size: 20px;
+      line-height: 1;
+      animation: floatParticle 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      z-index: 100;
+      user-select: none;
+    }
+
+    /* --------------------------------------------------------------------------
+       DESIGN 3: EDITORIAL STORY READER STYLING
+       -------------------------------------------------------------------------- */
+    .mb3-scroll-canvas {
+      background: radial-gradient(circle at 50% 0%, rgba(237, 233, 254, 0.65) 0%, rgba(255, 255, 255, 0) 70%), #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      height: 640px;
+      max-height: 75vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      position: relative;
+      box-sizing: border-box;
+    }
+
+    .mb3-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(241, 245, 249, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 25;
+    }
+
+    .mb3-bar-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mb3-monogram {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+    }
+
+    .mb3-app-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+    }
+
+    .mb3-bar-pager {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mb3-index-pill {
+      font-size: 11px;
+      font-weight: 700;
+      color: #6D28D9;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      padding: 3px 9px;
+      border-radius: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .mb3-content-wrap {
+      padding: 18px 18px 24px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+
+    .mb3-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-height: 24px;
+    }
+
+    .mb3-date-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #94A3B8;
+      letter-spacing: 0.01em;
+    }
+
+    .mb3-beacon-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #DC2626;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+
+    .mb3-beacon-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #EF4444;
+      animation: pulseBeacon 1.8s infinite;
+    }
+
+    .mb3-headline {
+      font-size: 21px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.28;
+      letter-spacing: -0.025em;
+      margin: 0;
+    }
+
+    .mb3-author-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: #F8FAFC;
+      border: 1px solid #F1F5F9;
+      border-radius: 14px;
+      box-sizing: border-box;
+    }
+
+    .mb3-author-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #EDE9FE;
+      flex-shrink: 0;
+    }
+
+    .mb3-author-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .mb3-author-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mb3-author-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+
+    .mb3-author-role {
+      font-size: 11.5px;
+      color: #64748B;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mb3-body-prose {
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mb3-body-prose p {
+      margin: 0;
+    }
+
+    .mb3-takeaway-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      background: #FAF5FF;
+      border-left: 3.5px solid #7C3AED;
+      border-radius: 0 12px 12px 0;
+      box-sizing: border-box;
+      margin-top: 4px;
+    }
+
+    .mb3-takeaway-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .mb3-takeaway-text {
+      font-size: 13px;
+      line-height: 1.55;
+      color: #581C87;
+      font-weight: 500;
+    }
+
+    /* Floating Ergonomic Bar */
+    .mb3-floating-bar-dock {
+      position: sticky;
+      bottom: 14px;
+      left: 0;
+      right: 0;
+      padding: 0 14px;
+      z-index: 30;
+      box-sizing: border-box;
+      pointer-events: none;
+    }
+
+    .mb3-floating-bar {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 12px;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 12px 32px -6px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.8);
+      box-sizing: border-box;
+    }
+
+    .mb3-like-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+
+    .mb3-like-btn:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      color: #0F172A;
+      transform: translateY(-1px);
+    }
+
+    .mb3-like-btn.liked {
+      background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);
+      border-color: #FDA4AF;
+      color: #BE123C;
+      box-shadow: 0 3px 10px rgba(225, 29, 72, 0.18);
+    }
+
+    .mb3-like-btn.liked svg {
+      fill: #E11D48;
+      stroke: #E11D48;
+    }
+
+    .mb3-like-btn.pop-anim {
+      animation: heartPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .mb3-like-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 1.5px 6px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.06);
+      color: inherit;
+    }
+
+    .mb3-like-btn.liked .mb3-like-badge {
+      background: rgba(225, 29, 72, 0.12);
+      color: #BE123C;
+    }
+
+    .mb3-social-proof {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mb3-avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .mb3-avatar-stack img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid #FFFFFF;
+      margin-left: -6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .mb3-avatar-stack img:first-child {
+      margin-left: 0;
+    }
+
+    .mb3-social-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    .mb3-pager-controls {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mb3-nav-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .mb3-nav-arrow:hover {
+      background: #EDE9FE;
+      color: #6D28D9;
+      border-color: #C4B5FD;
+    }
+
+    /* --------------------------------------------------------------------------
+       DESIGN 4: BENTO STREAM DECK STYLING
+       -------------------------------------------------------------------------- */
+    .mb4-scroll-canvas {
+      background: #F8FAFC;
+      display: flex;
+      flex-direction: column;
+      height: 640px;
+      max-height: 75vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+
+    .mb4-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 18px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #F1F5F9;
+      position: sticky;
+      top: 0;
+      z-index: 25;
+    }
+
+    .mb4-bar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mb4-monogram {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+    }
+
+    .mb4-app-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0F172A;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .mb4-app-sub {
+      font-size: 10.5px;
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    .mb4-counter-pill {
+      font-size: 11px;
+      font-weight: 700;
+      color: #4338CA;
+      background: #EEF2FF;
+      border: 1px solid #C7D2FE;
+      padding: 3px 9px;
+      border-radius: 12px;
+    }
+
+    .mb4-bento-stream {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-sizing: border-box;
+    }
+
+    .mb4-bento-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-sizing: border-box;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .mb4-bento-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
+    }
+
+    .mb4-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .mb4-card-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .mb4-card-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 1px solid #E2E8F0;
+    }
+
+    .mb4-card-author-meta {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .mb4-card-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .mb4-card-time {
+      font-size: 11px;
+      color: #94A3B8;
+      font-weight: 500;
+    }
+
+    .mb4-priority-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #DC2626;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      padding: 2.5px 7px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .mb4-card-headline {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.35;
+      margin: 2px 0 0 0;
+      letter-spacing: -0.015em;
+    }
+
+    .mb4-card-body {
+      font-size: 13.5px;
+      line-height: 1.58;
+      color: #475569;
+      margin: 0;
+    }
+
+    .mb4-like-dock-btn {
+      width: 100%;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 4px;
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .mb4-like-dock-btn:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    .mb4-like-dock-btn.liked {
+      background: #FFF1F2;
+      border-color: #FECDD3;
+      color: #E11D48;
+      box-shadow: 0 2px 10px rgba(225, 29, 72, 0.14);
+    }
+
+    .mb4-like-dock-btn.liked svg {
+      fill: #E11D48;
+      stroke: #E11D48;
+    }
+
+    .mb4-like-dock-btn.pop-anim {
+      animation: heartPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .mb4-caught-up-card {
+      margin: 8px 14px 24px 14px;
+      padding: 20px;
+      background: #FFFFFF;
+      border: 1.5px dashed #CBD5E1;
+      border-radius: 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mb4-sparkle-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .mb4-caught-up-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1E293B;
+      margin: 0;
+    }
+
+    .mb4-caught-up-sub {
+      font-size: 12px;
+      color: #64748B;
+      margin: 0;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -6110,13 +6749,21 @@
         <div class="mobile-jump-bar">
           <div class="mobile-jump-left">
             <span class="mobile-jump-label">MOBILE DESIGNS:</span>
-            <a href="#mobileDesign1Section" class="mobile-jump-pill active" onclick="scrollToMobileDesign('mobileDesign1Section', event)">
+            <a href="#mobileDesign3Section" class="mobile-jump-pill active" onclick="scrollToMobileDesign('mobileDesign3Section', event)" style="border-color: #C4B5FD; background: #EDE9FE; color: #6D28D9; font-weight: 700;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              <span>Design 3 · Editorial Story Reader ✨ (NEW)</span>
+            </a>
+            <a href="#mobileDesign4Section" class="mobile-jump-pill" onclick="scrollToMobileDesign('mobileDesign4Section', event)" style="border-color: #A5B4FC; background: #EEF2FF; color: #4338CA; font-weight: 700;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              <span>Design 4 · Bento Stream Deck ⚡ (NEW)</span>
+            </a>
+            <a href="#mobileDesign1Section" class="mobile-jump-pill" onclick="scrollToMobileDesign('mobileDesign1Section', event)">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-              <span>Design 1 · Announcement Reader</span>
+              <span>Design 1 · Reader</span>
             </a>
             <a href="#mobileDesign2Section" class="mobile-jump-pill" onclick="scrollToMobileDesign('mobileDesign2Section', event)">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line></svg>
-              <span>Design 2 · Mobile Feed Stream</span>
+              <span>Design 2 · Feed</span>
             </a>
           </div>
           <div class="mobile-jump-right">
@@ -6405,7 +7052,7 @@
                   <p class="mb2-card-snippet">Please review the updated remote work guidelines, data privacy compliance, and code of conduct for the fiscal year 2026-2027...</p>
                   
                   <div class="mb2-card-bottom-row">
-                    <span class="mb2-priority-tag low">⚪ Low Priority</span>
+                    
                     <button type="button" class="mb2-infeed-like-btn" id="mb2Like-bc-1" onclick="event.stopPropagation(); toggleMb2CardLike('bc-1', this);">
                       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                       <span class="mb2-count" id="mb2Count-bc-1">19</span>
@@ -6460,6 +7107,200 @@
               </nav>
 
             </div>
+
+            <!-- Hardware Home Indicator Bar -->
+            <div class="m-home-bar-wrap">
+              <div class="m-home-bar"></div>
+            </div>
+
+          </div>
+        </div>
+
+      
+        <!-- ======================================================================
+             SECTION 3: DESIGN 3 — EDITORIAL STORY READER (NEW)
+             ====================================================================== -->
+        <div class="mobile-section-header" id="mobileDesign3Section" style="margin-top: 36px;">
+          <div class="mobile-section-tag-row">
+            <span class="mobile-version-tag" style="background: #FAF5FF; color: #7C3AED; border: 1px solid #DDD6FE; font-weight: 800;">DESIGN 3 · NEW</span>
+            <span style="background: #EDE9FE; color: #6D28D9; border: 1px solid #C4B5FD; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 4px;">EDITORIAL STORY READER</span>
+            <h3 class="mobile-version-title">Editorial Story Reader &amp; Ambient Thumb Bar</h3>
+          </div>
+          <p class="mobile-version-desc">
+            Immersive single-broadcast reading experience designed for deep engagement and focus. Features ambient gradient illumination, verified leadership signature, pure editorial prose, and an ergonomic floating bottom thumb-bar with animated micro-reaction and live colleague social proof. Zero administrative clutter — strictly the announcement and the ability to like.
+          </p>
+        </div>
+
+        <!-- Phone 3 Canvas -->
+        <div class="mobile-phone-canvas">
+          <div class="mobile-phone-frame" style="box-shadow: 0 32px 84px -16px rgba(124, 58, 237, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.14), inset 0 0 0 2px #334155;">
+            
+            <!-- Hardware Status Bar & Dynamic Island -->
+            <div class="m-status-bar">
+              <span class="m-status-time">9:41</span>
+              <div class="m-dynamic-island">
+                <div class="m-camera-lens"></div>
+                <div class="m-sensor-dot"></div>
+              </div>
+              <div class="m-status-icons">
+                <svg width="13" height="10" viewBox="0 0 16 12" fill="none"><path d="M1 10.5h2M5 8.5h2M9 5.5h2M13 2h2" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/></svg>
+                <svg width="13" height="10" viewBox="0 0 16 12" fill="none"><path d="M8 9.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM4.5 7a5 5 0 0 1 7 0M2 4.5a8.5 8.5 0 0 1 12 0" stroke="#0F172A" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <div class="m-battery-icon"><div class="m-battery-level"></div></div>
+              </div>
+            </div>
+
+            <!-- Scrollable Screen Viewport -->
+            <div class="mobile-screen-scroll mb3-scroll-canvas" id="mb3ScreenScroll">
+              
+              <!-- Ambient Top App Bar -->
+              <div class="mb3-top-bar">
+                <div class="mb3-bar-brand">
+                  <div class="mb3-monogram">H</div>
+                  <span class="mb3-app-title">Company Broadcast</span>
+                </div>
+                <div class="mb3-bar-pager">
+                  <span class="mb3-index-pill" id="mb3IndexPill">1 of 5</span>
+                </div>
+              </div>
+
+              <!-- Reading Canvas with Ambient Glow -->
+              <div class="mb3-content-wrap">
+                
+                <!-- Story Metadata Row -->
+                <div class="mb3-meta-row">
+                  <span class="mb3-date-text" id="mb3DateText">Today • 9:41 AM</span>
+                  <div id="mb3PriorityWrap"></div>
+                </div>
+
+                <!-- Headline -->
+                <h2 class="mb3-headline" id="mb3Headline">Welcome to hirekey Notifications!</h2>
+
+                <!-- Author Signature Card -->
+                <div class="mb3-author-card">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80" alt="Author" class="mb3-author-avatar" id="mb3AuthorAvatar" />
+                  <div class="mb3-author-info">
+                    <div class="mb3-author-name-row">
+                      <span class="mb3-author-name" id="mb3AuthorName">Subhadeep Datta</span>
+                      <svg class="mb3-verified-badge" width="14" height="14" viewBox="0 0 24 24" fill="#7C3AED"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <span class="mb3-author-role" id="mb3AuthorRole">Business Head • Leadership</span>
+                  </div>
+                </div>
+
+                <!-- Editorial Prose Body -->
+                <div class="mb3-body-prose" id="mb3BodyProse"></div>
+
+                <!-- Key Takeaway Box -->
+                <div class="mb3-takeaway-box" id="mb3TakeawayBox">
+                  <div class="mb3-takeaway-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2.2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                  </div>
+                  <div class="mb3-takeaway-text" id="mb3TakeawayText">
+                    Key takeaway: Stay connected and acknowledge critical company announcements.
+                  </div>
+                </div>
+
+              </div> <!-- end .mb3-content-wrap -->
+
+              <!-- Floating Ergonomic Thumb-Bar (Docked at bottom) -->
+              <div class="mb3-floating-bar-dock">
+                <div class="mb3-floating-bar" id="mb3FloatingBar">
+                  <button type="button" class="mb3-like-btn" id="mb3LikeBtn" onclick="toggleMb3Like(this)">
+                    <svg class="mb3-heart-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    <span id="mb3LikeLabel">Like</span>
+                    <span class="mb3-like-badge" id="mb3LikeCount">42</span>
+                  </button>
+
+                  <div class="mb3-social-proof">
+                    <div class="mb3-avatar-stack">
+                      <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=60&h=60&q=80" alt="Colleague" />
+                      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&h=60&q=80" alt="Colleague" />
+                      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=60&h=60&q=80" alt="Colleague" />
+                    </div>
+                    <span class="mb3-social-text" id="mb3SocialText">+41 colleagues</span>
+                  </div>
+
+                  <div class="mb3-pager-controls">
+                    <button type="button" class="mb3-nav-arrow" onclick="prevMb3Broadcast()" title="Previous announcement">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button type="button" class="mb3-nav-arrow" onclick="nextMb3Broadcast()" title="Next announcement">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- end .mb3-scroll-canvas -->
+
+            <!-- Hardware Home Indicator Bar -->
+            <div class="m-home-bar-wrap">
+              <div class="m-home-bar"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ======================================================================
+             SECTION 4: DESIGN 4 — BENTO STREAM DECK (NEW)
+             ====================================================================== -->
+        <div class="mobile-section-header" id="mobileDesign4Section" style="margin-top: 36px;">
+          <div class="mobile-section-tag-row">
+            <span class="mobile-version-tag" style="background: #EEF2FF; color: #4338CA; border: 1px solid #C7D2FE; font-weight: 800;">DESIGN 4 · NEW</span>
+            <span style="background: #E0E7FF; color: #3730A3; border: 1px solid #A5B4FC; font-size: 10.5px; font-weight: 700; padding: 2px 8px; border-radius: 4px;">BENTO STREAM DECK</span>
+            <h3 class="mobile-version-title">Fluid Bento Stream Deck &amp; Tap Reaction</h3>
+          </div>
+          <p class="mobile-version-desc">
+            Continuous vertical card deck inspired by modern mobile Bento architecture. Every broadcast is an elevated, tactile card with high-priority crimson indicator (only when urgent), author identity, clear announcement text, and an integrated full-width Like Dock for rapid one-tap reaction. No search boxes, no category filters — built for the fast-paced employee.
+          </p>
+        </div>
+
+        <!-- Phone 4 Canvas -->
+        <div class="mobile-phone-canvas">
+          <div class="mobile-phone-frame" style="box-shadow: 0 32px 84px -16px rgba(99, 102, 241, 0.38), 0 0 0 1px rgba(255, 255, 255, 0.14), inset 0 0 0 2px #334155;">
+            
+            <!-- Hardware Status Bar & Dynamic Island -->
+            <div class="m-status-bar">
+              <span class="m-status-time">9:41</span>
+              <div class="m-dynamic-island">
+                <div class="m-camera-lens"></div>
+                <div class="m-sensor-dot"></div>
+              </div>
+              <div class="m-status-icons">
+                <svg width="13" height="10" viewBox="0 0 16 12" fill="none"><path d="M1 10.5h2M5 8.5h2M9 5.5h2M13 2h2" stroke="#0F172A" stroke-width="2" stroke-linecap="round"/></svg>
+                <svg width="13" height="10" viewBox="0 0 16 12" fill="none"><path d="M8 9.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM4.5 7a5 5 0 0 1 7 0M2 4.5a8.5 8.5 0 0 1 12 0" stroke="#0F172A" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <div class="m-battery-icon"><div class="m-battery-level"></div></div>
+              </div>
+            </div>
+
+            <!-- Scrollable Screen Viewport -->
+            <div class="mobile-screen-scroll mb4-scroll-canvas" id="mb4ScreenScroll">
+              
+              <!-- Top App Bar -->
+              <div class="mb4-top-bar">
+                <div class="mb4-bar-brand">
+                  <div class="mb4-monogram">H</div>
+                  <div>
+                    <h4 class="mb4-app-title">Broadcasts</h4>
+                    <span class="mb4-app-sub">Live Employee Stream</span>
+                  </div>
+                </div>
+                <span class="mb4-counter-pill" id="mb4CountBadge">⚡ 5 Updates</span>
+              </div>
+
+              <!-- Bento Cards Stream -->
+              <div class="mb4-bento-stream" id="mb4BentoStream">
+                <!-- Dynamically populated by renderMb4FeedCards() -->
+              </div>
+
+              <!-- All Caught Up Milestone -->
+              <div class="mb4-caught-up-card">
+                <div class="mb4-sparkle-icon">✨</div>
+                <h5 class="mb4-caught-up-title">You're all caught up!</h5>
+                <p class="mb4-caught-up-sub">No unread announcements from leadership.</p>
+              </div>
+
+            </div> <!-- end .mb4-scroll-canvas -->
 
             <!-- Hardware Home Indicator Bar -->
             <div class="m-home-bar-wrap">
@@ -7733,6 +8574,8 @@
     selectMbBroadcast(mbActiveBcId);
     updateMb1LikeUI();
     renderMb2FeedCards();
+    renderMb3Story(0);
+    renderMb4FeedCards();
   }
 
   function renderView3Widget() {
@@ -9481,7 +10324,228 @@
     }
   });
 
-</script>
+
+  // ==========================================================================
+  // DESIGN 3 & 4 JAVASCRIPT LOGIC
+  // ==========================================================================
+  let mb3ActiveIndex = 0;
+
+  function renderMb3Story(index) {
+    if (!broadcasts || broadcasts.length === 0) return;
+    mb3ActiveIndex = ((index % broadcasts.length) + broadcasts.length) % broadcasts.length;
+    const bc = broadcasts[mb3ActiveIndex];
+    if (!bc) return;
+
+    // Pager badge
+    const indexPill = document.getElementById('mb3IndexPill');
+    if (indexPill) indexPill.innerText = `${mb3ActiveIndex + 1} of ${broadcasts.length}`;
+
+    // Date
+    const dateText = document.getElementById('mb3DateText');
+    if (dateText) dateText.innerText = bc.dateFormatted || 'Recent';
+
+    // Priority Beacon: ONLY shown if priority is High!
+    const priWrap = document.getElementById('mb3PriorityWrap');
+    if (priWrap) {
+      const isHigh = (bc.priority || '').toLowerCase() === 'high';
+      if (isHigh) {
+        priWrap.innerHTML = '<span class="mb3-beacon-pill"><span class="mb3-beacon-dot"></span>HIGH PRIORITY</span>';
+      } else {
+        priWrap.innerHTML = '';
+      }
+    }
+
+    // Headline
+    const headline = document.getElementById('mb3Headline');
+    if (headline) headline.innerText = bc.title;
+
+    // Author
+    const avatar = document.getElementById('mb3AuthorAvatar');
+    if (avatar) avatar.src = bc.senderAvatar || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80';
+
+    const authorName = document.getElementById('mb3AuthorName');
+    if (authorName) authorName.innerText = bc.senderName;
+
+    const authorRole = document.getElementById('mb3AuthorRole');
+    if (authorRole) authorRole.innerText = `${bc.senderRole || 'Leadership'} • ${bc.category || 'Executive'}`;
+
+    // Body Prose
+    const bodyProse = document.getElementById('mb3BodyProse');
+    if (bodyProse) {
+      const text = bc.fullMessage || bc.preview || '';
+      const paragraphs = text.split('\n\n').filter(p => p.trim());
+      bodyProse.innerHTML = paragraphs.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    }
+
+    // Takeaway Box
+    const takeawayText = document.getElementById('mb3TakeawayText');
+    if (takeawayText) {
+      takeawayText.innerText = `Important update from ${bc.senderName}: Please review this guidance carefully.`;
+    }
+
+    // Update Like State for Design 3
+    updateMb3LikeUI();
+
+    // Scroll to top of reading canvas
+    const scrollEl = document.getElementById('mb3ScreenScroll');
+    if (scrollEl) scrollEl.scrollTop = 0;
+  }
+
+  function updateMb3LikeUI() {
+    if (!broadcasts || broadcasts.length === 0) return;
+    const bc = broadcasts[mb3ActiveIndex];
+    if (!bc) return;
+
+    const isLiked = !!mbLikedState[bc.id];
+    const count = mbLikeCounts[bc.id] || 42;
+
+    const likeBtn = document.getElementById('mb3LikeBtn');
+    const likeLabel = document.getElementById('mb3LikeLabel');
+    const likeCount = document.getElementById('mb3LikeCount');
+    const socialText = document.getElementById('mb3SocialText');
+
+    if (likeBtn) {
+      if (isLiked) {
+        likeBtn.classList.add('liked');
+      } else {
+        likeBtn.classList.remove('liked');
+      }
+    }
+    if (likeLabel) likeLabel.innerText = isLiked ? 'Liked' : 'Like';
+    if (likeCount) likeCount.innerText = count;
+    if (socialText) socialText.innerText = `+${Math.max(1, count - 1)} colleagues`;
+  }
+
+  function toggleMb3Like(btn) {
+    if (!broadcasts || broadcasts.length === 0) return;
+    const bc = broadcasts[mb3ActiveIndex];
+    if (!bc) return;
+
+    const isLiked = !mbLikedState[bc.id];
+    mbLikedState[bc.id] = isLiked;
+    mbLikeCounts[bc.id] = (mbLikeCounts[bc.id] || 42) + (isLiked ? 1 : -1);
+
+    try {
+      localStorage.setItem('hirerkey_mb_like_' + bc.id, isLiked ? 'true' : 'false');
+    } catch(e) {}
+
+    // Button animation
+    if (btn) {
+      btn.classList.add('pop-anim');
+      setTimeout(() => btn.classList.remove('pop-anim'), 450);
+      if (isLiked) {
+        spawnFlyingHeart(btn);
+      }
+    }
+
+    updateMb3LikeUI();
+    if (bc.id === mbActiveBcId) updateMb1LikeUI();
+    updateMb2FeedLikeUI(bc.id);
+    renderMb4FeedCards();
+
+    if (isLiked) {
+      showToast('❤️ You liked this broadcast!', 'success');
+    } else {
+      showToast('Like removed.');
+    }
+  }
+
+  function nextMb3Broadcast() {
+    renderMb3Story(mb3ActiveIndex + 1);
+  }
+
+  function prevMb3Broadcast() {
+    renderMb3Story(mb3ActiveIndex - 1);
+  }
+
+  // Floating Heart Particle
+  function spawnFlyingHeart(anchorEl) {
+    if (!anchorEl) return;
+    const rect = anchorEl.getBoundingClientRect();
+    const particle = document.createElement('span');
+    particle.className = 'flying-heart-particle';
+    particle.innerText = '❤️';
+    particle.style.left = `${rect.left + rect.width / 2 - 10}px`;
+    particle.style.top = `${rect.top - 10}px`;
+    particle.style.setProperty('--dx', `${(Math.random() - 0.5) * 30}px`);
+    particle.style.setProperty('--dx2', `${(Math.random() - 0.5) * 40}px`);
+    document.body.appendChild(particle);
+    setTimeout(() => particle.remove(), 900);
+  }
+
+  // --------------------------------------------------------------------------
+  // DESIGN 4 FUNCTIONS: BENTO STREAM DECK
+  // --------------------------------------------------------------------------
+  function renderMb4FeedCards() {
+    const stream = document.getElementById('mb4BentoStream');
+    if (!stream) return;
+
+    const badge = document.getElementById('mb4CountBadge');
+    if (badge) badge.innerText = `⚡ ${broadcasts.length} Updates`;
+
+    stream.innerHTML = broadcasts.map(bc => {
+      const isHigh = (bc.priority || '').toLowerCase() === 'high';
+      const isLiked = !!mbLikedState[bc.id];
+      const count = mbLikeCounts[bc.id] || 25;
+      const snippet = bc.preview || (bc.fullMessage || '').substring(0, 140) + '...';
+
+      return `
+        <article class="mb4-bento-card" id="mb4Card-${bc.id}">
+          <div class="mb4-card-top">
+            <div class="mb4-card-author">
+              <img src="${bc.senderAvatar || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&h=120&q=80'}" alt="${escapeHtml(bc.senderName)}" class="mb4-card-avatar" />
+              <div class="mb4-card-author-meta">
+                <span class="mb4-card-name">${escapeHtml(bc.senderName)}</span>
+                <span class="mb4-card-time">${escapeHtml(bc.dateFormatted || 'Recent')}</span>
+              </div>
+            </div>
+            ${isHigh ? '<span class="mb4-priority-chip">HIGH</span>' : ''}
+          </div>
+
+          <h4 class="mb4-card-headline">${escapeHtml(bc.title)}</h4>
+          <p class="mb4-card-body">${escapeHtml(snippet)}</p>
+
+          <button type="button" class="mb4-like-dock-btn ${isLiked ? 'liked' : ''}" id="mb4Like-${bc.id}" onclick="toggleMb4CardLike('${bc.id}', this)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <span class="mb4-label">${isLiked ? 'Liked' : 'Like this broadcast'}</span>
+            <span style="opacity: 0.4;">•</span>
+            <span class="mb4-count">${count}</span>
+          </button>
+        </article>
+      `;
+    }).join('');
+  }
+
+  function toggleMb4CardLike(bcId, btn) {
+    const isLiked = !mbLikedState[bcId];
+    mbLikedState[bcId] = isLiked;
+    mbLikeCounts[bcId] = (mbLikeCounts[bcId] || 25) + (isLiked ? 1 : -1);
+
+    try {
+      localStorage.setItem('hirerkey_mb_like_' + bcId, isLiked ? 'true' : 'false');
+    } catch(e) {}
+
+    if (btn) {
+      btn.classList.add('pop-anim');
+      setTimeout(() => btn.classList.remove('pop-anim'), 450);
+      if (isLiked) {
+        spawnFlyingHeart(btn);
+      }
+    }
+
+    renderMb4FeedCards();
+    if (broadcasts[mb3ActiveIndex]?.id === bcId) updateMb3LikeUI();
+    if (mbActiveBcId === bcId) updateMb1LikeUI();
+    updateMb2FeedLikeUI(bcId);
+
+    if (isLiked) {
+      showToast('❤️ You liked this broadcast!', 'success');
+    } else {
+      showToast('Like removed.');
+    }
+  }
+
+  </script>
 
 
 <!-- Mobile Bottom Sheet Reader Modal (Design 2) -->
