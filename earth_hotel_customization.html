@@ -8511,9 +8511,9 @@
       font-weight: 600 !important;
     }
 
-    /* 8. Calendar Card in Theme 5 */
+    /* 8. Calendar Card in Theme 5 (Exact Split Layout as View 4) */
     .view2-theme5.view2-dashboard-widgets .hirerkey-icon-badge.purple-soft {
-      background: rgba(177, 189, 120, 0.2) !important;
+      background: rgba(177, 189, 120, 0.22) !important;
       color: #1C3317 !important;
       border: 1px solid rgba(177, 189, 120, 0.35) !important;
       box-shadow: 0 2px 6px rgba(17, 35, 8, 0.08) !important;
@@ -8521,38 +8521,47 @@
     }
 
     .view2-theme5.view2-dashboard-widgets .calendar-month-pill {
-      background: rgba(177, 189, 120, 0.25) !important;
+      background: rgba(234, 192, 30, 0.2) !important;
       color: #112308 !important;
+      border: 1px solid rgba(234, 192, 30, 0.5) !important;
       font-weight: 700 !important;
     }
 
-    .view2-theme5.view2-dashboard-widgets .calendar-nav-btn:hover {
-      color: #112308 !important;
-      border-color: #1C3317 !important;
-      background: rgba(177, 189, 120, 0.2) !important;
+    .view2-theme5.view2-dashboard-widgets .calendar-weekday-header span {
+      color: #274816 !important;
+      font-weight: 800 !important;
     }
 
-    .view2-theme5.view2-dashboard-widgets .calendar-day-cell.active-day {
+    .view2-theme5.view2-dashboard-widgets .calendar-days-grid .day-num {
+      color: #0F172A !important;
+      font-weight: 700 !important;
+    }
+
+    .view2-theme5.view2-dashboard-widgets .calendar-days-grid .active-day {
       background: #eac01e !important;
       color: #112308 !important;
       font-weight: 900 !important;
-      box-shadow: 0 2px 8px rgba(234, 192, 30, 0.45) !important;
+      box-shadow: 0 4px 12px rgba(234, 192, 30, 0.45) !important;
     }
 
-    .view2-theme5.view2-dashboard-widgets .calendar-day-cell:hover:not(.empty):not(.active-day) {
-      background: rgba(177, 189, 120, 0.25) !important;
+    .view2-theme5.view2-dashboard-widgets .calendar-big-num {
       color: #112308 !important;
+      font-weight: 900 !important;
+    }
+
+    .view2-theme5.view2-dashboard-widgets .calendar-day-name {
+      color: #112308 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme5.view2-dashboard-widgets .calendar-month-year {
+      color: #274816 !important;
       font-weight: 700 !important;
     }
 
-    .view2-theme5.view2-dashboard-widgets .calendar-day-cell {
-      color: #1C3317 !important;
+    .view2-theme5.view2-dashboard-widgets .calendar-joinings-text {
+      color: #1E293B !important;
       font-weight: 600 !important;
-    }
-
-    .view2-theme5.view2-dashboard-widgets .calendar-dow {
-      color: #112308 !important;
-      font-weight: 800 !important;
     }
 
     /* 9. Clock In / Out Card in Theme 5 */
@@ -11658,7 +11667,7 @@
                   </div>
                 </div>
 
-                <!-- 3. Calendar Card -->
+                <!-- 3. Calendar Card (Split Layout) -->
                 <div class="hirerkey-card" id="calendarCardV5">
                   <div class="hirerkey-card-header">
                     <div class="hirerkey-header-left">
@@ -11672,87 +11681,68 @@
                       </div>
                       <h3 class="hirerkey-card-title">Calendar</h3>
                     </div>
-
-                    <div class="calendar-header-right">
-                      <span class="calendar-month-pill">October 2026</span>
-                      <div class="calendar-nav-arrows">
-                        <button class="calendar-nav-btn" onclick="showToast('Navigated to September 2026')">‹</button>
-                        <button class="calendar-nav-btn" onclick="showToast('Navigated to November 2026')">›</button>
-                      </div>
-                    </div>
+                    <div class="calendar-month-pill">October 2026</div>
                   </div>
 
-                  <div class="hirerkey-card-body" style="padding-top: 8px;">
-                    <!-- Calendar Day Names Grid -->
-                    <div class="calendar-grid-header">
-                      <span class="calendar-dow">Su</span>
-                      <span class="calendar-dow">Mo</span>
-                      <span class="calendar-dow">Tu</span>
-                      <span class="calendar-dow">We</span>
-                      <span class="calendar-dow">Th</span>
-                      <span class="calendar-dow">Fr</span>
-                      <span class="calendar-dow">Sa</span>
-                    </div>
-
-                    <!-- Mini Calendar 35-Day Grid for October 2026 (Starts on Thursday Oct 1) -->
-                    <div class="calendar-days-grid">
-                      <!-- Row 1: 4 empty previous month days + 1, 2, 3 -->
-                      <span class="calendar-day-cell empty">27</span>
-                      <span class="calendar-day-cell empty">28</span>
-                      <span class="calendar-day-cell empty">29</span>
-                      <span class="calendar-day-cell empty">30</span>
-                      <span class="calendar-day-cell">1</span>
-                      <span class="calendar-day-cell">2</span>
-                      <span class="calendar-day-cell">3</span>
-
-                      <!-- Row 2: 4 to 10 -->
-                      <span class="calendar-day-cell">4</span>
-                      <span class="calendar-day-cell">5</span>
-                      <span class="calendar-day-cell">6</span>
-                      <span class="calendar-day-cell">7</span>
-                      <span class="calendar-day-cell">8</span>
-                      <span class="calendar-day-cell">9</span>
-                      <span class="calendar-day-cell">10</span>
-
-                      <!-- Row 3: 11 to 17 -->
-                      <span class="calendar-day-cell">11</span>
-                      <span class="calendar-day-cell">12</span>
-                      <span class="calendar-day-cell">13</span>
-                      <span class="calendar-day-cell">14</span>
-                      <span class="calendar-day-cell">15</span>
-                      <span class="calendar-day-cell">16</span>
-                      <span class="calendar-day-cell">17</span>
-
-                      <!-- Row 4: 18 to 24 with Day 22 Active Today -->
-                      <span class="calendar-day-cell">18</span>
-                      <span class="calendar-day-cell">19</span>
-                      <span class="calendar-day-cell">20</span>
-                      <span class="calendar-day-cell">21</span>
-                      <span class="calendar-day-cell active-day" title="Today - Oct 22">22</span>
-                      <span class="calendar-day-cell">23</span>
-                      <span class="calendar-day-cell">24</span>
-
-                      <!-- Row 5: 25 to 31 -->
-                      <span class="calendar-day-cell">25</span>
-                      <span class="calendar-day-cell">26</span>
-                      <span class="calendar-day-cell">27</span>
-                      <span class="calendar-day-cell">28</span>
-                      <span class="calendar-day-cell">29</span>
-                      <span class="calendar-day-cell">30</span>
-                      <span class="calendar-day-cell">31</span>
-                    </div>
-
-                    <!-- Upcoming Events Pill Strip -->
-                    <div class="calendar-events-strip">
-                      <div class="calendar-event-item">
-                        <span class="event-dot" style="background: #eac01e;"></span>
-                        <span class="event-time">2:00 PM</span>
-                        <span class="event-title">Botanical Resort Operations Sync</span>
+                  <div class="hirerkey-card-body calendar-split-body">
+                    <!-- Left calendar grid -->
+                    <div class="calendar-grid-side">
+                      <div class="calendar-weekday-header">
+                        <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
                       </div>
-                      <div class="calendar-event-item">
-                        <span class="event-dot" style="background: #3D6630;"></span>
-                        <span class="event-time">4:30 PM</span>
-                        <span class="event-title">Guest Hospitality Experience Review</span>
+                      <div class="calendar-days-grid">
+                        <span class="day-empty"></span>
+                        <span class="day-empty"></span>
+                        <span class="day-empty"></span>
+                        <span class="day-num">1</span>
+                        <span class="day-num">2</span>
+                        <span class="day-num">3</span>
+                        <span class="day-num">4</span>
+                        <span class="day-num">5</span>
+                        <span class="day-num">6</span>
+                        <span class="day-num">7</span>
+                        <span class="day-num">8</span>
+                        <span class="day-num">9</span>
+                        <span class="day-num">10</span>
+                        <span class="day-num">11</span>
+                        <span class="day-num">12</span>
+                        <span class="day-num">13</span>
+                        <span class="day-num">14</span>
+                        <span class="day-num">15</span>
+                        <span class="day-num">16</span>
+                        <span class="day-num">17</span>
+                        <span class="day-num">18</span>
+                        <span class="day-num">19</span>
+                        <span class="day-num">20</span>
+                        <span class="day-num">21</span>
+                        <span class="day-num active-day">22</span>
+                        <span class="day-num">23</span>
+                        <span class="day-num">24</span>
+                        <span class="day-num">25</span>
+                        <span class="day-num">26</span>
+                        <span class="day-num">27</span>
+                        <span class="day-num">28</span>
+                        <span class="day-num">29</span>
+                        <span class="day-num">30</span>
+                        <span class="day-num">31</span>
+                        <span class="day-empty"></span>
+                      </div>
+                    </div>
+
+                    <!-- Vertical dashed separator -->
+                    <div class="calendar-vertical-divider"></div>
+
+                    <!-- Right big day info -->
+                    <div class="calendar-detail-side">
+                      <div class="calendar-today-highlight">
+                        <span class="calendar-big-num">22</span>
+                        <div class="calendar-today-meta">
+                          <div class="calendar-day-name">Thursday</div>
+                          <div class="calendar-month-year">October 2026</div>
+                        </div>
+                      </div>
+                      <div class="calendar-joinings-text">
+                        No joinings or last working days today.
                       </div>
                     </div>
                   </div>
