@@ -437,6 +437,10 @@
         <span>⚙️ Preferences</span>
         <span class="tab-badge">4 Views</span>
       </button>
+      <button class="nav-tab-btn" id="tab-orientation" onclick="loadView('orientation')">
+        <span>🧭 Orientation Studio</span>
+        <span class="tab-badge" style="background: #7C3AED; color: #FFFFFF;">Dual View</span>
+      </button>
     </nav>
 
     <!-- Header Right Controls -->
@@ -677,6 +681,33 @@
           </div>
         </div>
 
+        <!-- 7. Orientation Studio (Redesign) -->
+        <div class="view-card" style="border-color: #C4B5FD; box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill" style="background: #7C3AED; color: #FFFFFF;">NEW REDESIGN: DUAL COMPARATIVE VIEWS</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/orientation_redesign.html</span>
+            </div>
+            <div class="card-icon-box" style="background: #EDE9FE; color: #7C3AED;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </div>
+            <h2 class="card-title">Orientation Studio Redesign</h2>
+            <p class="card-desc">Complete architectural redesign fixing all cognitive overload & disorientation flaws. Completely removes the cramped mobile phone simulator and introduces two distinct comparative paradigms with 100% hospitality feature completeness.</p>
+            <ul class="card-features">
+              <li>View 1: Milestone Studio (Bento Stage Canvas + 440px Focus Inspector Drawer)</li>
+              <li>View 2: Linear Command Deck (Unified Flow Timeline + In-Place Progressive Disclosure)</li>
+              <li>Complete removal of the interactive mobile phone simulator</li>
+              <li>Full hospitality audit parity: DoubleTree by Hilton Front Office, F&B, HACCP, Facilities</li>
+              <li>All 6 Step Types: Session, Read & Agree, Quiz (80%), Photo, Number range, Checkbox</li>
+              <li>HyIQ AI prompt studio (⌘↵) + Starter templates library modal</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('orientation')">Launch in Viewer</button>
+            <a href="views/orientation_redesign.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </main>
@@ -710,6 +741,10 @@
       'preferences': {
         name: 'User Preferences (4 Design Views)',
         url: 'views/preferences.html'
+      },
+      'orientation': {
+        name: 'Orientation Studio (Redesign)',
+        url: 'views/orientation_redesign.html'
       }
     };
 
@@ -775,6 +810,7 @@
       if (e.key === '4') loadView('offboarding');
       if (e.key === '5') loadView('pulse-survey');
       if (e.key === '6') loadView('preferences');
+      if (e.key === '7') loadView('orientation');
       if (e.key === 'g' || e.key === 'G') toggleGridMode();
     });
 
