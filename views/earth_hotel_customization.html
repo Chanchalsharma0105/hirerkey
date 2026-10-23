@@ -2635,12 +2635,12 @@
 
     .view2-voice-bar-1 {
       height: 7px;
-      background: #40c3d7;
+      background: #406d35;
     }
 
     .view2-voice-bar-2 {
       height: 14px;
-      background: #86a5a0;
+      background: #353750;
     }
 
     .view2-voice-bar-3 {
@@ -2650,7 +2650,7 @@
 
     .view2-voice-bar-4 {
       height: 6px;
-      background: #eac01e;
+      background: #353750;
     }
 
     .view2-btn-hyiq-voice:hover .view2-voice-bar-1 {
@@ -3775,15 +3775,15 @@
     }
 
     .clock-radial-progress {
-      stroke: var(--earth-lagoon-aqua, #40c3d7) !important;
+      stroke: #406d35 !important;
       transition: stroke-dashoffset 0.3s ease;
     }
 
     .clock-seconds-label {
       position: absolute;
       font-size: 13px;
-      font-weight: 700;
-      color: var(--earth-lagoon-aqua, #40c3d7);
+      font-weight: 800;
+      color: #406d35;
     }
 
     .clock-time-meta {
@@ -3808,7 +3808,7 @@
     .clock-sec-suffix {
       font-size: 18px;
       font-weight: 700;
-      color: var(--earth-lagoon-aqua, #40c3d7);
+      color: #406d35;
     }
 
     .clock-ampm {
@@ -3841,13 +3841,13 @@
 
     /* Weather Card Styling */
     .weather-gradient-box {
-      background: linear-gradient(135deg, #eac01e 0%, #d49397 50%, #9cbbd2 100%);
+      background: linear-gradient(135deg, #353750 0%, #406d35 100%) !important;
       border-radius: 16px;
       padding: 20px 22px;
       color: #FFFFFF;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 14px rgba(234, 192, 30, 0.2);
+      box-shadow: 0 8px 24px -4px rgba(53, 55, 80, 0.35);
     }
 
     .weather-top-row {
@@ -4023,13 +4023,13 @@
     }
 
     .clock-action-main-btn.clocked-out-mode {
-      background: var(--earth-watermelon, #ec1d3e) !important;
-      box-shadow: 0 4px 14px rgba(236, 29, 62, 0.25);
+      background: linear-gradient(135deg, #353750 0%, #252738 100%) !important;
+      box-shadow: 0 4px 14px rgba(53, 55, 80, 0.35);
     }
 
     .clock-action-main-btn.clocked-out-mode:hover {
-      background: #c91834 !important;
-      box-shadow: 0 6px 18px rgba(236, 29, 62, 0.35);
+      background: linear-gradient(135deg, #252738 0%, #1a1b27 100%) !important;
+      box-shadow: 0 6px 18px rgba(53, 55, 80, 0.45);
     }
 
     /* Refresh Moment Card Styling */
@@ -7924,6 +7924,181 @@
       background: #406d35 !important;
     }
 
+    /* ==========================================================================
+       DASHBOARD 1 BRAND HARMONIZATION: MIDNIGHT INDIGO (#353750) & EARTH OLIVE (#406d35)
+       Applies Row 1 Color 1 and Color 4 across all Dashboard 1 widgets and elements
+       ========================================================================== */
+    #view2DashboardWidgets .hero-banner {
+      background: linear-gradient(135deg, #353750 0%, #406d35 100%) !important;
+      box-shadow: 0 16px 36px -8px rgba(53, 55, 80, 0.38) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    }
+
+    #view2DashboardWidgets .banner-quote-dot {
+      background: #406d35 !important;
+      box-shadow: 0 0 8px rgba(64, 109, 53, 0.8) !important;
+    }
+
+    #view2DashboardWidgets .banner-star-hero-main {
+      fill: rgba(255, 255, 255, 0.45) !important;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4)) !important;
+    }
+    #view2DashboardWidgets .banner-star-hero-top {
+      fill: #406d35 !important;
+      filter: drop-shadow(0 0 8px rgba(64, 109, 53, 0.6)) !important;
+    }
+    #view2DashboardWidgets .banner-star-hero-bot {
+      fill: rgba(255, 255, 255, 0.35) !important;
+      filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3)) !important;
+    }
+    #view2DashboardWidgets .banner-star-hero-corner {
+      fill: #406d35 !important;
+      filter: drop-shadow(0 0 10px rgba(64, 109, 53, 0.5)) !important;
+    }
+
+    /* Executive Broadcast in Dashboard 1 */
+    #view2DashboardWidgets #executiveBroadcastCard .hirerkey-icon-badge.purple {
+      background: rgba(64, 109, 53, 0.12) !important;
+      color: #406d35 !important;
+    }
+    #view2DashboardWidgets .broadcast-verified-check {
+      background: #406d35 !important;
+    }
+    #view2DashboardWidgets .broadcast-read-more {
+      color: #406d35 !important;
+      font-weight: 700 !important;
+    }
+    #view2DashboardWidgets .broadcast-read-more:hover {
+      color: #325729 !important;
+      text-decoration: underline !important;
+    }
+    #view2DashboardWidgets .broadcast-like-pill:hover,
+    #view2DashboardWidgets .broadcast-like-pill.liked {
+      background: #EFF7EE !important;
+      color: #406d35 !important;
+      border-color: rgba(64, 109, 53, 0.4) !important;
+    }
+    #view2DashboardWidgets .broadcast-like-pill.liked svg {
+      fill: #406d35 !important;
+      stroke: #406d35 !important;
+    }
+
+    /* Birthdays Card in Dashboard 1 */
+    #view2DashboardWidgets #birthdaysCard .hirerkey-icon-badge.pink {
+      background: rgba(64, 109, 53, 0.12) !important;
+      color: #406d35 !important;
+    }
+    #view2DashboardWidgets .birthday-tab-btn.active {
+      background: #406d35 !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 2px 8px rgba(64, 109, 53, 0.35) !important;
+      font-weight: 700 !important;
+    }
+    #view2DashboardWidgets .birthday-refresh-btn:hover {
+      color: #406d35 !important;
+      background: rgba(64, 109, 53, 0.08) !important;
+    }
+
+    /* Calendar Card in Dashboard 1 */
+    #view2DashboardWidgets #calendarCard .hirerkey-icon-badge.purple-soft {
+      background: rgba(53, 55, 80, 0.1) !important;
+      color: #353750 !important;
+    }
+    #view2DashboardWidgets .calendar-month-pill {
+      background: rgba(53, 55, 80, 0.08) !important;
+      color: #353750 !important;
+      font-weight: 700 !important;
+    }
+    #view2DashboardWidgets .calendar-days-grid .day-num.active-day {
+      background: linear-gradient(135deg, #353750 0%, #406d35 100%) !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 3px 10px rgba(53, 55, 80, 0.35) !important;
+      font-weight: 700 !important;
+    }
+    #view2DashboardWidgets .calendar-big-num {
+      color: #353750 !important;
+    }
+
+    /* Live Clock Card in Dashboard 1 */
+    #view2DashboardWidgets .clock-radial-progress {
+      stroke: #406d35 !important;
+    }
+    #view2DashboardWidgets .clock-seconds-label {
+      color: #406d35 !important;
+      font-weight: 800 !important;
+    }
+    #view2DashboardWidgets .clock-sec-suffix {
+      color: #406d35 !important;
+      font-weight: 700 !important;
+    }
+    #view2DashboardWidgets .clock-hours-mins {
+      color: #353750 !important;
+    }
+    #view2DashboardWidgets .clock-timezone-pill {
+      background: rgba(53, 55, 80, 0.07) !important;
+      color: #353750 !important;
+      font-weight: 600 !important;
+    }
+
+    /* Weather Card in Dashboard 1 */
+    #view2DashboardWidgets #weatherCard .hirerkey-icon-badge.cyan {
+      background: rgba(64, 109, 53, 0.12) !important;
+      color: #406d35 !important;
+    }
+    #view2DashboardWidgets .weather-gradient-box {
+      background: linear-gradient(135deg, #353750 0%, #406d35 100%) !important;
+      box-shadow: 0 8px 24px -4px rgba(53, 55, 80, 0.35) !important;
+    }
+
+    /* Clock In / Out Card in Dashboard 1 */
+    #view2DashboardWidgets #clockInOutCard .hirerkey-icon-badge.green {
+      background: rgba(64, 109, 53, 0.12) !important;
+      color: #406d35 !important;
+    }
+    #view2DashboardWidgets .clock-mode-btn.active {
+      background: #FFFFFF !important;
+      border-color: rgba(64, 109, 53, 0.45) !important;
+      color: #353750 !important;
+      font-weight: 700 !important;
+      box-shadow: 0 1px 4px rgba(53, 55, 80, 0.08) !important;
+    }
+    #view2DashboardWidgets .clock-action-main-btn {
+      background: #406d35 !important;
+      box-shadow: 0 4px 14px rgba(64, 109, 53, 0.28) !important;
+    }
+    #view2DashboardWidgets .clock-action-main-btn:hover {
+      background: #325729 !important;
+      box-shadow: 0 6px 18px rgba(64, 109, 53, 0.38) !important;
+    }
+    #view2DashboardWidgets .clock-action-main-btn.clocked-out-mode {
+      background: linear-gradient(135deg, #353750 0%, #252738 100%) !important;
+      box-shadow: 0 4px 14px rgba(53, 55, 80, 0.35) !important;
+    }
+    #view2DashboardWidgets .clock-action-main-btn.clocked-out-mode:hover {
+      background: linear-gradient(135deg, #252738 0%, #1a1b27 100%) !important;
+      box-shadow: 0 6px 18px rgba(53, 55, 80, 0.45) !important;
+    }
+    #view2DashboardWidgets .clock-status-pill.clocked-in {
+      background: #EFF7EE !important;
+      color: #406d35 !important;
+    }
+    #view2DashboardWidgets .clock-status-pill.clocked-in .clock-status-dot {
+      background: #406d35 !important;
+    }
+    #view2DashboardWidgets .header-link-icon:hover {
+      color: #406d35 !important;
+    }
+
+    /* Refresh Moment Card in Dashboard 1 */
+    #view2DashboardWidgets #refreshMomentCard .hirerkey-icon-badge.blue-soft {
+      background: rgba(53, 55, 80, 0.1) !important;
+      color: #353750 !important;
+    }
+    #view2DashboardWidgets .refresh-nav-btn:hover {
+      color: #406d35 !important;
+      background: rgba(64, 109, 53, 0.08) !important;
+    }
+
     /* Universal font-family enforcement: Strictly Inter across the entire dashboard */
     *, *::before, *::after,
     html, body, button, input, textarea, select, optgroup,
@@ -8451,8 +8626,8 @@
                   <svg width="21" height="21" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="16" cy="3.5" r="1.8" fill="#FFFFFF"/>
                     <line x1="16" y1="5.3" x2="16" y2="8.5" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                    <rect x="2.5" y="11.5" width="3.2" height="9" rx="1.6" fill="#40c3d7" class="view2-hyiq-robot-ear"/>
-                    <rect x="26.3" y="11.5" width="3.2" height="9" rx="1.6" fill="#40c3d7" class="view2-hyiq-robot-ear"/>
+                    <rect x="2.5" y="11.5" width="3.2" height="9" rx="1.6" fill="#406d35" class="view2-hyiq-robot-ear"/>
+                    <rect x="26.3" y="11.5" width="3.2" height="9" rx="1.6" fill="#406d35" class="view2-hyiq-robot-ear"/>
                     <circle cx="16" cy="16" r="11" fill="url(#hyiqSphereGrad)" class="view2-hyiq-robot-sphere"/>
                     <ellipse cx="16" cy="16.5" rx="8.5" ry="7.8" fill="#FFFFFF"/>
                     <circle cx="12.5" cy="15.5" r="1.7" fill="#353750" class="view2-hyiq-robot-eye-left"/>
@@ -8833,7 +9008,7 @@
                       <div class="clock-radial-wrap">
                         <svg class="clock-radial-svg" width="56" height="56" viewBox="0 0 56 56">
                           <circle class="clock-radial-bg" cx="28" cy="28" r="23" stroke="#EAE5DB" stroke-width="4.5" fill="none" />
-                          <circle id="clockSecondsArc" class="clock-radial-progress" cx="28" cy="28" r="23" stroke="#40c3d7" stroke-width="4.5" stroke-linecap="round" fill="none" stroke-dasharray="144.51" stroke-dashoffset="139" transform="rotate(-90 28 28)" />
+                          <circle id="clockSecondsArc" class="clock-radial-progress" cx="28" cy="28" r="23" stroke="#406d35" stroke-width="4.5" stroke-linecap="round" fill="none" stroke-dasharray="144.51" stroke-dashoffset="139" transform="rotate(-90 28 28)" />
                         </svg>
                         <span class="clock-seconds-label" id="clockSecondsText">02</span>
                       </div>
