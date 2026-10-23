@@ -6454,8 +6454,15 @@
     }
 
     /* 5. Live Clock & Clock CTA in Theme 2 */
+    .view2-theme2.view2-dashboard-widgets #liveClockCardV2 .hirerkey-icon-badge {
+      background: rgba(236, 29, 62, 0.15) !important;
+      color: #ec1d3e !important;
+      border: 1px solid rgba(236, 29, 62, 0.3) !important;
+      box-shadow: 0 2px 6px rgba(236, 29, 62, 0.12) !important;
+    }
+
     .view2-theme2.view2-dashboard-widgets #liveClockCardV2 .hirerkey-card-header svg {
-      stroke: #86a5a0 !important;
+      stroke: #ec1d3e !important;
     }
 
     .view2-theme2.view2-dashboard-widgets .clock-action-main-btn {
@@ -6939,6 +6946,13 @@
     }
 
     /* 5. Live Clock & Clock CTA in Theme 3 - High Contrast */
+    .view2-theme3.view2-dashboard-widgets #liveClockCardV3 .hirerkey-icon-badge {
+      background: rgba(64, 195, 215, 0.18) !important;
+      color: #08252C !important;
+      border: 1px solid rgba(64, 195, 215, 0.35) !important;
+      box-shadow: 0 2px 6px rgba(64, 195, 215, 0.12) !important;
+    }
+
     .view2-theme3.view2-dashboard-widgets #liveClockCardV3 .hirerkey-card-header svg {
       stroke: #08252C !important;
     }
@@ -7576,6 +7590,13 @@
     }
 
     /* 5. Live Clock & Clock CTA in Theme 4 - High Contrast */
+    .view2-theme4.view2-dashboard-widgets #liveClockCardV4 .hirerkey-icon-badge {
+      background: rgba(234, 192, 30, 0.22) !important;
+      color: #112308 !important;
+      border: 1px solid rgba(234, 192, 30, 0.45) !important;
+      box-shadow: 0 2px 6px rgba(234, 192, 30, 0.15) !important;
+    }
+
     .view2-theme4.view2-dashboard-widgets #liveClockCardV4 .hirerkey-card-header svg {
       stroke: #112308 !important;
     }
@@ -8020,6 +8041,13 @@
     }
 
     /* Live Clock Card in Dashboard 1 */
+    #view2DashboardWidgets #liveClockCard .hirerkey-icon-badge {
+      background: rgba(64, 109, 53, 0.12) !important;
+      color: #406d35 !important;
+    }
+    #view2DashboardWidgets #liveClockCard .hirerkey-icon-badge svg {
+      stroke: #406d35 !important;
+    }
     #view2DashboardWidgets .clock-radial-progress {
       stroke: #406d35 !important;
     }
@@ -8988,10 +9016,12 @@
                 <div class="hirerkey-card" id="liveClockCard">
                   <div class="hirerkey-card-header">
                     <div class="hirerkey-header-left">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
+                      <div class="hirerkey-icon-badge green">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                      </div>
                       <h3 class="hirerkey-card-title">Live Clock</h3>
                     </div>
                     <!-- Timer stopwatch icon -->
@@ -9453,10 +9483,12 @@
                 <div class="hirerkey-card" id="liveClockCardV2">
                   <div class="hirerkey-card-header">
                     <div class="hirerkey-header-left">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
+                      <div class="hirerkey-icon-badge pink">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                      </div>
                       <h3 class="hirerkey-card-title">Live Clock</h3>
                     </div>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -9910,10 +9942,12 @@
                 <div class="hirerkey-card" id="liveClockCardV3">
                   <div class="hirerkey-card-header">
                     <div class="hirerkey-header-left">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
+                      <div class="hirerkey-icon-badge cyan">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                      </div>
                       <h3 class="hirerkey-card-title">Live Clock</h3>
                     </div>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -10423,10 +10457,12 @@
                 <div class="hirerkey-card" id="liveClockCardV4">
                   <div class="hirerkey-card-header">
                     <div class="hirerkey-header-left">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                      </svg>
+                      <div class="hirerkey-icon-badge cyan">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                      </div>
                       <h3 class="hirerkey-card-title">Live Clock</h3>
                     </div>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
