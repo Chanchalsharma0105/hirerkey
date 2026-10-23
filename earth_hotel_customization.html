@@ -6658,8 +6658,9 @@
        Secondary Accent:   #c15360 (Terracotta Berry / Brick Rose)
        Atmospheric Accent: #9cbbd2 (Breezy Sky Mist / Coastal Periwinkle)
        Soft Ambient Accent:#d49397 (Dusty Coral Rose / Soft Blush)
-       Accessible Deep:    #166D7D (Deep Lagoon Teal for typography on white)
-       CRITICAL MANDATE:   100% BRIGHT, SUN-KISSED RESORT PALETTE - ZERO DARK NAVY
+       High-Contrast Text: #08252C (Deep Midnight Lagoon Navy - Ultra-Crisp Legibility)
+       Secondary Deep:     #1E293B (Rich Deep Slate for Descriptions & Body Text)
+       CRITICAL MANDATE:   100% CRYSTAL-CLEAR HIGH CONTRAST ON LIGHT RESORT WASH
        ========================================================================== */
 
     .view2-theme3 {
@@ -6690,20 +6691,25 @@
       -webkit-backdrop-filter: blur(8px) !important;
     }
 
+    #dashboard-view-2.theme-3-active .breadcrumbs-wrap .active {
+      color: #08252C !important;
+      font-weight: 700 !important;
+    }
+
     /* 1b. Ask HyIQ Dual Action Capsule (Theme 3: Lagoon Aqua & Coral Berry) */
     #dashboard-view-2.theme-3-active .view2-hyiq-capsule,
     #dashboard-view-2:has(#view2DashboardWidgetsV3:not([style*="display: none"])) .view2-hyiq-capsule,
     body.theme-3-active .view2-hyiq-capsule {
       background: #FFFFFF !important;
-      border: 1.5px solid rgba(64, 195, 215, 0.4) !important;
-      box-shadow: 0 2px 8px rgba(64, 195, 215, 0.15), 0 1px 3px rgba(156, 187, 210, 0.25) !important;
+      border: 1.5px solid rgba(64, 195, 215, 0.5) !important;
+      box-shadow: 0 2px 8px rgba(64, 195, 215, 0.18), 0 1px 3px rgba(156, 187, 210, 0.25) !important;
     }
 
     #dashboard-view-2.theme-3-active .view2-hyiq-capsule:hover,
     #dashboard-view-2:has(#view2DashboardWidgetsV3:not([style*="display: none"])) .view2-hyiq-capsule:hover,
     body.theme-3-active .view2-hyiq-capsule:hover {
       border-color: #40c3d7 !important;
-      box-shadow: 0 4px 14px rgba(64, 195, 215, 0.32) !important;
+      box-shadow: 0 4px 14px rgba(64, 195, 215, 0.35) !important;
     }
 
     #dashboard-view-2.theme-3-active .view2-btn-ask-hyiq,
@@ -6711,6 +6717,8 @@
     body.theme-3-active .view2-btn-ask-hyiq {
       background: linear-gradient(135deg, #40c3d7 0%, #c15360 100%) !important;
       box-shadow: 0 2px 8px rgba(64, 195, 215, 0.35) !important;
+      color: #FFFFFF !important;
+      font-weight: 800 !important;
     }
 
     #dashboard-view-2.theme-3-active .view2-btn-ask-hyiq:hover,
@@ -6748,8 +6756,8 @@
     #dashboard-view-2.theme-3-active .view2-btn-voice-text,
     #dashboard-view-2:has(#view2DashboardWidgetsV3:not([style*="display: none"])) .view2-btn-voice-text,
     body.theme-3-active .view2-btn-voice-text {
-      color: #166D7D !important;
-      font-weight: 600 !important;
+      color: #08252C !important;
+      font-weight: 700 !important;
     }
 
     #dashboard-view-2.theme-3-active .view2-btn-hyiq-voice:hover .view2-btn-voice-text,
@@ -6779,7 +6787,7 @@
     #dashboard-view-2.theme-3-active .view2-hyiq-robot-smile,
     #dashboard-view-2:has(#view2DashboardWidgetsV3:not([style*="display: none"])) .view2-hyiq-robot-smile,
     body.theme-3-active .view2-hyiq-robot-smile {
-      stroke: #166D7D !important;
+      stroke: #08252C !important;
     }
 
     #dashboard-view-2.theme-3-active .view2-hyiq-grad-stop-1,
@@ -6815,14 +6823,19 @@
     /* 2. Elevated Floating Pure White Cards on #EAF3F9 */
     .view2-theme3.view2-dashboard-widgets .hirerkey-card {
       background: #FFFFFF !important;
-      border: 1px solid rgba(64, 195, 215, 0.15) !important;
+      border: 1px solid rgba(64, 195, 215, 0.2) !important;
       box-shadow: 0 10px 24px -4px rgba(64, 195, 215, 0.08), 0 4px 10px -2px rgba(156, 187, 210, 0.25) !important;
       border-radius: 16px !important;
     }
 
+    /* High-Contrast Card Titles in Deep Midnight Lagoon */
     .view2-theme3.view2-dashboard-widgets .hirerkey-card-title {
-      color: #166D7D !important;
-      font-weight: 700 !important;
+      color: #08252C !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .hirerkey-card-header svg {
+      stroke: #08252C !important;
     }
 
     /* 3. Sidebar Nav Item: Dashboard 3 Active State */
@@ -6830,23 +6843,23 @@
     #dashboard-view-2.theme-3-active .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 3"].active,
     body.theme-3-active .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 3"].active,
     .donezo-sidebar:not(.collapsed) .donezo-nav-item-v3.active {
-      color: #166D7D !important;
-      font-weight: 700 !important;
+      color: #08252C !important;
+      font-weight: 800 !important;
       background: #FFFFFF !important;
       border-radius: 12px !important;
       margin: 2px 10px 4px 10px !important;
       padding: 5px 12px 5px 6px !important;
-      box-shadow: 0 2px 6px rgba(64, 195, 215, 0.12) !important;
-      border: 1px solid rgba(64, 195, 215, 0.35) !important;
+      box-shadow: 0 2px 6px rgba(64, 195, 215, 0.15) !important;
+      border: 1px solid rgba(64, 195, 215, 0.45) !important;
     }
 
     .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 3"].active:hover,
     #dashboard-view-2.theme-3-active .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 3"].active:hover,
     body.theme-3-active .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 3"].active:hover,
     .donezo-sidebar:not(.collapsed) .donezo-nav-item-v3.active:hover {
-      color: #166D7D !important;
+      color: #08252C !important;
       background: #F0F8FA !important;
-      border-color: rgba(64, 195, 215, 0.5) !important;
+      border-color: rgba(64, 195, 215, 0.6) !important;
     }
 
     .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 3"].active .donezo-nav-icon {
@@ -6861,37 +6874,46 @@
       box-shadow: 0 8px 20px -2px rgba(64, 195, 215, 0.45) !important;
     }
 
-    /* 4. Greeting Hero Banner: Radiant Sun-kissed Lagoon to Coral Berry (ZERO DARK COLORS) */
+    /* 4. Greeting Hero Banner: Radiant Sun-kissed Lagoon with High-Contrast Text */
     .view2-theme3.view2-dashboard-widgets .hero-banner {
       background: linear-gradient(135deg, #40c3d7 0%, #58b6cb 32%, #d49397 72%, #c15360 100%) !important;
       box-shadow: 0 16px 36px -8px rgba(64, 195, 215, 0.35) !important;
-      border: 1px solid rgba(255, 255, 255, 0.4) !important;
+      border: 1px solid rgba(255, 255, 255, 0.6) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .banner-date {
-      color: #FFFFFF !important;
-      opacity: 0.95 !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.06em !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+      color: #08252C !important;
+      opacity: 1 !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.08em !important;
+      text-shadow: none !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .banner-title {
+      color: #08252C !important;
+      font-weight: 900 !important;
+      text-shadow: none !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .banner-subtitle {
-      color: #FFFFFF !important;
-      opacity: 0.98 !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+      color: #10343C !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+      text-shadow: none !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .banner-quote-pill {
-      background: rgba(255, 255, 255, 0.25) !important;
-      border: 1px solid rgba(255, 255, 255, 0.6) !important;
-      color: #FFFFFF !important;
-      backdrop-filter: blur(4px) !important;
+      background: rgba(255, 255, 255, 0.94) !important;
+      border: 1.5px solid rgba(64, 195, 215, 0.5) !important;
+      color: #08252C !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 14px rgba(8, 37, 44, 0.12) !important;
+      backdrop-filter: blur(8px) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .banner-quote-dot {
-      background: #FFFFFF !important;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.95) !important;
+      background: #c15360 !important;
+      box-shadow: 0 0 10px rgba(193, 83, 96, 0.9) !important;
     }
 
     /* The 4 Geometric Sparkle Stars using the 4 specific brand colors */
@@ -6901,13 +6923,13 @@
     }
 
     .view2-theme3.view2-dashboard-widgets .banner-star-hero-top {
-      fill: #d49397 !important;
-      filter: drop-shadow(0 0 10px rgba(212, 147, 151, 0.85)) !important;
+      fill: #08252C !important;
+      filter: drop-shadow(0 0 10px rgba(8, 37, 44, 0.5)) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .banner-star-hero-bot {
-      fill: #9cbbd2 !important;
-      filter: drop-shadow(0 0 10px rgba(156, 187, 210, 0.85)) !important;
+      fill: #FFFFFF !important;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85)) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .banner-star-hero-corner {
@@ -6916,14 +6938,42 @@
       opacity: 0.95;
     }
 
-    /* 5. Live Clock & Clock CTA in Theme 3 */
+    /* 5. Live Clock & Clock CTA in Theme 3 - High Contrast */
     .view2-theme3.view2-dashboard-widgets #liveClockCardV3 .hirerkey-card-header svg {
-      stroke: #40c3d7 !important;
+      stroke: #08252C !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .clock-hours-mins {
+      color: #08252C !important;
+      font-weight: 900 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .clock-sec-suffix {
+      color: #08252C !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .clock-ampm {
+      color: #08252C !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .clock-full-date {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .clock-timezone-pill {
+      background: rgba(64, 195, 215, 0.15) !important;
+      border: 1px solid rgba(64, 195, 215, 0.35) !important;
+      color: #08252C !important;
+      font-weight: 700 !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .clock-action-main-btn {
       background: linear-gradient(135deg, #40c3d7 0%, #29acc2 100%) !important;
-      color: #FFFFFF !important;
+      color: #08252C !important;
+      font-weight: 800 !important;
       box-shadow: 0 4px 16px rgba(64, 195, 215, 0.42) !important;
       border: none !important;
     }
@@ -6931,10 +6981,13 @@
     .view2-theme3.view2-dashboard-widgets .clock-action-main-btn:hover {
       background: linear-gradient(135deg, #51cfdf 0%, #209cb0 100%) !important;
       box-shadow: 0 6px 22px rgba(64, 195, 215, 0.52) !important;
+      color: #041418 !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .clock-action-main-btn.clocked-out-mode {
       background: linear-gradient(135deg, #c15360 0%, #aa4551 100%) !important;
+      color: #FFFFFF !important;
+      font-weight: 800 !important;
       box-shadow: 0 4px 16px rgba(193, 83, 96, 0.38) !important;
     }
 
@@ -6948,48 +7001,103 @@
     }
 
     .view2-theme3.view2-dashboard-widgets .clock-seconds-label {
-      color: #166D7D !important;
+      color: #08252C !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .clock-mode-btn {
+      color: #1E293B !important;
       font-weight: 700 !important;
+      border: 1.5px solid rgba(64, 195, 215, 0.35) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .clock-mode-btn.active {
       background: #40c3d7 !important;
       border-color: #40c3d7 !important;
-      color: #FFFFFF !important;
+      color: #08252C !important;
+      font-weight: 800 !important;
       box-shadow: 0 2px 8px rgba(64, 195, 215, 0.35) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .clock-mode-btn:hover:not(.active) {
       border-color: #40c3d7 !important;
-      color: #166D7D !important;
+      color: #08252C !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .clock-status-pill {
-      background: rgba(64, 195, 215, 0.12) !important;
-      border: 1px solid rgba(64, 195, 215, 0.35) !important;
-      color: #166D7D !important;
+      background: rgba(64, 195, 215, 0.16) !important;
+      border: 1px solid rgba(64, 195, 215, 0.45) !important;
+      color: #08252C !important;
+      font-weight: 700 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .clock-schedule-text {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .clock-prompt-title {
+      color: #08252C !important;
+      font-weight: 800 !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .clock-status-dot {
       background: #40c3d7 !important;
-      box-shadow: 0 0 8px rgba(64, 195, 215, 0.8) !important;
+      box-shadow: 0 0 8px rgba(64, 195, 215, 0.9) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets #clockInOutCardV3 .hirerkey-icon-badge.cyan {
-      background: rgba(64, 195, 215, 0.15) !important;
-      color: #166D7D !important;
+      background: rgba(64, 195, 215, 0.18) !important;
+      color: #08252C !important;
     }
 
-    /* 6. Executive Broadcast in Theme 3 */
+    /* 6. Executive Broadcast in Theme 3 - High Contrast */
     .view2-theme3.view2-dashboard-widgets .hirerkey-icon-badge.purple {
       background: linear-gradient(135deg, #40c3d7 0%, #c15360 100%) !important;
       color: #FFFFFF !important;
       box-shadow: 0 3px 10px rgba(64, 195, 215, 0.28) !important;
     }
 
-    .view2-theme3.view2-dashboard-widgets .broadcast-read-more {
-      color: #166D7D !important;
+    .view2-theme3.view2-dashboard-widgets .broadcast-timestamp-row {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .broadcast-timestamp-row svg {
+      stroke: #08252C !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .broadcast-post-title {
+      color: #08252C !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .broadcast-post-desc {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+      line-height: 1.5 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .broadcast-author-name {
+      color: #08252C !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .broadcast-author-dept {
+      color: #284A54 !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .broadcast-author-tag {
+      background: rgba(64, 195, 215, 0.18) !important;
+      color: #08252C !important;
+      border: 1px solid rgba(64, 195, 215, 0.5) !important;
       font-weight: 700 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .broadcast-read-more {
+      color: #08252C !important;
+      font-weight: 800 !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .broadcast-read-more:hover {
@@ -7001,31 +7109,41 @@
       background: #40c3d7 !important;
     }
 
-    .view2-theme3.view2-dashboard-widgets .broadcast-author-tag {
-      background: rgba(156, 187, 210, 0.25) !important;
-      color: #166D7D !important;
-      border: 1px solid rgba(156, 187, 210, 0.5) !important;
-      font-weight: 600 !important;
+    .view2-theme3.view2-dashboard-widgets .broadcast-like-pill {
+      color: #1E293B !important;
+      font-weight: 700 !important;
+      border-color: rgba(64, 195, 215, 0.35) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .broadcast-like-pill:hover,
     .view2-theme3.view2-dashboard-widgets .broadcast-like-pill.active,
     .view2-theme3.view2-dashboard-widgets .broadcast-like-pill.liked {
       color: #c15360 !important;
-      background: rgba(193, 83, 96, 0.12) !important;
-      border-color: rgba(193, 83, 96, 0.35) !important;
+      background: rgba(193, 83, 96, 0.14) !important;
+      border-color: rgba(193, 83, 96, 0.5) !important;
     }
 
-    /* 7. Birthdays in Theme 3 */
+    /* 7. Birthdays in Theme 3 - High Contrast */
     .view2-theme3.view2-dashboard-widgets .hirerkey-icon-badge.pink {
-      background: rgba(212, 147, 151, 0.25) !important;
+      background: rgba(212, 147, 151, 0.28) !important;
       color: #c15360 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .birthdays-empty-text {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .birthday-tab-btn {
+      color: #1E293B !important;
+      font-weight: 700 !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .birthday-tab-btn.active {
       background: #c15360 !important;
       border-color: #c15360 !important;
       color: #FFFFFF !important;
+      font-weight: 800 !important;
       box-shadow: 0 2px 8px rgba(193, 83, 96, 0.35) !important;
     }
 
@@ -7038,34 +7156,60 @@
       border-color: #40c3d7 !important;
     }
 
-    /* 8. Calendar in Theme 3 */
+    /* 8. Calendar in Theme 3 - High Contrast */
     .view2-theme3.view2-dashboard-widgets .hirerkey-icon-badge.purple-soft {
-      background: rgba(156, 187, 210, 0.25) !important;
-      color: #166D7D !important;
+      background: rgba(156, 187, 210, 0.28) !important;
+      color: #08252C !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .calendar-month-pill {
-      background: rgba(64, 195, 215, 0.12) !important;
-      color: #166D7D !important;
-      border: 1px solid rgba(64, 195, 215, 0.35) !important;
-      font-weight: 600 !important;
+      background: rgba(64, 195, 215, 0.16) !important;
+      color: #08252C !important;
+      border: 1px solid rgba(64, 195, 215, 0.45) !important;
+      font-weight: 700 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .calendar-weekday-header span {
+      color: #284A54 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .calendar-days-grid .day-num {
+      color: #0F172A !important;
+      font-weight: 700 !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .calendar-days-grid .active-day {
       background: #40c3d7 !important;
-      color: #FFFFFF !important;
+      color: #08252C !important;
+      font-weight: 900 !important;
       box-shadow: 0 4px 12px rgba(64, 195, 215, 0.45) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .calendar-big-num {
-      color: #166D7D !important;
+      color: #08252C !important;
+      font-weight: 900 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .calendar-day-name {
+      color: #08252C !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme3.view2-dashboard-widgets .calendar-month-year {
+      color: #284A54 !important;
       font-weight: 700 !important;
     }
 
-    /* 9. Weather Card in Theme 3 (Tropical Lagoon Gradient) */
+    .view2-theme3.view2-dashboard-widgets .calendar-joinings-text {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    /* 9. Weather Card in Theme 3 - High Contrast */
     .view2-theme3.view2-dashboard-widgets #weatherCardV3 .hirerkey-icon-badge.cyan {
-      background: rgba(64, 195, 215, 0.15) !important;
-      color: #166D7D !important;
+      background: rgba(64, 195, 215, 0.18) !important;
+      color: #08252C !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .weather-gradient-box {
@@ -7073,42 +7217,49 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 24px -4px rgba(64, 195, 215, 0.3) !important;
     }
 
+    .view2-theme3.view2-dashboard-widgets .weather-temp-num {
+      color: #08252C !important;
+      font-weight: 900 !important;
+    }
+
     .view2-theme3.view2-dashboard-widgets .weather-sun-glow-circle {
-      background: rgba(255, 255, 255, 0.28) !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.65) !important;
-      box-shadow: 0 0 16px rgba(255, 255, 255, 0.5) !important;
+      background: rgba(255, 255, 255, 0.55) !important;
+      border: 1.5px solid rgba(8, 37, 44, 0.4) !important;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.6) !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .weather-sun-glow-circle svg {
-      stroke: #FFFFFF !important;
+      stroke: #08252C !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .weather-condition-line {
-      color: #FFFFFF !important;
-      font-weight: 600 !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      color: #08252C !important;
+      font-weight: 800 !important;
+      text-shadow: none !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .weather-stats-line {
-      color: #FFFFFF !important;
-      opacity: 0.95 !important;
+      color: #10343C !important;
+      font-weight: 700 !important;
+      opacity: 1 !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .weather-quote-text {
-      color: #FFFFFF !important;
-      opacity: 0.95 !important;
+      color: #10343C !important;
+      font-weight: 600 !important;
+      opacity: 1 !important;
     }
 
     /* 10. Refresh Moment in Theme 3 */
     .view2-theme3.view2-dashboard-widgets .hirerkey-icon-badge.blue-soft {
-      background: rgba(212, 147, 151, 0.25) !important;
+      background: rgba(212, 147, 151, 0.28) !important;
       color: #c15360 !important;
     }
 
     .view2-theme3.view2-dashboard-widgets .refresh-nav-btn:hover {
-      color: #40c3d7 !important;
+      color: #08252C !important;
       border-color: #40c3d7 !important;
-      background: rgba(64, 195, 215, 0.1) !important;
+      background: rgba(64, 195, 215, 0.15) !important;
     }
 
     /* 11. HyIQ AI & Voice Modals in Theme 3 */
@@ -7140,7 +7291,14 @@
        - #cadedc (Pale Sage Ice / Mist - Row 2 Col 2)
        - #406d35 (Earth Olive Forest - Row 1 Col 4)
        - #F4F8F3 (Fresh Botanical Resort Canvas Wash)
+       High-Contrast Text: #112308 (Deep Botanical Forest Charcoal)
+       Secondary Deep:     #1E293B (Rich Deep Slate for Descriptions & Body Text)
+       CRITICAL MANDATE:   100% CRYSTAL-CLEAR HIGH CONTRAST ON SOLAR/PISTACHIO WASH
        ========================================================================== */
+
+    .view2-theme4 {
+      display: none;
+    }
 
     /* 1. Canvas / Layout Background: Fresh Botanical Wash #F4F8F3 */
     body.theme-4-active,
@@ -7166,13 +7324,18 @@
       -webkit-backdrop-filter: blur(8px) !important;
     }
 
+    #dashboard-view-2.theme-4-active .breadcrumbs-wrap .active {
+      color: #112308 !important;
+      font-weight: 700 !important;
+    }
+
     /* 1b. Ask HyIQ Dual Action Capsule (Theme 4: Sun Marigold & Pistachio Sage) */
     #dashboard-view-2.theme-4-active .view2-hyiq-capsule,
     #dashboard-view-2:has(#view2DashboardWidgetsV4:not([style*="display: none"])) .view2-hyiq-capsule,
     body.theme-4-active .view2-hyiq-capsule {
       background: #FFFFFF !important;
-      border: 1.5px solid rgba(234, 192, 30, 0.45) !important;
-      box-shadow: 0 2px 8px rgba(234, 192, 30, 0.16), 0 1px 3px rgba(177, 189, 120, 0.25) !important;
+      border: 1.5px solid rgba(234, 192, 30, 0.55) !important;
+      box-shadow: 0 2px 8px rgba(234, 192, 30, 0.18), 0 1px 3px rgba(177, 189, 120, 0.25) !important;
     }
 
     #dashboard-view-2.theme-4-active .view2-hyiq-capsule:hover,
@@ -7182,12 +7345,14 @@
       box-shadow: 0 4px 14px rgba(234, 192, 30, 0.35) !important;
     }
 
+    /* High-contrast dark text on radiant gold gradient button */
     #dashboard-view-2.theme-4-active .view2-btn-ask-hyiq,
     #dashboard-view-2:has(#view2DashboardWidgetsV4:not([style*="display: none"])) .view2-btn-ask-hyiq,
     body.theme-4-active .view2-btn-ask-hyiq {
       background: linear-gradient(135deg, #eac01e 0%, #b1bd78 100%) !important;
       box-shadow: 0 2px 8px rgba(234, 192, 30, 0.38) !important;
-      color: #FFFFFF !important;
+      color: #112308 !important;
+      font-weight: 800 !important;
     }
 
     #dashboard-view-2.theme-4-active .view2-btn-ask-hyiq:hover,
@@ -7195,6 +7360,7 @@
     body.theme-4-active .view2-btn-ask-hyiq:hover {
       box-shadow: 0 4px 14px rgba(234, 192, 30, 0.48) !important;
       filter: brightness(1.06) !important;
+      color: #061102 !important;
     }
 
     /* 4 Topbar Waveform Voice Bars in the 4 Theme Colors */
@@ -7225,8 +7391,8 @@
     #dashboard-view-2.theme-4-active .view2-btn-voice-text,
     #dashboard-view-2:has(#view2DashboardWidgetsV4:not([style*="display: none"])) .view2-btn-voice-text,
     body.theme-4-active .view2-btn-voice-text {
-      color: #23421C !important;
-      font-weight: 600 !important;
+      color: #112308 !important;
+      font-weight: 700 !important;
     }
 
     #dashboard-view-2.theme-4-active .view2-btn-hyiq-voice:hover .view2-btn-voice-text,
@@ -7256,7 +7422,7 @@
     #dashboard-view-2.theme-4-active .view2-hyiq-robot-smile,
     #dashboard-view-2:has(#view2DashboardWidgetsV4:not([style*="display: none"])) .view2-hyiq-robot-smile,
     body.theme-4-active .view2-hyiq-robot-smile {
-      stroke: #23421C !important;
+      stroke: #112308 !important;
     }
 
     #dashboard-view-2.theme-4-active .view2-hyiq-grad-stop-1,
@@ -7286,7 +7452,7 @@
     #dashboard-view-2:has(#view2DashboardWidgetsV4:not([style*="display: none"])) .topbar-standalone-bell .notification-count,
     body.theme-4-active .topbar-standalone-bell .notification-count {
       background: #eac01e !important;
-      color: #1F2937 !important;
+      color: #112308 !important;
       font-weight: 800 !important;
       box-shadow: 0 1px 3px rgba(234, 192, 30, 0.45) !important;
     }
@@ -7294,14 +7460,19 @@
     /* 2. Elevated Floating Pure White Cards on #F4F8F3 */
     .view2-theme4.view2-dashboard-widgets .hirerkey-card {
       background: #FFFFFF !important;
-      border: 1px solid rgba(177, 189, 120, 0.28) !important;
+      border: 1px solid rgba(177, 189, 120, 0.3) !important;
       box-shadow: 0 10px 24px -4px rgba(64, 109, 53, 0.07), 0 4px 10px -2px rgba(234, 192, 30, 0.08) !important;
       border-radius: 16px !important;
     }
 
+    /* High-Contrast Card Titles in Deep Botanical Forest */
     .view2-theme4.view2-dashboard-widgets .hirerkey-card-title {
-      color: #23421C !important;
-      font-weight: 700 !important;
+      color: #112308 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .hirerkey-card-header svg {
+      stroke: #112308 !important;
     }
 
     /* 3. Sidebar Nav Item: Dashboard 4 Active State */
@@ -7309,30 +7480,30 @@
     #dashboard-view-2.theme-4-active .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 4"].active,
     body.theme-4-active .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 4"].active,
     .donezo-sidebar:not(.collapsed) .donezo-nav-item-v4.active {
-      color: #23421C !important;
-      font-weight: 700 !important;
+      color: #112308 !important;
+      font-weight: 800 !important;
       background: #FFFFFF !important;
       border-radius: 12px !important;
       margin: 2px 10px 4px 10px !important;
       padding: 5px 12px 5px 6px !important;
-      box-shadow: 0 2px 6px rgba(234, 192, 30, 0.15) !important;
-      border: 1px solid rgba(234, 192, 30, 0.4) !important;
+      box-shadow: 0 2px 6px rgba(234, 192, 30, 0.18) !important;
+      border: 1px solid rgba(234, 192, 30, 0.5) !important;
     }
 
     .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 4"].active:hover,
     #dashboard-view-2.theme-4-active .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 4"].active:hover,
     body.theme-4-active .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 4"].active:hover,
     .donezo-sidebar:not(.collapsed) .donezo-nav-item-v4.active:hover {
-      color: #23421C !important;
+      color: #112308 !important;
       background: #FCFDFB !important;
-      border-color: rgba(234, 192, 30, 0.6) !important;
+      border-color: rgba(234, 192, 30, 0.7) !important;
     }
 
     .donezo-sidebar:not(.collapsed) .donezo-nav-item[data-title="Dashboard 4"].active .donezo-nav-icon {
       background: linear-gradient(135deg, #eac01e 0%, #b1bd78 100%) !important;
       box-shadow: 0 3px 10px rgba(234, 192, 30, 0.38) !important;
       border-radius: 9px !important;
-      color: #FFFFFF !important;
+      color: #112308 !important;
     }
 
     .donezo-sidebar.collapsed .donezo-nav-item[data-title="Dashboard 4"].active {
@@ -7340,37 +7511,46 @@
       box-shadow: 0 8px 20px -2px rgba(234, 192, 30, 0.45) !important;
     }
 
-    /* 4. Greeting Hero Banner: Radiant Sun Marigold & Pistachio Oasis */
+    /* 4. Greeting Hero Banner: Radiant Sun Marigold & Pistachio with High-Contrast Text */
     .view2-theme4.view2-dashboard-widgets .hero-banner {
       background: linear-gradient(135deg, #eac01e 0%, #dfb418 30%, #b1bd78 70%, #406d35 100%) !important;
       box-shadow: 0 16px 36px -8px rgba(234, 192, 30, 0.42) !important;
-      border: 1px solid rgba(255, 255, 255, 0.45) !important;
+      border: 1px solid rgba(255, 255, 255, 0.6) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .banner-date {
-      color: #FFFFFF !important;
-      opacity: 0.95 !important;
-      font-weight: 700 !important;
-      letter-spacing: 0.06em !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      color: #112308 !important;
+      opacity: 1 !important;
+      font-weight: 900 !important;
+      letter-spacing: 0.08em !important;
+      text-shadow: none !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .banner-title {
+      color: #112308 !important;
+      font-weight: 900 !important;
+      text-shadow: none !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .banner-subtitle {
-      color: #FFFFFF !important;
-      opacity: 0.98 !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      color: #18330C !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+      text-shadow: none !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .banner-quote-pill {
-      background: rgba(255, 255, 255, 0.24) !important;
-      border: 1px solid rgba(255, 255, 255, 0.65) !important;
-      color: #FFFFFF !important;
-      backdrop-filter: blur(4px) !important;
+      background: rgba(255, 255, 255, 0.94) !important;
+      border: 1.5px solid rgba(234, 192, 30, 0.6) !important;
+      color: #112308 !important;
+      font-weight: 700 !important;
+      box-shadow: 0 4px 14px rgba(17, 35, 8, 0.12) !important;
+      backdrop-filter: blur(8px) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .banner-quote-dot {
-      background: #FFFFFF !important;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.95) !important;
+      background: #eac01e !important;
+      box-shadow: 0 0 10px rgba(234, 192, 30, 0.95) !important;
     }
 
     /* The 4 Geometric Sparkle Stars using the 4 specific brand colors */
@@ -7380,30 +7560,57 @@
     }
 
     .view2-theme4.view2-dashboard-widgets .banner-star-hero-top {
-      fill: #cadedc !important;
-      filter: drop-shadow(0 0 10px rgba(202, 222, 220, 0.9)) !important;
+      fill: #112308 !important;
+      filter: drop-shadow(0 0 10px rgba(17, 35, 8, 0.5)) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .banner-star-hero-bot {
-      fill: #b1bd78 !important;
-      filter: drop-shadow(0 0 10px rgba(177, 189, 120, 0.9)) !important;
+      fill: #FFFFFF !important;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85)) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .banner-star-hero-corner {
-      fill: #eac01e !important;
-      filter: drop-shadow(0 0 10px rgba(234, 192, 30, 0.9)) !important;
+      fill: #406d35 !important;
+      filter: drop-shadow(0 0 10px rgba(64, 109, 53, 0.8)) !important;
       opacity: 0.95;
     }
 
-    /* 5. Live Clock & Clock CTA in Theme 4 */
+    /* 5. Live Clock & Clock CTA in Theme 4 - High Contrast */
     .view2-theme4.view2-dashboard-widgets #liveClockCardV4 .hirerkey-card-header svg {
-      stroke: #eac01e !important;
+      stroke: #112308 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .clock-hours-mins {
+      color: #112308 !important;
+      font-weight: 900 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .clock-sec-suffix {
+      color: #112308 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .clock-ampm {
+      color: #112308 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .clock-full-date {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .clock-timezone-pill {
+      background: rgba(177, 189, 120, 0.22) !important;
+      border: 1px solid rgba(177, 189, 120, 0.45) !important;
+      color: #112308 !important;
+      font-weight: 700 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .clock-action-main-btn {
       background: linear-gradient(135deg, #eac01e 0%, #d8a816 100%) !important;
-      color: #1A2218 !important;
-      font-weight: 700 !important;
+      color: #112308 !important;
+      font-weight: 800 !important;
       box-shadow: 0 4px 16px rgba(234, 192, 30, 0.42) !important;
       border: none !important;
     }
@@ -7411,12 +7618,13 @@
     .view2-theme4.view2-dashboard-widgets .clock-action-main-btn:hover {
       background: linear-gradient(135deg, #f3ca28 0%, #e0b018 100%) !important;
       box-shadow: 0 6px 22px rgba(234, 192, 30, 0.52) !important;
-      color: #0E160C !important;
+      color: #061102 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .clock-action-main-btn.clocked-out-mode {
       background: linear-gradient(135deg, #406d35 0%, #2f5227 100%) !important;
       color: #FFFFFF !important;
+      font-weight: 800 !important;
       box-shadow: 0 4px 16px rgba(64, 109, 53, 0.38) !important;
     }
 
@@ -7430,49 +7638,103 @@
     }
 
     .view2-theme4.view2-dashboard-widgets .clock-seconds-label {
-      color: #23421C !important;
+      color: #112308 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .clock-mode-btn {
+      color: #1E293B !important;
       font-weight: 700 !important;
+      border: 1.5px solid rgba(177, 189, 120, 0.4) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .clock-mode-btn.active {
       background: #b1bd78 !important;
       border-color: #b1bd78 !important;
-      color: #172D13 !important;
-      font-weight: 700 !important;
+      color: #112308 !important;
+      font-weight: 800 !important;
       box-shadow: 0 2px 8px rgba(177, 189, 120, 0.35) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .clock-mode-btn:hover:not(.active) {
       border-color: #eac01e !important;
-      color: #23421C !important;
+      color: #112308 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .clock-status-pill {
-      background: rgba(234, 192, 30, 0.15) !important;
-      border: 1px solid rgba(234, 192, 30, 0.4) !important;
-      color: #23421C !important;
+      background: rgba(234, 192, 30, 0.2) !important;
+      border: 1px solid rgba(234, 192, 30, 0.45) !important;
+      color: #112308 !important;
+      font-weight: 700 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .clock-schedule-text {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .clock-prompt-title {
+      color: #112308 !important;
+      font-weight: 800 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .clock-status-dot {
       background: #eac01e !important;
-      box-shadow: 0 0 8px rgba(234, 192, 30, 0.85) !important;
+      box-shadow: 0 0 8px rgba(234, 192, 30, 0.9) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets #clockInOutCardV4 .hirerkey-icon-badge.cyan {
-      background: rgba(234, 192, 30, 0.18) !important;
-      color: #23421C !important;
+      background: rgba(234, 192, 30, 0.2) !important;
+      color: #112308 !important;
     }
 
-    /* 6. Executive Broadcast in Theme 4 */
+    /* 6. Executive Broadcast in Theme 4 - High Contrast */
     .view2-theme4.view2-dashboard-widgets .hirerkey-icon-badge.purple {
       background: linear-gradient(135deg, #eac01e 0%, #b1bd78 100%) !important;
-      color: #FFFFFF !important;
+      color: #112308 !important;
       box-shadow: 0 3px 10px rgba(234, 192, 30, 0.3) !important;
     }
 
-    .view2-theme4.view2-dashboard-widgets .broadcast-read-more {
-      color: #23421C !important;
+    .view2-theme4.view2-dashboard-widgets .broadcast-timestamp-row {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .broadcast-timestamp-row svg {
+      stroke: #112308 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .broadcast-post-title {
+      color: #112308 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .broadcast-post-desc {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+      line-height: 1.5 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .broadcast-author-name {
+      color: #112308 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .broadcast-author-dept {
+      color: #274816 !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .broadcast-author-tag {
+      background: rgba(177, 189, 120, 0.25) !important;
+      color: #112308 !important;
+      border: 1px solid rgba(177, 189, 120, 0.6) !important;
       font-weight: 700 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .broadcast-read-more {
+      color: #112308 !important;
+      font-weight: 800 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .broadcast-read-more:hover {
@@ -7484,31 +7746,41 @@
       background: #eac01e !important;
     }
 
-    .view2-theme4.view2-dashboard-widgets .broadcast-author-tag {
-      background: rgba(202, 222, 220, 0.4) !important;
-      color: #23421C !important;
-      border: 1px solid rgba(202, 222, 220, 0.8) !important;
-      font-weight: 600 !important;
+    .view2-theme4.view2-dashboard-widgets .broadcast-like-pill {
+      color: #1E293B !important;
+      font-weight: 700 !important;
+      border-color: rgba(177, 189, 120, 0.4) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .broadcast-like-pill:hover,
     .view2-theme4.view2-dashboard-widgets .broadcast-like-pill.active,
     .view2-theme4.view2-dashboard-widgets .broadcast-like-pill.liked {
       color: #406d35 !important;
-      background: rgba(64, 109, 53, 0.12) !important;
-      border-color: rgba(64, 109, 53, 0.35) !important;
+      background: rgba(64, 109, 53, 0.14) !important;
+      border-color: rgba(64, 109, 53, 0.45) !important;
     }
 
-    /* 7. Birthdays in Theme 4 */
+    /* 7. Birthdays in Theme 4 - High Contrast */
     .view2-theme4.view2-dashboard-widgets .hirerkey-icon-badge.pink {
-      background: rgba(177, 189, 120, 0.25) !important;
+      background: rgba(177, 189, 120, 0.28) !important;
       color: #406d35 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .birthdays-empty-text {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .birthday-tab-btn {
+      color: #1E293B !important;
+      font-weight: 700 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .birthday-tab-btn.active {
       background: #406d35 !important;
       border-color: #406d35 !important;
       color: #FFFFFF !important;
+      font-weight: 800 !important;
       box-shadow: 0 2px 8px rgba(64, 109, 53, 0.35) !important;
     }
 
@@ -7521,35 +7793,60 @@
       border-color: #eac01e !important;
     }
 
-    /* 8. Calendar in Theme 4 */
+    /* 8. Calendar in Theme 4 - High Contrast */
     .view2-theme4.view2-dashboard-widgets .hirerkey-icon-badge.purple-soft {
-      background: rgba(202, 222, 220, 0.35) !important;
-      color: #23421C !important;
+      background: rgba(202, 222, 220, 0.38) !important;
+      color: #112308 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .calendar-month-pill {
-      background: rgba(234, 192, 30, 0.15) !important;
-      color: #23421C !important;
-      border: 1px solid rgba(234, 192, 30, 0.38) !important;
-      font-weight: 600 !important;
+      background: rgba(234, 192, 30, 0.2) !important;
+      color: #112308 !important;
+      border: 1px solid rgba(234, 192, 30, 0.5) !important;
+      font-weight: 700 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .calendar-weekday-header span {
+      color: #274816 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .calendar-days-grid .day-num {
+      color: #0F172A !important;
+      font-weight: 700 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .calendar-days-grid .active-day {
       background: #eac01e !important;
-      color: #1E2519 !important;
-      font-weight: 800 !important;
+      color: #112308 !important;
+      font-weight: 900 !important;
       box-shadow: 0 4px 12px rgba(234, 192, 30, 0.45) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .calendar-big-num {
-      color: #23421C !important;
+      color: #112308 !important;
+      font-weight: 900 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .calendar-day-name {
+      color: #112308 !important;
+      font-weight: 800 !important;
+    }
+
+    .view2-theme4.view2-dashboard-widgets .calendar-month-year {
+      color: #274816 !important;
       font-weight: 700 !important;
     }
 
-    /* 9. Weather Card in Theme 4 (Marigold Palm Gradient) */
+    .view2-theme4.view2-dashboard-widgets .calendar-joinings-text {
+      color: #1E293B !important;
+      font-weight: 600 !important;
+    }
+
+    /* 9. Weather Card in Theme 4 - High Contrast */
     .view2-theme4.view2-dashboard-widgets #weatherCardV4 .hirerkey-icon-badge.cyan {
-      background: rgba(234, 192, 30, 0.18) !important;
-      color: #23421C !important;
+      background: rgba(234, 192, 30, 0.22) !important;
+      color: #112308 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .weather-gradient-box {
@@ -7557,53 +7854,64 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 8px 24px -4px rgba(234, 192, 30, 0.32) !important;
     }
 
+    .view2-theme4.view2-dashboard-widgets .weather-temp-num {
+      color: #112308 !important;
+      font-weight: 900 !important;
+    }
+
     .view2-theme4.view2-dashboard-widgets .weather-sun-glow-circle {
-      background: rgba(255, 255, 255, 0.3) !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.7) !important;
+      background: rgba(255, 255, 255, 0.55) !important;
+      border: 1.5px solid rgba(17, 35, 8, 0.4) !important;
       box-shadow: 0 0 16px rgba(234, 192, 30, 0.6) !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .weather-sun-glow-circle svg {
-      stroke: #FFFFFF !important;
+      stroke: #112308 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .weather-condition-line {
-      color: #FFFFFF !important;
-      font-weight: 600 !important;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      color: #112308 !important;
+      font-weight: 800 !important;
+      text-shadow: none !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .weather-stats-line {
-      color: #FFFFFF !important;
-      opacity: 0.95 !important;
+      color: #18330C !important;
+      font-weight: 700 !important;
+      opacity: 1 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .weather-quote-text {
-      color: #FFFFFF !important;
-      opacity: 0.95 !important;
+      color: #18330C !important;
+      font-weight: 600 !important;
+      opacity: 1 !important;
     }
 
     /* 10. Refresh Moment in Theme 4 */
     .view2-theme4.view2-dashboard-widgets .hirerkey-icon-badge.blue-soft {
-      background: rgba(202, 222, 220, 0.35) !important;
+      background: rgba(202, 222, 220, 0.38) !important;
       color: #406d35 !important;
     }
 
     .view2-theme4.view2-dashboard-widgets .refresh-nav-btn:hover {
-      color: #eac01e !important;
+      color: #112308 !important;
       border-color: #eac01e !important;
-      background: rgba(234, 192, 30, 0.1) !important;
+      background: rgba(234, 192, 30, 0.18) !important;
     }
 
     /* 11. HyIQ AI & Voice Modals in Theme 4 */
     body.theme-4-active #hyiqModal .hyiq-msg.user {
       background: linear-gradient(135deg, #eac01e 0%, #b1bd78 100%) !important;
+      color: #112308 !important;
+      font-weight: 700 !important;
     }
     body.theme-4-active #hyiqModal .modal-title svg {
       fill: #eac01e !important;
     }
     body.theme-4-active #hyiqModal button[onclick*="submitHyiqQuery"] {
       background: linear-gradient(135deg, #eac01e 0%, #b1bd78 100%) !important;
+      color: #112308 !important;
+      font-weight: 800 !important;
     }
     body.theme-4-active #voiceModal svg path,
     body.theme-4-active #voiceModal svg line {
