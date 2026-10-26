@@ -441,6 +441,10 @@
         <span>🧭 Orientation Studio</span>
         <span class="tab-badge" style="background: #7C3AED; color: #FFFFFF;">Dual View</span>
       </button>
+      <button class="nav-tab-btn" id="tab-login" onclick="loadView('login')">
+        <span>🔐 Login Screen</span>
+        <span class="tab-badge" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Dual View ① ②</span>
+      </button>
     </nav>
 
     <!-- Header Right Controls -->
@@ -500,6 +504,34 @@
           </div>
           <div class="card-actions">
             <a href="modal_consistency_showcase.html" target="_blank" class="btn-card-standalone" style="width: 100%; text-align: center; justify-content: center; background: #7C3AED; color: #FFFFFF; font-weight: 700;">Open Consistency Showcase ↗</a>
+          </div>
+        </div>
+
+
+        <!-- 0. Login Screen Redesign (Dual View) -->
+        <div class="view-card" style="border-color: #A855F7; box-shadow: 0 4px 20px rgba(124, 58, 237, 0.16);">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill" style="background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%); color: #FFFFFF;">DUAL VIEW LOGIN EXPERIENCE</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/login.html</span>
+            </div>
+            <div class="card-icon-box" style="background: rgba(124, 58, 237, 0.12); color: #7C3AED;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <h2 class="card-title">Dashboard Login Screen — Dual View (1 &amp; 2)</h2>
+            <p class="card-desc">Comprehensive dual-experience authentication with bottom encircled 1 and 2 pagination switcher. Features View 1 (Frosted Obsidian glassmorphism) and View 2 (Dribbble-inspired Smart AI Assistant in Hirerkey signature purple palette with 3D levitating iridescent orb).</p>
+            <ul class="card-features">
+              <li><strong>Bottom Pagination Dock:</strong> Encircled <strong>①</strong> and <strong>②</strong> buttons for instantaneous fluid transitions with keyboard [1] and [2] shortcuts</li>
+              <li><strong>View 1:</strong> Frosted Obsidian glass, Email OTP / Password modes, stepped-scoop cutout, 16-ray radiant starburst &amp; testimonial carousel</li>
+              <li><strong>View 2:</strong> Smart AI Assistant in Hirerkey purple, 3D levitating iridescent glass orb, illuminated shelf slit, high-end SaaS auth &amp; 10M+ users counter</li>
+              <li>Enterprise SSO (Google Workspace, Microsoft Entra ID, FIDO2 Touch ID / Passkey)</li>
+              <li>URL hash &amp; localStorage persistence (<code>#view1</code> and <code>#view2</code>)</li>
+            </ul>
+          </div>
+          <div class="card-actions" style="gap: 8px; flex-wrap: wrap;">
+            <button class="btn-launch-viewer" onclick="loadView('login')" style="background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%);">Launch in Viewer</button>
+            <a href="views/login.html#view1" target="_blank" class="btn-card-standalone">Open View 1 ↗</a>
+            <a href="views/login.html#view2" target="_blank" class="btn-card-standalone" style="border-color: #A855F7; color: #7C3AED;">Open View 2 ↗</a>
           </div>
         </div>
 
@@ -745,6 +777,10 @@
       'orientation': {
         name: 'Orientation Studio (Redesign)',
         url: 'views/orientation_redesign.html'
+      },
+      'login': {
+        name: 'Login Screen (Dual View 1 & 2 — Frosted & Smart AI)',
+        url: 'views/login.html'
       }
     };
 
