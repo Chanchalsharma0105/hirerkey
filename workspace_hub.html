@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey Workspace Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --border: #E2E8F0;
+      --primary: #7C3AED;
+      --primary-hover: #6D28D9;
+      --primary-subtle: #EDE9FE;
+      --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 28px 32px 60px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .hub-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .hub-header {
+      margin-bottom: 24px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .hub-title-area h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.02em;
+    }
+    .hub-title-area p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .hub-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hub-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: #334155;
+    }
+    .hub-btn:hover {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+    }
+    .hub-btn.btn-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+    .hub-btn.btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Subview Tabs */
+    .hub-subview-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: #E2E8F0;
+      padding: 4px;
+      border-radius: 10px;
+      width: fit-content;
+    }
+    .hub-tab-btn {
+      padding: 7px 16px;
+      border-radius: 7px;
+      border: none;
+      background: transparent;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .hub-tab-btn.active {
+      background: #FFFFFF;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    /* Cards Grid */
+    .hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .hub-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hub-card:hover {
+      border-color: #CBD5E1;
+      box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.06);
+      transform: translateY(-2px);
+    }
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .card-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .card-heading {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .card-meta {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .card-body-text {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #F1F5F9;
+      padding-top: 12px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .badge-green { background: #ECFDF5; color: #059669; }
+    .badge-purple { background: #EDE9FE; color: #7C3AED; }
+    .badge-blue { background: #EFF6FF; color: #2563EB; }
+    .badge-amber { background: #FFFBEB; color: #D97706; }
+
+    /* Data Table View */
+    .hub-table-wrap {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    table.hub-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+    table.hub-table th {
+      background: #F8FAFC;
+      padding: 12px 18px;
+      font-weight: 700;
+      color: #475569;
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    table.hub-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #F1F5F9;
+      color: #1E293B;
+    }
+    table.hub-table tr:hover td {
+      background: #F8FAFC;
+    }
+
+    /* Section Views */
+    .hub-view-pane {
+      display: none;
+    }
+    .hub-view-pane.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hub-container">
+
+    <!-- 1. KNOWLEDGE HUB -->
+    <div class="hub-view-pane" id="pane-knowledge-hub">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>📚</span> Knowledge Hub & SOP Library</h1>
+          <p>Central repository of company policies, operating procedures, and employee handbooks.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn" onclick="alert('Exporting PDF documentation...')">Export Handbook</button>
+          <button class="hub-btn btn-primary" onclick="alert('Article creation modal...')">+ New Document</button>
+        </div>
+      </header>
+      <div class="hub-subview-tabs">
+        <button class="hub-tab-btn active" onclick="switchInnerTab('kh-policies', this)">Company Policies</button>
+        <button class="hub-tab-btn" onclick="switchInnerTab('kh-sops', this)">Engineering & Ops SOPs</button>
+        <button class="hub-tab-btn" onclick="switchInnerTab('kh-benefits', this)">Benefits & Healthcare</button>
+      </div>
+      <div class="hub-grid">
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">📜</div>
+              <div>
+                <div class="card-heading">Code of Conduct 2026</div>
+                <div class="card-meta">Updated 3 days ago · v4.2</div>
+              </div>
+            </div>
+            <p class="card-body-text">Standards of professional integrity, remote-work ethics, and anti-harassment policies across global offices.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-green">Active Policy</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">View Article</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">🛡️</div>
+              <div>
+                <div class="card-heading">Information Security Policy</div>
+                <div class="card-meta">Updated Oct 2026 · SOC2 / ISO</div>
+              </div>
+            </div>
+            <p class="card-body-text">Guidelines for cryptographic storage, 2FA enforcement, device encryption, and confidential client data safeguarding.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-purple">Mandatory</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">View Article</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">🏖️</div>
+              <div>
+                <div class="card-heading">Annual Leave & Sabbatical Rules</div>
+                <div class="card-meta">Updated Jan 2026 · Global HR</div>
+              </div>
+            </div>
+            <p class="card-body-text">Paid time off accrual formula, public holiday substitution, and parental leave entitlement structure.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-blue">Handbook</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">View Article</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. ORIENTATION -->
+    <div class="hub-view-pane" id="pane-orientation">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>🧭</span> New Hire Orientation</h1>
+          <p>Interactive onboarding journey, Day 1 checklist, and culture guide for new joiners.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn btn-primary" onclick="alert('Starting Orientation Tour...')">Launch Welcome Tour</button>
+        </div>
+      </header>
+      <div class="hub-grid">
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">🏁</div>
+              <div>
+                <div class="card-heading">Day 1: Welcome & Setup</div>
+                <div class="card-meta">3 of 4 tasks complete</div>
+              </div>
+            </div>
+            <p class="card-body-text">Meet your buddy, configure Hirerkey single sign-on, and receive welcome swag kit at the front reception.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-green">In Progress (75%)</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Checklist</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">🤝</div>
+              <div>
+                <div class="card-heading">Week 1: Team Immersion</div>
+                <div class="card-meta">Scheduled for Monday</div>
+              </div>
+            </div>
+            <p class="card-body-text">1-on-1 intro sync with team lead, overview of sprint rituals, and access to internal Slack channels.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-amber">Upcoming</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Schedule</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">🎯</div>
+              <div>
+                <div class="card-heading">Month 1: 30-Day Checkpoint</div>
+                <div class="card-meta">Target: 30 days post-join</div>
+              </div>
+            </div>
+            <p class="card-body-text">Review early probation milestones, submit onboarding feedback survey, and set first quarterly OKRs.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-blue">Milestone</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Review</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. PRE-BOARDING -->
+    <div class="hub-view-pane" id="pane-pre-boarding">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>🚀</span> Pre-Boarding Gateway</h1>
+          <p>Track candidate offer acceptance, document verification, and hardware provisioning before Day 1.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn btn-primary" onclick="alert('Adding candidate to preboarding...')">+ Add Candidate</button>
+        </div>
+      </header>
+      <div class="hub-table-wrap">
+        <table class="hub-table">
+          <thead>
+            <tr>
+              <th>Candidate Name</th>
+              <th>Role &amp; Department</th>
+              <th>Joining Date</th>
+              <th>Documents</th>
+              <th>Hardware</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Aarav Sharma</strong><br><span style="font-size:11.5px; color:#64748B;">aarav@email.com</span></td>
+              <td>Senior Frontend Architect<br><span style="font-size:11px; color:#7C3AED;">Engineering</span></td>
+              <td>Nov 1, 2026</td>
+              <td><span class="status-badge badge-green">4/4 Verified</span></td>
+              <td><span class="status-badge badge-blue">MacBook Pro Shipped</span></td>
+              <td><span class="status-badge badge-green">Ready Day 1</span></td>
+            </tr>
+            <tr>
+              <td><strong>Priya Patel</strong><br><span style="font-size:11.5px; color:#64748B;">priya.p@email.com</span></td>
+              <td>Product Design Lead<br><span style="font-size:11px; color:#7C3AED;">Design</span></td>
+              <td>Nov 10, 2026</td>
+              <td><span class="status-badge badge-amber">Pending PAN &amp; Bank</span></td>
+              <td><span class="status-badge badge-amber">In Procurement</span></td>
+              <td><span class="status-badge badge-amber">Action Needed</span></td>
+            </tr>
+            <tr>
+              <td><strong>Rohan Verma</strong><br><span style="font-size:11.5px; color:#64748B;">rohan.v@email.com</span></td>
+              <td>People Operations Partner<br><span style="font-size:11px; color:#7C3AED;">Human Resources</span></td>
+              <td>Nov 15, 2026</td>
+              <td><span class="status-badge badge-green">3/3 Verified</span></td>
+              <td><span class="status-badge badge-blue">Ready for Dispatch</span></td>
+              <td><span class="status-badge badge-green">On Track</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. ACTIVE EMPLOYEES DIRECTORY -->
+    <div class="hub-view-pane" id="pane-active">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>👥</span> Active Employees Directory</h1>
+          <p>Live company directory of 248 active employees across 7 regional headquarters.</p>
+        </div>
+        <div class="hub-actions">
+          <input type="text" placeholder="Search employees..." style="padding: 8px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 12.5px; width: 220px;" oninput="alert('Filter employees: ' + this.value)">
+          <button class="hub-btn btn-primary" onclick="alert('Export CSV roster...')">Export Directory</button>
+        </div>
+      </header>
+      <div class="hub-table-wrap">
+        <table class="hub-table">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Department</th>
+              <th>Designation</th>
+              <th>Location</th>
+              <th>Reporting Lead</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Chanchal Sharma</strong><br><span style="font-size:11.5px; color:#64748B;">chanchal@noisiv.com</span></td>
+              <td>Executive Leadership</td>
+              <td>Chief Human Resources Officer</td>
+              <td>New Delhi (HQ)</td>
+              <td>CEO / Board</td>
+              <td><span class="status-badge badge-green">Active</span></td>
+            </tr>
+            <tr>
+              <td><strong>Uneet Kumar</strong><br><span style="font-size:11.5px; color:#64748B;">uneet@noisiv.com</span></td>
+              <td>Technology &amp; Product</td>
+              <td>Principal Architect</td>
+              <td>Bengaluru</td>
+              <td>Chanchal Sharma</td>
+              <td><span class="status-badge badge-green">Active</span></td>
+            </tr>
+            <tr>
+              <td><strong>Ananya Iyer</strong><br><span style="font-size:11.5px; color:#64748B;">ananya@noisiv.com</span></td>
+              <td>Talent Acquisition</td>
+              <td>Lead Recruiter</td>
+              <td>Mumbai</td>
+              <td>Chanchal Sharma</td>
+              <td><span class="status-badge badge-green">Active</span></td>
+            </tr>
+            <tr>
+              <td><strong>Vikramaditya Rao</strong><br><span style="font-size:11.5px; color:#64748B;">vikram@noisiv.com</span></td>
+              <td>Finance &amp; Legal</td>
+              <td>VP Finance &amp; Compliance</td>
+              <td>Gurugram</td>
+              <td>Chief Financial Officer</td>
+              <td><span class="status-badge badge-green">Active</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5. 1-ON-1 CHECK-INS -->
+    <div class="hub-view-pane" id="pane-check-ins">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>💬</span> 1-on-1 Check-ins &amp; Syncs</h1>
+          <p>Dedicated manager-direct report cadence, goal tracking, and confidential meeting agendas.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn btn-primary" onclick="alert('Scheduling 1-on-1 session...')">+ Schedule 1-on-1</button>
+        </div>
+      </header>
+      <div class="hub-grid">
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">🗓️</div>
+              <div>
+                <div class="card-heading">Bi-Weekly Sync w/ Chanchal</div>
+                <div class="card-meta">Tomorrow at 11:00 AM IST</div>
+              </div>
+            </div>
+            <p class="card-body-text">Discussion agenda: Q4 Headcount planning, prototype review feedback, and internal design tokens alignment.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-purple">Confirmed</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">View Agenda</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">💡</div>
+              <div>
+                <div class="card-heading">Career Growth &amp; Milestones</div>
+                <div class="card-meta">Last synced 12 days ago</div>
+              </div>
+            </div>
+            <p class="card-body-text">Quarterly appraisal review prep: technical leadership roadmap, mentoring junior engineers, and patent filings.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-green">Completed</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Read Notes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. CREATE APPRAISALS -->
+    <div class="hub-view-pane" id="pane-appraisals">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>📊</span> Performance Appraisals &amp; OKRs</h1>
+          <p>Annual and mid-year appraisal cycles, peer 360 reviews, and KPI scorecards.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn btn-primary" onclick="alert('Starting review cycle...')">+ Launch Review Cycle</button>
+        </div>
+      </header>
+      <div class="hub-grid">
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">🏆</div>
+              <div>
+                <div class="card-heading">FY26 Annual Performance Cycle</div>
+                <div class="card-meta">Deadline: Nov 30, 2026</div>
+              </div>
+            </div>
+            <p class="card-body-text">Company-wide review for all FTEs: Self evaluation (30%), Manager assessment (50%), Peer reviews (20%).</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-amber">Open for Submissions</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Fill Evaluation</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-box">⭐</div>
+              <div>
+                <div class="card-heading">360-Degree Peer Feedback</div>
+                <div class="card-meta">4 peer requests received</div>
+              </div>
+            </div>
+            <p class="card-body-text">Provide constructive, confidential feedback on collaboration, problem solving, and technical execution.</p>
+          </div>
+          <div class="card-footer">
+            <span class="status-badge badge-purple">Pending Review</span>
+            <button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Submit Peer Review</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. DOCUMENT VAULT -->
+    <div class="hub-view-pane" id="pane-document-vault">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>🗄️</span> Employee Document Vault</h1>
+          <p>Secure digital vault for offer letters, appointment agreements, tax certificates, and NDA contracts.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn btn-primary" onclick="alert('Upload file to vault...')">+ Upload Document</button>
+        </div>
+      </header>
+      <div class="hub-table-wrap">
+        <table class="hub-table">
+          <thead>
+            <tr>
+              <th>Document Name</th>
+              <th>Category</th>
+              <th>Uploaded Date</th>
+              <th>Access Level</th>
+              <th>File Size</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Signed Employment Contract (2026)</strong></td>
+              <td>Legal &amp; Contracts</td>
+              <td>Jan 15, 2026</td>
+              <td><span class="status-badge badge-purple">Confidential</span></td>
+              <td>1.8 MB PDF</td>
+              <td><button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Download</button></td>
+            </tr>
+            <tr>
+              <td><strong>Form 16 Tax Certificate (FY 25-26)</strong></td>
+              <td>Finance &amp; Tax</td>
+              <td>Jun 20, 2026</td>
+              <td><span class="status-badge badge-green">Employee &amp; HR</span></td>
+              <td>640 KB PDF</td>
+              <td><button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Download</button></td>
+            </tr>
+            <tr>
+              <td><strong>Non-Disclosure Agreement (Master)</strong></td>
+              <td>Compliance</td>
+              <td>Jan 15, 2026</td>
+              <td><span class="status-badge badge-blue">Verified</span></td>
+              <td>420 KB PDF</td>
+              <td><button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Download</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 8. APPRAISAL: MANAGER REVIEW -->
+    <div class="hub-view-pane" id="pane-appraisal-manager">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>⭐</span> Manager Performance Review</h1>
+          <p>Evaluate quarterly goals, competencies, and development milestones for direct reports.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn">Export Review Batch</button>
+          <button class="hub-btn btn-primary">+ New Manager Evaluation</button>
+        </div>
+      </header>
+      <div class="hub-grid">
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">👤</div>
+            <div>
+              <div class="card-heading">Sarah Jenkins</div>
+              <div class="card-meta">Staff Frontend Engineer · Engineering</div>
+            </div>
+          </div>
+          <div class="card-body-text">Q3 Goals completed: 94%. Peer feedback rating: 4.8 / 5.0. Recommended for L6 Senior promotion cycle.</div>
+          <div class="card-footer">
+            <span class="status-badge badge-purple">Pending Sign-off</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Open Review</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">👤</div>
+            <div>
+              <div class="card-heading">Marcus Thorne</div>
+              <div class="card-meta">Product Designer · Design System</div>
+            </div>
+          </div>
+          <div class="card-body-text">Shipped new enterprise theme kit. Leadership competency self-evaluation submitted with 12 peer artifacts.</div>
+          <div class="card-footer">
+            <span class="status-badge badge-green">Self-Review Submitted</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Score Review</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">👤</div>
+            <div>
+              <div class="card-heading">Priya Patel</div>
+              <div class="card-meta">Senior HRBP · People Operations</div>
+            </div>
+          </div>
+          <div class="card-body-text">Exceeded recruitment SLAs by 18%. 360 upward feedback from hiring managers rated outstanding.</div>
+          <div class="card-footer">
+            <span class="status-badge badge-blue">Ready for HR</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">View Ratings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. APPRAISAL: SIDE-BY-SIDE COMPARE -->
+    <div class="hub-view-pane" id="pane-appraisal-compare">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>⚖️</span> Side-by-Side Review Comparison</h1>
+          <p>Compare self-evaluation ratings directly alongside manager evaluation ratings and calibrate discrepancies.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn">Calibration View</button>
+          <button class="hub-btn btn-primary">Sync All Ratings</button>
+        </div>
+      </header>
+      <div class="hub-table-wrap">
+        <table class="hub-table">
+          <thead>
+            <tr>
+              <th>Employee & Role</th>
+              <th>Competency Area</th>
+              <th>Self Rating</th>
+              <th>Manager Rating</th>
+              <th>Variance</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sarah Jenkins</strong><br><span style="font-size: 11px; color: #64748B;">Staff Frontend Engineer</span></td>
+              <td>Technical Execution & System Architecture</td>
+              <td><span class="status-badge badge-purple">5.0 / 5.0</span></td>
+              <td><span class="status-badge badge-purple">4.8 / 5.0</span></td>
+              <td><span style="color: #059669; font-weight: 700;">+0.2 (Aligned)</span></td>
+              <td><button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Calibrate</button></td>
+            </tr>
+            <tr>
+              <td><strong>Marcus Thorne</strong><br><span style="font-size: 11px; color: #64748B;">Product Designer</span></td>
+              <td>Cross-Functional Collaboration</td>
+              <td><span class="status-badge badge-blue">4.5 / 5.0</span></td>
+              <td><span class="status-badge badge-purple">4.7 / 5.0</span></td>
+              <td><span style="color: #059669; font-weight: 700;">-0.2 (Aligned)</span></td>
+              <td><button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Calibrate</button></td>
+            </tr>
+            <tr>
+              <td><strong>Elena Rostova</strong><br><span style="font-size: 11px; color: #64748B;">Data Engineering Lead</span></td>
+              <td>Strategic Mentorship & Coaching</td>
+              <td><span class="status-badge badge-amber">4.0 / 5.0</span></td>
+              <td><span class="status-badge badge-purple">4.9 / 5.0</span></td>
+              <td><span style="color: #2563EB; font-weight: 700;">-0.9 (Manager Uplift)</span></td>
+              <td><button class="hub-btn" style="padding: 4px 10px; font-size: 11px;">Calibrate</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 10. APPRAISAL: HR FINAL REVIEW -->
+    <div class="hub-view-pane" id="pane-appraisal-hr">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>📋</span> HR Final Review & Normalization</h1>
+          <p>Executive review, bell curve calibration, compensation adjustment approvals, and executive sign-off.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn">Bell Curve Report</button>
+          <button class="hub-btn btn-primary">Approve All Cycles</button>
+        </div>
+      </header>
+      <div class="hub-grid">
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">📊</div>
+            <div>
+              <div class="card-heading">Engineering Bell Curve</div>
+              <div class="card-meta">142 Evaluations · Target Top 15%</div>
+            </div>
+          </div>
+          <div class="card-body-text">Top performers: 14.8%. Core solid performers: 73.2%. Performance improvement queue: 2.0%. Normalization complete.</div>
+          <div class="card-footer">
+            <span class="status-badge badge-green">Calibrated (100%)</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">View Curve</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">💼</div>
+            <div>
+              <div class="card-heading">Merit Increase & Bonus Pool</div>
+              <div class="card-meta">Total Allocated: $480,000 / $500,000</div>
+            </div>
+          </div>
+          <div class="card-body-text">Average merit uplift: 4.2%. 24 equity refresher grants approved by Compensation Committee.</div>
+          <div class="card-footer">
+            <span class="status-badge badge-purple">Budget 96% Utilized</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Review Pool</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">🤝</div>
+            <div>
+              <div class="card-heading">Promotion Approvals</div>
+              <div class="card-meta">18 Candidates Submitted</div>
+            </div>
+          </div>
+          <div class="card-body-text">16 endorsed by Department Heads, 2 pending VP interview sign-off for Principal Engineer bands.</div>
+          <div class="card-footer">
+            <span class="status-badge badge-blue">Ready for Final Sign</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Sign Off</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 11. WORKPLACE: TEAM ATTENDANCE -->
+    <div class="hub-view-pane" id="pane-attendance">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>⏱️</span> Team Attendance & Shift Clock</h1>
+          <p>Real-time check-in log, biometric sync, break durations, and overtime tracking across all locations.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn">Biometric Log Sync</button>
+          <button class="hub-btn btn-primary">+ Manual Clock Entry</button>
+        </div>
+      </header>
+      <div class="hub-table-wrap">
+        <table class="hub-table">
+          <thead>
+            <tr>
+              <th>Employee</th>
+              <th>Shift / Location</th>
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Hours Logged</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Alex Chen</strong><br><span style="font-size: 11px; color: #64748B;">Frontend Engineer</span></td>
+              <td>Day Shift (09:00 - 18:00) · HQ London</td>
+              <td>08:55 AM</td>
+              <td>In Progress</td>
+              <td>6h 25m</td>
+              <td><span class="status-badge badge-green">On Time</span></td>
+            </tr>
+            <tr>
+              <td><strong>Maria Santos</strong><br><span style="font-size: 11px; color: #64748B;">DevOps Lead</span></td>
+              <td>Flexible · Remote (Dublin)</td>
+              <td>09:02 AM</td>
+              <td>In Progress</td>
+              <td>6h 18m</td>
+              <td><span class="status-badge badge-green">Active</span></td>
+            </tr>
+            <tr>
+              <td><strong>David Kim</strong><br><span style="font-size: 11px; color: #64748B;">QA Engineer</span></td>
+              <td>Day Shift (09:00 - 18:00) · HQ London</td>
+              <td>09:18 AM</td>
+              <td>In Progress</td>
+              <td>6h 02m</td>
+              <td><span class="status-badge badge-amber">Late (Grace)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 12. WORKPLACE: SERVICE DESK -->
+    <div class="hub-view-pane" id="pane-service-desk">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>🎫</span> Internal Service Desk & IT Help</h1>
+          <p>Enterprise service tickets, hardware requests, software provisioning, and facilities tasks.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn">Filter by SLA</button>
+          <button class="hub-btn btn-primary">+ Submit Ticket</button>
+        </div>
+      </header>
+      <div class="hub-grid">
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">💻</div>
+            <div>
+              <div class="card-heading">IT-4092: MacBook Pro M3 Max</div>
+              <div class="card-meta">Requested by Sarah Jenkins · High Priority</div>
+            </div>
+          </div>
+          <div class="card-body-text">Developer upgrade request approved by engineering manager. IT inventory allocated; pending courier pickup.</div>
+          <div class="card-footer">
+            <span class="status-badge badge-purple">In Provisioning</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">View Details</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">🔐</div>
+            <div>
+              <div class="card-heading">SEC-1120: Figma Org Seat</div>
+              <div class="card-meta">Requested by Marcus Thorne · Standard</div>
+            </div>
+          </div>
+          <div class="card-body-text">SSO license invite dispatched. Okta group assignment configured for Design System editors.</div>
+          <div class="card-footer">
+            <span class="status-badge badge-green">Resolved</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Archive</button>
+          </div>
+        </div>
+        <div class="hub-card">
+          <div class="card-top">
+            <div class="card-icon-box">🏢</div>
+            <div>
+              <div class="card-heading">FAC-084: London Desk Reservation</div>
+              <div class="card-meta">Requested by Priya Patel · Workplace</div>
+            </div>
+          </div>
+          <div class="card-body-text">Reserved Pod 4B with dual 4K monitors for Q4 Planning Summit (Oct 24 - Oct 26).</div>
+          <div class="card-footer">
+            <span class="status-badge badge-blue">Confirmed</span>
+            <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Manage Desk</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 13. WORKPLACE: TASK CHECKLIST -->
+    <div class="hub-view-pane" id="pane-task-checklist">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>✅</span> Workplace Task Checklist</h1>
+          <p>Collaborative departmental action items, compliance deadlines, and recurring checklist trackers.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn">Sort by Due Date</button>
+          <button class="hub-btn btn-primary">+ Add New Task</button>
+        </div>
+      </header>
+      <div class="hub-table-wrap">
+        <table class="hub-table">
+          <thead>
+            <tr>
+              <th>Task Description</th>
+              <th>Category</th>
+              <th>Assignee</th>
+              <th>Due Date</th>
+              <th>Priority</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Submit ISO 27001 Access Review Sign-offs</strong></td>
+              <td>Compliance</td>
+              <td>Alex Chen</td>
+              <td>Tomorrow</td>
+              <td><span class="status-badge badge-purple">High</span></td>
+              <td><span class="status-badge badge-green">Completed</span></td>
+            </tr>
+            <tr>
+              <td><strong>Order Welcome Swag Kits for November Batch</strong></td>
+              <td>People Ops</td>
+              <td>Priya Patel</td>
+              <td>Oct 28, 2026</td>
+              <td><span class="status-badge badge-blue">Medium</span></td>
+              <td><span class="status-badge badge-purple">In Progress</span></td>
+            </tr>
+            <tr>
+              <td><strong>Publish Health & Safety Evacuation Map to Intranet</strong></td>
+              <td>Facilities</td>
+              <td>Facilities Lead</td>
+              <td>Nov 01, 2026</td>
+              <td><span class="status-badge badge-blue">Medium</span></td>
+              <td><span class="status-badge badge-amber">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 14. EXPENSES: MANAGER APPROVALS -->
+    <div class="hub-view-pane" id="pane-manager-approvals">
+      <header class="hub-header">
+        <div class="hub-title-area">
+          <h1><span>💳</span> Expense Approvals Queue</h1>
+          <p>Corporate travel, client entertainment, equipment stipends, and mileage claim authorizations.</p>
+        </div>
+        <div class="hub-actions">
+          <button class="hub-btn">Export CSV</button>
+          <button class="hub-btn btn-primary">Approve All Compliant</button>
+        </div>
+      </header>
+      <div class="hub-table-wrap">
+        <table class="hub-table">
+          <thead>
+            <tr>
+              <th>Claimant</th>
+              <th>Expense Category</th>
+              <th>Merchant / Purpose</th>
+              <th>Amount</th>
+              <th>Receipt</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Sarah Jenkins</strong><br><span style="font-size: 11px; color: #64748B;">Staff Frontend Engineer</span></td>
+              <td>Travel & Lodging</td>
+              <td>Eurostar London -> Paris (React Summit)</td>
+              <td><strong>£342.50</strong></td>
+              <td><span class="status-badge badge-green">Attached</span></td>
+              <td>
+                <button class="hub-btn btn-primary" style="padding: 4px 8px; font-size: 11px;">Approve</button>
+                <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Reject</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Marcus Thorne</strong><br><span style="font-size: 11px; color: #64748B;">Product Designer</span></td>
+              <td>Software Subscription</td>
+              <td>Figma Config 2026 Virtual Pass</td>
+              <td><strong>$299.00</strong></td>
+              <td><span class="status-badge badge-green">Attached</span></td>
+              <td>
+                <button class="hub-btn btn-primary" style="padding: 4px 8px; font-size: 11px;">Approve</button>
+                <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Reject</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>David Kim</strong><br><span style="font-size: 11px; color: #64748B;">QA Lead</span></td>
+              <td>Team Catering</td>
+              <td>Team Sprint Milestone Dinner (7 Attendees)</td>
+              <td><strong>£418.00</strong></td>
+              <td><span class="status-badge badge-green">Attached</span></td>
+              <td>
+                <button class="hub-btn btn-primary" style="padding: 4px 8px; font-size: 11px;">Approve</button>
+                <button class="hub-btn" style="padding: 4px 8px; font-size: 11px;">Reject</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function showPane(paneId) {
+      if (paneId === 'active-employees') paneId = 'active';
+      if (paneId === 'team-attendance') paneId = 'attendance';
+      document.querySelectorAll('.hub-view-pane').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(`pane-${paneId}`);
+      if (target) {
+        target.classList.add('active');
+      } else {
+        document.getElementById('pane-knowledge-hub').classList.add('active');
+      }
+    }
+
+    function switchInnerTab(tabId, btn) {
+      if (btn) {
+        btn.closest('.hub-subview-tabs').querySelectorAll('.hub-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      }
+    }
+
+    // Read initial hash or listen to messages
+    const initialHash = window.location.hash.replace('#', '').trim();
+    if (initialHash) {
+      showPane(initialHash);
+    } else {
+      showPane('knowledge-hub');
+    }
+
+    window.addEventListener('hashchange', () => {
+      const h = window.location.hash.replace('#', '').trim();
+      if (h) showPane(h);
+    });
+
+    window.addEventListener('message', (e) => {
+      if (!e.data) return;
+      if (e.data.type === 'HIRERKEY_SET_VIEW' || e.data.action === 'switchView') {
+        const p = e.data.view || e.data.module || 'knowledge-hub';
+        showPane(p);
+      }
+    });
+  </script>
+
+</body>
+</html>

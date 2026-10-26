@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side Menu Studio & Architecture Showcase - Hirerkey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --text-sub: #94A3B8;
+      --border: #E2E8F0;
+      --border-subtle: #F1F5F9;
+      --primary: #7C3AED;
+      --primary-hover: #6D28D9;
+      --primary-subtle: #EDE9FE;
+      --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      padding: 28px 32px 60px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .studio-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    /* Header Area */
+    .studio-header {
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .studio-title-area h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: -0.02em;
+    }
+    .studio-title-area p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+    .studio-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      display: inline-block;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+
+    /* Section Tabs */
+    .studio-nav-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      background: #E2E8F0;
+      padding: 4px;
+      border-radius: 10px;
+      width: fit-content;
+    }
+    .studio-nav-tab {
+      padding: 8px 18px;
+      border-radius: 7px;
+      border: none;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .studio-nav-tab:hover {
+      color: var(--text-main);
+    }
+    .studio-nav-tab.active {
+      background: #FFFFFF;
+      color: var(--primary);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+
+    /* Grid Layouts */
+    .studio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    .studio-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .studio-card:hover {
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+    }
+    .studio-card.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-subtle), 0 8px 20px -4px rgba(124, 58, 237, 0.15);
+    }
+    .active-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      display: none;
+    }
+    .studio-card.active .active-badge {
+      display: inline-block;
+    }
+
+    /* Visual Mockups */
+    .card-preview-box {
+      height: 120px;
+      background: #F1F5F9;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      border: 1px solid #E2E8F0;
+    }
+    .mock-sidebar {
+      background: #FFFFFF;
+      border-right: 1px solid #CBD5E1;
+      display: flex;
+      flex-direction: column;
+      padding: 8px 6px;
+      gap: 5px;
+    }
+    .mock-sidebar.mock-full {
+      width: 70px;
+    }
+    .mock-sidebar.mock-slim {
+      width: 24px;
+      align-items: center;
+    }
+    .mock-sidebar.mock-hover {
+      width: 24px;
+      box-shadow: 3px 0 8px rgba(0,0,0,0.1);
+      background: #FFFFFF;
+      position: relative;
+    }
+    .mock-sidebar.mock-drawer {
+      width: 20px;
+      margin-left: -12px;
+      background: #FFFFFF;
+      border: 1px dashed #94A3B8;
+    }
+    .card-preview-box.mock-topbar-layout {
+      flex-direction: column;
+    }
+    .mock-topbar-strip {
+      height: 26px;
+      background: #FFFFFF;
+      border-bottom: 1px solid #CBD5E1;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 8px;
+    }
+    .mock-topbar-chip {
+      height: 15px;
+      padding: 0 7px;
+      border-radius: 9999px;
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-size: 8px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      border: 1px solid #DDD6FE;
+    }
+    .mock-sidebar.mock-drawer-edge {
+      position: absolute;
+      right: 0;
+      top: 20px;
+      width: 14px;
+      height: 32px;
+      border-radius: 16px 0 0 16px;
+      background: #0B132B;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-size: 8px;
+      box-shadow: -2px 2px 6px rgba(0,0,0,0.2);
+    }
+    .mock-sidebar.mock-floating {
+      margin: 8px 0 8px 8px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      border: 1px solid #CBD5E1;
+      width: 65px;
+    }
+    .mock-sidebar.mock-dark {
+      background: #061229;
+      border-color: #1E293B;
+    }
+    .mock-sidebar.mock-purple {
+      background: #7C3AED;
+      border-color: #6D28D9;
+    }
+    .mock-sidebar.mock-lavender {
+      background: #F5F3FF;
+      border-color: #DDD6FE;
+    }
+    .mock-sidebar.mock-gradient {
+      background: linear-gradient(135deg, #1E1B4B, #4C1D95);
+      border-color: #312E81;
+    }
+    .mock-line {
+      height: 6px;
+      background: #E2E8F0;
+      border-radius: 3px;
+    }
+    .mock-line.accent {
+      background: #7C3AED;
+    }
+    .mock-circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #CBD5E1;
+    }
+    .mock-circle.accent {
+      background: #7C3AED;
+    }
+    .mock-content {
+      flex: 1;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #F8FAFC;
+    }
+
+    /* Card Details */
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .card-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    .apply-btn {
+      width: 100%;
+      padding: 9px 14px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .apply-btn:hover {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+    .studio-card.active .apply-btn {
+      background: var(--primary);
+      color: #FFFFFF;
+      border-color: var(--primary);
+    }
+
+    /* Theme Chips Grid */
+    .theme-swatch-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .theme-swatch-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .theme-swatch-card:hover {
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px -4px rgba(0,0,0,0.06);
+    }
+    .theme-swatch-card.active {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px var(--primary-subtle);
+    }
+    .theme-color-bar {
+      height: 36px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+    .theme-swatch-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .theme-swatch-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="studio-container">
+
+    <!-- Header Area -->
+    <header class="studio-header">
+      <div class="studio-title-area">
+        <h1><span>📐</span> Master Side Menu Studio</h1>
+        <p>Visually switch, configure, and inspect master navigation layouts, design styles, and color themes in real time.</p>
+      </div>
+      <div class="studio-status-pill">
+        <span class="status-dot"></span>
+        <span id="liveStatusText">Live Master Prototype Connected</span>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="studio-nav-tabs">
+      <button class="studio-nav-tab active" onclick="switchTab('layouts', this)">
+        <span>📐</span> Layout Architectures
+      </button>
+      <button class="studio-nav-tab" onclick="switchTab('designs', this)">
+        <span>🎨</span> Design Styles
+      </button>
+      <button class="studio-nav-tab" onclick="switchTab('themes', this)">
+        <span>🌈</span> Theme Palettes
+      </button>
+    </div>
+
+    <!-- TAB 1: LAYOUT ARCHITECTURES -->
+    <div class="tab-pane" id="pane-layouts">
+      <div class="studio-grid">
+
+        <!-- 1. Chip Dropdown (Top Navigation / Full Canvas) -->
+        <div class="studio-card" id="card-layout-topnav" onclick="applyLayout('top-nav')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box mock-topbar-layout">
+            <div class="mock-topbar-strip">
+              <div class="mock-line accent" style="width: 28px; height: 8px;"></div>
+              <div class="mock-topbar-chip">
+                <span>📋</span>
+                <span>Active Screen ⌄</span>
+              </div>
+              <div style="flex: 1;"></div>
+              <div class="mock-circle" style="width: 12px; height: 12px;"></div>
+            </div>
+            <div class="mock-content" style="flex: 1; padding: 10px;">
+              <div class="mock-line" style="width: 45%;"></div>
+              <div class="mock-line" style="width: 80%;"></div>
+              <div class="mock-line" style="width: 65%;"></div>
+            </div>
+          </div>
+          <h3 class="card-title"><span>📋</span> View 1: Chip Dropdown (Top Nav)</h3>
+          <p class="card-desc">Top horizontal navigation bar with segmented screen chip dropdown. Fully clears the left canvas for maximum horizontal workspace across data tables.</p>
+          <button class="apply-btn" type="button">Apply Top Nav</button>
+        </div>
+
+        <!-- 2. Slim Icon Rail -->
+        <div class="studio-card" id="card-layout-slim" onclick="applyLayout('slim-rail')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box">
+            <div class="mock-sidebar mock-slim">
+              <div class="mock-circle accent"></div>
+              <div class="mock-circle"></div>
+              <div class="mock-circle"></div>
+              <div class="mock-circle"></div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-line" style="width: 50%;"></div>
+              <div class="mock-line" style="width: 75%;"></div>
+              <div class="mock-line" style="width: 60%;"></div>
+            </div>
+          </div>
+          <h3 class="card-title"><span>⚡</span> View 2: Slim Icon Rail</h3>
+          <p class="card-desc">Permanent 64px compact icon rail with floating dark tooltips on hover. Maximizes canvas workspace area for data tables and dense dashboards.</p>
+          <button class="apply-btn" type="button">Apply Slim Rail</button>
+        </div>
+
+        <!-- 3. Full In-Page Rail -->
+        <div class="studio-card active" id="card-layout-full" onclick="applyLayout('full-sidebar')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box">
+            <div class="mock-sidebar mock-full">
+              <div class="mock-line accent" style="width: 80%;"></div>
+              <div class="mock-line" style="width: 90%;"></div>
+              <div class="mock-line" style="width: 70%;"></div>
+              <div class="mock-line" style="width: 85%;"></div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-line" style="width: 50%;"></div>
+              <div class="mock-line" style="width: 75%;"></div>
+              <div class="mock-line" style="width: 60%;"></div>
+            </div>
+          </div>
+          <h3 class="card-title"><span>📑</span> View 3: Full In-Page Rail</h3>
+          <p class="card-desc">Permanent 250px fixed navigation sidebar. Enterprise standard for comprehensive menu visibility, search, active screen indicator, and deep section trees.</p>
+          <button class="apply-btn" type="button">Apply Full Layout</button>
+        </div>
+
+        <!-- 4. Expandable Hover Rail -->
+        <div class="studio-card" id="card-layout-hover" onclick="applyLayout('expandable-hover')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box">
+            <div class="mock-sidebar mock-hover">
+              <div class="mock-circle accent"></div>
+              <div class="mock-circle"></div>
+              <div class="mock-circle"></div>
+            </div>
+            <div class="mock-content" style="margin-left: 10px;">
+              <div class="mock-line" style="width: 50%;"></div>
+              <div class="mock-line" style="width: 75%;"></div>
+              <div class="mock-line" style="width: 60%;"></div>
+            </div>
+          </div>
+          <h3 class="card-title"><span>🚀</span> View 4: Expandable Hover Rail (★)</h3>
+          <p class="card-desc">Zero page shift: rests at 64px, smoothly expands to 250px overlay when cursor hovers. Best of both worlds for space and rapid navigation speed.</p>
+          <button class="apply-btn" type="button">Apply Hover Rail</button>
+        </div>
+
+        <!-- 5. Fixed Right-Edge Drawer -->
+        <div class="studio-card" id="card-layout-drawer" onclick="applyLayout('flyout-drawer')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box">
+            <div class="mock-content" style="padding-right: 20px;">
+              <div class="mock-line" style="width: 65%;"></div>
+              <div class="mock-line" style="width: 80%;"></div>
+              <div class="mock-line" style="width: 55%;"></div>
+            </div>
+            <div class="mock-sidebar mock-drawer-edge">☰</div>
+          </div>
+          <h3 class="card-title"><span>🗂️</span> View 5: Fixed Right-Edge Drawer</h3>
+          <p class="card-desc">Full 100vw content canvas with a slide-out drawer triggered from the docked edge toggle tab or shortcuts. Ideal for mobile or presentation focus.</p>
+          <button class="apply-btn" type="button">Apply Drawer</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: DESIGN STYLES -->
+    <div class="tab-pane" id="pane-designs" style="display: none;">
+      <div class="studio-grid">
+
+        <!-- Classic Flat -->
+        <div class="studio-card active" id="card-design-classic" onclick="applyDesign('classic')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box">
+            <div class="mock-sidebar" style="width: 70px; border-right: 1px solid #CBD5E1;">
+              <div class="mock-line accent" style="width: 75%;"></div>
+              <div class="mock-line" style="width: 85%;"></div>
+              <div class="mock-line" style="width: 65%;"></div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-line" style="width: 70%;"></div>
+            </div>
+          </div>
+          <h3 class="card-title"><span>🏛️</span> Classic Enterprise Flat</h3>
+          <p class="card-desc">Flush edge-to-edge layout with a crisp 1px border. Professional, trusted standard across enterprise HR platforms.</p>
+          <button class="apply-btn" type="button">Apply Classic</button>
+        </div>
+
+        <!-- Floating Card Donezo -->
+        <div class="studio-card" id="card-design-floating" onclick="applyDesign('floating')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box" style="background: #EEF2F6;">
+            <div class="mock-sidebar mock-floating">
+              <div class="mock-line accent" style="width: 70%;"></div>
+              <div class="mock-line" style="width: 85%;"></div>
+            </div>
+            <div class="mock-content" style="background: transparent;">
+              <div class="mock-line" style="width: 60%;"></div>
+            </div>
+          </div>
+          <h3 class="card-title"><span>✨</span> Donezo Modern SaaS (Floating)</h3>
+          <p class="card-desc">Flagship modern SaaS aesthetic with 16px rounded corners, margin spacing, and an elevated ambient drop shadow floating over canvas.</p>
+          <button class="apply-btn" type="button">Apply Floating Card</button>
+        </div>
+
+        <!-- Rounded Modern -->
+        <div class="studio-card" id="card-design-rounded" onclick="applyDesign('rounded')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box">
+            <div class="mock-sidebar" style="width: 70px; gap: 7px;">
+              <div class="mock-line accent" style="border-radius: 9999px; height: 8px;"></div>
+              <div class="mock-line" style="border-radius: 9999px; height: 8px;"></div>
+            </div>
+            <div class="mock-content">
+              <div class="mock-line" style="width: 60%;"></div>
+            </div>
+          </div>
+          <h3 class="card-title"><span>🔘</span> Modern Rounded</h3>
+          <p class="card-desc">Pill-shaped active navigation buttons, rounded search pill, and organic friendly curves throughout menu items.</p>
+          <button class="apply-btn" type="button">Apply Rounded</button>
+        </div>
+
+        <!-- Minimal Clean -->
+        <div class="studio-card" id="card-design-minimal" onclick="applyDesign('minimal')">
+          <span class="active-badge">Active</span>
+          <div class="card-preview-box">
+            <div class="mock-sidebar" style="width: 70px; border-right: none; background: #F8FAFC;">
+              <div class="mock-line" style="width: 70%;"></div>
+              <div class="mock-line" style="width: 80%;"></div>
+            </div>
+            <div class="mock-content" style="background: #FFFFFF;">
+              <div class="mock-line" style="width: 60%;"></div>
+            </div>
+          </div>
+          <h3 class="card-title"><span>🍃</span> Minimal Borderless</h3>
+          <p class="card-desc">Zero border separation, subtle tonal difference, and lightweight ghost navigation items for an uncluttered focus.</p>
+          <button class="apply-btn" type="button">Apply Minimal</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 3: THEME PALETTES -->
+    <div class="tab-pane" id="pane-themes" style="display: none;">
+      <div class="theme-swatch-list">
+
+        <!-- White -->
+        <div class="theme-swatch-card active" id="swatch-white" onclick="applyTheme('white')">
+          <div class="theme-color-bar" style="background: #FFFFFF; border: 1.5px solid #CBD5E1;"></div>
+          <div>
+            <div class="theme-swatch-title">Light White</div>
+            <div class="theme-swatch-sub">Clean neutral enterprise palette</div>
+          </div>
+          <button class="apply-btn" type="button">Apply White</button>
+        </div>
+
+        <!-- Dark -->
+        <div class="theme-swatch-card" id="swatch-dark" onclick="applyTheme('dark')">
+          <div class="theme-color-bar" style="background: #061229;"></div>
+          <div>
+            <div class="theme-swatch-title">Enterprise Dark</div>
+            <div class="theme-swatch-sub">Deep midnight navy (#061229)</div>
+          </div>
+          <button class="apply-btn" type="button">Apply Dark</button>
+        </div>
+
+        <!-- Purple -->
+        <div class="theme-swatch-card" id="swatch-purple" onclick="applyTheme('purple')">
+          <div class="theme-color-bar" style="background: #7C3AED;"></div>
+          <div>
+            <div class="theme-swatch-title">Royal Purple</div>
+            <div class="theme-swatch-sub">Signature Hirerkey primary purple</div>
+          </div>
+          <button class="apply-btn" type="button">Apply Purple</button>
+        </div>
+
+        <!-- Lavender -->
+        <div class="theme-swatch-card" id="swatch-lavender" onclick="applyTheme('lavender')">
+          <div class="theme-color-bar" style="background: #F5F3FF; border: 1.5px solid #DDD6FE;"></div>
+          <div>
+            <div class="theme-swatch-title">Soft Lavender</div>
+            <div class="theme-swatch-sub">Subtle violet pastel accent</div>
+          </div>
+          <button class="apply-btn" type="button">Apply Lavender</button>
+        </div>
+
+        <!-- Gradient -->
+        <div class="theme-swatch-card" id="swatch-gradient" onclick="applyTheme('gradient')">
+          <div class="theme-color-bar" style="background: linear-gradient(135deg, #1E1B4B, #4C1D95);"></div>
+          <div>
+            <div class="theme-swatch-title">Diagonal Gradient</div>
+            <div class="theme-swatch-sub">Dynamic diagonal violet glow</div>
+          </div>
+          <button class="apply-btn" type="button">Apply Gradient</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.studio-nav-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
+      if (!btn) {
+        const tabMap = { 'layouts': 0, 'designs': 1, 'themes': 2 };
+        const tabs = document.querySelectorAll('.studio-nav-tab');
+        btn = tabs[tabMap[tabId] !== undefined ? tabMap[tabId] : 0];
+      }
+      if (btn) btn.classList.add('active');
+      const pane = document.getElementById(`pane-${tabId}`);
+      if (pane) pane.style.display = 'block';
+
+      // Notify parent to sync hash & view indicator
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'HIRERKEY_VIEW_CHANGED', module: 'sidemenu', view: tabId }, '*');
+        }
+      } catch (e) {}
+    }
+
+    function applyLayout(layout) {
+      if (layout === '1') layout = 'top-nav';
+      else if (layout === '2') layout = 'slim-rail';
+      else if (layout === '3') layout = 'full-sidebar';
+      else if (layout === '4') layout = 'expandable-hover';
+      else if (layout === '5') layout = 'flyout-drawer';
+      else if (layout === 'topnav') layout = 'top-nav';
+
+      // Highlight card in studio
+      document.querySelectorAll('#pane-layouts .studio-card').forEach(c => c.classList.remove('active'));
+      const idMap = { 'top-nav': 'topnav', 'full-sidebar': 'full', 'slim-rail': 'slim', 'expandable-hover': 'hover', 'flyout-drawer': 'drawer' };
+      const card = document.getElementById(`card-layout-${idMap[layout] || 'full'}`);
+      if (card) card.classList.add('active');
+
+      // 1. PostMessage first (guaranteed cross-origin & file:// safe)
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'HIRERKEY_SET_SIDEBAR_LAYOUT', layout: layout }, '*');
+        }
+      } catch (e) {}
+
+      // 2. Direct parent function call when same-origin allows
+      try {
+        if (window.parent && typeof window.parent.setSidebarLayout === 'function') {
+          window.parent.setSidebarLayout(layout);
+        }
+      } catch (e) {}
+    }
+
+    function applyDesign(design) {
+      // Highlight card in studio
+      document.querySelectorAll('#pane-designs .studio-card').forEach(c => c.classList.remove('active'));
+      const card = document.getElementById(`card-design-${design}`);
+      if (card) card.classList.add('active');
+
+      // 1. PostMessage first (guaranteed cross-origin & file:// safe)
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'HIRERKEY_SET_SIDEBAR_DESIGN', design: design }, '*');
+        }
+      } catch (e) {}
+
+      // 2. Direct parent function call when same-origin allows
+      try {
+        if (window.parent && typeof window.parent.setSidebarDesign === 'function') {
+          window.parent.setSidebarDesign(design);
+        }
+      } catch (e) {}
+    }
+
+    function applyTheme(theme) {
+      // Highlight card in studio
+      document.querySelectorAll('.theme-swatch-card').forEach(c => c.classList.remove('active'));
+      const card = document.getElementById(`swatch-${theme}`);
+      if (card) card.classList.add('active');
+
+      // 1. PostMessage first (guaranteed cross-origin & file:// safe)
+      try {
+        if (window.parent && window.parent !== window) {
+          window.parent.postMessage({ type: 'HIRERKEY_SET_SIDEBAR_THEME', theme: theme }, '*');
+        }
+      } catch (e) {}
+
+      // 2. Direct parent function call when same-origin allows
+      try {
+        if (window.parent && typeof window.parent.setSidebarTheme === 'function') {
+          window.parent.setSidebarTheme(theme);
+        }
+      } catch (e) {}
+    }
+
+    // Listen to messages from master shell
+    window.addEventListener('message', (e) => {
+      if (!e.data) return;
+      if (e.data.type === 'HIRERKEY_SET_VIEW' || e.data.action === 'switchView') {
+        let view = e.data.view || 'layouts';
+        if (['1', '2', '3', '4', '5', 'top-nav', 'slim-rail', 'full-sidebar', 'expandable-hover', 'flyout-drawer'].includes(view)) {
+          switchTab('layouts');
+          applyLayout(view);
+          return;
+        }
+        const tabMap = { 'layouts': 0, 'designs': 1, 'themes': 2 };
+        const tabs = document.querySelectorAll('.studio-nav-tab');
+        if (tabs[tabMap[view]]) {
+          tabs[tabMap[view]].click();
+        } else {
+          switchTab(view);
+        }
+      }
+      if (e.data.type === 'SYNC_STUDIO_STATE') {
+        if (e.data.layout) {
+          let lay = e.data.layout;
+          if (lay === '1') lay = 'top-nav';
+          else if (lay === '2') lay = 'slim-rail';
+          else if (lay === '3') lay = 'full-sidebar';
+          else if (lay === '4') lay = 'expandable-hover';
+          else if (lay === '5') lay = 'flyout-drawer';
+          const idMap = { 'top-nav': 'topnav', 'full-sidebar': 'full', 'slim-rail': 'slim', 'expandable-hover': 'hover', 'flyout-drawer': 'drawer' };
+          document.querySelectorAll('#pane-layouts .studio-card').forEach(c => c.classList.remove('active'));
+          const card = document.getElementById(`card-layout-${idMap[lay] || 'full'}`);
+          if (card) card.classList.add('active');
+        }
+        if (e.data.design) {
+          document.querySelectorAll('#pane-designs .studio-card').forEach(c => c.classList.remove('active'));
+          const card = document.getElementById(`card-design-${e.data.design}`);
+          if (card) card.classList.add('active');
+        }
+        if (e.data.theme) {
+          document.querySelectorAll('.theme-swatch-card').forEach(c => c.classList.remove('active'));
+          const card = document.getElementById(`swatch-${e.data.theme}`);
+          if (card) card.classList.add('active');
+        }
+      }
+    });
+
+    // Check URL hash on initial load
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '').trim();
+      if (hash && ['layouts', 'designs', 'themes'].includes(hash)) {
+        switchTab(hash);
+      }
+    });
+  </script>
+
+</body>
+</html>

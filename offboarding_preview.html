@@ -4,6 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hirerkey™ — Offboarding Management</title>
+  <script>
+    if (window.self !== window.top || location.search.indexOf('embedded') !== -1 || location.hash.indexOf('embedded') !== -1) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <style>
+    html.is-embedded aside.sidebar,
+    html.is-embedded header.topbar,
+    html.is-embedded .screen-switcher-bar {
+      display: none !important;
+    }
+    html.is-embedded body {
+      background: transparent !important;
+      display: block !important;
+    }
+    html.is-embedded .main-content,
+    html.is-embedded .page-container {
+      margin-left: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 16px 24px !important;
+    }
+  </style>
   
   <!-- Preconnect to Google Fonts for Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11061,6 +11084,18 @@ function saveExitForm() {
   showToast(`✓ Exit Interview Form saved with ${exitFormData.questions.length} questions!`);
   switchToScreen('list');
 }
+
+window.addEventListener('message', (e) => {
+  if (!e.data) return;
+  if (e.data.type === 'HIRERKEY_SET_VIEW' || e.data.action === 'switchView') {
+    const v = String(e.data.view || 'list');
+    if (v === '1' || v === 'list') switchToScreen('list');
+    else if (v === '2' || v === 'settings') switchToScreen('settings');
+    else if (v === '3' || v === 'user') switchToScreen('user');
+    else if (v === '4' || v === 'form') switchToScreen('form');
+    else switchToScreen(v);
+  }
+});
 </script>
 
 </body>

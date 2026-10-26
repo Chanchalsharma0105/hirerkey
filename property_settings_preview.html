@@ -4,6 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Property Settings — Hirerkey™ Dashboard</title>
+  <script>
+    if (window.self !== window.top || location.search.indexOf('embedded') !== -1 || location.hash.indexOf('embedded') !== -1) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <style>
+    html.is-embedded aside.dashboard-sidebar,
+    html.is-embedded header.dashboard-topbar,
+    html.is-embedded .screen-switcher-bar {
+      display: none !important;
+    }
+    html.is-embedded body {
+      background: transparent !important;
+      display: block !important;
+    }
+    html.is-embedded .page-content-wrapper {
+      margin-left: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 16px 24px !important;
+    }
+  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -5101,6 +5123,12 @@
     }
 
     function selectSettingMenu(menuId, silent = false) {
+      if (menuId === 'shift_schedule' || menuId === 'shift-roster' || menuId === 'attendance_policy') {
+        menuId = 'attendance';
+      }
+      if (menuId === 'org_hierarchy' || menuId === 'org-chart') {
+        menuId = 'departments';
+      }
       activeMenuId = menuId;
       const mod = MENU_MODULES.find(m => m.id === menuId);
       if (!mod) return;
@@ -5650,10 +5678,46 @@
       showToast(`Card preview oriented: ${mode}`);
     }
 
-    // Init
+    // Init & Cross-window view synchronizer
     window.addEventListener('DOMContentLoaded', () => {
-      switchMainScreenView(1);
-      selectSettingMenu('details');
+      let initialView = 1;
+      const vMatch = window.location.hash.match(/view[=-]?([1-5])/i) || window.location.search.match(/view=([1-5])/i);
+      if (vMatch) {
+        initialView = parseInt(vMatch[1], 10);
+      }
+      switchMainScreenView(initialView);
+
+      const rawHash = window.location.hash.replace('#', '').trim();
+      const menuCandidates = MENU_MODULES.map(m => m.id).concat(['shift_schedule', 'attendance_policy', 'org_hierarchy']);
+      if (rawHash && menuCandidates.includes(rawHash)) {
+        selectSettingMenu(rawHash, true);
+      } else {
+        selectSettingMenu('details', true);
+      }
+    });
+
+    window.addEventListener('hashchange', () => {
+      const vMatch = window.location.hash.match(/view[=-]?([1-5])/i);
+      if (vMatch) {
+        switchMainScreenView(parseInt(vMatch[1], 10));
+      }
+      const rawHash = window.location.hash.replace('#', '').trim();
+      const menuCandidates = MENU_MODULES.map(m => m.id).concat(['shift_schedule', 'attendance_policy', 'org_hierarchy']);
+      if (rawHash && menuCandidates.includes(rawHash)) {
+        selectSettingMenu(rawHash, true);
+      }
+    });
+
+    window.addEventListener('message', (e) => {
+      if (!e.data) return;
+      if (e.data.type === 'HIRERKEY_SET_VIEW' || e.data.action === 'switchView') {
+        const v = parseInt(e.data.view || e.data.screen || 1, 10);
+        if (!isNaN(v) && v >= 1 && v <= 5) {
+          switchMainScreenView(v);
+        } else if (e.data.view || e.data.menu) {
+          selectSettingMenu(e.data.view || e.data.menu);
+        }
+      }
     });
   </script>
 

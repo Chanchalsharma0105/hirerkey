@@ -4,6 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>hirerkey™ HyIQ Form AI Button — Joy UI + React Icons + Framer Motion</title>
+  <script>
+    if (window.self !== window.top || location.search.indexOf('embedded') !== -1 || location.hash.indexOf('embedded') !== -1) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <style>
+    html.is-embedded body {
+      background: transparent !important;
+    }
+  </style>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
@@ -1028,15 +1038,26 @@ export const HirerkeyAiButton = ({ onClick, loading = false, label = "Draft with
     }
 
     function switchTab(tabId) {
+      if (tabId === '1' || tabId === 'overview') tabId = 'button-studio';
+      else if (tabId === '2' || tabId === 'assistants') tabId = 'comparison';
+      else if (tabId === '3' || tabId === 'sandbox') tabId = 'sandbox';
+      else if (tabId === '4' || tabId === 'archetypes') tabId = 'archetypes';
+      else if (tabId === '5' || tabId === 'matrix') tabId = 'matrix';
+
+      const content = document.getElementById("content-" + tabId);
+      if (!content) return;
+
       document.querySelectorAll(".tab-content").forEach(el => el.classList.add("hidden"));
       document.querySelectorAll(".tab-btn").forEach(el => {
         el.classList.remove("text-purple-600", "border-purple-600", "active");
         el.classList.add("text-slate-600", "border-transparent");
       });
-      document.getElementById("content-" + tabId).classList.remove("hidden");
+      content.classList.remove("hidden");
       const btn = document.getElementById("tab-" + tabId);
-      btn.classList.add("text-purple-600", "border-purple-600", "active");
-      btn.classList.remove("text-slate-600", "border-transparent");
+      if (btn) {
+        btn.classList.add("text-purple-600", "border-purple-600", "active");
+        btn.classList.remove("text-slate-600", "border-transparent");
+      }
     }
 
     function showScenario(type) {
@@ -1294,6 +1315,24 @@ export const HirerkeyAiButton = ({ onClick, loading = false, label = "Draft with
 
     // Initialize with HiSparkles
     changeActiveIcon('HiSparkles');
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash.replace('#', '').replace('tab-', '');
+      if (hash) switchTab(hash);
+    });
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '').replace('tab-', '');
+      if (hash) switchTab(hash);
+    });
+
+    window.addEventListener('message', (e) => {
+      if (!e.data) return;
+      if (e.data.type === 'HIRERKEY_SET_VIEW' || e.data.action === 'switchView') {
+        const v = String(e.data.view || 'button-studio');
+        if (typeof switchTab === 'function') switchTab(v);
+      }
+    });
   </script>
 </body>
 </html>

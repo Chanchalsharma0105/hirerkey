@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hirerkey™ — Unified HRMS Platform (Selected Production Views)</title>
+  <title>Hirerkey™ — Unified Enterprise Prototype</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,6 +21,8 @@
       --text-muted: #64748B;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
+      --sidebar-width: 250px;
+      --rail-width: 64px;
     }
 
     * {
@@ -38,35 +40,59 @@
       overflow: hidden;
     }
 
-    /* Master Topbar */
-    .master-header {
-      height: 62px;
+    /* Master Shell */
+    .app-shell {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       SIDEBAR CONTAINER & BASE STYLING
+       ========================================================================== */
+    .app-sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
       background: #FFFFFF;
-      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1000;
+      transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s ease, box-shadow 0.22s ease;
+      user-select: none;
+    }
+
+    /* 1. Header with Brand */
+    .sidebar-header {
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
-      position: relative;
-      z-index: 1000;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+      padding: 0 14px;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-shrink: 0;
     }
 
-    .brand-section {
+    .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 7px;
+      text-decoration: none;
+      overflow: hidden;
+      white-space: nowrap;
     }
 
     .brand-wordmark {
-      display: inline-flex;
-      align-items: baseline;
       font-weight: 800;
-      font-size: 20px;
+      font-size: 18px;
       color: #0F172A;
       letter-spacing: -0.03em;
-      text-decoration: none;
-      user-select: none;
+      display: inline-flex;
+      align-items: baseline;
     }
     .brand-wordmark .logo-hirer { color: #0F172A; }
     .brand-wordmark .logo-key-wrap {
@@ -82,148 +108,1426 @@
       height: 8px;
     }
 
-    .version-tag {
-      font-size: 11px;
+    .brand-version-badge {
+      font-size: 9.5px;
       font-weight: 700;
       color: #7C3AED;
       background: #EDE9FE;
-      padding: 3px 8px;
-      border-radius: 6px;
-      letter-spacing: 0.04em;
+      padding: 2px 5px;
+      border-radius: 5px;
+      letter-spacing: 0.02em;
     }
 
-    /* Navigation Tabs */
-    .nav-tabs {
+    .sidebar-collapse-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: #64748B;
+      cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      justify-content: center;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+    .sidebar-collapse-btn:hover {
       background: #F1F5F9;
-      padding: 4px;
-      border-radius: 12px;
+      color: #0F172A;
+      border-color: #CBD5E1;
     }
 
-    .nav-tab-btn {
-      display: inline-flex;
+    /* 2. Quick Search */
+    .sidebar-search-area {
+      padding: 10px 12px 6px 12px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-search-pill {
+      display: flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 14px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
       border-radius: 8px;
-      font-size: 13px;
-      font-weight: 600;
-      color: #475569;
-      background: transparent;
+      padding: 6px 10px;
+      cursor: text;
+      transition: all 0.15s ease;
+    }
+    .sidebar-search-pill:hover,
+    .sidebar-search-pill:focus-within {
+      background: #FFFFFF;
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.08);
+    }
+    .sidebar-search-pill input {
       border: none;
+      background: transparent;
+      outline: none;
+      font-size: 12px;
+      color: var(--text-main);
+      width: 100%;
+      font-family: inherit;
+    }
+    .sidebar-search-pill input::placeholder {
+      color: #94A3B8;
+    }
+    .sidebar-kbd {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: #94A3B8;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    /* 3. Scrollable Navigation */
+    .sidebar-nav-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 6px 8px 16px 8px;
+      scrollbar-width: thin;
+      scrollbar-color: #CBD5E1 transparent;
+    }
+    .sidebar-nav-scroll::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sidebar-nav-scroll::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+
+    .nav-category {
+      margin-top: 12px;
+    }
+    .nav-category:first-child {
+      margin-top: 4px;
+    }
+
+    .nav-cat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px 4px 8px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       cursor: pointer;
-      transition: all 0.16s ease;
+      border-radius: 6px;
+    }
+    .nav-cat-header:hover {
+      color: #64748B;
+    }
+    .nav-cat-chevron {
+      font-size: 10px;
+      transition: transform 0.18s ease;
+    }
+    .nav-category.collapsed .nav-cat-chevron {
+      transform: rotate(-90deg);
+    }
+    .nav-category.collapsed .nav-cat-items {
+      display: none;
+    }
+
+    .nav-cat-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-top: 2px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #475569;
       text-decoration: none;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      position: relative;
+    }
+    .nav-item:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+    .nav-item.active {
+      background: #F5F3FF;
+      color: #7C3AED;
+      font-weight: 700;
+    }
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      bottom: 6px;
+      width: 3.5px;
+      border-radius: 0 4px 4px 0;
+      background: #7C3AED;
+    }
+
+    .nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .nav-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #64748B;
+      transition: color 0.14s ease;
+    }
+    .nav-item:hover .nav-icon {
+      color: #0F172A;
+    }
+    .nav-item.active .nav-icon {
+      color: #7C3AED;
+    }
+
+    .nav-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    .nav-tab-btn:hover {
-      color: #0F172A;
-      background: rgba(255, 255, 255, 0.6);
-    }
-
-    .nav-tab-btn.active {
-      background: #FFFFFF;
-      color: #7C3AED;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-    }
-
-    .nav-tab-btn .tab-badge {
+    .nav-badge-pill {
       font-size: 10px;
       font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       SIDEBAR SETTINGS SECTIONS:
+       1. Active Screen Views (Contextual Module Views)
+       2. Side Menu Layout Architecture (Expandable Rail, Full Sidebar, Slim Rail, etc.)
+       3. Side Menu Theme Colors
+       ========================================================================== */
+    .sidebar-config-section {
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .sidebar-config-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 9px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #7C3AED;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      transition: all 0.15s ease;
+    }
+    .sidebar-config-header:hover {
+      background: #EDE9FE;
+    }
+    .sidebar-config-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .sidebar-config-chevron {
+      font-size: 11px;
+      transition: transform 0.2s ease;
+      flex-shrink: 0;
+    }
+    .sidebar-config-section.collapsed .sidebar-config-chevron {
+      transform: rotate(-90deg);
+    }
+    .sidebar-config-section.collapsed .sidebar-config-body {
+      display: none;
+    }
+
+    .sidebar-config-body {
+      padding: 8px 4px 4px 4px;
+    }
+    .sidebar-config-desc {
+      font-size: 11px;
+      color: #64748B;
+      line-height: 1.35;
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
+
+    /* Cards for Layout and Views */
+    .config-cards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .config-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 9px;
+      border-radius: 7px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.14s ease;
+      position: relative;
+    }
+    .config-card:hover {
+      border-color: #CBD5E1;
+      transform: translateX(1px);
+      background: #F8FAFC;
+    }
+    .config-card.active {
+      border-color: #7C3AED;
+      background: #F5F3FF;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+    }
+
+    .config-card-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .config-card-icon {
+      font-size: 13px;
+      width: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .config-card-text {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .config-card-name {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #0F172A;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .config-card.active .config-card-name {
+      color: #7C3AED;
+    }
+    .config-card-desc {
+      font-size: 9.5px;
+      color: #64748B;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .config-card-check {
+      font-size: 12px;
+      font-weight: 800;
+      color: #7C3AED;
+      display: none;
+      flex-shrink: 0;
+    }
+    .config-card.active .config-card-check {
+      display: inline-block;
+    }
+
+    /* Style Swatches for Themes */
+    .style-swatch {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+    .swatch-white { background: #FFFFFF; border-color: #CBD5E1; }
+    .swatch-white .swatch-accent { width: 8px; height: 8px; border-radius: 2px; background: #7C3AED; }
+    .swatch-dark { background: #0F172A; }
+    .swatch-dark .swatch-accent { width: 8px; height: 8px; border-radius: 2px; background: #38BDF8; }
+    .swatch-purple { background: #7C3AED; }
+    .swatch-purple .swatch-accent { width: 8px; height: 8px; border-radius: 2px; background: #FFFFFF; }
+    .swatch-lavender { background: #EDE9FE; border-color: #C4B5FD; }
+    .swatch-lavender .swatch-accent { width: 8px; height: 8px; border-radius: 2px; background: #7C3AED; }
+    .swatch-gradient { background: linear-gradient(135deg, #1E1B4B, #7C3AED); }
+    .swatch-gradient .swatch-accent { width: 8px; height: 8px; border-radius: 2px; background: #C7D2FE; }
+
+    /* Footer Workspace & Profile */
+    .sidebar-footer {
+      padding: 10px 12px;
+      border-top: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+      position: relative;
+    }
+    .workspace-switcher {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      border-radius: 8px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .workspace-switcher:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+    }
+    .workspace-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .workspace-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: #7C3AED;
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 11px;
+    }
+    .workspace-text-group {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .workspace-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0F172A;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .workspace-subtitle {
+      font-size: 9.5px;
+      color: #64748B;
+    }
+
+    /* Popovers */
+    .workspace-popover {
+      display: none;
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 10px;
+      width: 232px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.18);
+      padding: 6px;
+      z-index: 1000;
+    }
+    .workspace-popover.open { display: block; }
+    .popover-header {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 8px 4px 8px;
+    }
+    .popover-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #334155;
+      cursor: pointer;
+      transition: background 0.12s ease;
+    }
+    .popover-option:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+    .popover-option.active {
       background: #EDE9FE;
       color: #7C3AED;
-      padding: 1px 6px;
-      border-radius: 4px;
-      letter-spacing: 0.02em;
+      font-weight: 700;
     }
-    .nav-tab-btn.active .tab-badge {
+    .popover-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 6px 4px;
+    }
+
+    /* ==========================================================================
+       SIDEBAR COLOR THEMES
+       ========================================================================== */
+    .app-sidebar.sidebar-white {
+      background: #FFFFFF;
+      border-right: 1px solid var(--border);
+    }
+
+    .app-sidebar.sidebar-dark {
+      background: #0F172A;
+      border-right: 1px solid #1E293B;
+      color: #94A3B8;
+    }
+    .app-sidebar.sidebar-dark .sidebar-header { border-bottom-color: #1E293B; }
+    .app-sidebar.sidebar-dark .brand-wordmark .logo-hirer { color: #FFFFFF; }
+    .app-sidebar.sidebar-dark .brand-wordmark .logo-key-wrap { color: #38BDF8; }
+    .app-sidebar.sidebar-dark .brand-version-badge { background: rgba(56, 189, 248, 0.18); color: #38BDF8; }
+    .app-sidebar.sidebar-dark .sidebar-collapse-btn { background: #1E293B; border-color: #334155; color: #94A3B8; }
+    .app-sidebar.sidebar-dark .sidebar-collapse-btn:hover { background: #334155; color: #FFFFFF; }
+    .app-sidebar.sidebar-dark .sidebar-search-pill { background: #1E293B; border-color: #334155; color: #FFFFFF; }
+    .app-sidebar.sidebar-dark .sidebar-search-pill input { color: #FFFFFF; }
+    .app-sidebar.sidebar-dark .sidebar-kbd { background: #0F172A; border-color: #334155; color: #94A3B8; }
+    .app-sidebar.sidebar-dark .nav-cat-header { color: #64748B; }
+    .app-sidebar.sidebar-dark .nav-item { color: #94A3B8; }
+    .app-sidebar.sidebar-dark .nav-item:hover { background: #1E293B; color: #F8FAFC; }
+    .app-sidebar.sidebar-dark .nav-item.active { background: rgba(56, 189, 248, 0.12); color: #38BDF8; }
+    .app-sidebar.sidebar-dark .nav-item.active::before { background: #38BDF8; }
+    .app-sidebar.sidebar-dark .nav-item.active .nav-icon { color: #38BDF8; }
+    .app-sidebar.sidebar-dark .sidebar-config-section { border-top-color: #1E293B; }
+    .app-sidebar.sidebar-dark .sidebar-config-header { background: #1E293B; border-color: #334155; color: #38BDF8; }
+    .app-sidebar.sidebar-dark .config-card { background: #1E293B; border-color: #334155; }
+    .app-sidebar.sidebar-dark .config-card .config-card-name { color: #F8FAFC; }
+    .app-sidebar.sidebar-dark .config-card.active { border-color: #38BDF8; background: rgba(56, 189, 248, 0.12); }
+    .app-sidebar.sidebar-dark .config-card.active .config-card-name,
+    .app-sidebar.sidebar-dark .config-card.active .config-card-check { color: #38BDF8; }
+    .app-sidebar.sidebar-dark .sidebar-footer { border-top-color: #1E293B; }
+    .app-sidebar.sidebar-dark .workspace-switcher { background: #1E293B; border-color: #334155; }
+    .app-sidebar.sidebar-dark .workspace-title { color: #FFFFFF; }
+    .app-sidebar.sidebar-dark .workspace-subtitle { color: #64748B; }
+
+    .app-sidebar.sidebar-purple {
+      background: #7C3AED;
+      border-right: 1px solid #6D28D9;
+      color: #E9D5FF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-header { border-bottom-color: #6D28D9; }
+    .app-sidebar.sidebar-purple .brand-wordmark .logo-hirer,
+    .app-sidebar.sidebar-purple .brand-wordmark .logo-key-wrap { color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .brand-version-badge { background: rgba(255, 255, 255, 0.2); color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .sidebar-collapse-btn { background: #6D28D9; border-color: #5B21B6; color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .sidebar-search-pill { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.25); }
+    .app-sidebar.sidebar-purple .sidebar-search-pill input { color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .sidebar-search-pill input::placeholder { color: #DDD6FE; }
+    .app-sidebar.sidebar-purple .sidebar-kbd { background: #6D28D9; border-color: rgba(255,255,255,0.3); color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .nav-cat-header { color: #DDD6FE; }
+    .app-sidebar.sidebar-purple .nav-item { color: #EDE9FE; }
+    .app-sidebar.sidebar-purple .nav-item:hover { background: rgba(255, 255, 255, 0.15); color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .nav-item.active { background: #FFFFFF; color: #7C3AED; }
+    .app-sidebar.sidebar-purple .nav-item.active .nav-icon { color: #7C3AED; }
+    .app-sidebar.sidebar-purple .nav-item.active::before { display: none; }
+    .app-sidebar.sidebar-purple .sidebar-config-section { border-top-color: #6D28D9; }
+    .app-sidebar.sidebar-purple .sidebar-config-header { background: rgba(255, 255, 255, 0.18); border-color: rgba(255, 255, 255, 0.3); color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .sidebar-config-desc { color: #DDD6FE; }
+    .app-sidebar.sidebar-purple .config-card { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.25); }
+    .app-sidebar.sidebar-purple .config-card .config-card-name { color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .config-card .config-card-desc { color: #DDD6FE; }
+    .app-sidebar.sidebar-purple .config-card.active { background: #FFFFFF; border-color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .config-card.active .config-card-name,
+    .app-sidebar.sidebar-purple .config-card.active .config-card-check { color: #7C3AED; }
+    .app-sidebar.sidebar-purple .sidebar-footer { border-top-color: #6D28D9; }
+    .app-sidebar.sidebar-purple .workspace-switcher { background: rgba(255, 255, 255, 0.15); border-color: rgba(255, 255, 255, 0.25); }
+    .app-sidebar.sidebar-purple .workspace-title { color: #FFFFFF; }
+    .app-sidebar.sidebar-purple .workspace-subtitle { color: #DDD6FE; }
+
+    .app-sidebar.sidebar-lavender {
+      background: #F5F3FF;
+      border-right: 1px solid #DDD6FE;
+    }
+    .app-sidebar.sidebar-lavender .sidebar-header { border-bottom-color: #DDD6FE; }
+    .app-sidebar.sidebar-lavender .nav-cat-header { color: #7C3AED; }
+    .app-sidebar.sidebar-lavender .nav-item { color: #5B21B6; }
+    .app-sidebar.sidebar-lavender .nav-item:hover { background: #EDE9FE; color: #4C1D95; }
+    .app-sidebar.sidebar-lavender .nav-item.active { background: #7C3AED; color: #FFFFFF; }
+    .app-sidebar.sidebar-lavender .nav-item.active .nav-icon { color: #FFFFFF; }
+    .app-sidebar.sidebar-lavender .sidebar-config-section { border-top-color: #DDD6FE; }
+    .app-sidebar.sidebar-lavender .sidebar-config-header { background: #EDE9FE; border-color: #C4B5FD; color: #6D28D9; }
+
+    .app-sidebar.sidebar-gradient {
+      background: linear-gradient(180deg, #1E1B4B 0%, #312E81 50%, #4C1D95 100%);
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      color: #E0E7FF;
+    }
+    .app-sidebar.sidebar-gradient .sidebar-header { border-bottom-color: rgba(255, 255, 255, 0.12); }
+    .app-sidebar.sidebar-gradient .brand-wordmark .logo-hirer { color: #FFFFFF; }
+    .app-sidebar.sidebar-gradient .brand-wordmark .logo-key-wrap { color: #C7D2FE; }
+    .app-sidebar.sidebar-gradient .brand-version-badge { background: rgba(255, 255, 255, 0.18); color: #E0E7FF; }
+    .app-sidebar.sidebar-gradient .sidebar-collapse-btn { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.2); color: #E0E7FF; }
+    .app-sidebar.sidebar-gradient .sidebar-search-pill { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.2); }
+    .app-sidebar.sidebar-gradient .sidebar-search-pill input { color: #FFFFFF; }
+    .app-sidebar.sidebar-gradient .nav-cat-header { color: #A5B4FC; }
+    .app-sidebar.sidebar-gradient .nav-item { color: #E0E7FF; }
+    .app-sidebar.sidebar-gradient .nav-item:hover { background: rgba(255, 255, 255, 0.14); color: #FFFFFF; }
+    .app-sidebar.sidebar-gradient .nav-item.active { background: linear-gradient(90deg, #8B5CF6, #6366F1); color: #FFFFFF; }
+    .app-sidebar.sidebar-gradient .nav-item.active .nav-icon { color: #FFFFFF; }
+    .app-sidebar.sidebar-gradient .sidebar-config-section { border-top-color: rgba(255, 255, 255, 0.12); }
+    .app-sidebar.sidebar-gradient .sidebar-config-header { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.22); color: #FFFFFF; }
+    .app-sidebar.sidebar-gradient .config-card { background: rgba(255, 255, 255, 0.12); border-color: rgba(255, 255, 255, 0.2); }
+    .app-sidebar.sidebar-gradient .config-card .config-card-name { color: #FFFFFF; }
+    .app-sidebar.sidebar-gradient .config-card .config-card-desc { color: #C7D2FE; }
+    .app-sidebar.sidebar-gradient .config-card.active { background: #FFFFFF; border-color: #FFFFFF; }
+    .app-sidebar.sidebar-gradient .config-card.active .config-card-name,
+    .app-sidebar.sidebar-gradient .config-card.active .config-card-check { color: #4C1D95; }
+    .app-sidebar.sidebar-gradient .sidebar-footer { border-top-color: rgba(255, 255, 255, 0.12); }
+    .app-sidebar.sidebar-gradient .workspace-switcher { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.18); }
+    .app-sidebar.sidebar-gradient .workspace-title { color: #FFFFFF; }
+
+    /* ==========================================================================
+       AUTHENTIC HIRERKEY PERSISTENT SIDEBAR
+       ========================================================================== */
+    .app-sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      background: #FFFFFF;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 100;
+      transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
+    }
+
+    /* Collapsed Rail State (toggled via collapse button [<]) */
+    .app-sidebar.sidebar-collapsed {
+      width: var(--rail-width);
+    }
+    .app-sidebar.sidebar-collapsed .nav-label,
+    .app-sidebar.sidebar-collapsed .nav-badge-pill,
+    .app-sidebar.sidebar-collapsed .brand-wordmark,
+    .app-sidebar.sidebar-collapsed .brand-version-badge,
+    .app-sidebar.sidebar-collapsed .sidebar-search-area,
+    .app-sidebar.sidebar-collapsed .cat-title,
+    .app-sidebar.sidebar-collapsed .nav-cat-chevron,
+    .app-sidebar.sidebar-collapsed .sidebar-active-screen-panel,
+    .app-sidebar.sidebar-collapsed .workspace-text-group,
+    .app-sidebar.sidebar-collapsed .workspace-unfold-icon,
+    .app-sidebar.sidebar-collapsed .nav-subviews-container {
+      display: none !important;
+    }
+    .app-sidebar.sidebar-collapsed .nav-item,
+    .app-sidebar.sidebar-collapsed .sidebar-header,
+    .app-sidebar.sidebar-collapsed .workspace-switcher {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    /* ==========================================================================
+       COMPACT ACTIVE SCREEN INDICATOR (replaces old large panel)
+       ========================================================================== */
+    .sidebar-current-screen {
+      margin: 0 10px 6px 10px;
+      padding: 6px 8px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .current-screen-info {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      overflow: hidden;
+      flex: 1;
+    }
+    .current-screen-icon {
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .current-screen-text {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .current-screen-name {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0F172A;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .current-screen-view {
+      font-size: 10px;
+      color: #7C3AED;
+      font-weight: 600;
+    }
+    .current-screen-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+    .screen-nav-btn {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: #475569;
+      font-size: 15px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.12s ease;
+      padding: 0;
+    }
+    .screen-nav-btn:hover {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+    }
+
+    /* Inline subviews nested under active nav tree item */
+    .nav-subviews-container {
+      margin: 3px 0 6px 20px;
+      padding-left: 10px;
+      border-left: 2px solid #E2E8F0;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-subview-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      color: #475569;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .nav-subview-pill:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .nav-subview-pill.active {
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       SIDEBAR LAYOUT & THEME CONTROLS IN SIDEBAR
+       ========================================================================== */
+    .sidebar-controls-section {
+      padding: 6px 10px 8px 10px;
+      border-top: 1px solid var(--border-subtle);
+      background: #FAFAFA;
+      flex-shrink: 0;
+    }
+
+    .sidebar-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-controls-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+    }
+
+    .sidebar-layout-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3px;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-layout-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 2px;
+      border-radius: 6px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: #475569;
+      cursor: pointer;
+      font-size: 9.5px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      gap: 2px;
+    }
+
+    .sidebar-layout-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    .sidebar-layout-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+    }
+
+    .sidebar-layout-btn .layout-btn-icon {
+      font-size: 11px;
+    }
+
+    /* Sidebar Design Grid & Buttons (Classic, Floating Donezo, Rounded, Minimal) */
+    .sidebar-design-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-design-btn {
+      padding: 3.5px 2px;
+      border-radius: 5px;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: #475569;
+      cursor: pointer;
+      font-size: 9px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .sidebar-design-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+      border-color: #CBD5E1;
+    }
+
+    .sidebar-design-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+    }
+
+    /* Sidebar Design Styles */
+    .app-sidebar.sidebar-design-classic {
+      border-radius: 0;
+      margin: 0;
+      height: 100vh;
+      border-right: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .app-sidebar.sidebar-design-floating {
+      margin: 10px 0 10px 10px !important;
+      height: calc(100vh - 20px) !important;
+      border-radius: 16px !important;
+      border: 1px solid rgba(203, 213, 225, 0.8) !important;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04) !important;
+      overflow: hidden !important;
+    }
+
+    .app-shell.sidebar-floating-active {
+      background: #F1F5F9;
+    }
+    .app-shell.sidebar-floating-active .app-main-viewport {
+      background: transparent;
+      padding: 10px 10px 10px 0;
+    }
+    .app-shell.sidebar-floating-active .app-main-viewport iframe {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+    }
+
+    .app-sidebar.sidebar-design-rounded {
+      border-radius: 0;
+      margin: 0;
+      height: 100vh;
+      border-right: 1px solid var(--border);
+    }
+    .app-sidebar.sidebar-design-rounded .nav-item {
+      border-radius: 18px !important;
+      margin: 2px 8px !important;
+    }
+    .app-sidebar.sidebar-design-rounded .sidebar-search-pill {
+      border-radius: 20px !important;
+    }
+    .app-sidebar.sidebar-design-rounded .sidebar-current-screen {
+      border-radius: 12px !important;
+    }
+
+    .app-sidebar.sidebar-design-minimal {
+      border-radius: 0;
+      margin: 0;
+      height: 100vh;
+      border-right: 1px solid transparent !important;
+      background: #FAFAFA !important;
+    }
+    .app-sidebar.sidebar-design-minimal .sidebar-controls-section {
+      background: #F4F4F5 !important;
+    }
+    .app-sidebar.sidebar-design-minimal .sidebar-search-pill {
+      background: #FFFFFF !important;
+      border: 1px solid #E4E4E7 !important;
+    }
+
+    .sidebar-theme-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .theme-chip-btn {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid transparent;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-block;
+    }
+
+    .theme-chip-btn:hover {
+      transform: scale(1.15);
+    }
+
+    .theme-chip-btn.active {
+      box-shadow: 0 0 0 2px #7C3AED;
+    }
+
+    /* THEME OVERRIDES FOR SIDEBAR */
+    .app-sidebar.sidebar-dark {
+      background: #061229;
+      border-right-color: #1E293B;
+      color: #E2E8F0;
+    }
+    .app-sidebar.sidebar-dark .sidebar-header {
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+    .app-sidebar.sidebar-dark .brand-wordmark .logo-hirer {
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-dark .sidebar-collapse-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #CBD5E1;
+    }
+    .app-sidebar.sidebar-dark .sidebar-search-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-dark .sidebar-search-pill input {
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-dark .sidebar-search-pill input::placeholder {
+      color: #64748B;
+    }
+    .app-sidebar.sidebar-dark .sidebar-current-screen {
+      background: #0B192C;
+      border-color: #1E293B;
+    }
+    .app-sidebar.sidebar-dark .current-screen-name {
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-dark .screen-nav-btn {
+      background: #0F172A;
+      border-color: #1E293B;
+      color: #94A3B8;
+    }
+    .app-sidebar.sidebar-dark .screen-nav-btn:hover {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+    }
+    .app-sidebar.sidebar-dark .sidebar-design-btn {
+      background: #0F172A;
+      border-color: #1E293B;
+      color: #94A3B8;
+    }
+    .app-sidebar.sidebar-dark .sidebar-design-btn:hover {
+      background: #1E293B;
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-dark .sidebar-design-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+    }
+    .app-sidebar.sidebar-dark .nav-item {
+      color: #94A3B8;
+    }
+    .app-sidebar.sidebar-dark .nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-dark .nav-item.active {
       background: #7C3AED;
       color: #FFFFFF;
     }
+    .app-sidebar.sidebar-dark .sidebar-controls-section {
+      background: #040D1D;
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+    .app-sidebar.sidebar-dark .sidebar-layout-btn {
+      background: #0F172A;
+      border-color: #1E293B;
+      color: #94A3B8;
+    }
+    .app-sidebar.sidebar-dark .sidebar-layout-btn:hover {
+      background: #1E293B;
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-dark .sidebar-layout-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #7C3AED;
+    }
+    .app-sidebar.sidebar-dark .sidebar-footer {
+      border-top-color: rgba(255, 255, 255, 0.08);
+    }
+    .app-sidebar.sidebar-dark .workspace-switcher {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    .app-sidebar.sidebar-dark .workspace-title {
+      color: #FFFFFF;
+    }
 
-    /* Right Actions */
-    .header-actions {
+    /* THEME: PURPLE */
+    .app-sidebar.sidebar-purple {
+      background: #1E1B4B;
+      border-right-color: #312E81;
+      color: #E0E7FF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-header {
+      border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+    .app-sidebar.sidebar-purple .brand-wordmark .logo-hirer {
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-collapse-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-search-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-search-pill input {
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-current-screen {
+      background: #2E1065;
+      border-color: #4C1D95;
+    }
+    .app-sidebar.sidebar-purple .current-screen-name {
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .screen-nav-btn {
+      background: #3B0764;
+      border-color: #581C87;
+      color: #DDD6FE;
+    }
+    .app-sidebar.sidebar-purple .screen-nav-btn:hover {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #A78BFA;
+    }
+    .app-sidebar.sidebar-purple .sidebar-design-btn {
+      background: #2E1065;
+      border-color: #4C1D95;
+      color: #DDD6FE;
+    }
+    .app-sidebar.sidebar-purple .sidebar-design-btn:hover {
+      background: #3B0764;
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-design-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #A78BFA;
+    }
+    .app-sidebar.sidebar-purple .nav-item {
+      color: #C4B5FD;
+    }
+    .app-sidebar.sidebar-purple .nav-item:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .nav-item.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-controls-section {
+      background: #17133D;
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+    .app-sidebar.sidebar-purple .sidebar-layout-btn {
+      background: #2E1065;
+      border-color: #4C1D95;
+      color: #DDD6FE;
+    }
+    .app-sidebar.sidebar-purple .sidebar-layout-btn:hover {
+      background: #3B0764;
+      color: #FFFFFF;
+    }
+    .app-sidebar.sidebar-purple .sidebar-layout-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      border-color: #A78BFA;
+    }
+
+    /* ==========================================================================
+       SIDEBAR LAYOUT MODES & VIEWPORT ALIGNMENT
+       ========================================================================== */
+
+    /* 1. Full Sidebar Layout (Default 250px) */
+    .app-shell.layout-full-sidebar .app-sidebar,
+    .app-sidebar:not(.layout-slim-rail):not(.layout-expandable-hover):not(.layout-flyout-drawer) {
+      width: 250px;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .app-shell.layout-full-sidebar .app-main-viewport,
+    .app-shell:not(.layout-slim-rail):not(.layout-expandable-hover):not(.layout-flyout-drawer) .app-main-viewport {
+      margin-left: 0 !important;
+      width: calc(100vw - 250px);
+      flex: 1 1 calc(100vw - 250px);
+    }
+
+    /* 2. Slim Rail Layout (Persistent 64px Compact Rail) */
+    .app-shell.layout-slim-rail .app-sidebar,
+    .app-sidebar.layout-slim-rail {
+      width: 64px !important;
+      min-width: 64px !important;
+      max-width: 64px !important;
+      position: relative !important;
+      flex-shrink: 0 !important;
+    }
+    .app-shell.layout-slim-rail .app-main-viewport {
+      margin-left: 0 !important;
+      width: calc(100vw - 64px) !important;
+      flex: 1 1 calc(100vw - 64px) !important;
+    }
+    .app-sidebar.layout-slim-rail .nav-label,
+    .app-sidebar.layout-slim-rail .nav-badge-pill,
+    .app-sidebar.layout-slim-rail .brand-wordmark,
+    .app-sidebar.layout-slim-rail .brand-version-badge,
+    .app-sidebar.layout-slim-rail .sidebar-search-area,
+    .app-sidebar.layout-slim-rail .cat-title,
+    .app-sidebar.layout-slim-rail .nav-cat-chevron,
+    .app-sidebar.layout-slim-rail .sidebar-active-screen-panel,
+    .app-sidebar.layout-slim-rail .sidebar-current-screen,
+    .app-sidebar.layout-slim-rail .sidebar-controls-section,
+    .app-sidebar.layout-slim-rail .workspace-text-group,
+    .app-sidebar.layout-slim-rail .workspace-unfold-icon,
+    .app-sidebar.layout-slim-rail .nav-subviews-container {
+      display: none !important;
+    }
+    .app-sidebar.layout-slim-rail .nav-item,
+    .app-sidebar.layout-slim-rail .sidebar-header,
+    .app-sidebar.layout-slim-rail .workspace-switcher {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    /* 3. Expandable Hover Rail Layout (64px Resting Rail that expands to 250px on hover) */
+    .app-shell.layout-expandable-hover .app-sidebar,
+    .app-sidebar.layout-expandable-hover {
+      width: 64px;
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      z-index: 1000 !important;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.06);
+      transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease;
+      overflow: hidden;
+    }
+    /* CRITICAL FIX: Viewport MUST have 64px left margin in hover mode so content is NEVER behind the 64px rail */
+    .app-shell.layout-expandable-hover .app-main-viewport {
+      margin-left: 64px !important;
+      width: calc(100vw - 64px) !important;
+      flex: 1 1 calc(100vw - 64px) !important;
+    }
+    .app-sidebar.layout-expandable-hover:not(:hover) .nav-label,
+    .app-sidebar.layout-expandable-hover:not(:hover) .nav-badge-pill,
+    .app-sidebar.layout-expandable-hover:not(:hover) .brand-wordmark,
+    .app-sidebar.layout-expandable-hover:not(:hover) .brand-version-badge,
+    .app-sidebar.layout-expandable-hover:not(:hover) .sidebar-search-area,
+    .app-sidebar.layout-expandable-hover:not(:hover) .cat-title,
+    .app-sidebar.layout-expandable-hover:not(:hover) .nav-cat-chevron,
+    .app-sidebar.layout-expandable-hover:not(:hover) .sidebar-active-screen-panel,
+    .app-sidebar.layout-expandable-hover:not(:hover) .sidebar-current-screen,
+    .app-sidebar.layout-expandable-hover:not(:hover) .sidebar-controls-section,
+    .app-sidebar.layout-expandable-hover:not(:hover) .workspace-text-group,
+    .app-sidebar.layout-expandable-hover:not(:hover) .workspace-unfold-icon,
+    .app-sidebar.layout-expandable-hover:not(:hover) .nav-subviews-container {
+      display: none !important;
+    }
+    .app-sidebar.layout-expandable-hover:not(:hover) .nav-item,
+    .app-sidebar.layout-expandable-hover:not(:hover) .sidebar-header,
+    .app-sidebar.layout-expandable-hover:not(:hover) .workspace-switcher {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    .app-sidebar.layout-expandable-hover:hover {
+      width: 250px !important;
+      box-shadow: 12px 0 32px rgba(0,0,0,0.22) !important;
+    }
+
+    /* 4. Flyout Drawer Layout */
+    .app-shell.layout-flyout-drawer .app-sidebar,
+    .app-sidebar.layout-flyout-drawer {
+      position: absolute !important;
+      left: 0 !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      z-index: 1000 !important;
+      width: 250px !important;
+      transform: translateX(-100%);
+      box-shadow: 12px 0 32px rgba(0,0,0,0.22);
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .app-sidebar.layout-flyout-drawer.drawer-open {
+      transform: translateX(0) !important;
+    }
+    .app-shell.layout-flyout-drawer .app-main-viewport {
+      margin-left: 0 !important;
+      width: 100vw !important;
+      flex: 1 1 100vw !important;
+    }
+    .drawer-trigger-tab {
+      position: fixed;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #7C3AED;
+      color: #FFF;
+      padding: 10px 8px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      z-index: 998;
+      box-shadow: 2px 2px 10px rgba(124, 58, 237, 0.35);
+      display: none;
+      align-items: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .app-sidebar.layout-flyout-drawer ~ .drawer-trigger-tab {
+      display: flex;
+    }
+    .app-sidebar.layout-flyout-drawer.drawer-open ~ .drawer-trigger-tab {
+      display: none !important;
+    }
+
+    /* 5. View 1: Top Navigation / Chip Dropdown Layout (Full Canvas) */
+    .app-shell.layout-top-nav {
+      flex-direction: column !important;
+    }
+    .app-shell.layout-top-nav .app-sidebar,
+    .app-shell.layout-top-nav .drawer-trigger-tab {
+      display: none !important;
+    }
+    .app-shell.layout-top-nav .master-topbar {
+      display: flex !important;
+    }
+    .app-shell.layout-top-nav .app-main-viewport {
+      margin-left: 0 !important;
+      width: 100vw !important;
+      height: calc(100vh - 54px) !important;
+      flex: 1 1 100vw !important;
+    }
+
+    /* Master Topbar (Shown in View 1 / layout-top-nav) */
+    .master-topbar {
+      display: none;
+      height: 54px;
+      width: 100vw;
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      padding: 0 20px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      z-index: 999;
+      position: relative;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .topbar-nav-chip-wrap {
+      position: relative;
+    }
+    .topbar-nav-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      color: #7C3AED;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.16s ease;
+      box-shadow: 0 1px 2px rgba(124, 58, 237, 0.08);
+    }
+    .topbar-nav-chip:hover {
+      background: #EDE9FE;
+      border-color: #C4B5FD;
+      box-shadow: 0 3px 8px rgba(124, 58, 237, 0.15);
+    }
+    .topbar-nav-chip .chip-chevron {
+      font-size: 10px;
+      transition: transform 0.2s ease;
+    }
+    .topbar-nav-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 320px;
+      max-height: 480px;
+      overflow-y: auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+      padding: 8px;
+      display: none;
+      z-index: 10000;
+      animation: tooltipPop 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .topbar-nav-dropdown.open {
+      display: block;
+    }
+    .topbar-dropdown-category {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #94A3B8;
+      padding: 8px 10px 4px;
+    }
+    .topbar-dropdown-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.12s ease;
+    }
+    .topbar-dropdown-item:hover {
+      background: #F8FAFC;
+      color: #0F172A;
+    }
+    .topbar-dropdown-item.active {
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-weight: 700;
+    }
+    .topbar-center {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .topbar-layout-pill {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .topbar-layout-pill:hover {
+      background: #E2E8F0;
+      color: #0F172A;
+    }
+    .topbar-layout-pill.active {
+      background: #7C3AED;
+      border-color: #7C3AED;
+      color: #FFFFFF;
+    }
+    .topbar-right {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .btn-view-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 12px;
-      border-radius: 8px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #475569;
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .btn-view-toggle:hover {
-      border-color: #CBD5E1;
-      color: #0F172A;
-    }
-    .btn-view-toggle.active {
-      background: #EDE9FE;
-      border-color: #DDD6FE;
-      color: #7C3AED;
-    }
-
-    .btn-open-standalone {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 7px 12px;
-      border-radius: 8px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: #7C3AED;
-      background: #F5F3FF;
-      border: 1px solid #DDD6FE;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-    .btn-open-standalone:hover {
-      background: #EDE9FE;
-    }
-
-    .org-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 12px;
-      border-radius: 8px;
-      background: #F8FAFC;
-      border: 1px solid var(--border);
-      font-size: 12px;
-      font-weight: 600;
-      color: #334155;
-    }
-    .org-emblem {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #7C3AED;
-      color: #FFFFFF;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      font-weight: 800;
-    }
-
-    /* Main View Container */
-    .main-viewport {
-      width: 100%;
-      height: calc(100vh - 62px);
+    /* ==========================================================================
+       MAIN CONTENT VIEWPORT (100vh)
+       ========================================================================== */
+    .app-main-viewport {
+      flex: 1;
+      height: 100vh;
+      min-width: 0;
       position: relative;
+      background: #FFFFFF;
+      overflow: hidden;
+      transition: margin-left 0.2s cubic-bezier(0.16, 1, 0.3, 1), width 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .view-frame {
@@ -234,559 +1538,2350 @@
       background: #FFFFFF;
     }
 
-    /* Grid Directory Showcase Mode */
-    .grid-showcase {
+    /* Floating Tooltip for Collapsed Sidebar */
+    .sidebar-floating-tooltip {
+      position: fixed;
       display: none;
-      width: 100%;
-      height: 100%;
-      overflow-y: auto;
-      padding: 36px 40px;
-      background: #F8FAFC;
+      transform: translateY(-50%);
+      background: #0F172A;
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 6px 11px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.35);
+      z-index: 99999;
+      animation: tooltipPop 0.12s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .grid-showcase.active {
-      display: block;
+    @keyframes tooltipPop {
+      from { opacity: 0; transform: translateY(-50%) translateX(-4px); }
+      to { opacity: 1; transform: translateY(-50%) translateX(0); }
     }
 
-    .showcase-header {
-      max-width: 1200px;
-      margin: 0 auto 28px auto;
+    /* Toast Notification */
+    .app-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 600;
+      box-shadow: 0 14px 34px -4px rgba(15, 23, 42, 0.28);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      animation: toastSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .showcase-title {
-      font-size: 26px;
+    .app-toast.show { display: flex; }
+    @keyframes toastSlide {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: #FFFFFF;
+      border-radius: 14px;
+      width: 520px;
+      max-width: 90vw;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 40px -8px rgba(15, 23, 42, 0.25);
+      padding: 24px;
+    }
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .modal-title {
+      font-size: 17px;
       font-weight: 800;
       color: #0F172A;
-      margin-bottom: 6px;
-      letter-spacing: -0.02em;
     }
-    .showcase-desc {
-      font-size: 14px;
-      color: #64748B;
-      line-height: 1.5;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 24px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .view-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
-      position: relative;
-    }
-    .view-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px -6px rgba(15, 23, 42, 0.09);
-      border-color: #CBD5E1;
-    }
-
-    .card-top {
-      margin-bottom: 20px;
-    }
-    .card-badge-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-    .card-selection-pill {
-      font-size: 11px;
-      font-weight: 700;
-      color: #7C3AED;
-      background: #EDE9FE;
-      padding: 3px 9px;
+    .modal-close-btn {
+      width: 28px;
+      height: 28px;
       border-radius: 6px;
-      letter-spacing: 0.04em;
-    }
-    .card-icon-box {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: #F5F3FF;
-      color: #7C3AED;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: #64748B;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
-    }
-    .card-title {
-      font-size: 18px;
       font-weight: 700;
-      color: #0F172A;
-      margin-bottom: 8px;
-    }
-    .card-desc {
-      font-size: 13.5px;
-      color: #64748B;
-      line-height: 1.5;
     }
 
-    .card-features {
-      list-style: none;
-      margin: 14px 0 0 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .card-features li {
-      font-size: 12px;
-      color: #475569;
+    /* Sidebar Quick Action Bar (Under Search) */
+    .sidebar-quick-bar {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 5px;
+      padding: 4px 12px 10px 12px;
+      flex-shrink: 0;
+      border-bottom: 1px solid var(--border-subtle);
     }
-    .card-features li::before {
-      content: "✓";
-      color: #10B981;
-      font-weight: 800;
+    .app-shell.layout-expandable-hover .app-sidebar:not(:hover) .sidebar-quick-bar,
+    .app-shell.layout-slim-rail .app-sidebar .sidebar-quick-bar {
+      display: none !important;
     }
-
-    .card-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-subtle);
-    }
-    .btn-launch-viewer {
+    .quick-pill {
       flex: 1;
-      padding: 9px 14px;
-      border-radius: 8px;
-      background: #7C3AED;
-      color: #FFFFFF;
-      font-size: 12.5px;
-      font-weight: 600;
-      text-align: center;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background 0.15s ease;
-    }
-    .btn-launch-viewer:hover {
-      background: #6D28D9;
-    }
-    .btn-card-standalone {
-      padding: 9px 12px;
-      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 5px 6px;
+      border-radius: 6px;
       background: #F8FAFC;
       border: 1px solid var(--border);
-      color: #475569;
-      font-size: 12.5px;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
+      color: #334155;
+      font-size: 10.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .quick-pill:hover {
+      background: #EDE9FE;
+      border-color: #DDD6FE;
+      color: #7C3AED;
+      transform: translateY(-1px);
+    }
+
+    /* Customize Prototype Button in Footer */
+    .sidebar-customize-btn {
+      width: 100%;
+      display: flex;
       align-items: center;
-      gap: 4px;
+      justify-content: space-between;
+      gap: 6px;
+      padding: 7px 10px;
+      margin-bottom: 8px;
+      border-radius: 8px;
+      background: #F5F3FF;
+      border: 1px solid #DDD6FE;
+      color: #7C3AED;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
     }
-    .btn-card-standalone:hover {
+    .sidebar-customize-btn:hover {
+      background: #EDE9FE;
+      border-color: #7C3AED;
+      box-shadow: 0 3px 8px rgba(124, 58, 237, 0.16);
+    }
+    .sidebar-customize-btn .btn-badge {
+      font-size: 9px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: #7C3AED;
+      color: #FFFFFF;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .app-shell.layout-expandable-hover .app-sidebar:not(:hover) .sidebar-customize-btn .btn-text,
+    .app-shell.layout-expandable-hover .app-sidebar:not(:hover) .sidebar-customize-btn .btn-badge,
+    .app-shell.layout-slim-rail .app-sidebar .sidebar-customize-btn .btn-text,
+    .app-shell.layout-slim-rail .app-sidebar .sidebar-customize-btn .btn-badge {
+      display: none !important;
+    }
+    .app-shell.layout-expandable-hover .app-sidebar:not(:hover) .sidebar-customize-btn,
+    .app-shell.layout-slim-rail .app-sidebar .sidebar-customize-btn {
+      justify-content: center !important;
+      padding: 7px 0 !important;
+    }
+
+    /* Prototype Settings Modal Tabs */
+    .proto-tabs {
+      display: flex;
+      gap: 6px;
+      padding: 4px;
       background: #F1F5F9;
-      color: #0F172A;
+      border-radius: 8px;
+      margin-bottom: 16px;
     }
+    .proto-tab-btn {
+      flex: 1;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .proto-tab-btn.active {
+      background: #FFFFFF;
+      color: #7C3AED;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .proto-tab-pane {
+      display: none;
+    }
+    .proto-tab-pane.active {
+      display: block;
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- Top Master App Bar -->
-  <header class="master-header">
-    <div class="brand-section">
-      <a href="javascript:void(0)" onclick="loadView('dashboard')" class="brand-wordmark" title="Hirerkey Enterprise">
-        <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
-      </a>
-      <span class="version-tag">SELECTED VIEWS</span>
-    </div>
+  <!-- Master Application Shell -->
+  <div class="app-shell layout-full-sidebar" id="appShell">
 
-    <!-- Navigation Tabs -->
-    <nav class="nav-tabs" aria-label="Selected Production Views">
-      <button class="nav-tab-btn active" id="tab-dashboard" onclick="loadView('dashboard')">
-        <span>📊 Dashboard</span>
-        <span class="tab-badge">View 2</span>
-      </button>
-      <button class="nav-tab-btn" id="tab-property-settings" onclick="loadView('property-settings')">
-        <span>⚙️ Property Settings</span>
-        <span class="tab-badge">View 4</span>
-      </button>
-      <button class="nav-tab-btn" id="tab-broadcast" onclick="loadView('broadcast')">
-        <span>📢 HR Broadcast</span>
-        <span class="tab-badge">View 2</span>
-      </button>
-      <button class="nav-tab-btn" id="tab-broadcast-v3" onclick="loadView('broadcast-v3')">
-        <span>📌 Broadcast Widget</span>
-        <span class="tab-badge">View 3</span>
-      </button>
-      <button class="nav-tab-btn" id="tab-offboarding" onclick="loadView('offboarding')">
-        <span>🚪 Offboarding Module</span>
-        <span class="tab-badge">All Screens</span>
-      </button>
-      <button class="nav-tab-btn" id="tab-pulse-survey" onclick="loadView('pulse-survey')">
-        <span>📝 Pulse Survey</span>
-        <span class="tab-badge">Screen 1</span>
-      </button>
-      <button class="nav-tab-btn" id="tab-preferences" onclick="loadView('preferences')">
-        <span>⚙️ Preferences</span>
-        <span class="tab-badge">4 Views</span>
-      </button>
-    </nav>
-
-    <!-- Header Right Controls -->
-    <div class="header-actions">
-      <!-- Grid Showcase Toggle -->
-      <button class="btn-view-toggle" id="btnGridToggle" onclick="toggleGridMode()" title="Toggle Showcase Grid Mode">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        <span>All Views Grid</span>
-      </button>
-
-      <!-- Open Standalone File Link -->
-      <a href="views/dashboard_view2.html" target="_blank" class="btn-open-standalone" id="btnStandaloneLink" title="Open active file in separate browser tab">
-        <span>Open Standalone File</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-      </a>
-
-      <!-- Org Switcher -->
-      <div class="org-pill">
-        <span class="org-emblem">N</span>
-        <span>(TEST) Noisiv Consulting</span>
+    <!-- Master Topbar for View 1: Top Nav Mode -->
+    <header class="master-topbar" id="masterTopbar">
+      <div class="topbar-left">
+        <a href="javascript:void(0)" class="brand-wrap" onclick="loadModule('dashboard')" title="Hirerkey Enterprise">
+          <div class="brand-wordmark">
+            <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+          </div>
+        </a>
+        <div class="topbar-nav-chip-wrap">
+          <button type="button" class="topbar-nav-chip" id="topbarNavChipBtn" onclick="toggleTopbarNavDropdown(event)">
+            <span id="topbarChipIcon">📊</span>
+            <span id="topbarChipLabel">Executive Dashboard</span>
+            <span class="chip-chevron">⌄</span>
+          </button>
+          <div class="topbar-nav-dropdown" id="topbarNavDropdown"></div>
+        </div>
       </div>
-    </div>
-  </header>
+      <div class="topbar-center">
+        <span style="font-size: 10.5px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-right: 4px;">Sidebar Layout:</span>
+        <button type="button" class="topbar-layout-pill" id="tbLayout-topnav" onclick="setSidebarLayout('top-nav')">📋 1. Top Nav</button>
+        <button type="button" class="topbar-layout-pill" id="tbLayout-slim" onclick="setSidebarLayout('slim-rail')">⚡ 2. Slim</button>
+        <button type="button" class="topbar-layout-pill active" id="tbLayout-full" onclick="setSidebarLayout('full-sidebar')">📑 3. Full Rail</button>
+        <button type="button" class="topbar-layout-pill" id="tbLayout-expandable" onclick="setSidebarLayout('expandable-hover')">🚀 4. Hover Rail</button>
+        <button type="button" class="topbar-layout-pill" id="tbLayout-drawer" onclick="setSidebarLayout('flyout-drawer')">🗂️ 5. Drawer</button>
+      </div>
+      <div class="topbar-right">
+        <button type="button" class="sidebar-customize-btn" onclick="openPrototypeModal()" title="Open Prototype Lab (⌘/)" style="padding: 5px 12px; margin: 0; background: #F1F5F9; border: 1px solid var(--border); color: #334155;">
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <span>⚙️</span>
+            <span class="btn-text">Prototype Studio</span>
+          </div>
+          <span class="btn-badge">⌘/</span>
+        </button>
+        <button type="button" class="topbar-layout-pill" onclick="setSidebarLayout('full-sidebar')" title="Return to persistent sidebar" style="background: #EDE9FE; border-color: #DDD6FE; color: #7C3AED;">
+          <span>⤶ Return to Rail</span>
+        </button>
+      </div>
+    </header>
+    <aside class="app-sidebar sidebar-white" id="masterSidebar">
 
-  <!-- Main View Area -->
-  <main class="main-viewport">
-    <!-- Active View IFrame -->
-    <iframe id="activeViewFrame" class="view-frame" src="views/dashboard_view2.html" title="Hirerkey Selected View Frame"></iframe>
-
-    <!-- Grid Showcase Mode -->
-    <div class="grid-showcase" id="gridShowcase">
-      <div class="showcase-header">
-        <h1 class="showcase-title">Selected Production Views Directory</h1>
-        <p class="showcase-desc">Below are the final chosen views for each module. Each view is available as its own clean standalone file inside the <code>views/</code> directory, and can also be previewed interactively inside the main viewer.</p>
+      <!-- Drawer Pin Quick Action (Shown when in Flyout Drawer mode) -->
+      <div id="drawerPinBanner" style="display: none; padding: 7px 12px; background: #EDE9FE; border-bottom: 1px solid #DDD6FE; align-items: center; justify-content: space-between;">
+        <span style="font-size: 11px; font-weight: 700; color: #7C3AED;">Drawer Mode</span>
+        <div style="display: flex; gap: 6px; align-items: center;">
+          <button type="button" onclick="setSidebarLayout('full-sidebar')" style="font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: #7C3AED; color: #FFF; border: none; cursor: pointer;">📌 Pin Sidebar</button>
+          <button type="button" onclick="toggleDrawerOpen()" title="Close Drawer" style="font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: #DDD6FE; color: #5B21B6; border: none; cursor: pointer;">✕</button>
+        </div>
+      </div>
+      
+      <!-- Sidebar Header with Brand Wordmark & Collapse Toggle -->
+      <div class="sidebar-header">
+        <a href="javascript:void(0)" class="brand-wrap" onclick="loadModule('dashboard')" title="Hirerkey Unified Enterprise Platform">
+          <div class="brand-wordmark">
+            <span class="logo-hirer">hirer</span><span class="logo-key-wrap">key<svg class="logo-swoosh" viewBox="0 0 63 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M 2 2.5 C 5 7, 10 9.5, 16 9.5 L 48 9.5 C 54 9.5, 58.5 7, 60.5 2.5" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span>
+          </div>
+          <span class="brand-version-badge">v24.0.0</span>
+        </a>
+        <button class="sidebar-collapse-btn" id="sidebarCollapseBtn" onclick="toggleSidebarCollapse()" title="Toggle Sidebar Mode" aria-label="Toggle Sidebar">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
       </div>
 
-      <div class="cards-grid">
+      <!-- Quick Menu Search -->
+      <div class="sidebar-search-area">
+        <div class="sidebar-search-pill" id="sidebarSearchPill" title="Search menus (⌘K)" onclick="focusSidebarSearch()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" placeholder="Search menus..." id="sidebarSearchInput" oninput="filterSidebarMenu(this.value)" autocomplete="off" spellcheck="false">
+          <kbd class="sidebar-kbd">⌘K</kbd>
+        </div>
+      </div>
 
-        <!-- 0. Modal & Drawer Standardization Showcase (NEW) -->
-        <div class="view-card" style="border: 2px solid #C4B5FD; box-shadow: 0 8px 30px -4px rgba(124, 58, 237, 0.15);">
-          <div class="card-top">
-            <div class="card-badge-row">
-              <span class="card-selection-pill" style="background: #EDE9FE; color: #6D28D9; border: 1px solid #C4B5FD; font-weight: 800;">UNIFICATION LAB · 5 OVERLAYS</span>
-              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">modal_consistency_showcase.html</span>
-            </div>
-            <div class="card-icon-box" style="background: linear-gradient(135deg, #7C3AED, #4F46E5); color: #FFFFFF;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg>
-            </div>
-            <h2 class="card-title">Modal &amp; Drawer Consistency Showcase</h2>
-            <p class="card-desc">Interactive dashboard comparing all 5 active modal &amp; drawer paradigms (Purple Drawer, Full-Bleed Sheet, Neutral Drawer, Orientation Center Sheet, Theme Slide Dialog) to establish a unified standard.</p>
-            <ul class="card-features">
-              <li>Replicated executive dashboard screen with contextual triggers</li>
-              <li>Live triggers for all 5 modal &amp; drawer paradigms with exact animations</li>
-              <li>Side-by-side technical comparison matrix modal</li>
-              <li>Decision guidance for platform-wide design system consistency</li>
-            </ul>
+      <!-- Compact Active Screen Indicator -->
+      <div class="sidebar-current-screen" id="sidebarCurrentScreen">
+        <div class="current-screen-info">
+          <span class="current-screen-icon" id="currentScreenIcon">📊</span>
+          <div class="current-screen-text">
+            <span class="current-screen-name" id="currentScreenName">Dashboard</span>
+            <span class="current-screen-view" id="currentScreenView">View 2 of 6</span>
           </div>
-          <div class="card-actions">
-            <a href="modal_consistency_showcase.html" target="_blank" class="btn-card-standalone" style="width: 100%; text-align: center; justify-content: center; background: #7C3AED; color: #FFFFFF; font-weight: 700;">Open Consistency Showcase ↗</a>
+        </div>
+        <div class="current-screen-nav">
+          <button class="screen-nav-btn" id="btnPrevView" onclick="navigateView(-1)" title="Previous view">‹</button>
+          <button class="screen-nav-btn" id="btnNextView" onclick="navigateView(1)" title="Next view">›</button>
+        </div>
+      </div>
+
+      <!-- Scrollable Navigation Tree -->
+      <nav class="sidebar-nav-scroll" id="sidebarNavScroll">
+
+        <!-- Standalone Dashboard Item -->
+        <a href="javascript:void(0)" class="nav-item active" data-mod="dashboard" data-title="Dashboard" onclick="loadModule('dashboard', this)" title="Dashboard">
+          <div class="nav-item-left">
+            <span class="nav-icon">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+            </span>
+            <span class="nav-label">Dashboard</span>
+          </div>
+        </a>
+
+        <!-- 1. Intelligence -->
+        <div class="nav-category" data-cat="intelligence">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Intelligence</span>
+            <span class="nav-cat-chevron">⌄</span>
+          </div>
+          <div class="nav-cat-items">
+            <a href="javascript:void(0)" class="nav-item" data-mod="analytics" data-title="Analytics Hub" onclick="loadModule('analytics', this)" title="Analytics Hub">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 20V10"></path><path d="M12 20V4"></path><path d="M6 20v-6"></path><path d="M4 20h16"></path></svg></span>
+                <span class="nav-label">Analytics Hub</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-mod="hyiq-preview" data-title="HyIQ Form AI" onclick="loadModule('hyiq-preview', this)" title="HyIQ Form AI Studio">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></span>
+                <span class="nav-label">HyIQ Form AI</span>
+              </div>
+              <span class="nav-badge-pill" style="background: #EDE9FE; color: #7C3AED; font-size: 9px; font-weight: 700;">AI</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-mod="knowledge-hub" data-title="Knowledge Hub" onclick="loadModule('knowledge-hub', this)" title="Knowledge Hub & SOP Library">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path><circle cx="12" cy="9" r="2.5"></circle><path d="M9 14h6"></path></svg></span>
+                <span class="nav-label">Knowledge Hub</span>
+              </div>
+            </a>
           </div>
         </div>
 
-
-        <!-- 1. Dashboard Revamp -->
-        <div class="view-card">
-          <div class="card-top">
-            <div class="card-badge-row">
-              <span class="card-selection-pill">SELECTED VIEW: VIEW 2</span>
-              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/dashboard_view2.html</span>
-            </div>
-            <div class="card-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
-            </div>
-            <h2 class="card-title">Dashboard Revamp</h2>
-            <p class="card-desc">Modern SaaS / Donezo-inspired layout with sleek white sidebar, pearl grey canvas, Ask HyIQ capsule, Bento KPIs, and pinned high-priority broadcast card.</p>
-            <ul class="card-features">
-              <li>White sleek sidebar (~245px) with collapsible rail (<)</li>
-              <li>Topbar with ⌘K search and Ask HyIQ capsule</li>
-              <li>Greeting hero banner with interactive Bento KPIs</li>
-              <li>Pinned broadcast card with like, ack, and download</li>
-            </ul>
+        <!-- 2. Onboarding -->
+        <div class="nav-category" data-cat="onboarding">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Onboarding</span>
+            <span class="nav-cat-chevron">⌄</span>
           </div>
-          <div class="card-actions">
-            <button class="btn-launch-viewer" onclick="loadView('dashboard')">Launch in Viewer</button>
-            <a href="views/dashboard_view2.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          <div class="nav-cat-items">
+            <a href="javascript:void(0)" class="nav-item" data-mod="orientation" data-title="Orientation" onclick="loadModule('orientation', this)" title="New Hire Orientation">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg></span>
+                <span class="nav-label">Orientation</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-mod="departments" data-title="Department Tour" onclick="loadModule('departments', this)" title="Department Tour & Directory">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path></svg></span>
+                <span class="nav-label">Department Tour</span>
+              </div>
+            </a>
           </div>
         </div>
 
-        <!-- 2. Property Settings -->
-        <div class="view-card">
-          <div class="card-top">
-            <div class="card-badge-row">
-              <span class="card-selection-pill">SELECTED VIEW: VIEW 4</span>
-              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/property_settings_view4.html</span>
-            </div>
-            <div class="card-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            </div>
-            <h2 class="card-title">Property Settings</h2>
-            <p class="card-desc">Expandable Hover Rail Overlay layout with left 56px rail expanding to 220px on hover, View 2 header, and all 10 interactive property settings.</p>
-            <ul class="card-features">
-              <li>View 4 Expandable Hover Rail (56px to 220px on hover)</li>
-              <li>View 2 header with setting title, icon, and description</li>
-              <li>All 10 settings: Details, Depts, Grades, Designations, etc.</li>
-              <li>Interactive form and table controls for each setting</li>
-            </ul>
+        <!-- 3. All Employees -->
+        <div class="nav-category" data-cat="all-employees">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">All Employees</span>
+            <span class="nav-cat-chevron">⌄</span>
           </div>
-          <div class="card-actions">
-            <button class="btn-launch-viewer" onclick="loadView('property-settings')">Launch in Viewer</button>
-            <a href="views/property_settings_view4.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
-          </div>
-        </div>
-
-        <!-- 3. HR Broadcast -->
-        <div class="view-card">
-          <div class="card-top">
-            <div class="card-badge-row">
-              <span class="card-selection-pill">SELECTED VIEW: VIEW 2</span>
-              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/hr_broadcast_view2.html</span>
-            </div>
-            <div class="card-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-            </div>
-            <h2 class="card-title">HR Broadcast</h2>
-            <p class="card-desc">Workspace Master-Detail layout with left categories rail, broadcast rows ordered by "Created by" + avatar + name, and slide-over drawer with Format 5 card.</p>
-            <ul class="card-features">
-              <li>Left 4 categories rail (All, Sent, Scheduled, Drafts)</li>
-              <li>Broadcast rows with "Created by" + avatar + name</li>
-              <li>Detail drawer with Format 5 card (full email, no phone)</li>
-              <li>Date & time aligned directly below category heading</li>
-            </ul>
-          </div>
-          <div class="card-actions">
-            <button class="btn-launch-viewer" onclick="loadView('broadcast')">Launch in Viewer</button>
-            <a href="views/hr_broadcast_view2.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          <div class="nav-cat-items">
+            <a href="javascript:void(0)" class="nav-item" data-mod="pre-boarding" data-title="Pre Boarding" onclick="loadModule('pre-boarding', this)" title="Pre-Boarding Gateway">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line></svg></span>
+                <span class="nav-label">Pre Boarding</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-mod="active-employees" data-title="Active Staff" onclick="loadModule('active-employees', this)" title="Active Staff Directory">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path></svg></span>
+                <span class="nav-label">Active Staff</span>
+              </div>
+            </a>
+            <!-- Off-boarding (Module) -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="offboarding" data-title="Off-boarding" onclick="loadModule('offboarding', this)" title="Departures & Offboarding Module">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
+                <span class="nav-label">Off-boarding</span>
+              </div>
+              <span class="nav-badge-pill" style="background: #FEE2E2; color: #DC2626;">5</span>
+            </a>
+            <!-- Departure Guide (Module) -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="offboarding-guide" data-title="Departure Guide" onclick="loadModule('offboarding-guide', this)" title="Visual Offboarding Guide">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg></span>
+                <span class="nav-label">Departure Guide</span>
+              </div>
+            </a>
           </div>
         </div>
 
-        
-        <!-- 3b. HR Broadcast View 3 Widget -->
-        <div class="view-card">
-          <div class="card-top">
-            <div class="card-badge-row">
-              <span class="card-selection-pill">SELECTED VIEW: VIEW 3 (WIDGET)</span>
-              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/hr_broadcast_view3.html</span>
-            </div>
-            <div class="card-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-            </div>
-            <h2 class="card-title">HR Broadcast (View 3 Widgets)</h2>
-            <p class="card-desc">Scrollable comparison page showcasing two distinct high-end widget architectures: Design 1 (Spotlight Announcement Card) and Design 2 (Executive Bento Spotlight Widget).</p>
-            <ul class="card-features">
-              <li>Scrollable comparison view with Design 1 & Design 2 headings</li>
-              <li>Design 1: Classic single-column announcement with mascot preview</li>
-              <li>Design 2: Asymmetric Bento split with Live Pulse, executive card & actions</li>
-              <li>Interactive Acknowledge (✓), Like (❤️), Share, and Download triggers</li>
-              <li>Connected to detailed announcement modal & full workspace view</li>
-            </ul>
+        <!-- 4. Performance Tools -->
+        <div class="nav-category" data-cat="performance-tools">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Performance Tools</span>
+            <span class="nav-cat-chevron">⌄</span>
           </div>
-          <div class="card-actions">
-            <button class="btn-launch-viewer" onclick="loadView('broadcast-v3')">Launch in Viewer</button>
-            <a href="views/hr_broadcast_view3.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          <div class="nav-cat-items">
+            <a href="javascript:void(0)" class="nav-item" data-mod="check-ins" data-title="1-on-1 Check-ins" onclick="loadModule('check-ins', this)" title="1-on-1 Check-ins & Agendas">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg></span>
+                <span class="nav-label">1-on-1 Check-ins</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-mod="appraisals" data-title="Create Appraisals" onclick="loadModule('appraisals', this)" title="Performance Appraisals & Reviews">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></span>
+                <span class="nav-label">Create Appraisals</span>
+              </div>
+            </a>
           </div>
         </div>
 
-        <!-- 4. Offboarding Module -->
-        <div class="view-card">
-          <div class="card-top">
-            <div class="card-badge-row">
-              <span class="card-selection-pill">SELECTED: ALL 5 SCREENS</span>
-              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/offboarding.html</span>
-            </div>
-            <div class="card-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-            </div>
-            <h2 class="card-title">Offboarding Module</h2>
-            <p class="card-desc">Comprehensive 5-screen offboarding system covering departures list, case workspace modal, automation rules, employee view, and exit interview studio.</p>
-            <ul class="card-features">
-              <li>Screen 1: Departures table with Format 5 hover cards</li>
-              <li>Screen 2: Case modal dialog with compact chips & 5 tabs</li>
-              <li>Screen 3: Property settings (offboarding rules)</li>
-              <li>Screen 4: Employee view & Screen 5: Exit interview studio</li>
-            </ul>
+        <!-- 5. Appraisal -->
+        <div class="nav-category" data-cat="appraisal">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Appraisal</span>
+            <span class="nav-cat-chevron">⌄</span>
           </div>
-          <div class="card-actions">
-            <button class="btn-launch-viewer" onclick="loadView('offboarding')">Launch in Viewer</button>
-            <a href="views/offboarding.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
-          </div>
-        </div>
-
-        <!-- 5. Pulse Survey -->
-        <div class="view-card">
-          <div class="card-top">
-            <div class="card-badge-row">
-              <span class="card-selection-pill">SELECTED: SCREEN 1</span>
-              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/pulse_survey.html</span>
-            </div>
-            <div class="card-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-            </div>
-            <h2 class="card-title">Pulse Survey</h2>
-            <p class="card-desc">Screen 1 Pulse Survey Creation Studio & Form featuring question builder with NPS, 5-star ratings, HyIQ AI question generation, and live employee preview.</p>
-            <ul class="card-features">
-              <li>Surveys dashboard with KPI metric cards</li>
-              <li>Question builder: 1-5 Star, NPS 1-10, Multiple choice</li>
-              <li>HyIQ AI prompt generation chips</li>
-              <li>Interactive live employee survey preview modal</li>
-            </ul>
-          </div>
-          <div class="card-actions">
-            <button class="btn-launch-viewer" onclick="loadView('pulse-survey')">Launch in Viewer</button>
-            <a href="views/pulse_survey.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          <div class="nav-cat-items">
+            <a href="javascript:void(0)" class="nav-item" data-mod="appraisal-manager" data-title="Manager Review" onclick="loadModule('appraisal-manager', this)" title="Manager Performance Review">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline></svg></span>
+                <span class="nav-label">Manager Review</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-mod="appraisal-compare" data-title="Side-by-Side Review" onclick="loadModule('appraisal-compare', this)" title="Side-by-Side Evaluation Comparison">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line><path d="M7 8h2"></path><path d="M15 8h2"></path><path d="M7 12h2"></path><path d="M15 12h2"></path></svg></span>
+                <span class="nav-label">Side-by-Side Review</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" data-mod="appraisal-hr" data-title="HR Final Review" onclick="loadModule('appraisal-hr', this)" title="HR Final Calibration & Sign-off">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="9 15 11 17 15 13"></polyline></svg></span>
+                <span class="nav-label">HR Final Review</span>
+              </div>
+            </a>
           </div>
         </div>
 
-        <!-- 6. User Preferences -->
-        <div class="view-card">
-          <div class="card-top">
-            <div class="card-badge-row">
-              <span class="card-selection-pill">SELECTED: 4 DESIGN VIEWS</span>
-              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/preferences.html</span>
-            </div>
-            <div class="card-icon-box">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-            </div>
-            <h2 class="card-title">User Preferences</h2>
-            <p class="card-desc">Comprehensive user preferences studio with 4 distinct comparative paradigms, interactive segmented controls, realistic keycaps, and auto-save pulse.</p>
-            <ul class="card-features">
-              <li>View 1: Spotlight Card (Focused sequential card + dock stepper)</li>
-              <li>View 2: Split Studio (Master-detail sticky rail + live sandbox)</li>
-              <li>View 3: Bento Grid Studio (Spatial 4-card interactive bento layout)</li>
-              <li>View 4: Command Deck (Compact keyboard-first stream with jump anchors)</li>
-            </ul>
+        <!-- 6. Pulse Surveys -->
+        <div class="nav-category" data-cat="pulse-surveys">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Pulse Surveys</span>
+            <span class="nav-cat-chevron">⌄</span>
           </div>
-          <div class="card-actions">
-            <button class="btn-launch-viewer" onclick="loadView('preferences')">Launch in Viewer</button>
-            <a href="views/preferences.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          <div class="nav-cat-items">
+            <a href="javascript:void(0)" class="nav-item" data-mod="pulse-survey" data-title="Manage Pulse Surveys" onclick="loadModule('pulse-survey', this)" title="Manage Pulse Surveys">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></span>
+                <span class="nav-label">Manage Surveys</span>
+              </div>
+            </a>
           </div>
         </div>
 
+        <!-- 7. Workplace -->
+        <div class="nav-category" data-cat="workplace">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Workplace</span>
+            <span class="nav-cat-chevron">⌄</span>
+          </div>
+          <div class="nav-cat-items">
+            <!-- Pending Approvals -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="approval-flows" data-title="Pending Approvals" onclick="loadModule('approval-flows', this)" title="Multi-Tier Approvals Engine">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+                <span class="nav-label">Pending Approvals</span>
+              </div>
+              <span class="nav-badge-pill" style="background: #EDE9FE; color: #7C3AED;">5</span>
+            </a>
+            <!-- Shift Roster -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="shift-roster" data-title="Shift Roster" onclick="loadModule('shift-roster', this)" title="Shift Roster & Scheduling">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg></span>
+                <span class="nav-label">Shift Roster</span>
+              </div>
+            </a>
+            <!-- Org Chart -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="org-chart" data-title="Org Chart" onclick="loadModule('org-chart', this)" title="Organization Hierarchy Chart">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="4" rx="1"></rect><rect x="2" y="17" width="6" height="4" rx="1"></rect><rect x="16" y="17" width="6" height="4" rx="1"></rect><path d="M12 7v5m0 0H5v5m7-5h9v5"></path></svg></span>
+                <span class="nav-label">Org Chart</span>
+              </div>
+            </a>
+            <!-- Team Attendance -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="team-attendance" data-title="Team Attendance" onclick="loadModule('team-attendance', this)" title="Team Attendance & Biometric Log">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6"></path><path d="M22 11h-6"></path></svg></span>
+                <span class="nav-label">Team Attendance</span>
+              </div>
+            </a>
+            <!-- Service Desk -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="service-desk" data-title="Service Desk" onclick="loadModule('service-desk', this)" title="Internal IT & Facilities Service Desk">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="4"></circle><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"></line><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"></line><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line></svg></span>
+                <span class="nav-label">Service Desk</span>
+              </div>
+            </a>
+            <!-- Task Checklist -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="task-checklist" data-title="Task Checklist" onclick="loadModule('task-checklist', this)" title="Workplace Task Checklist">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg></span>
+                <span class="nav-label">Task Checklist</span>
+              </div>
+            </a>
+            <!-- HR Broadcast -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="broadcast" data-title="HR Broadcast" onclick="loadModule('broadcast', this)" title="Company-wide announcements & updates">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></span>
+                <span class="nav-label">HR Broadcast</span>
+              </div>
+            </a>
+            <!-- Document Vault -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="document-vault" data-title="Document Vault" onclick="loadModule('document-vault', this)" title="Employee Document Vault">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></span>
+                <span class="nav-label">Document Vault</span>
+              </div>
+            </a>
+            <!-- Property Settings -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="property-settings" data-title="Property Settings" onclick="loadModule('property-settings', this)" title="Master Property Configuration">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span>
+                <span class="nav-label">Property Settings</span>
+              </div>
+              <span class="nav-badge-pill" style="background: #EDE9FE; color: #7C3AED;">5 Views</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 8. Expenses -->
+        <div class="nav-category" data-cat="expenses">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Expenses</span>
+            <span class="nav-cat-chevron">⌄</span>
+          </div>
+          <div class="nav-cat-items">
+            <a href="javascript:void(0)" class="nav-item" data-mod="manager-approvals" data-title="Manager Approvals" onclick="loadModule('manager-approvals', this)" title="Expense Claims & Authorizations">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><path d="M12 11h.01"></path><path d="M12 15h.01"></path></svg></span>
+                <span class="nav-label">Manager Approvals</span>
+              </div>
+              <span class="nav-badge-pill" style="background: #EDE9FE; color: #7C3AED;">3</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 9. System & Studios -->
+        <div class="nav-category" data-cat="settings">
+          <div class="nav-cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">System &amp; Studios</span>
+            <span class="nav-cat-chevron">⌄</span>
+          </div>
+          <div class="nav-cat-items">
+            <!-- Side Menu Studio (Option to view and change side menu from inside real side menu) -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="sidemenu" data-title="Side Menu Studio" onclick="loadModule('sidemenu', this)" title="Side Menu Architecture & 5 Layout Views">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg></span>
+                <span class="nav-label">Side Menu Studio</span>
+              </div>
+              <span class="nav-badge-pill" style="background: #EDE9FE; color: #7C3AED;">5 Views</span>
+            </a>
+            <!-- Preferences Studio -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="preferences" data-title="Preferences" onclick="loadModule('preferences', this)" title="UI Personalization & Themes">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></span>
+                <span class="nav-label">Preferences</span>
+              </div>
+            </a>
+            <!-- Theme & UI Kit -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="theme-preview" data-title="Theme & UI Kit" onclick="loadModule('theme-preview', this)" title="Design Tokens & Component Kit">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a10 10 0 0 0 0 20z"></path></svg></span>
+                <span class="nav-label">Theme &amp; UI Kit</span>
+              </div>
+            </a>
+            <!-- Modal Lab -->
+            <a href="javascript:void(0)" class="nav-item" data-mod="modal-showcase" data-title="Modal Lab" onclick="loadModule('modal-showcase', this)" title="Modal Consistency Showcase">
+              <div class="nav-item-left">
+                <span class="nav-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line></svg></span>
+                <span class="nav-label">Modal Lab</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- Dedicated Sidebar Styling Controls (User Requirement) -->
+      <div class="sidebar-controls-section" id="sidebarControlsSection">
+        <div class="sidebar-controls-row">
+          <span class="sidebar-controls-label">Layout</span>
+          <span class="sidebar-controls-badge" id="currentLayoutBadge" style="font-size: 9.5px; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 2px 6px; border-radius: 4px;">Full</span>
+        </div>
+        <div class="sidebar-layout-grid">
+          <button type="button" class="sidebar-layout-btn" id="btnLayout-topnav" onclick="setSidebarLayout('top-nav')" title="View 1: Chip Dropdown (Top Navigation)">
+            <span class="layout-btn-icon">📋</span>
+            <span>Top</span>
+          </button>
+          <button type="button" class="sidebar-layout-btn" id="btnLayout-slim" onclick="setSidebarLayout('slim-rail')" title="View 2: Slim Icon Rail">
+            <span class="layout-btn-icon">⚡</span>
+            <span>Slim</span>
+          </button>
+          <button type="button" class="sidebar-layout-btn active" id="btnLayout-full" onclick="setSidebarLayout('full-sidebar')" title="View 3: Full In-Page Rail">
+            <span class="layout-btn-icon">📑</span>
+            <span>Full</span>
+          </button>
+          <button type="button" class="sidebar-layout-btn" id="btnLayout-expandable" onclick="setSidebarLayout('expandable-hover')" title="View 4: Expandable Hover Rail">
+            <span class="layout-btn-icon">🚀</span>
+            <span>Hover</span>
+          </button>
+          <button type="button" class="sidebar-layout-btn" id="btnLayout-drawer" onclick="setSidebarLayout('flyout-drawer')" title="View 5: Right-Edge Drawer">
+            <span class="layout-btn-icon">📌</span>
+            <span>Drawer</span>
+          </button>
+        </div>
+
+        <div class="sidebar-controls-row" style="margin-top: 5px;">
+          <span class="sidebar-controls-label">Design</span>
+          <span class="sidebar-controls-badge" id="currentDesignBadge" style="font-size: 9.5px; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 2px 6px; border-radius: 4px;">Classic</span>
+        </div>
+        <div class="sidebar-design-grid">
+          <button type="button" class="sidebar-design-btn active" id="btnDesign-classic" onclick="setSidebarDesign('classic')" title="Classic Flat Enterprise Sidebar">Classic</button>
+          <button type="button" class="sidebar-design-btn" id="btnDesign-floating" onclick="setSidebarDesign('floating')" title="Donezo Modern SaaS Floating Card">Floating</button>
+          <button type="button" class="sidebar-design-btn" id="btnDesign-rounded" onclick="setSidebarDesign('rounded')" title="Modern Rounded Elements">Rounded</button>
+          <button type="button" class="sidebar-design-btn" id="btnDesign-minimal" onclick="setSidebarDesign('minimal')" title="Minimal Borderless Edge">Minimal</button>
+        </div>
+
+        <div class="sidebar-controls-row" style="margin-top: 5px; margin-bottom: 0;">
+          <span class="sidebar-controls-label">Theme</span>
+          <div class="sidebar-theme-row">
+            <span class="theme-chip-btn active" id="themeChip-white" onclick="setSidebarTheme('white')" title="Light White" style="background: #FFFFFF; border: 1.5px solid #CBD5E1;"></span>
+            <span class="theme-chip-btn" id="themeChip-dark" onclick="setSidebarTheme('dark')" title="Enterprise Dark" style="background: #061229;"></span>
+            <span class="theme-chip-btn" id="themeChip-purple" onclick="setSidebarTheme('purple')" title="Royal Purple" style="background: #7C3AED;"></span>
+            <span class="theme-chip-btn" id="themeChip-lavender" onclick="setSidebarTheme('lavender')" title="Soft Lavender" style="background: #F5F3FF; border: 1.5px solid #DDD6FE;"></span>
+            <span class="theme-chip-btn" id="themeChip-gradient" onclick="setSidebarTheme('gradient')" title="Diagonal Gradient" style="background: linear-gradient(135deg, #1E1B4B, #4C1D95);"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Footer with Workspace Switcher -->
+      <div class="sidebar-footer">
+
+        <button type="button" class="sidebar-customize-btn" id="sidebarCustomizeBtn" onclick="openPrototypeModal()" title="Hirerkey Prototype Studio & Shortcuts (⌘/)">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+            <span class="btn-text">Prototype Studio</span>
+          </div>
+          <span class="btn-badge">⌘/</span>
+        </button>
+
+        <div class="workspace-switcher" id="workspaceSwitcherBtn" onclick="toggleWorkspacePopover(event)">
+          <div class="workspace-info">
+            <div class="workspace-avatar">N</div>
+            <div class="workspace-text-group">
+              <span class="workspace-title">(TEST) Noisiv Co...</span>
+              <span class="workspace-subtitle">Chanchal Sharma</span>
+            </div>
+          </div>
+          <span class="workspace-unfold-icon">⌄</span>
+        </div>
+
+        <!-- Workspace Popover -->
+        <div class="workspace-popover" id="workspacePopover">
+          <div class="popover-header">SWITCH WORKSPACE</div>
+          <div class="popover-option active" onclick="selectWorkspace('(TEST) Noisiv Consulting')">
+            <span>(TEST) Noisiv Consulting</span>
+            <span>✓</span>
+          </div>
+          <div class="popover-option" onclick="selectWorkspace('Hirerkey Global HQ')">
+            <span>Hirerkey Global HQ</span>
+          </div>
+          <div class="popover-option" onclick="selectWorkspace('London Innovation Hub')">
+            <span>London Innovation Hub</span>
+          </div>
+          <div class="popover-divider"></div>
+          <div class="popover-header">PROPERTY SETTINGS VIEWS</div>
+          <div class="popover-option" onclick="loadModule('property-settings', null, '1')">
+            <span>⚙️ View 1: Chip Dropdown</span>
+          </div>
+          <div class="popover-option" onclick="loadModule('property-settings', null, '2')">
+            <span>⚡ View 2: Slim Icon Rail</span>
+          </div>
+          <div class="popover-option" onclick="loadModule('property-settings', null, '3')">
+            <span>📑 View 3: Full In-Page Rail</span>
+          </div>
+          <div class="popover-option" onclick="loadModule('property-settings', null, '4')">
+            <span>🚀 View 4: Expandable Hover Rail</span>
+          </div>
+          <div class="popover-option" onclick="loadModule('property-settings', null, '5')">
+            <span>🗂️ View 5: Right-Edge Drawer</span>
+          </div>
+          <div class="popover-divider"></div>
+          <div class="popover-header">KEYBOARD SHORTCUTS</div>
+          <div class="popover-option" onclick="openShortcutsModal()">
+            <span>View All Shortcuts</span>
+            <span style="font-family: var(--font-mono); font-size: 10px; color: #94A3B8;">?</span>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <div class="drawer-trigger-tab" id="drawerTriggerTab" onclick="toggleDrawerOpen()" title="Click to open sidebar">☰ SIDE MENU</div>
+
+    <!-- ======================================================================
+         2. MAIN VIEWPORT (IFRAME)
+         ====================================================================== -->
+    <main class="app-main-viewport" id="mainViewport">
+      <iframe id="activeViewFrame" class="view-frame" src="dashboard_revamp.html?embedded=true#view2" title="Hirerkey Prototype Workspace Frame"></iframe>
+    </main>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="app-toast" id="appToast">Notification message</div>
+
+  <!-- Shortcuts Modal -->
+    <!-- Prototype Customizer Modal -->
+  <div class="modal-overlay" id="prototypeModal" onclick="if(event.target === this) closePrototypeModal()">
+    <div class="modal-box" style="width: 600px; max-width: 92vw;">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 9px;">
+          <span style="font-size: 22px;">🎛️</span>
+          <div>
+            <h3 class="modal-title">Hirerkey™ Prototype Settings</h3>
+            <div style="font-size: 12px; color: #64748B;">Customize side menu architecture, color themes & screen views</div>
+          </div>
+        </div>
+        <button type="button" class="modal-close-btn" onclick="closePrototypeModal()">✕</button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="proto-tabs">
+        <button type="button" class="proto-tab-btn active" id="pTabBtn-layout" onclick="switchProtoModalTab('layout')">
+          <span>⚙️ Side Menu Layout</span>
+        </button>
+        <button type="button" class="proto-tab-btn" id="pTabBtn-theme" onclick="switchProtoModalTab('theme')">
+          <span>🎨 Side Menu Theme</span>
+        </button>
+        <button type="button" class="proto-tab-btn" id="pTabBtn-views" onclick="switchProtoModalTab('views')">
+          <span>📌 Screen Views</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Side Menu Architecture -->
+      <div class="proto-tab-pane active" id="pPane-layout">
+        <p style="font-size: 12.5px; color: #64748B; margin-bottom: 12px;">Select how the side menu behaves across the prototype:</p>
+        <div class="config-cards-grid" id="modalLayoutCards">
+          <!-- 1. Top Header Navigation (View 1 Style) -->
+          <div class="config-card" id="mLayoutCard-top-nav" onclick="setSidebarLayout('top-nav')">
+            <div class="config-card-left">
+              <span class="config-card-icon">📋</span>
+              <div class="config-card-text">
+                <span class="config-card-name">1. Chip Dropdown (Top Nav / View 1)</span>
+                <span class="config-card-desc">Full canvas layout with no left sidebar; navigation is housed in top horizontal chip dropdown</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+          <!-- 2. Slim Icon Rail (View 2 Style) -->
+          <div class="config-card" id="mLayoutCard-slim-rail" onclick="setSidebarLayout('slim-rail')">
+            <div class="config-card-left">
+              <span class="config-card-icon">⚡</span>
+              <div class="config-card-text">
+                <span class="config-card-name">2. Slim Icon Rail (Hover Tooltips / View 2)</span>
+                <span class="config-card-desc">Permanent 64px compact icon rail with floating dark tooltips on hover</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+          <!-- 3. Full In-Page Sidebar (View 3 Style) -->
+          <div class="config-card active" id="mLayoutCard-full-sidebar" onclick="setSidebarLayout('full-sidebar')">
+            <div class="config-card-left">
+              <span class="config-card-icon">📑</span>
+              <div class="config-card-text">
+                <span class="config-card-name">3. Full In-Page Rail (Standard / View 3)</span>
+                <span class="config-card-desc">Permanent 250px wide fixed sidebar with visible categories, text labels, and search</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+          <!-- 4. Expandable Hover Rail (View 4 Style) -->
+          <div class="config-card" id="mLayoutCard-expandable-hover" onclick="setSidebarLayout('expandable-hover')">
+            <div class="config-card-left">
+              <span class="config-card-icon">🚀</span>
+              <div class="config-card-text">
+                <span class="config-card-name">4. Expandable Hover Rail (★ / View 4)</span>
+                <span class="config-card-desc">Starts at 64px compact icon rail; expands to 250px on hover with zero content shift</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+          <!-- 5. Flyout Drawer (View 5 Style) -->
+          <div class="config-card" id="mLayoutCard-flyout-drawer" onclick="setSidebarLayout('flyout-drawer')">
+            <div class="config-card-left">
+              <span class="config-card-icon">🗂️</span>
+              <div class="config-card-text">
+                <span class="config-card-name">5. Fixed Right-Edge Drawer (View 5)</span>
+                <span class="config-card-desc">Edge toggle tab with slide-out drawer overlay for full canvas focus</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Side Menu Theme -->
+      <div class="proto-tab-pane" id="pPane-theme">
+        <p style="font-size: 12.5px; color: #64748B; margin-bottom: 12px;">Select the color palette for the side menu:</p>
+        <div class="config-cards-grid" id="modalThemeCards">
+          <div class="config-card active" id="mThemeCard-white" onclick="setSidebarTheme('white')">
+            <div class="config-card-left">
+              <div class="style-swatch swatch-white"><span class="swatch-accent"></span></div>
+              <div class="config-card-text">
+                <span class="config-card-name">Modern White</span>
+                <span class="config-card-desc">Donezo Sleek Clean Light (Default ★)</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+          <div class="config-card" id="mThemeCard-dark" onclick="setSidebarTheme('dark')">
+            <div class="config-card-left">
+              <div class="style-swatch swatch-dark"><span class="swatch-accent"></span></div>
+              <div class="config-card-text">
+                <span class="config-card-name">Dark Slate</span>
+                <span class="config-card-desc">Executive Midnight Navy (#0F172A)</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+          <div class="config-card" id="mThemeCard-purple" onclick="setSidebarTheme('purple')">
+            <div class="config-card-left">
+              <div class="style-swatch swatch-purple"><span class="swatch-accent"></span></div>
+              <div class="config-card-text">
+                <span class="config-card-name">Primary Purple</span>
+                <span class="config-card-desc">Brand Hirerkey Purple (#7C3AED)</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+          <div class="config-card" id="mThemeCard-lavender" onclick="setSidebarTheme('lavender')">
+            <div class="config-card-left">
+              <div class="style-swatch swatch-lavender"><span class="swatch-accent"></span></div>
+              <div class="config-card-text">
+                <span class="config-card-name">Soft Lavender</span>
+                <span class="config-card-desc">Light Purple Accent Tone (#EDE9FE)</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+          <div class="config-card" id="mThemeCard-gradient" onclick="setSidebarTheme('gradient')">
+            <div class="config-card-left">
+              <div class="style-swatch swatch-gradient"><span class="swatch-accent"></span></div>
+              <div class="config-card-text">
+                <span class="config-card-name">Vibrant Gradient</span>
+                <span class="config-card-desc">Violet-Indigo Executive Gradient</span>
+              </div>
+            </div>
+            <span class="config-card-check">✓</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Active Screen Views -->
+      <div class="proto-tab-pane" id="pPane-views">
+        <p style="font-size: 12.5px; color: #64748B; margin-bottom: 12px;" id="modalViewsDesc">Select layout variant for the current screen:</p>
+        <div class="config-cards-grid" id="modalViewsList">
+          <!-- Dynamically populated -->
+        </div>
       </div>
     </div>
-  </main>
+  </div>
+
+  <div class="modal-overlay" id="shortcutsModal" onclick="if(event.target === this) closeShortcutsModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 class="modal-title">⌨️ Keyboard Navigation Shortcuts</h3>
+        <button class="modal-close-btn" onclick="closeShortcutsModal()">✕</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 9px; font-size: 13px; color: #475569;">
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #EEF2F6;">
+          <span>Search Menus</span>
+          <span class="sidebar-kbd">⌘K</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #EEF2F6;">
+          <span>Toggle Sidebar Mode</span>
+          <span class="sidebar-kbd">[</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #EEF2F6;">
+          <span>Switch Screen View</span>
+          <span class="sidebar-kbd">1 – 5</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #EEF2F6;">
+          <span>Prototype Settings Modal</span>
+          <span class="sidebar-kbd">⌘/</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #EEF2F6;">
+          <span>Keyboard Shortcuts Help</span>
+          <span class="sidebar-kbd">?</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #EEF2F6;">
+          <span>Close Modals / Drawer / Popovers</span>
+          <span class="sidebar-kbd">Esc</span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
-    const VIEWS = {
-      'dashboard': {
-        name: 'Dashboard (View 2)',
-        url: 'views/dashboard_view2.html'
-      },
+  (function() {
+    'use strict';
+
+    // ==========================================================================
+    // DATA DEFINITION: ALL HIRERKEY ENTERPRISE MODULES & THEIR VIEWS
+    // ==========================================================================
+    const MODULES = {
       'property-settings': {
-        name: 'Property Settings (View 4)',
-        url: 'views/property_settings_view4.html'
+        name: 'Property Settings',
+        icon: '⚙️',
+        desc: 'Property Settings & Navigation Modes:',
+        file: 'property_settings_preview.html',
+        defaultView: '1',
+        views: [
+          { id: '1', name: 'View 1: Chip Dropdown (Current)', desc: 'Top segmented chip dropdown layout', icon: '📋', isDefault: true },
+          { id: '2', name: 'View 2: Slim Icon Rail', desc: '56px persistent icon rail with hover tooltips', icon: '⚡' },
+          { id: '3', name: 'View 3: Full In-Page Rail', desc: 'Persistent 220px rail with category groups', icon: '📑' },
+          { id: '4', name: 'View 4: Expandable Hover Rail (★)', desc: '56px rail expanding on hover · Zero shift', icon: '🚀' },
+          { id: '5', name: 'View 5: Fixed Right-Edge Drawer', desc: 'Fixed right-edge slide-out drawer', icon: '🗂️' }
+        ]
+      },
+      'sidemenu': {
+        name: 'Side Menu Studio',
+        icon: '📐',
+        desc: 'Master Side Menu Navigation Views & Studio:',
+        file: 'sidemenu_studio.html',
+        defaultView: '3',
+        views: [
+          { id: '1', name: 'View 1: Chip Dropdown (Top Nav / Full Canvas)', desc: 'Top horizontal navigation chip dropdown', icon: '📋' },
+          { id: '2', name: 'View 2: Slim Icon Rail (Hover Tooltips)', desc: '64px compact icon rail with tooltips on hover', icon: '⚡' },
+          { id: '3', name: 'View 3: Full In-Page Rail (Standard)', desc: '250px enterprise sidebar with search & categories', icon: '📑', isDefault: true },
+          { id: '4', name: 'View 4: Expandable Hover Rail (★)', desc: '64px rail smoothly expanding to 250px on hover', icon: '🚀' },
+          { id: '5', name: 'View 5: Fixed Right-Edge Drawer', desc: 'Edge toggle tab with slide-out drawer overlay', icon: '🗂️' }
+        ]
+      },
+      'dashboard': {
+        name: 'Executive Dashboard',
+        icon: '📊',
+        desc: 'Select dashboard layout view:',
+        file: 'dashboard_revamp.html',
+        defaultView: '2',
+        views: [
+          { id: '2', name: 'View 2: Modern Donezo SaaS (★ Recommended)', desc: 'Donezo modern layout with full parity', icon: '🚀', isDefault: true },
+          { id: '1', name: 'View 1: Standard Dashboard', desc: 'Standard executive dashboard overview', icon: '📊' },
+          { id: '3', name: 'View 3: Light Purple Accent', desc: 'Clean light purple accent theme', icon: '💜' },
+          { id: '4', name: 'View 4: Primary Color', desc: 'Primary signature purple navigation', icon: '⚡' },
+          { id: '5', name: 'View 5: Soft Lilac', desc: 'Soft pastel lilac theme overview', icon: '🌸' },
+          { id: '6', name: 'View 6: Diagonal Gradient', desc: 'Modern diagonal gradient cards', icon: '✨' }
+        ]
+      },
+      'analytics': {
+        name: 'Analytics Hub',
+        icon: '📈',
+        desc: 'Executive Analytics & Performance Hub:',
+        file: 'dashboard_revamp.html',
+        defaultView: '1',
+        views: [
+          { id: '1', name: 'View 1: Standard Analytics (Dense)', desc: 'Standard executive analytics overview', icon: '📊', isDefault: true },
+          { id: '2', name: 'View 2: Modern Donezo SaaS Hub', desc: 'Donezo modern analytics layout', icon: '🚀' },
+          { id: '3', name: 'View 3: Light Purple Accent Hub', desc: 'Clean light purple analytics accent', icon: '💜' },
+          { id: '6', name: 'View 6: Diagonal Gradient Analytics', desc: 'Modern diagonal gradient analytics', icon: '✨' }
+        ]
       },
       'broadcast': {
-        name: 'HR Broadcast (View 2: Workspace)',
-        url: 'views/hr_broadcast_view2.html'
+        name: 'HR Broadcast',
+        icon: '📢',
+        desc: 'Select broadcast activity view:',
+        file: 'hr_broadcast.html',
+        defaultView: 'view2',
+        views: [
+          { id: 'view2', name: 'View 2: Workspace & Split Composer (★)', desc: 'Split composer with live mobile preview', icon: '🚀', isDefault: true },
+          { id: 'view1', name: 'View 1: Feed & Activity Cards', desc: 'Chronological announcement cards with metrics', icon: '📰' },
+          { id: 'view3', name: 'View 3: Mobile Reader Experience', desc: 'Interactive smartphone reader preview', icon: '📱' }
+        ]
       },
-      'broadcast-v3': {
-        name: 'HR Broadcast (View 3: Widget Inspiration)',
-        url: 'views/hr_broadcast_view3.html'
+      'approval-flows': {
+        name: 'Pending Approvals',
+        icon: '⚡',
+        desc: 'Select approval workflow layout:',
+        file: 'approval_flows_preview.html',
+        defaultView: '1',
+        views: [
+          { id: '1', name: 'View 1: Multi-Tier Workflow Listing (Dense)', desc: 'High-density sorting & filtering', icon: '📄', isDefault: true },
+          { id: '2', name: 'View 2: Queue Matrix (Cards)', desc: 'Visual card presentation of pending flows', icon: '🗂️' },
+          { id: '3', name: 'View 3: Multi-Tier Flow Builder', desc: 'Interactive drag-and-drop approval flow engine', icon: '⚡' }
+        ]
       },
       'offboarding': {
-        name: 'Offboarding Module (All Screens)',
-        url: 'views/offboarding.html'
+        name: 'Offboarding Management',
+        icon: '🚪',
+        desc: 'Select offboarding process view:',
+        file: 'offboarding_preview.html',
+        defaultView: 'list',
+        views: [
+          { id: 'list', name: 'Screen 1: Departures List (★)', desc: 'Master departures data table', icon: '🚪', isDefault: true },
+          { id: 'settings', name: 'Screen 2: Property Settings Rules', desc: 'Clearance approval policies & notice rules', icon: '⚙️' },
+          { id: 'user', name: 'Screen 3: Employee Self-Service', desc: 'Clearance tracker & asset return checklist', icon: '👤' },
+          { id: 'form', name: 'Screen 4: Exit Interview Studio', desc: 'Interactive exit interview question builder', icon: '📝' }
+        ]
       },
       'pulse-survey': {
-        name: 'Pulse Survey (Screen 1)',
-        url: 'views/pulse_survey.html'
+        name: 'Pulse Surveys',
+        icon: '📝',
+        desc: 'Select survey view:',
+        file: 'pulse_survey_form.html',
+        defaultView: 'view1',
+        views: [
+          { id: 'view1', name: 'View 1: Desktop Creation Studio (★ Default)', desc: 'Question builder with NPS & HyIQ AI', icon: '🖥️', isDefault: true },
+          { id: 'view2', name: 'View 2: Mobile Respondent', desc: 'Interactive smartphone survey submission flow', icon: '📱' }
+        ]
       },
       'preferences': {
-        name: 'User Preferences (4 Design Views)',
-        url: 'views/preferences.html'
+        name: 'Preferences Studio',
+        icon: '🎨',
+        desc: 'Select studio layout view:',
+        file: 'preferences.html',
+        defaultView: 'view2',
+        views: [
+          { id: 'view2', name: 'View 2: Unified Canvas Studio (★ Default)', desc: 'Complete enterprise settings workspace', icon: '📑', isDefault: true },
+          { id: 'view1', name: 'View 1: Spotlight Card', desc: 'Focused sequential card with floating dock', icon: '🔦' },
+          { id: 'view3', name: 'View 3: Bento Grid Studio', desc: 'Compact modern bento dashboard arrangement', icon: '🍱' },
+          { id: 'view4', name: 'View 4: Command Deck', desc: 'High-density terminal/developer command grid', icon: '🎛️' }
+        ]
+      },
+      'theme-preview': {
+        name: 'Theme & UI Kit',
+        icon: '🌈',
+        desc: 'Select design kit view:',
+        file: 'theme_preview.html',
+        defaultView: '1',
+        views: [
+          { id: '1', name: 'View 1: Design Tokens (★ Default)', desc: 'Color palettes, spacing, typography tokens', icon: '🎨', isDefault: true },
+          { id: '2', name: 'View 2: Component Library', desc: 'Buttons, pills, badges, inputs, states', icon: '🧩' },
+          { id: '3', name: 'View 3: Interactive Typography', desc: 'Type scales, weights, optical alignment', icon: '🔤' },
+          { id: '4', name: 'View 4: Color Palette & Contrast', desc: 'WCAG AAA contrast ratios & hex matrix', icon: '🌈' }
+        ]
+      },
+      'modal-showcase': {
+        name: 'Modal Lab',
+        icon: '💬',
+        desc: 'Select modal archetype:',
+        file: 'modal_consistency_showcase.html',
+        defaultView: '1',
+        views: [
+          { id: '1', name: 'Model 1: Action Sheet Modal (★ Default)', desc: 'Right-anchored high-frequency action sheet', icon: '📄', isDefault: true },
+          { id: '2', name: 'Model 2: Centered Alert Dialog', desc: 'Focused center modal with backdrop blur', icon: '⚠️' },
+          { id: '3', name: 'Model 3: Full Screen Drawer', desc: 'Edge-to-edge slide drawer for deep forms', icon: '📐' },
+          { id: '4', name: 'Model 4: Destructive Action Modal', desc: 'Two-stage confirmation for critical data actions', icon: '🗑️' },
+          { id: '5', name: 'Model 5: Compact Slide Dialog', desc: 'Quick action slide dialog with animation', icon: '💬' }
+        ]
+      },
+      'hyiq-preview': {
+        name: 'HyIQ Form AI Studio',
+        icon: '🤖',
+        desc: 'Select HyIQ motion & form view:',
+        file: 'hyiq_preview.html',
+        defaultView: 'button-studio',
+        views: [
+          { id: 'button-studio', name: 'View 1: Motion Button Studio (★)', desc: '4 Framer Motion spring presets & states', icon: '✨', isDefault: true },
+          { id: 'comparison', name: 'View 2: Form Layout Comparison', desc: 'Side-by-side legacy vs revamped UX', icon: '⚖️' },
+          { id: 'sandbox', name: 'View 3: Live Form Sandbox', desc: 'Interactive live form with simulated AI fills', icon: '⚡' },
+          { id: 'archetypes', name: 'View 4: 4 Joy UI Archetypes', desc: 'Modal, Drawer, Inline, & Floating buttons', icon: '🧩' },
+          { id: 'matrix', name: 'View 5: All 42 Forms Matrix', desc: 'Audit table of all 42 Hirerkey forms', icon: '📋' }
+        ]
+      },
+      'offboarding-guide': {
+        name: 'Departure Flow Guide',
+        icon: '🗺️',
+        desc: 'Select departure scenario:',
+        file: 'offboarding_flow_visual_guide.html',
+        defaultView: 'resignation',
+        views: [
+          { id: 'resignation', name: 'Scenario 1: Resignation Flow (★)', desc: 'Voluntary resignation with 30-day notice', icon: '🤝', isDefault: true },
+          { id: 'termination', name: 'Scenario 2: Involuntary Termination', desc: 'Accelerated clearance & IT access revocation', icon: '⚡' },
+          { id: 'retirement', name: 'Scenario 3: Retirement Transition', desc: 'Honorific transition & pension settlement', icon: '🏅' },
+          { id: 'death', name: 'Scenario 4: Compassionate Flow', desc: 'Expedited family settlement process', icon: '🕊️' },
+          { id: 'all', name: 'View 5: All 4 Scenarios Comparison', desc: 'Side-by-side journey flow comparison', icon: '🗺️' }
+        ]
+      },
+      'knowledge-hub': {
+        name: 'Knowledge Hub',
+        icon: '📚',
+        desc: 'Company Policies, SOPs & Handbooks:',
+        file: 'workspace_hub.html',
+        defaultView: 'knowledge-hub',
+        views: [
+          { id: 'knowledge-hub', name: 'Knowledge & Policies', desc: 'Central repository of company policies & guidelines', icon: '📚', isDefault: true }
+        ]
+      },
+      'orientation': {
+        name: 'New Hire Orientation',
+        icon: '🧭',
+        desc: 'Day 1 Checklist & Culture Guide:',
+        file: 'workspace_hub.html',
+        defaultView: 'orientation',
+        views: [
+          { id: 'orientation', name: 'Orientation Program', desc: 'Step-by-step onboarding checkpoints & setup guide', icon: '🧭', isDefault: true }
+        ]
+      },
+      'departments': {
+        name: 'Department Directory',
+        icon: '🏢',
+        desc: 'Corporate Departments & Role Matrix:',
+        file: 'property_settings_preview.html',
+        defaultView: 'departments',
+        views: [
+          { id: 'departments', name: 'Departments', desc: 'All business units & department heads', icon: '🏢', isDefault: true },
+          { id: 'designations', name: 'Designations', desc: 'Corporate title hierarchy & seniority bands', icon: '🏷️' }
+        ]
+      },
+      'pre-boarding': {
+        name: 'Pre-Boarding Gateway',
+        icon: '🚀',
+        desc: 'Offer Acceptance & Day 1 Readiness:',
+        file: 'workspace_hub.html',
+        defaultView: 'pre-boarding',
+        views: [
+          { id: 'pre-boarding', name: 'Pre-Boarding Roster', desc: 'Hardware delivery, document checks & Day 1 status', icon: '🚀', isDefault: true }
+        ]
+      },
+      'active-employees': {
+        name: 'Active Employees Directory',
+        icon: '👥',
+        desc: 'Company Headcount & Employee Roster:',
+        file: 'workspace_hub.html',
+        defaultView: 'active',
+        views: [
+          { id: 'active', name: 'Active Directory', desc: 'Live directory of full-time team members & roles', icon: '👥', isDefault: true }
+        ]
+      },
+      'check-ins': {
+        name: '1-on-1 Check-ins',
+        icon: '💬',
+        desc: 'Manager-Employee Cadence & OKRs:',
+        file: 'workspace_hub.html',
+        defaultView: 'check-ins',
+        views: [
+          { id: 'check-ins', name: '1-on-1 Syncs', desc: 'Scheduled meetings, agendas & action items', icon: '💬', isDefault: true }
+        ]
+      },
+      'appraisals': {
+        name: 'Create Appraisals',
+        icon: '📊',
+        desc: 'Performance Reviews & Evaluations:',
+        file: 'workspace_hub.html',
+        defaultView: 'appraisals',
+        views: [
+          { id: 'appraisals', name: 'Appraisal Cycles', desc: 'Annual reviews, self evaluation & 360 feedback', icon: '📊', isDefault: true }
+        ]
+      },
+      'shift-roster': {
+        name: 'Shift Roster',
+        icon: '📅',
+        desc: 'Workforce Rota & Shift Allocation:',
+        file: 'property_settings_preview.html',
+        defaultView: 'shift_schedule',
+        views: [
+          { id: 'shift_schedule', name: 'Shift Schedule', desc: 'Weekly work shifts & team rotation schedule', icon: '📅', isDefault: true },
+          { id: 'attendance_policy', name: 'Attendance Policy', desc: 'Punctuality rules, grace windows & break policies', icon: '⏱️' }
+        ]
+      },
+      'org-chart': {
+        name: 'Org Chart',
+        icon: '🌳',
+        desc: 'Organization Reporting Hierarchy:',
+        file: 'property_settings_preview.html',
+        defaultView: 'org_hierarchy',
+        views: [
+          { id: 'org_hierarchy', name: 'Organization Hierarchy', desc: 'Visual tree of leadership & team hierarchy', icon: '🌳', isDefault: true }
+        ]
+      },
+      'document-vault': {
+        name: 'Document Vault',
+        icon: '🗄️',
+        desc: 'Digital Employee Documents & Forms:',
+        file: 'workspace_hub.html',
+        defaultView: 'document-vault',
+        views: [
+          { id: 'document-vault', name: 'Document Vault', desc: 'Secure repository for offer letters, NDAs & tax forms', icon: '🗄️', isDefault: true }
+        ]
+      },
+      'appraisal-manager': {
+        name: 'Manager Review',
+        icon: '⭐',
+        desc: 'Manager Performance Evaluation & OKR Scoring:',
+        file: 'workspace_hub.html',
+        defaultView: 'appraisal-manager',
+        views: [
+          { id: 'appraisal-manager', name: 'Manager Review', desc: 'Direct report reviews, ratings, and development goals', icon: '⭐', isDefault: true }
+        ]
+      },
+      'appraisal-compare': {
+        name: 'Side-by-Side Review',
+        icon: '⚖️',
+        desc: 'Self vs Manager Rating Calibration Matrix:',
+        file: 'workspace_hub.html',
+        defaultView: 'appraisal-compare',
+        views: [
+          { id: 'appraisal-compare', name: 'Side-by-Side Review', desc: 'Direct rating comparison & discrepancy calibration', icon: '⚖️', isDefault: true }
+        ]
+      },
+      'appraisal-hr': {
+        name: 'HR Final Review',
+        icon: '📋',
+        desc: 'HR Bell Curve Calibration & Normalization:',
+        file: 'workspace_hub.html',
+        defaultView: 'appraisal-hr',
+        views: [
+          { id: 'appraisal-hr', name: 'HR Final Review', desc: 'Normalization bell curve, merit pools & sign-offs', icon: '📋', isDefault: true }
+        ]
+      },
+      'team-attendance': {
+        name: 'Team Attendance',
+        icon: '⏱️',
+        desc: 'Real-time Attendance, Biometric Sync & Shift Logs:',
+        file: 'workspace_hub.html',
+        defaultView: 'attendance',
+        views: [
+          { id: 'attendance', name: 'Attendance & Clock', desc: 'Check-in times, shift clock-in and punctuality tracking', icon: '⏱️', isDefault: true }
+        ]
+      },
+      'service-desk': {
+        name: 'Service Desk',
+        icon: '🎫',
+        desc: 'Internal IT, Hardware & Facilities Service Desk:',
+        file: 'workspace_hub.html',
+        defaultView: 'service-desk',
+        views: [
+          { id: 'service-desk', name: 'Service Desk Tickets', desc: 'Hardware provisioning, software licenses & desk bookings', icon: '🎫', isDefault: true }
+        ]
+      },
+      'task-checklist': {
+        name: 'Task Checklist',
+        icon: '✅',
+        desc: 'Workplace Departmental Action Items & Checklists:',
+        file: 'workspace_hub.html',
+        defaultView: 'task-checklist',
+        views: [
+          { id: 'task-checklist', name: 'Task Checklist', desc: 'Departmental action items, compliance tasks & checklists', icon: '✅', isDefault: true }
+        ]
+      },
+      'manager-approvals': {
+        name: 'Manager Approvals',
+        icon: '💳',
+        desc: 'Corporate Expenses, Travel & Expense Authorizations:',
+        file: 'workspace_hub.html',
+        defaultView: 'manager-approvals',
+        views: [
+          { id: 'manager-approvals', name: 'Expense Approvals', desc: 'Review expense claims, receipts & authorization queue', icon: '💳', isDefault: true }
+        ]
       }
     };
 
-    let currentViewKey = 'dashboard';
-    let isGridMode = false;
+    let currentModule = 'property-settings';
+    let currentModuleView = '1';
 
-    function loadView(key) {
-      if (!VIEWS[key]) return;
-      currentViewKey = key;
+    // ==========================================================================
+    // INITIALIZATION
+    // ==========================================================================
+    function init() {
+      // Restore layout, design, and theme preferences
+      try {
+        const savedLayout = localStorage.getItem('hirerkey_sidebar_layout');
+        if (savedLayout) setSidebarLayout(savedLayout);
+        const savedDesign = localStorage.getItem('hirerkey_sidebar_design');
+        if (savedDesign) setSidebarDesign(savedDesign);
+        const savedTheme = localStorage.getItem('hirerkey_sidebar_theme');
+        if (savedTheme) setSidebarTheme(savedTheme);
+      } catch (e) {}
 
-      // Close grid mode if open
-      if (isGridMode) {
-        toggleGridMode();
+      // Check URL Hash for initial module/view
+      const hash = window.location.hash.replace('#', '').trim();
+      if (hash) {
+        const parts = hash.split(/[:/]/);
+        const modKey = parts[0];
+        const viewId = parts[1];
+        if (MODULES[modKey]) {
+          loadModule(modKey, null, viewId);
+          return;
+        }
       }
 
-      // Update Tabs UI
-      document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
-      const activeBtn = document.getElementById('tab-' + key);
-      if (activeBtn) activeBtn.classList.add('active');
-
-      // Update IFrame src
-      const frame = document.getElementById('activeViewFrame');
-      if (frame && frame.src !== VIEWS[key].url) {
-        frame.src = VIEWS[key].url;
+      // Close drawer on clicking viewport canvas
+      const vp = document.getElementById('mainViewport');
+      if (vp) {
+        vp.addEventListener('click', () => {
+          const sb = document.getElementById('masterSidebar');
+          if (sb && sb.classList.contains('layout-flyout-drawer') && sb.classList.contains('drawer-open')) {
+            sb.classList.remove('drawer-open');
+          }
+        });
       }
 
-      // Update Standalone Link
-      const link = document.getElementById('btnStandaloneLink');
-      if (link) {
-        link.href = VIEWS[key].url;
+      // Default start: Dashboard View 2 (Recommended Donezo Modern View)
+      loadModule('dashboard', null, '2');
+    }
+
+    // ==========================================================================
+    // MODULE NAVIGATION (From Persistent Side Menu)
+    // ==========================================================================
+    function loadModule(modKey, targetNavEl, targetViewId) {
+      if (!MODULES[modKey]) return;
+      currentModule = modKey;
+      const mod = MODULES[modKey];
+
+      // Set target view (or default)
+      currentModuleView = targetViewId || mod.defaultView;
+
+      // 1. Update active item in sidebar tree
+      document.querySelectorAll('.sidebar-nav-scroll .nav-item').forEach(item => {
+        item.classList.remove('active');
+      });
+
+      let activeItem = targetNavEl;
+      if (!activeItem) {
+        activeItem = document.querySelector(`.sidebar-nav-scroll .nav-item[data-mod="${modKey}"]`);
       }
+
+      if (activeItem) {
+        activeItem.classList.add('active');
+        const parentCat = activeItem.closest('.nav-category');
+        if (parentCat) parentCat.classList.remove('collapsed');
+      }
+
+      // 2. Render contextual Module Views directly at the Top of the Side Menu!
+      renderModuleViews(modKey);
+
+      // Update Topbar chip state for View 1 Top Nav Mode
+      updateTopbarState();
+
+      // 3. Load module into viewport frame
+      loadFrame(modKey, currentModuleView);
+
+      // 4. Update URL hash
+      try {
+        history.replaceState(null, '', `#${modKey}:${currentModuleView}`);
+      } catch (e) {}
+    }
+
+    // ==========================================================================
+    // RENDER ACTIVE SCREEN VIEWS - UPDATE COMPACT INDICATOR
+    // ==========================================================================
+    function renderModuleViews(modKey) {
+      const mod = MODULES[modKey];
+      if (!mod) return;
+
+      // Update compact current screen indicator
+      const nameEl = document.getElementById('currentScreenName');
+      const iconEl = document.getElementById('currentScreenIcon');
+      const viewEl = document.getElementById('currentScreenView');
+
+      const currentIdx = mod.views.findIndex(v => v.id === currentModuleView);
+      const currentView = mod.views[currentIdx] || mod.views[0];
+
+      if (nameEl) nameEl.textContent = mod.name;
+      if (iconEl) iconEl.textContent = mod.icon;
+      if (viewEl) {
+        if (currentView) {
+          const shortName = currentView.name.includes(':') ? currentView.name.split(':')[0].trim() : currentView.name;
+          viewEl.textContent = `${shortName} (${currentIdx + 1}/${mod.views.length})`;
+        } else {
+          viewEl.textContent = `${mod.views.length} Views`;
+        }
+      }
+
+      // Update prev/next button visibility
+      const prevBtn = document.getElementById('btnPrevView');
+      const nextBtn = document.getElementById('btnNextView');
+      if (prevBtn && nextBtn) {
+        const hasMultiple = mod.views.length > 1;
+        prevBtn.style.display = hasMultiple ? '' : 'none';
+        nextBtn.style.display = hasMultiple ? '' : 'none';
+      }
+
+      // Also render inline subviews under the active navigation item
+      renderInlineNavSubviews(modKey);
+    }
+
+    // Render inline subviews under the active item in the navigation tree
+    // (Skipped: compact current-screen indicator + prev/next arrows now handle view switching)
+    function renderInlineNavSubviews(modKey) {
+      // Remove any previously injected subview containers
+      document.querySelectorAll('.nav-subviews-container').forEach(c => c.remove());
+      // Inline pills suppressed — use the compact top indicator + ‹ › buttons instead
+    }
+
+    // ==========================================================================
+    // SWITCH MODULE VIEW (Instant in-place variant change)
+    // ==========================================================================
+    function switchModuleView(modKey, viewId) {
+      currentModuleView = viewId;
+      const mod = MODULES[modKey];
+      if (!mod) return;
+
+      // Special handler for Side Menu Studio: map viewId to sidebar layout!
+      if (modKey === 'sidemenu') {
+        const layoutMap = {
+          '1': 'top-nav',
+          '2': 'slim-rail',
+          '3': 'full-sidebar',
+          '4': 'expandable-hover',
+          '5': 'flyout-drawer',
+          'top-nav': 'top-nav',
+          'slim-rail': 'slim-rail',
+          'full-sidebar': 'full-sidebar',
+          'expandable-hover': 'expandable-hover',
+          'flyout-drawer': 'flyout-drawer'
+        };
+        if (layoutMap[viewId]) {
+          setSidebarLayout(layoutMap[viewId]);
+        }
+      }
+
+      // Sync master sidebar theme when switching Executive Dashboard views
+      if (modKey === 'dashboard') {
+        if (viewId === '4') setSidebarTheme('purple');
+        else if (viewId === '3' || viewId === '5') setSidebarTheme('lavender');
+        else if (viewId === '6') setSidebarTheme('gradient');
+        else if (viewId === '1' || viewId === '2') setSidebarTheme('white');
+      }
+
+      // Update active highlight in inline subviews
+      document.querySelectorAll('.nav-subviews-container .nav-subview-pill').forEach(p => p.classList.remove('active'));
+      const activePill = document.getElementById(`navSubView-${viewId}`);
+      if (activePill) activePill.classList.add('active');
+
+      // Update compact current screen indicator
+      renderModuleViews(modKey);
+
+      // Apply view to child iframe
+      applyViewToFrame(modKey, viewId);
 
       // Update URL hash
       try {
-        history.replaceState(null, '', '#' + key);
-      } catch(e) {}
+        history.replaceState(null, '', `#${modKey}:${viewId}`);
+      } catch (e) {}
+
+      const currentVObj = mod.views.find(v => v.id === viewId);
+      if (currentVObj) {
+        showToast(`${mod.name}: Switched to ${currentVObj.name}`);
+      }
     }
 
-    function toggleGridMode() {
-      isGridMode = !isGridMode;
-      const grid = document.getElementById('gridShowcase');
+    // ==========================================================================
+    // APPLY VIEW TO FRAME (Executes Child Function with Absolute Parity)
+    // ==========================================================================
+    function applyViewToFrame(modKey, viewId) {
       const frame = document.getElementById('activeViewFrame');
-      const toggleBtn = document.getElementById('btnGridToggle');
+      if (!frame || !frame.contentWindow) return;
+      const win = frame.contentWindow;
 
-      if (isGridMode) {
-        grid.classList.add('active');
-        frame.style.display = 'none';
-        toggleBtn.classList.add('active');
-      } else {
-        grid.classList.remove('active');
-        frame.style.display = 'block';
-        toggleBtn.classList.remove('active');
+      // 1. PostMessage first (Safe across file:// and http:// origins)
+      try {
+        win.postMessage({
+          type: 'HIRERKEY_SET_VIEW',
+          action: 'switchView',
+          module: modKey,
+          view: viewId,
+          screen: viewId,
+          model: viewId
+        }, '*');
+      } catch (e) {
+        console.warn('postMessage error:', e);
+      }
+
+      // 2. Direct Window execution when origin permits
+      try {
+        if (modKey === 'property-settings') {
+          if (typeof win.switchMainScreenView === 'function') {
+            win.switchMainScreenView(Number(viewId));
+          }
+        } else if (modKey === 'sidemenu') {
+          if (['1', '2', '3', '4', '5', 'top-nav', 'slim-rail', 'full-sidebar', 'expandable-hover', 'flyout-drawer'].includes(viewId)) {
+            if (typeof win.applyLayout === 'function') {
+              win.applyLayout(viewId);
+            }
+          } else if (typeof win.switchTab === 'function') {
+            win.switchTab(viewId);
+          }
+        } else if (modKey === 'dashboard' || modKey === 'analytics') {
+          if (typeof win.switchDashboardView === 'function') {
+            win.switchDashboardView(Number(viewId));
+          }
+        } else if (modKey === 'broadcast') {
+          if (typeof win.switchBroadcastView === 'function') {
+            win.switchBroadcastView(viewId);
+          }
+        } else if (modKey === 'offboarding') {
+          if (typeof win.switchToScreen === 'function') {
+            win.switchToScreen(viewId);
+          }
+        } else if (modKey === 'offboarding-guide') {
+          if (typeof win.switchScenario === 'function') {
+            win.switchScenario(viewId);
+          }
+        } else if (modKey === 'pulse-survey') {
+          if (typeof win.switchPulseView === 'function') {
+            win.switchPulseView(viewId);
+          }
+        } else if (modKey === 'preferences') {
+          if (typeof win.switchView === 'function') {
+            win.switchView(viewId);
+          }
+        } else if (modKey === 'theme-preview') {
+          if (typeof win.switchMainThemeView === 'function') {
+            win.switchMainThemeView(Number(viewId));
+          }
+        } else if (modKey === 'approval-flows') {
+          if (typeof win.switchApprovalView === 'function') {
+            win.switchApprovalView(viewId);
+          } else if (typeof win.switchToListingView === 'function') {
+            if (viewId === '3' || viewId === 'builder' || viewId === 'create') {
+              if (typeof win.switchToCreateView === 'function') win.switchToCreateView();
+            } else {
+              win.switchToListingView();
+              if (typeof win.switchViewMode === 'function') {
+                win.switchViewMode(viewId === '2' || viewId === 'card' ? 'grid' : 'dense');
+              }
+            }
+          }
+        } else if (modKey === 'hyiq-preview') {
+          if (typeof win.switchTab === 'function') {
+            win.switchTab(viewId);
+          }
+        } else if (modKey === 'modal-showcase') {
+          if (typeof win.openModel === 'function') {
+            win.openModel(Number(viewId));
+          }
+        } else if (modKey === 'departments' || modKey === 'shift-roster' || modKey === 'org-chart') {
+          if (typeof win.selectSettingMenu === 'function') {
+            win.selectSettingMenu(viewId);
+          }
+        } else if (['knowledge-hub', 'orientation', 'pre-boarding', 'active-employees', 'check-ins', 'appraisals', 'document-vault', 'appraisal-manager', 'appraisal-compare', 'appraisal-hr', 'team-attendance', 'service-desk', 'task-checklist', 'manager-approvals'].includes(modKey)) {
+          if (typeof win.showPane === 'function') {
+            win.showPane(viewId || modKey);
+          }
+        }
+      } catch (e) {
+        // file:// cross-origin restriction caught cleanly
       }
     }
 
-    // Keyboard shortcuts
-    window.addEventListener('keydown', function(e) {
-      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      if (e.key === '1') loadView('dashboard');
-      if (e.key === '2') loadView('property-settings');
-      if (e.key === '3') loadView('broadcast');
-      if (e.key === 'w' || e.key === 'W') loadView('broadcast-v3');
-      if (e.key === '4') loadView('offboarding');
-      if (e.key === '5') loadView('pulse-survey');
-      if (e.key === '6') loadView('preferences');
-      if (e.key === 'g' || e.key === 'G') toggleGridMode();
-    });
+    // ==========================================================================
+    // LOAD FRAME WITH VIEWS (With In-Place Execution or Reload)
+    // ==========================================================================
+    function loadFrame(modKey, viewId) {
+      const mod = MODULES[modKey];
+      if (!mod) return;
 
-    // Check URL hash on load
-    window.addEventListener('DOMContentLoaded', function() {
-      const hash = window.location.hash.replace('#', '');
-      if (hash && VIEWS[hash]) {
-        loadView(hash);
+      const frame = document.getElementById('activeViewFrame');
+      if (!frame) return;
+
+      let hashParam = `#view${viewId}`;
+      if (modKey === 'broadcast') hashParam = `#${viewId}`;
+      else if (modKey === 'offboarding') hashParam = `#screen-${viewId}`;
+      else if (modKey === 'offboarding-guide') hashParam = `#${viewId}`;
+      else if (modKey === 'approval-flows') hashParam = `#${viewId}`;
+      else if (modKey === 'hyiq-preview') hashParam = `#tab-${viewId}`;
+      else if (modKey === 'modal-showcase') hashParam = `#model${viewId}`;
+      else if (modKey === 'preferences' || modKey === 'sidemenu') hashParam = `#${viewId}`;
+      else if (['knowledge-hub', 'orientation', 'pre-boarding', 'active-employees', 'check-ins', 'appraisals', 'document-vault', 'appraisal-manager', 'appraisal-compare', 'appraisal-hr', 'team-attendance', 'service-desk', 'task-checklist', 'manager-approvals'].includes(modKey)) hashParam = `#${viewId || modKey}`;
+      else if (['departments', 'shift-roster', 'org-chart'].includes(modKey)) hashParam = `#${viewId}`;
+
+      const targetSrc = `${mod.file}?embedded=true${hashParam}`;
+      const currentSrc = frame.getAttribute('src') || '';
+
+      // If already on the same file, trigger in-place switcher function directly
+      if (currentSrc.includes(mod.file) && frame.contentWindow) {
+        applyViewToFrame(modKey, viewId);
+        try {
+          frame.contentWindow.location.hash = hashParam;
+        } catch(e) {}
+        return;
+      }
+
+      // Otherwise reload the iframe src
+      frame.src = targetSrc;
+    }
+
+    // ==========================================================================
+    // SIDEBAR COLLAPSE TOGGLE
+    // ==========================================================================
+    function toggleSidebarCollapse() {
+      const sidebar = document.getElementById('masterSidebar');
+      if (!sidebar) return;
+      if (sidebar.classList.contains('layout-flyout-drawer')) {
+        toggleDrawerOpen();
+        return;
+      }
+      if (sidebar.classList.contains('layout-slim-rail') || sidebar.classList.contains('sidebar-collapsed') || sidebar.classList.contains('layout-expandable-hover')) {
+        setSidebarLayout('full-sidebar');
       } else {
-        loadView('dashboard');
+        setSidebarLayout('slim-rail');
+      }
+    }
+
+    // ==========================================================================
+    // ACCORDIONS & SEARCH
+    // ==========================================================================
+    function toggleNavCategory(headerEl) {
+      const cat = headerEl.closest('.nav-category');
+      if (cat) cat.classList.toggle('collapsed');
+    }
+
+    function focusSidebarSearch() {
+      const input = document.getElementById('sidebarSearchInput');
+      if (input) input.focus();
+    }
+
+    function filterSidebarMenu(query) {
+      const q = (query || '').toLowerCase().trim();
+      const items = document.querySelectorAll('.sidebar-nav-scroll .nav-item');
+      items.forEach(it => {
+        const title = (it.getAttribute('data-title') || it.textContent || '').toLowerCase();
+        if (!q || title.includes(q)) {
+          it.style.display = '';
+        } else {
+          it.style.display = 'none';
+        }
+      });
+      if (q) {
+        document.querySelectorAll('.nav-category').forEach(cat => cat.classList.remove('collapsed'));
+      }
+    }
+
+    // ==========================================================================
+    // WORKSPACE SWITCHER
+    // ==========================================================================
+    function toggleWorkspacePopover(event) {
+      if (event) event.stopPropagation();
+      const pop = document.getElementById('workspacePopover');
+      if (pop) {
+        pop.style.display = (pop.style.display === 'block') ? 'none' : 'block';
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      const pop = document.getElementById('workspacePopover');
+      const btn = document.getElementById('workspaceSwitcherBtn');
+      if (pop && pop.style.display === 'block') {
+        if (!pop.contains(e.target) && !btn.contains(e.target)) {
+          pop.style.display = 'none';
+        }
       }
     });
-  </script>
+
+    function selectWorkspace(name) {
+      document.querySelectorAll('.workspace-popover .popover-option').forEach(opt => {
+        opt.classList.toggle('active', opt.textContent.includes(name));
+      });
+      document.querySelectorAll('.workspace-title').forEach(t => t.textContent = name.substring(0, 16) + '...');
+      toggleWorkspacePopover();
+      showToast(`Workspace: ${name}`);
+    }
+
+    // ==========================================================================
+    // USER PROFILE DROPDOWN ENHANCEMENT IN CHILD FRAMES (User Requirement 7)
+    // ==========================================================================
+    function injectUserDropdownEnhancement(doc) {
+      try {
+        const dropdown = doc.querySelector('.user-dropdown-menu, .profile-dropdown, .user-profile-dropdown, .donezo-profile-menu');
+        if (!dropdown || dropdown.querySelector('#hirerkey-proto-dropdown-injected')) return;
+
+        const widget = doc.createElement('div');
+        widget.id = 'hirerkey-proto-dropdown-injected';
+        widget.style.cssText = 'padding: 8px 10px 10px 10px; border-bottom: 1px solid #E2E8F0; margin-bottom: 6px; background: #FAF5FF; border-radius: 8px 8px 0 0;';
+        widget.innerHTML = `
+          <div style="font-weight: 700; color: #7C3AED; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <span>⚡ Property Settings Views</span>
+            <span style="font-size: 8.5px; background: #7C3AED; color: #FFF; padding: 1px 5px; border-radius: 4px;">5 Views</span>
+          </div>
+          <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+            <button type="button" id="protoV4Btn" style="font-size: 10px; padding: 3px 6px; border-radius: 4px; border: 1px solid #7C3AED; background: #7C3AED; color: #FFF; font-weight: 700; cursor: pointer;">V4 Rail ★</button>
+            <button type="button" id="protoV1Btn" style="font-size: 10px; padding: 3px 6px; border-radius: 4px; border: 1px solid #CBD5E1; background: #FFF; cursor: pointer;">V1 Chip</button>
+            <button type="button" id="protoV2Btn" style="font-size: 10px; padding: 3px 6px; border-radius: 4px; border: 1px solid #CBD5E1; background: #FFF; cursor: pointer;">V2 Slim</button>
+            <button type="button" id="protoV3Btn" style="font-size: 10px; padding: 3px 6px; border-radius: 4px; border: 1px solid #CBD5E1; background: #FFF; cursor: pointer;">V3 Full</button>
+            <button type="button" id="protoV5Btn" style="font-size: 10px; padding: 3px 6px; border-radius: 4px; border: 1px solid #CBD5E1; background: #FFF; cursor: pointer;">V5 Drawer</button>
+          </div>
+        `;
+
+        dropdown.insertBefore(widget, dropdown.firstChild);
+
+        widget.querySelector('#protoV1Btn').onclick = () => loadModule('property-settings', null, '1');
+        widget.querySelector('#protoV2Btn').onclick = () => loadModule('property-settings', null, '2');
+        widget.querySelector('#protoV3Btn').onclick = () => loadModule('property-settings', null, '3');
+        widget.querySelector('#protoV4Btn').onclick = () => loadModule('property-settings', null, '4');
+        widget.querySelector('#protoV5Btn').onclick = () => loadModule('property-settings', null, '5');
+      } catch (err) {}
+    }
+
+    // ==========================================================================
+    // TOAST NOTIFICATION
+    // ==========================================================================
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById('appToast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+
+    // Keyboard shortcuts modal
+    function openShortcutsModal() {
+      const m = document.getElementById('shortcutsModal');
+      if (m) m.classList.add('open');
+    }
+    function closeShortcutsModal() {
+      const m = document.getElementById('shortcutsModal');
+      if (m) m.classList.remove('open');
+    }
+
+    // ==========================================================================
+    // KEYBOARD SHORTCUTS CONTROLLER
+    // ==========================================================================
+    document.addEventListener('keydown', (e) => {
+      // ⌘K: Search
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        focusSidebarSearch();
+      }
+      // 1 to 5: Switch views for current active screen
+      if (['1', '2', '3', '4', '5'].includes(e.key) && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+        const mod = MODULES[currentModule];
+        if (mod && mod.views) {
+          const targetV = mod.views[Number(e.key) - 1];
+          if (targetV) {
+            switchModuleView(currentModule, targetV.id);
+          }
+        }
+      }
+      // [: Toggle sidebar width
+      if (e.key === '[' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+        toggleSidebarCollapse();
+      }
+      // ⌘/ or Ctrl+/: Toggle Prototype Customizer Modal
+      if ((e.metaKey || e.ctrlKey) && e.key === '/') {
+        e.preventDefault();
+        const m = document.getElementById('prototypeModal');
+        if (m && m.classList.contains('open')) closePrototypeModal();
+        else openPrototypeModal();
+      }
+      // ?: Open Shortcuts Modal
+      if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes(e.target.tagName)) {
+        e.preventDefault();
+        openShortcutsModal();
+      }
+      // Escape: Close modals, drawer, and popovers
+      if (e.key === 'Escape') {
+        closeShortcutsModal();
+        closePrototypeModal();
+        const pop = document.getElementById('workspacePopover');
+        if (pop) pop.style.display = 'none';
+        const sb = document.getElementById('masterSidebar');
+        if (sb && sb.classList.contains('layout-flyout-drawer')) {
+          sb.classList.remove('drawer-open');
+        }
+      }
+    });
+
+    // ==========================================================================
+    // POSTMESSAGE LISTENER (FROM CHILD FRAMES)
+    // ==========================================================================
+    window.addEventListener('message', (e) => {
+      if (!e.data) return;
+      if (e.data.type === 'HIRERKEY_NAVIGATE_MODULE' && e.data.module) {
+        loadModule(e.data.module, null, e.data.view);
+      }
+      if (e.data.type === 'HIRERKEY_VIEW_CHANGED') {
+        if (e.data.module === currentModule && e.data.view) {
+          currentModuleView = e.data.view;
+          renderModuleViews(currentModule);
+        }
+      }
+      if (e.data.type === 'HIRERKEY_SET_SIDEBAR_LAYOUT' && e.data.layout) {
+        setSidebarLayout(e.data.layout);
+      }
+      if (e.data.type === 'HIRERKEY_SET_SIDEBAR_DESIGN' && e.data.design) {
+        setSidebarDesign(e.data.design);
+      }
+      if (e.data.type === 'HIRERKEY_SET_SIDEBAR_THEME' && e.data.theme) {
+        setSidebarTheme(e.data.theme);
+      }
+    });
+
+    // ==========================================================================
+    // IFRAME LOAD HANDLER: Enforce embedded overrides, view sync & navigation
+    // ==========================================================================
+    const frame = document.getElementById('activeViewFrame');
+    if (frame) {
+      frame.addEventListener('load', () => {
+        // 1. PostMessage embedded notification (cross-origin safe)
+        try {
+          frame.contentWindow.postMessage({ type: 'HIRERKEY_SET_EMBEDDED' }, '*');
+        } catch (e) {}
+
+        // 2. Direct DOM override (when origin permits)
+        try {
+          const doc = frame.contentDocument || frame.contentWindow.document;
+          if (doc) {
+            doc.documentElement.classList.add('is-embedded');
+            let style = doc.getElementById('hirerkey-prototype-override');
+            if (!style) {
+              style = doc.createElement('style');
+              style.id = 'hirerkey-prototype-override';
+              style.textContent = `
+                aside.app-sidebar, aside.donezo-sidebar, aside.sidebar, aside.dashboard-sidebar, aside.main-sidebar,
+                header.donezo-topbar, header.dashboard-topbar, header.app-topbar, .donezo-topbar, .donezo-topbar-row, .dashboard-topbar, .app-topbar, .topbar,
+                .screen-switcher-bar, #broadcastViewSwitcher, .dashboard-switcher-row, .donezo-switcher-row,
+                .canvas-tone-bar, .dashboard-customizer-cluster, .menu-toggle-btn, .mobile-sidebar-toggle,
+                #view2SidebarToggle, #view5SidebarToggle, #view6SidebarToggle {
+                  display: none !important;
+                  visibility: hidden !important;
+                }
+                .main-workspace-body, .page-container, .app-layout, .app-main, .donezo-content-area,
+                .dashboard-container, .main-content, .layout-body, .dashboard-main, .page-content-wrapper,
+                .settings-main-canvas, .view2-layout, .donezo-inner-canvas {
+                  margin-left: 0 !important;
+                  margin-right: 0 !important;
+                  width: 100% !important;
+                  max-width: 100% !important;
+                  padding-left: 20px !important;
+                  padding-right: 20px !important;
+                }
+                body { background: transparent !important; }
+              `;
+              doc.head.appendChild(style);
+            }
+
+            // Intercept child document link clicks to update master shell smoothly
+            doc.addEventListener('click', (e) => {
+              const link = e.target.closest('a[href]');
+              if (!link) return;
+              const href = link.getAttribute('href');
+              if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+              const cleanHref = href.split('?')[0].split('#')[0].split('/').pop();
+              for (const [k, m] of Object.entries(MODULES)) {
+                if (m.file === cleanHref) {
+                  e.preventDefault();
+                  loadModule(k);
+                  return;
+                }
+              }
+            });
+
+            // Inject user dropdown quick view switchers
+            injectUserDropdownEnhancement(doc);
+          }
+        } catch (e) {
+          // Cross-origin file:// restriction expected in browser
+        }
+
+        // 3. Enforce current active view on frame immediately and on slight delay
+        applyViewToFrame(currentModule, currentModuleView);
+        setTimeout(() => applyViewToFrame(currentModule, currentModuleView), 60);
+        setTimeout(() => applyViewToFrame(currentModule, currentModuleView), 250);
+
+        // 4. Sync studio state if on sidemenu
+        if (currentModule === 'sidemenu') {
+          const curLayout = localStorage.getItem('hirerkey_sidebar_layout') || 'full-sidebar';
+          const curDesign = localStorage.getItem('hirerkey_sidebar_design') || 'classic';
+          const curTheme = localStorage.getItem('hirerkey_sidebar_theme') || 'white';
+          try {
+            frame.contentWindow.postMessage({
+              type: 'SYNC_STUDIO_STATE',
+              layout: curLayout,
+              design: curDesign,
+              theme: curTheme
+            }, '*');
+          } catch(e) {}
+        }
+      });
+    }
+
+    // ==========================================================================
+    // SIDEBAR ARCHITECTURE & THEME CONTROLLERS
+    // ==========================================================================
+    function setSidebarLayout(layout) {
+      if (layout === '1') layout = 'top-nav';
+      else if (layout === '2') layout = 'slim-rail';
+      else if (layout === '3') layout = 'full-sidebar';
+      else if (layout === '4') layout = 'expandable-hover';
+      else if (layout === '5') layout = 'flyout-drawer';
+      else if (layout === 'topnav') layout = 'top-nav';
+
+      const shell = document.querySelector('.app-shell');
+      const sb = document.getElementById('masterSidebar');
+      const vp = document.getElementById('mainViewport');
+      if (!sb) return;
+
+      sb.classList.remove('layout-expandable-hover', 'layout-slim-rail', 'layout-flyout-drawer', 'layout-top-nav', 'layout-full-sidebar', 'sidebar-collapsed', 'drawer-open');
+      if (shell) shell.classList.remove('layout-expandable-hover', 'layout-slim-rail', 'layout-flyout-drawer', 'layout-full-sidebar', 'layout-top-nav');
+
+      // Drawer Pin banner display
+      const banner = document.getElementById('drawerPinBanner');
+      if (banner) {
+        banner.style.display = (layout === 'flyout-drawer') ? 'flex' : 'none';
+      }
+
+      if (layout === 'top-nav') {
+        sb.classList.add('layout-top-nav');
+        if (shell) shell.classList.add('layout-top-nav');
+        if (vp) {
+          vp.style.marginLeft = '0';
+          vp.style.width = '100vw';
+          vp.style.height = 'calc(100vh - 54px)';
+        }
+        updateTopbarState();
+      } else if (layout === 'slim-rail') {
+        sb.classList.add('layout-slim-rail');
+        if (shell) shell.classList.add('layout-slim-rail');
+        if (vp) {
+          vp.style.marginLeft = '0';
+          vp.style.width = 'calc(100vw - 64px)';
+          vp.style.height = '100vh';
+        }
+      } else if (layout === 'expandable-hover') {
+        sb.classList.add('layout-expandable-hover');
+        if (shell) shell.classList.add('layout-expandable-hover');
+        if (vp) {
+          vp.style.marginLeft = '64px';
+          vp.style.width = 'calc(100vw - 64px)';
+          vp.style.height = '100vh';
+        }
+      } else if (layout === 'flyout-drawer') {
+        sb.classList.add('layout-flyout-drawer', 'drawer-open');
+        if (shell) shell.classList.add('layout-flyout-drawer');
+        if (vp) {
+          vp.style.marginLeft = '0';
+          vp.style.width = '100vw';
+          vp.style.height = '100vh';
+        }
+      } else {
+        // full-sidebar
+        sb.classList.add('layout-full-sidebar');
+        if (shell) shell.classList.add('layout-full-sidebar');
+        if (vp) {
+          vp.style.marginLeft = '0';
+          vp.style.width = 'calc(100vw - 250px)';
+          vp.style.height = '100vh';
+        }
+      }
+
+      // Update layout buttons
+      document.querySelectorAll('.sidebar-layout-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`btnLayout-${layout.replace('full-sidebar', 'full').replace('slim-rail', 'slim').replace('expandable-hover', 'expandable').replace('flyout-drawer', 'drawer').replace('top-nav', 'topnav')}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Update topbar layout pills
+      document.querySelectorAll('.topbar-layout-pill').forEach(b => b.classList.remove('active'));
+      const activeTbPill = document.getElementById(`tbLayout-${layout.replace('full-sidebar', 'full').replace('slim-rail', 'slim').replace('expandable-hover', 'expandable').replace('flyout-drawer', 'drawer').replace('top-nav', 'topnav')}`);
+      if (activeTbPill) activeTbPill.classList.add('active');
+
+      const badge = document.getElementById('currentLayoutBadge');
+      if (badge) {
+        if (layout === 'top-nav') badge.textContent = 'Top Nav';
+        else if (layout === 'slim-rail') badge.textContent = 'Slim';
+        else if (layout === 'expandable-hover') badge.textContent = 'Hover';
+        else if (layout === 'flyout-drawer') badge.textContent = 'Drawer';
+        else badge.textContent = 'Full';
+      }
+
+      // Update modal cards if modal open
+      document.querySelectorAll('.config-card').forEach(c => {
+        if (c.id && c.id.startsWith('mLayoutCard-')) {
+          c.classList.toggle('active', c.id === `mLayoutCard-${layout}`);
+        }
+      });
+
+      // Also sync studio if currently viewing sidemenu
+      if (currentModule === 'sidemenu') {
+        const viewMap = {
+          'top-nav': '1',
+          'slim-rail': '2',
+          'full-sidebar': '3',
+          'expandable-hover': '4',
+          'flyout-drawer': '5'
+        };
+        if (viewMap[layout]) {
+          currentModuleView = viewMap[layout];
+          renderModuleViews('sidemenu');
+        }
+        const frame = document.getElementById('activeViewFrame');
+        if (frame && frame.contentWindow) {
+          try { frame.contentWindow.postMessage({ type: 'SYNC_STUDIO_STATE', layout: layout }, '*'); } catch (e) {}
+        }
+      }
+
+      try {
+        localStorage.setItem('hirerkey_sidebar_layout', layout);
+      } catch (e) {}
+
+      showToast(`Sidebar layout: ${layout}`);
+    }
+
+    function updateTopbarState() {
+      const chipIcon = document.getElementById('topbarChipIcon');
+      const chipLabel = document.getElementById('topbarChipLabel');
+      const mod = MODULES[currentModule];
+      if (mod) {
+        if (chipIcon) chipIcon.textContent = mod.icon || '📊';
+        if (chipLabel) chipLabel.textContent = mod.name || 'Executive Dashboard';
+      }
+      populateTopbarNavDropdown();
+    }
+
+    function toggleTopbarNavDropdown(event) {
+      if (event) event.stopPropagation();
+      const dd = document.getElementById('topbarNavDropdown');
+      if (dd) {
+        dd.classList.toggle('open');
+        if (dd.classList.contains('open')) {
+          populateTopbarNavDropdown();
+        }
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      const dd = document.getElementById('topbarNavDropdown');
+      const btn = document.getElementById('topbarNavChipBtn');
+      if (dd && dd.classList.contains('open')) {
+        if (!dd.contains(e.target) && !btn.contains(e.target)) {
+          dd.classList.remove('open');
+        }
+      }
+    });
+
+    function populateTopbarNavDropdown() {
+      const dd = document.getElementById('topbarNavDropdown');
+      if (!dd) return;
+      let html = '';
+      const categories = [
+        {
+          name: 'Dashboard',
+          items: [{ mod: 'dashboard', name: 'Executive Dashboard', icon: '📊' }]
+        },
+        {
+          name: 'Intelligence',
+          items: [
+            { mod: 'analytics', name: 'Analytics Hub', icon: '📈' },
+            { mod: 'hyiq-preview', name: 'HyIQ Form AI', icon: '🤖' },
+            { mod: 'knowledge-hub', name: 'Knowledge Hub', icon: '📚' }
+          ]
+        },
+        {
+          name: 'Onboarding',
+          items: [
+            { mod: 'orientation', name: 'Orientation', icon: '🧭' },
+            { mod: 'departments', name: 'Department Tour', icon: '🏢' }
+          ]
+        },
+        {
+          name: 'All Employees',
+          items: [
+            { mod: 'pre-boarding', name: 'Pre Boarding', icon: '🚀' },
+            { mod: 'active-employees', name: 'Active Staff', icon: '👥' },
+            { mod: 'offboarding', name: 'Off-boarding', icon: '🚪' },
+            { mod: 'offboarding-guide', name: 'Departure Guide', icon: '🗺️' }
+          ]
+        },
+        {
+          name: 'Performance Tools',
+          items: [
+            { mod: 'check-ins', name: '1-on-1 Check-ins', icon: '💬' },
+            { mod: 'appraisals', name: 'Create Appraisals', icon: '📊' }
+          ]
+        },
+        {
+          name: 'Appraisal',
+          items: [
+            { mod: 'appraisal-manager', name: 'Manager Review', icon: '⭐' },
+            { mod: 'appraisal-compare', name: 'Side-by-Side Review', icon: '⚖️' },
+            { mod: 'appraisal-hr', name: 'HR Final Review', icon: '📋' }
+          ]
+        },
+        {
+          name: 'Pulse Surveys',
+          items: [
+            { mod: 'pulse-survey', name: 'Manage Surveys', icon: '📝' }
+          ]
+        },
+        {
+          name: 'Workplace',
+          items: [
+            { mod: 'approval-flows', name: 'Pending Approvals', icon: '⚡' },
+            { mod: 'shift-roster', name: 'Shift Roster', icon: '📅' },
+            { mod: 'org-chart', name: 'Org Chart', icon: '🌳' },
+            { mod: 'team-attendance', name: 'Team Attendance', icon: '⏱️' },
+            { mod: 'service-desk', name: 'Service Desk', icon: '🎫' },
+            { mod: 'task-checklist', name: 'Task Checklist', icon: '✅' },
+            { mod: 'broadcast', name: 'HR Broadcast', icon: '📢' },
+            { mod: 'document-vault', name: 'Document Vault', icon: '🗄️' },
+            { mod: 'property-settings', name: 'Property Settings', icon: '⚙️' }
+          ]
+        },
+        {
+          name: 'Expenses',
+          items: [
+            { mod: 'manager-approvals', name: 'Manager Approvals', icon: '💳' }
+          ]
+        },
+        {
+          name: 'System & Studios',
+          items: [
+            { mod: 'sidemenu', name: 'Side Menu Studio (5 Views)', icon: '📐' },
+            { mod: 'preferences', name: 'Preferences Studio', icon: '🎨' },
+            { mod: 'theme-preview', name: 'Theme & UI Kit', icon: '🌈' },
+            { mod: 'modal-showcase', name: 'Modal Lab', icon: '💬' }
+          ]
+        }
+      ];
+
+      categories.forEach(cat => {
+        html += `<div class="topbar-dropdown-category">${cat.name}</div>`;
+        cat.items.forEach(it => {
+          const isActive = (currentModule === it.mod) ? ' active' : '';
+          html += `<a href="javascript:void(0)" class="topbar-dropdown-item${isActive}" onclick="loadModule('${it.mod}'); toggleTopbarNavDropdown();"><span>${it.icon} ${it.name}</span>${isActive ? '✓' : ''}</a>`;
+        });
+      });
+      dd.innerHTML = html;
+    }
+
+    function setSidebarTheme(theme) {
+      const sb = document.getElementById('masterSidebar');
+      if (!sb) return;
+
+      sb.classList.remove('sidebar-white', 'sidebar-dark', 'sidebar-purple', 'sidebar-lavender', 'sidebar-gradient');
+      sb.classList.add(`sidebar-${theme}`);
+
+      // Update theme chips
+      document.querySelectorAll('.theme-chip-btn').forEach(c => c.classList.remove('active'));
+      const chip = document.getElementById(`themeChip-${theme}`);
+      if (chip) chip.classList.add('active');
+
+      // Update modal cards if modal open
+      document.querySelectorAll('.config-card').forEach(c => {
+        if (c.id && c.id.startsWith('mThemeCard-')) {
+          c.classList.toggle('active', c.id === `mThemeCard-${theme}`);
+        }
+      });
+
+      // Also sync studio if currently viewing sidemenu
+      if (currentModule === 'sidemenu') {
+        const frame = document.getElementById('activeViewFrame');
+        if (frame && frame.contentWindow) {
+          try { frame.contentWindow.postMessage({ type: 'SYNC_STUDIO_STATE', theme: theme }, '*'); } catch (e) {}
+        }
+      }
+
+      try {
+        localStorage.setItem('hirerkey_sidebar_theme', theme);
+      } catch (e) {}
+
+      showToast(`Sidebar theme: ${theme}`);
+    }
+
+    function toggleDrawerOpen() {
+      const sb = document.getElementById('masterSidebar');
+      if (sb) {
+        sb.classList.toggle('drawer-open');
+      }
+    }
+
+    function populateModalViewsList() {
+      const container = document.getElementById('modalViewsList');
+      const descEl = document.getElementById('modalViewsDesc');
+      if (!container) return;
+      const mod = MODULES[currentModule];
+      if (!mod || !mod.views || mod.views.length === 0) {
+        container.innerHTML = '<div style="padding: 16px; color: #64748B; font-size: 13px;">No alternative views configured for this screen.</div>';
+        if (descEl) descEl.textContent = `Screen: ${mod ? mod.name : currentModule}`;
+        return;
+      }
+      if (descEl) {
+        descEl.textContent = `${mod.name} (${mod.views.length} views available):`;
+      }
+      container.innerHTML = mod.views.map(v => `
+        <div class="config-card ${v.id === currentModuleView ? 'active' : ''}" onclick="loadModule('${currentModule}', null, '${v.id}'); closePrototypeModal();">
+          <div class="config-card-left">
+            <span class="config-card-icon">${v.icon || '📌'}</span>
+            <div class="config-card-text">
+              <span class="config-card-name">${v.name}</span>
+              <span class="config-card-desc">${v.desc || ''}</span>
+            </div>
+          </div>
+          <span class="config-card-check">✓</span>
+        </div>
+      `).join('');
+    }
+
+    function openPrototypeModal() {
+      const m = document.getElementById('prototypeModal');
+      if (m) {
+        // Sync active layout card
+        const curLayout = localStorage.getItem('hirerkey_sidebar_layout') || 'full-sidebar';
+        document.querySelectorAll('#modalLayoutCards .config-card').forEach(c => {
+          c.classList.toggle('active', c.id === `mLayoutCard-${curLayout}`);
+        });
+
+        // Sync active theme card
+        const curTheme = localStorage.getItem('hirerkey_sidebar_theme') || 'white';
+        document.querySelectorAll('#modalThemeCards .config-card').forEach(c => {
+          c.classList.toggle('active', c.id === `mThemeCard-${curTheme}`);
+        });
+
+        // Populate dynamic views list for current screen
+        populateModalViewsList();
+
+        m.classList.add('open');
+      }
+    }
+
+    function closePrototypeModal() {
+      const m = document.getElementById('prototypeModal');
+      if (m) m.classList.remove('open');
+    }
+
+    function switchProtoModalTab(tabId) {
+      document.querySelectorAll('.proto-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.proto-tab-pane').forEach(p => p.classList.remove('active'));
+      const btn = document.getElementById(`pTabBtn-${tabId}`);
+      const pane = document.getElementById(`pPane-${tabId}`);
+      if (btn) btn.classList.add('active');
+      if (pane) pane.classList.add('active');
+      if (tabId === 'views') {
+        populateModalViewsList();
+      }
+    }
+
+    function setSidebarDesign(design) {
+      const sb = document.getElementById('masterSidebar');
+      const shell = document.querySelector('.app-shell');
+      if (!sb) return;
+
+      sb.classList.remove('sidebar-design-classic', 'sidebar-design-floating', 'sidebar-design-rounded', 'sidebar-design-minimal');
+      sb.classList.add(`sidebar-design-${design}`);
+
+      if (shell) {
+        shell.classList.toggle('sidebar-floating-active', design === 'floating');
+      }
+
+      // Update design buttons in sidebar
+      document.querySelectorAll('.sidebar-design-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById(`btnDesign-${design}`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const badge = document.getElementById('currentDesignBadge');
+      if (badge) {
+        badge.textContent = design.charAt(0).toUpperCase() + design.slice(1);
+      }
+
+      // Also sync studio if currently viewing sidemenu
+      if (currentModule === 'sidemenu') {
+        const frame = document.getElementById('activeViewFrame');
+        if (frame && frame.contentWindow) {
+          try { frame.contentWindow.postMessage({ type: 'SYNC_STUDIO_STATE', design: design }, '*'); } catch (e) {}
+        }
+      }
+
+      try {
+        localStorage.setItem('hirerkey_sidebar_design', design);
+      } catch (e) {}
+
+      showToast(`Sidebar design: ${design.charAt(0).toUpperCase() + design.slice(1)}`);
+    }
+
+    // ==========================================================================
+    // NAVIGATE VIEW (prev/next arrows in compact screen indicator)
+    // ==========================================================================
+    function navigateView(direction) {
+      const mod = MODULES[currentModule];
+      if (!mod || !mod.views || mod.views.length <= 1) return;
+      const views = mod.views;
+      const currentIndex = views.findIndex(v => v.id === currentModuleView);
+      const newIndex = (currentIndex + direction + views.length) % views.length;
+      switchModuleView(currentModule, views[newIndex].id);
+    }
+
+    // Expose necessary functions globally for onclick attributes
+    window.loadModule = loadModule;
+    window.switchModuleView = switchModuleView;
+    window.navigateView = navigateView;
+    window.setSidebarLayout = setSidebarLayout;
+    window.setSidebarDesign = setSidebarDesign;
+    window.setSidebarTheme = setSidebarTheme;
+    window.toggleDrawerOpen = toggleDrawerOpen;
+    window.openPrototypeModal = openPrototypeModal;
+    window.closePrototypeModal = closePrototypeModal;
+    window.switchProtoModalTab = switchProtoModalTab;
+    window.populateModalViewsList = populateModalViewsList;
+    window.toggleSidebarCollapse = toggleSidebarCollapse;
+    window.toggleNavCategory = toggleNavCategory;
+    window.focusSidebarSearch = focusSidebarSearch;
+    window.filterSidebarMenu = filterSidebarMenu;
+    window.toggleWorkspacePopover = toggleWorkspacePopover;
+    window.selectWorkspace = selectWorkspace;
+    window.openShortcutsModal = openShortcutsModal;
+    window.closeShortcutsModal = closeShortcutsModal;
+    window.showToast = showToast;
+    window.toggleTopbarNavDropdown = toggleTopbarNavDropdown;
+
+    // Start prototype application
+    init();
+
+  })();
+</script>
 </body>
 </html>

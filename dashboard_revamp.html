@@ -4,6 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hirerkey™ — Modern Dashboard Revamp</title>
+  <script>
+    if (window.self !== window.top || location.search.indexOf('embedded') !== -1 || location.hash.indexOf('embedded') !== -1) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <style>
+    html.is-embedded aside,
+    html.is-embedded header,
+    html.is-embedded .app-sidebar,
+    html.is-embedded .donezo-sidebar,
+    html.is-embedded .sidebar,
+    html.is-embedded .topbar,
+    html.is-embedded .donezo-topbar,
+    html.is-embedded .donezo-topbar-row,
+    html.is-embedded .dashboard-topbar,
+    html.is-embedded .dashboard-switcher-row,
+    html.is-embedded .donezo-switcher-row,
+    html.is-embedded .screen-switcher-bar,
+    html.is-embedded .dashboard-customizer-cluster,
+    html.is-embedded .canvas-tone-bar,
+    html.is-embedded .menu-toggle-btn,
+    html.is-embedded .mobile-sidebar-toggle,
+    html.is-embedded #appSidebar,
+    html.is-embedded #appSidebar3,
+    html.is-embedded #appSidebar4,
+    html.is-embedded #view2SidebarToggle,
+    html.is-embedded #view5SidebarToggle,
+    html.is-embedded #view6SidebarToggle {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    html.is-embedded body {
+      background: transparent !important;
+      display: block !important;
+      overflow-x: hidden !important;
+    }
+    html.is-embedded .app-layout,
+    html.is-embedded .view2-layout {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 100% !important;
+      height: auto !important;
+      margin-left: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+    }
+    html.is-embedded .app-main,
+    html.is-embedded .donezo-content-area {
+      width: 100% !important;
+      max-width: 100% !important;
+      min-height: 100% !important;
+      margin-left: 0 !important;
+      padding: 0 !important;
+      display: block !important;
+      flex: 1 1 100% !important;
+    }
+    html.is-embedded .dashboard-container,
+    html.is-embedded .dashboard-main,
+    html.is-embedded .donezo-inner-canvas,
+    html.is-embedded .main-workspace-body {
+      margin-left: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 16px 24px !important;
+      box-sizing: border-box !important;
+    }
+  </style>
 
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16197,23 +16266,11 @@
 
     const params = new URLSearchParams(window.location.search);
     const hash = window.location.hash;
-    const savedView = localStorage.getItem('hirerkey_dashboard_active_view');
-    if (params.get('view') === '6' || hash === '#view6' || savedView === '6') {
-      switchDashboardView(6);
-    } else if (params.get('view') === '5' || hash === '#view5' || savedView === '5') {
-      switchDashboardView(5);
-    } else if (params.get('view') === '4' || hash === '#view4' || savedView === '4') {
-      switchDashboardView(4);
-    } else if (params.get('view') === '3' || hash === '#view3' || savedView === '3') {
-      switchDashboardView(3);
-    } else if (params.get('view') === '2' || hash === '#view2' || savedView === '2') {
-      switchDashboardView(2);
-    } else if (params.get('view') === '1' || hash === '#view1' || savedView === '1') {
-      switchDashboardView(1);
-    } else {
-      // Default to View 2 (Recommended View)
-      switchDashboardView(2);
-    }
+    const match = hash.match(/view[=-]?([1-6])/i) || hash.match(/#?([1-6])$/);
+    const urlView = params.get('view') || (match ? match[1] : null);
+    const activeView = urlView || localStorage.getItem('hirerkey_dashboard_active_view') || '2';
+    const viewNum = parseInt(activeView, 10);
+    switchDashboardView(isNaN(viewNum) || viewNum < 1 || viewNum > 6 ? 2 : viewNum);
     document.querySelectorAll('.donezo-nav-item').forEach(it => {
       if (!it.getAttribute('title')) {
         const dt = it.getAttribute('data-title');
@@ -16234,6 +16291,23 @@
       toast.classList.remove('show');
     }, 2400);
   }
+
+  // Cross-frame view synchronization
+  window.addEventListener('hashchange', () => {
+    const hash = window.location.hash;
+    const match = hash.match(/view[=-]?([1-6])/i);
+    if (match) switchDashboardView(parseInt(match[1], 10));
+  });
+
+  window.addEventListener('message', (e) => {
+    if (!e.data) return;
+    if (e.data.type === 'HIRERKEY_SET_VIEW' || e.data.action === 'switchView') {
+      const v = parseInt(e.data.view || e.data.screen || 2, 10);
+      if (!isNaN(v) && v >= 1 && v <= 6) {
+        switchDashboardView(v);
+      }
+    }
+  });
 </script>
 
 </body>

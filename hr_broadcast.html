@@ -4,6 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hirerkey™ — HR Broadcast Activity</title>
+  <script>
+    if (window.self !== window.top || location.search.indexOf('embedded') !== -1 || location.hash.indexOf('embedded') !== -1) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <style>
+    html.is-embedded aside.app-sidebar,
+    html.is-embedded aside.donezo-sidebar,
+    html.is-embedded header.topbar,
+    html.is-embedded #broadcastViewSwitcher,
+    html.is-embedded .screen-switcher-bar {
+      display: none !important;
+    }
+    html.is-embedded body {
+      background: transparent !important;
+      display: block !important;
+    }
+    html.is-embedded .main-workspace-body,
+    html.is-embedded .app-main {
+      margin-left: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 16px 24px !important;
+    }
+  </style>
 
   <!-- Preconnect to Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10581,5 +10606,25 @@
   </div>
 </div>
 
+<script>
+  window.addEventListener('hashchange', () => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && (hash.startsWith('view') || hash === '1' || hash === '2' || hash === '3')) {
+      const v = hash.startsWith('view') ? hash : 'view' + hash;
+      if (typeof switchBroadcastView === 'function') switchBroadcastView(v);
+    }
+  });
+
+  window.addEventListener('message', (e) => {
+    if (!e.data) return;
+    if (e.data.type === 'HIRERKEY_SET_VIEW' || e.data.action === 'switchView') {
+      let v = String(e.data.view || e.data.screen || 'view2');
+      if (v === '1') v = 'view1';
+      if (v === '2') v = 'view2';
+      if (v === '3') v = 'view3';
+      if (typeof switchBroadcastView === 'function') switchBroadcastView(v);
+    }
+  });
+</script>
 </body>
 </html>

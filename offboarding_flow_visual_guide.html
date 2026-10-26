@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hirerkey™ Offboarding Module — Complete Flow & Screen Guide</title>
+  <script>
+    if (window.self !== window.top || location.search.indexOf('embedded') !== -1 || location.hash.indexOf('embedded') !== -1) {
+      document.documentElement.classList.add('is-embedded');
+    }
+  </script>
+  <style>
+    html.is-embedded aside {
+      display: none !important;
+    }
+    html.is-embedded body {
+      background: transparent !important;
+    }
+  </style>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -3164,8 +3177,21 @@
 
   <script>
     function switchScenario(scenario) {
-      document.querySelectorAll('.scenario-nav-btn').forEach(btn => btn.classList.remove('active'));
-      event.currentTarget.classList.add('active');
+      if (scenario === '1') scenario = 'resignation';
+      else if (scenario === '2') scenario = 'termination';
+      else if (scenario === '3' || scenario === 'mutual') scenario = 'retirement';
+      else if (scenario === '4') scenario = 'death';
+      else if (scenario === '5') scenario = 'all';
+
+      document.querySelectorAll('.scenario-nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(scenario)) {
+          btn.classList.add('active');
+        }
+      });
+      if (window.event && window.event.currentTarget && window.event.currentTarget.classList) {
+        window.event.currentTarget.classList.add('active');
+      }
 
       const sections = ['resignation', 'termination', 'retirement', 'death'];
       if (scenario === 'all') {
@@ -3219,6 +3245,14 @@
         }
       }
     }
+
+    window.addEventListener('message', (e) => {
+      if (!e.data) return;
+      if (e.data.type === 'HIRERKEY_SET_VIEW' || e.data.action === 'switchView') {
+        const v = String(e.data.view || 'standard');
+        if (typeof switchScenario === 'function') switchScenario(v);
+      }
+    });
   </script>
 </body>
 </html>
