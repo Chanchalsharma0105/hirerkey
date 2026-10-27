@@ -1405,14 +1405,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                               sx={{
                                 height: 48,
                                 borderRadius: '14px',
-                                bgcolor: '#F8FAFC',
+                                bgcolor: '#FFFFFF',
                                 border: '1px solid #E2E8F0',
                                 color: '#0F172A',
                                 fontSize: 14,
+                                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
                                 '&:focus-within': {
                                   bgcolor: '#FFFFFF',
                                   borderColor: '#7C3AED',
-                                  boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                                  boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04)',
                                 },
                               }}
                             />
@@ -1575,14 +1576,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                             sx={{
                               height: 48,
                               borderRadius: '14px',
-                              bgcolor: '#F8FAFC',
+                              bgcolor: '#FFFFFF',
                               border: '1px solid #E2E8F0',
                               color: '#0F172A',
                               fontSize: 14,
+                              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
                               '&:focus-within': {
                                 bgcolor: '#FFFFFF',
                                 borderColor: '#7C3AED',
-                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04)',
                               },
                             }}
                           />
@@ -1610,14 +1612,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                             sx={{
                               height: 48,
                               borderRadius: '14px',
-                              bgcolor: '#F8FAFC',
+                              bgcolor: '#FFFFFF',
                               border: '1px solid #E2E8F0',
                               color: '#0F172A',
                               fontSize: 14,
+                              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
                               '&:focus-within': {
                                 bgcolor: '#FFFFFF',
                                 borderColor: '#7C3AED',
-                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04)',
                               },
                             }}
                           />
