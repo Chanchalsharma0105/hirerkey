@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hirerkey™ — Workplace Intelligence Login</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&family=Pacifico&display=swap" rel="stylesheet">
   <style>
     /* ==========================================================================
        HIRERKEY™ FROSTED GLASS LOGIN EXPERIENCE (INSPIRATION MATCHED)
@@ -1090,17 +1089,84 @@
       animation: pulse-dot 2s infinite;
     }
 
-    /* Giant Ambient Typography */
+    /* Hirerkey Authentic Workplace Intelligence Statement */
+    .v2-hero-statement {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 6px;
+    }
+
+    .v2-hero-workplace-line {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .v2-text-white-bold {
+      color: #FFFFFF;
+      text-shadow: 0 2px 14px rgba(124, 58, 237, 0.35);
+    }
+
+    .v2-text-yellow-bold {
+      color: #FACC15;
+      position: relative;
+      display: inline-block;
+      text-shadow: 0 2px 16px rgba(234, 179, 8, 0.35);
+    }
+
+    .v2-text-ai-sup {
+      font-family: 'Caveat', 'Pacifico', cursive, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFFFFF;
+      position: absolute;
+      top: -8px;
+      right: -24px;
+      transform: rotate(8deg);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .v2-underline-wrapper {
+      margin-top: 1px;
+      margin-left: 178px;
+      width: 175px;
+    }
+
+    .v2-lime-stroke {
+      width: 100%;
+      height: 10px;
+      display: block;
+      filter: drop-shadow(0 2px 6px rgba(163, 230, 53, 0.5));
+    }
+
+    .v2-hero-script-line {
+      font-family: 'Caveat', 'Pacifico', cursive, sans-serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: 0.02em;
+      margin-top: 3px;
+      text-shadow: 0 2px 10px rgba(124, 58, 237, 0.4);
+    }
+
+    /* Giant Ambient Typography behind Orb */
     .v2-hero-typography {
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
+      margin-top: 6px;
     }
 
     .v2-hero-smart-ai {
       font-family: var(--font-display);
-      font-size: 56px;
+      font-size: 46px;
       font-weight: 800;
       letter-spacing: -0.04em;
       color: #FFFFFF;
@@ -1114,12 +1180,43 @@
 
     .v2-hero-sub-text {
       font-family: var(--font-display);
-      font-size: 17px;
+      font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.16em;
       color: rgba(255, 255, 255, 0.72);
-      margin-top: 5px;
+      margin-top: 4px;
       user-select: none;
+    }
+
+    /* HyIQ AI Core Badge Pill */
+    .v2-orb-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 14px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.15);
+      z-index: 4;
+    }
+
+    .v2-live-indicator {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+      display: inline-block;
+      animation: pulse-dot 2s infinite;
     }
 
     /* 3D Sphere Stage */
@@ -1388,18 +1485,31 @@
 
     .v2-hero-title {
       font-family: var(--font-display);
-      font-size: 25px;
+      font-size: 24px;
       font-weight: 700;
-      color: #0F172A;
+      color: #FFFFFF;
       letter-spacing: -0.025em;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       line-height: 1.2;
+      text-shadow: 0 2px 10px rgba(124, 58, 237, 0.4);
     }
 
     .v2-hero-desc {
       font-size: 13.5px;
-      color: #475569;
+      color: rgba(255, 255, 255, 0.88);
       line-height: 1.55;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .v2-hero-trust-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 500;
+      margin-top: 14px;
+      letter-spacing: 0.02em;
     }
 
     /* Right Form Panel */
@@ -1410,17 +1520,58 @@
       justify-content: space-between;
     }
 
-    .v2-brand-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      background: #FFFFFF;
-      border: 1px solid rgba(124, 58, 237, 0.16);
-      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.1);
-      display: inline-flex;
+    /* Authentic Hirerkey Brand Header & Wordmark for View 2 */
+    .v2-brand-header {
+      margin-bottom: 18px;
+      display: flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
+      gap: 12px;
+    }
+
+    .v2-brand-mark-pill {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.16) 0%, rgba(124, 58, 237, 0.08) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.28);
+      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.12);
+    }
+
+    .v2-brand-wordmark {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #0F172A;
+      user-select: none;
+      display: inline-flex;
+      align-items: baseline;
+    }
+
+    .v2-brand-wordmark .v2-dot-i {
+      color: #7C3AED;
+    }
+
+    .v2-brand-wordmark .v2-key-part {
+      position: relative;
+      color: #0F172A;
+      margin-left: 0.5px;
+    }
+
+    .v2-brand-wordmark .v2-key-part .v2-y-letter {
+      background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .v2-brand-wordmark .v2-key-swoosh {
+      position: absolute;
+      left: -4px;
+      bottom: -4px;
+      width: calc(100% + 6px);
+      height: 6px;
     }
 
     .v2-form-title {
@@ -2327,7 +2478,7 @@
     <div id="login-view-2" class="login-view-wrapper">
       <div class="v2-card-shell">
         
-        <!-- LEFT COLUMN: SMART AI VISUAL PANEL -->
+        <!-- LEFT COLUMN: HYIQ™ WORKPLACE INTELLIGENCE VISUAL PANEL -->
         <section class="v2-hero-panel">
           <!-- Background Ambient Mesh Aura Blobs -->
           <div class="v2-aura-blob v2-aura-top"></div>
@@ -2337,21 +2488,42 @@
           <!-- Top AI Tag Pill -->
           <div class="v2-hero-tag">
             <span class="v2-tag-sparkle">✦</span>
-            <span>SMART AI ASSISTANCE</span>
+            <span>HYIQ™ WORKPLACE INTELLIGENCE</span>
           </div>
 
-          <!-- Giant Ambient Typography -->
+          <!-- Authentic Hirerkey Hero Statement Banner -->
+          <div class="v2-hero-statement">
+            <div class="v2-hero-workplace-line">
+              <span class="v2-text-white-bold">Workplace</span>
+              <span class="v2-text-yellow-bold">Intelligence<span class="v2-text-ai-sup">AI</span></span>
+            </div>
+            <div class="v2-underline-wrapper">
+              <svg class="v2-lime-stroke" viewBox="0 0 210 10" fill="none">
+                <path d="M 3 6.5 C 50 2.5, 150 2.5, 204 6.5" stroke="#A3E635" stroke-width="4.5" stroke-linecap="round"/>
+                <circle cx="206" cy="6.5" r="2.5" fill="#A3E635"/>
+              </svg>
+            </div>
+            <div class="v2-hero-script-line">for the modern workforce</div>
+          </div>
+
+          <!-- Giant Ambient Typography Behind Orb -->
           <div class="v2-hero-typography">
-            <span class="v2-hero-smart-ai">SMART AI</span>
-            <span class="v2-hero-sub-text">WORKPLACE INTELLIGENCE</span>
+            <span class="v2-hero-smart-ai">HIRERKEY HYIQ</span>
+            <span class="v2-hero-sub-text">WORKFORCE INTELLIGENCE CORE</span>
           </div>
 
-          <!-- 3D Iridescent Floating Glass Sphere Centerpiece -->
+          <!-- 3D Iridescent Floating Glass Sphere Centerpiece (HyIQ™ AI Engine) -->
           <div class="v2-sphere-stage">
             <!-- Floating Sparkles -->
             <div class="v2-sparkle v2-sparkle-1">✦</div>
             <div class="v2-sparkle v2-sparkle-2">✦</div>
             <div class="v2-sparkle v2-sparkle-3">✦</div>
+
+            <!-- HyIQ AI Core Active Status Pill -->
+            <div class="v2-orb-badge-pill">
+              <span class="v2-live-indicator"></span>
+              <span>HyIQ™ Neural Core • Real-time Engine</span>
+            </div>
 
             <!-- Floating 3D Orb Stage (Parallax Outer + Levitate Inner) -->
             <div class="v2-orb-parallax-wrapper" id="v2OrbParallax">
@@ -2385,36 +2557,52 @@
             </div>
           </div>
 
-          <!-- Bottom Headline & Copy -->
+          <!-- Bottom Headline & Copy (Hirerkey Core Value Proposition) -->
           <div class="v2-hero-footer">
-            <h2 class="v2-hero-title">Intelligent AI Assistance</h2>
+            <h2 class="v2-hero-title">Make Work Life Effortless</h2>
             <p class="v2-hero-desc">
-              Experience smarter conversations with AI-powered responses, personalized insights &amp; seamless productivity across every interaction.
+              Continuous feedback, performance appraisals, pulse surveys &amp; automated approval flows—all in one intelligent workforce platform.
             </p>
+            <div class="v2-hero-trust-strip">
+              <span>🛡️ Enterprise-Grade</span>
+              <span>•</span>
+              <span>🇦🇪 UAE Data Centers</span>
+              <span>•</span>
+              <span>🔒 GDPR Compliant</span>
+            </div>
           </div>
         </section>
 
-        <!-- RIGHT COLUMN: AUTHENTICATION FORM & USERS SUBCARD -->
+        <!-- RIGHT COLUMN: AUTHENTICATION FORM PANEL -->
         <section class="v2-form-panel">
           <div>
-            <!-- Top Brand Icon Badge -->
-            <div class="v2-brand-badge" title="Hirerkey Intelligence">
-              <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-                <rect width="28" height="28" rx="8" fill="url(#v2-badge-grad)"/>
-                <path d="M8 7v14M8 14c1.5-3 6.5-3.5 8 0v7M16 14c1.5-3 6-3 6 0v7" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="21" cy="9" r="2.2" fill="#F472B6"/>
-                <defs>
-                  <linearGradient id="v2-badge-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#A855F7"/>
-                    <stop offset="100%" stop-color="#7C3AED"/>
-                  </linearGradient>
-                </defs>
-              </svg>
+            <!-- Authentic Hirerkey Official Logo Header & Wordmark -->
+            <div class="v2-brand-header">
+              <div class="v2-brand-mark-pill">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="3" width="6" height="15" rx="3" transform="rotate(-30 4 3)" fill="url(#v2-bar-grad-1)" />
+                  <rect x="13" y="3" width="6" height="15" rx="3" transform="rotate(-30 13 3)" fill="url(#v2-bar-grad-2)" />
+                  <circle cx="17" cy="18" r="3" fill="#EC4899" />
+                  <defs>
+                    <linearGradient id="v2-bar-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#C084FC" />
+                      <stop offset="100%" stop-color="#7C3AED" />
+                    </linearGradient>
+                    <linearGradient id="v2-bar-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#F472B6" />
+                      <stop offset="100%" stop-color="#A855F7" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="v2-brand-wordmark">
+                <span>h<span class="v2-dot-i">i</span>rerke<span class="v2-key-part"><span class="v2-y-letter">y</span><svg class="v2-key-swoosh" viewBox="0 0 46 8" fill="none"><path d="M1 5.5C12 1.5 34 1.5 45 6" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span></span>
+              </div>
             </div>
 
-            <!-- Form Headings -->
+            <!-- Form Headings (Exact match to dashboard.hirerkey.com) -->
             <h1 class="v2-form-title">Welcome Back</h1>
-            <p class="v2-form-subtitle">Sign in to access your unified inbox</p>
+            <p class="v2-form-subtitle">One platform to manage people, performance &amp; workflows</p>
 
             <!-- Auth Mode Segmented Pill Switcher (Primary Purple) -->
             <div class="v2-auth-mode-switcher">
@@ -2438,7 +2626,7 @@
             <div id="v2-step-email-otp" class="auth-step">
               <form id="v2-email-otp-form" onsubmit="handleV2SendOTP(event)">
                 <div class="v2-input-group">
-                  <label for="v2-email-otp" class="v2-input-label">Business Email</label>
+                  <label for="v2-email-otp" class="v2-input-label">Business Email<span style="color: #EF4444; margin-left: 2px;">*</span></label>
                   <div class="v2-input-box">
                     <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <rect width="20" height="16" x="2" y="4" rx="2"></rect>
@@ -2448,7 +2636,7 @@
                       type="email" 
                       id="v2-email-otp" 
                       class="v2-text-input" 
-                      placeholder="you@example.com" 
+                      placeholder="Enter your Email" 
                       value="alex.chen@earthhotels.com"
                       required 
                     />
@@ -2482,7 +2670,7 @@
               <form id="v2-login-form" onsubmit="handleV2Login(event)">
                 <!-- Email Input -->
                 <div class="v2-input-group">
-                  <label for="v2-email" class="v2-input-label">Email</label>
+                  <label for="v2-email" class="v2-input-label">Business Email<span style="color: #EF4444; margin-left: 2px;">*</span></label>
                   <div class="v2-input-box">
                     <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <rect width="20" height="16" x="2" y="4" rx="2"></rect>
@@ -2492,7 +2680,7 @@
                       type="email" 
                       id="v2-email" 
                       class="v2-text-input" 
-                      placeholder="you@example.com" 
+                      placeholder="Enter your Email" 
                       value="alex.chen@earthhotels.com"
                       required 
                     />
@@ -2501,7 +2689,7 @@
 
                 <!-- Password Input -->
                 <div class="v2-input-group">
-                  <label for="v2-password" class="v2-input-label">Password</label>
+                  <label for="v2-password" class="v2-input-label">Password<span style="color: #EF4444; margin-left: 2px;">*</span></label>
                   <div class="v2-input-box">
                     <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
                       <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
@@ -2511,7 +2699,7 @@
                       type="password" 
                       id="v2-password" 
                       class="v2-text-input" 
-                      placeholder="••••••••" 
+                      placeholder="••••••••••••" 
                       value="EarthHotels2026!#" 
                       required 
                     />
