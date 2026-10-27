@@ -59,10 +59,13 @@ export const LoginView: React.FC<LoginViewProps> = ({
   const [storyIndex, setStoryIndex] = useState(0);
 
   // View 2 form states
+  const [v2AuthMode, setV2AuthMode] = useState<'otp' | 'password'>('otp');
+  const [v2OtpStep, setV2OtpStep] = useState<'input' | 'verify'>('input');
+  const [v2OtpDigits, setV2OtpDigits] = useState<string[]>(['', '', '', '', '', '']);
+  const [v2OtpSecondsLeft, setV2OtpSecondsLeft] = useState(29);
   const [v2Email, setV2Email] = useState('alex.chen@earthhotels.com');
   const [v2Password, setV2Password] = useState('EarthHotels2026!#');
   const [v2ShowPassword, setV2ShowPassword] = useState(false);
-  const [v2Remember, setV2Remember] = useState(true);
   const [orbTilt, setOrbTilt] = useState({ x: 0, y: 0 });
 
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -100,6 +103,58 @@ export const LoginView: React.FC<LoginViewProps> = ({
       onSuccessLogin?.(v2Email, 'password');
     }, 800);
   };
+
+  const handleV2SendOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v2Email) return;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(v2Email.trim())) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setV2OtpStep('verify');
+      setV2OtpSecondsLeft(29);
+    }, 600);
+  };
+
+  const handleV2VerifyOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = v2OtpDigits.join('');
+    if (code.length < 6) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v2Email, 'otp');
+    }, 800);
+  };
+
+  const handleV2OtpDigitChange = (index: number, val: string) => {
+    const clean = val.replace(/[^0-9]/g, '');
+    const nextDigits = [...v2OtpDigits];
+    nextDigits[index] = clean ? clean[clean.length - 1] : '';
+    setV2OtpDigits(nextDigits);
+
+    if (clean && index < 5) {
+      const nextInput = document.getElementById(`v2-otp-digit-${index + 1}`);
+      nextInput?.focus();
+    }
+  };
+
+  const handleV2OtpKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === 'Backspace' && !v2OtpDigits[index] && index > 0) {
+      const prevInput = document.getElementById(`v2-otp-digit-${index - 1}`);
+      prevInput?.focus();
+    }
+  };
+
+  // View 2 OTP Timer
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (v2OtpStep === 'verify' && v2OtpSecondsLeft > 0) {
+      timer = setInterval(() => setV2OtpSecondsLeft((prev) => prev - 1), 1000);
+    }
+    return () => clearInterval(timer);
+  }, [v2OtpStep, v2OtpSecondsLeft]);
 
   // OTP Countdown Timer
   useEffect(() => {
@@ -1258,139 +1313,369 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     Sign in to access your unified workplace
                   </Typography>
 
-                  {/* Form */}
-                  <form onSubmit={handleV2Login}>
-                    <Box sx={{ mb: 1.75 }}>
-                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
-                      <Input
-                        type="email"
-                        value={v2Email}
-                        onChange={(e) => setV2Email(e.target.value)}
-                        startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
-                        placeholder="you@example.com"
-                        required
-                        sx={{
-                          height: 48,
-                          borderRadius: '14px',
-                          bgcolor: '#F8FAFC',
-                          border: '1px solid #E2E8F0',
-                          color: '#0F172A',
-                          fontSize: 14,
-                          '&:focus-within': {
-                            bgcolor: '#FFFFFF',
-                            borderColor: '#7C3AED',
-                            boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
-                          },
-                        }}
-                      />
-                    </Box>
-
-                    <Box sx={{ mb: 1.75 }}>
-                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Password</Typography>
-                      <Input
-                        type={v2ShowPassword ? 'text' : 'password'}
-                        value={v2Password}
-                        onChange={(e) => setV2Password(e.target.value)}
-                        startDecorator={<HiLockClosed color="#94A3B8" size={18} />}
-                        endDecorator={
-                          <Box
-                            component="button"
-                            type="button"
-                            onClick={() => setV2ShowPassword(!v2ShowPassword)}
-                            sx={{ background: 'none', border: 'none', p: 0, cursor: 'pointer', color: '#94A3B8', display: 'flex', alignItems: 'center' }}
-                          >
-                            {v2ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
-                          </Box>
-                        }
-                        placeholder="••••••••"
-                        required
-                        sx={{
-                          height: 48,
-                          borderRadius: '14px',
-                          bgcolor: '#F8FAFC',
-                          border: '1px solid #E2E8F0',
-                          color: '#0F172A',
-                          fontSize: 14,
-                          '&:focus-within': {
-                            bgcolor: '#FFFFFF',
-                            borderColor: '#7C3AED',
-                            boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
-                          },
-                        }}
-                      />
-                    </Box>
-
-                    {/* Remember me & Forgot Password */}
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2.5, fontSize: 13 }}>
-                      <Box component="label" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#475569', cursor: 'pointer' }}>
-                        <input
-                          type="checkbox"
-                          checked={v2Remember}
-                          onChange={(e) => setV2Remember(e.target.checked)}
-                          style={{ accentColor: '#7C3AED', width: 16, height: 16, borderRadius: 4 }}
-                        />
-                        <span>Remember me</span>
-                      </Box>
-                      <Typography
-                        component="a"
-                        href="#"
-                        onClick={(e) => { e.preventDefault(); setHelpModalOpen(true); }}
-                        sx={{ color: '#475569', textDecoration: 'none', fontWeight: 500, fontSize: 13, '&:hover': { color: '#7C3AED', textDecoration: 'underline' } }}
-                      >
-                        Forgot Password?
-                      </Typography>
-                    </Box>
-
-                    {/* Sign In Button */}
-                    <Button
-                      type="submit"
-                      loading={loading}
-                      endDecorator={<HiArrowRight />}
+                  {/* Auth Mode Segmented Pill Switcher (Primary Purple) */}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      bgcolor: '#F1F5F9',
+                      border: '1px solid #E2E8F0',
+                      borderRadius: '9999px',
+                      p: '4px',
+                      mb: 2.5,
+                      gap: 0.5,
+                      width: '100%',
+                    }}
+                  >
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => { setV2AuthMode('otp'); setV2OtpStep('input'); }}
                       sx={{
-                        width: '100%',
-                        height: 48,
+                        flex: 1,
+                        py: 1,
+                        px: 2,
                         borderRadius: '9999px',
-                        background: 'linear-gradient(135deg, #D946EF 0%, #A855F7 35%, #7C3AED 100%)',
-                        color: '#FFFFFF',
+                        border: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0.75,
+                        fontSize: 13,
                         fontWeight: 600,
-                        fontSize: 15,
-                        boxShadow: '0 10px 24px -4px rgba(168, 85, 247, 0.45)',
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        bgcolor: v2AuthMode === 'otp' ? '#7C3AED' : 'transparent',
+                        color: v2AuthMode === 'otp' ? '#FFFFFF' : '#64748B',
+                        boxShadow: v2AuthMode === 'otp' ? '0 4px 14px rgba(124, 58, 237, 0.32)' : 'none',
                         '&:hover': {
-                          background: 'linear-gradient(135deg, #E879F9 0%, #B568F8 35%, #8B5CF6 100%)',
-                          boxShadow: '0 14px 28px -4px rgba(124, 58, 237, 0.58)',
+                          color: v2AuthMode === 'otp' ? '#FFFFFF' : '#0F172A',
                         },
                       }}
                     >
-                      Sign In
-                    </Button>
-                  </form>
-
-                  {/* Recovery Link */}
-                  <Typography sx={{ textAlign: 'center', mt: 2, fontSize: 13, color: '#64748B' }}>
-                    <Typography
-                      component="span"
-                      sx={{ color: '#475569', fontWeight: 500, cursor: 'pointer', '&:hover': { color: '#7C3AED', textDecoration: 'underline' } }}
-                      onClick={() => setHelpModalOpen(true)}
+                      <HiEnvelope size={15} />
+                      <span>Email OTP</span>
+                    </Box>
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => setV2AuthMode('password')}
+                      sx={{
+                        flex: 1,
+                        py: 1,
+                        px: 2,
+                        borderRadius: '9999px',
+                        border: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0.75,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        bgcolor: v2AuthMode === 'password' ? '#7C3AED' : 'transparent',
+                        color: v2AuthMode === 'password' ? '#FFFFFF' : '#64748B',
+                        boxShadow: v2AuthMode === 'password' ? '0 4px 14px rgba(124, 58, 237, 0.32)' : 'none',
+                        '&:hover': {
+                          color: v2AuthMode === 'password' ? '#FFFFFF' : '#0F172A',
+                        },
+                      }}
                     >
-                      Can't access your corporate account?
-                    </Typography>
-                  </Typography>
+                      <HiLockClosed size={15} />
+                      <span>Password</span>
+                    </Box>
+                  </Box>
+
+                  {/* Mode A: Email OTP */}
+                  {v2AuthMode === 'otp' ? (
+                    v2OtpStep === 'input' ? (
+                      <Box>
+                        <form onSubmit={handleV2SendOTP}>
+                          <Box sx={{ mb: 1.75 }}>
+                            <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Business Email</Typography>
+                            <Input
+                              type="email"
+                              value={v2Email}
+                              onChange={(e) => setV2Email(e.target.value)}
+                              startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                              placeholder="you@example.com"
+                              required
+                              sx={{
+                                height: 48,
+                                borderRadius: '14px',
+                                bgcolor: '#F8FAFC',
+                                border: '1px solid #E2E8F0',
+                                color: '#0F172A',
+                                fontSize: 14,
+                                '&:focus-within': {
+                                  bgcolor: '#FFFFFF',
+                                  borderColor: '#7C3AED',
+                                  boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                                },
+                              }}
+                            />
+                          </Box>
+
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2.5, fontSize: 13 }}>
+                            <Typography sx={{ color: '#64748B', fontSize: 13 }}>Not getting OTP?</Typography>
+                            <Typography
+                              component="a"
+                              href="#"
+                              onClick={(e) => { e.preventDefault(); setPasskeyModalOpen(true); }}
+                              sx={{ color: '#7C3AED', textDecoration: 'none', fontWeight: 600, fontSize: 13, '&:hover': { textDecoration: 'underline' } }}
+                            >
+                              Sign in with Passkey
+                            </Typography>
+                          </Box>
+
+                          <Button
+                            type="submit"
+                            loading={loading}
+                            endDecorator={<HiArrowRight />}
+                            sx={{
+                              width: '100%',
+                              height: 48,
+                              borderRadius: '9999px',
+                              background: 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)',
+                              color: '#FFFFFF',
+                              fontWeight: 600,
+                              fontSize: 15,
+                              boxShadow: '0 10px 24px -4px rgba(168, 85, 247, 0.45)',
+                              '&:hover': {
+                                background: 'linear-gradient(135deg, #B568F8 0%, #6D28D9 100%)',
+                                boxShadow: '0 14px 28px -4px rgba(124, 58, 237, 0.58)',
+                              },
+                            }}
+                          >
+                            Send OTP
+                          </Button>
+                        </form>
+
+                        <Typography sx={{ textAlign: 'center', mt: 2 }}>
+                          <Typography
+                            component="span"
+                            sx={{ color: '#7C3AED', fontSize: 12, fontWeight: 500, cursor: 'pointer', '&:hover': { color: '#6D28D9', textDecoration: 'underline' } }}
+                            onClick={() => setHelpModalOpen(true)}
+                          >
+                            Can't access your account?
+                          </Typography>
+                        </Typography>
+                      </Box>
+                    ) : (
+                      <Box>
+                        <Typography level="h3" sx={{ fontSize: 20, fontWeight: 700, color: '#0F172A', mb: 0.5 }}>
+                          Enter Verification Code
+                        </Typography>
+                        <Typography sx={{ fontSize: 13, color: '#64748B', mb: 2 }}>
+                          We sent a 6-digit code to <strong style={{ color: '#7C3AED' }}>{v2Email}</strong>
+                        </Typography>
+
+                        <form onSubmit={handleV2VerifyOTP}>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 1, mb: 2 }}>
+                            {v2OtpDigits.map((digit, idx) => (
+                              <Box
+                                key={idx}
+                                component="input"
+                                id={`v2-otp-digit-${idx}`}
+                                type="text"
+                                maxLength={1}
+                                inputMode="numeric"
+                                pattern="[0-9]*"
+                                value={digit}
+                                onChange={(e: any) => handleV2OtpDigitChange(idx, e.target.value)}
+                                onKeyDown={(e: any) => handleV2OtpKeyDown(idx, e)}
+                                sx={{
+                                  width: 46,
+                                  height: 52,
+                                  borderRadius: '12px',
+                                  bgcolor: '#FFFFFF',
+                                  border: '1.5px solid #E2E8F0',
+                                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                  fontSize: 22,
+                                  fontWeight: 700,
+                                  color: '#0F172A',
+                                  textAlign: 'center',
+                                  outline: 'none',
+                                  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
+                                  '&:focus': {
+                                    borderColor: '#7C3AED',
+                                    boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.18)',
+                                  },
+                                }}
+                              />
+                            ))}
+                          </Box>
+
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2.5, fontSize: 13 }}>
+                            <Typography sx={{ color: '#64748B', fontSize: 13 }}>Didn't receive code?</Typography>
+                            {v2OtpSecondsLeft > 0 ? (
+                              <Typography sx={{ color: '#94A3B8', fontSize: 13 }}>
+                                Resend in <strong style={{ color: '#7C3AED' }}>0:{v2OtpSecondsLeft < 10 ? `0${v2OtpSecondsLeft}` : v2OtpSecondsLeft}</strong>
+                              </Typography>
+                            ) : (
+                              <Typography
+                                component="span"
+                                sx={{ color: '#7C3AED', fontWeight: 600, fontSize: 13, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                                onClick={() => { setV2OtpSecondsLeft(29); }}
+                              >
+                                Resend OTP
+                              </Typography>
+                            )}
+                          </Box>
+
+                          <Button
+                            type="submit"
+                            loading={loading}
+                            endDecorator={<HiArrowRight />}
+                            sx={{
+                              width: '100%',
+                              height: 48,
+                              borderRadius: '9999px',
+                              background: 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)',
+                              color: '#FFFFFF',
+                              fontWeight: 600,
+                              fontSize: 15,
+                              boxShadow: '0 10px 24px -4px rgba(168, 85, 247, 0.45)',
+                              '&:hover': {
+                                background: 'linear-gradient(135deg, #B568F8 0%, #6D28D9 100%)',
+                                boxShadow: '0 14px 28px -4px rgba(124, 58, 237, 0.58)',
+                              },
+                            }}
+                          >
+                            Verify &amp; Sign In
+                          </Button>
+                        </form>
+
+                        <Typography sx={{ textAlign: 'center', mt: 2 }}>
+                          <Typography
+                            component="span"
+                            sx={{ color: '#7C3AED', fontSize: 12, fontWeight: 500, cursor: 'pointer', '&:hover': { color: '#6D28D9', textDecoration: 'underline' } }}
+                            onClick={() => setV2OtpStep('input')}
+                          >
+                            ← Back to Email entry
+                          </Typography>
+                        </Typography>
+                      </Box>
+                    )
+                  ) : (
+                    /* Mode B: Password */
+                    <Box>
+                      <form onSubmit={handleV2Login}>
+                        <Box sx={{ mb: 1.75 }}>
+                          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
+                          <Input
+                            type="email"
+                            value={v2Email}
+                            onChange={(e) => setV2Email(e.target.value)}
+                            startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                            placeholder="you@example.com"
+                            required
+                            sx={{
+                              height: 48,
+                              borderRadius: '14px',
+                              bgcolor: '#F8FAFC',
+                              border: '1px solid #E2E8F0',
+                              color: '#0F172A',
+                              fontSize: 14,
+                              '&:focus-within': {
+                                bgcolor: '#FFFFFF',
+                                borderColor: '#7C3AED',
+                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                              },
+                            }}
+                          />
+                        </Box>
+
+                        <Box sx={{ mb: 1.75 }}>
+                          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Password</Typography>
+                          <Input
+                            type={v2ShowPassword ? 'text' : 'password'}
+                            value={v2Password}
+                            onChange={(e) => setV2Password(e.target.value)}
+                            startDecorator={<HiLockClosed color="#94A3B8" size={18} />}
+                            endDecorator={
+                              <Box
+                                component="button"
+                                type="button"
+                                onClick={() => setV2ShowPassword(!v2ShowPassword)}
+                                sx={{ background: 'none', border: 'none', p: 0, cursor: 'pointer', color: '#94A3B8', display: 'flex', alignItems: 'center' }}
+                              >
+                                {v2ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
+                              </Box>
+                            }
+                            placeholder="••••••••"
+                            required
+                            sx={{
+                              height: 48,
+                              borderRadius: '14px',
+                              bgcolor: '#F8FAFC',
+                              border: '1px solid #E2E8F0',
+                              color: '#0F172A',
+                              fontSize: 14,
+                              '&:focus-within': {
+                                bgcolor: '#FFFFFF',
+                                borderColor: '#7C3AED',
+                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                              },
+                            }}
+                          />
+                        </Box>
+
+                        {/* Forgot Password */}
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', mb: 2.5 }}>
+                          <Typography
+                            component="a"
+                            href="#"
+                            onClick={(e) => { e.preventDefault(); setHelpModalOpen(true); }}
+                            sx={{ color: '#64748B', textDecoration: 'none', fontWeight: 500, fontSize: 12.5, '&:hover': { color: '#7C3AED', textDecoration: 'underline' } }}
+                          >
+                            Forgot Password?
+                          </Typography>
+                        </Box>
+
+                        {/* Sign In Button */}
+                        <Button
+                          type="submit"
+                          loading={loading}
+                          endDecorator={<HiArrowRight />}
+                          sx={{
+                            width: '100%',
+                            height: 48,
+                            borderRadius: '9999px',
+                            background: 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)',
+                            color: '#FFFFFF',
+                            fontWeight: 600,
+                            fontSize: 15,
+                            boxShadow: '0 10px 24px -4px rgba(168, 85, 247, 0.45)',
+                            '&:hover': {
+                              background: 'linear-gradient(135deg, #B568F8 0%, #6D28D9 100%)',
+                              boxShadow: '0 14px 28px -4px rgba(124, 58, 237, 0.58)',
+                            },
+                          }}
+                        >
+                          Sign In
+                        </Button>
+                      </form>
+
+                      {/* Recovery Link: Small and Purple */}
+                      <Typography sx={{ textAlign: 'center', mt: 2 }}>
+                        <Typography
+                          component="span"
+                          sx={{ color: '#7C3AED', fontSize: 12, fontWeight: 500, cursor: 'pointer', '&:hover': { color: '#6D28D9', textDecoration: 'underline' } }}
+                          onClick={() => setHelpModalOpen(true)}
+                        >
+                          Can't access your account?
+                        </Typography>
+                      </Typography>
+                    </Box>
+                  )}
                 </Box>
 
-                {/* Terms & Enterprise Trust Footnote */}
+                {/* Enterprise Trust Footnote */}
                 <Box sx={{ mt: 3, textAlign: 'center' }}>
-                  <Typography sx={{ fontSize: 11.5, color: '#64748B', lineHeight: 1.5 }}>
-                    By continuing, you agree to our{' '}
-                    <Typography component="span" sx={{ color: '#475569', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: '#7C3AED' } }}>
-                      Terms of Use
-                    </Typography>{' '}
-                    and{' '}
-                    <Typography component="span" sx={{ color: '#475569', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: '#7C3AED' } }}>
-                      Privacy Policy
-                    </Typography>
-                  </Typography>
-
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mt: 1.5, fontSize: 11, color: '#64748B' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, fontSize: 11, color: '#94A3B8' }}>
                     <span>🛡️ Enterprise-Grade</span>
                     <span>•</span>
                     <span>🇦🇪 UAE Data Centers</span>

@@ -1506,40 +1506,110 @@
       color: #334155;
     }
 
-    .v2-options-row {
+    /* View 2 Auth Mode Switcher (Email OTP vs Password) */
+    .v2-auth-mode-switcher {
+      display: flex;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 9999px;
+      padding: 4px;
+      margin-bottom: 22px;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .v2-mode-tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #64748B;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .v2-mode-tab-btn:hover {
+      color: #0F172A;
+    }
+
+    .v2-mode-tab-btn.active {
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.32);
+    }
+
+    /* View 2 OTP Digits Grid */
+    .v2-otp-digits-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 20px 0 16px 0;
+    }
+
+    .v2-otp-box {
+      width: 48px;
+      height: 54px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: #0F172A;
+      text-align: center;
+      outline: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .v2-otp-box:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      background: #FFFFFF;
+    }
+
+    .v2-otp-resend-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 8px 2px 20px 2px;
       font-size: 13px;
-    }
-
-    .v2-checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #475569;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .v2-checkbox {
-      accent-color: #7C3AED;
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      cursor: pointer;
+      color: #64748B;
+      margin-bottom: 20px;
     }
 
     .v2-forgot-link {
-      color: #475569;
+      color: #64748B;
       text-decoration: none;
+      font-size: 12.5px;
       font-weight: 500;
       transition: color 0.18s ease;
     }
 
     .v2-forgot-link:hover {
       color: #7C3AED;
+      text-decoration: underline;
+    }
+
+    /* Small & Primary Purple Corporate Recovery Link */
+    .v2-recovery-link {
+      display: inline-block;
+      font-size: 12px;
+      color: #7C3AED;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .v2-recovery-link:hover {
+      color: #6D28D9;
       text-decoration: underline;
     }
 
@@ -2346,86 +2416,175 @@
             <h1 class="v2-form-title">Welcome Back</h1>
             <p class="v2-form-subtitle">Sign in to access your unified inbox</p>
 
-            <!-- The Sign In Form -->
-            <form id="v2-login-form" onsubmit="handleV2Login(event)">
-              <!-- Email Input -->
-              <div class="v2-input-group">
-                <label for="v2-email" class="v2-input-label">Email</label>
-                <div class="v2-input-box">
-                  <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                  </svg>
-                  <input 
-                    type="email" 
-                    id="v2-email" 
-                    class="v2-text-input" 
-                    placeholder="you@example.com" 
-                    value="alex.chen@earthhotels.com"
-                    required 
-                  />
-                </div>
-              </div>
-
-              <!-- Password Input -->
-              <div class="v2-input-group">
-                <label for="v2-password" class="v2-input-label">Password</label>
-                <div class="v2-input-box">
-                  <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                  <input 
-                    type="password" 
-                    id="v2-password" 
-                    class="v2-text-input" 
-                    placeholder="••••••••" 
-                    value="EarthHotels2026!#" 
-                    required 
-                  />
-                  <button type="button" class="v2-password-toggle" onclick="toggleV2Password()" title="Toggle password visibility">
-                    <svg id="v2-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Options: Remember Me & Forgot Password -->
-              <div class="v2-options-row">
-                <label class="v2-checkbox-label">
-                  <input type="checkbox" id="v2-remember" class="v2-checkbox" checked />
-                  <span>Remember me</span>
-                </label>
-                <a href="javascript:void(0)" class="v2-forgot-link" onclick="openHelpModal()">Forgot Password?</a>
-              </div>
-
-              <!-- Primary Sign In Button -->
-              <button type="submit" id="btn-v2-signin" class="v2-btn-primary">
-                <span class="v2-btn-text">Sign In</span>
-                <svg class="v2-btn-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
+            <!-- Auth Mode Segmented Pill Switcher (Primary Purple) -->
+            <div class="v2-auth-mode-switcher">
+              <button type="button" id="tab-v2-otp" class="v2-mode-tab-btn active" onclick="switchV2AuthMode('otp')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </svg>
+                <span>Email OTP</span>
               </button>
-            </form>
-
-            <!-- Recovery Link -->
-            <div style="text-align: center; margin-top: 16px;">
-              <a href="javascript:void(0)" class="v2-forgot-link" onclick="openHelpModal()">Can't access your corporate account?</a>
+              <button type="button" id="tab-v2-pwd" class="v2-mode-tab-btn" onclick="switchV2AuthMode('password')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Password</span>
+              </button>
             </div>
+
+            <!-- STEP 2A: EMAIL OTP ENTRY (Default) -->
+            <div id="v2-step-email-otp" class="auth-step">
+              <form id="v2-email-otp-form" onsubmit="handleV2SendOTP(event)">
+                <div class="v2-input-group">
+                  <label for="v2-email-otp" class="v2-input-label">Business Email</label>
+                  <div class="v2-input-box">
+                    <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="v2-email-otp" 
+                      class="v2-text-input" 
+                      placeholder="you@example.com" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <!-- Helper Row: Passkey switch -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 13px;">
+                  <span style="color: #64748B;">Not getting OTP?</span>
+                  <a href="javascript:void(0)" class="v2-recovery-link" style="font-weight: 600;" onclick="openPasskeyModal()">Sign in with Passkey</a>
+                </div>
+
+                <!-- Primary Action Button: Send OTP -->
+                <button type="submit" id="btn-v2-send-otp" class="v2-btn-primary">
+                  <span class="v2-btn-text">Send OTP</span>
+                  <svg class="v2-btn-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </form>
+
+              <!-- Recovery Link -->
+              <div style="text-align: center; margin-top: 16px;">
+                <a href="javascript:void(0)" class="v2-recovery-link" onclick="openHelpModal()">Can't access your account?</a>
+              </div>
+            </div>
+
+            <!-- STEP 2B: PASSWORD ENTRY -->
+            <div id="v2-step-password" class="auth-step hidden">
+              <form id="v2-login-form" onsubmit="handleV2Login(event)">
+                <!-- Email Input -->
+                <div class="v2-input-group">
+                  <label for="v2-email" class="v2-input-label">Email</label>
+                  <div class="v2-input-box">
+                    <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="v2-email" 
+                      class="v2-text-input" 
+                      placeholder="you@example.com" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="v2-input-group">
+                  <label for="v2-password" class="v2-input-label">Password</label>
+                  <div class="v2-input-box">
+                    <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <input 
+                      type="password" 
+                      id="v2-password" 
+                      class="v2-text-input" 
+                      placeholder="••••••••" 
+                      value="EarthHotels2026!#" 
+                      required 
+                    />
+                    <button type="button" class="v2-password-toggle" onclick="toggleV2Password()" title="Toggle password visibility">
+                      <svg id="v2-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Options: Forgot Password -->
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                  <a href="javascript:void(0)" class="v2-forgot-link" onclick="openHelpModal()">Forgot Password?</a>
+                </div>
+
+                <!-- Primary Sign In Button -->
+                <button type="submit" id="btn-v2-signin" class="v2-btn-primary">
+                  <span class="v2-btn-text">Sign In</span>
+                  <svg class="v2-btn-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </form>
+
+              <!-- Recovery Link -->
+              <div style="text-align: center; margin-top: 16px;">
+                <a href="javascript:void(0)" class="v2-recovery-link" onclick="openHelpModal()">Can't access your account?</a>
+              </div>
+            </div>
+
+            <!-- STEP 2C: OTP VERIFICATION -->
+            <div id="v2-step-otp-verify" class="auth-step hidden">
+              <h2 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Enter Verification Code</h2>
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 18px;">We sent a 6-digit code to <strong id="v2-sent-target-email" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+
+              <form id="v2-otp-form" onsubmit="handleV2VerifyOTP(event)">
+                <div class="v2-otp-digits-grid">
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" autofocus />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                </div>
+
+                <div class="v2-otp-resend-row">
+                  <span>Didn't receive code?</span>
+                  <span id="v2-countdown-text" style="color: #94A3B8;">Resend in <strong id="v2-timer-val" style="color: #7C3AED;">0:29</strong></span>
+                  <a href="javascript:void(0)" id="btn-v2-resend" class="v2-recovery-link" style="display: none; font-weight: 600;" onclick="resendV2Code()">Resend OTP</a>
+                </div>
+
+                <!-- Primary Action Button: Verify & Sign In -->
+                <button type="submit" id="btn-v2-verify-otp" class="v2-btn-primary">
+                  <span class="v2-btn-text">Verify &amp; Sign In</span>
+                  <svg class="v2-btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M20 6 9 17l-5-5"></path>
+                  </svg>
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 16px;">
+                <a href="javascript:void(0)" class="v2-recovery-link" onclick="switchV2ToEmailStep()">← Back to Email entry</a>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Terms & Enterprise Trust Footnote -->
+          <!-- Enterprise Trust Footnote -->
           <div style="margin-top: 24px; text-align: center;">
-            <p class="terms-text" style="color: #64748B;">
-              By continuing, you agree to our 
-              <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')" style="color: #475569;">Terms of Use</a> and 
-              <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')" style="color: #475569;">Privacy Policy</a>
-            </p>
-
-            <div class="enterprise-badges-strip" style="color: #64748B; margin-top: 12px;">
+            <div class="enterprise-badges-strip" style="color: #94A3B8; font-size: 11px;">
               <span>🛡️ Enterprise-Grade</span>
               <span>•</span>
               <span>🇦🇪 UAE Data Centers</span>
@@ -2894,6 +3053,155 @@
         switchLoginView(1);
       }
     });
+
+    // View 2 Auth Mode Switcher (Email OTP vs Password)
+    function switchV2AuthMode(mode) {
+      const tabOtp = document.getElementById('tab-v2-otp');
+      const tabPwd = document.getElementById('tab-v2-pwd');
+      const stepEmailOtp = document.getElementById('v2-step-email-otp');
+      const stepPassword = document.getElementById('v2-step-password');
+      const stepOtpVerify = document.getElementById('v2-step-otp-verify');
+
+      clearInterval(v2OtpTimerInterval);
+      if (stepOtpVerify) stepOtpVerify.classList.add('hidden');
+
+      if (mode === 'otp') {
+        if (tabOtp) tabOtp.classList.add('active');
+        if (tabPwd) tabPwd.classList.remove('active');
+        if (stepEmailOtp) stepEmailOtp.classList.remove('hidden');
+        if (stepPassword) stepPassword.classList.add('hidden');
+      } else {
+        if (tabPwd) tabPwd.classList.add('active');
+        if (tabOtp) tabOtp.classList.remove('active');
+        if (stepPassword) stepPassword.classList.remove('hidden');
+        if (stepEmailOtp) stepEmailOtp.classList.add('hidden');
+      }
+    }
+
+    let v2OtpTimerInterval = null;
+    let v2SecondsRemaining = 29;
+
+    function handleV2SendOTP(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('v2-email-otp');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      if (!emailVal) return;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+        showToast('Please enter a valid corporate email address');
+        return;
+      }
+
+      const targetEl = document.getElementById('v2-sent-target-email');
+      if (targetEl) targetEl.textContent = emailVal;
+
+      const stepEmail = document.getElementById('v2-step-email-otp');
+      const stepVerify = document.getElementById('v2-step-otp-verify');
+      if (stepEmail) stepEmail.classList.add('hidden');
+      if (stepVerify) stepVerify.classList.remove('hidden');
+
+      showToast(`6-digit OTP code dispatched to ${emailVal}`);
+      startV2OtpTimer();
+
+      const firstOtp = document.querySelector('.v2-otp-box');
+      if (firstOtp) {
+        setTimeout(() => firstOtp.focus(), 100);
+      }
+    }
+
+    function switchV2ToEmailStep() {
+      clearInterval(v2OtpTimerInterval);
+      const stepEmail = document.getElementById('v2-step-email-otp');
+      const stepVerify = document.getElementById('v2-step-otp-verify');
+      if (stepVerify) stepVerify.classList.add('hidden');
+      if (stepEmail) stepEmail.classList.remove('hidden');
+    }
+
+    function startV2OtpTimer() {
+      clearInterval(v2OtpTimerInterval);
+      v2SecondsRemaining = 29;
+      const timerVal = document.getElementById('v2-timer-val');
+      const countdownText = document.getElementById('v2-countdown-text');
+      const resendBtn = document.getElementById('btn-v2-resend');
+
+      if (resendBtn) resendBtn.style.display = 'none';
+      if (countdownText) countdownText.style.display = 'inline';
+      if (timerVal) timerVal.textContent = '0:29';
+
+      v2OtpTimerInterval = setInterval(() => {
+        v2SecondsRemaining--;
+        if (v2SecondsRemaining <= 0) {
+          clearInterval(v2OtpTimerInterval);
+          if (countdownText) countdownText.style.display = 'none';
+          if (resendBtn) resendBtn.style.display = 'inline-block';
+        } else {
+          const sec = v2SecondsRemaining < 10 ? `0${v2SecondsRemaining}` : v2SecondsRemaining;
+          if (timerVal) timerVal.textContent = `0:${sec}`;
+        }
+      }, 1000);
+    }
+
+    function resendV2Code() {
+      showToast('New 6-digit verification code sent!');
+      startV2OtpTimer();
+      const firstOtp = document.querySelector('.v2-otp-box');
+      if (firstOtp) firstOtp.focus();
+    }
+
+    // View 2 OTP Digit Auto-Advancing & Pasting
+    document.addEventListener('DOMContentLoaded', () => {
+      const v2Boxes = document.querySelectorAll('.v2-otp-box');
+      v2Boxes.forEach((box, index) => {
+        box.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/[^0-9]/g, '');
+          e.target.value = val;
+          if (val && index < v2Boxes.length - 1) {
+            v2Boxes[index + 1].focus();
+          }
+        });
+
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !box.value && index > 0) {
+            v2Boxes[index - 1].focus();
+          }
+        });
+
+        box.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+          if (pasted) {
+            pasted.split('').slice(0, v2Boxes.length).forEach((char, i) => {
+              v2Boxes[i].value = char;
+            });
+            const nextIdx = Math.min(pasted.length, v2Boxes.length - 1);
+            v2Boxes[nextIdx].focus();
+          }
+        });
+      });
+    });
+
+    function handleV2VerifyOTP(e) {
+      e.preventDefault();
+      const v2Boxes = document.querySelectorAll('.v2-otp-box');
+      let code = '';
+      v2Boxes.forEach(b => code += b.value);
+      if (code.length < 6) {
+        showToast('Please enter all 6 digits of the OTP code');
+        return;
+      }
+
+      const btn = document.getElementById('btn-v2-verify-otp');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Verifying...</span>`;
+      }
+
+      showToast('Identity verified! Decrypting executive workspace...');
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 800);
+    }
 
     // View 2 Form Interactions
     function toggleV2Password() {
