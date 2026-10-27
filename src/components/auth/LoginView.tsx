@@ -1365,98 +1365,37 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     </Button>
                   </form>
 
-                  {/* Divider */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, my: 2 }}>
-                    <Box sx={{ flex: 1, height: '1px', bgcolor: '#E2E8F0' }} />
-                    <Typography sx={{ fontSize: 12, color: '#94A3B8', fontWeight: 500 }}>Or Continue With</Typography>
-                    <Box sx={{ flex: 1, height: '1px', bgcolor: '#E2E8F0' }} />
-                  </Box>
-
-                  {/* Google OAuth Button */}
-                  <Button
-                    variant="outlined"
-                    onClick={() => onSuccessLogin?.(v2Email, 'otp')}
-                    startDecorator={<FcGoogle size={20} />}
-                    sx={{
-                      width: '100%',
-                      height: 48,
-                      borderRadius: '9999px',
-                      bgcolor: '#FFFFFF',
-                      borderColor: '#E2E8F0',
-                      color: '#334155',
-                      fontWeight: 600,
-                      fontSize: 14.5,
-                      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
-                      '&:hover': { bgcolor: '#F8FAFC', borderColor: '#CBD5E1' },
-                    }}
-                  >
-                    Continue with Google
-                  </Button>
-
-                  <Typography sx={{ textAlign: 'center', mt: 1.75, fontSize: 13, color: '#64748B' }}>
-                    Don't have an account?{' '}
+                  {/* Recovery Link */}
+                  <Typography sx={{ textAlign: 'center', mt: 2, fontSize: 13, color: '#64748B' }}>
                     <Typography
                       component="span"
-                      sx={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                      sx={{ color: '#475569', fontWeight: 500, cursor: 'pointer', '&:hover': { color: '#7C3AED', textDecoration: 'underline' } }}
                       onClick={() => setHelpModalOpen(true)}
                     >
-                      Sign up
+                      Can't access your corporate account?
                     </Typography>
                   </Typography>
                 </Box>
 
-                {/* Overlapping Users Subcard */}
-                <Box
-                  sx={{
-                    bgcolor: 'rgba(255, 255, 255, 0.94)',
-                    border: '1px solid rgba(226, 232, 240, 0.9)',
-                    borderRadius: '18px',
-                    p: '10px 16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1.75,
-                    mt: 2,
-                    boxShadow: '0 4px 16px rgba(124, 58, 237, 0.06)',
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Box
-                      component="img"
-                      src="leena_avatar.jpg"
-                      alt="Leena"
-                      onError={(e: any) => {
-                        e.target.onerror = null;
-                        e.target.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23A855F7'/><text x='50%' y='55%' font-size='12' font-weight='bold' fill='%23FFFFFF' font-family='sans-serif' text-anchor='middle' dominant-baseline='middle'>L</text></svg>";
-                      }}
-                      sx={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid #FFFFFF', objectFit: 'cover' }}
-                    />
-                    <Box
-                      component="img"
-                      src="aisha_avatar.png"
-                      alt="Aisha"
-                      onError={(e: any) => {
-                        e.target.onerror = null;
-                        e.target.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23EC4899'/><text x='50%' y='55%' font-size='12' font-weight='bold' fill='%23FFFFFF' font-family='sans-serif' text-anchor='middle' dominant-baseline='middle'>A</text></svg>";
-                      }}
-                      sx={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid #FFFFFF', ml: -1, objectFit: 'cover' }}
-                    />
-                    <Box
-                      component="img"
-                      src="rahul_avatar.png"
-                      alt="Rahul"
-                      onError={(e: any) => {
-                        e.target.onerror = null;
-                        e.target.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%2306B6D4'/><text x='50%' y='55%' font-size='12' font-weight='bold' fill='%23FFFFFF' font-family='sans-serif' text-anchor='middle' dominant-baseline='middle'>R</text></svg>";
-                      }}
-                      sx={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid #FFFFFF', ml: -1, objectFit: 'cover' }}
-                    />
-                  </Box>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.25 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                      <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: '#10B981', boxShadow: '0 0 8px #10B981' }} />
-                      <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>10 Million+ Users</Typography>
-                    </Box>
-                    <Typography sx={{ fontSize: 11, color: '#64748B' }}>worldwide</Typography>
+                {/* Terms & Enterprise Trust Footnote */}
+                <Box sx={{ mt: 3, textAlign: 'center' }}>
+                  <Typography sx={{ fontSize: 11.5, color: '#64748B', lineHeight: 1.5 }}>
+                    By continuing, you agree to our{' '}
+                    <Typography component="span" sx={{ color: '#475569', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: '#7C3AED' } }}>
+                      Terms of Use
+                    </Typography>{' '}
+                    and{' '}
+                    <Typography component="span" sx={{ color: '#475569', textDecoration: 'underline', cursor: 'pointer', '&:hover': { color: '#7C3AED' } }}>
+                      Privacy Policy
+                    </Typography>
+                  </Typography>
+
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, mt: 1.5, fontSize: 11, color: '#64748B' }}>
+                    <span>🛡️ Enterprise-Grade</span>
+                    <span>•</span>
+                    <span>🇦🇪 UAE Data Centers</span>
+                    <span>•</span>
+                    <span>🔒 GDPR Compliant</span>
                   </Box>
                 </Box>
               </Box>
