@@ -1042,7 +1042,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   }}
                 />
 
-                {/* Top Tag & Workplace Intelligence Statement */}
+                {/* Top Tag & Typography */}
                 <Box sx={{ position: 'relative', zIndex: 2 }}>
                   <Box
                     sx={{
@@ -1064,40 +1064,14 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     }}
                   >
                     <Typography component="span" sx={{ color: '#A855F7', fontSize: 12 }}>✦</Typography>
-                    <span>HYIQ™ WORKPLACE INTELLIGENCE</span>
+                    <span>SMART AI ASSISTANCE</span>
                   </Box>
 
-                  {/* Authentic Hirerkey Hero Headline Banner */}
-                  <Box sx={{ mb: 1.5 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap', gap: 1 }}>
-                      <Typography sx={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 34, fontWeight: 800, color: '#FFFFFF', textShadow: '0 2px 14px rgba(124, 58, 237, 0.35)', letterSpacing: '-0.03em' }}>
-                        Workplace
-                      </Typography>
-                      <Box sx={{ position: 'relative', display: 'inline-block' }}>
-                        <Typography sx={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 34, fontWeight: 800, color: '#FACC15', textShadow: '0 2px 16px rgba(234, 179, 8, 0.35)', letterSpacing: '-0.03em' }}>
-                          Intelligence
-                        </Typography>
-                        <Typography sx={{ position: 'absolute', top: -8, right: -22, fontFamily: "'Caveat', 'Pacifico', cursive", fontSize: 22, fontWeight: 700, color: '#FFFFFF', transform: 'rotate(8deg)', textShadow: '0 2px 8px rgba(0, 0, 0, 0.25)' }}>
-                          AI
-                        </Typography>
-                        <Box sx={{ position: 'absolute', bottom: -5, left: 0, width: '100%', height: 8 }}>
-                          <svg viewBox="0 0 160 8" fill="none" style={{ width: '100%', height: '100%' }}>
-                            <path d="M 2 5.5 C 40 2, 110 2, 158 5" stroke="#A3E635" strokeWidth="3.5" strokeLinecap="round" />
-                          </svg>
-                        </Box>
-                      </Box>
-                    </Box>
-                    <Typography sx={{ fontFamily: "'Caveat', 'Pacifico', cursive", fontSize: 25, fontWeight: 600, color: '#FFFFFF', mt: 0.5, letterSpacing: '0.02em', textShadow: '0 2px 10px rgba(124, 58, 237, 0.4)' }}>
-                      for the modern workforce
-                    </Typography>
-                  </Box>
-
-                  {/* Giant Ambient Typography Behind Orb */}
                   <Typography
                     level="h1"
                     sx={{
                       fontFamily: "'Plus Jakarta Sans', sans-serif",
-                      fontSize: 44,
+                      fontSize: 56,
                       fontWeight: 800,
                       letterSpacing: '-0.04em',
                       lineHeight: 0.95,
@@ -1108,12 +1082,12 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       userSelect: 'none',
                     }}
                   >
-                    HIRERKEY HYIQ
+                    SMART AI
                   </Typography>
                   <Typography
                     sx={{
                       fontFamily: "'Plus Jakarta Sans', sans-serif",
-                      fontSize: 13.5,
+                      fontSize: 17,
                       fontWeight: 700,
                       letterSpacing: '0.16em',
                       color: 'rgba(255, 255, 255, 0.72)',
@@ -1121,7 +1095,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       userSelect: 'none',
                     }}
                   >
-                    WORKFORCE INTELLIGENCE CORE
+                    WORKPLACE INTELLIGENCE
                   </Typography>
                 </Box>
 
@@ -1290,73 +1264,53 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   </Box>
                 </Box>
 
-                {/* Bottom Headline & Description (Hirerkey Core Value Proposition) */}
+                {/* Bottom Headline & Description */}
                 <Box sx={{ position: 'relative', zIndex: 2, mt: 1 }}>
-                  <Typography level="h3" sx={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 23, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.025em', mb: 0.75, textShadow: '0 2px 10px rgba(124, 58, 237, 0.4)' }}>
-                    Make Work Life Effortless
+                  <Typography level="h3" sx={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 24, fontWeight: 700, color: '#0F172A', letterSpacing: '-0.025em', mb: 1 }}>
+                    Intelligent AI Assistance
                   </Typography>
-                  <Typography sx={{ fontSize: 13.5, color: 'rgba(255, 255, 255, 0.88)', lineHeight: 1.55, textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)' }}>
-                    Continuous feedback, performance appraisals, pulse surveys &amp; automated approval flows—all in one intelligent workforce platform.
+                  <Typography sx={{ fontSize: 13.5, color: '#475569', lineHeight: 1.55 }}>
+                    Experience smarter conversations with AI-powered responses, personalized insights &amp; seamless productivity across every interaction.
                   </Typography>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25, mt: 1.5, fontSize: 11.5, color: 'rgba(255, 255, 255, 0.85)', fontWeight: 500, letterSpacing: '0.02em' }}>
-                    <span>🛡️ Enterprise-Grade</span>
-                    <span>•</span>
-                    <span>🇦🇪 UAE Data Centers</span>
-                    <span>•</span>
-                    <span>🔒 GDPR Compliant</span>
-                  </Box>
                 </Box>
               </Box>
 
               {/* RIGHT COLUMN: AUTHENTICATION FORM */}
               <Box sx={{ p: { xs: 1, md: '10px 14px 6px 14px' }, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <Box>
-                  {/* Authentic Hirerkey Official Logo Header & Wordmark */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
-                    <Box
-                      sx={{
-                        width: 40,
-                        height: 40,
-                        borderRadius: '12px',
-                        background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.16) 0%, rgba(124, 58, 237, 0.08) 100%)',
-                        border: '1px solid rgba(168, 85, 247, 0.28)',
-                        display: 'grid',
-                        placeItems: 'center',
-                        boxShadow: '0 2px 10px rgba(124, 58, 237, 0.12)',
-                      }}
-                    >
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                        <defs>
-                          <linearGradient id="bar-grad-1-react" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#C084FC" />
-                            <stop offset="100%" stopColor="#7C3AED" />
-                          </linearGradient>
-                          <linearGradient id="bar-grad-2-react" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#F472B6" />
-                            <stop offset="100%" stopColor="#A855F7" />
-                          </linearGradient>
-                        </defs>
-                        <rect x="4" y="3" width="6" height="15" rx="3" transform="rotate(-30 4 3)" fill="url(#bar-grad-1-react)" />
-                        <rect x="13" y="3" width="6" height="15" rx="3" transform="rotate(-30 13 3)" fill="url(#bar-grad-2-react)" />
-                        <circle cx="17" cy="18" r="3" fill="#EC4899" />
-                      </svg>
-                    </Box>
-                    <Typography sx={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 27, fontWeight: 800, letterSpacing: '-0.04em', color: '#0F172A', display: 'inline-flex', alignItems: 'baseline' }}>
-                      h<span style={{ color: '#7C3AED' }}>i</span>rerke
-                      <span style={{ position: 'relative', marginLeft: 0.5 }}>
-                        <span style={{ background: 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>y</span>
-                        <svg style={{ position: 'absolute', left: -4, bottom: -4, width: 'calc(100% + 6px)', height: 6 }} viewBox="0 0 46 8" fill="none">
-                          <path d="M1 5.5C12 1.5 34 1.5 45 6" stroke="#7C3AED" strokeWidth="2.8" strokeLinecap="round" />
-                        </svg>
-                      </span>
-                    </Typography>
+                  {/* Floating Hirerkey Monogram Badge */}
+                  <Box
+                    sx={{
+                      width: 44,
+                      height: 44,
+                      borderRadius: '14px',
+                      bgcolor: '#FFFFFF',
+                      border: '1px solid rgba(124, 58, 237, 0.16)',
+                      boxShadow: '0 4px 14px rgba(124, 58, 237, 0.1)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      mb: 1.5,
+                    }}
+                  >
+                    <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                      <rect width="28" height="28" rx="8" fill="url(#v2-badge-grad-react)" />
+                      <path d="M8 7v14M8 14c1.5-3 6.5-3.5 8 0v7M16 14c1.5-3 6-3 6 0v7" stroke="#FFFFFF" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                      <circle cx="21" cy="9" r="2.2" fill="#F472B6" />
+                      <defs>
+                        <linearGradient id="v2-badge-grad-react" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#A855F7" />
+                          <stop offset="100%" stopColor="#7C3AED" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
                   </Box>
 
                   <Typography level="h2" sx={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 30, fontWeight: 700, color: '#0F172A', letterSpacing: '-0.03em', mb: 0.5 }}>
                     Welcome Back
                   </Typography>
                   <Typography sx={{ fontSize: 13.5, color: '#64748B', mb: 2.5 }}>
-                    One platform to manage people, performance &amp; workflows
+                    Sign in to access your unified workplace
                   </Typography>
 
                   {/* Auth Mode Segmented Pill Switcher (Primary Purple) */}
@@ -1440,15 +1394,13 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       <Box>
                         <form onSubmit={handleV2SendOTP}>
                           <Box sx={{ mb: 1.75 }}>
-                            <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>
-                              Business Email <span style={{ color: '#F43F5E' }}>*</span>
-                            </Typography>
+                            <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Business Email</Typography>
                             <Input
                               type="email"
                               value={v2Email}
                               onChange={(e) => setV2Email(e.target.value)}
                               startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
-                              placeholder="Enter your Email"
+                              placeholder="you@example.com"
                               required
                               sx={{
                                 height: 48,
@@ -1612,15 +1564,13 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     <Box>
                       <form onSubmit={handleV2Login}>
                         <Box sx={{ mb: 1.75 }}>
-                          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>
-                            Business Email <span style={{ color: '#F43F5E' }}>*</span>
-                          </Typography>
+                          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
                           <Input
                             type="email"
                             value={v2Email}
                             onChange={(e) => setV2Email(e.target.value)}
                             startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
-                            placeholder="Enter your Email"
+                            placeholder="you@example.com"
                             required
                             sx={{
                               height: 48,
@@ -1639,9 +1589,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                         </Box>
 
                         <Box sx={{ mb: 1.75 }}>
-                          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>
-                            Password <span style={{ color: '#F43F5E' }}>*</span>
-                          </Typography>
+                          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Password</Typography>
                           <Input
                             type={v2ShowPassword ? 'text' : 'password'}
                             value={v2Password}
@@ -1657,7 +1605,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                                 {v2ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
                               </Box>
                             }
-                            placeholder="••••••••••••"
+                            placeholder="••••••••"
                             required
                             sx={{
                               height: 48,
