@@ -1645,6 +1645,638 @@
     }
 
     /* ==========================================================================
+       VIEW 3: SYNCWISE-INSPIRED MODERN SPLIT WITH 3D DASHBOARD PREVIEW
+       ========================================================================== */
+    .viewport-canvas.view3-mode {
+      background-color: #EEF2F6;
+      background-image: 
+        radial-gradient(circle at 14% 18%, rgba(216, 180, 254, 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 86% 16%, rgba(199, 210, 254, 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 50% 84%, rgba(224, 231, 255, 0.5) 0%, transparent 60%),
+        linear-gradient(rgba(124, 58, 237, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.035) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    .v3-card-shell {
+      width: 100%;
+      max-width: 1080px;
+      min-height: 640px;
+      background: #FFFFFF;
+      border-radius: 32px;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: 0 35px 85px -15px rgba(124, 58, 237, 0.12), 0 15px 35px -5px rgba(15, 23, 42, 0.06), 0 0 1px rgba(0, 0, 0, 0.08);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      padding: 24px;
+      gap: 28px;
+      position: relative;
+      z-index: 10;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Flip layout: Showcase on the Left (supporting "so you can use that in the left side") */
+    .v3-card-shell.v3-hero-left {
+      grid-template-columns: 1.15fr 1fr;
+    }
+
+    .v3-card-shell.v3-hero-left .v3-hero-panel {
+      order: 1;
+    }
+
+    .v3-card-shell.v3-hero-left .v3-form-panel {
+      order: 2;
+    }
+
+    /* Left Form Panel */
+    .v3-form-panel {
+      padding: 16px 20px 12px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .v3-form-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .v3-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .v3-brand-logo-pill {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(99, 102, 241, 0.06) 100%);
+      border: 1px solid rgba(124, 58, 237, 0.25);
+    }
+
+    .v3-brand-name {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.04em;
+    }
+
+    .v3-brand-name .v3-brand-i {
+      color: #7C3AED;
+    }
+
+    .v3-brand-name .v3-brand-y-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .v3-brand-name .v3-brand-y {
+      color: #7C3AED;
+    }
+
+    .v3-brand-name .v3-brand-swoosh {
+      position: absolute;
+      left: -4px;
+      bottom: -4px;
+      width: calc(100% + 6px);
+      height: 6px;
+    }
+
+    .v3-layout-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      border: 1px solid #E2E8F0;
+      background: #F8FAFC;
+      color: #64748B;
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .v3-layout-toggle-btn:hover {
+      background: #EDE9FE;
+      color: #7C3AED;
+      border-color: #DDD6FE;
+    }
+
+    .v3-form-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.035em;
+      margin-bottom: 6px;
+    }
+
+    .v3-form-subtitle {
+      font-size: 13.5px;
+      color: #64748B;
+      line-height: 1.5;
+      margin-bottom: 22px;
+      max-width: 400px;
+    }
+
+    /* Auth Switcher Pill */
+    .v3-auth-switcher {
+      display: flex;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 9999px;
+      padding: 4px;
+      margin-bottom: 20px;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .v3-tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #64748B;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .v3-tab-btn:hover {
+      color: #0F172A;
+    }
+
+    .v3-tab-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+    }
+
+    .v3-input-group {
+      margin-bottom: 16px;
+    }
+
+    .v3-input-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .v3-input-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .v3-input-icon {
+      position: absolute;
+      left: 14px;
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .v3-text-input {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #0F172A;
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 0 42px 0 42px;
+      outline: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .v3-text-input::placeholder {
+      color: #94A3B8;
+    }
+
+    .v3-text-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .v3-password-toggle {
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .v3-password-toggle:hover {
+      color: #334155;
+    }
+
+    .v3-checkbox-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .v3-remember-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #64748B;
+      cursor: pointer;
+      font-size: 13px;
+      user-select: none;
+    }
+
+    .v3-remember-checkbox {
+      accent-color: #7C3AED;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .v3-link {
+      color: #7C3AED;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 13px;
+      transition: color 0.15s ease;
+    }
+
+    .v3-link:hover {
+      color: #6D28D9;
+      text-decoration: underline;
+    }
+
+    .v3-btn-primary {
+      width: 100%;
+      height: 48px;
+      border-radius: 9999px;
+      background: #7C3AED;
+      border: none;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -4px rgba(124, 58, 237, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v3-btn-primary:hover {
+      background: #6D28D9;
+      transform: translateY(-1.5px);
+      box-shadow: 0 14px 28px -4px rgba(124, 58, 237, 0.58);
+    }
+
+    .v3-btn-primary:active {
+      transform: translateY(0.5px);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+    }
+
+    .v3-btn-google {
+      width: 100%;
+      height: 46px;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #1E293B;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .v3-btn-google:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .v3-otp-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 18px 0 14px 0;
+    }
+
+    .v3-otp-input {
+      width: 48px;
+      height: 52px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: #0F172A;
+      text-align: center;
+      outline: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .v3-otp-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+    }
+
+    .v3-otp-resend {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 20px;
+    }
+
+    .v3-terms-footer {
+      text-align: center;
+      font-size: 11.5px;
+      color: #94A3B8;
+      line-height: 1.5;
+      margin-top: 18px;
+    }
+
+    .v3-terms-footer a {
+      color: #7C3AED;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .v3-terms-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Right Showcase Panel */
+    .v3-hero-panel {
+      position: relative;
+      border-radius: 28px;
+      background: linear-gradient(155deg, #16102E 0%, #110B24 45%, #0B0718 100%);
+      overflow: hidden;
+      padding: 36px 34px 20px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 10px 30px rgba(15, 10, 30, 0.4);
+    }
+
+    /* Subtle Hex Grid Background */
+    .v3-hex-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.85;
+      z-index: 1;
+    }
+
+    .v3-glow-blob-1 {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.45) 0%, transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .v3-glow-blob-2 {
+      position: absolute;
+      bottom: -60px;
+      left: 10%;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.28) 0%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .v3-hero-content {
+      position: relative;
+      z-index: 3;
+    }
+
+    .v3-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #DDD6FE;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .v3-hero-title {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .v3-hero-desc {
+      font-size: 13.5px;
+      color: rgba(226, 232, 240, 0.85);
+      line-height: 1.55;
+      max-width: 420px;
+      margin-bottom: 24px;
+    }
+
+    /* 3D Dashboard Mockup Stage */
+    .v3-mockup-stage {
+      position: relative;
+      z-index: 3;
+      perspective: 1100px;
+      display: flex;
+      justify-content: center;
+      padding-top: 4px;
+    }
+
+    .v3-mockup-card {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 16px;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(124, 58, 237, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      background: #0B0819;
+      overflow: hidden;
+      transform: rotateX(10deg) rotateY(-8deg) rotateZ(1.5deg);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .v3-mockup-card:hover {
+      transform: rotateX(4deg) rotateY(-2deg) rotateZ(0deg) translateY(-4px);
+      box-shadow: 0 35px 85px -12px rgba(0, 0, 0, 0.85), 0 0 45px rgba(124, 58, 237, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .v3-mockup-header {
+      height: 32px;
+      background: rgba(22, 16, 36, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+    }
+
+    .v3-traffic-dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .v3-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .v3-dot.red { background: #EF4444; }
+    .v3-dot.yellow { background: #F59E0B; }
+    .v3-dot.green { background: #10B981; }
+
+    .v3-mockup-url {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: var(--font-body);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .v3-dashboard-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 245px;
+      overflow: hidden;
+      background: #0B0819;
+    }
+
+    .v3-dashboard-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    .v3-glass-glare {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Floating Micro-Badges */
+    .v3-floating-chip {
+      position: absolute;
+      z-index: 5;
+      padding: 7px 14px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 16px rgba(124, 58, 237, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+      pointer-events: none;
+      animation: v3Float 4s ease-in-out infinite alternate;
+    }
+
+    .v3-chip-top {
+      top: 14px;
+      right: -8px;
+    }
+
+    .v3-chip-bottom {
+      bottom: 20px;
+      left: -8px;
+      animation-delay: -2s;
+    }
+
+    @keyframes v3Float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 900px) {
+      .v3-card-shell,
+      .v3-card-shell.v3-hero-left {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        min-height: auto;
+      }
+      .v3-hero-panel {
+        display: none;
+      }
+      .v3-form-panel {
+        padding: 8px 4px;
+      }
+    }
+
+    /* ==========================================================================
        BOTTOM PAGINATION DOCK (COMMERCIAL WEBSITE / DASHBOARD PAGINATION)
        ========================================================================== */
     .bottom-pagination-dock {
@@ -2599,7 +3231,297 @@
     </div> <!-- /#login-view-2 -->
 
     <!-- ==========================================================================
-         BOTTOM PAGINATION DOCK (CLEAN ENCIRCLED PAGE 1 & PAGE 2)
+         VIEW 3: SYNCWISE-INSPIRED MODERN SPLIT WITH 3D DASHBOARD PREVIEW
+         ========================================================================== -->
+    <div id="login-view-3" class="login-view-wrapper">
+      <div class="v3-card-shell v3-hero-left" id="v3-card-shell">
+        
+        <!-- DARK HERO SHOWCASE PANEL (WITH 3D HIRERKEY DASHBOARD MOCKUP) -->
+        <section class="v3-hero-panel" id="v3HeroPanel">
+          <!-- Hexagonal Grid SVG Pattern Background -->
+          <svg class="v3-hex-bg" viewBox="0 0 400 400" fill="none" preserveAspectRatio="none">
+            <defs>
+              <pattern id="v3-hex-pattern" width="40" height="69.282" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 20 11.547 L 0 0 L 0 23.094 L 20 34.641 L 40 23.094 Z M 0 34.641 L 20 46.188 L 0 57.735 L 0 80.829 L 20 92.376 L 40 80.829 L 40 57.735 L 20 46.188 Z" stroke="rgba(168, 85, 247, 0.14)" stroke-width="1.2" fill="none" />
+                <path d="M 20 34.641 L 40 46.188 L 20 57.735 L 0 46.188 Z" stroke="rgba(124, 58, 237, 0.18)" stroke-width="1.2" fill="none" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#v3-hex-pattern)" />
+          </svg>
+
+          <!-- Ambient Luminous Glow Blobs -->
+          <div class="v3-glow-blob-1"></div>
+          <div class="v3-glow-blob-2"></div>
+
+          <!-- Hero Headline & Subtitle -->
+          <div class="v3-hero-content">
+            <div class="v3-hero-badge">
+              <span style="color: #A855F7;">✦</span>
+              <span>Workforce Intelligence Platform</span>
+            </div>
+            <h2 class="v3-hero-title">
+              Redefine Your<br/>
+              Workforce Experience!
+            </h2>
+            <p class="v3-hero-desc">
+              Unshackle yourself from traditional HR friction and immerse yourself in the boundless intelligence that Hirerkey brings to your daily routine.
+            </p>
+          </div>
+
+          <!-- 3D Perspective Floating Dashboard Mockup Card -->
+          <div class="v3-mockup-stage">
+            <div class="v3-mockup-card" id="v3MockupCard">
+              <!-- Window Chrome Header Bar -->
+              <div class="v3-mockup-header">
+                <div class="v3-traffic-dots">
+                  <div class="v3-dot red"></div>
+                  <div class="v3-dot yellow"></div>
+                  <div class="v3-dot green"></div>
+                </div>
+                <div class="v3-mockup-url">dashboard.hirerkey.com</div>
+              </div>
+
+              <!-- Dashboard Image Container -->
+              <div class="v3-dashboard-img-wrap">
+                <img src="hirerkey_dashboard_mockup.png" alt="Hirerkey Intelligence Dashboard" class="v3-dashboard-img" />
+                <div class="v3-glass-glare"></div>
+              </div>
+
+              <!-- Floating Micro-Badges -->
+              <div class="v3-floating-chip v3-chip-top">
+                <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981;"></span>
+                <span>Ask HyIQ™ • Real-time AI</span>
+              </div>
+              <div class="v3-floating-chip v3-chip-bottom">
+                <span>⚡ 12ms UAE Cloud</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CLEAN WHITE AUTHENTICATION FORM PANEL -->
+        <section class="v3-form-panel">
+          <div>
+            <!-- Form Header with Brand Logo & Flip Layout Button -->
+            <div class="v3-form-header">
+              <div class="v3-brand-row">
+                <div class="v3-brand-logo-pill">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="3" width="6" height="15" rx="3" transform="rotate(-30 4 3)" fill="#7C3AED" />
+                    <rect x="13" y="3" width="6" height="15" rx="3" transform="rotate(-30 13 3)" fill="#A855F7" />
+                    <circle cx="17" cy="18" r="3" fill="#EC4899" />
+                  </svg>
+                </div>
+                <div class="v3-brand-name">
+                  <span>h<span class="v3-brand-i">i</span>rerke<span class="v3-brand-y-wrap"><span class="v3-brand-y">y</span><svg class="v3-brand-swoosh" viewBox="0 0 46 8" fill="none"><path d="M1 5.5C12 1.5 34 1.5 45 6" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span></span>
+                </div>
+              </div>
+
+              <button type="button" class="v3-layout-toggle-btn" onclick="toggleV3Layout()" title="Switch showcase to left/right">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/>
+                </svg>
+                <span id="v3-flip-text">Showcase Right</span>
+              </button>
+            </div>
+
+            <!-- Form Title & Subtitle -->
+            <h1 class="v3-form-title">Welcome Back!</h1>
+            <p class="v3-form-subtitle">
+              Hirerkey empowers you to manage, enhance, and streamline your workforce, putting you in control of your organisation.
+            </p>
+
+            <!-- Auth Mode Segmented Pill Switcher (Primary Purple) -->
+            <div class="v3-auth-switcher">
+              <button type="button" id="tab-v3-otp" class="v3-tab-btn" onclick="switchV3AuthMode('otp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span>Email OTP</span>
+              </button>
+              <button type="button" id="tab-v3-pwd" class="v3-tab-btn active" onclick="switchV3AuthMode('password')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Password</span>
+              </button>
+            </div>
+
+            <!-- MODE A: PASSWORD LOGIN (Default as shown in Image 1 inspiration) -->
+            <div id="v3-step-password" class="auth-step">
+              <form id="v3-login-form" onsubmit="handleV3Login(event)">
+                <!-- Email Input -->
+                <div class="v3-input-group">
+                  <label for="v3-email" class="v3-input-label">Email</label>
+                  <div class="v3-input-box">
+                    <svg class="v3-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="v3-email" 
+                      class="v3-text-input" 
+                      placeholder="Enter your email" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="v3-input-group">
+                  <label for="v3-password" class="v3-input-label">Password</label>
+                  <div class="v3-input-box">
+                    <svg class="v3-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <input 
+                      type="password" 
+                      id="v3-password" 
+                      class="v3-text-input" 
+                      placeholder="••••••••" 
+                      value="EarthHotels2026!#" 
+                      required 
+                    />
+                    <button type="button" class="v3-password-toggle" onclick="toggleV3Password()" title="Toggle password visibility">
+                      <svg id="v3-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password Row -->
+                <div class="v3-checkbox-row">
+                  <label class="v3-remember-label">
+                    <input type="checkbox" id="v3-remember" class="v3-remember-checkbox" checked />
+                    <span>Remember me</span>
+                  </label>
+                  <a href="javascript:void(0)" class="v3-link" onclick="openHelpModal()">Forgot password</a>
+                </div>
+
+                <!-- Primary Sign In Button (Purple Pill) -->
+                <button type="submit" id="btn-v3-signin" class="v3-btn-primary">
+                  <span>Sign in</span>
+                </button>
+              </form>
+
+              <!-- Google SSO (Pill with Google G) -->
+              <button type="button" class="v3-btn-google" onclick="handleSSOLogin('Google Workspace')">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                </svg>
+                <span>Sign in with Google</span>
+              </button>
+
+              <!-- Can't access your login mail option -->
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v3-link" onclick="openHelpModal()">Can't access your login mail?</a>
+              </div>
+            </div>
+
+            <!-- MODE B: EMAIL OTP ENTRY -->
+            <div id="v3-step-email-otp" class="auth-step hidden">
+              <form id="v3-email-otp-form" onsubmit="handleV3SendOTP(event)">
+                <div class="v3-input-group">
+                  <label for="v3-email-otp" class="v3-input-label">Email</label>
+                  <div class="v3-input-box">
+                    <svg class="v3-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="v3-email-otp" 
+                      class="v3-text-input" 
+                      placeholder="Enter your email" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <div class="v3-checkbox-row">
+                  <span style="color: #64748B;">Instant one-time passcode</span>
+                  <a href="javascript:void(0)" class="v3-link" onclick="openPasskeyModal()">Sign in with Passkey</a>
+                </div>
+
+                <!-- Primary Action Button: Send OTP -->
+                <button type="submit" id="btn-v3-send-otp" class="v3-btn-primary">
+                  <span>Send OTP</span>
+                </button>
+              </form>
+
+              <!-- Can't access your login mail option -->
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v3-link" onclick="openHelpModal()">Can't access your login mail?</a>
+              </div>
+            </div>
+
+            <!-- MODE C: OTP VERIFICATION -->
+            <div id="v3-step-otp-verify" class="auth-step hidden">
+              <h2 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Enter Verification Code</h2>
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 18px;">We sent a 6-digit code to <strong id="v3-sent-target-email" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+
+              <form id="v3-otp-form" onsubmit="handleV3VerifyOTP(event)">
+                <div class="v3-otp-grid">
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" autofocus />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                </div>
+
+                <div class="v3-otp-resend">
+                  <span>Didn't receive code?</span>
+                  <span id="v3-countdown-text" style="color: #94A3B8;">Resend in <strong id="v3-timer-val" style="color: #7C3AED;">0:29</strong></span>
+                  <a href="javascript:void(0)" id="btn-v3-resend" class="v3-link" style="display: none; font-weight: 600;" onclick="resendV3Code()">Resend OTP</a>
+                </div>
+
+                <!-- Primary Action Button: Verify & Sign In -->
+                <button type="submit" id="btn-v3-verify-otp" class="v3-btn-primary">
+                  <span>Verify &amp; Sign In</span>
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v3-link" onclick="switchV3ToEmailStep()">← Back to Email entry</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Terms of use, Privacy Policy and Enterprise Trust Footnote -->
+          <div>
+            <p class="v3-terms-footer">
+              By signing in, you agree to our 
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')">Terms of Use</a> and 
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')">Privacy Policy</a>
+            </p>
+            <div class="enterprise-badges-strip" style="color: #94A3B8; font-size: 11px; margin-top: 12px;">
+              <span>🛡️ Enterprise-Grade</span>
+              <span>•</span>
+              <span>🇦🇪 UAE Data Centers</span>
+              <span>•</span>
+              <span>🔒 GDPR Compliant</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div> <!-- /#login-view-3 -->
+
+    <!-- ==========================================================================
+         BOTTOM PAGINATION DOCK (CLEAN ENCIRCLED PAGE 1, PAGE 2 & PAGE 3)
          ========================================================================== -->
     <nav class="bottom-pagination-dock" id="bottomPaginationDock" role="navigation" aria-label="Login Pages">
       <button type="button" class="dock-nav-arrow" id="btn-dock-prev" onclick="navigatePage(-1)" title="Previous Page (Key: Left Arrow)" aria-label="Previous Page">
@@ -2607,7 +3529,7 @@
       </button>
 
       <!-- Encircled 1: Page 1 -->
-      <button type="button" class="dock-page-btn active" id="btn-page-1" onclick="switchLoginView(1)" title="Page 1 (Key: 1)" aria-label="Page 1" aria-current="page">
+      <button type="button" class="dock-page-btn" id="btn-page-1" onclick="switchLoginView(1)" title="Page 1 (Key: 1)" aria-label="Page 1">
         <span class="dock-circle-badge">1</span>
         <span class="dock-page-title">Page 1</span>
       </button>
@@ -2616,6 +3538,12 @@
       <button type="button" class="dock-page-btn" id="btn-page-2" onclick="switchLoginView(2)" title="Page 2 (Key: 2)" aria-label="Page 2">
         <span class="dock-circle-badge">2</span>
         <span class="dock-page-title">Page 2</span>
+      </button>
+
+      <!-- Encircled 3: Page 3 (Active as requested) -->
+      <button type="button" class="dock-page-btn active" id="btn-page-3" onclick="switchLoginView(3)" title="Page 3 (Key: 3)" aria-label="Page 3" aria-current="page">
+        <span class="dock-circle-badge">3</span>
+        <span class="dock-page-title">Page 3</span>
       </button>
 
       <button type="button" class="dock-nav-arrow" id="btn-dock-next" onclick="navigatePage(1)" title="Next Page (Key: Right Arrow)" aria-label="Next Page">
@@ -2968,66 +3896,77 @@
     }
 
     /* ==========================================================================
-       DUAL VIEW PAGINATION CONTROLLER (VIEW 1 & VIEW 2 SWITCHER)
+       THREE-VIEW PAGINATION CONTROLLER (VIEW 1, VIEW 2 & VIEW 3 SWITCHER)
        ========================================================================== */
-    let activeLoginView = 1;
+    let activeLoginView = 3;
 
     function switchLoginView(viewNum) {
-      if (viewNum !== 1 && viewNum !== 2) return;
+      if (viewNum !== 1 && viewNum !== 2 && viewNum !== 3) return;
       activeLoginView = viewNum;
 
       const view1 = document.getElementById('login-view-1');
       const view2 = document.getElementById('login-view-2');
+      const view3 = document.getElementById('login-view-3');
       const canvas = document.getElementById('viewport-canvas');
       const btn1 = document.getElementById('btn-page-1');
       const btn2 = document.getElementById('btn-page-2');
-      const label = document.getElementById('dockActiveLabel');
+      const btn3 = document.getElementById('btn-page-3');
+
+      // Clear all active states
+      [view1, view2, view3].forEach(v => v && v.classList.remove('active'));
+      [btn1, btn2, btn3].forEach(b => {
+        if (b) {
+          b.classList.remove('active');
+          b.removeAttribute('aria-current');
+        }
+      });
+      if (canvas) {
+        canvas.classList.remove('view2-mode', 'view3-mode');
+      }
 
       if (viewNum === 1) {
-        if (view2) view2.classList.remove('active');
         if (view1) view1.classList.add('active');
-        if (canvas) canvas.classList.remove('view2-mode');
         if (btn1) {
           btn1.classList.add('active');
           btn1.setAttribute('aria-current', 'page');
         }
-        if (btn2) {
-          btn2.classList.remove('active');
-          btn2.removeAttribute('aria-current');
-        }
-        if (label) label.textContent = 'Active: Page 1 • View 1 (Frosted Obsidian Bento)';
         try {
           history.replaceState(null, '', '#view1');
           localStorage.setItem('hirerkey_login_view', '1');
         } catch(e) {}
-      } else {
-        if (view1) view1.classList.remove('active');
+      } else if (viewNum === 2) {
         if (view2) view2.classList.add('active');
         if (canvas) canvas.classList.add('view2-mode');
         if (btn2) {
           btn2.classList.add('active');
           btn2.setAttribute('aria-current', 'page');
         }
-        if (btn1) {
-          btn1.classList.remove('active');
-          btn1.removeAttribute('aria-current');
-        }
-        if (label) label.textContent = 'Active: Page 2 • View 2 (Smart AI Assistant Studio)';
         try {
           history.replaceState(null, '', '#view2');
           localStorage.setItem('hirerkey_login_view', '2');
+        } catch(e) {}
+      } else if (viewNum === 3) {
+        if (view3) view3.classList.add('active');
+        if (canvas) canvas.classList.add('view3-mode');
+        if (btn3) {
+          btn3.classList.add('active');
+          btn3.setAttribute('aria-current', 'page');
+        }
+        try {
+          history.replaceState(null, '', '#view3');
+          localStorage.setItem('hirerkey_login_view', '3');
         } catch(e) {}
       }
     }
 
     function navigatePage(delta) {
       let target = activeLoginView + delta;
-      if (target < 1) target = 2;
-      if (target > 2) target = 1;
+      if (target < 1) target = 3;
+      if (target > 3) target = 1;
       switchLoginView(target);
     }
 
-    // Keyboard navigation: 1, 2, ArrowLeft, ArrowRight
+    // Keyboard navigation: 1, 2, 3, ArrowLeft, ArrowRight
     document.addEventListener('keydown', (e) => {
       // Don't intercept if user is typing in an input
       if (e.target && ['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
@@ -3035,6 +3974,8 @@
         switchLoginView(1);
       } else if (e.key === '2') {
         switchLoginView(2);
+      } else if (e.key === '3') {
+        switchLoginView(3);
       } else if (e.key === 'ArrowLeft') {
         navigatePage(-1);
       } else if (e.key === 'ArrowRight') {
@@ -3042,16 +3983,18 @@
       }
     });
 
-    // Check initial view from hash, query param, or localStorage
+    // Check initial view from hash, query param, or localStorage (Defaults to View 3 for immediate review)
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash;
       const params = new URLSearchParams(window.location.search);
       const saved = localStorage.getItem('hirerkey_login_view');
 
-      if (hash === '#view2' || params.get('view') === '2' || (!hash && saved === '2')) {
+      if (hash === '#view1' || params.get('view') === '1' || (!hash && saved === '1')) {
+        switchLoginView(1);
+      } else if (hash === '#view2' || params.get('view') === '2' || (!hash && saved === '2')) {
         switchLoginView(2);
       } else {
-        switchLoginView(1);
+        switchLoginView(3);
       }
     });
 
@@ -3264,6 +4207,226 @@
           sparkles.forEach((s) => {
             s.style.transform = '';
           });
+    // ==========================================================================
+    // VIEW 3: SYNCWISE-INSPIRED MODERN SPLIT CONTROLLERS & INTERACTIONS
+    // ==========================================================================
+    let v3IsHeroLeft = true;
+
+    function toggleV3Layout() {
+      const shell = document.getElementById('v3-card-shell');
+      const text = document.getElementById('v3-flip-text');
+      if (!shell) return;
+      v3IsHeroLeft = !v3IsHeroLeft;
+      if (v3IsHeroLeft) {
+        shell.classList.add('v3-hero-left');
+        if (text) text.textContent = 'Showcase Right';
+        showToast('Showcase moved to Left side');
+      } else {
+        shell.classList.remove('v3-hero-left');
+        if (text) text.textContent = 'Showcase Left';
+        showToast('Showcase moved to Right side');
+      }
+    }
+
+    function switchV3AuthMode(mode) {
+      const tabOtp = document.getElementById('tab-v3-otp');
+      const tabPwd = document.getElementById('tab-v3-pwd');
+      const stepEmailOtp = document.getElementById('v3-step-email-otp');
+      const stepPassword = document.getElementById('v3-step-password');
+      const stepOtpVerify = document.getElementById('v3-step-otp-verify');
+
+      clearInterval(v3OtpTimerInterval);
+      if (stepOtpVerify) stepOtpVerify.classList.add('hidden');
+
+      if (mode === 'otp') {
+        if (tabOtp) tabOtp.classList.add('active');
+        if (tabPwd) tabPwd.classList.remove('active');
+        if (stepEmailOtp) stepEmailOtp.classList.remove('hidden');
+        if (stepPassword) stepPassword.classList.add('hidden');
+      } else {
+        if (tabPwd) tabPwd.classList.add('active');
+        if (tabOtp) tabOtp.classList.remove('active');
+        if (stepPassword) stepPassword.classList.remove('hidden');
+        if (stepEmailOtp) stepEmailOtp.classList.add('hidden');
+      }
+    }
+
+    let v3OtpTimerInterval = null;
+    let v3SecondsRemaining = 29;
+
+    function handleV3SendOTP(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('v3-email-otp');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      if (!emailVal) return;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+        showToast('Please enter a valid corporate email address');
+        return;
+      }
+
+      const targetEl = document.getElementById('v3-sent-target-email');
+      if (targetEl) targetEl.textContent = emailVal;
+
+      const stepEmail = document.getElementById('v3-step-email-otp');
+      const stepVerify = document.getElementById('v3-step-otp-verify');
+      if (stepEmail) stepEmail.classList.add('hidden');
+      if (stepVerify) stepVerify.classList.remove('hidden');
+
+      showToast(`6-digit OTP code dispatched to ${emailVal}`);
+      startV3OtpTimer();
+
+      const firstOtp = document.querySelector('.v3-otp-input');
+      if (firstOtp) {
+        setTimeout(() => firstOtp.focus(), 100);
+      }
+    }
+
+    function switchV3ToEmailStep() {
+      clearInterval(v3OtpTimerInterval);
+      const stepEmail = document.getElementById('v3-step-email-otp');
+      const stepVerify = document.getElementById('v3-step-otp-verify');
+      if (stepVerify) stepVerify.classList.add('hidden');
+      if (stepEmail) stepEmail.classList.remove('hidden');
+    }
+
+    function startV3OtpTimer() {
+      clearInterval(v3OtpTimerInterval);
+      v3SecondsRemaining = 29;
+      const timerVal = document.getElementById('v3-timer-val');
+      const countdownText = document.getElementById('v3-countdown-text');
+      const resendBtn = document.getElementById('btn-v3-resend');
+
+      if (resendBtn) resendBtn.style.display = 'none';
+      if (countdownText) countdownText.style.display = 'inline';
+      if (timerVal) timerVal.textContent = '0:29';
+
+      v3OtpTimerInterval = setInterval(() => {
+        v3SecondsRemaining--;
+        if (v3SecondsRemaining <= 0) {
+          clearInterval(v3OtpTimerInterval);
+          if (countdownText) countdownText.style.display = 'none';
+          if (resendBtn) resendBtn.style.display = 'inline-block';
+        } else {
+          const sec = v3SecondsRemaining < 10 ? `0${v3SecondsRemaining}` : v3SecondsRemaining;
+          if (timerVal) timerVal.textContent = `0:${sec}`;
+        }
+      }, 1000);
+    }
+
+    function resendV3Code() {
+      showToast('New 6-digit verification code sent!');
+      startV3OtpTimer();
+      const firstOtp = document.querySelector('.v3-otp-input');
+      if (firstOtp) firstOtp.focus();
+    }
+
+    function handleV3VerifyOTP(e) {
+      e.preventDefault();
+      const v3Boxes = document.querySelectorAll('.v3-otp-input');
+      let code = '';
+      v3Boxes.forEach(b => code += b.value);
+      if (code.length < 6) {
+        showToast('Please enter all 6 digits of the OTP code');
+        return;
+      }
+
+      const btn = document.getElementById('btn-v3-verify-otp');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Verifying...</span>`;
+      }
+
+      showToast('Identity verified! Decrypting workforce dashboard...');
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 800);
+    }
+
+    function toggleV3Password() {
+      const pwd = document.getElementById('v3-password');
+      const icon = document.getElementById('v3-eye-icon');
+      if (!pwd || !icon) return;
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.innerHTML = `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24m-6.36-6.36L2 2l20 20-1.76-1.76M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="1.8"/>`;
+      } else {
+        pwd.type = 'password';
+        icon.innerHTML = `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle>`;
+      }
+    }
+
+    function handleV3Login(e) {
+      e.preventDefault();
+      const email = document.getElementById('v3-email').value.trim();
+      const pwd = document.getElementById('v3-password').value;
+      if (!email || !pwd) {
+        showToast('Please enter both email and password');
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showToast('Please enter a valid corporate email address');
+        return;
+      }
+      const btn = document.getElementById('btn-v3-signin');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Signing in...</span>`;
+      }
+
+      showToast('Authenticating with Hirerkey...');
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 900);
+    }
+
+    // View 3 OTP Digit Auto-Advancing & Pasting
+    document.addEventListener('DOMContentLoaded', () => {
+      const v3Boxes = document.querySelectorAll('.v3-otp-input');
+      v3Boxes.forEach((box, index) => {
+        box.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/[^0-9]/g, '');
+          e.target.value = val;
+          if (val && index < v3Boxes.length - 1) {
+            v3Boxes[index + 1].focus();
+          }
+        });
+
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !box.value && index > 0) {
+            v3Boxes[index - 1].focus();
+          }
+        });
+
+        box.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+          if (pasted) {
+            pasted.split('').slice(0, v3Boxes.length).forEach((char, i) => {
+              v3Boxes[i].value = char;
+            });
+            const nextIdx = Math.min(pasted.length, v3Boxes.length - 1);
+            v3Boxes[nextIdx].focus();
+          }
+        });
+      });
+    });
+
+    // View 3: 3D Mouse Parallax on Dashboard Mockup Card
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroPanel = document.getElementById('v3HeroPanel');
+      const mockupCard = document.getElementById('v3MockupCard');
+      if (heroPanel && mockupCard) {
+        heroPanel.addEventListener('mousemove', (e) => {
+          const rect = heroPanel.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          mockupCard.style.transform = `perspective(1000px) rotateX(${10 - y * 14}deg) rotateY(${-8 + x * 16}deg) rotateZ(1deg) translateY(${y * -8}px)`;
+        });
+        heroPanel.addEventListener('mouseleave', () => {
+          mockupCard.style.transform = 'rotateX(10deg) rotateY(-8deg) rotateZ(1.5deg)';
         });
       }
     });

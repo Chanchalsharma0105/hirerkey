@@ -18,7 +18,7 @@ export type AuthMode = 'otp' | 'password' | 'passkey';
 export interface LoginViewProps {
   onSuccessLogin?: (email: string, method: AuthMode) => void;
   className?: string;
-  defaultView?: 1 | 2;
+  defaultView?: 1 | 2 | 3;
 }
 
 const STORIES = [
@@ -42,9 +42,9 @@ const STORIES = [
 export const LoginView: React.FC<LoginViewProps> = ({
   onSuccessLogin,
   className,
-  defaultView = 1,
+  defaultView = 3,
 }) => {
-  const [viewPage, setViewPage] = useState<1 | 2>(defaultView);
+  const [viewPage, setViewPage] = useState<1 | 2 | 3>(defaultView as 1 | 2 | 3);
   const [authTab, setAuthTab] = useState<'otp' | 'password'>('otp');
   const [step, setStep] = useState<'form' | 'otp_verify'>('form');
   const [email, setEmail] = useState('alex.chen@earthhotels.com');
@@ -68,6 +68,18 @@ export const LoginView: React.FC<LoginViewProps> = ({
   const [v2ShowPassword, setV2ShowPassword] = useState(false);
   const [orbTilt, setOrbTilt] = useState({ x: 0, y: 0 });
 
+  // View 3 form states (SyncWise inspired with 3D dashboard preview)
+  const [v3AuthMode, setV3AuthMode] = useState<'password' | 'otp'>('password');
+  const [v3Email, setV3Email] = useState('alex.chen@earthhotels.com');
+  const [v3Password, setV3Password] = useState('EarthHotels2026!#');
+  const [v3ShowPassword, setV3ShowPassword] = useState(false);
+  const [v3RememberMe, setV3RememberMe] = useState(true);
+  const [v3OtpStep, setV3OtpStep] = useState<'input' | 'verify'>('input');
+  const [v3OtpDigits, setV3OtpDigits] = useState<string[]>(['', '', '', '', '', '']);
+  const [v3OtpSecondsLeft, setV3OtpSecondsLeft] = useState(29);
+  const [v3IsHeroLeft, setV3IsHeroLeft] = useState(true);
+  const [v3Tilt, setV3Tilt] = useState({ x: 10, y: -8 });
+
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -79,14 +91,26 @@ export const LoginView: React.FC<LoginViewProps> = ({
     setOrbTilt({ x: 0, y: 0 });
   };
 
-  // Keyboard navigation for Dual View switching (1, 2, Left Arrow, Right Arrow)
+  const handleV3MouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setV3Tilt({ x: 10 - y * 14, y: -8 + x * 16 });
+  };
+
+  const handleV3MouseLeave = () => {
+    setV3Tilt({ x: 10, y: -8 });
+  };
+
+  // Keyboard navigation for Three-View switching (1, 2, 3, Left Arrow, Right Arrow)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target && ['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
       if (e.key === '1') setViewPage(1);
       if (e.key === '2') setViewPage(2);
-      if (e.key === 'ArrowLeft') setViewPage((p) => (p === 1 ? 2 : 1));
-      if (e.key === 'ArrowRight') setViewPage((p) => (p === 2 ? 1 : 2));
+      if (e.key === '3') setViewPage(3);
+      if (e.key === 'ArrowLeft') setViewPage((p) => (p === 1 ? 3 : (p - 1) as 1 | 2 | 3));
+      if (e.key === 'ArrowRight') setViewPage((p) => (p === 3 ? 1 : (p + 1) as 1 | 2 | 3));
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -156,6 +180,70 @@ export const LoginView: React.FC<LoginViewProps> = ({
     return () => clearInterval(timer);
   }, [v2OtpStep, v2OtpSecondsLeft]);
 
+  // View 3 OTP Timer
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (v3OtpStep === 'verify' && v3OtpSecondsLeft > 0) {
+      timer = setInterval(() => setV3OtpSecondsLeft((prev) => prev - 1), 1000);
+    }
+    return () => clearInterval(timer);
+  }, [v3OtpStep, v3OtpSecondsLeft]);
+
+  const handleV3Login = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v3Email || !v3Password) return;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(v3Email.trim())) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v3Email, 'password');
+    }, 800);
+  };
+
+  const handleV3SendOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v3Email) return;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(v3Email.trim())) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setV3OtpStep('verify');
+      setV3OtpSecondsLeft(29);
+    }, 600);
+  };
+
+  const handleV3VerifyOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = v3OtpDigits.join('');
+    if (code.length < 6) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v3Email, 'otp');
+    }, 800);
+  };
+
+  const handleV3OtpDigitChange = (index: number, val: string) => {
+    const clean = val.replace(/[^0-9]/g, '');
+    const nextDigits = [...v3OtpDigits];
+    nextDigits[index] = clean ? clean[clean.length - 1] : '';
+    setV3OtpDigits(nextDigits);
+
+    if (clean && index < 5) {
+      const nextInput = document.getElementById(`v3-otp-digit-${index + 1}`);
+      nextInput?.focus();
+    }
+  };
+
+  const handleV3OtpKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === 'Backspace' && !v3OtpDigits[index] && index > 0) {
+      const prevInput = document.getElementById(`v3-otp-digit-${index - 1}`);
+      prevInput?.focus();
+    }
+  };
+
   // OTP Countdown Timer
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -213,6 +301,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
   const prevStory = () => setStoryIndex((prev) => (prev - 1 + STORIES.length) % STORIES.length);
 
   const isView1 = viewPage === 1;
+  const isView2 = viewPage === 2;
+  const isView3 = viewPage === 3;
 
   return (
     <Box
@@ -226,7 +316,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         justifyContent: 'center',
         p: { xs: 2, md: 4 },
         pb: { xs: 12, md: 14 },
-        backgroundColor: isView1 ? '#0B0719' : '#EAE7F8',
+        backgroundColor: isView1 ? '#0B0719' : isView2 ? '#EAE7F8' : '#EEF2F6',
         backgroundImage: isView1
           ? `
             radial-gradient(circle at 12% 22%, rgba(59, 130, 246, 0.42) 0%, rgba(99, 102, 241, 0.28) 32%, transparent 64%),
@@ -238,7 +328,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
             linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
             radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(5, 3, 12, 0.78) 100%)
           `
-          : `
+          : isView2
+          ? `
             radial-gradient(circle at 14% 18%, rgba(216, 180, 254, 0.7) 0%, rgba(192, 132, 252, 0.35) 30%, transparent 65%),
             radial-gradient(circle at 86% 16%, rgba(244, 114, 182, 0.55) 0%, rgba(236, 72, 153, 0.28) 28%, transparent 60%),
             radial-gradient(circle at 50% 84%, rgba(167, 139, 250, 0.5) 0%, rgba(139, 92, 246, 0.22) 36%, transparent 65%),
@@ -246,10 +337,19 @@ export const LoginView: React.FC<LoginViewProps> = ({
             radial-gradient(circle at 18% 78%, rgba(192, 132, 252, 0.42) 0%, transparent 58%),
             linear-gradient(rgba(124, 58, 237, 0.045) 1px, transparent 1px),
             linear-gradient(90deg, rgba(124, 58, 237, 0.045) 1px, transparent 1px)
+          `
+          : `
+            radial-gradient(circle at 14% 18%, rgba(216, 180, 254, 0.45) 0%, transparent 55%),
+            radial-gradient(circle at 86% 16%, rgba(199, 210, 254, 0.45) 0%, transparent 55%),
+            radial-gradient(circle at 50% 84%, rgba(224, 231, 255, 0.5) 0%, transparent 60%),
+            linear-gradient(rgba(124, 58, 237, 0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(124, 58, 237, 0.035) 1px, transparent 1px)
           `,
         backgroundSize: isView1
           ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px, 100% 100%'
-          : '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px',
+          : isView2
+          ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px'
+          : '100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px',
         color: isView1 ? '#FFFFFF' : '#0F172A',
         fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
         transition: 'background-color 0.45s ease',
@@ -942,7 +1042,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         </Box>
             </Box>
           </motion.div>
-        ) : (
+        ) : viewPage === 2 ? (
           <motion.div
             key="view-2"
             initial={{ opacity: 0, y: 16, scale: 0.985 }}
@@ -1689,6 +1789,733 @@ export const LoginView: React.FC<LoginViewProps> = ({
               </Box>
             </Box>
           </motion.div>
+        ) : (
+          <motion.div
+            key="view-3"
+            initial={{ opacity: 0, y: 16, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.985 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+          >
+            {/* VIEW 3: SYNCWISE-INSPIRED MODERN SPLIT WITH 3D DASHBOARD PREVIEW */}
+            <Box
+              className="v3-card-shell"
+              sx={{
+                width: '100%',
+                maxWidth: '1080px',
+                minHeight: '640px',
+                bgcolor: '#FFFFFF',
+                borderRadius: '32px',
+                border: '1px solid rgba(226, 232, 240, 0.85)',
+                boxShadow:
+                  '0 35px 85px -15px rgba(124, 58, 237, 0.12), 0 15px 35px -5px rgba(15, 23, 42, 0.06), 0 0 1px rgba(0, 0, 0, 0.08)',
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: '1fr',
+                  md: v3IsHeroLeft ? '1.15fr 1fr' : '1fr 1.15fr',
+                },
+                p: { xs: 2.5, md: '24px' },
+                gap: { xs: 3, md: '28px' },
+                position: 'relative',
+                zIndex: 10,
+                transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              {/* DARK HERO SHOWCASE PANEL (WITH 3D HIRERKEY DASHBOARD MOCKUP) */}
+              <Box
+                onMouseMove={handleV3MouseMove}
+                onMouseLeave={handleV3MouseLeave}
+                sx={{
+                  order: { xs: 2, md: v3IsHeroLeft ? 1 : 2 },
+                  borderRadius: '26px',
+                  background: 'linear-gradient(145deg, #120C24 0%, #1A0F36 45%, #0B0818 100%)',
+                  border: '1px solid rgba(168, 85, 247, 0.22)',
+                  p: { xs: 3, sm: '32px 32px 28px 32px' },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 20px 45px -10px rgba(18, 12, 36, 0.6)',
+                  perspective: '1200px',
+                }}
+              >
+                {/* Hexagonal Grid Pattern SVG */}
+                <Box
+                  component="svg"
+                  viewBox="0 0 400 400"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    opacity: 0.85,
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                >
+                  <defs>
+                    <pattern id="v3-react-hex-pattern" width="40" height="69.282" patternUnits="userSpaceOnUse">
+                      <path
+                        d="M 40 0 L 20 11.547 L 0 0 L 0 23.094 L 20 34.641 L 40 23.094 Z M 0 34.641 L 20 46.188 L 0 57.735 L 0 80.829 L 20 92.376 L 40 80.829 L 40 57.735 L 20 46.188 Z"
+                        stroke="rgba(168, 85, 247, 0.14)"
+                        strokeWidth="1.2"
+                        fill="none"
+                      />
+                      <path
+                        d="M 20 34.641 L 40 46.188 L 20 57.735 L 0 46.188 Z"
+                        stroke="rgba(124, 58, 237, 0.18)"
+                        strokeWidth="1.2"
+                        fill="none"
+                      />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#v3-react-hex-pattern)" />
+                </Box>
+
+                {/* Glow Blobs */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '-60px',
+                    left: '-40px',
+                    width: 260,
+                    height: 260,
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(168, 85, 247, 0.35) 0%, transparent 70%)',
+                    filter: 'blur(35px)',
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: '-70px',
+                    right: '-40px',
+                    width: 280,
+                    height: 280,
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(124, 58, 237, 0.32) 0%, transparent 70%)',
+                    filter: 'blur(40px)',
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                />
+
+                {/* Hero Headline */}
+                <Box sx={{ position: 'relative', zIndex: 2 }}>
+                  <Box
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 0.75,
+                      px: 1.5,
+                      py: 0.6,
+                      borderRadius: '9999px',
+                      background: 'rgba(124, 58, 237, 0.22)',
+                      border: '1px solid rgba(168, 85, 247, 0.35)',
+                      color: '#E9D5FF',
+                      fontSize: 12,
+                      fontWeight: 600,
+                      mb: 2,
+                    }}
+                  >
+                    <span style={{ color: '#A855F7' }}>✦</span>
+                    <span>Workforce Intelligence Platform</span>
+                  </Box>
+                  <Typography
+                    level="h2"
+                    sx={{
+                      fontFamily: 'Plus Jakarta Sans, sans-serif',
+                      fontSize: { xs: 26, sm: 30 },
+                      fontWeight: 800,
+                      letterSpacing: '-0.03em',
+                      color: '#FFFFFF',
+                      lineHeight: 1.2,
+                      mb: 1.5,
+                    }}
+                  >
+                    Redefine Your<br />Workforce Experience!
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: 13.5,
+                      color: 'rgba(226, 232, 240, 0.78)',
+                      lineHeight: 1.6,
+                      maxWidth: 420,
+                    }}
+                  >
+                    Unshackle yourself from traditional HR friction and immerse yourself in the boundless intelligence that Hirerkey brings to your daily routine.
+                  </Typography>
+                </Box>
+
+                {/* 3D Perspective Floating Dashboard Mockup Card */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    zIndex: 3,
+                    mt: { xs: 3, sm: 4 },
+                    perspective: '1200px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: '100%',
+                      maxWidth: 440,
+                      background: 'rgba(15, 10, 30, 0.92)',
+                      borderRadius: '16px',
+                      border: '1px solid rgba(168, 85, 247, 0.35)',
+                      boxShadow: '0 25px 60px -10px rgba(0, 0, 0, 0.75), 0 0 35px rgba(124, 58, 237, 0.3)',
+                      overflow: 'hidden',
+                      transform: `rotateX(${v3Tilt.x}deg) rotateY(${v3Tilt.y}deg)`,
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.18s cubic-bezier(0.16, 1, 0.3, 1)',
+                      position: 'relative',
+                    }}
+                  >
+                    {/* Window Chrome Header */}
+                    <Box
+                      sx={{
+                        p: '9px 14px',
+                        background: 'linear-gradient(180deg, rgba(30, 20, 55, 0.95) 0%, rgba(20, 12, 38, 0.95) 100%)',
+                        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                        <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: '#EF4444' }} />
+                        <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: '#F59E0B' }} />
+                        <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: '#10B981' }} />
+                      </Box>
+                      <Typography sx={{ fontSize: 11, color: '#94A3B8', fontFamily: 'monospace', letterSpacing: '0.02em' }}>
+                        dashboard.hirerkey.com
+                      </Typography>
+                      <Box sx={{ width: 28 }} />
+                    </Box>
+
+                    {/* Dashboard Image */}
+                    <Box sx={{ position: 'relative', overflow: 'hidden', bgcolor: '#0B0818' }}>
+                      <Box
+                        component="img"
+                        src="/hirerkey_dashboard_mockup.png"
+                        alt="Hirerkey Intelligence Dashboard"
+                        sx={{
+                          width: '100%',
+                          height: 'auto',
+                          display: 'block',
+                          objectFit: 'cover',
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          inset: 0,
+                          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%)',
+                          pointerEvents: 'none',
+                        }}
+                      />
+                    </Box>
+
+                    {/* Floating Micro-Badges */}
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 44,
+                        right: 12,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 0.75,
+                        px: 1.25,
+                        py: 0.5,
+                        borderRadius: '9999px',
+                        background: 'rgba(15, 23, 42, 0.88)',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(16, 185, 129, 0.4)',
+                        color: '#FFFFFF',
+                        fontSize: 10.5,
+                        fontWeight: 700,
+                        boxShadow: '0 6px 16px rgba(0,0,0,0.4)',
+                      }}
+                    >
+                      <Box sx={{ width: 7, height: 7, borderRadius: '50%', bgcolor: '#10B981', boxShadow: '0 0 8px #10B981' }} />
+                      <span>Ask HyIQ™ • Real-time AI</span>
+                    </Box>
+
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        bottom: 12,
+                        left: 12,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 0.5,
+                        px: 1.2,
+                        py: 0.45,
+                        borderRadius: '9999px',
+                        background: 'rgba(15, 23, 42, 0.88)',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(168, 85, 247, 0.35)',
+                        color: '#E9D5FF',
+                        fontSize: 10.5,
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span>⚡ 12ms UAE Cloud</span>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+
+              {/* CLEAN WHITE AUTHENTICATION FORM PANEL */}
+              <Box
+                sx={{
+                  order: { xs: 1, md: v3IsHeroLeft ? 2 : 1 },
+                  p: { xs: 1, sm: '16px 20px 12px 20px' },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Box>
+                  {/* Brand Row + Flip Layout Button */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                      <Box
+                        sx={{
+                          width: 38,
+                          height: 38,
+                          borderRadius: '12px',
+                          display: 'grid',
+                          placeItems: 'center',
+                          background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(99, 102, 241, 0.06) 100%)',
+                          border: '1px solid rgba(124, 58, 237, 0.25)',
+                        }}
+                      >
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                          <rect x="4" y="3" width="6" height="15" rx="3" transform="rotate(-30 4 3)" fill="#7C3AED" />
+                          <rect x="13" y="3" width="6" height="15" rx="3" transform="rotate(-30 13 3)" fill="#A855F7" />
+                          <circle cx="17" cy="18" r="3" fill="#EC4899" />
+                        </svg>
+                      </Box>
+                      <Box sx={{ display: 'inline-flex', alignItems: 'baseline', fontSize: 23, fontWeight: 800, letterSpacing: '-0.03em', color: '#0F172A' }}>
+                        <span>h<span style={{ color: '#7C3AED' }}>i</span>rerke<span style={{ position: 'relative', display: 'inline-block' }}>y<svg style={{ position: 'absolute', bottom: -2, left: -6, width: 28, height: 6 }} viewBox="0 0 46 8" fill="none"><path d="M1 5.5C12 1.5 34 1.5 45 6" stroke="#7C3AED" strokeWidth="2.8" strokeLinecap="round"/></svg></span></span>
+                      </Box>
+                    </Box>
+
+                    {/* Interactive Flip Layout Button */}
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => setV3IsHeroLeft((prev) => !prev)}
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 0.75,
+                        px: 1.5,
+                        py: 0.6,
+                        borderRadius: '9999px',
+                        border: '1px solid #E2E8F0',
+                        bgcolor: '#F8FAFC',
+                        color: '#64748B',
+                        fontSize: 11.5,
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        transition: 'all 0.18s ease',
+                        '&:hover': { bgcolor: '#F1F5F9', color: '#7C3AED', borderColor: '#C4B5FD' },
+                      }}
+                      title="Switch showcase to left/right"
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                        <path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/>
+                      </svg>
+                      <span>{v3IsHeroLeft ? 'Showcase Right' : 'Showcase Left'}</span>
+                    </Box>
+                  </Box>
+
+                  {/* Form Title & Subtitle */}
+                  <Typography level="h1" sx={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.025em', color: '#0F172A', mb: 1 }}>
+                    Welcome Back!
+                  </Typography>
+                  <Typography sx={{ fontSize: 13.5, color: '#64748B', lineHeight: 1.55, mb: 3 }}>
+                    Hirerkey empowers you to manage, enhance, and streamline your workforce, putting you in control of your organisation.
+                  </Typography>
+
+                  {/* Auth Mode Switcher */}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      bgcolor: '#F1F5F9',
+                      p: '4px',
+                      borderRadius: '9999px',
+                      gap: '4px',
+                      mb: 3,
+                    }}
+                  >
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => setV3AuthMode('otp')}
+                      sx={{
+                        flex: 1,
+                        py: 1,
+                        borderRadius: '9999px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0.75,
+                        fontSize: 13,
+                        fontWeight: 700,
+                        border: 'none',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        bgcolor: v3AuthMode === 'otp' ? '#7C3AED' : 'transparent',
+                        color: v3AuthMode === 'otp' ? '#FFFFFF' : '#64748B',
+                        boxShadow: v3AuthMode === 'otp' ? '0 4px 12px rgba(124, 58, 237, 0.3)' : 'none',
+                      }}
+                    >
+                      <HiEnvelope size={15} />
+                      <span>Email OTP</span>
+                    </Box>
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => setV3AuthMode('password')}
+                      sx={{
+                        flex: 1,
+                        py: 1,
+                        borderRadius: '9999px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0.75,
+                        fontSize: 13,
+                        fontWeight: 700,
+                        border: 'none',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        bgcolor: v3AuthMode === 'password' ? '#7C3AED' : 'transparent',
+                        color: v3AuthMode === 'password' ? '#FFFFFF' : '#64748B',
+                        boxShadow: v3AuthMode === 'password' ? '0 4px 12px rgba(124, 58, 237, 0.3)' : 'none',
+                      }}
+                    >
+                      <HiLockClosed size={15} />
+                      <span>Password</span>
+                    </Box>
+                  </Box>
+
+                  {/* MODE A: PASSWORD LOGIN */}
+                  {v3AuthMode === 'password' && (
+                    <Box component="form" onSubmit={handleV3Login}>
+                      {/* Email */}
+                      <Box sx={{ mb: 2 }}>
+                        <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
+                        <Input
+                          type="email"
+                          value={v3Email}
+                          onChange={(e) => setV3Email(e.target.value)}
+                          placeholder="Enter your email"
+                          startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                          sx={{
+                            height: 48,
+                            borderRadius: '9999px',
+                            bgcolor: '#FFFFFF',
+                            border: '1.5px solid #E2E8F0',
+                            fontSize: 14,
+                            '&:focus-within': { borderColor: '#7C3AED', boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)' },
+                          }}
+                          required
+                        />
+                      </Box>
+
+                      {/* Password */}
+                      <Box sx={{ mb: 2 }}>
+                        <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Password</Typography>
+                        <Input
+                          type={v3ShowPassword ? 'text' : 'password'}
+                          value={v3Password}
+                          onChange={(e) => setV3Password(e.target.value)}
+                          placeholder="••••••••"
+                          startDecorator={<HiLockClosed color="#94A3B8" size={18} />}
+                          endDecorator={
+                            <Box
+                              component="button"
+                              type="button"
+                              onClick={() => setV3ShowPassword((prev) => !prev)}
+                              sx={{ border: 'none', bgcolor: 'transparent', cursor: 'pointer', color: '#94A3B8', display: 'flex' }}
+                            >
+                              {v3ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
+                            </Box>
+                          }
+                          sx={{
+                            height: 48,
+                            borderRadius: '9999px',
+                            bgcolor: '#FFFFFF',
+                            border: '1.5px solid #E2E8F0',
+                            fontSize: 14,
+                            '&:focus-within': { borderColor: '#7C3AED', boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)' },
+                          }}
+                          required
+                        />
+                      </Box>
+
+                      {/* Remember me & Forgot password */}
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
+                        <Box
+                          component="label"
+                          sx={{ display: 'flex', alignItems: 'center', gap: 1, cursor: 'pointer', fontSize: 13, color: '#475569' }}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={v3RememberMe}
+                            onChange={(e) => setV3RememberMe(e.target.checked)}
+                            style={{ accentColor: '#7C3AED', width: 16, height: 16 }}
+                          />
+                          <span>Remember me</span>
+                        </Box>
+                        <Typography
+                          onClick={() => setHelpModalOpen(true)}
+                          sx={{ fontSize: 13, fontWeight: 600, color: '#7C3AED', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          Forgot password
+                        </Typography>
+                      </Box>
+
+                      {/* Primary Sign In Button */}
+                      <Button
+                        type="submit"
+                        loading={loading}
+                        sx={{
+                          width: '100%',
+                          height: 48,
+                          borderRadius: '9999px',
+                          bgcolor: '#7C3AED',
+                          color: '#FFFFFF',
+                          fontWeight: 700,
+                          fontSize: 15,
+                          boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                          transition: 'all 0.2s ease',
+                          '&:hover': { bgcolor: '#6D28D9', transform: 'translateY(-1px)' },
+                          mb: 1.5,
+                        }}
+                      >
+                        Sign in
+                      </Button>
+
+                      {/* Google SSO Button */}
+                      <Button
+                        type="button"
+                        variant="outlined"
+                        onClick={() => onSuccessLogin?.('alex.chen@earthhotels.com', 'passkey')}
+                        startDecorator={<FcGoogle size={18} />}
+                        sx={{
+                          width: '100%',
+                          height: 48,
+                          borderRadius: '9999px',
+                          borderColor: '#E2E8F0',
+                          bgcolor: '#FFFFFF',
+                          color: '#0F172A',
+                          fontWeight: 600,
+                          fontSize: 14,
+                          '&:hover': { bgcolor: '#F8FAFC', borderColor: '#CBD5E1' },
+                        }}
+                      >
+                        Sign in with Google
+                      </Button>
+
+                      {/* Can't access your login mail link */}
+                      <Box sx={{ textAlign: 'center', mt: 2 }}>
+                        <Typography
+                          onClick={() => setHelpModalOpen(true)}
+                          sx={{ fontSize: 13, fontWeight: 600, color: '#7C3AED', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          Can't access your login mail?
+                        </Typography>
+                      </Box>
+                    </Box>
+                  )}
+
+                  {/* MODE B: EMAIL OTP ENTRY */}
+                  {v3AuthMode === 'otp' && v3OtpStep === 'input' && (
+                    <Box component="form" onSubmit={handleV3SendOTP}>
+                      <Box sx={{ mb: 2 }}>
+                        <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
+                        <Input
+                          type="email"
+                          value={v3Email}
+                          onChange={(e) => setV3Email(e.target.value)}
+                          placeholder="Enter your email"
+                          startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                          sx={{
+                            height: 48,
+                            borderRadius: '9999px',
+                            bgcolor: '#FFFFFF',
+                            border: '1.5px solid #E2E8F0',
+                            fontSize: 14,
+                            '&:focus-within': { borderColor: '#7C3AED', boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)' },
+                          }}
+                          required
+                        />
+                      </Box>
+
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
+                        <Typography sx={{ fontSize: 13, color: '#64748B' }}>Instant one-time passcode</Typography>
+                        <Typography
+                          onClick={() => setPasskeyModalOpen(true)}
+                          sx={{ fontSize: 13, fontWeight: 600, color: '#7C3AED', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          Sign in with Passkey
+                        </Typography>
+                      </Box>
+
+                      <Button
+                        type="submit"
+                        loading={loading}
+                        sx={{
+                          width: '100%',
+                          height: 48,
+                          borderRadius: '9999px',
+                          bgcolor: '#7C3AED',
+                          color: '#FFFFFF',
+                          fontWeight: 700,
+                          fontSize: 15,
+                          boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                          transition: 'all 0.2s ease',
+                          '&:hover': { bgcolor: '#6D28D9', transform: 'translateY(-1px)' },
+                          mb: 1.5,
+                        }}
+                      >
+                        Send OTP
+                      </Button>
+
+                      <Box sx={{ textAlign: 'center', mt: 2 }}>
+                        <Typography
+                          onClick={() => setHelpModalOpen(true)}
+                          sx={{ fontSize: 13, fontWeight: 600, color: '#7C3AED', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          Can't access your login mail?
+                        </Typography>
+                      </Box>
+                    </Box>
+                  )}
+
+                  {/* MODE C: OTP 6-DIGIT VERIFICATION */}
+                  {v3AuthMode === 'otp' && v3OtpStep === 'verify' && (
+                    <Box component="form" onSubmit={handleV3VerifyOTP}>
+                      <Typography level="h3" sx={{ fontSize: 20, fontWeight: 700, color: '#0F172A', mb: 0.5 }}>
+                        Enter Verification Code
+                      </Typography>
+                      <Typography sx={{ fontSize: 13, color: '#64748B', mb: 2 }}>
+                        We sent a 6-digit code to <strong style={{ color: '#7C3AED' }}>{v3Email}</strong>
+                      </Typography>
+
+                      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: { xs: 1, sm: 1.25 }, mb: 2.5 }}>
+                        {v3OtpDigits.map((digit, idx) => (
+                          <input
+                            key={idx}
+                            id={`v3-otp-digit-${idx}`}
+                            type="text"
+                            inputMode="numeric"
+                            maxLength={1}
+                            value={digit}
+                            onChange={(e) => handleV3OtpDigitChange(idx, e.target.value)}
+                            onKeyDown={(e) => handleV3OtpKeyDown(idx, e)}
+                            style={{
+                              width: '100%',
+                              height: 52,
+                              textAlign: 'center',
+                              fontSize: 22,
+                              fontWeight: 800,
+                              borderRadius: 12,
+                              border: '1.5px solid #CBD5E1',
+                              backgroundColor: '#FFFFFF',
+                              color: '#0F172A',
+                              outline: 'none',
+                              transition: 'all 0.15s ease',
+                            }}
+                          />
+                        ))}
+                      </Box>
+
+                      {/* Resend OTP */}
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1, mb: 2.5, fontSize: 13 }}>
+                        <Typography sx={{ color: '#64748B' }}>Didn't receive code?</Typography>
+                        {v3OtpSecondsLeft > 0 ? (
+                          <Typography sx={{ color: '#94A3B8' }}>
+                            Resend in <strong style={{ color: '#7C3AED' }}>0:{v3OtpSecondsLeft < 10 ? `0${v3OtpSecondsLeft}` : v3OtpSecondsLeft}</strong>
+                          </Typography>
+                        ) : (
+                          <Typography
+                            onClick={() => setV3OtpSecondsLeft(29)}
+                            sx={{ color: '#7C3AED', fontWeight: 700, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                          >
+                            Resend OTP
+                          </Typography>
+                        )}
+                      </Box>
+
+                      <Button
+                        type="submit"
+                        loading={loading}
+                        sx={{
+                          width: '100%',
+                          height: 48,
+                          borderRadius: '9999px',
+                          bgcolor: '#7C3AED',
+                          color: '#FFFFFF',
+                          fontWeight: 700,
+                          fontSize: 15,
+                          boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                          transition: 'all 0.2s ease',
+                          '&:hover': { bgcolor: '#6D28D9', transform: 'translateY(-1px)' },
+                          mb: 1.5,
+                        }}
+                      >
+                        Verify &amp; Sign In
+                      </Button>
+
+                      <Box sx={{ textAlign: 'center', mt: 1 }}>
+                        <Typography
+                          onClick={() => setV3OtpStep('input')}
+                          sx={{ fontSize: 13, color: '#7C3AED', fontWeight: 600, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          ← Back to Email entry
+                        </Typography>
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
+
+                {/* Terms of Use & Privacy Policy and Enterprise Badges */}
+                <Box sx={{ mt: 3 }}>
+                  <Typography sx={{ fontSize: 12, color: '#94A3B8', textAlign: 'center', lineHeight: 1.5 }}>
+                    By signing in, you agree to our{' '}
+                    <Typography component="span" sx={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>
+                      Terms of Use
+                    </Typography>{' '}
+                    and{' '}
+                    <Typography component="span" sx={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>
+                      Privacy Policy
+                    </Typography>
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, fontSize: 11, color: '#94A3B8', mt: 1.5 }}>
+                    <span>🛡️ Enterprise-Grade</span>
+                    <span>•</span>
+                    <span>🇦🇪 UAE Data Centers</span>
+                    <span>•</span>
+                    <span>🔒 GDPR Compliant</span>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -1735,7 +2562,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           <Box
             component="button"
             type="button"
-            onClick={() => setViewPage((p) => (p === 1 ? 2 : 1))}
+            onClick={() => setViewPage((p) => (p === 1 ? 3 : (p - 1) as 1 | 2 | 3))}
             title="Previous Page (Key: Left Arrow)"
             aria-label="Previous Page"
             sx={{
@@ -1848,11 +2675,57 @@ export const LoginView: React.FC<LoginViewProps> = ({
             <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#F1F5F9' }}>Page 2</Typography>
           </Box>
 
+          {/* Encircled 3: Page 3 */}
+          <Box
+            component="button"
+            type="button"
+            onClick={() => setViewPage(3)}
+            title="Page 3 (Key: 3)"
+            aria-label="Page 3"
+            aria-current={viewPage === 3 ? 'page' : undefined}
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 1,
+              px: { xs: 0.75, sm: 1.5 },
+              py: 0.5,
+              borderRadius: '9999px',
+              border: '1.5px solid',
+              borderColor: viewPage === 3 ? '#A855F7' : 'rgba(255, 255, 255, 0.16)',
+              bgcolor: viewPage === 3 ? 'rgba(124, 58, 237, 0.28)' : 'rgba(255, 255, 255, 0.06)',
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              boxShadow: viewPage === 3 ? '0 0 18px rgba(124, 58, 237, 0.45)' : 'none',
+              transition: 'all 0.22s ease',
+            }}
+          >
+            <Box
+              sx={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                bgcolor: viewPage === 3 ? '#7C3AED' : 'rgba(255, 255, 255, 0.1)',
+                background: viewPage === 3 ? 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)' : 'rgba(255, 255, 255, 0.1)',
+                border: '2px solid',
+                borderColor: viewPage === 3 ? '#E9D5FF' : 'rgba(255, 255, 255, 0.35)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 13.5,
+                fontWeight: 800,
+                boxShadow: viewPage === 3 ? '0 0 14px rgba(168, 85, 247, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.8)' : 'none',
+              }}
+            >
+              3
+            </Box>
+            <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#F1F5F9' }}>Page 3</Typography>
+          </Box>
+
           {/* Next button */}
           <Box
             component="button"
             type="button"
-            onClick={() => setViewPage((p) => (p === 1 ? 2 : 1))}
+            onClick={() => setViewPage((p) => (p === 3 ? 1 : (p + 1) as 1 | 2 | 3))}
             title="Next Page (Key: Right Arrow)"
             aria-label="Next Page"
             sx={{
