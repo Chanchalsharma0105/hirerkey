@@ -1,0 +1,3110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey™ — Workplace Intelligence Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       HIRERKEY™ FROSTED GLASS LOGIN EXPERIENCE (INSPIRATION MATCHED)
+       ========================================================================== */
+    :root {
+      --primary: #7C3AED;
+      --primary-light: #9333EA;
+      --primary-gradient: linear-gradient(135deg, #A855F7 0%, #7C3AED 50%, #6D28D9 100%);
+      --primary-hover: linear-gradient(135deg, #B568F8 0%, #8B5CF6 50%, #7C3AED 100%);
+      --primary-glow: 0 10px 28px -4px rgba(124, 58, 237, 0.45);
+      --bg-dark: #080614;
+      --text-white: #FFFFFF;
+      --text-gray-100: #F1F5F9;
+      --text-gray-300: #CBD5E1;
+      --text-gray-400: #94A3B8;
+      --text-gray-500: #64748B;
+      --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background-color: var(--bg-dark);
+      font-family: var(--font-body);
+      color: var(--text-white);
+      overflow-x: hidden;
+    }
+
+    /* Ambient Viewport: Vibrant Chromatic Mesh & Modular Grid Mosaic */
+    .viewport-canvas {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 36px 20px;
+      position: relative;
+      background-color: #0B0719;
+      background-image: 
+        /* Top-Left / Left Cyan & Blue Glows */
+        radial-gradient(circle at 12% 22%, rgba(59, 130, 246, 0.42) 0%, rgba(99, 102, 241, 0.28) 32%, transparent 64%),
+        /* Top-Center & Header Purple Glow */
+        radial-gradient(circle at 48% 14%, rgba(168, 85, 247, 0.48) 0%, rgba(124, 58, 237, 0.25) 36%, transparent 68%),
+        /* Top-Right & Right Radiant Pink & Coral Mesh */
+        radial-gradient(circle at 86% 20%, rgba(236, 72, 153, 0.52) 0%, rgba(244, 63, 94, 0.35) 28%, transparent 64%),
+        radial-gradient(circle at 94% 68%, rgba(251, 146, 60, 0.38) 0%, rgba(245, 158, 11, 0.22) 32%, transparent 60%),
+        /* Bottom-Left Deep Violet Glow */
+        radial-gradient(circle at 18% 84%, rgba(139, 92, 246, 0.36) 0%, rgba(109, 40, 217, 0.22) 35%, transparent 65%),
+        /* Subtle Grid Lines */
+        linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+        /* Vignette Overlay */
+        radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(5, 3, 12, 0.78) 100%);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px, 100% 100%;
+    }
+
+    /* Central Glassmorphic Card Container */
+    .login-container-card {
+      width: 100%;
+      max-width: 1050px;
+      min-height: 640px;
+      background: rgba(22, 16, 36, 0.68);
+      backdrop-filter: blur(40px) saturate(185%);
+      -webkit-backdrop-filter: blur(40px) saturate(185%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 36px;
+      box-shadow: 
+        0 35px 100px -20px rgba(0, 0, 0, 0.85),
+        0 0 50px rgba(124, 58, 237, 0.22),
+        inset 0 1px 1px rgba(255, 255, 255, 0.18);
+      display: grid;
+      grid-template-columns: 1.02fr 1.08fr;
+      padding: 34px 34px 34px 36px;
+      gap: 34px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ==========================================================================
+       LEFT COLUMN: AUTHENTICATION FORM
+       ========================================================================== */
+    .form-column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 14px 10px 10px;
+    }
+
+    /* Brand Logo Mark */
+    .brand-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    /* Iconic diagonal intelligence bars pill */
+    .brand-mark-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.25) 0%, rgba(124, 58, 237, 0.12) 100%);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.28);
+    }
+
+    .brand-wordmark {
+      font-family: var(--font-display);
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text-white);
+      user-select: none;
+      display: inline-flex;
+      align-items: baseline;
+    }
+
+    .brand-wordmark .dot-i {
+      color: #C084FC;
+      position: relative;
+      display: inline-block;
+    }
+
+    .brand-wordmark .key-part {
+      position: relative;
+      color: #FFFFFF;
+      margin-left: 0.5px;
+    }
+
+    .brand-wordmark .key-part .y-letter {
+      background: linear-gradient(135deg, #C084FC 0%, #A855F7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-wordmark .key-swoosh {
+      position: absolute;
+      left: -4px;
+      bottom: -4px;
+      width: calc(100% + 6px);
+      height: 6px;
+    }
+
+    /* Heading & Subtitle */
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-white);
+      line-height: 1.18;
+      margin-bottom: 6px;
+    }
+
+    .form-subtitle {
+      font-size: 13.5px;
+      color: var(--text-gray-400);
+      line-height: 1.5;
+      margin-bottom: 22px;
+    }
+
+    /* Auth Mode Tabs Switcher */
+    .auth-mode-switcher {
+      display: inline-flex;
+      background: rgba(10, 7, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 3px;
+      margin-bottom: 22px;
+      gap: 4px;
+    }
+
+    .mode-tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-gray-400);
+      font-family: var(--font-display);
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mode-tab-btn:hover {
+      color: var(--text-white);
+    }
+
+    .mode-tab-btn.active {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.3) 0%, rgba(124, 58, 237, 0.2) 100%);
+      color: #FFFFFF;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.25);
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-gray-300);
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .form-label .required-star {
+      color: #F43F5E;
+      margin-left: 2px;
+    }
+
+    .input-pill-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 18px;
+      color: var(--text-gray-400);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .input-pill {
+      width: 100%;
+      height: 50px;
+      background: rgba(12, 8, 24, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      font-size: 14.5px;
+      padding: 0 46px 0 48px;
+      outline: none;
+      transition: all 0.22s ease;
+    }
+
+    .input-pill::placeholder {
+      color: #64748B;
+      font-size: 14px;
+    }
+
+    .input-pill:focus {
+      border-color: #A855F7;
+      box-shadow: 
+        0 0 0 3px rgba(168, 85, 247, 0.24),
+        inset 0 2px 4px rgba(0, 0, 0, 0.5);
+      background: rgba(16, 11, 32, 0.95);
+    }
+
+    .input-action-btn {
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: none;
+      color: var(--text-gray-400);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .input-action-btn:hover {
+      color: var(--text-white);
+    }
+
+    .form-helper-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 10px 4px 22px 4px;
+      font-size: 13px;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-gray-300);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-input {
+      accent-color: #7C3AED;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .text-link {
+      color: var(--text-gray-400);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.18s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .text-link:hover {
+      color: #C4B5FD;
+      text-decoration: underline;
+    }
+
+    .text-link.highlight {
+      color: #A855F7;
+      font-weight: 600;
+    }
+
+    .text-link.highlight:hover {
+      color: #DDD6FE;
+    }
+
+    /* Primary Action Button */
+    .btn-primary-pill {
+      width: 100%;
+      height: 52px;
+      border-radius: 9999px;
+      background: var(--primary-gradient);
+      border: none;
+      color: var(--text-white);
+      font-family: var(--font-display);
+      font-size: 15.5px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary-pill:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1.5px);
+      box-shadow: 0 14px 32px -4px rgba(124, 58, 237, 0.62);
+    }
+
+    .btn-primary-pill:active {
+      transform: translateY(0.5px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
+    }
+
+    .btn-primary-pill:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* Recovery Link */
+    .recovery-row {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+    }
+
+    /* Social SSO Row */
+    .sso-divider-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 22px 0 16px 0;
+    }
+
+    .sso-divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .sso-divider-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-gray-500);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .sso-buttons-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .sso-circle-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-gray-300);
+    }
+
+    .sso-circle-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(168, 85, 247, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+      color: var(--text-white);
+    }
+
+    .sso-circle-btn.google-btn {
+      background: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+
+    .sso-circle-btn.google-btn:hover {
+      background: #F8FAFC;
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Legal & Security Footnote */
+    .terms-text {
+      text-align: center;
+      font-size: 11.5px;
+      color: var(--text-gray-500);
+      line-height: 1.5;
+    }
+
+    .terms-text a {
+      color: var(--text-gray-400);
+      text-decoration: underline;
+      transition: color 0.18s ease;
+    }
+
+    .terms-text a:hover {
+      color: #CBD5E1;
+    }
+
+    /* Enterprise Badges Strip */
+    .enterprise-badges-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #64748B;
+      letter-spacing: 0.02em;
+    }
+
+    .enterprise-badges-strip span {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ==========================================================================
+       OTP VERIFICATION STATE
+       ========================================================================== */
+    .auth-step {
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .auth-step.hidden {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .otp-digits-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 22px 0 16px 0;
+    }
+
+    .otp-box {
+      width: 46px;
+      height: 54px;
+      border-radius: 14px;
+      background: rgba(10, 8, 20, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .otp-box:focus {
+      border-color: #A855F7;
+      box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.5);
+      background: rgba(18, 12, 34, 0.95);
+    }
+
+    .otp-resend-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 22px;
+      color: var(--text-gray-400);
+    }
+
+    .back-btn-row {
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    /* ==========================================================================
+       RIGHT COLUMN: HERO & SOCIAL PROOF SHOWCASE
+       ========================================================================== */
+    .hero-column {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Dark Hero Card Container with Authentic Stepped Notch */
+    .hero-card-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 570px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 42px 38px 130px 38px;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+
+    /* SVG Background Layer for Hero Dark Card with Notch */
+    .hero-card-shape {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Radiant Geometric 16-Ray Starburst Background Motif */
+    .starburst-bg {
+      position: absolute;
+      right: -30px;
+      bottom: 70px;
+      width: 360px;
+      height: 360px;
+      pointer-events: none;
+      opacity: 0.9;
+      z-index: 1;
+      transform-origin: 200px 200px;
+      animation: gentle-spin 160s linear infinite;
+    }
+
+    @keyframes gentle-spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Quotes and Header */
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-white);
+      line-height: 1.18;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-quote-mark {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 0.8;
+      color: #A855F7;
+      margin-bottom: 14px;
+      user-select: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-quote-text {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-gray-300);
+      margin-bottom: 24px;
+      max-width: 380px;
+      position: relative;
+      z-index: 2;
+      min-height: 72px;
+      transition: opacity 0.25s ease;
+    }
+
+    .hero-author-name {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-white);
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-author-role {
+      font-size: 13px;
+      color: var(--text-gray-400);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Carousel Arrow Controls */
+    .carousel-controls-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .carousel-arrow-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      color: #FFFFFF;
+    }
+
+    .carousel-arrow-btn.primary {
+      background: var(--primary-gradient);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+    }
+
+    .carousel-arrow-btn.primary:hover {
+      background: var(--primary-hover);
+      transform: translateX(-2px);
+    }
+
+    .carousel-arrow-btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-gray-300);
+    }
+
+    .carousel-arrow-btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+      transform: translateX(2px);
+    }
+
+    /* ==========================================================================
+       ICONIC FLOATING WHITE CARD (BOTTOM RIGHT OVERLAP WITH SCOOP NOTCH)
+       ========================================================================== */
+    .floating-white-card-container {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      width: 326px;
+      height: 194px;
+      z-index: 10;
+      filter: drop-shadow(0 24px 50px rgba(0, 0, 0, 0.72)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.25));
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .floating-white-card-container:hover {
+      transform: translateY(-3px);
+      filter: drop-shadow(0 28px 60px rgba(0, 0, 0, 0.8)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.3));
+    }
+
+    .floating-card-shape {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .floating-card-body {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      padding: 22px 22px 18px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #0F172A;
+    }
+
+    .floating-card-title {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.3;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .floating-card-desc {
+      font-size: 12px;
+      color: #475569;
+      line-height: 1.45;
+      max-width: 260px;
+    }
+
+    .floating-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-stack-item {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      margin-left: -8px;
+      background-color: #E2E8F0;
+      object-fit: cover;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    }
+
+    .avatar-stack-item:first-child {
+      margin-left: 0;
+    }
+
+    .avatar-badge-count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #0F172A;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      border: 2px solid #FFFFFF;
+      margin-left: -8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+    }
+
+    .trust-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #059669;
+      background: #ECFDF5;
+      padding: 4px 8px;
+      border-radius: 9999px;
+    }
+
+    .trust-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    /* ==========================================================================
+       MODALS: PASSKEY BIOMETRICS & RECOVERY
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 3, 10, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content-box {
+      width: 100%;
+      max-width: 440px;
+      background: #120D24;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 28px;
+      padding: 32px 28px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(124, 58, 237, 0.25);
+      text-align: center;
+      position: relative;
+      animation: modal-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modal-pop {
+      from { transform: scale(0.92); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: none;
+      color: var(--text-gray-400);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: #FFFFFF;
+    }
+
+    .fingerprint-icon-pulse {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(124, 58, 237, 0.18);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      margin: 0 auto 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #A855F7;
+      box-shadow: 0 0 30px rgba(124, 58, 237, 0.35);
+      animation: pulse-ring 2s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(124, 58, 237, 0.3); }
+      50% { transform: scale(1.06); box-shadow: 0 0 40px rgba(168, 85, 247, 0.55); }
+    }
+
+    /* Toast Notification */
+    .toast-message {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #181133;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(124, 58, 237, 0.3);
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+
+    .toast-message.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================================
+       DUAL VIEW ARCHITECTURE & VIEW SWITCHER TRANSITIONS
+       ========================================================================== */
+    .login-view-wrapper {
+      display: none;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+
+    @keyframes viewFadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(16px) scale(0.985);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .login-view-wrapper.active {
+      display: flex;
+      animation: viewFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Ambient Viewport: Dynamic Switching for View 2 (Luminous Pastel Mesh) */
+    .viewport-canvas {
+      transition: background-color 0.5s ease;
+      padding-bottom: 90px;
+    }
+
+    .viewport-canvas.view2-mode {
+      background-color: #EAE7F8;
+      background-image: 
+        radial-gradient(circle at 14% 18%, rgba(216, 180, 254, 0.7) 0%, rgba(192, 132, 252, 0.35) 30%, transparent 65%),
+        radial-gradient(circle at 86% 16%, rgba(244, 114, 182, 0.55) 0%, rgba(236, 72, 153, 0.28) 28%, transparent 60%),
+        radial-gradient(circle at 50% 84%, rgba(167, 139, 250, 0.5) 0%, rgba(139, 92, 246, 0.22) 36%, transparent 65%),
+        radial-gradient(circle at 88% 76%, rgba(56, 189, 248, 0.42) 0%, transparent 56%),
+        radial-gradient(circle at 18% 78%, rgba(192, 132, 252, 0.42) 0%, transparent 58%),
+        linear-gradient(rgba(124, 58, 237, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.045) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px;
+    }
+
+    /* ==========================================================================
+       VIEW 2: SMART AI ASSISTANT LOGIN (INSPIRATION MATCHED IN HIRERKEY PURPLE)
+       ========================================================================== */
+    .v2-card-shell {
+      width: 100%;
+      max-width: 1040px;
+      min-height: 640px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(45px) saturate(160%);
+      -webkit-backdrop-filter: blur(45px) saturate(160%);
+      border: 1.5px solid rgba(255, 255, 255, 0.95);
+      border-radius: 36px;
+      box-shadow: 
+        0 35px 85px -15px rgba(124, 58, 237, 0.16),
+        0 15px 35px -5px rgba(15, 23, 42, 0.06),
+        inset 0 1px 2px rgba(255, 255, 255, 1);
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      padding: 26px;
+      gap: 28px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Left Hero Panel */
+    .v2-hero-panel {
+      position: relative;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #DDD6FE 0%, #E9D5FF 28%, #F5D0FE 62%, #E0E7FF 100%);
+      overflow: hidden;
+      padding: 34px 32px 30px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.8), 0 8px 24px rgba(124, 58, 237, 0.08);
+    }
+
+    /* Aura Blobs */
+    .v2-aura-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .v2-aura-top {
+      width: 240px;
+      height: 240px;
+      top: -40px;
+      left: 10%;
+      background: rgba(244, 114, 182, 0.38);
+      animation: aura-drift 12s ease-in-out infinite alternate;
+    }
+
+    .v2-aura-center {
+      width: 260px;
+      height: 260px;
+      top: 30%;
+      right: -30px;
+      background: rgba(168, 85, 247, 0.4);
+      animation: aura-drift 10s ease-in-out 2s infinite alternate;
+    }
+
+    .v2-aura-bottom {
+      width: 200px;
+      height: 200px;
+      bottom: -20px;
+      left: 20%;
+      background: rgba(56, 189, 248, 0.32);
+      animation: aura-drift 14s ease-in-out 1s infinite alternate;
+    }
+
+    @keyframes aura-drift {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-20px, 15px) scale(1.1); }
+      100% { transform: translate(15px, -15px) scale(0.95); }
+    }
+
+    /* Pill Tag above typography */
+    .v2-hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #6D28D9;
+      margin-bottom: 12px;
+      width: fit-content;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+      z-index: 2;
+    }
+
+    .v2-tag-sparkle {
+      color: #A855F7;
+      font-size: 12px;
+      animation: pulse-dot 2s infinite;
+    }
+
+    /* Giant Ambient Typography */
+    .v2-hero-typography {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .v2-hero-smart-ai {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #FFFFFF;
+      background: linear-gradient(180deg, #FFFFFF 25%, rgba(255, 255, 255, 0.88) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 18px rgba(124, 58, 237, 0.28));
+      line-height: 0.95;
+      user-select: none;
+    }
+
+    .v2-hero-sub-text {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      color: rgba(255, 255, 255, 0.72);
+      margin-top: 5px;
+      user-select: none;
+    }
+
+    /* 3D Sphere Stage */
+    .v2-sphere-stage {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 18px 0 8px 0;
+    }
+
+    /* Floating AI Sparkles */
+    .v2-sparkle {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 15px;
+      line-height: 1;
+      pointer-events: none;
+      filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.85));
+      z-index: 5;
+    }
+
+    .v2-sparkle-1 {
+      top: 12%;
+      left: 18%;
+      font-size: 18px;
+      animation: sparkle-float-1 3.6s ease-in-out infinite;
+    }
+
+    .v2-sparkle-2 {
+      top: 32%;
+      right: 15%;
+      font-size: 13px;
+      animation: sparkle-float-2 4.4s ease-in-out 0.8s infinite;
+    }
+
+    .v2-sparkle-3 {
+      bottom: 24%;
+      left: 22%;
+      font-size: 16px;
+      animation: sparkle-float-3 3.9s ease-in-out 1.5s infinite;
+    }
+
+    @keyframes sparkle-float-1 {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
+      50% { transform: translateY(-10px) scale(1.3); opacity: 0.4; }
+    }
+
+    @keyframes sparkle-float-2 {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.95; }
+      50% { transform: translateY(-12px) scale(0.75); opacity: 0.35; }
+    }
+
+    @keyframes sparkle-float-3 {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.85; }
+      50% { transform: translateY(-8px) scale(1.2); opacity: 0.3; }
+    }
+
+    /* 3D Sphere Parallax Outer Stage */
+    .v2-orb-parallax-wrapper {
+      position: relative;
+      z-index: 4;
+      perspective: 800px;
+      transform-style: preserve-3d;
+      transition: transform 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      will-change: transform;
+    }
+
+    .v2-orb-container {
+      position: relative;
+      width: 164px;
+      height: 164px;
+      animation: orb-levitate 4.5s ease-in-out infinite;
+      transform-style: preserve-3d;
+    }
+
+    .v2-orb-body {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: relative;
+      background: radial-gradient(circle at 38% 30%, #FFFFFF 0%, #FDF2F8 12%, #F472B6 28%, #D946EF 46%, #A855F7 65%, #7C3AED 84%, #3B0764 100%);
+      box-shadow: 
+        inset 0 -18px 32px rgba(34, 211, 238, 0.78),
+        inset 0 14px 24px rgba(255, 255, 255, 0.98),
+        inset 10px 0 18px rgba(244, 114, 182, 0.58),
+        inset -10px 0 18px rgba(168, 85, 247, 0.58),
+        0 28px 55px -10px rgba(124, 58, 237, 0.48);
+      overflow: hidden;
+    }
+
+    /* Inner Chromatic Nebula Swirl */
+    .v2-orb-chroma-swirl {
+      position: absolute;
+      inset: -25%;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, rgba(244, 114, 182, 0.5), rgba(168, 85, 247, 0.6), rgba(34, 211, 238, 0.7), rgba(244, 114, 182, 0.5));
+      filter: blur(14px);
+      mix-blend-mode: overlay;
+      animation: chroma-spin 10s linear infinite;
+      pointer-events: none;
+    }
+
+    /* Caustic Dispersion Highlight Ring */
+    .v2-orb-caustic-ring {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.55);
+      filter: blur(0.8px);
+      box-shadow: inset 0 0 12px rgba(168, 85, 247, 0.5);
+      pointer-events: none;
+    }
+
+    @keyframes chroma-spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .v2-orb-specular {
+      position: absolute;
+      top: 10px;
+      left: 24px;
+      width: 72px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0) 100%);
+      transform: rotate(-25deg);
+      filter: blur(0.6px);
+      pointer-events: none;
+      animation: specular-sheen 4.5s ease-in-out infinite;
+    }
+
+    .v2-orb-refraction {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      border-radius: 0 0 82px 82px;
+      background: radial-gradient(circle at 50% 100%, rgba(45, 212, 191, 0.98) 0%, rgba(56, 189, 248, 0.8) 35%, transparent 75%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .v2-orb-sheen {
+      position: absolute;
+      top: 6px;
+      right: 28px;
+      width: 18px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      filter: blur(0.8px);
+      pointer-events: none;
+    }
+
+    /* Pocket Slit Container & Laser Shelf */
+    .v2-slit-container {
+      position: relative;
+      margin-top: -14px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+    }
+
+    /* Upward light fan / flare emerging from pocket */
+    .v2-slit-upward-flare {
+      position: absolute;
+      top: -30px;
+      width: 180px;
+      height: 40px;
+      background: radial-gradient(ellipse at 50% 100%, rgba(34, 211, 238, 0.45) 0%, rgba(168, 85, 247, 0.3) 40%, transparent 75%);
+      filter: blur(6px);
+      pointer-events: none;
+      animation: slit-flare-pulse 4.5s ease-in-out infinite;
+    }
+
+    /* Recessed 3D Beveled Pocket Shelf */
+    .v2-slit-shelf {
+      width: 236px;
+      height: 12px;
+      border-radius: 9999px;
+      background: linear-gradient(180deg, #1E1035 0%, #2E1065 60%, #4C1D95 100%);
+      position: relative;
+      box-shadow: 
+        inset 0 4px 8px rgba(0, 0, 0, 0.55),
+        inset 0 1px 2px rgba(0, 0, 0, 0.4),
+        0 1px 3px rgba(255, 255, 255, 0.85),
+        0 0 22px rgba(168, 85, 247, 0.5);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .v2-slit-light-beam {
+      position: absolute;
+      top: 1px;
+      width: 85%;
+      height: 2.5px;
+      background: linear-gradient(90deg, transparent 0%, #22D3EE 20%, #FFFFFF 50%, #E879F9 80%, transparent 100%);
+      filter: blur(0.6px);
+      box-shadow: 0 0 10px #22D3EE, 0 0 16px rgba(168, 85, 247, 0.85);
+      animation: slit-beam-pulse 4.5s ease-in-out infinite;
+    }
+
+    .v2-slit-laser-center {
+      position: absolute;
+      width: 48px;
+      height: 3px;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      box-shadow: 0 0 8px #FFFFFF, 0 0 16px #38BDF8;
+      filter: blur(0.4px);
+    }
+
+    .v2-orb-floor-shadow {
+      width: 160px;
+      height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(109, 40, 217, 0.55) 0%, rgba(91, 33, 182, 0.22) 50%, transparent 75%);
+      margin-top: 6px;
+      filter: blur(5px);
+      animation: orb-shadow-pulse 4.5s ease-in-out infinite;
+    }
+
+    @keyframes orb-levitate {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      50% { transform: translateY(-20px) rotate(2deg) scale(1.025); }
+    }
+
+    @keyframes orb-shadow-pulse {
+      0%, 100% { transform: scaleX(1) scaleY(1); opacity: 0.55; filter: blur(4px); }
+      50% { transform: scaleX(0.78) scaleY(0.7); opacity: 0.24; filter: blur(7px); }
+    }
+
+    @keyframes slit-beam-pulse {
+      0%, 100% { opacity: 1; transform: scaleX(1); filter: blur(0.5px); }
+      50% { opacity: 0.72; transform: scaleX(0.92); filter: blur(0.9px); }
+    }
+
+    @keyframes slit-flare-pulse {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(1.15) translateY(-4px); }
+    }
+
+    @keyframes specular-sheen {
+      0%, 100% { opacity: 0.9; transform: rotate(-25deg) scale(1); }
+      50% { opacity: 1; transform: rotate(-22deg) scale(1.06); }
+    }
+
+    /* Hero Footer Content */
+    .v2-hero-footer {
+      position: relative;
+      z-index: 2;
+      margin-top: 10px;
+    }
+
+    .v2-hero-title {
+      font-family: var(--font-display);
+      font-size: 25px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .v2-hero-desc {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.55;
+    }
+
+    /* Right Form Panel */
+    .v2-form-panel {
+      padding: 10px 14px 6px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .v2-brand-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: #FFFFFF;
+      border: 1px solid rgba(124, 58, 237, 0.16);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .v2-form-title {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .v2-form-subtitle {
+      font-size: 13.5px;
+      color: #64748B;
+      margin-bottom: 20px;
+    }
+
+    .v2-input-group {
+      margin-bottom: 14px;
+    }
+
+    .v2-input-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .v2-input-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .v2-input-icon {
+      position: absolute;
+      left: 16px;
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .v2-text-input {
+      width: 100%;
+      height: 48px;
+      border-radius: 14px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      color: #0F172A;
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 0 42px 0 44px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .v2-text-input::placeholder {
+      color: #94A3B8;
+    }
+
+    .v2-text-input:focus {
+      background: #FFFFFF;
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .v2-password-toggle {
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .v2-password-toggle:hover {
+      color: #334155;
+    }
+
+    .v2-options-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 8px 2px 20px 2px;
+      font-size: 13px;
+    }
+
+    .v2-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #475569;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .v2-checkbox {
+      accent-color: #7C3AED;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .v2-forgot-link {
+      color: #475569;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.18s ease;
+    }
+
+    .v2-forgot-link:hover {
+      color: #7C3AED;
+      text-decoration: underline;
+    }
+
+    .v2-btn-primary {
+      width: 100%;
+      height: 48px;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, #D946EF 0%, #A855F7 35%, #7C3AED 100%);
+      border: none;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -4px rgba(168, 85, 247, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v2-btn-primary:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 0 14px 28px -4px rgba(124, 58, 237, 0.58);
+      filter: brightness(1.04);
+    }
+
+    .v2-btn-primary:active {
+      transform: translateY(0.5px);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+    }
+
+    .v2-divider-row {
+      display: flex;
+      align-items: center;
+      margin: 18px 0;
+      gap: 12px;
+    }
+
+    .v2-divider-line {
+      flex: 1;
+      height: 1px;
+      background: #E2E8F0;
+    }
+
+    .v2-divider-text {
+      font-size: 12px;
+      color: #94A3B8;
+      font-weight: 500;
+    }
+
+    .v2-btn-google {
+      width: 100%;
+      height: 48px;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+
+    .v2-btn-google:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .v2-signup-row {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 13px;
+      color: #64748B;
+    }
+
+    .v2-signup-link {
+      color: #7C3AED;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 4px;
+    }
+
+    .v2-signup-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Bottom Overlapping Users Subcard (Bottom Right as in inspiration) */
+    .v2-users-subcard {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 18px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 16px;
+      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.05);
+    }
+
+    .v2-users-avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .v2-avatar-item {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid #FFFFFF;
+      margin-left: -8px;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .v2-avatar-item:first-child {
+      margin-left: 0;
+    }
+
+    .v2-users-copy {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.25;
+    }
+
+    .v2-users-count-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0F172A;
+    }
+
+    .v2-live-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 8px #10B981;
+      display: inline-block;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+
+    .v2-users-subtext {
+      font-size: 11px;
+      color: #64748B;
+    }
+
+    /* ==========================================================================
+       BOTTOM PAGINATION DOCK (COMMERCIAL WEBSITE / DASHBOARD PAGINATION)
+       ========================================================================== */
+    .bottom-pagination-dock {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 14px 6px 16px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), 0 0 24px rgba(124, 58, 237, 0.25);
+      user-select: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dock-badge-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #C084FC;
+      text-transform: uppercase;
+    }
+
+    .dock-divider {
+      width: 1px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .dock-pages-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dock-nav-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.7);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .dock-nav-arrow:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .dock-page-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px 4px 5px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.85);
+      font-family: var(--font-display);
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+    }
+
+    .dock-page-btn:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #FFFFFF;
+      border-color: rgba(168, 85, 247, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .dock-page-btn.active {
+      background: rgba(124, 58, 237, 0.28);
+      border-color: #A855F7;
+      color: #FFFFFF;
+      box-shadow: 0 0 18px rgba(124, 58, 237, 0.45);
+    }
+
+    .dock-circle-badge,
+    .dock-circle-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: all 0.22s ease;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+
+    .dock-page-btn.active .dock-circle-badge,
+    .dock-circle-btn.active {
+      background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%);
+      border-color: #E9D5FF;
+      box-shadow: 0 0 14px rgba(168, 85, 247, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      color: #FFFFFF;
+      transform: scale(1.08);
+    }
+
+    .dock-page-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dock-page-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #F1F5F9;
+    }
+
+    .dock-view-tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 1.5px 6px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #CBD5E1;
+      transition: all 0.2s ease;
+    }
+
+    .dock-page-btn.active .dock-view-tag {
+      background: rgba(168, 85, 247, 0.35);
+      color: #E9D5FF;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .dock-active-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 4px 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .active-pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #A855F7;
+      box-shadow: 0 0 6px #A855F7;
+    }
+
+    .dock-label-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #F1F5F9;
+      white-space: nowrap;
+    }
+
+    .dock-key-shortcuts {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .dock-key-shortcuts kbd {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-size: 10px;
+      font-family: var(--font-body);
+      color: #CBD5E1;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ADAPTATIONS & MOBILE-SAFE PAGINATION
+       ========================================================================== */
+    @media (max-width: 960px) {
+      .login-container-card {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+        min-height: auto;
+      }
+      .hero-column {
+        display: none;
+      }
+      .form-column {
+        padding: 8px 4px;
+      }
+      .v2-card-shell {
+        grid-template-columns: 1fr;
+        padding: 24px 20px;
+        min-height: auto;
+      }
+      .v2-hero-panel {
+        display: none;
+      }
+      .v2-form-panel {
+        padding: 8px 4px;
+      }
+      .dock-active-pill,
+      .dock-key-shortcuts {
+        display: none;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .bottom-pagination-dock {
+        gap: 8px;
+        padding: 5px 10px;
+        bottom: 14px;
+        max-width: calc(100vw - 20px);
+      }
+      .dock-badge-title,
+      .dock-divider:first-of-type,
+      .dock-key-shortcuts {
+        display: none !important;
+      }
+      .dock-page-btn {
+        padding: 4px 10px 4px 4px;
+        gap: 6px;
+      }
+      .dock-view-tag {
+        display: none;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .bottom-pagination-dock {
+        gap: 6px;
+        padding: 4px 8px;
+        bottom: 10px;
+      }
+      .dock-active-pill,
+      .dock-divider {
+        display: none !important;
+      }
+      .dock-page-title {
+        display: none;
+      }
+      .dock-page-btn {
+        padding: 3px;
+        border-radius: 50%;
+      }
+      .dock-circle-badge {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Backdrop Viewport -->
+  <main class="viewport-canvas" id="viewport-canvas">
+    
+    <!-- ======================================================================
+         VIEW 1: FROSTED GLASS OBSIDIAN EXPERIENCE
+         ====================================================================== -->
+    <div id="login-view-1" class="login-view-wrapper active">
+      <!-- Central Glass Container Card -->
+      <div class="login-container-card">
+
+      <!-- ====================================================================
+           LEFT COLUMN: AUTHENTICATION FORM
+           ==================================================================== -->
+      <section class="form-column">
+        <div>
+          <!-- Brand Logo Header -->
+          <div class="brand-header">
+            <div class="brand-mark-pill">
+              <!-- Iconic diagonal parallel intelligence bars -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="3" width="6" height="15" rx="3" transform="rotate(-30 4 3)" fill="url(#bar-grad-1)" />
+                <rect x="13" y="3" width="6" height="15" rx="3" transform="rotate(-30 13 3)" fill="url(#bar-grad-2)" />
+                <circle cx="17" cy="18" r="3" fill="#EC4899" />
+                <defs>
+                  <linearGradient id="bar-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#C084FC" />
+                    <stop offset="100%" stop-color="#7C3AED" />
+                  </linearGradient>
+                  <linearGradient id="bar-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#F472B6" />
+                    <stop offset="100%" stop-color="#A855F7" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="brand-wordmark">
+              <span>h<span class="dot-i">i</span>rerke<span class="key-part"><span class="y-letter">y</span><svg class="key-swoosh" viewBox="0 0 46 8" fill="none"><path d="M1 5.5C12 1.5 34 1.5 45 6" stroke="#A855F7" stroke-width="2.5" stroke-linecap="round"/></svg></span></span>
+            </div>
+          </div>
+
+          <h1 class="form-title">Welcome back</h1>
+          <p class="form-subtitle">One platform to manage people, performance &amp; workflows</p>
+
+          <!-- Auth Mode Segmented Pill Switcher -->
+          <div class="auth-mode-switcher">
+            <button type="button" id="tab-mode-otp" class="mode-tab-btn active" onclick="switchAuthMode('otp')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>Email OTP</span>
+            </button>
+            <button type="button" id="tab-mode-pwd" class="mode-tab-btn" onclick="switchAuthMode('password')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Password</span>
+            </button>
+          </div>
+
+          <!-- STEP 1A: EMAIL OTP ENTRY (Default Hirerkey Screen) -->
+          <div id="step-email-otp" class="auth-step">
+            <form id="email-otp-form" onsubmit="handleSendOTP(event)">
+              <div class="form-group">
+                <label for="business-email-otp" class="form-label">
+                  Business Email<span class="required-star">*</span>
+                </label>
+                <div class="input-pill-wrapper">
+                  <div class="input-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                  </div>
+                  <input 
+                    type="email" 
+                    id="business-email-otp" 
+                    class="input-pill" 
+                    placeholder="Enter your Email" 
+                    required 
+                    autocomplete="email" 
+                    value="alex.chen@earthhotels.com"
+                  />
+                </div>
+              </div>
+
+              <!-- Helper Row: Passkey switch -->
+              <div class="form-helper-row">
+                <span style="color: var(--text-gray-400);">Not getting OTP?</span>
+                <a href="javascript:void(0)" class="text-link highlight" onclick="openPasskeyModal()">Sign in with Passkey</a>
+              </div>
+
+              <!-- Primary Action Button -->
+              <button type="submit" id="btn-send-otp" class="btn-primary-pill">
+                <span>Send OTP</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Recovery Link -->
+            <div class="recovery-row">
+              <a href="javascript:void(0)" class="text-link" onclick="openHelpModal()">Can't access your login email?</a>
+            </div>
+          </div>
+
+          <!-- STEP 1B: PASSWORD ENTRY (Inspiration Password Flow) -->
+          <div id="step-password" class="auth-step hidden">
+            <form id="password-login-form" onsubmit="handlePasswordLogin(event)">
+              <div class="form-group">
+                <label for="business-email-pwd" class="form-label">
+                  Business Email<span class="required-star">*</span>
+                </label>
+                <div class="input-pill-wrapper">
+                  <div class="input-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                  </div>
+                  <input 
+                    type="email" 
+                    id="business-email-pwd" 
+                    class="input-pill" 
+                    placeholder="alex.chen@earthhotels.com" 
+                    required 
+                    autocomplete="email" 
+                    value="alex.chen@earthhotels.com"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="login-password" class="form-label">
+                  Password<span class="required-star">*</span>
+                </label>
+                <div class="input-pill-wrapper">
+                  <div class="input-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                  </div>
+                  <input 
+                    type="password" 
+                    id="login-password" 
+                    class="input-pill" 
+                    placeholder="••••••••••••" 
+                    required 
+                    value="EarthHotels2026!#"
+                  />
+                  <button type="button" class="input-action-btn" title="Toggle password visibility" onclick="togglePasswordVisibility()">
+                    <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="form-helper-row">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="keep-logged-in" class="checkbox-input" checked />
+                  <span>Keep me logged in</span>
+                </label>
+                <a href="javascript:void(0)" class="text-link" onclick="openHelpModal()">Forgot Password?</a>
+              </div>
+
+              <!-- Primary Action Button -->
+              <button type="submit" id="btn-sign-in" class="btn-primary-pill">
+                <span>Sign in</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </form>
+
+            <div class="recovery-row">
+              <a href="javascript:void(0)" class="text-link" onclick="openHelpModal()">Can't access your corporate account?</a>
+            </div>
+          </div>
+
+          <!-- STEP 2: OTP VERIFICATION (Triggered after Send OTP) -->
+          <div id="step-otp-verify" class="auth-step hidden">
+            <h2 class="form-title" style="font-size: 26px;">Enter Verification Code</h2>
+            <p class="form-subtitle">We dispatched a 6-digit code to <strong id="sent-target-email" style="color: #FFFFFF;">alex.chen@earthhotels.com</strong></p>
+
+            <form id="otp-form" onsubmit="handleVerifyOTP(event)">
+              <div class="otp-digits-grid">
+                <input type="text" maxlength="1" class="otp-box" inputmode="numeric" pattern="[0-9]*" autofocus />
+                <input type="text" maxlength="1" class="otp-box" inputmode="numeric" pattern="[0-9]*" />
+                <input type="text" maxlength="1" class="otp-box" inputmode="numeric" pattern="[0-9]*" />
+                <input type="text" maxlength="1" class="otp-box" inputmode="numeric" pattern="[0-9]*" />
+                <input type="text" maxlength="1" class="otp-box" inputmode="numeric" pattern="[0-9]*" />
+                <input type="text" maxlength="1" class="otp-box" inputmode="numeric" pattern="[0-9]*" />
+              </div>
+
+              <div class="otp-resend-row">
+                <span>Didn't receive code?</span>
+                <span id="countdown-text" style="color: var(--text-gray-400);">Resend in <strong id="timer-val" style="color: #A855F7;">0:29</strong></span>
+                <a href="javascript:void(0)" id="btn-resend" class="text-link highlight" style="display: none;" onclick="resendCode()">Resend OTP</a>
+              </div>
+
+              <!-- Primary Action Button -->
+              <button type="submit" id="btn-verify-otp" class="btn-primary-pill">
+                <span>Verify &amp; Sign In</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </button>
+            </form>
+
+            <div class="back-btn-row">
+              <a href="javascript:void(0)" class="text-link" onclick="switchToEmailStep()">← Back to Email entry</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social SSO & Legal Footer (Always cleanly anchored) -->
+        <div style="margin-top: 18px;">
+          <div class="sso-divider-row">
+            <div class="sso-divider-line"></div>
+            <span class="sso-divider-text">Or continue with</span>
+            <div class="sso-divider-line"></div>
+          </div>
+
+          <div class="sso-buttons-row">
+            <!-- Google Workspace SSO -->
+            <button class="sso-circle-btn google-btn" title="Sign in with Google Workspace" onclick="handleSSOLogin('Google Workspace')">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+            </button>
+
+            <!-- Microsoft Entra ID -->
+            <button class="sso-circle-btn" title="Sign in with Microsoft Entra ID" onclick="handleSSOLogin('Microsoft Entra ID')">
+              <svg width="18" height="18" viewBox="0 0 21 21">
+                <rect x="1" y="1" width="9" height="9" fill="#F25022"/>
+                <rect x="11" y="1" width="9" height="9" fill="#7FBA00"/>
+                <rect x="1" y="11" width="9" height="9" fill="#00A4EF"/>
+                <rect x="11" y="11" width="9" height="9" fill="#FFB900"/>
+              </svg>
+            </button>
+
+            <!-- Passkey Touch ID / Face ID -->
+            <button class="sso-circle-btn" title="Sign in with FIDO2 Passkey" onclick="openPasskeyModal()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+                <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+                <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
+                <path d="M2 12a10 10 0 0 1 18-6"/>
+                <path d="M2 16h.01"/>
+                <path d="M21.8 16c.2-2 .131-5.354 0-6"/>
+                <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+                <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+                <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+              </svg>
+            </button>
+          </div>
+
+          <p class="terms-text">
+            By continuing, you agree to our 
+            <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')">Terms of Use</a> and 
+            <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')">Privacy Policy</a>
+          </p>
+
+          <div class="enterprise-badges-strip">
+            <span>🛡️ Enterprise-Grade</span>
+            <span>•</span>
+            <span>🇦🇪 UAE Data Centers</span>
+            <span>•</span>
+            <span>🔒 GDPR Compliant</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           RIGHT COLUMN: TESTIMONIAL & WORKFORCE INTELLIGENCE HERO
+           ==================================================================== -->
+      <section class="hero-column">
+        <div class="hero-card-container">
+          
+          <!-- Exact Stepped-Scoop Contour SVG Background -->
+          <svg class="hero-card-shape" viewBox="0 0 460 580" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="hero-dark-grad" x1="0%" y1="0%" x2="50%" y2="100%">
+                <stop offset="0%" stop-color="#120C26"/>
+                <stop offset="60%" stop-color="#080518"/>
+                <stop offset="100%" stop-color="#04020D"/>
+              </linearGradient>
+            </defs>
+            <path d="M 28 0 H 345 C 368 0 378 16 386 34 C 392 48 406 58 424 58 H 432 A 28 28 0 0 1 460 86 V 552 A 28 28 0 0 1 432 580 H 28 A 28 28 0 0 1 0 552 V 28 A 28 28 0 0 1 28 0 Z" 
+                  fill="url(#hero-dark-grad)" 
+                  stroke="rgba(255, 255, 255, 0.11)" 
+                  stroke-width="1.2" 
+                  vector-effect="non-scaling-stroke" />
+          </svg>
+
+          <!-- 16-Ray Radiant Starburst SVG Motif (Exact Inspiration Geometry) -->
+          <svg class="starburst-bg" viewBox="0 0 400 400" fill="none">
+            <defs>
+              <linearGradient id="starburst-grad" x1="15%" y1="10%" x2="90%" y2="90%">
+                <stop offset="0%" stop-color="#C084FC"/>
+                <stop offset="45%" stop-color="#818CF8"/>
+                <stop offset="100%" stop-color="#38BDF8"/>
+              </linearGradient>
+            </defs>
+            <!-- 8 Primary Long Rays -->
+            <polygon points="200,200 200,175 200,40 206,175" fill="url(#starburst-grad)" opacity="0.9" />
+            <polygon points="200,200 175,200 40,200 175,206" fill="url(#starburst-grad)" opacity="0.9" />
+            <polygon points="200,200 200,225 200,360 194,225" fill="url(#starburst-grad)" opacity="0.9" />
+            <polygon points="200,200 225,200 360,200 225,194" fill="url(#starburst-grad)" opacity="0.9" />
+            <polygon points="200,200 182,182 86,86 186,178" fill="url(#starburst-grad)" opacity="0.85" />
+            <polygon points="200,200 218,182 314,86 214,178" fill="url(#starburst-grad)" opacity="0.85" />
+            <polygon points="200,200 182,218 86,314 178,214" fill="url(#starburst-grad)" opacity="0.85" />
+            <polygon points="200,200 218,218 314,314 222,214" fill="url(#starburst-grad)" opacity="0.85" />
+
+            <!-- 8 Intermediate Diamond Rays -->
+            <polygon points="200,200 192,180 142,66 204,180" fill="url(#starburst-grad)" opacity="0.65" />
+            <polygon points="200,200 208,180 258,66 196,180" fill="url(#starburst-grad)" opacity="0.65" />
+            <polygon points="200,200 192,220 142,334 204,220" fill="url(#starburst-grad)" opacity="0.65" />
+            <polygon points="200,200 208,220 258,334 196,220" fill="url(#starburst-grad)" opacity="0.65" />
+            <polygon points="200,200 180,192 66,142 180,204" fill="url(#starburst-grad)" opacity="0.65" />
+            <polygon points="200,200 180,208 66,258 180,196" fill="url(#starburst-grad)" opacity="0.65" />
+            <polygon points="200,200 220,192 334,142 220,204" fill="url(#starburst-grad)" opacity="0.65" />
+            <polygon points="200,200 220,208 334,258 220,196" fill="url(#starburst-grad)" opacity="0.65" />
+
+            <!-- Concentric Central Core Accent -->
+            <circle cx="200" cy="200" r="14" fill="url(#starburst-grad)" opacity="0.4" />
+            <circle cx="200" cy="200" r="6" fill="#FFFFFF" opacity="0.95" />
+          </svg>
+
+          <!-- Quote & Story Section -->
+          <h2 class="hero-title">What Leaders Say.</h2>
+          <div class="hero-quote-mark">“</div>
+          
+          <p id="carousel-quote" class="hero-quote-text">
+            “Hirerkey transformed how we manage people, performance, and daily feedback across our distributed teams. Effortless and intuitive.”
+          </p>
+
+          <div id="carousel-author" class="hero-author-name">Leena Al-Hashemi</div>
+          <div id="carousel-role" class="hero-author-role">Head of People &amp; Culture • Earth Hotels UAE</div>
+
+          <!-- Carousel Arrow Buttons -->
+          <div class="carousel-controls-row">
+            <button class="carousel-arrow-btn primary" title="Previous Story" onclick="prevStory()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m15 18-6-6 6-6"/>
+              </svg>
+            </button>
+            <button class="carousel-arrow-btn secondary" title="Next Story" onclick="nextStory()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m9 18 6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Overlapping White Floating Card (With Exact Organic Scoop Notch) -->
+        <div class="floating-white-card-container">
+          <!-- Precise SVG Stepped Notch Shape for Floating Card -->
+          <svg class="floating-card-shape" viewBox="0 0 326 194" preserveAspectRatio="none">
+            <path d="M 24 0 H 182 C 200 0 212 12 220 24 C 228 34 238 38 252 38 H 302 A 24 24 0 0 1 326 62 V 170 A 24 24 0 0 1 302 194 H 24 A 24 24 0 0 1 0 170 V 24 A 24 24 0 0 1 24 0 Z" 
+                  fill="#FFFFFF" />
+          </svg>
+
+          <div class="floating-card-body">
+            <div>
+              <h3 class="floating-card-title">Workplace Intelligence AI</h3>
+              <p class="floating-card-desc">
+                Empower your modern workforce with continuous feedback, goal tracking, and instant automated approvals.
+              </p>
+            </div>
+
+            <div class="floating-card-footer">
+              <div class="trust-chip">
+                <span class="trust-dot"></span>
+                <span>UAE Data Centers</span>
+              </div>
+
+              <div class="avatar-stack">
+                <img src="aisha_avatar.png" alt="Aisha" class="avatar-stack-item" onerror="this.onerror=null;this.src='../aisha_avatar.png';" />
+                <img src="sara_avatar.png" alt="Sara" class="avatar-stack-item" onerror="this.onerror=null;this.src='../sara_avatar.png';" />
+                <img src="rahul_avatar.png" alt="Rahul" class="avatar-stack-item" onerror="this.onerror=null;this.src='../rahul_avatar.png';" />
+                <div class="avatar-badge-count">+48</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+    </div> <!-- /#login-view-1 -->
+
+    <!-- ======================================================================
+         VIEW 2: SMART AI ASSISTANT EXPERIENCE (INSPIRATION MATCHED IN HIRERKEY PURPLE)
+         ====================================================================== -->
+    <div id="login-view-2" class="login-view-wrapper">
+      <div class="v2-card-shell">
+        
+        <!-- LEFT COLUMN: SMART AI VISUAL PANEL -->
+        <section class="v2-hero-panel">
+          <!-- Background Ambient Mesh Aura Blobs -->
+          <div class="v2-aura-blob v2-aura-top"></div>
+          <div class="v2-aura-blob v2-aura-center"></div>
+          <div class="v2-aura-blob v2-aura-bottom"></div>
+
+          <!-- Top AI Tag Pill -->
+          <div class="v2-hero-tag">
+            <span class="v2-tag-sparkle">✦</span>
+            <span>SMART AI ASSISTANCE</span>
+          </div>
+
+          <!-- Giant Ambient Typography -->
+          <div class="v2-hero-typography">
+            <span class="v2-hero-smart-ai">SMART AI</span>
+            <span class="v2-hero-sub-text">WORKPLACE INTELLIGENCE</span>
+          </div>
+
+          <!-- 3D Iridescent Floating Glass Sphere Centerpiece -->
+          <div class="v2-sphere-stage">
+            <!-- Floating Sparkles -->
+            <div class="v2-sparkle v2-sparkle-1">✦</div>
+            <div class="v2-sparkle v2-sparkle-2">✦</div>
+            <div class="v2-sparkle v2-sparkle-3">✦</div>
+
+            <!-- Floating 3D Orb Stage (Parallax Outer + Levitate Inner) -->
+            <div class="v2-orb-parallax-wrapper" id="v2OrbParallax">
+              <div class="v2-orb-container" id="v2Orb">
+                <div class="v2-orb-body">
+                  <!-- Inner Chromatic Nebula Swirl -->
+                  <div class="v2-orb-chroma-swirl"></div>
+                  <!-- Caustic Dispersion Highlight Ring -->
+                  <div class="v2-orb-caustic-ring"></div>
+                  <!-- Glass specular highlight on top -->
+                  <div class="v2-orb-specular"></div>
+                  <!-- Cyan / Teal refractive glow on bottom -->
+                  <div class="v2-orb-refraction"></div>
+                  <!-- Inner shimmer sheen -->
+                  <div class="v2-orb-sheen"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- The Slit / Horizontal Portal Pocket Shelf -->
+            <div class="v2-slit-container">
+              <!-- Upward Flare Reflection from Slit -->
+              <div class="v2-slit-upward-flare"></div>
+              <!-- Recessed 3D Beveled Pocket Shelf -->
+              <div class="v2-slit-shelf">
+                <div class="v2-slit-light-beam"></div>
+                <div class="v2-slit-laser-center"></div>
+              </div>
+              <!-- Orb Shadow on Slit / Floor with Breathing Sync -->
+              <div class="v2-orb-floor-shadow"></div>
+            </div>
+          </div>
+
+          <!-- Bottom Headline & Copy -->
+          <div class="v2-hero-footer">
+            <h2 class="v2-hero-title">Intelligent AI Assistance</h2>
+            <p class="v2-hero-desc">
+              Experience smarter conversations with AI-powered responses, personalized insights &amp; seamless productivity across every interaction.
+            </p>
+          </div>
+        </section>
+
+        <!-- RIGHT COLUMN: AUTHENTICATION FORM & USERS SUBCARD -->
+        <section class="v2-form-panel">
+          <div>
+            <!-- Top Brand Icon Badge -->
+            <div class="v2-brand-badge" title="Hirerkey Intelligence">
+              <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+                <rect width="28" height="28" rx="8" fill="url(#v2-badge-grad)"/>
+                <path d="M8 7v14M8 14c1.5-3 6.5-3.5 8 0v7M16 14c1.5-3 6-3 6 0v7" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="21" cy="9" r="2.2" fill="#F472B6"/>
+                <defs>
+                  <linearGradient id="v2-badge-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#A855F7"/>
+                    <stop offset="100%" stop-color="#7C3AED"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- Form Headings -->
+            <h1 class="v2-form-title">Welcome Back</h1>
+            <p class="v2-form-subtitle">Sign in to access your unified inbox</p>
+
+            <!-- The Sign In Form -->
+            <form id="v2-login-form" onsubmit="handleV2Login(event)">
+              <!-- Email Input -->
+              <div class="v2-input-group">
+                <label for="v2-email" class="v2-input-label">Email</label>
+                <div class="v2-input-box">
+                  <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                  <input 
+                    type="email" 
+                    id="v2-email" 
+                    class="v2-text-input" 
+                    placeholder="you@example.com" 
+                    value="alex.chen@earthhotels.com"
+                    required 
+                  />
+                </div>
+              </div>
+
+              <!-- Password Input -->
+              <div class="v2-input-group">
+                <label for="v2-password" class="v2-input-label">Password</label>
+                <div class="v2-input-box">
+                  <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                  <input 
+                    type="password" 
+                    id="v2-password" 
+                    class="v2-text-input" 
+                    placeholder="••••••••" 
+                    value="EarthHotels2026!#" 
+                    required 
+                  />
+                  <button type="button" class="v2-password-toggle" onclick="toggleV2Password()" title="Toggle password visibility">
+                    <svg id="v2-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Options: Remember Me & Forgot Password -->
+              <div class="v2-options-row">
+                <label class="v2-checkbox-label">
+                  <input type="checkbox" id="v2-remember" class="v2-checkbox" checked />
+                  <span>Remember me</span>
+                </label>
+                <a href="javascript:void(0)" class="v2-forgot-link" onclick="openHelpModal()">Forgot Password?</a>
+              </div>
+
+              <!-- Primary Sign In Button -->
+              <button type="submit" id="btn-v2-signin" class="v2-btn-primary">
+                <span class="v2-btn-text">Sign In</span>
+                <svg class="v2-btn-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="v2-divider-row">
+              <div class="v2-divider-line"></div>
+              <span class="v2-divider-text">Or Continue With</span>
+              <div class="v2-divider-line"></div>
+            </div>
+
+            <!-- Google Button -->
+            <button type="button" class="v2-btn-google" onclick="handleSSOLogin('Google')">
+              <svg width="19" height="19" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span>Google</span>
+            </button>
+
+            <!-- Sign Up Prompt -->
+            <div class="v2-signup-row">
+              <span>Don't have an account?</span>
+              <a href="javascript:void(0)" class="v2-signup-link" onclick="showToast('Corporate registration is provisioned by your HR Administrator')">Sign up</a>
+            </div>
+          </div>
+
+          <!-- Overlapping Users Subcard (Bottom Right as in Inspiration Image) -->
+          <div class="v2-users-subcard">
+            <div class="v2-users-avatars">
+              <img src="leena_avatar.jpg" alt="Leena" class="v2-avatar-item" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><circle cx=\'16\' cy=\'16\' r=\'16\' fill=\'%23A855F7\'/><text x=\'50%25\' y=\'55%25\' font-size=\'12\' font-weight=\'bold\' fill=\'%23FFFFFF\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'middle\'>L</text></svg>';" />
+              <img src="aisha_avatar.png" alt="Aisha" class="v2-avatar-item" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><circle cx=\'16\' cy=\'16\' r=\'16\' fill=\'%23EC4899\'/><text x=\'50%25\' y=\'55%25\' font-size=\'12\' font-weight=\'bold\' fill=\'%23FFFFFF\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'middle\'>A</text></svg>';" />
+              <img src="rahul_avatar.png" alt="Rahul" class="v2-avatar-item" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><circle cx=\'16\' cy=\'16\' r=\'16\' fill=\'%2306B6D4\'/><text x=\'50%25\' y=\'55%25\' font-size=\'12\' font-weight=\'bold\' fill=\'%23FFFFFF\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'middle\'>R</text></svg>';" />
+            </div>
+            <div class="v2-users-copy">
+              <div class="v2-users-count-line">
+                <span class="v2-live-pulse-dot"></span>
+                <strong>10 Million+ Users</strong>
+              </div>
+              <span class="v2-users-subtext">worldwide</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div> <!-- /#login-view-2 -->
+
+    <!-- ==========================================================================
+         BOTTOM PAGINATION DOCK (CLEAN ENCIRCLED PAGE 1 & PAGE 2)
+         ========================================================================== -->
+    <nav class="bottom-pagination-dock" id="bottomPaginationDock" role="navigation" aria-label="Login Pages">
+      <button type="button" class="dock-nav-arrow" id="btn-dock-prev" onclick="navigatePage(-1)" title="Previous Page (Key: Left Arrow)" aria-label="Previous Page">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+
+      <!-- Encircled 1: Page 1 -->
+      <button type="button" class="dock-page-btn active" id="btn-page-1" onclick="switchLoginView(1)" title="Page 1 (Key: 1)" aria-label="Page 1" aria-current="page">
+        <span class="dock-circle-badge">1</span>
+        <span class="dock-page-title">Page 1</span>
+      </button>
+
+      <!-- Encircled 2: Page 2 -->
+      <button type="button" class="dock-page-btn" id="btn-page-2" onclick="switchLoginView(2)" title="Page 2 (Key: 2)" aria-label="Page 2">
+        <span class="dock-circle-badge">2</span>
+        <span class="dock-page-title">Page 2</span>
+      </button>
+
+      <button type="button" class="dock-nav-arrow" id="btn-dock-next" onclick="navigatePage(1)" title="Next Page (Key: Right Arrow)" aria-label="Next Page">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </nav>
+
+  </main>
+
+  <!-- ==========================================================================
+       PASSKEY BIOMETRIC MODAL
+       ========================================================================== -->
+  <div id="passkey-modal" class="modal-overlay" onclick="closeModalOnBackdrop(event, 'passkey-modal')">
+    <div class="modal-content-box">
+      <button class="modal-close-btn" onclick="closeModal('passkey-modal')">✕</button>
+      <div class="fingerprint-icon-pulse">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+          <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+          <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
+          <path d="M2 12a10 10 0 0 1 18-6"/>
+          <path d="M2 16h.01"/>
+          <path d="M21.8 16c.2-2 .131-5.354 0-6"/>
+          <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+          <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+          <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+        </svg>
+      </div>
+      <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 8px;">
+        Use Passkey to Sign In
+      </h3>
+      <p style="font-size: 13.5px; color: var(--text-gray-400); line-height: 1.5; margin-bottom: 24px;">
+        Touch your fingerprint sensor or glance at Face ID on your device to securely authenticate to Hirerkey.
+      </p>
+      <button class="btn-primary-pill" onclick="simulatePasskeySuccess()">
+        <span>Simulate Touch ID / Face ID</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       EMAIL HELP / RECOVERY MODAL
+       ========================================================================== -->
+  <div id="help-modal" class="modal-overlay" onclick="closeModalOnBackdrop(event, 'help-modal')">
+    <div class="modal-content-box" style="text-align: left;">
+      <button class="modal-close-btn" onclick="closeModal('help-modal')">✕</button>
+      <h3 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 10px; color: #FFFFFF;">
+        Can't access your login email?
+      </h3>
+      <p style="font-size: 13.5px; color: var(--text-gray-300); line-height: 1.6; margin-bottom: 16px;">
+        Hirerkey enterprise accounts are provisioned and managed directly by your organization's HR and IT administrators.
+      </p>
+      <ul style="font-size: 13px; color: var(--text-gray-400); line-height: 1.7; margin-bottom: 24px; padding-left: 20px;">
+        <li>Confirm you are using your active corporate business email address.</li>
+        <li>Check your spam or quarantine folder for OTP from <code>no-reply@hirerkey.com</code>.</li>
+        <li>If your corporate email or security key has changed, contact your HR Admin.</li>
+      </ul>
+      <button class="btn-primary-pill" onclick="closeModal('help-modal')">
+        <span>Understood</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-message">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5">
+      <path d="M20 6 9 17l-5-5"/>
+    </svg>
+    <span id="toast-text">OTP Dispatched</span>
+  </div>
+
+  <!-- ==========================================================================
+       LOGIC & INTERACTIONS
+       ========================================================================== -->
+  <script>
+    // Testimonial Stories Carousel Data
+    const STORIES = [
+      {
+        quote: "“Hirerkey transformed how we manage people, performance, and daily feedback across our distributed teams. Effortless and intuitive.”",
+        author: "Leena Al-Hashemi",
+        role: "Head of People & Culture • Earth Hotels UAE"
+      },
+      {
+        quote: "“The automated workflows and pulse surveys give our leadership team real-time visibility without administrative overhead.”",
+        author: "Rahul Sharma",
+        role: "VP of People Operations • Global Enterprises"
+      },
+      {
+        quote: "“Enterprise-grade security, lightning-fast UX, and UAE data residency compliance make Hirerkey our trusted workforce system.”",
+        author: "Aisha Al-Mansoor",
+        role: "Chief Technology Officer • MENA FinTech"
+      }
+    ];
+
+    let currentStoryIdx = 0;
+
+    function renderStory() {
+      const qEl = document.getElementById('carousel-quote');
+      const aEl = document.getElementById('carousel-author');
+      const rEl = document.getElementById('carousel-role');
+
+      qEl.style.opacity = '0';
+      setTimeout(() => {
+        const item = STORIES[currentStoryIdx];
+        qEl.textContent = item.quote;
+        aEl.textContent = item.author;
+        rEl.textContent = item.role;
+        qEl.style.opacity = '1';
+      }, 200);
+    }
+
+    function nextStory() {
+      currentStoryIdx = (currentStoryIdx + 1) % STORIES.length;
+      renderStory();
+    }
+
+    function prevStory() {
+      currentStoryIdx = (currentStoryIdx - 1 + STORIES.length) % STORIES.length;
+      renderStory();
+    }
+
+    // Auth Mode Switching (Email OTP vs Password)
+    function switchAuthMode(mode) {
+      const tabOtp = document.getElementById('tab-mode-otp');
+      const tabPwd = document.getElementById('tab-mode-pwd');
+      const stepEmailOtp = document.getElementById('step-email-otp');
+      const stepPassword = document.getElementById('step-password');
+      const stepOtpVerify = document.getElementById('step-otp-verify');
+
+      // Clear any OTP verification in progress
+      clearInterval(otpTimerInterval);
+      stepOtpVerify.classList.add('hidden');
+
+      if (mode === 'otp') {
+        tabOtp.classList.add('active');
+        tabPwd.classList.remove('active');
+        stepEmailOtp.classList.remove('hidden');
+        stepPassword.classList.add('hidden');
+      } else {
+        tabPwd.classList.add('active');
+        tabOtp.classList.remove('active');
+        stepPassword.classList.remove('hidden');
+        stepEmailOtp.classList.add('hidden');
+      }
+    }
+
+    // Toggle Password Visibility
+    function togglePasswordVisibility() {
+      const pwdInput = document.getElementById('login-password');
+      const eyeIcon = document.getElementById('eye-icon');
+      if (pwdInput.type === 'password') {
+        pwdInput.type = 'text';
+        eyeIcon.innerHTML = `
+          <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+          <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+          <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+          <line x1="2" y1="2" x2="22" y2="22"></line>
+        `;
+      } else {
+        pwdInput.type = 'password';
+        eyeIcon.innerHTML = `
+          <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        `;
+      }
+    }
+
+    // Password Login Handler
+    function handlePasswordLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('business-email-pwd').value.trim();
+      const pwd = document.getElementById('login-password').value;
+      if (!email || !pwd) return;
+
+      const btn = document.getElementById('btn-sign-in');
+      btn.disabled = true;
+      btn.innerHTML = `<span>Signing in...</span>`;
+
+      setTimeout(() => {
+        showToast('Password verified! Loading Hirerkey dashboard...');
+        setTimeout(() => {
+          navigateToDashboard();
+        }, 1000);
+      }, 700);
+    }
+
+    // Email to OTP Step Switching
+    let otpTimerInterval = null;
+    let secondsRemaining = 29;
+
+    function handleSendOTP(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('business-email-otp');
+      const emailVal = emailInput.value.trim();
+      if (!emailVal) return;
+
+      document.getElementById('sent-target-email').textContent = emailVal;
+      document.getElementById('step-email-otp').classList.add('hidden');
+      document.getElementById('step-otp-verify').classList.remove('hidden');
+
+      showToast(`6-digit OTP code dispatched to ${emailVal}`);
+      startOtpTimer();
+
+      // Focus first OTP input
+      const firstOtp = document.querySelector('.otp-box');
+      if (firstOtp) {
+        setTimeout(() => firstOtp.focus(), 100);
+      }
+    }
+
+    function switchToEmailStep() {
+      clearInterval(otpTimerInterval);
+      document.getElementById('step-otp-verify').classList.add('hidden');
+      document.getElementById('step-email-otp').classList.remove('hidden');
+    }
+
+    function startOtpTimer() {
+      clearInterval(otpTimerInterval);
+      secondsRemaining = 29;
+      const timerVal = document.getElementById('timer-val');
+      const countdownText = document.getElementById('countdown-text');
+      const btnResend = document.getElementById('btn-resend');
+
+      countdownText.style.display = 'inline';
+      btnResend.style.display = 'none';
+
+      otpTimerInterval = setInterval(() => {
+        secondsRemaining--;
+        timerVal.textContent = `0:${secondsRemaining < 10 ? '0' : ''}${secondsRemaining}`;
+        if (secondsRemaining <= 0) {
+          clearInterval(otpTimerInterval);
+          countdownText.style.display = 'none';
+          btnResend.style.display = 'inline';
+        }
+      }, 1000);
+    }
+
+    function resendCode() {
+      showToast('Fresh 6-digit code sent!');
+      startOtpTimer();
+      const firstOtp = document.querySelector('.otp-box');
+      if (firstOtp) firstOtp.focus();
+    }
+
+    // OTP Input Digit Auto-Advancing & Pasting
+    const otpBoxes = document.querySelectorAll('.otp-box');
+    otpBoxes.forEach((box, index) => {
+      box.addEventListener('input', (e) => {
+        const val = e.target.value.replace(/[^0-9]/g, '');
+        e.target.value = val;
+        if (val && index < otpBoxes.length - 1) {
+          otpBoxes[index + 1].focus();
+        }
+      });
+
+      box.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !box.value && index > 0) {
+          otpBoxes[index - 1].focus();
+        }
+      });
+
+      box.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+        if (pasted) {
+          pasted.split('').slice(0, otpBoxes.length).forEach((char, i) => {
+            otpBoxes[i].value = char;
+          });
+          const nextIdx = Math.min(pasted.length, otpBoxes.length - 1);
+          otpBoxes[nextIdx].focus();
+        }
+      });
+    });
+
+    function handleVerifyOTP(e) {
+      e.preventDefault();
+      let code = '';
+      otpBoxes.forEach(b => code += b.value);
+      if (code.length < 6) {
+        showToast('Please enter all 6 digits of the OTP code');
+        return;
+      }
+
+      const btn = document.getElementById('btn-verify-otp');
+      btn.disabled = true;
+      btn.innerHTML = `<span>Verifying...</span>`;
+
+      setTimeout(() => {
+        showToast('Identity verified! Decrypting executive workspace...');
+        setTimeout(() => {
+          navigateToDashboard();
+        }, 1000);
+      }, 700);
+    }
+
+    // Passkey Modals
+    function openPasskeyModal() {
+      document.getElementById('passkey-modal').classList.add('active');
+    }
+
+    function openHelpModal() {
+      document.getElementById('help-modal').classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function closeModalOnBackdrop(e, id) {
+      if (e.target.id === id) {
+        closeModal(id);
+      }
+    }
+
+    function simulatePasskeySuccess() {
+      closeModal('passkey-modal');
+      showToast('Touch ID verified! Signing into Hirerkey...');
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 1000);
+    }
+
+    function handleSSOLogin(provider) {
+      showToast(`Initiating secure authentication with ${provider}...`);
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 1200);
+    }
+
+    function navigateToDashboard() {
+      const currentPath = window.location.pathname;
+      if (currentPath.includes('/views/')) {
+        window.location.href = 'dashboard_view2.html';
+      } else {
+        window.location.href = 'views/dashboard_view2.html';
+      }
+    }
+
+    // Toast Messenger
+    let toastTimeout;
+    function showToast(msg) {
+      clearTimeout(toastTimeout);
+      const toast = document.getElementById('toast');
+      const text = document.getElementById('toast-text');
+      text.textContent = msg;
+      toast.classList.add('show');
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3200);
+    }
+
+    /* ==========================================================================
+       DUAL VIEW PAGINATION CONTROLLER (VIEW 1 & VIEW 2 SWITCHER)
+       ========================================================================== */
+    let activeLoginView = 1;
+
+    function switchLoginView(viewNum) {
+      if (viewNum !== 1 && viewNum !== 2) return;
+      activeLoginView = viewNum;
+
+      const view1 = document.getElementById('login-view-1');
+      const view2 = document.getElementById('login-view-2');
+      const canvas = document.getElementById('viewport-canvas');
+      const btn1 = document.getElementById('btn-page-1');
+      const btn2 = document.getElementById('btn-page-2');
+      const label = document.getElementById('dockActiveLabel');
+
+      if (viewNum === 1) {
+        if (view2) view2.classList.remove('active');
+        if (view1) view1.classList.add('active');
+        if (canvas) canvas.classList.remove('view2-mode');
+        if (btn1) {
+          btn1.classList.add('active');
+          btn1.setAttribute('aria-current', 'page');
+        }
+        if (btn2) {
+          btn2.classList.remove('active');
+          btn2.removeAttribute('aria-current');
+        }
+        if (label) label.textContent = 'Active: Page 1 • View 1 (Frosted Obsidian Bento)';
+        try {
+          history.replaceState(null, '', '#view1');
+          localStorage.setItem('hirerkey_login_view', '1');
+        } catch(e) {}
+      } else {
+        if (view1) view1.classList.remove('active');
+        if (view2) view2.classList.add('active');
+        if (canvas) canvas.classList.add('view2-mode');
+        if (btn2) {
+          btn2.classList.add('active');
+          btn2.setAttribute('aria-current', 'page');
+        }
+        if (btn1) {
+          btn1.classList.remove('active');
+          btn1.removeAttribute('aria-current');
+        }
+        if (label) label.textContent = 'Active: Page 2 • View 2 (Smart AI Assistant Studio)';
+        try {
+          history.replaceState(null, '', '#view2');
+          localStorage.setItem('hirerkey_login_view', '2');
+        } catch(e) {}
+      }
+    }
+
+    function navigatePage(delta) {
+      let target = activeLoginView + delta;
+      if (target < 1) target = 2;
+      if (target > 2) target = 1;
+      switchLoginView(target);
+    }
+
+    // Keyboard navigation: 1, 2, ArrowLeft, ArrowRight
+    document.addEventListener('keydown', (e) => {
+      // Don't intercept if user is typing in an input
+      if (e.target && ['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
+      if (e.key === '1') {
+        switchLoginView(1);
+      } else if (e.key === '2') {
+        switchLoginView(2);
+      } else if (e.key === 'ArrowLeft') {
+        navigatePage(-1);
+      } else if (e.key === 'ArrowRight') {
+        navigatePage(1);
+      }
+    });
+
+    // Check initial view from hash, query param, or localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash;
+      const params = new URLSearchParams(window.location.search);
+      const saved = localStorage.getItem('hirerkey_login_view');
+
+      if (hash === '#view2' || params.get('view') === '2' || (!hash && saved === '2')) {
+        switchLoginView(2);
+      } else {
+        switchLoginView(1);
+      }
+    });
+
+    // View 2 Form Interactions
+    function toggleV2Password() {
+      const pwd = document.getElementById('v2-password');
+      const icon = document.getElementById('v2-eye-icon');
+      if (!pwd || !icon) return;
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.innerHTML = `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24m-6.36-6.36L2 2l20 20-1.76-1.76M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="1.8"/>`;
+      } else {
+        pwd.type = 'password';
+        icon.innerHTML = `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle>`;
+      }
+    }
+
+    function handleV2Login(e) {
+      e.preventDefault();
+      const email = document.getElementById('v2-email').value.trim();
+      const pwd = document.getElementById('v2-password').value;
+      if (!email || !pwd) {
+        showToast('Please enter both email and password');
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showToast('Please enter a valid corporate email address');
+        return;
+      }
+      const btn = document.getElementById('btn-v2-signin');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Signing in...</span>`;
+      }
+
+      showToast('Authenticating with Hirerkey Smart AI...');
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 900);
+    }
+
+    // Interactive mouse tilt parallax on 3D Orb Stage in View 2 (Decoupled from CSS levitation)
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroPanel = document.querySelector('.v2-hero-panel');
+      const v2OrbParallax = document.getElementById('v2OrbParallax');
+      const sparkles = document.querySelectorAll('.v2-sparkle');
+      if (heroPanel && v2OrbParallax) {
+        heroPanel.addEventListener('mousemove', (e) => {
+          const rect = heroPanel.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          v2OrbParallax.style.transform = `perspective(700px) rotateX(${-y * 15}deg) rotateY(${x * 15}deg) translateZ(12px)`;
+          sparkles.forEach((s, idx) => {
+            const factor = (idx + 1) * 6;
+            s.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+          });
+        });
+        heroPanel.addEventListener('mouseleave', () => {
+          v2OrbParallax.style.transform = 'perspective(700px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+          sparkles.forEach((s) => {
+            s.style.transform = '';
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

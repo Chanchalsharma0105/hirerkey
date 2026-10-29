@@ -1758,6 +1758,7 @@
   <!-- Master Application Shell -->
   <div class="app-shell layout-full-sidebar" id="appShell">
 
+<<<<<<< HEAD
     <!-- Master Topbar for View 1: Top Nav Mode -->
     <header class="master-topbar" id="masterTopbar">
       <div class="topbar-left">
@@ -1774,6 +1775,66 @@
           </button>
           <div class="topbar-nav-dropdown" id="topbarNavDropdown"></div>
         </div>
+=======
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Selected Production Views">
+      <button class="nav-tab-btn active" id="tab-dashboard" onclick="loadView('dashboard')">
+        <span>📊 Dashboard</span>
+        <span class="tab-badge">View 2</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-property-settings" onclick="loadView('property-settings')">
+        <span>⚙️ Property Settings</span>
+        <span class="tab-badge">View 4</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-broadcast" onclick="loadView('broadcast')">
+        <span>📢 HR Broadcast</span>
+        <span class="tab-badge">View 2</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-broadcast-v3" onclick="loadView('broadcast-v3')">
+        <span>📌 Broadcast Widget</span>
+        <span class="tab-badge">View 3</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-offboarding" onclick="loadView('offboarding')">
+        <span>🚪 Offboarding Module</span>
+        <span class="tab-badge">All Screens</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-pulse-survey" onclick="loadView('pulse-survey')">
+        <span>📝 Pulse Survey</span>
+        <span class="tab-badge">Screen 1</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-preferences" onclick="loadView('preferences')">
+        <span>⚙️ Preferences</span>
+        <span class="tab-badge">4 Views</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-orientation" onclick="loadView('orientation')">
+        <span>🧭 Orientation Studio</span>
+        <span class="tab-badge" style="background: #7C3AED; color: #FFFFFF;">Dual View</span>
+      </button>
+      <button class="nav-tab-btn" id="tab-login" onclick="loadView('login')">
+        <span>🔐 Login Screen</span>
+        <span class="tab-badge" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Dual View ① ②</span>
+      </button>
+    </nav>
+
+    <!-- Header Right Controls -->
+    <div class="header-actions">
+      <!-- Grid Showcase Toggle -->
+      <button class="btn-view-toggle" id="btnGridToggle" onclick="toggleGridMode()" title="Toggle Showcase Grid Mode">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>All Views Grid</span>
+      </button>
+
+      <!-- Open Standalone File Link -->
+      <a href="views/dashboard_view2.html" target="_blank" class="btn-open-standalone" id="btnStandaloneLink" title="Open active file in separate browser tab">
+        <span>Open Standalone File</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+      </a>
+
+      <!-- Org Switcher -->
+      <div class="org-pill">
+        <span class="org-emblem">N</span>
+        <span>(TEST) Noisiv Consulting</span>
+>>>>>>> 46bf49f4ce535fae95138bf7a8d995477adc07bb
       </div>
       <div class="topbar-center">
         <span style="font-size: 10.5px; font-weight: 700; color: #94A3B8; text-transform: uppercase; margin-right: 4px;">Sidebar Layout:</span>
@@ -1891,11 +1952,61 @@
           </div>
         </div>
 
+<<<<<<< HEAD
         <!-- 2. Onboarding -->
         <div class="nav-category" data-cat="onboarding">
           <div class="nav-cat-header" onclick="toggleNavCategory(this)">
             <span class="cat-title">Onboarding</span>
             <span class="nav-cat-chevron">⌄</span>
+=======
+
+        <!-- 0. Login Screen Redesign (Dual View) -->
+        <div class="view-card" style="border-color: #A855F7; box-shadow: 0 4px 20px rgba(124, 58, 237, 0.16);">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill" style="background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%); color: #FFFFFF;">DUAL VIEW LOGIN EXPERIENCE</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/login.html</span>
+            </div>
+            <div class="card-icon-box" style="background: rgba(124, 58, 237, 0.12); color: #7C3AED;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <h2 class="card-title">Dashboard Login Screen — Dual View (1 &amp; 2)</h2>
+            <p class="card-desc">Comprehensive dual-experience authentication with bottom encircled 1 and 2 pagination switcher. Features View 1 (Frosted Obsidian glassmorphism) and View 2 (Dribbble-inspired Smart AI Assistant in Hirerkey signature purple palette with 3D levitating iridescent orb).</p>
+            <ul class="card-features">
+              <li><strong>Bottom Pagination Dock:</strong> Encircled <strong>①</strong> and <strong>②</strong> buttons for instantaneous fluid transitions with keyboard [1] and [2] shortcuts</li>
+              <li><strong>View 1:</strong> Frosted Obsidian glass, Email OTP / Password modes, stepped-scoop cutout, 16-ray radiant starburst &amp; testimonial carousel</li>
+              <li><strong>View 2:</strong> Smart AI Assistant in Hirerkey purple, 3D levitating iridescent glass orb, illuminated shelf slit, high-end SaaS auth &amp; 10M+ users counter</li>
+              <li>Enterprise SSO (Google Workspace, Microsoft Entra ID, FIDO2 Touch ID / Passkey)</li>
+              <li>URL hash &amp; localStorage persistence (<code>#view1</code> and <code>#view2</code>)</li>
+            </ul>
+          </div>
+          <div class="card-actions" style="gap: 8px; flex-wrap: wrap;">
+            <button class="btn-launch-viewer" onclick="loadView('login')" style="background: linear-gradient(135deg, #A855F7 0%, #7C3AED 100%);">Launch in Viewer</button>
+            <a href="views/login.html#view1" target="_blank" class="btn-card-standalone">Open View 1 ↗</a>
+            <a href="views/login.html#view2" target="_blank" class="btn-card-standalone" style="border-color: #A855F7; color: #7C3AED;">Open View 2 ↗</a>
+          </div>
+        </div>
+
+
+        <!-- 1. Dashboard Revamp -->
+        <div class="view-card">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill">SELECTED VIEW: VIEW 2</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/dashboard_view2.html</span>
+            </div>
+            <div class="card-icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+            </div>
+            <h2 class="card-title">Dashboard Revamp</h2>
+            <p class="card-desc">Modern SaaS / Donezo-inspired layout with sleek white sidebar, pearl grey canvas, Ask HyIQ capsule, Bento KPIs, and pinned high-priority broadcast card.</p>
+            <ul class="card-features">
+              <li>White sleek sidebar (~245px) with collapsible rail (<)</li>
+              <li>Topbar with ⌘K search and Ask HyIQ capsule</li>
+              <li>Greeting hero banner with interactive Bento KPIs</li>
+              <li>Pinned broadcast card with like, ack, and download</li>
+            </ul>
+>>>>>>> 46bf49f4ce535fae95138bf7a8d995477adc07bb
           </div>
           <div class="nav-cat-items">
             <a href="javascript:void(0)" class="nav-item" data-mod="orientation" data-title="Orientation" onclick="loadModule('orientation', this)" title="New Hire Orientation">
@@ -2108,6 +2219,7 @@
           </div>
         </div>
 
+<<<<<<< HEAD
         <!-- 9. System & Studios -->
         <div class="nav-category" data-cat="settings">
           <div class="nav-cat-header" onclick="toggleNavCategory(this)">
@@ -2434,6 +2546,35 @@
         <div class="config-cards-grid" id="modalViewsList">
           <!-- Dynamically populated -->
         </div>
+=======
+        <!-- 7. Orientation Studio (Redesign) -->
+        <div class="view-card" style="border-color: #C4B5FD; box-shadow: 0 4px 16px rgba(124, 58, 237, 0.08);">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill" style="background: #7C3AED; color: #FFFFFF;">NEW REDESIGN: DUAL COMPARATIVE VIEWS</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/orientation_redesign.html</span>
+            </div>
+            <div class="card-icon-box" style="background: #EDE9FE; color: #7C3AED;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            </div>
+            <h2 class="card-title">Orientation Studio Redesign</h2>
+            <p class="card-desc">Complete architectural redesign fixing all cognitive overload & disorientation flaws. Completely removes the cramped mobile phone simulator and introduces two distinct comparative paradigms with 100% hospitality feature completeness.</p>
+            <ul class="card-features">
+              <li>View 1: Milestone Studio (Bento Stage Canvas + 440px Focus Inspector Drawer)</li>
+              <li>View 2: Linear Command Deck (Unified Flow Timeline + In-Place Progressive Disclosure)</li>
+              <li>Complete removal of the interactive mobile phone simulator</li>
+              <li>Full hospitality audit parity: DoubleTree by Hilton Front Office, F&B, HACCP, Facilities</li>
+              <li>All 6 Step Types: Session, Read & Agree, Quiz (80%), Photo, Number range, Checkbox</li>
+              <li>HyIQ AI prompt studio (⌘↵) + Starter templates library modal</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <button class="btn-launch-viewer" onclick="loadView('orientation')">Launch in Viewer</button>
+            <a href="views/orientation_redesign.html" target="_blank" class="btn-card-standalone">Open Standalone ↗</a>
+          </div>
+        </div>
+
+>>>>>>> 46bf49f4ce535fae95138bf7a8d995477adc07bb
       </div>
     </div>
   </div>
@@ -2586,6 +2727,7 @@
         ]
       },
       'preferences': {
+<<<<<<< HEAD
         name: 'Preferences Studio',
         icon: '🎨',
         desc: 'Select studio layout view:',
@@ -2824,6 +2966,18 @@
         views: [
           { id: 'manager-approvals', name: 'Expense Approvals', desc: 'Review expense claims, receipts & authorization queue', icon: '💳', isDefault: true }
         ]
+=======
+        name: 'User Preferences (4 Design Views)',
+        url: 'views/preferences.html'
+      },
+      'orientation': {
+        name: 'Orientation Studio (Redesign)',
+        url: 'views/orientation_redesign.html'
+      },
+      'login': {
+        name: 'Login Screen (Dual View 1 & 2 — Frosted & Smart AI)',
+        url: 'views/login.html'
+>>>>>>> 46bf49f4ce535fae95138bf7a8d995477adc07bb
       }
     };
 
@@ -3116,12 +3270,28 @@
       }
     }
 
+<<<<<<< HEAD
     // ==========================================================================
     // LOAD FRAME WITH VIEWS (With In-Place Execution or Reload)
     // ==========================================================================
     function loadFrame(modKey, viewId) {
       const mod = MODULES[modKey];
       if (!mod) return;
+=======
+    // Keyboard shortcuts
+    window.addEventListener('keydown', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === '1') loadView('dashboard');
+      if (e.key === '2') loadView('property-settings');
+      if (e.key === '3') loadView('broadcast');
+      if (e.key === 'w' || e.key === 'W') loadView('broadcast-v3');
+      if (e.key === '4') loadView('offboarding');
+      if (e.key === '5') loadView('pulse-survey');
+      if (e.key === '6') loadView('preferences');
+      if (e.key === '7') loadView('orientation');
+      if (e.key === 'g' || e.key === 'G') toggleGridMode();
+    });
+>>>>>>> 46bf49f4ce535fae95138bf7a8d995477adc07bb
 
       const frame = document.getElementById('activeViewFrame');
       if (!frame) return;

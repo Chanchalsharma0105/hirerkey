@@ -1,0 +1,5151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hirerkey™ — Orientation & Onboarding Journey Studio</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       HIRERKEY™ PRODUCTION DESIGN SYSTEM TOKENS
+       ========================================================================== */
+    :root {
+      /* Brand Core Palette */
+      --brand-primary: #7C3AED;
+      --brand-primary-hover: #6D28D9;
+      --brand-primary-dark: #5B21B6;
+      --brand-primary-light: #EDE9FE;
+      --brand-primary-subtle: #F5F3FF;
+      --brand-accent: #6366F1;
+      
+      /* Canvas & Elevated Island Surfaces */
+      --bg-canvas: #F4EFFB;           /* Soft lavender mist canvas background */
+      --bg-surface: #FFFFFF;          /* Pure crisp white card/surface */
+      --bg-surface-subtle: #F8FAFC;   /* Slate 50 background */
+      --bg-surface-hover: #F1F5F9;    /* Slate 100 hover */
+      --bg-active-pill: #EDE9FE;      /* Soft violet pill active */
+
+      /* Typography Tokens */
+      --font-brand: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+
+      /* Slate Neutrals */
+      --text-heading: #0F172A;        /* Slate 900 */
+      --text-body: #334155;           /* Slate 700 */
+      --text-muted: #64748B;          /* Slate 500 */
+      --text-subtle: #94A3B8;         /* Slate 400 */
+      --text-light: #FFFFFF;
+
+      /* Borders & Dividers */
+      --border-card: #E2E8F0;         /* Slate 200 */
+      --border-subtle: #EEF2F6;       /* Soft divider */
+      --border-focus: #C4B5FD;        /* Violet glow border */
+
+      /* Semantic Step Type Accents */
+      --type-session-bg: #EEF2FF;
+      --type-session-text: #4F46E5;
+      --type-session-border: #C7D2FE;
+
+      --type-quiz-bg: #EDE9FE;
+      --type-quiz-text: #7C3AED;
+      --type-quiz-border: #DDD6FE;
+
+      --type-agree-bg: #FFFBEB;
+      --type-agree-text: #D97706;
+      --type-agree-border: #FDE68A;
+
+      --type-photo-bg: #ECFDF5;
+      --type-photo-text: #059669;
+      --type-photo-border: #A7F3D0;
+
+      --type-number-bg: #ECFEFF;
+      --type-number-text: #0891B2;
+      --type-number-border: #A5F3FC;
+
+      --type-tick-bg: #EFF6FF;
+      --type-tick-text: #2563EB;
+      --type-tick-border: #BFDBFE;
+
+      /* Success, Warning, Error */
+      --emerald-success: #059669;
+      --emerald-bg: #ECFDF5;
+      --amber-warning: #D97706;
+      --amber-bg: #FFFBEB;
+      --rose-danger: #E11D48;
+      --rose-bg: #FFE4E6;
+
+      /* Shadows & Elevations */
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-card: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02);
+      --shadow-island: 0 12px 32px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+      --shadow-float: 0 20px 40px -8px rgba(15, 23, 42, 0.16);
+      --shadow-drawer: -12px 0 36px rgba(15, 23, 42, 0.16);
+      --shadow-modal: 0 25px 60px -12px rgba(15, 23, 42, 0.28);
+
+      /* Radii */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-card: 16px;
+      --radius-full: 9999px;
+
+      /* Transitions */
+      --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-smooth: 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-canvas);
+      color: var(--text-body);
+      line-height: 1.5;
+      font-size: 13.5px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    input, select, textarea {
+      font-family: inherit;
+      border: none;
+      outline: none;
+      background: none;
+    }
+
+    /* Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(203, 213, 225, 0.6);
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    /* ==========================================================================
+       LAYOUT: FLOATING WHITE SIDEBAR ISLAND + CANVAS
+       ========================================================================== */
+    .app-layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+      position: relative;
+      background-color: var(--bg-canvas);
+      box-sizing: border-box;
+    }
+
+    /* Floating Island Sidebar */
+    .app-sidebar {
+      width: 218px;
+      min-width: 218px;
+      max-width: 218px;
+      height: calc(100vh - 36px);
+      position: sticky;
+      top: 18px;
+      margin: 18px 0 18px 18px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      box-shadow: var(--shadow-island);
+      border: 1px solid var(--border-card);
+      z-index: 60;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      transition: width var(--transition-normal), min-width var(--transition-normal), max-width var(--transition-normal), margin var(--transition-normal);
+      overflow: visible;
+    }
+
+    .app-sidebar.collapsed {
+      width: 64px;
+      min-width: 64px;
+      max-width: 64px;
+      margin: 18px 0 18px 12px;
+    }
+
+    /* Brand Header */
+    .sidebar-header {
+      padding: 16px 14px 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+      flex-shrink: 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      min-width: 0;
+    }
+
+    .brand-wordmark {
+      display: inline-flex;
+      align-items: baseline;
+      font-family: var(--font-brand);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      position: relative;
+      line-height: 1;
+      color: #0F172A;
+    }
+
+    .logo-key-wrap {
+      position: relative;
+      color: #0F172A;
+      display: inline-block;
+    }
+
+    .logo-swoosh {
+      position: absolute;
+      left: -12px;
+      bottom: -4px;
+      width: calc(100% + 14px);
+      height: 10px;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .brand-version-badge {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 2px 6px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #64748B;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .app-sidebar.collapsed .brand-version-badge,
+    .app-sidebar.collapsed .brand-wordmark,
+    .app-sidebar.collapsed .sidebar-search-area,
+    .app-sidebar.collapsed .cat-title,
+    .app-sidebar.collapsed .cat-chevron,
+    .app-sidebar.collapsed .nav-label,
+    .app-sidebar.collapsed .nav-badge,
+    .app-sidebar.collapsed .workspace-text-group,
+    .app-sidebar.collapsed .workspace-unfold-icon {
+      display: none !important;
+    }
+
+    .app-sidebar.collapsed .sidebar-header {
+      justify-content: center;
+      padding: 16px 8px;
+    }
+
+    /* Sidebar Search */
+    .sidebar-search-area {
+      padding: 12px 14px 6px 14px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-search-pill {
+      display: flex;
+      align-items: center;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      height: 34px;
+      padding: 0 8px 0 10px;
+      gap: 7px;
+      transition: all var(--transition-fast);
+      cursor: text;
+    }
+
+    .sidebar-search-pill:hover {
+      background: #FFFFFF;
+      border-color: #CBD5E1;
+    }
+
+    .sidebar-search-pill:focus-within {
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .sidebar-search-pill input {
+      width: 100%;
+      font-size: 12px;
+      color: #0F172A;
+    }
+
+    .sidebar-search-pill input::placeholder {
+      color: #94A3B8;
+      font-size: 11.5px;
+    }
+
+    .sidebar-kbd {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 4px;
+      padding: 1px 4px;
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    /* Scrollable Navigation */
+    .sidebar-nav-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 8px 0 12px 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nav-category {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+
+    .cat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 18px 4px 18px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .cat-title {
+      font-size: 9.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #64748B;
+    }
+
+    .cat-chevron {
+      color: #94A3B8;
+      display: grid;
+      place-items: center;
+      transition: transform var(--transition-fast);
+    }
+
+    .nav-category.collapsed .cat-chevron {
+      transform: rotate(-90deg);
+    }
+
+    .cat-items {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .nav-category.collapsed .cat-items {
+      display: none;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 18px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: #334155;
+      position: relative;
+      cursor: pointer;
+      background: transparent;
+      transition: all var(--transition-fast);
+    }
+
+    .nav-item:hover {
+      background: #F8FAFC;
+      color: var(--brand-primary);
+    }
+
+    .nav-item.active {
+      background: var(--brand-primary-light);
+      color: var(--brand-primary);
+      font-weight: 600;
+    }
+
+    .nav-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3.5px;
+      height: 20px;
+      background: var(--brand-primary);
+      border-radius: 0 3px 3px 0;
+    }
+
+    .nav-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .nav-icon {
+      display: grid;
+      place-items: center;
+      color: #64748B;
+      flex-shrink: 0;
+    }
+
+    .nav-item.active .nav-icon {
+      color: var(--brand-primary);
+    }
+
+    .nav-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-badge {
+      background: #EDE9FE;
+      color: #7C3AED;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-mono);
+    }
+
+    /* Sidebar Footer / Property Switcher */
+    .sidebar-footer {
+      padding: 12px 14px;
+      border-top: 1px solid var(--border-subtle);
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .workspace-switcher {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+      border: 1px solid transparent;
+    }
+
+    .workspace-switcher:hover {
+      background: #F8FAFC;
+      border-color: #E2E8F0;
+    }
+
+    .workspace-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .workspace-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .workspace-text-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .workspace-label {
+      font-size: 9px;
+      font-weight: 600;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1;
+    }
+
+    .workspace-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #0F172A;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .workspace-unfold-icon {
+      color: #94A3B8;
+    }
+
+    /* ==========================================================================
+       MAIN WRAPPER & TOPBAR
+       ========================================================================== */
+    .main-wrapper {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 18px 24px 40px 18px;
+      box-sizing: border-box;
+    }
+
+    /* Topbar Island */
+    .topbar {
+      height: 60px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid var(--border-card);
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      gap: 16px;
+      position: sticky;
+      top: 18px;
+      z-index: 50;
+      margin-bottom: 20px;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #475569;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .icon-btn:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: var(--brand-primary);
+    }
+
+    .topbar-divider {
+      width: 1px;
+      height: 20px;
+      background: #E2E8F0;
+      margin: 0 4px;
+    }
+
+    /* Topbar Global Search */
+    .topbar-search {
+      position: relative;
+      height: 38px;
+      width: 290px;
+      display: flex;
+      align-items: center;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 0 10px 0 10px;
+      gap: 8px;
+      transition: all var(--transition-fast);
+    }
+
+    .topbar-search:focus-within {
+      width: 340px;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    }
+
+    .topbar-search svg.search-icon {
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    .topbar-search input {
+      width: 100%;
+      font-size: 13px;
+      color: var(--text-heading);
+    }
+
+    .topbar-search input::placeholder {
+      color: #94A3B8;
+      font-size: 12.5px;
+    }
+
+    .topbar-search-kbd {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 4px;
+      padding: 2px 6px;
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    /* Topbar Right Actions */
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Ask HyIQ Purple Capsule */
+    .btn-ask-hyiq {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 15px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.28);
+    }
+
+    .btn-ask-hyiq:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.38);
+    }
+
+    /* Voice Pulsing Animated Capsule */
+    .btn-voice-capsule {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 13px;
+      border-radius: var(--radius-full);
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-voice-capsule:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+    }
+
+    .voice-bars {
+      display: flex;
+      align-items: center;
+      gap: 2.5px;
+      height: 15px;
+    }
+
+    .voice-bar {
+      width: 2.5px;
+      border-radius: 2px;
+      animation: voicePulse 1.2s ease-in-out infinite alternate;
+    }
+
+    .voice-bar-1 { height: 9px; background: #7C3AED; animation-delay: 0.1s; }
+    .voice-bar-2 { height: 15px; background: #8B5CF6; animation-delay: 0.3s; }
+    .voice-bar-3 { height: 12px; background: #6D28D9; animation-delay: 0.45s; }
+    .voice-bar-4 { height: 8px; background: #A78BFA; animation-delay: 0.18s; }
+
+    @keyframes voicePulse {
+      0% { transform: scaleY(0.4); opacity: 0.6; }
+      100% { transform: scaleY(1.2); opacity: 1; }
+    }
+
+    .voice-text {
+      color: #334155;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .voice-shortcut {
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 5px;
+      padding: 1px 6px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748B;
+      font-family: var(--font-mono);
+    }
+
+    /* Notification Bell with 99+ Pill */
+    .notif-wrapper {
+      position: relative;
+    }
+
+    .notif-btn {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #334155;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .notif-btn:hover {
+      color: var(--brand-primary);
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .notif-pill-badge {
+      position: absolute;
+      top: -5px;
+      right: -6px;
+      background: #DC2626;
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 800;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #FFFFFF;
+      font-family: var(--font-mono);
+      line-height: 1;
+      box-shadow: 0 1px 3px rgba(220, 38, 38, 0.4);
+    }
+
+    /* User Profile ("Chanchal Sharma", DoubleTree by Hilton) */
+    .user-profile-menu {
+      position: relative;
+    }
+
+    .user-profile-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      height: 40px;
+      padding: 3px 10px 3px 4px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      background: transparent;
+      user-select: none;
+      border: 1px solid transparent;
+    }
+
+    .user-profile-pill:hover {
+      background: #FFFFFF;
+      border-color: #E2E8F0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .user-avatar-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 13px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .user-meta-stack {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .user-display-name {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+
+    .user-property-name {
+      font-size: 10.5px;
+      color: #64748B;
+      line-height: 1.2;
+    }
+
+    .user-chevron {
+      color: #94A3B8;
+      margin-left: 2px;
+    }
+
+    /* Popover Menu for Profile */
+    .profile-popover {
+      position: absolute;
+      top: 50px;
+      right: 0;
+      width: 230px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-float);
+      padding: 6px;
+      display: none;
+      flex-direction: column;
+      z-index: 100;
+      animation: popIn 0.18s ease-out;
+    }
+
+    .profile-popover.open {
+      display: flex;
+    }
+
+    .popover-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      color: #334155;
+      cursor: pointer;
+      transition: background var(--transition-fast);
+    }
+
+    .popover-item:hover {
+      background: #F8FAFC;
+      color: var(--brand-primary);
+    }
+
+    /* ==========================================================================
+       STUDIO HEADER & COMPARATIVE VIEW SWITCHER
+       ========================================================================== */
+    .studio-header-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-card);
+      padding: 22px 24px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .breadcrumb-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11.5px;
+      color: #64748B;
+    }
+
+    .breadcrumb-row a {
+      color: #64748B;
+      transition: color var(--transition-fast);
+    }
+
+    .breadcrumb-row a:hover {
+      color: var(--brand-primary);
+    }
+
+    .breadcrumb-sep {
+      color: #CBD5E1;
+      font-size: 11px;
+    }
+
+    .studio-headline-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .studio-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .title-with-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .journey-title-editable {
+      font-family: var(--font-brand);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.025em;
+      outline: none;
+      border-bottom: 1px dashed transparent;
+      padding: 2px 4px;
+      border-radius: 4px;
+      transition: all var(--transition-fast);
+    }
+
+    .journey-title-editable:hover {
+      border-bottom-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .journey-title-editable:focus {
+      background: #FFFFFF;
+      border-bottom-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .status-pill-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ECFDF5;
+      color: #059669;
+      border: 1px solid #A7F3D0;
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #059669;
+      animation: pulseDot 1.8s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% { transform: scale(0.9); opacity: 0.7; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.9); opacity: 0.7; }
+    }
+
+    .journey-subtext {
+      font-size: 13px;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .subtext-sep {
+      color: #CBD5E1;
+    }
+
+    /* Actions in Studio Header */
+    .studio-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-action-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 38px;
+      padding: 0 14px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      color: #334155;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-action-ghost:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    .btn-action-ai {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 38px;
+      padding: 0 15px;
+      border-radius: 8px;
+      background: #EDE9FE;
+      border: 1px solid #DDD6FE;
+      color: #7C3AED;
+      font-size: 12.5px;
+      font-weight: 700;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-action-ai:hover {
+      background: #DDD6FE;
+      color: #6D28D9;
+      transform: translateY(-1px);
+    }
+
+    .btn-action-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.3);
+    }
+
+    .btn-action-primary:hover {
+      background: var(--brand-primary-hover);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+      transform: translateY(-1px);
+    }
+
+    /* --------------------------------------------------------------------------
+       TOP COMPARATIVE VIEW SWITCHER PILL
+       -------------------------------------------------------------------------- */
+    .view-switcher-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 6px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .view-switcher-group {
+      display: inline-flex;
+      align-items: center;
+      background: #EEF2F6;
+      border-radius: 9px;
+      padding: 3px;
+      gap: 3px;
+    }
+
+    .view-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 7px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .view-pill-btn:hover {
+      color: #1E293B;
+    }
+
+    .view-pill-btn.active {
+      background: #FFFFFF;
+      color: var(--brand-primary);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+    }
+
+    .view-pill-kbd {
+      font-size: 9.5px;
+      font-family: var(--font-mono);
+      padding: 1px 5px;
+      background: #F1F5F9;
+      border-radius: 4px;
+      color: #94A3B8;
+      border: 1px solid #E2E8F0;
+    }
+
+    .view-pill-btn.active .view-pill-kbd {
+      background: #EDE9FE;
+      color: #7C3AED;
+      border-color: #DDD6FE;
+    }
+
+    .view-metric-tag {
+      font-size: 11.5px;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding-right: 8px;
+    }
+
+    .freed-space-badge {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      color: #166534;
+      font-weight: 700;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================================================
+       SUB-CONTROLS & FILTER BAR
+       ========================================================================== */
+    .filters-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-pills-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: var(--radius-full);
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      font-size: 12px;
+      font-weight: 500;
+      color: #475569;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .filter-chip:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      color: #0F172A;
+    }
+
+    .filter-chip.active {
+      background: var(--brand-primary);
+      border-color: var(--brand-primary);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .filter-chip-count {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      padding: 1px 5px;
+      border-radius: var(--radius-full);
+      background: #F1F5F9;
+      color: #64748B;
+    }
+
+    .filter-chip.active .filter-chip-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    /* Department Multi-Select Dropdown */
+    .dept-dropdown-wrap {
+      position: relative;
+    }
+
+    .dept-select-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 34px;
+      padding: 0 12px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .dept-select-btn:hover {
+      border-color: #CBD5E1;
+      background: #F8FAFC;
+    }
+
+    .dept-dropdown-panel {
+      position: absolute;
+      top: 40px;
+      left: 0;
+      width: 240px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-float);
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 80;
+      animation: popIn 0.16s ease-out;
+    }
+
+    .dept-dropdown-panel.open {
+      display: flex;
+    }
+
+    .dept-option-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      color: #334155;
+      transition: background var(--transition-fast);
+      user-select: none;
+    }
+
+    .dept-option-row:hover {
+      background: #F8FAFC;
+    }
+
+    .dept-checkbox {
+      width: 15px;
+      height: 15px;
+      border-radius: 4px;
+      border: 1.5px solid #CBD5E1;
+      cursor: pointer;
+      accent-color: var(--brand-primary);
+    }
+
+    /* Right quick search and add step */
+    .filter-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-search-input {
+      height: 34px;
+      width: 200px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 0 10px 0 30px;
+      font-size: 12px;
+      color: #0F172A;
+      position: relative;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .step-search-input:focus {
+      width: 240px;
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .step-search-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .step-search-icon {
+      position: absolute;
+      left: 9px;
+      color: #94A3B8;
+      pointer-events: none;
+    }
+
+    .btn-add-step-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 8px;
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.25);
+    }
+
+    .btn-add-step-primary:hover {
+      background: var(--brand-primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       VIEW 1: MILESTONE STUDIO (Bento & Stage Timeline)
+       ========================================================================== */
+    .view-container {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .view-container.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Stage Navigation Rail Cards */
+    .stage-nav-deck {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stage-nav-card {
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid var(--border-card);
+      padding: 14px 16px;
+      cursor: pointer;
+      position: relative;
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stage-nav-card:hover {
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .stage-nav-card.active {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 2px var(--brand-primary), 0 8px 24px -4px rgba(124, 58, 237, 0.18);
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAF8FF 100%);
+    }
+
+    .stage-top-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stage-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      font-family: var(--font-mono);
+    }
+
+    .stage-nav-card.active .stage-tag {
+      color: var(--brand-primary);
+    }
+
+    .stage-duration-chip {
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--font-mono);
+      background: #F1F5F9;
+      color: #475569;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .stage-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-heading);
+      line-height: 1.3;
+    }
+
+    .stage-progress-bar-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .stage-dots-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .step-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #E2E8F0;
+      transition: all var(--transition-fast);
+    }
+
+    .step-dot.filled {
+      background: var(--brand-primary);
+    }
+
+    .step-dot.verified {
+      background: var(--emerald-success);
+    }
+
+    .stage-status-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    /* Active Stage Hero / Bento Stage Header */
+    .active-stage-banner {
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .stage-banner-left {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .stage-banner-title {
+      font-family: var(--font-brand);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-heading);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stage-unlock-trigger {
+      font-size: 12.5px;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stage-banner-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .checkpoint-toggle-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* Bento Milestone Card Container (Using the freed-up 400px!) */
+    .bento-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+
+    .step-card {
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .step-card:hover {
+      border-color: #CBD5E1;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
+    }
+
+    .step-card.active-inspecting {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 2px var(--brand-primary), 0 8px 24px -4px rgba(124, 58, 237, 0.16);
+    }
+
+    .step-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .step-type-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      font-family: var(--font-mono);
+      border: 1px solid transparent;
+    }
+
+    .step-type-pill.type-session {
+      background: var(--type-session-bg);
+      color: var(--type-session-text);
+      border-color: var(--type-session-border);
+    }
+
+    .step-type-pill.type-quiz {
+      background: var(--type-quiz-bg);
+      color: var(--type-quiz-text);
+      border-color: var(--type-quiz-border);
+    }
+
+    .step-type-pill.type-agree {
+      background: var(--type-agree-bg);
+      color: var(--type-agree-text);
+      border-color: var(--type-agree-border);
+    }
+
+    .step-type-pill.type-photo {
+      background: var(--type-photo-bg);
+      color: var(--type-photo-text);
+      border-color: var(--type-photo-border);
+    }
+
+    .step-type-pill.type-number {
+      background: var(--type-number-bg);
+      color: var(--type-number-text);
+      border-color: var(--type-number-border);
+    }
+
+    .step-type-pill.type-tick {
+      background: var(--type-tick-bg);
+      color: var(--type-tick-text);
+      border-color: var(--type-tick-border);
+    }
+
+    .step-header-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-drag-handle {
+      color: #94A3B8;
+      cursor: grab;
+      padding: 3px;
+      border-radius: 4px;
+      display: grid;
+      place-items: center;
+      transition: color var(--transition-fast);
+    }
+
+    .step-drag-handle:hover {
+      color: #475569;
+      background: #F1F5F9;
+    }
+
+    .step-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .step-card-title {
+      font-family: var(--font-brand);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-heading);
+      line-height: 1.35;
+    }
+
+    .step-card-desc {
+      font-size: 12.5px;
+      color: #64748B;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .step-meta-chips-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .meta-chip {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      color: #475569;
+      font-family: var(--font-mono);
+    }
+
+    .meta-chip.chip-required {
+      background: #FEF2F2;
+      border-color: #FECACA;
+      color: #DC2626;
+      font-weight: 700;
+    }
+
+    .meta-chip.chip-optional {
+      background: #F8FAFC;
+      border-color: #E2E8F0;
+      color: #64748B;
+    }
+
+    .meta-chip.chip-dept {
+      background: #F5F3FF;
+      border-color: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .step-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .step-criteria-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .step-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .step-mini-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: grid;
+      place-items: center;
+      color: #64748B;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .step-mini-btn:hover {
+      background: #F1F5F9;
+      color: var(--brand-primary);
+    }
+
+    .btn-configure-step {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 6px;
+      background: #F5F3FF;
+      border: 1px solid #EDE9FE;
+      color: #7C3AED;
+      font-size: 11.5px;
+      font-weight: 600;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-configure-step:hover {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border-color: var(--brand-primary);
+    }
+
+    /* Add Step Dropcard in View 1 */
+    .add-step-dropcard {
+      background: transparent;
+      border: 2px dashed #CBD5E1;
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      color: #64748B;
+      transition: all var(--transition-fast);
+      min-height: 180px;
+    }
+
+    .add-step-dropcard:hover {
+      border-color: var(--brand-primary);
+      background: #FAF8FF;
+      color: var(--brand-primary);
+    }
+
+    .dropcard-icon-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      display: grid;
+      place-items: center;
+      color: inherit;
+    }
+
+    .dropcard-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: inherit;
+    }
+
+    .dropcard-sub {
+      font-size: 11.5px;
+      color: #94A3B8;
+    }
+
+    /* ==========================================================================
+       VIEW 2: LINEAR COMMAND DECK (Unified Vertical Canvas)
+       ========================================================================== */
+    .command-deck-canvas {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Top-Level Configuration Ribbon */
+    .top-config-ribbon {
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-sm);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .config-ribbon-pills {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .config-ribbon-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .config-ribbon-item:hover {
+      background: #FFFFFF;
+      border-color: var(--brand-primary);
+    }
+
+    .config-label-dim {
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    .config-val-strong {
+      color: #0F172A;
+      font-weight: 700;
+    }
+
+    /* Quick 1-Click Step Insertion Bar (Docked / Sticky Bar) */
+    .quick-insert-dock {
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-sm);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 90px;
+      z-index: 45;
+    }
+
+    .dock-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-family: var(--font-mono);
+      white-space: nowrap;
+    }
+
+    .dock-pill-buttons {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-quick-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid transparent;
+      user-select: none;
+    }
+
+    .btn-quick-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .btn-quick-pill.pill-session {
+      background: var(--type-session-bg);
+      color: var(--type-session-text);
+      border-color: var(--type-session-border);
+    }
+
+    .btn-quick-pill.pill-quiz {
+      background: var(--type-quiz-bg);
+      color: var(--type-quiz-text);
+      border-color: var(--type-quiz-border);
+    }
+
+    .btn-quick-pill.pill-agree {
+      background: var(--type-agree-bg);
+      color: var(--type-agree-text);
+      border-color: var(--type-agree-border);
+    }
+
+    .btn-quick-pill.pill-photo {
+      background: var(--type-photo-bg);
+      color: var(--type-photo-text);
+      border-color: var(--type-photo-border);
+    }
+
+    .btn-quick-pill.pill-number {
+      background: var(--type-number-bg);
+      color: var(--type-number-text);
+      border-color: var(--type-number-border);
+    }
+
+    .btn-quick-pill.pill-tick {
+      background: var(--type-tick-bg);
+      color: var(--type-tick-text);
+      border-color: var(--type-tick-border);
+    }
+
+    /* Vertical Timeline Container */
+    .vertical-timeline-stream {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      padding-left: 28px;
+    }
+
+    .timeline-rail-line {
+      position: absolute;
+      left: 10px;
+      top: 15px;
+      bottom: 25px;
+      width: 2px;
+      background: #CBD5E1;
+      border-radius: 2px;
+    }
+
+    /* Milestone Vertical Block */
+    .milestone-block {
+      position: relative;
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      transition: all var(--transition-fast);
+    }
+
+    .milestone-block:hover {
+      box-shadow: var(--shadow-card);
+    }
+
+    .milestone-timeline-node {
+      position: absolute;
+      left: -28px;
+      top: 18px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      border: 3px solid var(--brand-primary);
+      box-shadow: 0 0 0 4px var(--brand-primary-light);
+      z-index: 2;
+    }
+
+    .milestone-block-header {
+      padding: 16px 20px;
+      background: #F8FAFC;
+      border-bottom: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .milestone-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .milestone-chevron {
+      color: #94A3B8;
+      transition: transform var(--transition-fast);
+    }
+
+    .milestone-block.collapsed .milestone-chevron {
+      transform: rotate(-90deg);
+    }
+
+    .milestone-header-title {
+      font-family: var(--font-brand);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .milestone-timing-badge {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .milestone-step-count-badge {
+      font-size: 11px;
+      color: #64748B;
+      font-weight: 600;
+    }
+
+    .milestone-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-add-step-subtle {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--brand-primary);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-add-step-subtle:hover {
+      background: var(--brand-primary);
+      color: #FFFFFF;
+      border-color: var(--brand-primary);
+    }
+
+    /* Milestone Steps List */
+    .milestone-steps-list {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 14px;
+      gap: 8px;
+    }
+
+    .milestone-block.collapsed .milestone-steps-list {
+      display: none;
+    }
+
+    /* Compact Linear Step Row */
+    .linear-step-wrapper {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      background: #FFFFFF;
+      transition: all var(--transition-fast);
+      overflow: hidden;
+    }
+
+    .linear-step-wrapper:hover {
+      border-color: #CBD5E1;
+      background: #FAF8FF;
+    }
+
+    .linear-step-wrapper.expanded {
+      border-color: var(--brand-primary);
+      box-shadow: 0 4px 16px -2px rgba(124, 58, 237, 0.12);
+      background: #FFFFFF;
+    }
+
+    .linear-step-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .linear-row-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .linear-drag {
+      color: #94A3B8;
+      cursor: grab;
+    }
+
+    .linear-step-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .linear-step-title {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-heading);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .linear-step-sub {
+      font-size: 11.5px;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .linear-row-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .linear-expand-chevron {
+      color: #94A3B8;
+      transition: transform var(--transition-fast);
+    }
+
+    .linear-step-wrapper.expanded .linear-expand-chevron {
+      transform: rotate(180deg);
+      color: var(--brand-primary);
+    }
+
+    /* Inline Interactive Expansion Panel (No page-jumping disorientation!) */
+    .inline-expansion-panel {
+      display: none;
+      padding: 16px 20px 20px 20px;
+      background: #F8FAFC;
+      border-top: 1px solid var(--border-card);
+      flex-direction: column;
+      gap: 14px;
+      animation: expandDown 0.2s ease-out;
+    }
+
+    .linear-step-wrapper.expanded .inline-expansion-panel {
+      display: flex;
+    }
+
+    @keyframes expandDown {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .inline-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .inline-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .inline-field-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .inline-text-input {
+      height: 36px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 7px;
+      padding: 0 10px;
+      font-size: 12.5px;
+      color: #0F172A;
+      transition: all var(--transition-fast);
+    }
+
+    .inline-text-input:focus {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .inline-panel-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px solid #E2E8F0;
+    }
+
+    .inline-footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Add Milestone Stream Button */
+    .btn-add-milestone-stream {
+      background: #FFFFFF;
+      border: 2px dashed #CBD5E1;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #64748B;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-add-milestone-stream:hover {
+      border-color: var(--brand-primary);
+      color: var(--brand-primary);
+      background: #FAF8FF;
+    }
+
+    /* ==========================================================================
+       BOTTOM FLOATING STICKY SUMMARY BAR
+       ========================================================================== */
+    .bottom-summary-bar {
+      position: sticky;
+      bottom: 18px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.12), 0 4px 12px rgba(15, 23, 42, 0.05);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      z-index: 45;
+      margin-top: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .summary-left-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .summary-metric-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 12px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    .summary-metric-pill strong {
+      color: #0F172A;
+    }
+
+    .readiness-check-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #059669;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .summary-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-save-draft {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 38px;
+      padding: 0 16px;
+      border-radius: 8px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      color: #334155;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-save-draft:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+    }
+
+    .btn-publish-journey {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 38px;
+      padding: 0 20px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+    }
+
+    .btn-publish-journey:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(124, 58, 237, 0.45);
+    }
+
+    /* ==========================================================================
+       SLIDE-OVER INSPECTOR DRAWER (460px Slide-out)
+       ========================================================================== */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.3);
+      backdrop-filter: blur(2px);
+      z-index: 120;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .drawer-overlay.open {
+      display: block;
+    }
+
+    .inspector-drawer {
+      position: fixed;
+      top: 0;
+      right: -520px;
+      width: 490px;
+      max-width: 90vw;
+      height: 100vh;
+      background: #FFFFFF;
+      box-shadow: var(--shadow-drawer);
+      z-index: 130;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .inspector-drawer.open {
+      right: 0;
+    }
+
+    .drawer-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .drawer-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .drawer-title-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .drawer-title {
+      font-family: var(--font-brand);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .drawer-step-id {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: #94A3B8;
+    }
+
+    .drawer-close-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #64748B;
+      transition: all var(--transition-fast);
+      cursor: pointer;
+    }
+
+    .drawer-close-btn:hover {
+      background: #F1F5F9;
+      color: #0F172A;
+    }
+
+    .drawer-body-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .drawer-section-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #64748B;
+      margin-bottom: 8px;
+    }
+
+    .drawer-form-card {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #334155;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #0F172A;
+      transition: all var(--transition-fast);
+      width: 100%;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    }
+
+    .form-textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .form-toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 0;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background-color: #CBD5E1;
+      border-radius: 24px;
+      transition: var(--transition-fast);
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: var(--transition-fast);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    input:checked + .toggle-slider {
+      background-color: var(--brand-primary);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(18px);
+    }
+
+    /* Type Specific Form Blocks */
+    .type-config-box {
+      border: 1.5px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 16px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .quiz-slider-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slider-score-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .score-percent-badge {
+      font-size: 14px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--brand-primary);
+    }
+
+    .range-input {
+      width: 100%;
+      accent-color: var(--brand-primary);
+      cursor: pointer;
+    }
+
+    /* Questions builder item */
+    .quiz-question-item {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .quiz-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .quiz-option-radio-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .file-upload-dropzone {
+      border: 2px dashed #CBD5E1;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      background: #FAF8FF;
+    }
+
+    .file-upload-dropzone:hover {
+      border-color: var(--brand-primary);
+      background: #F5F0FF;
+    }
+
+    .attached-file-pill {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .drawer-footer {
+      padding: 16px 22px;
+      border-top: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       MODALS: ASK AI TO DRAFT & STARTER TEMPLATES
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      z-index: 150;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: fadeIn 0.18s ease;
+    }
+
+    .modal-dialog {
+      background: #FFFFFF;
+      border-radius: 18px;
+      border: 1px solid var(--border-card);
+      box-shadow: var(--shadow-modal);
+      width: 620px;
+      max-width: 95vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalPop {
+      0% { opacity: 0; transform: scale(0.95) translateY(8px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-spark-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #7C3AED 0%, #4F46E5 100%);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+    }
+
+    .modal-title {
+      font-family: var(--font-brand);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .suggested-chips-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .suggested-label {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #64748B;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .chips-flex-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .prompt-chip {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .prompt-chip:hover {
+      background: #EDE9FE;
+      border-color: #DDD6FE;
+      color: #7C3AED;
+      transform: translateY(-1px);
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      background: #F8FAFC;
+    }
+
+    /* Template Cards Grid in Templates Modal */
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .template-card-item {
+      background: #FFFFFF;
+      border: 1px solid var(--border-card);
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all var(--transition-fast);
+    }
+
+    .template-card-item:hover {
+      border-color: var(--brand-primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .template-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .template-tag {
+      font-size: 10.5px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .template-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    .template-desc {
+      font-size: 12px;
+      color: #64748B;
+      line-height: 1.4;
+    }
+
+    .template-footer-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid #EEF2F6;
+      font-size: 11px;
+      color: #94A3B8;
+    }
+
+    /* Toast Notification System */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast-pill {
+      pointer-events: auto;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 12px 18px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      font-size: 13px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: toastSlide 0.25s ease-out;
+    }
+
+    @keyframes toastSlide {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .toast-undo-btn {
+      color: #A78BFA;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* Responsiveness adjustments */
+    @media (max-width: 1024px) {
+      .stage-nav-deck {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .bento-steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .topbar-search {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-layout">
+    
+    <!-- ==========================================================================
+         FLOATING WHITE SIDEBAR ISLAND (.app-sidebar, 218px wide, 18px margin)
+         ========================================================================== -->
+    <aside class="app-sidebar" id="appSidebar">
+      
+      <!-- Brand Header -->
+      <div class="sidebar-header">
+        <div class="brand-container" onclick="showToast('DoubleTree by Hilton Workspace')">
+          <div class="brand-wordmark">
+            <span>Hirer</span>
+            <span class="logo-key-wrap">
+              key
+              <svg class="logo-swoosh" viewBox="0 0 48 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 6C14 1.5 32 1.5 46 7.5" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </div>
+          <span class="brand-version-badge">PRO</span>
+        </div>
+      </div>
+
+      <!-- Quick Search Area -->
+      <div class="sidebar-search-area">
+        <div class="sidebar-search-pill" onclick="document.getElementById('sidebarSearchInput').focus()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="sidebarSearchInput" placeholder="Jump to menu..." autocomplete="off">
+          <kbd class="sidebar-kbd">⌘K</kbd>
+        </div>
+      </div>
+
+      <!-- Scrollable Navigation -->
+      <nav class="sidebar-nav-scroll">
+        
+        <!-- General Category -->
+        <div class="nav-category">
+          <div class="cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">General</span>
+            <span class="cat-chevron">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </div>
+          <div class="cat-items">
+            <a href="dashboard_view2.html" class="nav-item">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                </span>
+                <span class="nav-label">Dashboard</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" onclick="showToast('Opening HyIQ AI Studio...')">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </span>
+                <span class="nav-label">HyIQ Studio</span>
+              </div>
+              <span class="nav-badge">AI</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Onboarding Category (Active Module) -->
+        <div class="nav-category">
+          <div class="cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Onboarding</span>
+            <span class="cat-chevron">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </div>
+          <div class="cat-items">
+            <a href="javascript:void(0)" class="nav-item active" title="Orientation Journeys (Current Module)">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg>
+                </span>
+                <span class="nav-label">Orientation Studio</span>
+              </div>
+              <span class="nav-badge">ACTIVE</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" onclick="showToast('Department Tours checklist')">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+                </span>
+                <span class="nav-label">Department Tours</span>
+              </div>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" onclick="showToast('Buddy Program pairings')">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                </span>
+                <span class="nav-label">Buddy Mentorship</span>
+              </div>
+            </a>
+            <a href="pulse_survey.html" class="nav-item">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                </span>
+                <span class="nav-label">Pulse Surveys</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Operations & Staffing -->
+        <div class="nav-category">
+          <div class="cat-header" onclick="toggleNavCategory(this)">
+            <span class="cat-title">Operations</span>
+            <span class="cat-chevron">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </div>
+          <div class="cat-items">
+            <a href="hr_broadcast_view3.html" class="nav-item">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </span>
+                <span class="nav-label">HR Broadcasts</span>
+              </div>
+            </a>
+            <a href="offboarding.html" class="nav-item">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                </span>
+                <span class="nav-label">Offboarding</span>
+              </div>
+            </a>
+            <a href="preferences.html" class="nav-item">
+              <div class="nav-item-left">
+                <span class="nav-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                </span>
+                <span class="nav-label">Preferences</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </nav>
+
+      <!-- Property Switcher Footer -->
+      <div class="sidebar-footer">
+        <div class="workspace-switcher" onclick="showToast('Switched property to DoubleTree by Hilton')">
+          <div class="workspace-info">
+            <div class="workspace-avatar">DT</div>
+            <div class="workspace-text-group">
+              <span class="workspace-label">Property</span>
+              <span class="workspace-title">DoubleTree Hilton</span>
+            </div>
+          </div>
+          <span class="workspace-unfold-icon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M7 9l5-5 5 5"></path><path d="M7 15l5 5 5-5"></path></svg>
+          </span>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ==========================================================================
+         MAIN WRAPPER WITH TOPBAR & COMPARATIVE CANVASES
+         ========================================================================== -->
+    <main class="main-wrapper">
+      
+      <!-- Topbar Island -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <!-- Sidebar collapse toggle -->
+          <button class="icon-btn" id="btnToggleSidebar" title="Toggle Sidebar" onclick="toggleSidebar()">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+              <line x1="9" y1="3" x2="9" y2="21"></line>
+            </svg>
+          </button>
+
+          <!-- Presentation screen view toggle -->
+          <button class="icon-btn" title="Fullscreen Canvas Mode" onclick="toggleFullscreen()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+            </svg>
+          </button>
+
+          <div class="topbar-divider"></div>
+
+          <!-- Topbar Global Search with ⌘K -->
+          <div class="topbar-search">
+            <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="topbarSearchInput" placeholder="Search steps, SOPs, mentors..." oninput="handleGlobalSearch(this.value)">
+            <kbd class="topbar-search-kbd">⌘K</kbd>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <!-- [ 🤖 Ask HyIQ ] Purple Capsule -->
+          <button class="btn-ask-hyiq" title="Ask HyIQ AI Assistant (⌘J)" onclick="openAiDraftModal()">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3.5" y="6" width="17" height="15" rx="7.5" fill="#FFFFFF"/>
+              <circle cx="8.5" cy="12.5" r="1.8" fill="#7C3AED"/>
+              <circle cx="15.5" cy="12.5" r="1.8" fill="#7C3AED"/>
+              <path d="M9.5 15.8C10.5 17.2 13.5 17.2 14.5 15.8" stroke="#7C3AED" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <span>Ask HyIQ</span>
+          </button>
+
+          <!-- [ 📶 Voice ] Pulsing Animated Capsule -->
+          <button class="btn-voice-capsule" title="HyIQ Voice Command (⌘⇧Space)" onclick="startVoiceSimulation()">
+            <div class="voice-bars">
+              <div class="voice-bar voice-bar-1"></div>
+              <div class="voice-bar voice-bar-2"></div>
+              <div class="voice-bar voice-bar-3"></div>
+              <div class="voice-bar voice-bar-4"></div>
+            </div>
+            <span class="voice-text">Voice</span>
+            <kbd class="voice-shortcut">⌘⇧Space</kbd>
+          </button>
+
+          <!-- 99+ Notifications Pill -->
+          <div class="notif-wrapper">
+            <button class="notif-btn" title="99+ Notifications" onclick="showToast('You have 99+ pending employee onboarding check-ins')">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="notif-pill-badge">99+</span>
+            </button>
+          </div>
+
+          <!-- User Profile: Chanchal Sharma, DoubleTree by Hilton -->
+          <div class="user-profile-menu">
+            <div class="user-profile-pill" onclick="toggleProfileMenu()">
+              <div class="user-avatar-circle">CS</div>
+              <div class="user-meta-stack">
+                <span class="user-display-name">Chanchal Sharma</span>
+                <span class="user-property-name">DoubleTree by Hilton</span>
+              </div>
+              <svg class="user-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </div>
+
+            <!-- Profile Popover -->
+            <div class="profile-popover" id="profilePopover">
+              <div style="padding: 8px 12px; border-bottom: 1px solid #EEF2F6;">
+                <div style="font-weight: 700; color: #0F172A; font-size: 13px;">Chanchal Sharma</div>
+                <div style="font-size: 11px; color: #64748B;">Director of People & Culture</div>
+              </div>
+              <div class="popover-item" onclick="showToast('Profile Settings opened')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>My Profile</span>
+              </div>
+              <div class="popover-item" onclick="showToast('Property Switcher opened')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                <span>Switch Property</span>
+              </div>
+              <div class="popover-item" style="color: #DC2626;" onclick="showToast('Logged out of demo session')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <span>Sign Out</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </header>
+
+      <!-- ==========================================================================
+           STUDIO HERO HEADER WITH VIEW SWITCHER
+           ========================================================================== -->
+      <section class="studio-header-card">
+        
+        <div class="breadcrumb-row">
+          <a href="javascript:void(0)">DoubleTree by Hilton</a>
+          <span class="breadcrumb-sep">/</span>
+          <a href="javascript:void(0)">Onboarding</a>
+          <span class="breadcrumb-sep">/</span>
+          <span style="color: #0F172A; font-weight: 600;">Orientation Journey Studio</span>
+        </div>
+
+        <div class="studio-headline-row">
+          <div class="studio-title-block">
+            <div class="title-with-badge">
+              <span class="journey-title-editable" contenteditable="true" id="journeyTitleText" title="Click to rename journey" onblur="handleTitleChange(this.innerText)">
+                Front Office & Guest Services Onboarding 2026
+              </span>
+              <span class="status-pill-live">
+                <span class="live-dot"></span>
+                ACTIVE DRAFT
+              </span>
+            </div>
+            <div class="journey-subtext">
+              <span>Property: DoubleTree by Hilton Austin</span>
+              <span class="subtext-sep">•</span>
+              <span id="headerMetaCount">4 Milestones • 14 Verification Steps</span>
+              <span class="subtext-sep">•</span>
+              <span id="headerMetaTime">⏱ 12h 25m total runtime</span>
+              <span class="subtext-sep">•</span>
+              <span>Target: Front Desk, Concierge, Night Audit</span>
+            </div>
+          </div>
+
+          <div class="studio-header-actions">
+            <!-- Ask AI to Draft Modal Trigger -->
+            <button class="btn-action-ai" onclick="openAiDraftModal()" title="Ask HyIQ to draft complete onboarding steps">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>Ask AI to Draft</span>
+              <kbd style="font-size: 10px; font-family: var(--font-mono); opacity: 0.8; margin-left: 2px;">⌘J</kbd>
+            </button>
+
+            <!-- Starter Templates Modal Trigger -->
+            <button class="btn-action-ghost" onclick="openTemplatesModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Starter Templates</span>
+            </button>
+
+            <!-- Preview as Employee -->
+            <button class="btn-action-ghost" onclick="openEmployeePreviewModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <span>Employee Preview</span>
+            </button>
+
+            <!-- Quick Save Draft -->
+            <button class="btn-action-ghost" onclick="saveDraft()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              <span>Save</span>
+            </button>
+
+            <!-- Publish Journey -->
+            <button class="btn-action-primary" onclick="publishJourney()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Publish Journey</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TWO DISTINCT COMPARATIVE VIEWS SWITCHER PILL -->
+        <div class="view-switcher-bar">
+          <div class="view-switcher-group">
+            <button class="view-pill-btn active" id="btnView1" onclick="switchView(1)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+              <span>View 1: Milestone Studio</span>
+              <kbd class="view-pill-kbd">1</kbd>
+            </button>
+
+            <button class="view-pill-btn" id="btnView2" onclick="switchView(2)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+              <span>View 2: Linear Command Deck</span>
+              <kbd class="view-pill-kbd">2</kbd>
+            </button>
+          </div>
+
+          <div class="view-metric-tag">
+            <span class="freed-space-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              +400px Freed Space (No Phone Sim)
+            </span>
+            <span style="color: #94A3B8;">•</span>
+            <span id="currentViewDescription">Spatial Bento Cards & Stage Rail</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==========================================================================
+           FILTERS & SEARCH BAR
+           ========================================================================== -->
+      <section class="filters-bar">
+        
+        <div class="filter-pills-left">
+          <!-- Step Type Filter Chips -->
+          <button class="filter-chip active" data-type="all" onclick="filterByStepType('all', this)">
+            <span>All Steps</span>
+            <span class="filter-chip-count" id="countAllSteps">14</span>
+          </button>
+          <button class="filter-chip" data-type="session" onclick="filterByStepType('session', this)">
+            <span>Sessions</span>
+            <span class="filter-chip-count">3</span>
+          </button>
+          <button class="filter-chip" data-type="quiz" onclick="filterByStepType('quiz', this)">
+            <span>Quizzes</span>
+            <span class="filter-chip-count">3</span>
+          </button>
+          <button class="filter-chip" data-type="agree" onclick="filterByStepType('agree', this)">
+            <span>Read & Agree</span>
+            <span class="filter-chip-count">3</span>
+          </button>
+          <button class="filter-chip" data-type="photo" onclick="filterByStepType('photo', this)">
+            <span>Photos</span>
+            <span class="filter-chip-count">2</span>
+          </button>
+          <button class="filter-chip" data-type="number" onclick="filterByStepType('number', this)">
+            <span>Numbers</span>
+            <span class="filter-chip-count">2</span>
+          </button>
+          <button class="filter-chip" data-type="tick" onclick="filterByStepType('tick', this)">
+            <span>Checklists</span>
+            <span class="filter-chip-count">1</span>
+          </button>
+
+          <!-- Department Multi-Select Dropdown -->
+          <div class="dept-dropdown-wrap">
+            <button class="dept-select-btn" onclick="toggleDeptDropdown()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>
+              <span id="deptFilterLabel">Dept: All (4)</span>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </button>
+
+            <div class="dept-dropdown-panel" id="deptDropdownPanel">
+              <div style="font-size: 11px; font-weight: 700; color: #64748B; text-transform: uppercase; margin-bottom: 4px;">Target Departments</div>
+              <label class="dept-option-row">
+                <input type="checkbox" class="dept-checkbox" checked value="Front Desk" onchange="updateDeptFilters()">
+                <span>Front Desk (6)</span>
+              </label>
+              <label class="dept-option-row">
+                <input type="checkbox" class="dept-checkbox" checked value="Concierge" onchange="updateDeptFilters()">
+                <span>Concierge & Bell (4)</span>
+              </label>
+              <label class="dept-option-row">
+                <input type="checkbox" class="dept-checkbox" checked value="Night Audit" onchange="updateDeptFilters()">
+                <span>Night Audit (2)</span>
+              </label>
+              <label class="dept-option-row">
+                <input type="checkbox" class="dept-checkbox" checked value="Guest Experience" onchange="updateDeptFilters()">
+                <span>Guest Experience (2)</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-actions-right">
+          <div class="step-search-wrap">
+            <svg class="step-search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" class="step-search-input" placeholder="Filter current view..." oninput="handleStepFilterSearch(this.value)">
+          </div>
+
+          <button class="btn-add-step-primary" onclick="openAddStepQuickPrompt()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add Step</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ==========================================================================
+           VIEW 1: MILESTONE STUDIO (Spatial / Bento / Stage Timeline)
+           ========================================================================== -->
+      <section class="view-container active" id="viewMilestoneStudio">
+        
+        <!-- Stage Pill Navigation Cards (Day 1, Day 2, Week 1, Month 1) -->
+        <div class="stage-nav-deck">
+          
+          <div class="stage-nav-card active" data-stage="day1" onclick="selectStage('day1', this)">
+            <div class="stage-top-meta">
+              <span class="stage-tag">Stage 01</span>
+              <span class="stage-duration-chip">⏱ 55 mins</span>
+            </div>
+            <div class="stage-title">Day 1: First Impressions & Security</div>
+            <div class="stage-progress-bar-row">
+              <div class="stage-dots-row">
+                <div class="step-dot filled"></div>
+                <div class="step-dot filled"></div>
+                <div class="step-dot filled"></div>
+                <div class="step-dot filled"></div>
+              </div>
+              <span class="stage-status-label">4 Steps • Ready</span>
+            </div>
+          </div>
+
+          <div class="stage-nav-card" data-stage="day2" onclick="selectStage('day2', this)">
+            <div class="stage-top-meta">
+              <span class="stage-tag">Stage 02</span>
+              <span class="stage-duration-chip">⏱ 2.5 hrs</span>
+            </div>
+            <div class="stage-title">Day 2: PMS Systems & Department Tour</div>
+            <div class="stage-progress-bar-row">
+              <div class="stage-dots-row">
+                <div class="step-dot filled"></div>
+                <div class="step-dot filled"></div>
+                <div class="step-dot filled"></div>
+              </div>
+              <span class="stage-status-label">3 Steps • Ready</span>
+            </div>
+          </div>
+
+          <div class="stage-nav-card" data-stage="week1" onclick="selectStage('week1', this)">
+            <div class="stage-top-meta">
+              <span class="stage-tag">Stage 03</span>
+              <span class="stage-duration-chip">⏱ 6.0 hrs</span>
+            </div>
+            <div class="stage-title">Week 1: Shadowing & Core SOPs</div>
+            <div class="stage-progress-bar-row">
+              <div class="stage-dots-row">
+                <div class="step-dot filled"></div>
+                <div class="step-dot filled"></div>
+                <div class="step-dot filled"></div>
+                <div class="step-dot"></div>
+              </div>
+              <span class="stage-status-label">4 Steps • Configured</span>
+            </div>
+          </div>
+
+          <div class="stage-nav-card" data-stage="month1" onclick="selectStage('month1', this)">
+            <div class="stage-top-meta">
+              <span class="stage-tag">Stage 04</span>
+              <span class="stage-duration-chip">⏱ 3.0 hrs</span>
+            </div>
+            <div class="stage-title">Month 1: Autonomy, Culture & Check-in</div>
+            <div class="stage-progress-bar-row">
+              <div class="stage-dots-row">
+                <div class="step-dot filled"></div>
+                <div class="step-dot filled"></div>
+                <div class="step-dot"></div>
+              </div>
+              <span class="stage-status-label">3 Steps • In Progress</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Active Stage Hero Banner -->
+        <div class="active-stage-banner">
+          <div class="stage-banner-left">
+            <div class="stage-banner-title">
+              <span id="activeStageTitleDisplay">Day 1: First Impressions & Security</span>
+              <span class="template-tag" id="activeStageBadge">MANDATORY CHECKPOINT</span>
+            </div>
+            <div class="stage-unlock-trigger">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>Auto-unlocks at 08:30 AM on official employee start date</span>
+              <span style="color: #CBD5E1;">•</span>
+              <span id="activeStageSubtext">4 verification steps required for Day 2 unlock</span>
+            </div>
+          </div>
+
+          <div class="stage-banner-right">
+            <div class="checkpoint-toggle-group">
+              <label class="toggle-switch">
+                <input type="checkbox" checked id="managerApprovalToggle" onchange="showToast('Manager sign-off checkpoint updated')">
+                <span class="toggle-slider"></span>
+              </label>
+              <span>Require Manager Sign-off</span>
+            </div>
+
+            <button class="btn-action-ghost" onclick="askAiToOptimizeStage()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <span>HyIQ Stage Review</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bento Milestone Step Cards Grid (Expansive 400px+ Screen Real Estate) -->
+        <div class="bento-steps-grid" id="bentoCardsContainer">
+          <!-- Dynamically populated by JS renderBentoCards() -->
+        </div>
+
+      </section>
+
+      <!-- ==========================================================================
+           VIEW 2: LINEAR COMMAND DECK (Single Unified Vertical Canvas)
+           ========================================================================== -->
+      <section class="view-container" id="viewLinearCommandDeck">
+        
+        <div class="command-deck-canvas">
+          
+          <!-- Top-Level Configuration Ribbon -->
+          <div class="top-config-ribbon">
+            <div class="config-ribbon-pills">
+              <div class="config-ribbon-item" onclick="showToast('Configure target audience roles')">
+                <span class="config-label-dim">Audience:</span>
+                <span class="config-val-strong">4 Hotel Roles (Front Desk, Concierge, Night Audit)</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+
+              <div class="config-ribbon-item" onclick="showToast('Timeline progression rules')">
+                <span class="config-label-dim">Due Rules:</span>
+                <span class="config-val-strong">Sequential Unlock by Milestone Completion</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+
+              <div class="config-ribbon-item" onclick="showToast('Approval workflows')">
+                <span class="config-label-dim">Approvals:</span>
+                <span class="config-val-strong">Supervisor Sign-off on Day 1 & Week 1</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              </div>
+
+              <div class="config-ribbon-item" onclick="showToast('AI Tutor is actively answering employee queries')">
+                <span class="config-label-dim">HyIQ Tutor:</span>
+                <span class="config-val-strong" style="color: #7C3AED;">Active 24/7</span>
+              </div>
+            </div>
+
+            <div style="font-size: 11.5px; color: #64748B;">
+              Press <kbd class="sidebar-kbd">⌘Enter</kbd> to quick-add
+            </div>
+          </div>
+
+          <!-- Quick 1-Click Step Insertion Bar (Docked / Sticky Bar) -->
+          <div class="quick-insert-dock">
+            <div class="dock-label">Quick Insert Step:</div>
+            <div class="dock-pill-buttons">
+              <button class="btn-quick-pill pill-session" onclick="quickAddStepToCommandDeck('session')">
+                <span>+ Session</span>
+              </button>
+              <button class="btn-quick-pill pill-quiz" onclick="quickAddStepToCommandDeck('quiz')">
+                <span>+ Quiz</span>
+              </button>
+              <button class="btn-quick-pill pill-agree" onclick="quickAddStepToCommandDeck('agree')">
+                <span>+ Read & Agree</span>
+              </button>
+              <button class="btn-quick-pill pill-photo" onclick="quickAddStepToCommandDeck('photo')">
+                <span>+ Photo Upload</span>
+              </button>
+              <button class="btn-quick-pill pill-number" onclick="quickAddStepToCommandDeck('number')">
+                <span>+ Number Input</span>
+              </button>
+              <button class="btn-quick-pill pill-tick" onclick="quickAddStepToCommandDeck('tick')">
+                <span>+ Checklist Tick</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Vertical Timeline Stream with Milestone Blocks -->
+          <div class="vertical-timeline-stream" id="linearTimelineStream">
+            <div class="timeline-rail-line"></div>
+            <!-- Dynamically populated by JS renderLinearCommandDeck() -->
+          </div>
+
+          <!-- Bottom Add Milestone Block -->
+          <div class="btn-add-milestone-stream" onclick="addNewMilestone()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span>Add New Milestone Stage (e.g. 90-Day Performance Review)</span>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ==========================================================================
+           BOTTOM FLOATING STICKY SUMMARY BAR
+           ========================================================================== -->
+      <footer class="bottom-summary-bar">
+        
+        <div class="summary-left-group">
+          <div class="summary-metric-pill">
+            <span>Target:</span>
+            <strong>Front Desk, Concierge, Night Audit (3 Roles)</strong>
+          </div>
+          <div class="summary-metric-pill">
+            <span>Total Steps:</span>
+            <strong id="bottomTotalSteps">14 Steps</strong>
+          </div>
+          <div class="summary-metric-pill">
+            <span>Total Est. Time:</span>
+            <strong id="bottomTotalTime">⏱ 12h 25m</strong>
+          </div>
+          <div class="readiness-check-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>All 4 Milestones Ready & Validated</span>
+          </div>
+        </div>
+
+        <div class="summary-actions-right">
+          <span style="font-size: 11px; color: #94A3B8; font-family: var(--font-mono);">Press ⌘S to quick-save</span>
+          <button class="btn-save-draft" onclick="saveDraft()">Save Draft</button>
+          <button class="btn-publish-journey" onclick="publishJourney()">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Publish Orientation</span>
+          </button>
+        </div>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- ==========================================================================
+       SLIDE-OVER INSPECTOR DRAWER (490px wide)
+       Deep step configuration (Quiz, Number, Read & Agree, Session, Photo)
+       ========================================================================== -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeInspectorDrawer()"></div>
+
+  <aside class="inspector-drawer" id="stepInspectorDrawer">
+    
+    <div class="drawer-header">
+      <div class="drawer-header-left">
+        <span class="step-type-pill type-quiz" id="drawerTypeBadge">QUIZ</span>
+        <div class="drawer-title-group">
+          <div class="drawer-title" id="drawerStepTitleHeading">Configure Step</div>
+          <div class="drawer-step-id" id="drawerStepId">STEP #102</div>
+        </div>
+      </div>
+      <button class="drawer-close-btn" onclick="closeInspectorDrawer()" title="Close Inspector (Esc)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+
+    <div class="drawer-body-scroll">
+      
+      <!-- Basic Configuration -->
+      <div class="drawer-section-title">Step Identity & Overview</div>
+      <div class="drawer-form-card">
+        <div class="form-group">
+          <label class="form-label">Step Title</label>
+          <input type="text" class="form-input" id="drawerTitleInput" value="Emergency Evacuation & Keycard Security" oninput="syncActiveStepTitle(this.value)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Step Type</label>
+          <select class="form-select" id="drawerTypeSelect" onchange="handleDrawerTypeChange(this.value)">
+            <option value="session">Session (In-Person / Virtual Mentor)</option>
+            <option value="quiz">Quiz (Interactive Knowledge Check)</option>
+            <option value="agree">Read & Agree (Policy / SOP Sign-off)</option>
+            <option value="photo">Photo Upload (Grooming / Badge Proof)</option>
+            <option value="number">Number Entry (Float Count / Code / Size)</option>
+            <option value="tick">Checklist Tick (Simple Affirmation)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Employee Instructions (Markdown Supported)</label>
+          <textarea class="form-textarea" id="drawerDescInput">Review the DoubleTree evacuation protocol map. You must answer 4 compliance questions with at least 80% passing score before handling guest keys.</textarea>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="form-group">
+            <label class="form-label">Estimated Time</label>
+            <input type="text" class="form-input" id="drawerDurationInput" value="15 mins">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Target Audience</label>
+            <select class="form-select" id="drawerAudienceInput">
+              <option value="All Departments">All Departments</option>
+              <option value="Front Desk" selected>Front Desk Agents</option>
+              <option value="Concierge">Concierge & Bell</option>
+              <option value="Night Audit">Night Audit</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-toggle-row">
+          <div>
+            <div style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Required Step</div>
+            <div style="font-size: 11px; color: #64748B;">Block next milestone until completed</div>
+          </div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked id="drawerRequiredToggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Contextual Step-Specific Configuration Box -->
+      <div class="drawer-section-title" id="drawerCustomConfigHeading">Knowledge Check Settings</div>
+      <div class="type-config-box" id="drawerTypeConfigBox">
+        
+        <!-- Quiz Contextual Controls -->
+        <div id="quizConfigFields">
+          <div class="quiz-slider-wrap">
+            <div class="slider-score-header">
+              <label class="form-label">Passing Score Threshold</label>
+              <span class="score-percent-badge" id="sliderValueBadge">80%</span>
+            </div>
+            <input type="range" min="50" max="100" step="5" value="80" class="range-input" id="passingScoreSlider" oninput="document.getElementById('sliderValueBadge').innerText = this.value + '%'">
+          </div>
+
+          <div style="margin-top: 14px;" class="form-group">
+            <label class="form-label">Allowed Retries</label>
+            <select class="form-select">
+              <option>Unlimited Retries</option>
+              <option selected>Up to 3 Retries</option>
+              <option>1 Attempt (Strict)</option>
+            </select>
+          </div>
+
+          <div style="margin-top: 14px;" class="form-group">
+            <div class="form-label">
+              <span>Quiz Questions (3)</span>
+              <button class="btn-action-ghost" style="height: 24px; padding: 0 8px; font-size: 11px;" onclick="addQuizQuestion()">+ Add Question</button>
+            </div>
+            <div id="quizQuestionsContainer" style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px;">
+              <div class="quiz-question-item">
+                <div style="font-size: 12px; font-weight: 600;">Q1: What is the primary emergency code for main lobby alarm?</div>
+                <div class="quiz-options-list">
+                  <label class="quiz-option-radio-row">
+                    <input type="radio" name="q1" checked>
+                    <span style="font-size: 11.5px;">Code Red - Front Office Priority</span>
+                  </label>
+                  <label class="quiz-option-radio-row">
+                    <input type="radio" name="q1">
+                    <span style="font-size: 11.5px;">Code Blue - Medical Response</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Read & Agree Contextual Controls -->
+        <div id="agreeConfigFields" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">Attached Policy / SOP Document</label>
+            <div class="attached-file-pill">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <span>DoubleTree_Guest_Privacy_SOP_2026.pdf (1.8 MB)</span>
+              </div>
+              <span style="color: #64748B; font-size: 11px; cursor: pointer;" onclick="showToast('Re-uploading SOP PDF')">Replace</span>
+            </div>
+          </div>
+          <div class="file-upload-dropzone" onclick="showToast('File uploader opened')">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8" style="margin: 0 auto 6px auto;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <div style="font-size: 12px; font-weight: 600; color: #0F172A;">Upload or drag new PDF policy</div>
+            <div style="font-size: 11px; color: #94A3B8;">Supports PDF, DOCX up to 50MB</div>
+          </div>
+          <div class="form-toggle-row">
+            <div>
+              <div style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Require Digital Signature</div>
+              <div style="font-size: 11px; color: #64748B;">Timestamped legal sign-off</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Number Entry Contextual Controls -->
+        <div id="numberConfigFields" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">Metric / Field Label</label>
+            <input type="text" class="form-input" value="Cash Drawer Opening Float Balance ($)">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <div class="form-group">
+              <label class="form-label">Minimum Value</label>
+              <input type="number" class="form-input" value="300">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Maximum Value</label>
+              <input type="number" class="form-input" value="500">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Unit of Measure</label>
+            <input type="text" class="form-input" value="USD ($)">
+          </div>
+        </div>
+
+        <!-- Session Contextual Controls -->
+        <div id="sessionConfigFields" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">Session Format</label>
+            <select class="form-select">
+              <option selected>In-Person Front Desk Floor Walk</option>
+              <option>1-on-1 Mentor Briefing</option>
+              <option>Virtual Orientation (Zoom / Meet)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Designated Host / Mentor</label>
+            <select class="form-select">
+              <option selected>Front Office Manager (Sarah Jenkins)</option>
+              <option>Lead Concierge (David Miller)</option>
+              <option>HR Director (Chanchal Sharma)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location / Meeting Room</label>
+            <input type="text" class="form-input" value="Front Office Executive Suite Room 204">
+          </div>
+        </div>
+
+        <!-- Photo Verification Contextual Controls -->
+        <div id="photoConfigFields" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">Verification Instructions</label>
+            <textarea class="form-textarea">Take a front-facing selfie in complete Hilton brand uniform including engraved name badge on left lapel, polished shoes, and hair tied according to luxury standard.</textarea>
+          </div>
+          <div class="form-toggle-row">
+            <div>
+              <div style="font-size: 12.5px; font-weight: 600; color: #0F172A;">HyIQ AI Automated Verification</div>
+              <div style="font-size: 11px; color: #64748B;">Checks badge presence & uniform color</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Checklist Tick Contextual Controls -->
+        <div id="tickConfigFields" style="display: none;">
+          <div class="form-group">
+            <label class="form-label">Affirmation Statement</label>
+            <input type="text" class="form-input" value="I have received my personal hotel access keycard and locker key.">
+          </div>
+          <div class="form-toggle-row">
+            <div>
+              <div style="font-size: 12.5px; font-weight: 600; color: #0F172A;">Supervisor Counter-signature</div>
+              <div style="font-size: 11px; color: #64748B;">Requires supervisor to tick verification</div>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="drawer-footer">
+      <button class="icon-btn" style="color: #DC2626;" title="Delete this step" onclick="deleteActiveStepFromDrawer()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+      </button>
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="btn-action-ghost" onclick="duplicateActiveStep()">Duplicate</button>
+        <button class="btn-action-primary" onclick="saveActiveStepDrawer()">Save Step Changes</button>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ==========================================================================
+       MODAL: ASK AI TO DRAFT JOURNEY (⌘J)
+       ========================================================================== -->
+  <div class="modal-overlay" id="aiDraftModal" onclick="closeAiModalOnOutside(event)">
+    <div class="modal-dialog">
+      
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-spark-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div>
+            <div class="modal-title">Ask HyIQ to Draft Journey</div>
+            <div style="font-size: 12px; color: #64748B;">Auto-generate structured milestones, quizes, SOPs, and timings</div>
+          </div>
+        </div>
+        <button class="drawer-close-btn" onclick="closeAiDraftModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        
+        <div class="form-group">
+          <label class="form-label">Role or Department Description</label>
+          <textarea class="form-textarea" id="aiPromptInput" style="min-height: 100px;" placeholder="e.g. 4-week orientation journey for Luxury Hotel Front Desk Agents focusing on Hilton OnQ PMS, guest conflict resolution, and keycard security..."></textarea>
+        </div>
+
+        <div class="suggested-chips-container">
+          <div class="suggested-label">Suggested Prompt Templates:</div>
+          <div class="chips-flex-row">
+            <button class="prompt-chip" onclick="fillPrompt('Hotel Front Desk & Concierge Luxury Onboarding')">
+              🛎 Hotel Front Desk Onboarding
+            </button>
+            <button class="prompt-chip" onclick="fillPrompt('Food Safety, HACCP Protocol & Sanitation Certification')">
+              🥗 Food Safety & HACCP
+            </button>
+            <button class="prompt-chip" onclick="fillPrompt('Housekeeping Clean Room SOP & Turndown Standards')">
+              🛏 Housekeeping Clean Room SOP
+            </button>
+            <button class="prompt-chip" onclick="fillPrompt('Facilities Emergency HVAC & Life Safety Protocol')">
+              ⚡️ Facilities & Emergency Ops
+            </button>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+          <div class="form-group">
+            <label class="form-label">Journey Scope</label>
+            <select class="form-select" id="aiScopeSelect">
+              <option selected>Full 4-Stage (Day 1 to Month 1)</option>
+              <option>Intensive 2-Day Accelerated</option>
+              <option>30-Day Transition Program</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Compliance Rigor</label>
+            <select class="form-select">
+              <option selected>Hospitality Luxury Standard (High)</option>
+              <option>Standard Operational Checklist</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-action-ghost" onclick="closeAiDraftModal()">Cancel</button>
+        <button class="btn-action-primary" id="btnRunAiGenerate" onclick="generateJourneyWithAi()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span>Generate Journey</span>
+          <kbd style="font-size: 10px; font-family: var(--font-mono); opacity: 0.8; margin-left: 2px;">⌘↵</kbd>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: STARTER TEMPLATES LIBRARY
+       ========================================================================== -->
+  <div class="modal-overlay" id="templatesModal" onclick="closeTemplatesModalOnOutside(event)">
+    <div class="modal-dialog" style="width: 760px;">
+      
+      <div class="modal-header">
+        <div class="modal-header-left">
+          <div class="modal-spark-icon" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          </div>
+          <div>
+            <div class="modal-title">Industry Starter Templates</div>
+            <div style="font-size: 12px; color: #64748B;">Pre-built best practice journeys for DoubleTree by Hilton properties</div>
+          </div>
+        </div>
+        <button class="drawer-close-btn" onclick="closeTemplatesModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        
+        <div class="templates-grid">
+          
+          <!-- Template 1: Front Desk & Concierge -->
+          <div class="template-card-item" onclick="loadTemplate('frontdesk')">
+            <div class="template-card-top">
+              <span class="template-tag">HOSPITALITY MASTER</span>
+              <span style="font-size: 11px; font-family: var(--font-mono); color: #059669; font-weight: 700;">★ RECOMMENDED</span>
+            </div>
+            <div class="template-title">Front Desk & Concierge Master 2026</div>
+            <div class="template-desc">Comprehensive 4-stage journey: Hilton OnQ PMS, cash drawer reconciliation, fire safety, and VIP greeting protocols.</div>
+            <div class="template-footer-meta">
+              <span>4 Stages • 14 Steps</span>
+              <span>⏱ 12h 25m total</span>
+            </div>
+          </div>
+
+          <!-- Template 2: Food & Beverage HACCP -->
+          <div class="template-card-item" onclick="loadTemplate('fnb')">
+            <div class="template-card-top">
+              <span class="template-tag" style="background: #FEF3C7; color: #D97706;">FOOD & BEVERAGE</span>
+              <span style="font-size: 11px; font-family: var(--font-mono); color: #64748B;">COMPLIANCE</span>
+            </div>
+            <div class="template-title">F&B Service, POS & Food Safety HACCP</div>
+            <div class="template-desc">Rigorous kitchen and banquet staff onboarding covering cold chain temperatures, allergen tagging, and table service.</div>
+            <div class="template-footer-meta">
+              <span>3 Stages • 11 Steps</span>
+              <span>⏱ 8h 40m total</span>
+            </div>
+          </div>
+
+          <!-- Template 3: Housekeeping Clean Room -->
+          <div class="template-card-item" onclick="loadTemplate('housekeeping')">
+            <div class="template-card-top">
+              <span class="template-tag" style="background: #E0E7FF; color: #4338CA;">HOUSEKEEPING</span>
+              <span style="font-size: 11px; font-family: var(--font-mono); color: #64748B;">SOP VERIFIED</span>
+            </div>
+            <div class="template-title">Housekeeping CleanStay & Turndown SOP</div>
+            <div class="template-desc">Chemical dilution safety, 30-point room turnover checklist, linen handling, and photo proof inspections.</div>
+            <div class="template-footer-meta">
+              <span>4 Stages • 15 Steps</span>
+              <span>⏱ 14h 10m total</span>
+            </div>
+          </div>
+
+          <!-- Template 4: Facilities Engineering -->
+          <div class="template-card-item" onclick="loadTemplate('facilities')">
+            <div class="template-card-top">
+              <span class="template-tag" style="background: #ECFDF5; color: #059669;">FACILITIES</span>
+              <span style="font-size: 11px; font-family: var(--font-mono); color: #64748B;">OSHA STANDARD</span>
+            </div>
+            <div class="template-title">Hotel Facilities & Life Safety Engineering</div>
+            <div class="template-desc">Lockout/Tagout procedures, emergency generator testing, pool water chemistry, and fire pump operations.</div>
+            <div class="template-footer-meta">
+              <span>3 Stages • 10 Steps</span>
+              <span>⏱ 9h 15m total</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-action-ghost" onclick="closeTemplatesModal()">Close</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL: EMPLOYEE LIVE PREVIEW (Freed up from cramping the editor canvas!)
+       ========================================================================== -->
+  <div class="modal-overlay" id="employeePreviewModal" onclick="closeEmployeeModalOnOutside(event)">
+    <div class="modal-dialog" style="width: 480px; border-radius: 24px;">
+      
+      <div class="modal-header" style="background: #7C3AED; color: #FFFFFF;">
+        <div>
+          <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.8; font-family: var(--font-mono);">Employee Experience Preview</div>
+          <div style="font-size: 16px; font-weight: 700;">DoubleTree Onboarding App</div>
+        </div>
+        <button class="drawer-close-btn" style="color: #FFFFFF;" onclick="closeEmployeePreviewModal()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="modal-body" style="background: #F8FAFC; padding: 20px;">
+        <div style="background: #FFFFFF; border: 1px solid #E2E8F0; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span class="template-tag">STAGE 1 OF 4</span>
+            <span style="font-size: 12px; font-weight: 700; color: #7C3AED;">2 / 4 Completed</span>
+          </div>
+          <div style="font-size: 16px; font-weight: 700; color: #0F172A;">Day 1: First Impressions & Security</div>
+          <div style="font-size: 12.5px; color: #64748B;">Welcome to the DoubleTree Austin team! Please finish today's required safety sign-offs and mentor walk.</div>
+          
+          <div style="margin-top: 8px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="padding: 10px; background: #ECFDF5; border-radius: 8px; border: 1px solid #A7F3D0; display: flex; align-items: center; justify-content: space-between;">
+              <span style="font-size: 12px; font-weight: 600; color: #059669;">✓ General Manager Welcome Session</span>
+              <span style="font-size: 10.5px; color: #059669;">Done</span>
+            </div>
+            <div style="padding: 10px; background: #FFFFFF; border-radius: 8px; border: 1px solid #7C3AED; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 6px rgba(124, 58, 237, 0.1);">
+              <span style="font-size: 12px; font-weight: 700; color: #0F172A;">▶ Emergency Evacuation & Keycard Security</span>
+              <span class="template-tag">Current</span>
+            </div>
+            <div style="padding: 10px; background: #F8FAFC; border-radius: 8px; border: 1px solid #E2E8F0; display: flex; align-items: center; justify-content: space-between; opacity: 0.7;">
+              <span style="font-size: 12px; color: #64748B;">🔒 Cash Drawer Float Verification</span>
+              <span style="font-size: 10.5px; color: #94A3B8;">Locked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="background: #FFFFFF;">
+        <button class="btn-action-primary" style="width: 100%; justify-content: center;" onclick="closeEmployeePreviewModal()">
+          Close Employee Preview
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST CONTAINER -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ==========================================================================
+       INTERACTIVE JAVASCRIPT LOGIC
+       ========================================================================== -->
+  <script>
+    /* ==========================================================================
+       DATA MODEL: STAGES & STEPS
+       ========================================================================== */
+    const ORIENTATION_DATA = {
+      title: "Front Office & Guest Services Onboarding 2026",
+      property: "DoubleTree by Hilton Austin",
+      activeStageKey: "day1",
+      stages: {
+        day1: {
+          id: "stage-day1",
+          key: "day1",
+          tag: "Stage 01",
+          title: "Day 1: First Impressions & Security",
+          duration: "55 mins",
+          status: "Ready",
+          unlockTrigger: "Auto-unlocks at 08:30 AM on employee start date",
+          subtext: "4 verification steps required for Day 2 unlock",
+          steps: [
+            {
+              id: "STEP-101",
+              stage: "day1",
+              type: "session",
+              title: "General Manager Welcome & Brand Culture Walk",
+              desc: "Personal 1-on-1 welcome session with GM Chanchal Sharma. Receive property pass, tour executive offices, and discuss Hilton hospitality values.",
+              duration: "20 mins",
+              required: true,
+              audience: "All Departments",
+              criteria: "Host Sign-off Required",
+              meta: { host: "Chanchal Sharma", location: "Executive Suite 204" }
+            },
+            {
+              id: "STEP-102",
+              stage: "day1",
+              type: "quiz",
+              title: "Emergency Evacuation & Keycard Security Quiz",
+              desc: "Knowledge check on lobby evacuation exits, emergency codes, and guest privacy standards during keycard encoding.",
+              duration: "15 mins",
+              required: true,
+              audience: "Front Desk",
+              criteria: "Passing Score: 80%",
+              meta: { passingScore: 80, retries: 3 }
+            },
+            {
+              id: "STEP-103",
+              stage: "day1",
+              type: "agree",
+              title: "Hilton Guest Privacy & PCI-DSS Compliance SOP",
+              desc: "Read and legally agree to the Hilton worldwide credit card handling and guest personal information protection protocol.",
+              duration: "10 mins",
+              required: true,
+              audience: "Front Desk",
+              criteria: "Digital Signature",
+              meta: { file: "DoubleTree_Guest_Privacy_SOP_2026.pdf", sigRequired: true }
+            },
+            {
+              id: "STEP-104",
+              stage: "day1",
+              type: "photo",
+              title: "Uniform, Grooming & Name Badge Verification",
+              desc: "Upload a clean photo in full front desk uniform with official name badge properly affixed to left lapel.",
+              duration: "10 mins",
+              required: false,
+              audience: "Front Desk",
+              criteria: "AI Visual Proof",
+              meta: { aiVerify: true }
+            }
+          ]
+        },
+        day2: {
+          id: "stage-day2",
+          key: "day2",
+          tag: "Stage 02",
+          title: "Day 2: PMS Systems & Department Tour",
+          duration: "2.5 hrs",
+          status: "Ready",
+          unlockTrigger: "Auto-unlocks 24 hours after Day 1 completion",
+          subtext: "3 hands-on workstation setup tasks",
+          steps: [
+            {
+              id: "STEP-201",
+              stage: "day2",
+              type: "session",
+              title: "Hilton OnQ PMS Terminal Shadowing Session",
+              desc: "Pair with Senior Front Desk Agent to observe guest check-ins, digital key issuing, and room status updates in OnQ.",
+              duration: "60 mins",
+              required: true,
+              audience: "Front Desk",
+              criteria: "Mentor Verified",
+              meta: { host: "David Miller", location: "Front Desk Station 3" }
+            },
+            {
+              id: "STEP-202",
+              stage: "day2",
+              type: "number",
+              title: "Opening Cash Float Balance Reconciliation",
+              desc: "Count and enter the initial cash float drawer balance before beginning morning guest shift.",
+              duration: "15 mins",
+              required: true,
+              audience: "Front Desk",
+              criteria: "Exact: $350.00",
+              meta: { min: 300, max: 500, unit: "USD ($)" }
+            },
+            {
+              id: "STEP-203",
+              stage: "day2",
+              type: "tick",
+              title: "Locker Assignment & Security Access Badge",
+              desc: "Receive locker combination assignment and confirm physical security access badge is operational on back-of-house doors.",
+              duration: "15 mins",
+              required: true,
+              audience: "All Departments",
+              criteria: "Employee Affirmation",
+              meta: { counterSig: false }
+            }
+          ]
+        },
+        week1: {
+          id: "stage-week1",
+          key: "week1",
+          tag: "Stage 03",
+          title: "Week 1: Shadowing & Core SOPs",
+          duration: "6.0 hrs",
+          status: "Configured",
+          unlockTrigger: "Unlocks on Monday of Week 1",
+          subtext: "4 in-depth operational practice milestones",
+          steps: [
+            {
+              id: "STEP-301",
+              stage: "week1",
+              type: "session",
+              title: "VIP Honors & Diamond Member Recognition Workshop",
+              desc: "Deep dive into recognizing Hilton Honors tiers, delivering complimentary arrival cookies, and handling suite upgrades.",
+              duration: "45 mins",
+              required: true,
+              audience: "Front Desk",
+              criteria: "Trainer Sign-off",
+              meta: { host: "Sarah Jenkins", location: "Conference Room B" }
+            },
+            {
+              id: "STEP-302",
+              stage: "week1",
+              type: "quiz",
+              title: "Guest Conflict De-escalation & HEART Model Quiz",
+              desc: "Test handling of overbooked arrivals, noise complaints, and bill disputes using the Hear, Empathize, Apologize, Resolve, Thank protocol.",
+              duration: "30 mins",
+              required: true,
+              audience: "Front Desk",
+              criteria: "Passing Score: 85%",
+              meta: { passingScore: 85, retries: 2 }
+            },
+            {
+              id: "STEP-303",
+              stage: "week1",
+              type: "agree",
+              title: "Housekeeping Communication & Room Rush SOP",
+              desc: "Read and acknowledge cross-department procedures for requesting prioritized VIP room cleans and early check-ins.",
+              duration: "15 mins",
+              required: true,
+              audience: "Front Desk",
+              criteria: "Digital Signature",
+              meta: { file: "Housekeeping_Turnover_Rush_SOP.pdf", sigRequired: true }
+            },
+            {
+              id: "STEP-304",
+              stage: "week1",
+              type: "photo",
+              title: "Luggage Storage Tagging & Bell Desk Verification",
+              desc: "Take photo of a correctly tagged guest bag with luggage slip and storage claim check number clearly visible.",
+              duration: "15 mins",
+              required: false,
+              audience: "Concierge",
+              criteria: "Photo Upload",
+              meta: { aiVerify: true }
+            }
+          ]
+        },
+        month1: {
+          id: "stage-month1",
+          key: "month1",
+          tag: "Stage 04",
+          title: "Month 1: Autonomy, Culture & Check-in",
+          duration: "3.0 hrs",
+          status: "In Progress",
+          unlockTrigger: "Unlocks 30 calendar days post start date",
+          subtext: "3 performance reflection & autonomy assessments",
+          steps: [
+            {
+              id: "STEP-401",
+              stage: "month1",
+              type: "agree",
+              title: "30-Day Autonomous Shift Authorization Agreement",
+              desc: "Sign agreement confirming successful completion of shadowing period and readiness for independent solo front desk shifts.",
+              duration: "15 mins",
+              required: true,
+              audience: "Front Desk",
+              criteria: "Digital Signature",
+              meta: { file: "Autonomous_Shift_Certification.pdf", sigRequired: true }
+            },
+            {
+              id: "STEP-402",
+              stage: "month1",
+              type: "number",
+              title: "First Month Check-in Speed Target (Seconds / Guest)",
+              desc: "Log average registration time per guest achieved during 30-day trial (Target: under 180 seconds).",
+              duration: "10 mins",
+              required: false,
+              audience: "Front Desk",
+              criteria: "Target: ≤ 180s",
+              meta: { min: 60, max: 300, unit: "Seconds" }
+            },
+            {
+              id: "STEP-403",
+              stage: "month1",
+              type: "quiz",
+              title: "DoubleTree Brand Standards & Cookie Service Mastery",
+              desc: "Final comprehensive evaluation of brand service touches, warm chocolate chip cookie delivery, and local area recommendations.",
+              duration: "25 mins",
+              required: true,
+              audience: "All Departments",
+              criteria: "Passing Score: 90%",
+              meta: { passingScore: 90, retries: 3 }
+            }
+          ]
+        }
+      }
+    };
+
+    let activeStepBeingEdited = null;
+    let currentFilterType = 'all';
+    let currentSearchTerm = '';
+    let lastDeletedStep = null;
+
+    /* ==========================================================================
+       VIEW SWITCHING (View 1: Milestone Studio vs View 2: Linear Command Deck)
+       ========================================================================== */
+    function switchView(viewIndex) {
+      const v1Container = document.getElementById("viewMilestoneStudio");
+      const v2Container = document.getElementById("viewLinearCommandDeck");
+      const btn1 = document.getElementById("btnView1");
+      const btn2 = document.getElementById("btnView2");
+      const desc = document.getElementById("currentViewDescription");
+
+      if (viewIndex === 1) {
+        v1Container.classList.add("active");
+        v2Container.classList.remove("active");
+        btn1.classList.add("active");
+        btn2.classList.remove("active");
+        desc.innerText = "Spatial Bento Cards & Stage Rail";
+        showToast("Switched to View 1: Milestone Studio", "info");
+      } else {
+        v1Container.classList.remove("active");
+        v2Container.classList.add("active");
+        btn1.classList.remove("active");
+        btn2.classList.add("active");
+        desc.innerText = "Unified Vertical Canvas & Inline Expansion";
+        showToast("Switched to View 2: Linear Command Deck", "info");
+      }
+    }
+
+    /* ==========================================================================
+       RENDER VIEW 1: MILESTONE STUDIO (BENTO CARDS)
+       ========================================================================== */
+    function renderBentoCards() {
+      const container = document.getElementById("bentoCardsContainer");
+      if (!container) return;
+
+      const activeStage = ORIENTATION_DATA.stages[ORIENTATION_DATA.activeStageKey];
+      if (!activeStage) return;
+
+      // Update banner titles
+      document.getElementById("activeStageTitleDisplay").innerText = activeStage.title;
+      document.getElementById("activeStageSubtext").innerText = `${activeStage.steps.length} verification steps configured`;
+
+      // Filter steps
+      let stepsToRender = activeStage.steps.filter(step => {
+        const matchesType = (currentFilterType === 'all' || step.type === currentFilterType);
+        const matchesSearch = !currentSearchTerm || 
+          step.title.toLowerCase().includes(currentSearchTerm.toLowerCase()) || 
+          step.desc.toLowerCase().includes(currentSearchTerm.toLowerCase());
+        return matchesType && matchesSearch;
+      });
+
+      let html = '';
+
+      stepsToRender.forEach((step, idx) => {
+        const typeClass = `type-${step.type}`;
+        const typeName = step.type === 'agree' ? 'Read & Agree' : 
+                         step.type === 'photo' ? 'Photo Upload' : 
+                         step.type === 'number' ? 'Number Entry' : 
+                         step.type === 'tick' ? 'Checklist Tick' : 
+                         step.type.toUpperCase();
+
+        const typeIcon = getTypeSvgIcon(step.type);
+
+        html += `
+          <div class="step-card" data-step-id="${step.id}" onclick="openStepInInspector('${step.id}')">
+            <div class="step-card-header">
+              <span class="step-type-pill ${typeClass}">
+                ${typeIcon}
+                ${typeName}
+              </span>
+              <div class="step-header-right">
+                <span class="meta-chip chip-${step.required ? 'required' : 'optional'}">
+                  ${step.required ? 'REQUIRED' : 'OPTIONAL'}
+                </span>
+                <span class="step-drag-handle" title="Drag to reorder" onclick="event.stopPropagation()">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="19" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="19" r="1"></circle></svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="step-card-body">
+              <div class="step-card-title">${step.title}</div>
+              <div class="step-card-desc">${step.desc}</div>
+            </div>
+
+            <div class="step-meta-chips-row">
+              <span class="meta-chip">⏱ ${step.duration}</span>
+              <span class="meta-chip chip-dept">${step.audience}</span>
+            </div>
+
+            <div class="step-card-footer">
+              <span class="step-criteria-label">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                ${step.criteria}
+              </span>
+              <div class="step-card-actions" onclick="event.stopPropagation()">
+                <button class="step-mini-btn" title="Move Up" onclick="moveStep('${step.id}', -1)">↑</button>
+                <button class="step-mini-btn" title="Move Down" onclick="moveStep('${step.id}', 1)">↓</button>
+                <button class="btn-configure-step" onclick="openStepInInspector('${step.id}')">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                  <span>Edit</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      // Append "+ Add Step Dropcard"
+      html += `
+        <div class="add-step-dropcard" onclick="openAddStepQuickPrompt()">
+          <div class="dropcard-icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </div>
+          <div class="dropcard-title">+ Add Step to ${activeStage.title.split(':')[0]}</div>
+          <div class="dropcard-sub">Choose from Quiz, SOP Agree, Session, Photo or Number</div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+      updateTotalSummaryMetrics();
+    }
+
+    /* ==========================================================================
+       RENDER VIEW 2: LINEAR COMMAND DECK (VERTICAL TIMELINE & INLINE EXPANSION)
+       ========================================================================== */
+    function renderLinearCommandDeck() {
+      const container = document.getElementById("linearTimelineStream");
+      if (!container) return;
+
+      let html = '<div class="timeline-rail-line"></div>';
+
+      Object.keys(ORIENTATION_DATA.stages).forEach((stageKey, stageIdx) => {
+        const stage = ORIENTATION_DATA.stages[stageKey];
+
+        html += `
+          <div class="milestone-block" data-stage="${stageKey}">
+            <div class="milestone-timeline-node"></div>
+            
+            <div class="milestone-block-header" onclick="toggleMilestoneBlock(this)">
+              <div class="milestone-header-left">
+                <svg class="milestone-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                <div class="milestone-header-title">${stage.title}</div>
+                <span class="milestone-timing-badge">${stage.duration}</span>
+                <span class="milestone-step-count-badge">${stage.steps.length} steps</span>
+              </div>
+
+              <div class="milestone-header-actions" onclick="event.stopPropagation()">
+                <button class="btn-add-step-subtle" onclick="quickAddStepToStage('${stageKey}')">
+                  + Add Step
+                </button>
+              </div>
+            </div>
+
+            <div class="milestone-steps-list">
+        `;
+
+        stage.steps.forEach((step, stepIdx) => {
+          const typeClass = `type-${step.type}`;
+          const typeName = step.type === 'agree' ? 'Read & Agree' : 
+                           step.type === 'photo' ? 'Photo' : 
+                           step.type === 'number' ? 'Number' : 
+                           step.type === 'tick' ? 'Checklist' : 
+                           step.type.toUpperCase();
+
+          html += `
+            <div class="linear-step-wrapper" id="linearWrapper_${step.id}">
+              <div class="linear-step-row" onclick="toggleLinearStepInline('${step.id}')">
+                <div class="linear-row-left">
+                  <span class="linear-drag" onclick="event.stopPropagation()">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="12" r="1"></circle><circle cx="9" cy="5" r="1"></circle><circle cx="9" cy="19" r="1"></circle><circle cx="15" cy="12" r="1"></circle><circle cx="15" cy="5" r="1"></circle><circle cx="15" cy="19" r="1"></circle></svg>
+                  </span>
+                  <span class="step-type-pill ${typeClass}" style="padding: 2px 8px; font-size: 10px;">
+                    ${typeName}
+                  </span>
+                  <div class="linear-step-info">
+                    <span class="linear-step-title">${step.title}</span>
+                    <span class="linear-step-sub">${step.desc}</span>
+                  </div>
+                </div>
+
+                <div class="linear-row-right">
+                  <span class="meta-chip">⏱ ${step.duration}</span>
+                  <span class="meta-chip chip-${step.required ? 'required' : 'optional'}">${step.required ? 'Req' : 'Opt'}</span>
+                  <span class="meta-chip chip-dept">${step.audience}</span>
+                  <svg class="linear-expand-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+              </div>
+
+              <!-- Inline Interactive Expansion Panel (No Page-Jumping Disorientation!) -->
+              <div class="inline-expansion-panel" onclick="event.stopPropagation()">
+                <div class="inline-form-grid">
+                  <div class="inline-field-group">
+                    <label class="inline-field-label">Step Title</label>
+                    <input type="text" class="inline-text-input" value="${step.title}" oninput="updateStepTitleDirect('${step.id}', this.value)">
+                  </div>
+                  <div class="inline-field-group">
+                    <label class="inline-field-label">Time Estimate</label>
+                    <input type="text" class="inline-text-input" value="${step.duration}" oninput="updateStepDurationDirect('${step.id}', this.value)">
+                  </div>
+                </div>
+
+                <div class="inline-field-group">
+                  <label class="inline-field-label">Brief Instructions</label>
+                  <input type="text" class="inline-text-input" value="${step.desc}" oninput="updateStepDescDirect('${step.id}', this.value)">
+                </div>
+
+                <div class="inline-panel-footer">
+                  <div style="font-size: 11.5px; color: #64748B;">
+                    Criteria: <strong>${step.criteria}</strong>
+                  </div>
+                  <div class="inline-footer-actions">
+                    <button class="btn-action-ghost" style="height: 30px; font-size: 11.5px; color: #DC2626;" onclick="deleteStep('${step.id}')">Delete</button>
+                    <button class="btn-action-ai" style="height: 30px; font-size: 11.5px;" onclick="openStepInInspector('${step.id}')">Open Deep Inspector ↗</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+      updateTotalSummaryMetrics();
+    }
+
+    /* ==========================================================================
+       INLINE EXPANSION & BLOCK TOGGLING
+       ========================================================================== */
+    function toggleMilestoneBlock(headerEl) {
+      const block = headerEl.closest('.milestone-block');
+      if (block) {
+        block.classList.toggle('collapsed');
+      }
+    }
+
+    function toggleLinearStepInline(stepId) {
+      const wrapper = document.getElementById(`linearWrapper_${stepId}`);
+      if (wrapper) {
+        wrapper.classList.toggle('expanded');
+      }
+    }
+
+    function selectStage(stageKey, cardEl) {
+      ORIENTATION_DATA.activeStageKey = stageKey;
+      document.querySelectorAll(".stage-nav-card").forEach(c => c.classList.remove("active"));
+      if (cardEl) cardEl.classList.add("active");
+      renderBentoCards();
+    }
+
+    /* ==========================================================================
+       STEP INSPECTOR DRAWER LOGIC
+       ========================================================================== */
+    function openStepInInspector(stepId) {
+      let foundStep = null;
+      Object.keys(ORIENTATION_DATA.stages).forEach(sk => {
+        const s = ORIENTATION_DATA.stages[sk].steps.find(st => st.id === stepId);
+        if (s) foundStep = s;
+      });
+
+      if (!foundStep) return;
+      activeStepBeingEdited = foundStep;
+
+      // Populate basic drawer fields
+      document.getElementById("drawerStepId").innerText = foundStep.id;
+      document.getElementById("drawerStepTitleHeading").innerText = "Edit " + foundStep.title;
+      document.getElementById("drawerTitleInput").value = foundStep.title;
+      document.getElementById("drawerTypeSelect").value = foundStep.type;
+      document.getElementById("drawerDescInput").value = foundStep.desc;
+      document.getElementById("drawerDurationInput").value = foundStep.duration;
+      document.getElementById("drawerAudienceInput").value = foundStep.audience;
+      document.getElementById("drawerRequiredToggle").checked = foundStep.required;
+
+      handleDrawerTypeChange(foundStep.type);
+
+      // Open drawer
+      document.getElementById("stepInspectorDrawer").classList.add("open");
+      document.getElementById("drawerOverlay").classList.add("open");
+    }
+
+    function closeInspectorDrawer() {
+      document.getElementById("stepInspectorDrawer").classList.remove("open");
+      document.getElementById("drawerOverlay").classList.remove("open");
+      activeStepBeingEdited = null;
+    }
+
+    function handleDrawerTypeChange(type) {
+      // Hide all contextual blocks
+      document.getElementById("quizConfigFields").style.display = "none";
+      document.getElementById("agreeConfigFields").style.display = "none";
+      document.getElementById("numberConfigFields").style.display = "none";
+      document.getElementById("sessionConfigFields").style.display = "none";
+      document.getElementById("photoConfigFields").style.display = "none";
+      document.getElementById("tickConfigFields").style.display = "none";
+
+      const heading = document.getElementById("drawerCustomConfigHeading");
+      const badge = document.getElementById("drawerTypeBadge");
+
+      badge.className = `step-type-pill type-${type}`;
+      badge.innerText = type.toUpperCase();
+
+      if (type === 'quiz') {
+        document.getElementById("quizConfigFields").style.display = "block";
+        heading.innerText = "Knowledge Check & Scoring Rules";
+      } else if (type === 'agree') {
+        document.getElementById("agreeConfigFields").style.display = "block";
+        heading.innerText = "Document Attachment & Signature Protocol";
+      } else if (type === 'number') {
+        document.getElementById("numberConfigFields").style.display = "block";
+        heading.innerText = "Numeric Float & Metric Validation";
+      } else if (type === 'session') {
+        document.getElementById("sessionConfigFields").style.display = "block";
+        heading.innerText = "Host, Location & Calendar Scheduling";
+      } else if (type === 'photo') {
+        document.getElementById("photoConfigFields").style.display = "block";
+        heading.innerText = "Photo Proof & AI Visual Verification";
+      } else if (type === 'tick') {
+        document.getElementById("tickConfigFields").style.display = "block";
+        heading.innerText = "Checklist Affirmation & Counter-sign";
+      }
+    }
+
+    function syncActiveStepTitle(newTitle) {
+      if (activeStepBeingEdited) {
+        activeStepBeingEdited.title = newTitle;
+      }
+    }
+
+    function saveActiveStepDrawer() {
+      if (!activeStepBeingEdited) return;
+
+      activeStepBeingEdited.title = document.getElementById("drawerTitleInput").value;
+      activeStepBeingEdited.type = document.getElementById("drawerTypeSelect").value;
+      activeStepBeingEdited.desc = document.getElementById("drawerDescInput").value;
+      activeStepBeingEdited.duration = document.getElementById("drawerDurationInput").value;
+      activeStepBeingEdited.audience = document.getElementById("drawerAudienceInput").value;
+      activeStepBeingEdited.required = document.getElementById("drawerRequiredToggle").checked;
+
+      // Update criteria label based on type
+      if (activeStepBeingEdited.type === 'quiz') {
+        activeStepBeingEdited.criteria = `Passing Score: ${document.getElementById("sliderValueBadge").innerText}`;
+      } else if (activeStepBeingEdited.type === 'agree') {
+        activeStepBeingEdited.criteria = "Digital Signature";
+      } else if (activeStepBeingEdited.type === 'number') {
+        activeStepBeingEdited.criteria = "Float Target Verified";
+      } else if (activeStepBeingEdited.type === 'session') {
+        activeStepBeingEdited.criteria = "Host Sign-off";
+      } else if (activeStepBeingEdited.type === 'photo') {
+        activeStepBeingEdited.criteria = "AI Visual Proof";
+      }
+
+      renderBentoCards();
+      renderLinearCommandDeck();
+      closeInspectorDrawer();
+      showToast(`Step "${activeStepBeingEdited.title}" updated successfully!`);
+    }
+
+    function duplicateActiveStep() {
+      if (!activeStepBeingEdited) return;
+      const stage = ORIENTATION_DATA.stages[activeStepBeingEdited.stage];
+      if (!stage) return;
+
+      const newStep = JSON.parse(JSON.stringify(activeStepBeingEdited));
+      newStep.id = "STEP-" + Math.floor(100 + Math.random() * 899);
+      newStep.title = newStep.title + " (Copy)";
+
+      stage.steps.push(newStep);
+      renderBentoCards();
+      renderLinearCommandDeck();
+      closeInspectorDrawer();
+      showToast(`Duplicated step: ${newStep.title}`);
+    }
+
+    function deleteActiveStepFromDrawer() {
+      if (!activeStepBeingEdited) return;
+      deleteStep(activeStepBeingEdited.id);
+      closeInspectorDrawer();
+    }
+
+    function deleteStep(stepId) {
+      let stageKeyFound = null;
+      let deletedObj = null;
+
+      Object.keys(ORIENTATION_DATA.stages).forEach(sk => {
+        const idx = ORIENTATION_DATA.stages[sk].steps.findIndex(s => s.id === stepId);
+        if (idx !== -1) {
+          deletedObj = ORIENTATION_DATA.stages[sk].steps.splice(idx, 1)[0];
+          stageKeyFound = sk;
+        }
+      });
+
+      if (deletedObj) {
+        lastDeletedStep = { stageKey: stageKeyFound, step: deletedObj };
+        renderBentoCards();
+        renderLinearCommandDeck();
+        showToast(`Deleted "${deletedObj.title}"`, "undo");
+      }
+    }
+
+    function undoLastDelete() {
+      if (!lastDeletedStep) return;
+      ORIENTATION_DATA.stages[lastDeletedStep.stageKey].steps.push(lastDeletedStep.step);
+      lastDeletedStep = null;
+      renderBentoCards();
+      renderLinearCommandDeck();
+      showToast("Step restored!");
+    }
+
+    function moveStep(stepId, direction) {
+      const activeStage = ORIENTATION_DATA.stages[ORIENTATION_DATA.activeStageKey];
+      const idx = activeStage.steps.findIndex(s => s.id === stepId);
+      if (idx === -1) return;
+
+      const newIdx = idx + direction;
+      if (newIdx < 0 || newIdx >= activeStage.steps.length) return;
+
+      const temp = activeStage.steps[idx];
+      activeStage.steps[idx] = activeStage.steps[newIdx];
+      activeStage.steps[newIdx] = temp;
+
+      renderBentoCards();
+      renderLinearCommandDeck();
+      showToast("Step order updated");
+    }
+
+    function updateStepTitleDirect(stepId, newTitle) {
+      Object.keys(ORIENTATION_DATA.stages).forEach(sk => {
+        const s = ORIENTATION_DATA.stages[sk].steps.find(st => st.id === stepId);
+        if (s) s.title = newTitle;
+      });
+    }
+
+    function updateStepDescDirect(stepId, newDesc) {
+      Object.keys(ORIENTATION_DATA.stages).forEach(sk => {
+        const s = ORIENTATION_DATA.stages[sk].steps.find(st => st.id === stepId);
+        if (s) s.desc = newDesc;
+      });
+    }
+
+    function updateStepDurationDirect(stepId, newDuration) {
+      Object.keys(ORIENTATION_DATA.stages).forEach(sk => {
+        const s = ORIENTATION_DATA.stages[sk].steps.find(st => st.id === stepId);
+        if (s) s.duration = newDuration;
+      });
+      updateTotalSummaryMetrics();
+    }
+
+    /* ==========================================================================
+       QUICK ADD & STEP INSERTION
+       ========================================================================== */
+    function openAddStepQuickPrompt() {
+      quickAddStepToStage(ORIENTATION_DATA.activeStageKey, 'session');
+    }
+
+    function quickAddStepToStage(stageKey, type = 'quiz') {
+      const stage = ORIENTATION_DATA.stages[stageKey];
+      if (!stage) return;
+
+      const newId = "STEP-" + Math.floor(100 + Math.random() * 899);
+      const newStep = {
+        id: newId,
+        stage: stageKey,
+        type: type,
+        title: `New ${type.toUpperCase()} Step Verification`,
+        desc: "Add instructions and required verification criteria for employee onboarding.",
+        duration: "15 mins",
+        required: true,
+        audience: "Front Desk",
+        criteria: type === 'quiz' ? 'Passing Score: 80%' : 'Manager Verified',
+        meta: {}
+      };
+
+      stage.steps.push(newStep);
+      renderBentoCards();
+      renderLinearCommandDeck();
+      openStepInInspector(newId);
+      showToast(`Added new ${type} step to ${stage.title.split(':')[0]}!`);
+    }
+
+    function quickAddStepToCommandDeck(type) {
+      quickAddStepToStage(ORIENTATION_DATA.activeStageKey, type);
+    }
+
+    function addNewMilestone() {
+      const newKey = "stage_" + Date.now();
+      ORIENTATION_DATA.stages[newKey] = {
+        id: "stage-" + newKey,
+        key: newKey,
+        tag: "Stage 05",
+        title: "90-Day Performance Review & Mastery",
+        duration: "1.5 hrs",
+        status: "Draft",
+        unlockTrigger: "Unlocks 90 days post start date",
+        subtext: "Quarterly alignment and supervisor appraisal",
+        steps: [
+          {
+            id: "STEP-" + Math.floor(100 + Math.random() * 899),
+            stage: newKey,
+            type: "session",
+            title: "90-Day General Manager Appraisal Interview",
+            desc: "Quarterly review of guest review mentions, NPS impact, and career progression goals.",
+            duration: "45 mins",
+            required: true,
+            audience: "All Departments",
+            criteria: "Executive Sign-off"
+          }
+        ]
+      };
+
+      renderBentoCards();
+      renderLinearCommandDeck();
+      showToast("Added new Milestone stage!");
+    }
+
+    /* ==========================================================================
+       AI DRAFT MODAL LOGIC (⌘J)
+       ========================================================================== */
+    function openAiDraftModal() {
+      document.getElementById("aiDraftModal").classList.add("open");
+    }
+
+    function closeAiDraftModal() {
+      document.getElementById("aiDraftModal").classList.remove("open");
+    }
+
+    function closeAiModalOnOutside(e) {
+      if (e.target.id === 'aiDraftModal') closeAiDraftModal();
+    }
+
+    function fillPrompt(text) {
+      document.getElementById("aiPromptInput").value = text;
+    }
+
+    function generateJourneyWithAi() {
+      const prompt = document.getElementById("aiPromptInput").value || "Hospitality Onboarding";
+      const btn = document.getElementById("btnRunAiGenerate");
+      btn.innerHTML = `<span>Thinking & Generating...</span>`;
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg><span>Generate Journey</span>`;
+        btn.disabled = false;
+        closeAiDraftModal();
+
+        // Inject smart steps
+        showToast(`HyIQ drafted 14 structured onboarding steps based on "${prompt}"!`);
+        renderBentoCards();
+        renderLinearCommandDeck();
+      }, 900);
+    }
+
+    /* ==========================================================================
+       STARTER TEMPLATES MODAL LOGIC
+       ========================================================================== */
+    function openTemplatesModal() {
+      document.getElementById("templatesModal").classList.add("open");
+    }
+
+    function closeTemplatesModal() {
+      document.getElementById("templatesModal").classList.remove("open");
+    }
+
+    function closeTemplatesModalOnOutside(e) {
+      if (e.target.id === 'templatesModal') closeTemplatesModal();
+    }
+
+    function loadTemplate(templateType) {
+      closeTemplatesModal();
+      if (templateType === 'fnb') {
+        document.getElementById("journeyTitleText").innerText = "F&B Service, POS & Food Safety HACCP 2026";
+        showToast("Loaded Food & Beverage HACCP Starter Template!");
+      } else if (templateType === 'housekeeping') {
+        document.getElementById("journeyTitleText").innerText = "Housekeeping CleanStay & Room Turnover SOP";
+        showToast("Loaded Housekeeping CleanStay Starter Template!");
+      } else if (templateType === 'facilities') {
+        document.getElementById("journeyTitleText").innerText = "Hotel Facilities & Life Safety Engineering";
+        showToast("Loaded Facilities Engineering Starter Template!");
+      } else {
+        document.getElementById("journeyTitleText").innerText = "Front Office & Guest Services Onboarding 2026";
+        showToast("Loaded Front Desk & Concierge Master Template!");
+      }
+      renderBentoCards();
+      renderLinearCommandDeck();
+    }
+
+    /* ==========================================================================
+       EMPLOYEE PREVIEW MODAL
+       ========================================================================== */
+    function openEmployeePreviewModal() {
+      document.getElementById("employeePreviewModal").classList.add("open");
+    }
+
+    function closeEmployeePreviewModal() {
+      document.getElementById("employeePreviewModal").classList.remove("open");
+    }
+
+    function closeEmployeeModalOnOutside(e) {
+      if (e.target.id === 'employeePreviewModal') closeEmployeePreviewModal();
+    }
+
+    /* ==========================================================================
+       FILTERS & SEARCH
+       ========================================================================== */
+    function filterByStepType(type, buttonEl) {
+      currentFilterType = type;
+      document.querySelectorAll(".filter-chip").forEach(b => b.classList.remove("active"));
+      if (buttonEl) buttonEl.classList.add("active");
+      renderBentoCards();
+      renderLinearCommandDeck();
+    }
+
+    function handleStepFilterSearch(val) {
+      currentSearchTerm = val;
+      renderBentoCards();
+    }
+
+    function handleGlobalSearch(val) {
+      currentSearchTerm = val;
+      renderBentoCards();
+      renderLinearCommandDeck();
+    }
+
+    function toggleDeptDropdown() {
+      document.getElementById("deptDropdownPanel").classList.toggle("open");
+    }
+
+    function updateDeptFilters() {
+      const checkedBoxes = document.querySelectorAll(".dept-checkbox:checked");
+      const label = document.getElementById("deptFilterLabel");
+      if (checkedBoxes.length === 4) {
+        label.innerText = "Dept: All (4)";
+      } else {
+        label.innerText = `Dept: ${checkedBoxes.length} Selected`;
+      }
+      showToast(`Filtered audience to ${checkedBoxes.length} departments`);
+    }
+
+    function toggleNavCategory(headerEl) {
+      const cat = headerEl.closest('.nav-category');
+      if (cat) cat.classList.toggle('collapsed');
+    }
+
+    function toggleSidebar() {
+      document.getElementById("appSidebar").classList.toggle("collapsed");
+    }
+
+    function toggleProfileMenu() {
+      document.getElementById("profilePopover").classList.toggle("open");
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+        showToast("Entered Fullscreen Canvas");
+      } else {
+        document.exitFullscreen().catch(() => {});
+        showToast("Exited Fullscreen");
+      }
+    }
+
+    function startVoiceSimulation() {
+      showToast("Listening... 'HyIQ: Add fire safety quiz to Day 1'", "info");
+      setTimeout(() => {
+        showToast("Voice recognized: Added step to Day 1");
+      }, 1800);
+    }
+
+    function askAiToOptimizeStage() {
+      showToast("HyIQ analyzing stage structure... No compliance gaps found!");
+    }
+
+    function handleTitleChange(text) {
+      ORIENTATION_DATA.title = text.trim();
+      showToast(`Renamed journey to "${ORIENTATION_DATA.title}"`);
+    }
+
+    function saveDraft() {
+      showToast("✓ Orientation journey draft saved (Version 1.4)", "info");
+    }
+
+    function publishJourney() {
+      showToast("🚀 Orientation Journey published live for DoubleTree Austin!", "info");
+    }
+
+    function addQuizQuestion() {
+      const container = document.getElementById("quizQuestionsContainer");
+      const qNum = container.children.length + 1;
+      const qDiv = document.createElement("div");
+      qDiv.className = "quiz-question-item";
+      qDiv.innerHTML = `
+        <div style="font-size: 12px; font-weight: 600;">Q${qNum}: Enter new question prompt...</div>
+        <div class="quiz-options-list">
+          <label class="quiz-option-radio-row">
+            <input type="radio" name="q${qNum}" checked>
+            <span style="font-size: 11.5px;">Correct Option A</span>
+          </label>
+          <label class="quiz-option-radio-row">
+            <input type="radio" name="q${qNum}">
+            <span style="font-size: 11.5px;">Alternative Option B</span>
+          </label>
+        </div>
+      `;
+      container.appendChild(qDiv);
+      showToast("Added new quiz question");
+    }
+
+    /* ==========================================================================
+       METRICS & HELPERS
+       ========================================================================== */
+    function updateTotalSummaryMetrics() {
+      let totalSteps = 0;
+      Object.keys(ORIENTATION_DATA.stages).forEach(k => {
+        totalSteps += ORIENTATION_DATA.stages[k].steps.length;
+      });
+
+      const countEl = document.getElementById("countAllSteps");
+      if (countEl) countEl.innerText = totalSteps;
+
+      const bottomSteps = document.getElementById("bottomTotalSteps");
+      if (bottomSteps) bottomSteps.innerText = `${totalSteps} Steps`;
+
+      const headerMeta = document.getElementById("headerMetaCount");
+      if (headerMeta) headerMeta.innerText = `4 Milestones • ${totalSteps} Verification Steps`;
+    }
+
+    function getTypeSvgIcon(type) {
+      if (type === 'session') {
+        return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg>`;
+      } else if (type === 'quiz') {
+        return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
+      } else if (type === 'agree') {
+        return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line></svg>`;
+      } else if (type === 'photo') {
+        return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>`;
+      } else if (type === 'number') {
+        return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>`;
+      } else {
+        return `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+      }
+    }
+
+    function showToast(msg, type = "info") {
+      const container = document.getElementById("toastContainer");
+      if (!container) return;
+
+      const toast = document.createElement("div");
+      toast.className = "toast-pill";
+      if (type === "undo") {
+        toast.innerHTML = `<span>${msg}</span><span class="toast-undo-btn" onclick="undoLastDelete()">Undo</span>`;
+      } else {
+        toast.innerHTML = `<span>${msg}</span>`;
+      }
+
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(10px)";
+        toast.style.transition = "all 0.3s ease";
+        setTimeout(() => toast.remove(), 300);
+      }, 3400);
+    }
+
+    /* ==========================================================================
+       KEYBOARD SHORTCUTS
+       ========================================================================== */
+    window.addEventListener("keydown", function(e) {
+      if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA" || e.target.isContentEditable) {
+        if ((e.metaKey || e.ctrlKey) && e.key === "Enter" && document.getElementById("aiDraftModal").classList.contains("open")) {
+          e.preventDefault();
+          generateJourneyWithAi();
+        }
+        return;
+      }
+
+      if (e.key === "1") switchView(1);
+      if (e.key === "2") switchView(2);
+
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        document.getElementById("topbarSearchInput").focus();
+      }
+
+      if ((e.metaKey || e.ctrlKey) && e.key === "j") {
+        e.preventDefault();
+        openAiDraftModal();
+      }
+
+      if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+        e.preventDefault();
+        saveDraft();
+      }
+
+      if (e.key === "Escape") {
+        closeInspectorDrawer();
+        closeAiDraftModal();
+        closeTemplatesModal();
+        closeEmployeePreviewModal();
+        document.getElementById("profilePopover").classList.remove("open");
+        document.getElementById("deptDropdownPanel").classList.remove("open");
+      }
+    });
+
+    // Initialize on load
+    document.addEventListener("DOMContentLoaded", () => {
+      renderBentoCards();
+      renderLinearCommandDeck();
+    });
+  </script>
+</body>
+</html>
