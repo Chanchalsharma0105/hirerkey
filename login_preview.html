@@ -2280,18 +2280,18 @@
        VIEW 4: APPROVALMAX-STYLE WORKFLOW HIERARCHY ANIMATION & MODERN SPLIT
        ========================================================================== */
     .viewport-canvas.view4-mode {
-      background-color: #F8F6FF;
+      background-color: #F6F1FF;
       background-image: 
-        /* Dominant Hirerkey Purple & Radiant Violet Glows */
-        radial-gradient(circle at 10% 18%, rgba(124, 58, 237, 0.22) 0%, rgba(168, 85, 247, 0.12) 35%, transparent 65%),
-        radial-gradient(circle at 88% 14%, rgba(168, 85, 247, 0.2) 0%, rgba(124, 58, 237, 0.1) 32%, transparent 60%),
-        radial-gradient(circle at 50% 88%, rgba(139, 92, 246, 0.18) 0%, transparent 62%),
-        /* Subtle Blue / Azure Accents as requested */
-        radial-gradient(circle at 92% 78%, rgba(59, 130, 246, 0.15) 0%, transparent 52%),
-        radial-gradient(circle at 12% 75%, rgba(99, 102, 241, 0.16) 0%, transparent 54%),
-        /* Delicate Dot Matrix Pattern */
-        radial-gradient(circle, rgba(124, 58, 237, 0.07) 1.2px, transparent 1.2px);
-      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 32px 32px;
+        url('v4_bg_gradient.png'),
+        url('assets/v4_bg_gradient.png'),
+        /* High-fidelity CSS fallback gradient */
+        radial-gradient(ellipse 65% 55% at 90% 10%, rgba(168, 85, 247, 0.55) 0%, rgba(192, 132, 252, 0.25) 45%, transparent 75%),
+        radial-gradient(ellipse 60% 50% at 10% 90%, rgba(147, 51, 234, 0.5) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 75%),
+        linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 35%, #F3E8FF 70%, #EDE9FE 100%);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
     }
 
     .v4-layout-container {

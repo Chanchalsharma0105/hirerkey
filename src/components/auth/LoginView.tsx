@@ -411,7 +411,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         justifyContent: 'center',
         p: { xs: 2, md: 4 },
         pb: { xs: 12, md: 14 },
-        backgroundColor: isView1 ? '#0B0719' : isView2 ? '#EAE7F8' : isView3 ? '#EEF2F6' : '#F8F6FF',
+        backgroundColor: isView1 ? '#0B0719' : isView2 ? '#EAE7F8' : isView3 ? '#EEF2F6' : '#F6F1FF',
         backgroundImage: isView1
           ? `
             radial-gradient(circle at 12% 22%, rgba(59, 130, 246, 0.42) 0%, rgba(99, 102, 241, 0.28) 32%, transparent 64%),
@@ -442,12 +442,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
             linear-gradient(90deg, rgba(124, 58, 237, 0.035) 1px, transparent 1px)
           `
           : `
-            radial-gradient(circle at 10% 18%, rgba(124, 58, 237, 0.22) 0%, rgba(168, 85, 247, 0.12) 35%, transparent 65%),
-            radial-gradient(circle at 88% 14%, rgba(168, 85, 247, 0.2) 0%, rgba(124, 58, 237, 0.1) 32%, transparent 60%),
-            radial-gradient(circle at 50% 88%, rgba(139, 92, 246, 0.18) 0%, transparent 62%),
-            radial-gradient(circle at 92% 78%, rgba(59, 130, 246, 0.15) 0%, transparent 52%),
-            radial-gradient(circle at 12% 75%, rgba(99, 102, 241, 0.16) 0%, transparent 54%),
-            radial-gradient(circle, rgba(124, 58, 237, 0.07) 1.2px, transparent 1.2px)
+            url('v4_bg_gradient.png'),
+            url('/v4_bg_gradient.png'),
+            radial-gradient(ellipse 65% 55% at 90% 10%, rgba(168, 85, 247, 0.55) 0%, rgba(192, 132, 252, 0.25) 45%, transparent 75%),
+            radial-gradient(ellipse 60% 50% at 10% 90%, rgba(147, 51, 234, 0.5) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 75%),
+            linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 35%, #F3E8FF 70%, #EDE9FE 100%)
           `,
         backgroundSize: isView1
           ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px, 100% 100%'
@@ -455,7 +454,10 @@ export const LoginView: React.FC<LoginViewProps> = ({
           ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px'
           : isView3
           ? '100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px'
-          : '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 32px 32px',
+          : 'cover',
+        backgroundPosition: isView4 ? 'center center' : undefined,
+        backgroundRepeat: isView4 ? 'no-repeat' : undefined,
+        backgroundAttachment: isView4 ? 'fixed' : undefined,
         color: isView1 ? '#FFFFFF' : '#0F172A',
         fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
         transition: 'background-color 0.45s ease',
