@@ -3157,25 +3157,6 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     </Box>
                   </Box>
                 </Box>
-
-                {/* Hand-drawn Annotation Row */}
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1, mt: -0.75, pr: 3.5 }}>
-                  <svg width="44" height="24" viewBox="0 0 50 25" fill="none" stroke="#7C3AED" strokeWidth="2">
-                    <path d="M 5 20 Q 25 24 38 12 Q 44 6 46 2" />
-                    <path d="M 40 2 L 47 2 L 46 9" />
-                  </svg>
-                  <Typography
-                    sx={{
-                      fontFamily: "'Caveat', 'Comic Sans MS', cursive, sans-serif",
-                      fontSize: 15,
-                      fontWeight: 700,
-                      color: '#6D28D9',
-                      transform: 'rotate(-2deg)',
-                    }}
-                  >
-                    Empowered people build brighter workplaces.
-                  </Typography>
-                </Box>
               </Box>
 
               {/* RIGHT COLUMN: CLEAN WHITE AUTHENTICATION CARD */}
