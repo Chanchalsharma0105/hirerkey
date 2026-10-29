@@ -18,7 +18,7 @@ export type AuthMode = 'otp' | 'password' | 'passkey';
 export interface LoginViewProps {
   onSuccessLogin?: (email: string, method: AuthMode) => void;
   className?: string;
-  defaultView?: 1 | 2 | 3;
+  defaultView?: 1 | 2 | 3 | 4;
 }
 
 const STORIES = [
@@ -42,9 +42,9 @@ const STORIES = [
 export const LoginView: React.FC<LoginViewProps> = ({
   onSuccessLogin,
   className,
-  defaultView = 3,
+  defaultView = 4,
 }) => {
-  const [viewPage, setViewPage] = useState<1 | 2 | 3>(defaultView as 1 | 2 | 3);
+  const [viewPage, setViewPage] = useState<1 | 2 | 3 | 4>(defaultView as 1 | 2 | 3 | 4);
   const [authTab, setAuthTab] = useState<'otp' | 'password'>('otp');
   const [step, setStep] = useState<'form' | 'otp_verify'>('form');
   const [email, setEmail] = useState('alex.chen@earthhotels.com');
@@ -80,6 +80,17 @@ export const LoginView: React.FC<LoginViewProps> = ({
   const [v3IsHeroLeft, setV3IsHeroLeft] = useState(true);
   const [v3Tilt, setV3Tilt] = useState({ x: 10, y: -8 });
 
+  // View 4 form states (ApprovalMax Inspired Workflow Animation & Modern Split)
+  const [v4AuthMode, setV4AuthMode] = useState<'otp' | 'password'>('otp');
+  const [v4OtpStep, setV4OtpStep] = useState<'input' | 'verify'>('input');
+  const [v4OtpDigits, setV4OtpDigits] = useState<string[]>(['', '', '', '', '', '']);
+  const [v4OtpSecondsLeft, setV4OtpSecondsLeft] = useState(29);
+  const [v4Email, setV4Email] = useState('alex.chen@earthhotels.com');
+  const [v4Password, setV4Password] = useState('EarthHotels2026!#');
+  const [v4ShowPassword, setV4ShowPassword] = useState(false);
+  const [v4RememberMe, setV4RememberMe] = useState(true);
+  const [v4Tilt, setV4Tilt] = useState({ x: 0, y: 0 });
+
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
@@ -102,19 +113,44 @@ export const LoginView: React.FC<LoginViewProps> = ({
     setV3Tilt({ x: 10, y: -8 });
   };
 
-  // Keyboard navigation for Three-View switching (1, 2, 3, Left Arrow, Right Arrow)
+  const handleV4MouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setV4Tilt({ x: -y * 12, y: x * 12 });
+  };
+
+  const handleV4MouseLeave = () => {
+    setV4Tilt({ x: 0, y: 0 });
+  };
+
+  // Keyboard navigation for Four-View switching (1, 2, 3, 4, Left Arrow, Right Arrow)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target && ['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
       if (e.key === '1') setViewPage(1);
       if (e.key === '2') setViewPage(2);
       if (e.key === '3') setViewPage(3);
-      if (e.key === 'ArrowLeft') setViewPage((p) => (p === 1 ? 3 : (p - 1) as 1 | 2 | 3));
-      if (e.key === 'ArrowRight') setViewPage((p) => (p === 3 ? 1 : (p + 1) as 1 | 2 | 3));
+      if (e.key === '4') setViewPage(4);
+      if (e.key === 'ArrowLeft') setViewPage((p) => (p === 1 ? 4 : ((p - 1) as 1 | 2 | 3 | 4)));
+      if (e.key === 'ArrowRight') setViewPage((p) => (p === 4 ? 1 : ((p + 1) as 1 | 2 | 3 | 4)));
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  // View 4 OTP countdown timer
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval> | null = null;
+    if (viewPage === 4 && v4OtpStep === 'verify' && v4OtpSecondsLeft > 0) {
+      timer = setInterval(() => {
+        setV4OtpSecondsLeft((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [viewPage, v4OtpStep, v4OtpSecondsLeft]);
 
   const handleV2Login = (e: React.FormEvent) => {
     e.preventDefault();
@@ -244,6 +280,64 @@ export const LoginView: React.FC<LoginViewProps> = ({
     }
   };
 
+  // View 4 Form Handlers
+  const handleV4SendOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v4Email) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setV4OtpStep('verify');
+      setV4OtpSecondsLeft(29);
+      setV4OtpDigits(['', '', '', '', '', '']);
+    }, 450);
+  };
+
+  const handleV4VerifyOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = v4OtpDigits.join('');
+    if (code.length < 6) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v4Email, 'otp');
+    }, 600);
+  };
+
+  const handleV4PasswordLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v4Email || !v4Password) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v4Email, 'password');
+    }, 600);
+  };
+
+  const handleV4OtpDigitChange = (index: number, val: string) => {
+    const clean = val.replace(/[^0-9]/g, '');
+    const nextDigits = [...v4OtpDigits];
+    nextDigits[index] = clean ? clean[clean.length - 1] : '';
+    setV4OtpDigits(nextDigits);
+
+    if (clean && index < 5) {
+      const nextInput = document.getElementById(`v4-otp-digit-${index + 1}`);
+      nextInput?.focus();
+    }
+  };
+
+  const handleV4OtpKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === 'Backspace' && !v4OtpDigits[index] && index > 0) {
+      const prevInput = document.getElementById(`v4-otp-digit-${index - 1}`);
+      prevInput?.focus();
+    }
+  };
+
+  const resendV4Code = () => {
+    setV4OtpSecondsLeft(29);
+    setV4OtpDigits(['', '', '', '', '', '']);
+  };
+
   // OTP Countdown Timer
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -303,6 +397,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
   const isView1 = viewPage === 1;
   const isView2 = viewPage === 2;
   const isView3 = viewPage === 3;
+  const isView4 = viewPage === 4;
 
   return (
     <Box
@@ -316,7 +411,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         justifyContent: 'center',
         p: { xs: 2, md: 4 },
         pb: { xs: 12, md: 14 },
-        backgroundColor: isView1 ? '#0B0719' : isView2 ? '#EAE7F8' : '#EEF2F6',
+        backgroundColor: isView1 ? '#0B0719' : isView2 ? '#EAE7F8' : isView3 ? '#EEF2F6' : '#F8F6FF',
         backgroundImage: isView1
           ? `
             radial-gradient(circle at 12% 22%, rgba(59, 130, 246, 0.42) 0%, rgba(99, 102, 241, 0.28) 32%, transparent 64%),
@@ -338,18 +433,29 @@ export const LoginView: React.FC<LoginViewProps> = ({
             linear-gradient(rgba(124, 58, 237, 0.045) 1px, transparent 1px),
             linear-gradient(90deg, rgba(124, 58, 237, 0.045) 1px, transparent 1px)
           `
-          : `
+          : isView3
+          ? `
             radial-gradient(circle at 14% 18%, rgba(216, 180, 254, 0.45) 0%, transparent 55%),
             radial-gradient(circle at 86% 16%, rgba(199, 210, 254, 0.45) 0%, transparent 55%),
             radial-gradient(circle at 50% 84%, rgba(224, 231, 255, 0.5) 0%, transparent 60%),
             linear-gradient(rgba(124, 58, 237, 0.035) 1px, transparent 1px),
             linear-gradient(90deg, rgba(124, 58, 237, 0.035) 1px, transparent 1px)
+          `
+          : `
+            radial-gradient(circle at 10% 18%, rgba(124, 58, 237, 0.22) 0%, rgba(168, 85, 247, 0.12) 35%, transparent 65%),
+            radial-gradient(circle at 88% 14%, rgba(168, 85, 247, 0.2) 0%, rgba(124, 58, 237, 0.1) 32%, transparent 60%),
+            radial-gradient(circle at 50% 88%, rgba(139, 92, 246, 0.18) 0%, transparent 62%),
+            radial-gradient(circle at 92% 78%, rgba(59, 130, 246, 0.15) 0%, transparent 52%),
+            radial-gradient(circle at 12% 75%, rgba(99, 102, 241, 0.16) 0%, transparent 54%),
+            radial-gradient(circle, rgba(124, 58, 237, 0.07) 1.2px, transparent 1.2px)
           `,
         backgroundSize: isView1
           ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px, 100% 100%'
           : isView2
           ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px'
-          : '100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px',
+          : isView3
+          ? '100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px'
+          : '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 32px 32px',
         color: isView1 ? '#FFFFFF' : '#0F172A',
         fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
         transition: 'background-color 0.45s ease',
@@ -1789,7 +1895,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
               </Box>
             </Box>
           </motion.div>
-        ) : (
+        ) : viewPage === 3 ? (
           <motion.div
             key="view-3"
             initial={{ opacity: 0, y: 16, scale: 0.985 }}
@@ -2516,11 +2622,1054 @@ export const LoginView: React.FC<LoginViewProps> = ({
               </Box>
             </Box>
           </motion.div>
+        ) : (
+          <motion.div
+            key="view-4"
+            initial={{ opacity: 0, y: 16, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.985 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ width: '100%', maxWidth: '1220px', display: 'flex', justifyContent: 'center' }}
+          >
+            <style>{`
+              @keyframes v4DashTravel { to { stroke-dashoffset: -100; } }
+              @keyframes v4GlowPulse { 0%, 100% { stroke-dashoffset: 0; opacity: 0.3; } 50% { stroke-dashoffset: -120; opacity: 1; } }
+              @keyframes v4DotPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.5; } }
+              @keyframes v4DashPulse { 0%, 100% { transform: scale(1) translateY(0); box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.32); } 50% { transform: scale(1.02) translateY(-4px); box-shadow: 0 26px 55px -10px rgba(124, 58, 237, 0.42); } }
+              @keyframes v4Pop1 { 0%, 25%, 100% { transform: scale(1.04) translateY(-3px); border-color: #7C3AED; box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.35); } 35%, 90% { transform: scale(1) translateY(0); border-color: #E2E8F0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); } }
+              @keyframes v4Pop2 { 0%, 20% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 25%, 50% { transform: scale(1.04) translateY(-3px); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.35); } 60%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
+              @keyframes v4Pop3 { 0%, 45% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 50%, 75% { transform: scale(1.04) translateY(-3px); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.35); } 85%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
+              @keyframes v4Pop4 { 0%, 70% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 75%, 98% { transform: scale(1.04) translateY(-3px); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.35); } 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
+            `}</style>
+            <Box
+              sx={{
+                width: '100%',
+                maxWidth: '1220px',
+                minHeight: '640px',
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', lg: '1.15fr 0.95fr' },
+                gap: { xs: 4, lg: '36px' },
+                alignItems: 'center',
+                position: 'relative',
+                zIndex: 10,
+              }}
+            >
+              {/* LEFT COLUMN: HERO SHOWCASE WITH APPROVALMAX-STYLE WORKFLOW ANIMATION */}
+              <Box
+                sx={{
+                  p: { xs: 1, sm: 2 },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  position: 'relative',
+                }}
+              >
+                {/* Brand Logo Header & People Performance Progress Subtag */}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.75, mb: 2.75, flexWrap: 'wrap' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
+                    <Box
+                      sx={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: '10px',
+                        background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 100%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '0 8px 20px -4px rgba(124, 58, 237, 0.45)',
+                        color: '#FFFFFF',
+                        fontWeight: 800,
+                        fontSize: 20,
+                      }}
+                    >
+                      H
+                    </Box>
+                    <Typography
+                      sx={{
+                        fontFamily: 'Plus Jakarta Sans, sans-serif',
+                        fontSize: 24,
+                        fontWeight: 800,
+                        color: '#0F172A',
+                        letterSpacing: '-0.035em',
+                      }}
+                    >
+                      Hirerkey<span style={{ color: '#7C3AED' }}>.</span>
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 0.75,
+                      px: 1.5,
+                      py: 0.5,
+                      borderRadius: '9999px',
+                      background: 'rgba(124, 58, 237, 0.08)',
+                      border: '1px solid rgba(124, 58, 237, 0.2)',
+                      color: '#7C3AED',
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: '0.16em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    <span>PEOPLE • PERFORMANCE • PROGRESS</span>
+                  </Box>
+                </Box>
+
+                {/* Headline */}
+                <Typography
+                  level="h1"
+                  sx={{
+                    fontFamily: 'Plus Jakarta Sans, sans-serif',
+                    fontSize: { xs: 34, sm: 44 },
+                    fontWeight: 800,
+                    lineHeight: 1.14,
+                    letterSpacing: '-0.035em',
+                    color: '#0F172A',
+                    mb: 1.75,
+                  }}
+                >
+                  A smarter way<br />
+                  to manage your{' '}
+                  <span
+                    style={{
+                      background: 'linear-gradient(135deg, #7C3AED 0%, #A855F7 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      display: 'inline-block',
+                    }}
+                  >
+                    people
+                  </span>
+                </Typography>
+
+                {/* Subtitle */}
+                <Typography
+                  sx={{
+                    fontSize: 16,
+                    color: '#475569',
+                    lineHeight: 1.55,
+                    maxWidth: 480,
+                    mb: 3,
+                  }}
+                >
+                  Everything you need to build, manage and grow a high-performing team.
+                </Typography>
+
+                {/* Animated Workflow Stage */}
+                <Box
+                  onMouseMove={handleV4MouseMove}
+                  onMouseLeave={handleV4MouseLeave}
+                  sx={{
+                    width: '100%',
+                    maxWidth: 540,
+                    height: 350,
+                    position: 'relative',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    perspective: 1000,
+                    mt: 0.75,
+                  }}
+                >
+                  {/* SVG Flow Lines */}
+                  <svg
+                    viewBox="0 0 540 350"
+                    preserveAspectRatio="none"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      pointerEvents: 'none',
+                      zIndex: 2,
+                    }}
+                  >
+                    <defs>
+                      <linearGradient id="v4ReactLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.9" />
+                        <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.9" />
+                        <stop offset="100%" stopColor="#A855F7" stopOpacity="0.9" />
+                      </linearGradient>
+                      <filter id="v4ReactGlow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                    </defs>
+
+                    {/* Base Paths */}
+                    <path
+                      d="M 160 75 C 210 75, 230 145, 270 160"
+                      fill="none"
+                      stroke="rgba(124, 58, 237, 0.22)"
+                      strokeWidth="2"
+                      strokeDasharray="4 4"
+                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
+                    />
+                    <path
+                      d="M 160 275 C 210 275, 230 205, 270 190"
+                      fill="none"
+                      stroke="rgba(124, 58, 237, 0.22)"
+                      strokeWidth="2"
+                      strokeDasharray="4 4"
+                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
+                    />
+                    <path
+                      d="M 270 160 C 310 145, 330 75, 380 75"
+                      fill="none"
+                      stroke="rgba(124, 58, 237, 0.22)"
+                      strokeWidth="2"
+                      strokeDasharray="4 4"
+                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
+                    />
+                    <path
+                      d="M 270 190 C 310 205, 330 275, 380 275"
+                      fill="none"
+                      stroke="rgba(124, 58, 237, 0.22)"
+                      strokeWidth="2"
+                      strokeDasharray="4 4"
+                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
+                    />
+
+                    {/* Glowing Pulses */}
+                    <path
+                      d="M 160 75 C 210 75, 230 145, 270 160"
+                      fill="none"
+                      stroke="url(#v4ReactLineGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="30 180"
+                      filter="url(#v4ReactGlow)"
+                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite' }}
+                    />
+                    <path
+                      d="M 160 275 C 210 275, 230 205, 270 190"
+                      fill="none"
+                      stroke="url(#v4ReactLineGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="30 180"
+                      filter="url(#v4ReactGlow)"
+                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-2s' }}
+                    />
+                    <path
+                      d="M 270 160 C 310 145, 330 75, 380 75"
+                      fill="none"
+                      stroke="url(#v4ReactLineGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="30 180"
+                      filter="url(#v4ReactGlow)"
+                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-1s' }}
+                    />
+                    <path
+                      d="M 270 190 C 310 205, 330 275, 380 275"
+                      fill="none"
+                      stroke="url(#v4ReactLineGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="30 180"
+                      filter="url(#v4ReactGlow)"
+                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-3s' }}
+                    />
+                  </svg>
+
+                  {/* Module 1: Orientation (Top-Left) */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 10,
+                      left: 6,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4Pop1 9s ease-in-out infinite',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        borderColor: '#7C3AED',
+                        boxShadow: '0 16px 35px -8px rgba(124, 58, 237, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                        bgcolor: '#EDE9FE',
+                        color: '#7C3AED',
+                      }}
+                    >
+                      🧭
+                    </Box>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7C3AED', mb: 0.25 }}>
+                        01 • ONBOARDING
+                      </Typography>
+                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        Orientation
+                      </Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+                        <span>Active • Automated</span>
+                      </Box>
+                    </Box>
+                  </Box>
+
+                  {/* Module 2: Department Tour (Bottom-Left) */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 24,
+                      left: 12,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4Pop2 9s ease-in-out infinite',
+                      animationDelay: '2.25s',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        borderColor: '#3B82F6',
+                        boxShadow: '0 16px 35px -8px rgba(59, 130, 246, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                        bgcolor: '#EFF6FF',
+                        color: '#3B82F6',
+                      }}
+                    >
+                      🏢
+                    </Box>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#3B82F6', mb: 0.25 }}>
+                        02 • ALIGNMENT
+                      </Typography>
+                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        Department Tour
+                      </Typography>
+                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        Sales &amp; Marketing
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Central Mini Dashboard */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      zIndex: 5,
+                      width: 220,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '14px',
+                      border: '1px solid rgba(124, 58, 237, 0.25)',
+                      boxShadow: '0 20px 45px -10px rgba(124, 58, 237, 0.32), 0 8px 20px -4px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.9)',
+                      overflow: 'hidden',
+                      transform: `rotateX(${v4Tilt.x}deg) rotateY(${v4Tilt.y}deg)`,
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4DashPulse 6s ease-in-out infinite',
+                    }}
+                  >
+                    <Box sx={{ p: '6px 10px', bgcolor: '#F8FAFC', borderBottom: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#EF4444', display: 'inline-block' }} />
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }} />
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+                      </Box>
+                      <Typography sx={{ fontSize: 8.5, color: '#64748B', fontFamily: 'monospace', letterSpacing: '0.02em' }}>
+                        app.hirerkey.com
+                      </Typography>
+                    </Box>
+                    <Box sx={{ position: 'relative', bgcolor: '#0B0818', overflow: 'hidden' }}>
+                      <img
+                        src="hirerkey_dashboard_v4.png"
+                        onError={(e: any) => {
+                          if (!e.target.dataset.retry) {
+                            e.target.dataset.retry = '1';
+                            e.target.src = '../hirerkey_dashboard_v4.png';
+                          }
+                        }}
+                        alt="Hirerkey Core Workspace"
+                        style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                      />
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          top: 6,
+                          right: 6,
+                          px: '6px',
+                          py: '2px',
+                          borderRadius: '9999px',
+                          bgcolor: 'rgba(15, 23, 42, 0.88)',
+                          border: '1px solid rgba(16, 185, 129, 0.4)',
+                          color: '#FFFFFF',
+                          fontSize: 8,
+                          fontWeight: 700,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 0.5,
+                        }}
+                      >
+                        <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 6px #10B981', animation: 'v4DotPulse 1.8s infinite', display: 'inline-block' }} />
+                        <span>Live Sync</span>
+                      </Box>
+                    </Box>
+                  </Box>
+
+                  {/* Module 3: Ask HyIQ AI (Top-Right) */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 16,
+                      right: 6,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4Pop3 9s ease-in-out infinite',
+                      animationDelay: '4.5s',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        borderColor: '#EC4899',
+                        boxShadow: '0 16px 35px -8px rgba(236, 72, 153, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                        bgcolor: '#FDF2F8',
+                        color: '#EC4899',
+                      }}
+                    >
+                      ✨
+                    </Box>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#EC4899', mb: 0.25 }}>
+                        03 • INTELLIGENCE
+                      </Typography>
+                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        Ask HyIQ™ AI
+                      </Typography>
+                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        Real-time • 12ms
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Module 4: 1-on-1 Check-ins (Bottom-Right) */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 18,
+                      right: 14,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4Pop4 9s ease-in-out infinite',
+                      animationDelay: '6.75s',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        borderColor: '#10B981',
+                        boxShadow: '0 16px 35px -8px rgba(16, 185, 129, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                        bgcolor: '#ECFDF5',
+                        color: '#10B981',
+                      }}
+                    >
+                      📊
+                    </Box>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#059669', mb: 0.25 }}>
+                        04 • PERFORMANCE
+                      </Typography>
+                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        1-on-1 Check-ins
+                      </Typography>
+                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        Goal Tracking ↗
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+
+                {/* Hand-drawn Annotation Row */}
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1, mt: -0.75, pr: 3.5 }}>
+                  <svg width="44" height="24" viewBox="0 0 50 25" fill="none" stroke="#7C3AED" strokeWidth="2">
+                    <path d="M 5 20 Q 25 24 38 12 Q 44 6 46 2" />
+                    <path d="M 40 2 L 47 2 L 46 9" />
+                  </svg>
+                  <Typography
+                    sx={{
+                      fontFamily: "'Caveat', 'Comic Sans MS', cursive, sans-serif",
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: '#6D28D9',
+                      transform: 'rotate(-2deg)',
+                    }}
+                  >
+                    Empowered people build brighter workplaces.
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* RIGHT COLUMN: CLEAN WHITE AUTHENTICATION CARD */}
+              <Box
+                sx={{
+                  bgcolor: '#FFFFFF',
+                  borderRadius: '28px',
+                  border: '1px solid rgba(226, 232, 240, 0.95)',
+                  boxShadow: '0 30px 70px -15px rgba(124, 58, 237, 0.12), 0 12px 30px -5px rgba(15, 23, 42, 0.04), inset 0 1px 1px #FFFFFF',
+                  p: { xs: 3, sm: '38px 38px 32px 38px' },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'relative',
+                }}
+              >
+                {/* Top Contact Admin Row */}
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 0.6, fontSize: 13, color: '#64748B', mb: 2.5 }}>
+                  <span>New to Hirerkey?</span>
+                  <Box
+                    component="button"
+                    type="button"
+                    onClick={() => setHelpModalOpen(true)}
+                    sx={{
+                      background: 'none',
+                      border: 'none',
+                      p: 0,
+                      color: '#7C3AED',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      fontSize: 13,
+                      '&:hover': { color: '#6D28D9', textDecoration: 'underline' },
+                    }}
+                  >
+                    Contact your admin
+                  </Box>
+                </Box>
+
+                {/* Form Titles */}
+                <Typography
+                  level="h2"
+                  sx={{
+                    fontFamily: 'Plus Jakarta Sans, sans-serif',
+                    fontSize: 30,
+                    fontWeight: 800,
+                    color: '#0F172A',
+                    letterSpacing: '-0.03em',
+                    mb: 0.75,
+                  }}
+                >
+                  Welcome back
+                </Typography>
+                <Typography sx={{ fontSize: 14, color: '#64748B', mb: 3 }}>
+                  Sign in to continue to Hirerkey
+                </Typography>
+
+                {/* Dual Tab Segmented Track (OTP vs Password) */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    bgcolor: '#F8FAFC',
+                    border: '1px solid #E2E8F0',
+                    borderRadius: '12px',
+                    p: '4px',
+                    gap: '4px',
+                    mb: 3,
+                  }}
+                >
+                  <Box
+                    component="button"
+                    type="button"
+                    onClick={() => setV4AuthMode('otp')}
+                    sx={{
+                      flex: 1,
+                      py: 1.25,
+                      px: 1.75,
+                      borderRadius: '9px',
+                      border: '1px solid',
+                      borderColor: v4AuthMode === 'otp' ? 'rgba(124, 58, 237, 0.25)' : 'transparent',
+                      bgcolor: v4AuthMode === 'otp' ? '#FFFFFF' : 'transparent',
+                      color: v4AuthMode === 'otp' ? '#7C3AED' : '#64748B',
+                      fontWeight: v4AuthMode === 'otp' ? 700 : 600,
+                      boxShadow: v4AuthMode === 'otp' ? '0 2px 8px rgba(124, 58, 237, 0.12)' : 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 1,
+                      fontFamily: 'Plus Jakarta Sans, sans-serif',
+                      fontSize: 13.5,
+                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                    }}
+                  >
+                    <HiEnvelope size={16} />
+                    <span>Login with OTP</span>
+                  </Box>
+
+                  <Box
+                    component="button"
+                    type="button"
+                    onClick={() => setV4AuthMode('password')}
+                    sx={{
+                      flex: 1,
+                      py: 1.25,
+                      px: 1.75,
+                      borderRadius: '9px',
+                      border: '1px solid',
+                      borderColor: v4AuthMode === 'password' ? 'rgba(124, 58, 237, 0.25)' : 'transparent',
+                      bgcolor: v4AuthMode === 'password' ? '#FFFFFF' : 'transparent',
+                      color: v4AuthMode === 'password' ? '#7C3AED' : '#64748B',
+                      fontWeight: v4AuthMode === 'password' ? 700 : 600,
+                      boxShadow: v4AuthMode === 'password' ? '0 2px 8px rgba(124, 58, 237, 0.12)' : 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 1,
+                      fontFamily: 'Plus Jakarta Sans, sans-serif',
+                      fontSize: 13.5,
+                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                    }}
+                  >
+                    <HiLockClosed size={16} />
+                    <span>Login with password</span>
+                  </Box>
+                </Box>
+
+                {/* MODE A: OTP FLOW */}
+                {v4AuthMode === 'otp' && v4OtpStep === 'input' && (
+                  <Box component="form" onSubmit={handleV4SendOTP}>
+                    <Box sx={{ mb: 2.25 }}>
+                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 1 }}>
+                        Work email
+                      </Typography>
+                      <Input
+                        type="email"
+                        required
+                        value={v4Email}
+                        onChange={(e) => setV4Email(e.target.value)}
+                        placeholder="you@company.com"
+                        startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                        sx={{
+                          height: 48,
+                          borderRadius: '12px',
+                          border: '1.5px solid #E2E8F0',
+                          bgcolor: '#FFFFFF',
+                          fontSize: 14,
+                          '&:focus-within': {
+                            borderColor: '#7C3AED',
+                            boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                          },
+                        }}
+                      />
+                    </Box>
+
+                    <Button
+                      type="submit"
+                      loading={loading}
+                      sx={{
+                        width: '100%',
+                        height: 48,
+                        borderRadius: '12px',
+                        bgcolor: '#7C3AED',
+                        color: '#FFFFFF',
+                        fontWeight: 700,
+                        fontSize: 15,
+                        boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                        '&:hover': {
+                          bgcolor: '#6D28D9',
+                          transform: 'translateY(-1px)',
+                          boxShadow: '0 14px 28px -5px rgba(124, 58, 237, 0.55)',
+                        },
+                      }}
+                      endDecorator={<HiArrowRight size={16} />}
+                    >
+                      Send OTP
+                    </Button>
+                  </Box>
+                )}
+
+                {/* MODE A2: OTP VERIFICATION */}
+                {v4AuthMode === 'otp' && v4OtpStep === 'verify' && (
+                  <Box component="form" onSubmit={handleV4VerifyOTP}>
+                    <Typography level="h3" sx={{ fontSize: 19, fontWeight: 700, color: '#0F172A', mb: 0.75 }}>
+                      Enter verification code
+                    </Typography>
+                    <Typography sx={{ fontSize: 13, color: '#64748B', mb: 2.5 }}>
+                      We sent a 6-digit code to <strong style={{ color: '#7C3AED' }}>{v4Email}</strong>
+                    </Typography>
+
+                    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 1.25, mb: 2.5 }}>
+                      {v4OtpDigits.map((digit, idx) => (
+                        <input
+                          key={idx}
+                          id={`v4-otp-digit-${idx}`}
+                          type="text"
+                          inputMode="numeric"
+                          maxLength={1}
+                          value={digit}
+                          onChange={(e) => handleV4OtpDigitChange(idx, e.target.value)}
+                          onKeyDown={(e) => handleV4OtpKeyDown(idx, e)}
+                          style={{
+                            height: 52,
+                            width: '100%',
+                            textAlign: 'center',
+                            fontFamily: 'Plus Jakarta Sans, sans-serif',
+                            fontSize: 22,
+                            fontWeight: 800,
+                            color: '#0F172A',
+                            borderRadius: '12px',
+                            border: '1.5px solid #CBD5E1',
+                            background: '#FFFFFF',
+                            outline: 'none',
+                            transition: 'all 0.15s ease',
+                          }}
+                        />
+                      ))}
+                    </Box>
+
+                    {/* Resend Timer Row */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.75, fontSize: 13, color: '#64748B', mb: 2.5 }}>
+                      <span>Didn't receive code?</span>
+                      {v4OtpSecondsLeft > 0 ? (
+                        <span>
+                          Resend in <strong style={{ color: '#7C3AED' }}>0:{v4OtpSecondsLeft.toString().padStart(2, '0')}</strong>
+                        </span>
+                      ) : (
+                        <Box
+                          component="button"
+                          type="button"
+                          onClick={resendV4Code}
+                          sx={{
+                            background: 'none',
+                            border: 'none',
+                            p: 0,
+                            color: '#7C3AED',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            fontSize: 13,
+                            '&:hover': { textDecoration: 'underline' },
+                          }}
+                        >
+                          Resend OTP
+                        </Box>
+                      )}
+                    </Box>
+
+                    <Button
+                      type="submit"
+                      loading={loading}
+                      sx={{
+                        width: '100%',
+                        height: 48,
+                        borderRadius: '12px',
+                        bgcolor: '#7C3AED',
+                        color: '#FFFFFF',
+                        fontWeight: 700,
+                        fontSize: 15,
+                        boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                        '&:hover': {
+                          bgcolor: '#6D28D9',
+                          transform: 'translateY(-1px)',
+                          boxShadow: '0 14px 28px -5px rgba(124, 58, 237, 0.55)',
+                        },
+                      }}
+                      endDecorator={<HiArrowRight size={16} />}
+                    >
+                      Verify &amp; Sign in
+                    </Button>
+
+                    <Box sx={{ textAlign: 'center', mt: 1.75 }}>
+                      <Box
+                        component="button"
+                        type="button"
+                        onClick={() => setV4OtpStep('input')}
+                        sx={{
+                          background: 'none',
+                          border: 'none',
+                          p: 0,
+                          color: '#7C3AED',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          '&:hover': { textDecoration: 'underline' },
+                        }}
+                      >
+                        ← Back to Email entry
+                      </Box>
+                    </Box>
+                  </Box>
+                )}
+
+                {/* MODE B: PASSWORD LOGIN */}
+                {v4AuthMode === 'password' && (
+                  <Box component="form" onSubmit={handleV4PasswordLogin}>
+                    <Box sx={{ mb: 2.25 }}>
+                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 1 }}>
+                        Work email
+                      </Typography>
+                      <Input
+                        type="email"
+                        required
+                        value={v4Email}
+                        onChange={(e) => setV4Email(e.target.value)}
+                        placeholder="you@company.com"
+                        startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                        sx={{
+                          height: 48,
+                          borderRadius: '12px',
+                          border: '1.5px solid #E2E8F0',
+                          bgcolor: '#FFFFFF',
+                          fontSize: 14,
+                          '&:focus-within': {
+                            borderColor: '#7C3AED',
+                            boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                          },
+                        }}
+                      />
+                    </Box>
+
+                    <Box sx={{ mb: 2.25 }}>
+                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 1 }}>
+                        Password
+                      </Typography>
+                      <Input
+                        type={v4ShowPassword ? 'text' : 'password'}
+                        required
+                        value={v4Password}
+                        onChange={(e) => setV4Password(e.target.value)}
+                        placeholder="••••••••"
+                        startDecorator={<HiLockClosed color="#94A3B8" size={18} />}
+                        endDecorator={
+                          <Box
+                            component="button"
+                            type="button"
+                            onClick={() => setV4ShowPassword(!v4ShowPassword)}
+                            sx={{ background: 'none', border: 'none', p: 0.5, color: '#94A3B8', cursor: 'pointer', display: 'flex' }}
+                          >
+                            {v4ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
+                          </Box>
+                        }
+                        sx={{
+                          height: 48,
+                          borderRadius: '12px',
+                          border: '1.5px solid #E2E8F0',
+                          bgcolor: '#FFFFFF',
+                          fontSize: 14,
+                          '&:focus-within': {
+                            borderColor: '#7C3AED',
+                            boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                          },
+                        }}
+                      />
+                    </Box>
+
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5, fontSize: 13 }}>
+                      <Box
+                        component="label"
+                        sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.85, color: '#475569', cursor: 'pointer' }}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={v4RememberMe}
+                          onChange={(e) => setV4RememberMe(e.target.checked)}
+                          style={{ accentColor: '#7C3AED', width: 16, height: 16 }}
+                        />
+                        <span>Remember me</span>
+                      </Box>
+                      <Box
+                        component="button"
+                        type="button"
+                        onClick={() => setHelpModalOpen(true)}
+                        sx={{
+                          background: 'none',
+                          border: 'none',
+                          p: 0,
+                          color: '#7C3AED',
+                          fontWeight: 600,
+                          fontSize: 13,
+                          cursor: 'pointer',
+                          '&:hover': { textDecoration: 'underline' },
+                        }}
+                      >
+                        Forgot password?
+                      </Box>
+                    </Box>
+
+                    <Button
+                      type="submit"
+                      loading={loading}
+                      sx={{
+                        width: '100%',
+                        height: 48,
+                        borderRadius: '12px',
+                        bgcolor: '#7C3AED',
+                        color: '#FFFFFF',
+                        fontWeight: 700,
+                        fontSize: 15,
+                        boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                        '&:hover': {
+                          bgcolor: '#6D28D9',
+                          transform: 'translateY(-1px)',
+                          boxShadow: '0 14px 28px -5px rgba(124, 58, 237, 0.55)',
+                        },
+                      }}
+                      endDecorator={<HiArrowRight size={16} />}
+                    >
+                      Sign in
+                    </Button>
+                  </Box>
+                )}
+
+                {/* Divider OR */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    my: 2.5,
+                    color: '#94A3B8',
+                    fontSize: 13,
+                    '&::before, &::after': {
+                      content: '""',
+                      flex: 1,
+                      borderBottom: '1px solid #E2E8F0',
+                    },
+                  }}
+                >
+                  <span style={{ padding: '0 12px' }}>or</span>
+                </Box>
+
+                {/* Google SSO Button */}
+                <Box
+                  component="button"
+                  type="button"
+                  onClick={() => onSuccessLogin?.(v4Email, 'password')}
+                  sx={{
+                    width: '100%',
+                    height: 48,
+                    borderRadius: '12px',
+                    bgcolor: '#FFFFFF',
+                    border: '1.5px solid #E2E8F0',
+                    color: '#0F172A',
+                    fontFamily: 'Plus Jakarta Sans, sans-serif',
+                    fontSize: 14,
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 1.25,
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      bgcolor: '#F8FAFC',
+                      borderColor: '#CBD5E1',
+                      transform: 'translateY(-1px)',
+                    },
+                  }}
+                >
+                  <FcGoogle size={18} />
+                  <span>Continue with Google</span>
+                </Box>
+
+                {/* Can't access your login email recovery link */}
+                <Box sx={{ textAlign: 'center', mt: 2.25 }}>
+                  <Box
+                    component="button"
+                    type="button"
+                    onClick={() => setHelpModalOpen(true)}
+                    sx={{
+                      background: 'none',
+                      border: 'none',
+                      p: 0,
+                      color: '#7C3AED',
+                      fontSize: 13,
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      '&:hover': { color: '#6D28D9', textDecoration: 'underline' },
+                    }}
+                  >
+                    Can't access your login email?
+                  </Box>
+                </Box>
+
+                {/* Legal Footer */}
+                <Typography sx={{ mt: 3.5, fontSize: 12, color: '#94A3B8', textAlign: 'center', lineHeight: 1.5 }}>
+                  By continuing, you agree to our{' '}
+                  <span style={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer' }}>Terms of Use</span> and{' '}
+                  <span style={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer' }}>Privacy Policy</span>.
+                </Typography>
+              </Box>
+            </Box>
+          </motion.div>
         )}
       </AnimatePresence>
 
       {/* ======================================================================
-          BOTTOM PAGINATION DOCK (COMMERCIAL WEBSITE / DASHBOARD ENCIRCLED 1 & 2)
+          BOTTOM PAGINATION DOCK (COMMERCIAL WEBSITE / DASHBOARD ENCIRCLED 1, 2, 3, 4)
           ====================================================================== */}
       <Box
         component="nav"
@@ -2562,7 +3711,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           <Box
             component="button"
             type="button"
-            onClick={() => setViewPage((p) => (p === 1 ? 3 : (p - 1) as 1 | 2 | 3))}
+            onClick={() => setViewPage((p) => (p === 1 ? 4 : ((p - 1) as 1 | 2 | 3 | 4)))}
             title="Previous Page (Key: Left Arrow)"
             aria-label="Previous Page"
             sx={{
@@ -2721,11 +3870,57 @@ export const LoginView: React.FC<LoginViewProps> = ({
             <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#F1F5F9' }}>Page 3</Typography>
           </Box>
 
+          {/* Encircled 4: Page 4 */}
+          <Box
+            component="button"
+            type="button"
+            onClick={() => setViewPage(4)}
+            title="Page 4 (Key: 4)"
+            aria-label="Page 4"
+            aria-current={viewPage === 4 ? 'page' : undefined}
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 1,
+              px: { xs: 0.75, sm: 1.5 },
+              py: 0.5,
+              borderRadius: '9999px',
+              border: '1.5px solid',
+              borderColor: viewPage === 4 ? '#A855F7' : 'rgba(255, 255, 255, 0.16)',
+              bgcolor: viewPage === 4 ? 'rgba(124, 58, 237, 0.28)' : 'rgba(255, 255, 255, 0.06)',
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              boxShadow: viewPage === 4 ? '0 0 18px rgba(124, 58, 237, 0.45)' : 'none',
+              transition: 'all 0.22s ease',
+            }}
+          >
+            <Box
+              sx={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                bgcolor: viewPage === 4 ? '#7C3AED' : 'rgba(255, 255, 255, 0.1)',
+                background: viewPage === 4 ? 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)' : 'rgba(255, 255, 255, 0.1)',
+                border: '2px solid',
+                borderColor: viewPage === 4 ? '#E9D5FF' : 'rgba(255, 255, 255, 0.35)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 13.5,
+                fontWeight: 800,
+                boxShadow: viewPage === 4 ? '0 0 14px rgba(168, 85, 247, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.8)' : 'none',
+              }}
+            >
+              4
+            </Box>
+            <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#F1F5F9' }}>Page 4</Typography>
+          </Box>
+
           {/* Next button */}
           <Box
             component="button"
             type="button"
-            onClick={() => setViewPage((p) => (p === 3 ? 1 : (p + 1) as 1 | 2 | 3))}
+            onClick={() => setViewPage((p) => (p === 4 ? 1 : ((p + 1) as 1 | 2 | 3 | 4)))}
             title="Next Page (Key: Right Arrow)"
             aria-label="Next Page"
             sx={{
