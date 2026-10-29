@@ -3568,58 +3568,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   </Box>
                 )}
 
-                {/* Divider OR */}
-                <Box
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    my: 2.5,
-                    color: '#94A3B8',
-                    fontSize: 13,
-                    '&::before, &::after': {
-                      content: '""',
-                      flex: 1,
-                      borderBottom: '1px solid #E2E8F0',
-                    },
-                  }}
-                >
-                  <span style={{ padding: '0 12px' }}>or</span>
-                </Box>
-
-                {/* Google SSO Button */}
-                <Box
-                  component="button"
-                  type="button"
-                  onClick={() => onSuccessLogin?.(v4Email, 'password')}
-                  sx={{
-                    width: '100%',
-                    height: 48,
-                    borderRadius: '12px',
-                    bgcolor: '#FFFFFF',
-                    border: '1.5px solid #E2E8F0',
-                    color: '#0F172A',
-                    fontFamily: 'Plus Jakarta Sans, sans-serif',
-                    fontSize: 14,
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 1.25,
-                    transition: 'all 0.2s ease',
-                    '&:hover': {
-                      bgcolor: '#F8FAFC',
-                      borderColor: '#CBD5E1',
-                      transform: 'translateY(-1px)',
-                    },
-                  }}
-                >
-                  <FcGoogle size={18} />
-                  <span>Continue with Google</span>
-                </Box>
-
                 {/* Can't access your login email recovery link */}
-                <Box sx={{ textAlign: 'center', mt: 2.25 }}>
+                <Box sx={{ textAlign: 'center', mt: 3 }}>
                   <Box
                     component="button"
                     type="button"
