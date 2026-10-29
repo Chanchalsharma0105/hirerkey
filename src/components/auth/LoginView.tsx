@@ -411,7 +411,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         justifyContent: 'center',
         p: { xs: 2, md: 4 },
         pb: { xs: 12, md: 14 },
-        backgroundColor: isView1 ? '#0B0719' : isView2 ? '#EAE7F8' : isView3 ? '#EEF2F6' : '#ECE5FF',
+        backgroundColor: isView1 ? '#0B0719' : isView2 ? '#EAE7F8' : isView3 ? '#EEF2F6' : '#F8F6FF',
         backgroundImage: isView1
           ? `
             radial-gradient(circle at 12% 22%, rgba(59, 130, 246, 0.42) 0%, rgba(99, 102, 241, 0.28) 32%, transparent 64%),
@@ -442,12 +442,12 @@ export const LoginView: React.FC<LoginViewProps> = ({
             linear-gradient(90deg, rgba(124, 58, 237, 0.035) 1px, transparent 1px)
           `
           : `
-            radial-gradient(circle at 45% 12%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 45%),
-            radial-gradient(ellipse 65% 55% at 88% 12%, rgba(139, 92, 246, 0.72) 0%, rgba(124, 58, 237, 0.45) 30%, rgba(168, 85, 247, 0.22) 55%, transparent 75%),
-            radial-gradient(ellipse 60% 50% at 10% 88%, rgba(109, 40, 217, 0.65) 0%, rgba(124, 58, 237, 0.42) 32%, rgba(167, 139, 250, 0.2) 58%, transparent 75%),
-            radial-gradient(ellipse 50% 40% at 28% 42%, rgba(216, 180, 254, 0.45) 0%, rgba(233, 213, 255, 0.2) 40%, transparent 65%),
-            radial-gradient(circle at 86% 82%, rgba(192, 132, 252, 0.4) 0%, rgba(168, 85, 247, 0.18) 45%, transparent 68%),
-            linear-gradient(135deg, #F5F0FF 0%, #E9DEFF 25%, #E1D2FE 55%, #EDE4FF 82%, #F3ECFF 100%)
+            radial-gradient(circle at 10% 18%, rgba(124, 58, 237, 0.22) 0%, rgba(168, 85, 247, 0.12) 35%, transparent 65%),
+            radial-gradient(circle at 88% 14%, rgba(168, 85, 247, 0.2) 0%, rgba(124, 58, 237, 0.1) 32%, transparent 60%),
+            radial-gradient(circle at 50% 88%, rgba(139, 92, 246, 0.18) 0%, transparent 62%),
+            radial-gradient(circle at 92% 78%, rgba(59, 130, 246, 0.15) 0%, transparent 52%),
+            radial-gradient(circle at 12% 75%, rgba(99, 102, 241, 0.16) 0%, transparent 54%),
+            radial-gradient(circle, rgba(124, 58, 237, 0.07) 1.2px, transparent 1.2px)
           `,
         backgroundSize: isView1
           ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px, 100% 100%'
@@ -455,7 +455,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px'
           : isView3
           ? '100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px'
-          : '100% 100%',
+          : '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 32px 32px',
         color: isView1 ? '#FFFFFF' : '#0F172A',
         fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
         transition: 'background-color 0.45s ease',
@@ -2640,73 +2640,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
               @keyframes v4Pop2 { 0%, 20% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 25%, 50% { transform: scale(1.04) translateY(-3px); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.35); } 60%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
               @keyframes v4Pop3 { 0%, 45% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 50%, 75% { transform: scale(1.04) translateY(-3px); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.35); } 85%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
               @keyframes v4Pop4 { 0%, 70% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 75%, 98% { transform: scale(1.04) translateY(-3px); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.35); } 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
-              @keyframes v4GlowDrift {
-                0% { transform: scale(1) translate(0, 0); }
-                50% { transform: scale(1.08) translate(15px, -12px); }
-                100% { transform: scale(0.96) translate(-10px, 14px); }
-              }
             `}</style>
-
-            {/* Ambient Purple Gradient Backdrop Elements (Matching Image 2 Inspiration) */}
-            <Box sx={{ position: 'fixed', inset: 0, pointerEvents: 'none', overflow: 'hidden', zIndex: 1 }} aria-hidden="true">
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: -120,
-                  right: -80,
-                  width: 640,
-                  height: 640,
-                  borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(139, 92, 246, 0.55) 0%, rgba(124, 58, 237, 0.35) 45%, transparent 70%)',
-                  filter: 'blur(50px)',
-                  animation: 'v4GlowDrift 14s ease-in-out infinite alternate',
-                }}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: -100,
-                  left: -80,
-                  width: 620,
-                  height: 620,
-                  borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(109, 40, 217, 0.58) 0%, rgba(124, 58, 237, 0.38) 45%, transparent 70%)',
-                  filter: 'blur(50px)',
-                  animation: 'v4GlowDrift 16s ease-in-out infinite alternate-reverse',
-                }}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: -140,
-                  right: '18%',
-                  width: 520,
-                  height: 780,
-                  borderRadius: '42% 58% 70% 30% / 45% 45% 55% 55%',
-                  background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.6) 0%, rgba(216, 180, 254, 0.35) 45%, rgba(124, 58, 237, 0.2) 100%)',
-                  border: '1.5px solid rgba(255, 255, 255, 0.75)',
-                  filter: 'blur(32px)',
-                  transform: 'rotate(28deg)',
-                  opacity: 0.85,
-                }}
-              />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: -90,
-                  left: '2%',
-                  width: 460,
-                  height: 520,
-                  borderRadius: '58% 42% 62% 38% / 50% 60% 40% 50%',
-                  background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.4) 0%, rgba(124, 58, 237, 0.25) 50%, rgba(255, 255, 255, 0.5) 100%)',
-                  border: '1.5px solid rgba(255, 255, 255, 0.7)',
-                  filter: 'blur(28px)',
-                  transform: 'rotate(-18deg)',
-                  opacity: 0.85,
-                }}
-              />
-            </Box>
-
             <Box
               sx={{
                 width: '100%',
@@ -3221,6 +3155,25 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     </Box>
                   </Box>
                 </Box>
+
+                {/* Hand-drawn Annotation Row */}
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: 1, mt: -0.75, pr: 3.5 }}>
+                  <svg width="44" height="24" viewBox="0 0 50 25" fill="none" stroke="#7C3AED" strokeWidth="2">
+                    <path d="M 5 20 Q 25 24 38 12 Q 44 6 46 2" />
+                    <path d="M 40 2 L 47 2 L 46 9" />
+                  </svg>
+                  <Typography
+                    sx={{
+                      fontFamily: "'Caveat', 'Comic Sans MS', cursive, sans-serif",
+                      fontSize: 15,
+                      fontWeight: 700,
+                      color: '#6D28D9',
+                      transform: 'rotate(-2deg)',
+                    }}
+                  >
+                    Empowered people build brighter workplaces.
+                  </Typography>
+                </Box>
               </Box>
 
               {/* RIGHT COLUMN: CLEAN WHITE AUTHENTICATION CARD */}
@@ -3632,8 +3585,58 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   </Box>
                 )}
 
+                {/* Divider OR */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    my: 2.5,
+                    color: '#94A3B8',
+                    fontSize: 13,
+                    '&::before, &::after': {
+                      content: '""',
+                      flex: 1,
+                      borderBottom: '1px solid #E2E8F0',
+                    },
+                  }}
+                >
+                  <span style={{ padding: '0 12px' }}>or</span>
+                </Box>
+
+                {/* Google SSO Button */}
+                <Box
+                  component="button"
+                  type="button"
+                  onClick={() => onSuccessLogin?.(v4Email, 'password')}
+                  sx={{
+                    width: '100%',
+                    height: 48,
+                    borderRadius: '12px',
+                    bgcolor: '#FFFFFF',
+                    border: '1.5px solid #E2E8F0',
+                    color: '#0F172A',
+                    fontFamily: 'Plus Jakarta Sans, sans-serif',
+                    fontSize: 14,
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 1.25,
+                    transition: 'all 0.2s ease',
+                    '&:hover': {
+                      bgcolor: '#F8FAFC',
+                      borderColor: '#CBD5E1',
+                      transform: 'translateY(-1px)',
+                    },
+                  }}
+                >
+                  <FcGoogle size={18} />
+                  <span>Continue with Google</span>
+                </Box>
+
                 {/* Can't access your login email recovery link */}
-                <Box sx={{ textAlign: 'center', mt: 3 }}>
+                <Box sx={{ textAlign: 'center', mt: 2.25 }}>
                   <Box
                     component="button"
                     type="button"
