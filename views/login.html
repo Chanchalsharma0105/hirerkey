@@ -1468,13 +1468,14 @@
       width: 100%;
       height: 48px;
       border-radius: 14px;
-      background: #F8FAFC;
+      background: #FFFFFF;
       border: 1px solid #E2E8F0;
       color: #0F172A;
       font-family: var(--font-body);
       font-size: 14px;
       padding: 0 42px 0 44px;
       outline: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
       transition: all 0.2s ease;
     }
 
@@ -1485,7 +1486,7 @@
     .v2-text-input:focus {
       background: #FFFFFF;
       border-color: #7C3AED;
-      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04);
     }
 
     .v2-password-toggle {
@@ -1506,40 +1507,110 @@
       color: #334155;
     }
 
-    .v2-options-row {
+    /* View 2 Auth Mode Switcher (Email OTP vs Password) */
+    .v2-auth-mode-switcher {
+      display: flex;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 9999px;
+      padding: 4px;
+      margin-bottom: 22px;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .v2-mode-tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #64748B;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .v2-mode-tab-btn:hover {
+      color: #0F172A;
+    }
+
+    .v2-mode-tab-btn.active {
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.32);
+    }
+
+    /* View 2 OTP Digits Grid */
+    .v2-otp-digits-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 20px 0 16px 0;
+    }
+
+    .v2-otp-box {
+      width: 48px;
+      height: 54px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: #0F172A;
+      text-align: center;
+      outline: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    }
+
+    .v2-otp-box:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18), inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      background: #FFFFFF;
+    }
+
+    .v2-otp-resend-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 8px 2px 20px 2px;
       font-size: 13px;
-    }
-
-    .v2-checkbox-label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #475569;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .v2-checkbox {
-      accent-color: #7C3AED;
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      cursor: pointer;
+      color: #64748B;
+      margin-bottom: 20px;
     }
 
     .v2-forgot-link {
-      color: #475569;
+      color: #64748B;
       text-decoration: none;
+      font-size: 12.5px;
       font-weight: 500;
       transition: color 0.18s ease;
     }
 
     .v2-forgot-link:hover {
       color: #7C3AED;
+      text-decoration: underline;
+    }
+
+    /* Small & Primary Purple Corporate Recovery Link */
+    .v2-recovery-link {
+      display: inline-block;
+      font-size: 12px;
+      color: #7C3AED;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .v2-recovery-link:hover {
+      color: #6D28D9;
       text-decoration: underline;
     }
 
@@ -1573,133 +1644,1421 @@
       box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
     }
 
-    .v2-divider-row {
+    /* ==========================================================================
+       VIEW 3: SYNCWISE-INSPIRED MODERN SPLIT WITH 3D DASHBOARD PREVIEW
+       ========================================================================== */
+    .viewport-canvas.view3-mode {
+      background-color: #EEF2F6;
+      background-image: 
+        radial-gradient(circle at 14% 18%, rgba(216, 180, 254, 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 86% 16%, rgba(199, 210, 254, 0.45) 0%, transparent 55%),
+        radial-gradient(circle at 50% 84%, rgba(224, 231, 255, 0.5) 0%, transparent 60%),
+        linear-gradient(rgba(124, 58, 237, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.035) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    .v3-card-shell {
+      width: 100%;
+      max-width: 1080px;
+      min-height: 640px;
+      background: #FFFFFF;
+      border-radius: 32px;
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: 0 35px 85px -15px rgba(124, 58, 237, 0.12), 0 15px 35px -5px rgba(15, 23, 42, 0.06), 0 0 1px rgba(0, 0, 0, 0.08);
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      padding: 24px;
+      gap: 28px;
+      position: relative;
+      z-index: 10;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Flip layout: Showcase on the Left (supporting "so you can use that in the left side") */
+    .v3-card-shell.v3-hero-left {
+      grid-template-columns: 1.15fr 1fr;
+    }
+
+    .v3-card-shell.v3-hero-left .v3-hero-panel {
+      order: 1;
+    }
+
+    .v3-card-shell.v3-hero-left .v3-form-panel {
+      order: 2;
+    }
+
+    /* Left Form Panel */
+    .v3-form-panel {
+      padding: 16px 20px 12px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .v3-form-header {
       display: flex;
       align-items: center;
-      margin: 18px 0;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .v3-brand-row {
+      display: flex;
+      align-items: center;
       gap: 12px;
     }
 
-    .v2-divider-line {
+    .v3-brand-logo-pill {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(99, 102, 241, 0.06) 100%);
+      border: 1px solid rgba(124, 58, 237, 0.25);
+    }
+
+    .v3-brand-name {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.04em;
+    }
+
+    .v3-brand-name .v3-brand-i {
+      color: #7C3AED;
+    }
+
+    .v3-brand-name .v3-brand-y-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .v3-brand-name .v3-brand-y {
+      color: #7C3AED;
+    }
+
+    .v3-brand-name .v3-brand-swoosh {
+      position: absolute;
+      left: -4px;
+      bottom: -4px;
+      width: calc(100% + 6px);
+      height: 6px;
+    }
+
+    .v3-layout-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      border: 1px solid #E2E8F0;
+      background: #F8FAFC;
+      color: #64748B;
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .v3-layout-toggle-btn:hover {
+      background: #EDE9FE;
+      color: #7C3AED;
+      border-color: #DDD6FE;
+    }
+
+    .v3-form-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.035em;
+      margin-bottom: 6px;
+    }
+
+    .v3-form-subtitle {
+      font-size: 13.5px;
+      color: #64748B;
+      line-height: 1.5;
+      margin-bottom: 22px;
+      max-width: 400px;
+    }
+
+    /* Auth Switcher Pill */
+    .v3-auth-switcher {
+      display: flex;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 9999px;
+      padding: 4px;
+      margin-bottom: 20px;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .v3-tab-btn {
       flex: 1;
-      height: 1px;
-      background: #E2E8F0;
+      background: transparent;
+      border: none;
+      color: #64748B;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
     }
 
-    .v2-divider-text {
-      font-size: 12px;
+    .v3-tab-btn:hover {
+      color: #0F172A;
+    }
+
+    .v3-tab-btn.active {
+      background: #7C3AED;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+    }
+
+    .v3-input-group {
+      margin-bottom: 16px;
+    }
+
+    .v3-input-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 6px;
+    }
+
+    .v3-input-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .v3-input-icon {
+      position: absolute;
+      left: 14px;
       color: #94A3B8;
-      font-weight: 500;
+      pointer-events: none;
     }
 
-    .v2-btn-google {
+    .v3-text-input {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      color: #0F172A;
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding: 0 42px 0 42px;
+      outline: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .v3-text-input::placeholder {
+      color: #94A3B8;
+    }
+
+    .v3-text-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .v3-password-toggle {
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .v3-password-toggle:hover {
+      color: #334155;
+    }
+
+    .v3-checkbox-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .v3-remember-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #64748B;
+      cursor: pointer;
+      font-size: 13px;
+      user-select: none;
+    }
+
+    .v3-remember-checkbox {
+      accent-color: #7C3AED;
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .v3-link {
+      color: #7C3AED;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 13px;
+      transition: color 0.15s ease;
+    }
+
+    .v3-link:hover {
+      color: #6D28D9;
+      text-decoration: underline;
+    }
+
+    .v3-btn-primary {
       width: 100%;
       height: 48px;
       border-radius: 9999px;
+      background: #7C3AED;
+      border: none;
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 10px 24px -4px rgba(124, 58, 237, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v3-btn-primary:hover {
+      background: #6D28D9;
+      transform: translateY(-1.5px);
+      box-shadow: 0 14px 28px -4px rgba(124, 58, 237, 0.58);
+    }
+
+    .v3-btn-primary:active {
+      transform: translateY(0.5px);
+      box-shadow: 0 6px 16px rgba(124, 58, 237, 0.4);
+    }
+
+    .v3-btn-google {
+      width: 100%;
+      height: 46px;
+      border-radius: 9999px;
       background: #FFFFFF;
       border: 1px solid #E2E8F0;
+      color: #1E293B;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      font-family: var(--font-display);
-      font-size: 14.5px;
-      font-weight: 600;
-      color: #334155;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      margin-top: 12px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
       transition: all 0.2s ease;
     }
 
-    .v2-btn-google:hover {
+    .v3-btn-google:hover {
       background: #F8FAFC;
       border-color: #CBD5E1;
+      transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     }
 
-    .v2-signup-row {
+    .v3-otp-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 18px 0 14px 0;
+    }
+
+    .v3-otp-input {
+      width: 48px;
+      height: 52px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: #0F172A;
       text-align: center;
-      margin-top: 14px;
+      outline: none;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .v3-otp-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+    }
+
+    .v3-otp-resend {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-size: 13px;
       color: #64748B;
+      margin-bottom: 20px;
     }
 
-    .v2-signup-link {
+    .v3-terms-footer {
+      text-align: center;
+      font-size: 11.5px;
+      color: #94A3B8;
+      line-height: 1.5;
+      margin-top: 18px;
+    }
+
+    .v3-terms-footer a {
       color: #7C3AED;
-      font-weight: 600;
       text-decoration: none;
-      margin-left: 4px;
+      font-weight: 500;
     }
 
-    .v2-signup-link:hover {
+    .v3-terms-footer a:hover {
       text-decoration: underline;
     }
 
-    /* Bottom Overlapping Users Subcard (Bottom Right as in inspiration) */
-    .v2-users-subcard {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(226, 232, 240, 0.85);
-      border-radius: 18px;
-      padding: 10px 16px;
+    /* Right Showcase Panel */
+    .v3-hero-panel {
+      position: relative;
+      border-radius: 28px;
+      background: linear-gradient(155deg, #16102E 0%, #110B24 45%, #0B0718 100%);
+      overflow: hidden;
+      padding: 36px 34px 20px 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 10px 30px rgba(15, 10, 30, 0.4);
+    }
+
+    /* Subtle Hex Grid Background */
+    .v3-hex-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.85;
+      z-index: 1;
+    }
+
+    .v3-glow-blob-1 {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.45) 0%, transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .v3-glow-blob-2 {
+      position: absolute;
+      bottom: -60px;
+      left: 10%;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.28) 0%, transparent 70%);
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .v3-hero-content {
+      position: relative;
+      z-index: 3;
+    }
+
+    .v3-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(8px);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #DDD6FE;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .v3-hero-title {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .v3-hero-desc {
+      font-size: 13.5px;
+      color: rgba(226, 232, 240, 0.85);
+      line-height: 1.55;
+      max-width: 420px;
+      margin-bottom: 24px;
+    }
+
+    /* 3D Dashboard Mockup Stage */
+    .v3-mockup-stage {
+      position: relative;
+      z-index: 3;
+      perspective: 1100px;
+      display: flex;
+      justify-content: center;
+      padding-top: 4px;
+    }
+
+    .v3-mockup-card {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 16px;
+      border: 1.5px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 35px rgba(124, 58, 237, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+      background: #0B0819;
+      overflow: hidden;
+      transform: rotateX(10deg) rotateY(-8deg) rotateZ(1.5deg);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .v3-mockup-card:hover {
+      transform: rotateX(4deg) rotateY(-2deg) rotateZ(0deg) translateY(-4px);
+      box-shadow: 0 35px 85px -12px rgba(0, 0, 0, 0.85), 0 0 45px rgba(124, 58, 237, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .v3-mockup-header {
+      height: 32px;
+      background: rgba(22, 16, 36, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 8px;
+    }
+
+    .v3-traffic-dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .v3-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .v3-dot.red { background: #EF4444; }
+    .v3-dot.yellow { background: #F59E0B; }
+    .v3-dot.green { background: #10B981; }
+
+    .v3-mockup-url {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.6);
+      font-family: var(--font-body);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2px 10px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .v3-dashboard-img-wrap {
+      position: relative;
+      width: 100%;
+      height: 245px;
+      overflow: hidden;
+      background: #0B0819;
+    }
+
+    .v3-dashboard-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    .v3-glass-glare {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Floating Micro-Badges */
+    .v3-floating-chip {
+      position: absolute;
+      z-index: 5;
+      padding: 7px 14px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 16px rgba(124, 58, 237, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+      pointer-events: none;
+      animation: v3Float 4s ease-in-out infinite alternate;
+    }
+
+    .v3-chip-top {
+      top: 14px;
+      right: -8px;
+    }
+
+    .v3-chip-bottom {
+      bottom: 20px;
+      left: -8px;
+      animation-delay: -2s;
+    }
+
+    @keyframes v3Float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    @media (max-width: 900px) {
+      .v3-card-shell,
+      .v3-card-shell.v3-hero-left {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        min-height: auto;
+      }
+      .v3-hero-panel {
+        display: none;
+      }
+      .v3-form-panel {
+        padding: 8px 4px;
+      }
+    }
+
+    /* ==========================================================================
+       VIEW 4: APPROVALMAX-STYLE WORKFLOW HIERARCHY ANIMATION & MODERN SPLIT
+       ========================================================================== */
+    .viewport-canvas.view4-mode {
+      background-color: #F6F1FF;
+      background-image: 
+        url('v4_bg_gradient.png'),
+        url('assets/v4_bg_gradient.png'),
+        /* High-fidelity CSS fallback gradient */
+        radial-gradient(ellipse 65% 55% at 90% 10%, rgba(168, 85, 247, 0.55) 0%, rgba(192, 132, 252, 0.25) 45%, transparent 75%),
+        radial-gradient(ellipse 60% 50% at 10% 90%, rgba(147, 51, 234, 0.5) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 75%),
+        linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 35%, #F3E8FF 70%, #EDE9FE 100%);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .v4-layout-container {
+      width: 100%;
+      max-width: 1220px;
+      min-height: 640px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.95fr;
+      gap: 36px;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Left Hero Showcase Section */
+    .v4-hero-section {
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .v4-brand-top-row {
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-top: 16px;
-      box-shadow: 0 4px 16px rgba(124, 58, 237, 0.05);
+      margin-bottom: 22px;
+      flex-wrap: wrap;
     }
 
-    .v2-users-avatars {
+    .v4-brand-logo {
       display: flex;
       align-items: center;
+      gap: 10px;
+      text-decoration: none;
     }
 
-    .v2-avatar-item {
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 2px solid #FFFFFF;
-      margin-left: -8px;
-      object-fit: cover;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-    }
-
-    .v2-avatar-item:first-child {
-      margin-left: 0;
-    }
-
-    .v2-users-copy {
+    .v4-logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #7C3AED 0%, #9333EA 100%);
       display: flex;
-      flex-direction: column;
-      line-height: 1.25;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px -4px rgba(124, 58, 237, 0.45);
+      color: #FFFFFF;
+      font-weight: 800;
+      font-size: 20px;
     }
 
-    .v2-users-count-line {
-      display: flex;
+    .v4-brand-wordmark {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.035em;
+    }
+
+    .v4-brand-wordmark span {
+      color: #7C3AED;
+    }
+
+    .v4-subtag-pill {
+      display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 13px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      background: rgba(124, 58, 237, 0.08);
+      border: 1px solid rgba(124, 58, 237, 0.2);
+      color: #7C3AED;
+      font-size: 11px;
       font-weight: 700;
-      color: #0F172A;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
     }
 
-    .v2-live-pulse-dot {
+    .v4-hero-headline {
+      font-family: var(--font-display);
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 1.14;
+      letter-spacing: -0.035em;
+      color: #0F172A;
+      margin-bottom: 14px;
+    }
+
+    .v4-highlight-purple {
+      background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .v4-hero-subtitle {
+      font-size: 16px;
+      color: #475569;
+      line-height: 1.55;
+      max-width: 480px;
+      margin-bottom: 24px;
+    }
+
+    /* ApprovalMax-Inspired Animated Workflow Stage */
+    .v4-workflow-stage {
+      width: 100%;
+      max-width: 540px;
+      height: 350px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;
+      margin-top: 6px;
+    }
+
+    /* Central Mini Dashboard */
+    .v4-mini-dashboard {
+      position: absolute;
+      z-index: 5;
+      width: 220px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      box-shadow: 
+        0 20px 45px -10px rgba(124, 58, 237, 0.32),
+        0 8px 20px -4px rgba(15, 23, 42, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+      transition: all 0.35s ease;
+      animation: v4DashPulse 6s ease-in-out infinite;
+    }
+
+    .v4-mini-dash-chrome {
+      padding: 6px 10px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .v4-mini-traffic-dots {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .v4-mini-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #10B981;
-      box-shadow: 0 0 8px #10B981;
-      display: inline-block;
-      animation: pulse-dot 2s infinite;
     }
+    .v4-mini-dot.red { background: #EF4444; }
+    .v4-mini-dot.amber { background: #F59E0B; }
+    .v4-mini-dot.green { background: #10B981; }
 
-    @keyframes pulse-dot {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.4); opacity: 0.6; }
-    }
-
-    .v2-users-subtext {
-      font-size: 11px;
+    .v4-mini-dash-url {
+      font-size: 8.5px;
       color: #64748B;
+      font-family: monospace;
+      letter-spacing: 0.02em;
+    }
+
+    .v4-mini-dash-body {
+      position: relative;
+      background: #0B0818;
+      overflow: hidden;
+    }
+
+    .v4-mini-dash-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    .v4-mini-dash-badge {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #FFFFFF;
+      font-size: 8px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .v4-pulse-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      animation: v4DotPulse 1.8s infinite;
+    }
+
+    /* SVG Connector Flow Lines */
+    .v4-flow-lines-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .v4-connector-path {
+      fill: none;
+      stroke: rgba(124, 58, 237, 0.22);
+      stroke-width: 2;
+      stroke-dasharray: 4 4;
+      animation: v4DashTravel 20s linear infinite;
+    }
+
+    .v4-connector-glow-line {
+      fill: none;
+      stroke: url(#v4LineGrad);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-dasharray: 30 180;
+      animation: v4GlowPulse 4s ease-in-out infinite;
+    }
+
+    /* Pop-in Module Cards */
+    .v4-flow-card {
+      position: absolute;
+      z-index: 6;
+      background: #FFFFFF;
+      border-radius: 16px;
+      border: 1.5px solid #E2E8F0;
+      padding: 10px 14px;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 200px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v4-flow-card:hover {
+      transform: translateY(-3px) scale(1.03);
+      border-color: #7C3AED;
+      box-shadow: 0 16px 35px -8px rgba(124, 58, 237, 0.25);
+    }
+
+    .v4-card-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .v4-card-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .v4-card-tag {
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .v4-card-title {
+      font-family: var(--font-display);
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .v4-card-status {
+      font-size: 10px;
+      color: #64748B;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 1px;
+    }
+
+    /* Module Placement Around Center */
+    .v4-mod-1 {
+      top: 10px;
+      left: 6px;
+      animation: v4Pop1 9s ease-in-out infinite;
+    }
+    .v4-mod-1 .v4-card-icon-box {
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+    .v4-mod-1 .v4-card-tag { color: #7C3AED; }
+
+    .v4-mod-2 {
+      bottom: 24px;
+      left: 12px;
+      animation: v4Pop2 9s ease-in-out infinite;
+      animation-delay: 2.25s;
+    }
+    .v4-mod-2 .v4-card-icon-box {
+      background: #EFF6FF;
+      color: #3B82F6;
+    }
+    .v4-mod-2 .v4-card-tag { color: #3B82F6; }
+
+    .v4-mod-3 {
+      top: 16px;
+      right: 6px;
+      animation: v4Pop3 9s ease-in-out infinite;
+      animation-delay: 4.5s;
+    }
+    .v4-mod-3 .v4-card-icon-box {
+      background: #FDF2F8;
+      color: #EC4899;
+    }
+    .v4-mod-3 .v4-card-tag { color: #EC4899; }
+
+    .v4-mod-4 {
+      bottom: 18px;
+      right: 14px;
+      animation: v4Pop4 9s ease-in-out infinite;
+      animation-delay: 6.75s;
+    }
+    .v4-mod-4 .v4-card-icon-box {
+      background: #ECFDF5;
+      color: #10B981;
+    }
+    .v4-mod-4 .v4-card-tag { color: #059669; }
+
+    /* Hand-Drawn Annotation Below Workflow */
+    .v4-annotation-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: -6px;
+      padding-right: 30px;
+    }
+
+    .v4-annotation-arrow {
+      width: 44px;
+      height: 24px;
+      stroke: #7C3AED;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .v4-annotation-text {
+      font-family: 'Caveat', 'Comic Sans MS', cursive, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #6D28D9;
+      transform: rotate(-2deg);
+    }
+
+    /* Keyframe Animations */
+    @keyframes v4DashTravel {
+      to { stroke-dashoffset: -100; }
+    }
+
+    @keyframes v4GlowPulse {
+      0%, 100% { stroke-dashoffset: 0; opacity: 0.3; }
+      50% { stroke-dashoffset: -120; opacity: 1; }
+    }
+
+    @keyframes v4DotPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.5; }
+    }
+
+    @keyframes v4DashPulse {
+      0%, 100% { transform: scale(1) translateY(0); box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.32); }
+      50% { transform: scale(1.02) translateY(-4px); box-shadow: 0 26px 55px -10px rgba(124, 58, 237, 0.42); }
+    }
+
+    @keyframes v4Pop1 {
+      0%, 25%, 100% { transform: scale(1.04) translateY(-3px); border-color: #7C3AED; box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.35); }
+      35%, 90% { transform: scale(1) translateY(0); border-color: #E2E8F0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); }
+    }
+
+    @keyframes v4Pop2 {
+      0%, 20% { transform: scale(1) translateY(0); border-color: #E2E8F0; }
+      25%, 50% { transform: scale(1.04) translateY(-3px); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.35); }
+      60%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; }
+    }
+
+    @keyframes v4Pop3 {
+      0%, 45% { transform: scale(1) translateY(0); border-color: #E2E8F0; }
+      50%, 75% { transform: scale(1.04) translateY(-3px); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.35); }
+      85%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; }
+    }
+
+    @keyframes v4Pop4 {
+      0%, 70% { transform: scale(1) translateY(0); border-color: #E2E8F0; }
+      75%, 98% { transform: scale(1.04) translateY(-3px); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.35); }
+      100% { transform: scale(1) translateY(0); border-color: #E2E8F0; }
+    }
+
+    /* Right Form Card */
+    .v4-form-card {
+      background: #FFFFFF;
+      border-radius: 28px;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 
+        0 30px 70px -15px rgba(124, 58, 237, 0.12),
+        0 12px 30px -5px rgba(15, 23, 42, 0.04),
+        inset 0 1px 1px rgba(255, 255, 255, 1);
+      padding: 38px 38px 32px 38px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .v4-card-top-admin {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 20px;
+    }
+
+    .v4-contact-admin {
+      color: #7C3AED;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .v4-contact-admin:hover {
+      color: #6D28D9;
+      text-decoration: underline;
+    }
+
+    .v4-form-title {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 800;
+      color: #0F172A;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .v4-form-subtitle {
+      font-size: 14px;
+      color: #64748B;
+      margin-bottom: 24px;
+    }
+
+    /* Segmented Tab Switcher (Matching Image 1) */
+    .v4-tab-track {
+      display: flex;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 24px;
+    }
+
+    .v4-tab-btn {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: var(--font-display);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #64748B;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v4-tab-btn.active {
+      background: #FFFFFF;
+      color: #7C3AED;
+      font-weight: 700;
+      border-color: rgba(124, 58, 237, 0.25);
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.12);
+    }
+
+    /* Form Fields */
+    .v4-field-group {
+      margin-bottom: 18px;
+    }
+
+    .v4-field-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .v4-input-shell {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .v4-input-icon {
+      position: absolute;
+      left: 16px;
+      color: #94A3B8;
+      pointer-events: none;
+      display: flex;
+    }
+
+    .v4-text-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 16px 0 46px;
+      border-radius: 12px;
+      border: 1.5px solid #E2E8F0;
+      background: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: #0F172A;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .v4-text-input:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .v4-pwd-toggle {
+      position: absolute;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #94A3B8;
+      cursor: pointer;
+      display: flex;
+      padding: 4px;
+    }
+    .v4-pwd-toggle:hover { color: #334155; }
+
+    .v4-checkbox-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+
+    .v4-remember-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: #475569;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .v4-checkbox {
+      accent-color: #7C3AED;
+      width: 16px;
+      height: 16px;
+    }
+
+    .v4-forgot-link {
+      color: #7C3AED;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .v4-forgot-link:hover { text-decoration: underline; }
+
+    /* Buttons */
+    .v4-btn-primary {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      background: #7C3AED;
+      color: #FFFFFF;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 10px 24px -5px rgba(124, 58, 237, 0.45);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v4-btn-primary:hover {
+      background: #6D28D9;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px -5px rgba(124, 58, 237, 0.55);
+    }
+
+    .v4-divider-or {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+      color: #94A3B8;
+      font-size: 13px;
+    }
+
+    .v4-divider-or::before,
+    .v4-divider-or::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid #E2E8F0;
+    }
+
+    .v4-divider-or span {
+      padding: 0 12px;
+    }
+
+    .v4-btn-google {
+      width: 100%;
+      height: 48px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      color: #0F172A;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .v4-btn-google:hover {
+      background: #F8FAFC;
+      border-color: #CBD5E1;
+      transform: translateY(-1px);
+    }
+
+    .v4-recovery-row {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .v4-recovery-link {
+      color: #7C3AED;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .v4-recovery-link:hover {
+      color: #6D28D9;
+      text-decoration: underline;
+    }
+
+    .v4-legal-footer {
+      margin-top: 28px;
+      font-size: 12px;
+      color: #94A3B8;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .v4-legal-footer a {
+      color: #7C3AED;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .v4-legal-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* OTP 6-Digit Screen for View 4 */
+    .v4-otp-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .v4-otp-digit {
+      height: 52px;
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: #0F172A;
+      border-radius: 12px;
+      border: 1.5px solid #CBD5E1;
+      background: #FFFFFF;
+      outline: none;
+      transition: all 0.15s ease;
+    }
+
+    .v4-otp-digit:focus {
+      border-color: #7C3AED;
+      box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+    }
+
+    .v4-resend-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 13px;
+      color: #64748B;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      .v4-layout-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .v4-hero-section {
+        align-items: center;
+        text-align: center;
+      }
+      .v4-hero-headline {
+        font-size: 36px;
+      }
+      .v4-workflow-stage {
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .v4-workflow-stage {
+        height: 280px;
+      }
+      .v4-mini-dashboard {
+        width: 160px;
+      }
+      .v4-flow-card {
+        width: 140px;
+        padding: 6px 8px;
+      }
+      .v4-card-title {
+        font-size: 11px;
+      }
+      .v4-form-card {
+        padding: 24px 20px;
+      }
+      .v4-hero-headline {
+        font-size: 28px;
+      }
     }
 
     /* ==========================================================================
@@ -1980,12 +3339,12 @@
 <body>
 
   <!-- Ambient Backdrop Viewport -->
-  <main class="viewport-canvas" id="viewport-canvas">
+  <main class="viewport-canvas view4-mode" id="viewport-canvas">
     
     <!-- ======================================================================
          VIEW 1: FROSTED GLASS OBSIDIAN EXPERIENCE
          ====================================================================== -->
-    <div id="login-view-1" class="login-view-wrapper active">
+    <div id="login-view-1" class="login-view-wrapper">
       <!-- Central Glass Container Card -->
       <div class="login-container-card">
 
@@ -2475,109 +3834,180 @@
             <h1 class="v2-form-title">Welcome Back</h1>
             <p class="v2-form-subtitle">Sign in to access your unified inbox</p>
 
-            <!-- The Sign In Form -->
-            <form id="v2-login-form" onsubmit="handleV2Login(event)">
-              <!-- Email Input -->
-              <div class="v2-input-group">
-                <label for="v2-email" class="v2-input-label">Email</label>
-                <div class="v2-input-box">
-                  <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                  </svg>
-                  <input 
-                    type="email" 
-                    id="v2-email" 
-                    class="v2-text-input" 
-                    placeholder="you@example.com" 
-                    value="alex.chen@earthhotels.com"
-                    required 
-                  />
-                </div>
-              </div>
-
-              <!-- Password Input -->
-              <div class="v2-input-group">
-                <label for="v2-password" class="v2-input-label">Password</label>
-                <div class="v2-input-box">
-                  <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                  </svg>
-                  <input 
-                    type="password" 
-                    id="v2-password" 
-                    class="v2-text-input" 
-                    placeholder="••••••••" 
-                    value="EarthHotels2026!#" 
-                    required 
-                  />
-                  <button type="button" class="v2-password-toggle" onclick="toggleV2Password()" title="Toggle password visibility">
-                    <svg id="v2-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                      <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Options: Remember Me & Forgot Password -->
-              <div class="v2-options-row">
-                <label class="v2-checkbox-label">
-                  <input type="checkbox" id="v2-remember" class="v2-checkbox" checked />
-                  <span>Remember me</span>
-                </label>
-                <a href="javascript:void(0)" class="v2-forgot-link" onclick="openHelpModal()">Forgot Password?</a>
-              </div>
-
-              <!-- Primary Sign In Button -->
-              <button type="submit" id="btn-v2-signin" class="v2-btn-primary">
-                <span class="v2-btn-text">Sign In</span>
-                <svg class="v2-btn-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
+            <!-- Auth Mode Segmented Pill Switcher (Primary Purple) -->
+            <div class="v2-auth-mode-switcher">
+              <button type="button" id="tab-v2-otp" class="v2-mode-tab-btn active" onclick="switchV2AuthMode('otp')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
                 </svg>
+                <span>Email OTP</span>
               </button>
-            </form>
-
-            <!-- Divider -->
-            <div class="v2-divider-row">
-              <div class="v2-divider-line"></div>
-              <span class="v2-divider-text">Or Continue With</span>
-              <div class="v2-divider-line"></div>
+              <button type="button" id="tab-v2-pwd" class="v2-mode-tab-btn" onclick="switchV2AuthMode('password')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Password</span>
+              </button>
             </div>
 
-            <!-- Google Button -->
-            <button type="button" class="v2-btn-google" onclick="handleSSOLogin('Google')">
-              <svg width="19" height="19" viewBox="0 0 24 24">
-                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-              </svg>
-              <span>Google</span>
-            </button>
+            <!-- STEP 2A: EMAIL OTP ENTRY (Default) -->
+            <div id="v2-step-email-otp" class="auth-step">
+              <form id="v2-email-otp-form" onsubmit="handleV2SendOTP(event)">
+                <div class="v2-input-group">
+                  <label for="v2-email-otp" class="v2-input-label">Business Email</label>
+                  <div class="v2-input-box">
+                    <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="v2-email-otp" 
+                      class="v2-text-input" 
+                      placeholder="you@example.com" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                    />
+                  </div>
+                </div>
 
-            <!-- Sign Up Prompt -->
-            <div class="v2-signup-row">
-              <span>Don't have an account?</span>
-              <a href="javascript:void(0)" class="v2-signup-link" onclick="showToast('Corporate registration is provisioned by your HR Administrator')">Sign up</a>
+                <!-- Helper Row: Passkey switch -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 13px;">
+                  <span style="color: #64748B;">Not getting OTP?</span>
+                  <a href="javascript:void(0)" class="v2-recovery-link" style="font-weight: 600;" onclick="openPasskeyModal()">Sign in with Passkey</a>
+                </div>
+
+                <!-- Primary Action Button: Send OTP -->
+                <button type="submit" id="btn-v2-send-otp" class="v2-btn-primary">
+                  <span class="v2-btn-text">Send OTP</span>
+                  <svg class="v2-btn-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </form>
+
+              <!-- Recovery Link -->
+              <div style="text-align: center; margin-top: 16px;">
+                <a href="javascript:void(0)" class="v2-recovery-link" onclick="openHelpModal()">Can't access your account?</a>
+              </div>
             </div>
+
+            <!-- STEP 2B: PASSWORD ENTRY -->
+            <div id="v2-step-password" class="auth-step hidden">
+              <form id="v2-login-form" onsubmit="handleV2Login(event)">
+                <!-- Email Input -->
+                <div class="v2-input-group">
+                  <label for="v2-email" class="v2-input-label">Email</label>
+                  <div class="v2-input-box">
+                    <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="v2-email" 
+                      class="v2-text-input" 
+                      placeholder="you@example.com" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="v2-input-group">
+                  <label for="v2-password" class="v2-input-label">Password</label>
+                  <div class="v2-input-box">
+                    <svg class="v2-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <input 
+                      type="password" 
+                      id="v2-password" 
+                      class="v2-text-input" 
+                      placeholder="••••••••" 
+                      value="EarthHotels2026!#" 
+                      required 
+                    />
+                    <button type="button" class="v2-password-toggle" onclick="toggleV2Password()" title="Toggle password visibility">
+                      <svg id="v2-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Options: Forgot Password -->
+                <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                  <a href="javascript:void(0)" class="v2-forgot-link" onclick="openHelpModal()">Forgot Password?</a>
+                </div>
+
+                <!-- Primary Sign In Button -->
+                <button type="submit" id="btn-v2-signin" class="v2-btn-primary">
+                  <span class="v2-btn-text">Sign In</span>
+                  <svg class="v2-btn-arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </button>
+              </form>
+
+              <!-- Recovery Link -->
+              <div style="text-align: center; margin-top: 16px;">
+                <a href="javascript:void(0)" class="v2-recovery-link" onclick="openHelpModal()">Can't access your account?</a>
+              </div>
+            </div>
+
+            <!-- STEP 2C: OTP VERIFICATION -->
+            <div id="v2-step-otp-verify" class="auth-step hidden">
+              <h2 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Enter Verification Code</h2>
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 18px;">We sent a 6-digit code to <strong id="v2-sent-target-email" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+
+              <form id="v2-otp-form" onsubmit="handleV2VerifyOTP(event)">
+                <div class="v2-otp-digits-grid">
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" autofocus />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v2-otp-box" inputmode="numeric" pattern="[0-9]*" />
+                </div>
+
+                <div class="v2-otp-resend-row">
+                  <span>Didn't receive code?</span>
+                  <span id="v2-countdown-text" style="color: #94A3B8;">Resend in <strong id="v2-timer-val" style="color: #7C3AED;">0:29</strong></span>
+                  <a href="javascript:void(0)" id="btn-v2-resend" class="v2-recovery-link" style="display: none; font-weight: 600;" onclick="resendV2Code()">Resend OTP</a>
+                </div>
+
+                <!-- Primary Action Button: Verify & Sign In -->
+                <button type="submit" id="btn-v2-verify-otp" class="v2-btn-primary">
+                  <span class="v2-btn-text">Verify &amp; Sign In</span>
+                  <svg class="v2-btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                    <path d="M20 6 9 17l-5-5"></path>
+                  </svg>
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 16px;">
+                <a href="javascript:void(0)" class="v2-recovery-link" onclick="switchV2ToEmailStep()">← Back to Email entry</a>
+              </div>
+            </div>
+
           </div>
 
-          <!-- Overlapping Users Subcard (Bottom Right as in Inspiration Image) -->
-          <div class="v2-users-subcard">
-            <div class="v2-users-avatars">
-              <img src="leena_avatar.jpg" alt="Leena" class="v2-avatar-item" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><circle cx=\'16\' cy=\'16\' r=\'16\' fill=\'%23A855F7\'/><text x=\'50%25\' y=\'55%25\' font-size=\'12\' font-weight=\'bold\' fill=\'%23FFFFFF\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'middle\'>L</text></svg>';" />
-              <img src="aisha_avatar.png" alt="Aisha" class="v2-avatar-item" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><circle cx=\'16\' cy=\'16\' r=\'16\' fill=\'%23EC4899\'/><text x=\'50%25\' y=\'55%25\' font-size=\'12\' font-weight=\'bold\' fill=\'%23FFFFFF\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'middle\'>A</text></svg>';" />
-              <img src="rahul_avatar.png" alt="Rahul" class="v2-avatar-item" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'32\' height=\'32\' viewBox=\'0 0 32 32\'><circle cx=\'16\' cy=\'16\' r=\'16\' fill=\'%2306B6D4\'/><text x=\'50%25\' y=\'55%25\' font-size=\'12\' font-weight=\'bold\' fill=\'%23FFFFFF\' font-family=\'sans-serif\' text-anchor=\'middle\' dominant-baseline=\'middle\'>R</text></svg>';" />
-            </div>
-            <div class="v2-users-copy">
-              <div class="v2-users-count-line">
-                <span class="v2-live-pulse-dot"></span>
-                <strong>10 Million+ Users</strong>
-              </div>
-              <span class="v2-users-subtext">worldwide</span>
+          <!-- Enterprise Trust Footnote -->
+          <div style="margin-top: 24px; text-align: center;">
+            <div class="enterprise-badges-strip" style="color: #94A3B8; font-size: 11px;">
+              <span>🛡️ Enterprise-Grade</span>
+              <span>•</span>
+              <span>🇦🇪 UAE Data Centers</span>
+              <span>•</span>
+              <span>🔒 GDPR Compliant</span>
             </div>
           </div>
         </section>
@@ -2586,7 +4016,596 @@
     </div> <!-- /#login-view-2 -->
 
     <!-- ==========================================================================
-         BOTTOM PAGINATION DOCK (CLEAN ENCIRCLED PAGE 1 & PAGE 2)
+         VIEW 3: SYNCWISE-INSPIRED MODERN SPLIT WITH 3D DASHBOARD PREVIEW
+         ========================================================================== -->
+    <div id="login-view-3" class="login-view-wrapper">
+      <div class="v3-card-shell v3-hero-left" id="v3-card-shell">
+        
+        <!-- DARK HERO SHOWCASE PANEL (WITH 3D HIRERKEY DASHBOARD MOCKUP) -->
+        <section class="v3-hero-panel" id="v3HeroPanel">
+          <!-- Hexagonal Grid SVG Pattern Background -->
+          <svg class="v3-hex-bg" viewBox="0 0 400 400" fill="none" preserveAspectRatio="none">
+            <defs>
+              <pattern id="v3-hex-pattern" width="40" height="69.282" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 20 11.547 L 0 0 L 0 23.094 L 20 34.641 L 40 23.094 Z M 0 34.641 L 20 46.188 L 0 57.735 L 0 80.829 L 20 92.376 L 40 80.829 L 40 57.735 L 20 46.188 Z" stroke="rgba(168, 85, 247, 0.14)" stroke-width="1.2" fill="none" />
+                <path d="M 20 34.641 L 40 46.188 L 20 57.735 L 0 46.188 Z" stroke="rgba(124, 58, 237, 0.18)" stroke-width="1.2" fill="none" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#v3-hex-pattern)" />
+          </svg>
+
+          <!-- Ambient Luminous Glow Blobs -->
+          <div class="v3-glow-blob-1"></div>
+          <div class="v3-glow-blob-2"></div>
+
+          <!-- Hero Headline & Subtitle -->
+          <div class="v3-hero-content">
+            <div class="v3-hero-badge">
+              <span style="color: #A855F7;">✦</span>
+              <span>Workforce Intelligence Platform</span>
+            </div>
+            <h2 class="v3-hero-title">
+              Redefine Your<br/>
+              Workforce Experience!
+            </h2>
+            <p class="v3-hero-desc">
+              Unshackle yourself from traditional HR friction and immerse yourself in the boundless intelligence that Hirerkey brings to your daily routine.
+            </p>
+          </div>
+
+          <!-- 3D Perspective Floating Dashboard Mockup Card -->
+          <div class="v3-mockup-stage">
+            <div class="v3-mockup-card" id="v3MockupCard">
+              <!-- Window Chrome Header Bar -->
+              <div class="v3-mockup-header">
+                <div class="v3-traffic-dots">
+                  <div class="v3-dot red"></div>
+                  <div class="v3-dot yellow"></div>
+                  <div class="v3-dot green"></div>
+                </div>
+                <div class="v3-mockup-url">dashboard.hirerkey.com</div>
+              </div>
+
+              <!-- Dashboard Image Container -->
+              <div class="v3-dashboard-img-wrap">
+                <img src="hirerkey_dashboard_mockup.png" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='../hirerkey_dashboard_mockup.png'}" alt="Hirerkey Intelligence Dashboard" class="v3-dashboard-img" />
+                <div class="v3-glass-glare"></div>
+              </div>
+
+              <!-- Floating Micro-Badges -->
+              <div class="v3-floating-chip v3-chip-top">
+                <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981;"></span>
+                <span>Ask HyIQ™ • Real-time AI</span>
+              </div>
+              <div class="v3-floating-chip v3-chip-bottom">
+                <span>⚡ 12ms UAE Cloud</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CLEAN WHITE AUTHENTICATION FORM PANEL -->
+        <section class="v3-form-panel">
+          <div>
+            <!-- Form Header with Brand Logo & Flip Layout Button -->
+            <div class="v3-form-header">
+              <div class="v3-brand-row">
+                <div class="v3-brand-logo-pill">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="3" width="6" height="15" rx="3" transform="rotate(-30 4 3)" fill="#7C3AED" />
+                    <rect x="13" y="3" width="6" height="15" rx="3" transform="rotate(-30 13 3)" fill="#A855F7" />
+                    <circle cx="17" cy="18" r="3" fill="#EC4899" />
+                  </svg>
+                </div>
+                <div class="v3-brand-name">
+                  <span>h<span class="v3-brand-i">i</span>rerke<span class="v3-brand-y-wrap"><span class="v3-brand-y">y</span><svg class="v3-brand-swoosh" viewBox="0 0 46 8" fill="none"><path d="M1 5.5C12 1.5 34 1.5 45 6" stroke="#7C3AED" stroke-width="2.8" stroke-linecap="round"/></svg></span></span>
+                </div>
+              </div>
+
+              <button type="button" class="v3-layout-toggle-btn" onclick="toggleV3Layout()" title="Switch showcase to left/right">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/>
+                </svg>
+                <span id="v3-flip-text">Showcase Right</span>
+              </button>
+            </div>
+
+            <!-- Form Title & Subtitle -->
+            <h1 class="v3-form-title">Welcome Back!</h1>
+            <p class="v3-form-subtitle">
+              Hirerkey empowers you to manage, enhance, and streamline your workforce, putting you in control of your organisation.
+            </p>
+
+            <!-- Auth Mode Segmented Pill Switcher (Primary Purple) -->
+            <div class="v3-auth-switcher">
+              <button type="button" id="tab-v3-otp" class="v3-tab-btn" onclick="switchV3AuthMode('otp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span>Email OTP</span>
+              </button>
+              <button type="button" id="tab-v3-pwd" class="v3-tab-btn active" onclick="switchV3AuthMode('password')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Password</span>
+              </button>
+            </div>
+
+            <!-- MODE A: PASSWORD LOGIN (Default as shown in Image 1 inspiration) -->
+            <div id="v3-step-password" class="auth-step">
+              <form id="v3-login-form" onsubmit="handleV3Login(event)">
+                <!-- Email Input -->
+                <div class="v3-input-group">
+                  <label for="v3-email" class="v3-input-label">Email</label>
+                  <div class="v3-input-box">
+                    <svg class="v3-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="v3-email" 
+                      class="v3-text-input" 
+                      placeholder="Enter your email" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="v3-input-group">
+                  <label for="v3-password" class="v3-input-label">Password</label>
+                  <div class="v3-input-box">
+                    <svg class="v3-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <input 
+                      type="password" 
+                      id="v3-password" 
+                      class="v3-text-input" 
+                      placeholder="••••••••" 
+                      value="EarthHotels2026!#" 
+                      required 
+                    />
+                    <button type="button" class="v3-password-toggle" onclick="toggleV3Password()" title="Toggle password visibility">
+                      <svg id="v3-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password Row -->
+                <div class="v3-checkbox-row">
+                  <label class="v3-remember-label">
+                    <input type="checkbox" id="v3-remember" class="v3-remember-checkbox" checked />
+                    <span>Remember me</span>
+                  </label>
+                  <a href="javascript:void(0)" class="v3-link" onclick="openHelpModal()">Forgot password</a>
+                </div>
+
+                <!-- Primary Sign In Button (Purple Pill) -->
+                <button type="submit" id="btn-v3-signin" class="v3-btn-primary">
+                  <span>Sign in</span>
+                </button>
+              </form>
+
+              <!-- Google SSO (Pill with Google G) -->
+              <button type="button" class="v3-btn-google" onclick="handleSSOLogin('Google Workspace')">
+                <svg width="18" height="18" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                </svg>
+                <span>Sign in with Google</span>
+              </button>
+
+              <!-- Can't access your login mail option -->
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v3-link" onclick="openHelpModal()">Can't access your login mail?</a>
+              </div>
+            </div>
+
+            <!-- MODE B: EMAIL OTP ENTRY -->
+            <div id="v3-step-email-otp" class="auth-step hidden">
+              <form id="v3-email-otp-form" onsubmit="handleV3SendOTP(event)">
+                <div class="v3-input-group">
+                  <label for="v3-email-otp" class="v3-input-label">Email</label>
+                  <div class="v3-input-box">
+                    <svg class="v3-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="v3-email-otp" 
+                      class="v3-text-input" 
+                      placeholder="Enter your email" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                    />
+                  </div>
+                </div>
+
+                <div class="v3-checkbox-row">
+                  <span style="color: #64748B;">Instant one-time passcode</span>
+                  <a href="javascript:void(0)" class="v3-link" onclick="openPasskeyModal()">Sign in with Passkey</a>
+                </div>
+
+                <!-- Primary Action Button: Send OTP -->
+                <button type="submit" id="btn-v3-send-otp" class="v3-btn-primary">
+                  <span>Send OTP</span>
+                </button>
+              </form>
+
+              <!-- Can't access your login mail option -->
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v3-link" onclick="openHelpModal()">Can't access your login mail?</a>
+              </div>
+            </div>
+
+            <!-- MODE C: OTP VERIFICATION -->
+            <div id="v3-step-otp-verify" class="auth-step hidden">
+              <h2 style="font-family: var(--font-display); font-size: 20px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Enter Verification Code</h2>
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 18px;">We sent a 6-digit code to <strong id="v3-sent-target-email" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+
+              <form id="v3-otp-form" onsubmit="handleV3VerifyOTP(event)">
+                <div class="v3-otp-grid">
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" autofocus />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v3-otp-input" inputmode="numeric" pattern="[0-9]*" />
+                </div>
+
+                <div class="v3-otp-resend">
+                  <span>Didn't receive code?</span>
+                  <span id="v3-countdown-text" style="color: #94A3B8;">Resend in <strong id="v3-timer-val" style="color: #7C3AED;">0:29</strong></span>
+                  <a href="javascript:void(0)" id="btn-v3-resend" class="v3-link" style="display: none; font-weight: 600;" onclick="resendV3Code()">Resend OTP</a>
+                </div>
+
+                <!-- Primary Action Button: Verify & Sign In -->
+                <button type="submit" id="btn-v3-verify-otp" class="v3-btn-primary">
+                  <span>Verify &amp; Sign In</span>
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v3-link" onclick="switchV3ToEmailStep()">← Back to Email entry</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Terms of use, Privacy Policy and Enterprise Trust Footnote -->
+          <div>
+            <p class="v3-terms-footer">
+              By signing in, you agree to our 
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')">Terms of Use</a> and 
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')">Privacy Policy</a>
+            </p>
+            <div class="enterprise-badges-strip" style="color: #94A3B8; font-size: 11px; margin-top: 12px;">
+              <span>🛡️ Enterprise-Grade</span>
+              <span>•</span>
+              <span>🇦🇪 UAE Data Centers</span>
+              <span>•</span>
+              <span>🔒 GDPR Compliant</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div> <!-- /#login-view-3 -->
+
+    <!-- ==========================================================================
+         VIEW 4: APPROVALMAX-STYLE WORKFLOW HIERARCHY ANIMATION & MODERN SPLIT
+         ========================================================================== -->
+    <div id="login-view-4" class="login-view-wrapper active">
+      <div class="v4-layout-container">
+        
+        <!-- LEFT COLUMN: HERO SHOWCASE WITH APPROVALMAX-STYLE WORKFLOW ANIMATION -->
+        <section class="v4-hero-section">
+          <!-- Brand Logo Header & People Performance Progress Subtag -->
+          <div class="v4-brand-top-row">
+            <div class="v4-brand-logo">
+              <div class="v4-logo-mark">H</div>
+              <div class="v4-brand-wordmark">Hirerkey<span>.</span></div>
+            </div>
+            <div class="v4-subtag-pill">
+              <span>PEOPLE • PERFORMANCE • PROGRESS</span>
+            </div>
+          </div>
+
+          <!-- Headline (Exact user request) -->
+          <h1 class="v4-hero-headline">
+            A smarter way<br/>
+            to manage your <span class="v4-highlight-purple">people</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="v4-hero-subtitle">
+            Everything you need to build, manage and grow a high-performing team.
+          </p>
+
+          <!-- Animated Workflow Stage (ApprovalMax-Inspired Hierarchies) -->
+          <div class="v4-workflow-stage" id="v4WorkflowStage">
+            <!-- Animated SVG Flow Connectors -->
+            <svg class="v4-flow-lines-svg" viewBox="0 0 540 350" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="v4LineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.9" />
+                  <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.9" />
+                  <stop offset="100%" stop-color="#A855F7" stop-opacity="0.9" />
+                </linearGradient>
+                <filter id="v4Glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+
+              <!-- Base Dashed Paths connecting modules to center -->
+              <path class="v4-connector-path" d="M 160 75 C 210 75, 230 145, 270 160" />
+              <path class="v4-connector-path" d="M 160 275 C 210 275, 230 205, 270 190" />
+              <path class="v4-connector-path" d="M 270 160 C 310 145, 330 75, 380 75" />
+              <path class="v4-connector-path" d="M 270 190 C 310 205, 330 275, 380 275" />
+
+              <!-- Active Glowing Pulses Travelling along the Paths -->
+              <path class="v4-connector-glow-line" d="M 160 75 C 210 75, 230 145, 270 160" filter="url(#v4Glow)" />
+              <path class="v4-connector-glow-line" style="animation-delay: -2s;" d="M 160 275 C 210 275, 230 205, 270 190" filter="url(#v4Glow)" />
+              <path class="v4-connector-glow-line" style="animation-delay: -1s;" d="M 270 160 C 310 145, 330 75, 380 75" filter="url(#v4Glow)" />
+              <path class="v4-connector-glow-line" style="animation-delay: -3s;" d="M 270 190 C 310 205, 330 275, 380 275" filter="url(#v4Glow)" />
+            </svg>
+
+            <!-- Module 1: Orientation (Top-Left) -->
+            <div class="v4-flow-card v4-mod-1">
+              <div class="v4-card-icon-box">🧭</div>
+              <div class="v4-card-meta">
+                <div class="v4-card-tag">01 • ONBOARDING</div>
+                <div class="v4-card-title">Orientation</div>
+                <div class="v4-card-status">
+                  <span class="v4-pulse-dot" style="width: 4px; height: 4px;"></span>
+                  <span>Active • Automated</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Module 2: Department Tour (Bottom-Left) -->
+            <div class="v4-flow-card v4-mod-2">
+              <div class="v4-card-icon-box">🏢</div>
+              <div class="v4-card-meta">
+                <div class="v4-card-tag">02 • ALIGNMENT</div>
+                <div class="v4-card-title">Department Tour</div>
+                <div class="v4-card-status">Sales &amp; Marketing</div>
+              </div>
+            </div>
+
+            <!-- Central Mini Dashboard (User Screenshot in Miniature) -->
+            <div class="v4-mini-dashboard" id="v4MiniDashboard">
+              <div class="v4-mini-dash-chrome">
+                <div class="v4-mini-traffic-dots">
+                  <div class="v4-mini-dot red"></div>
+                  <div class="v4-mini-dot amber"></div>
+                  <div class="v4-mini-dot green"></div>
+                </div>
+                <div class="v4-mini-dash-url">app.hirerkey.com</div>
+              </div>
+              <div class="v4-mini-dash-body">
+                <img src="hirerkey_dashboard_v4.png" onerror="if(!this.dataset.retry){this.dataset.retry=1;this.src='../hirerkey_dashboard_v4.png'}" alt="Hirerkey Core Workspace" class="v4-mini-dash-img" />
+                <div class="v4-mini-dash-badge">
+                  <span class="v4-pulse-dot"></span>
+                  <span>Live Sync</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Module 3: Ask HyIQ AI (Top-Right) -->
+            <div class="v4-flow-card v4-mod-3">
+              <div class="v4-card-icon-box">✨</div>
+              <div class="v4-card-meta">
+                <div class="v4-card-tag">03 • INTELLIGENCE</div>
+                <div class="v4-card-title">Ask HyIQ™ AI</div>
+                <div class="v4-card-status">Real-time • 12ms</div>
+              </div>
+            </div>
+
+            <!-- Module 4: 1-on-1 Check-ins (Bottom-Right) -->
+            <div class="v4-flow-card v4-mod-4">
+              <div class="v4-card-icon-box">📊</div>
+              <div class="v4-card-meta">
+                <div class="v4-card-tag">04 • PERFORMANCE</div>
+                <div class="v4-card-title">1-on-1 Check-ins</div>
+                <div class="v4-card-status">Goal Tracking ↗</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT COLUMN: CLEAN WHITE AUTHENTICATION CARD (MATCHING INSPIRATION IMAGE 1) -->
+        <section class="v4-form-card">
+          <!-- Top Contact Admin Row -->
+          <div class="v4-card-top-admin">
+            <span>New to Hirerkey?</span>
+            <a href="javascript:void(0)" onclick="openHelpModal()" class="v4-contact-admin">Contact your admin</a>
+          </div>
+
+          <!-- Form Titles -->
+          <h2 class="v4-form-title">Welcome back</h2>
+          <p class="v4-form-subtitle">Sign in to continue to Hirerkey</p>
+
+          <!-- Dual Tab Segmented Track (OTP vs Password) -->
+          <div class="v4-tab-track">
+            <button type="button" id="tab-v4-otp" class="v4-tab-btn active" onclick="switchV4AuthMode('otp')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+              <span>Login with OTP</span>
+            </button>
+            <button type="button" id="tab-v4-pwd" class="v4-tab-btn" onclick="switchV4AuthMode('password')">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+              <span>Login with password</span>
+            </button>
+          </div>
+
+          <!-- MODE A: EMAIL OTP FLOW -->
+          <div id="v4-step-email-otp" class="auth-step">
+            <form id="v4-email-otp-form" onsubmit="handleV4SendOTP(event)">
+              <div class="v4-field-group">
+                <label for="v4-email-otp-input" class="v4-field-label">Work email</label>
+                <div class="v4-input-shell">
+                  <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                  <input 
+                    type="email" 
+                    id="v4-email-otp-input" 
+                    class="v4-text-input" 
+                    placeholder="you@company.com" 
+                    value="alex.chen@earthhotels.com"
+                    required 
+                  />
+                </div>
+              </div>
+
+              <!-- Primary Action: Send OTP Button -->
+              <button type="submit" id="btn-v4-send-otp" class="v4-btn-primary">
+                <span>Send OTP</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                  <path d="M5 12h14m-7-7 7 7-7 7" />
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- MODE A2: OTP VERIFICATION STEP -->
+          <div id="v4-step-otp-verify" class="auth-step hidden">
+            <h3 style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Enter verification code</h3>
+            <p style="font-size: 13px; color: #64748B; margin-bottom: 20px;">We sent a 6-digit code to <strong id="v4-sent-target-email" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+
+            <form id="v4-otp-verify-form" onsubmit="handleV4VerifyOTP(event)">
+              <div class="v4-otp-grid">
+                <input type="text" maxlength="1" class="v4-otp-digit" inputmode="numeric" pattern="[0-9]*" autofocus />
+                <input type="text" maxlength="1" class="v4-otp-digit" inputmode="numeric" pattern="[0-9]*" />
+                <input type="text" maxlength="1" class="v4-otp-digit" inputmode="numeric" pattern="[0-9]*" />
+                <input type="text" maxlength="1" class="v4-otp-digit" inputmode="numeric" pattern="[0-9]*" />
+                <input type="text" maxlength="1" class="v4-otp-digit" inputmode="numeric" pattern="[0-9]*" />
+                <input type="text" maxlength="1" class="v4-otp-digit" inputmode="numeric" pattern="[0-9]*" />
+              </div>
+
+              <!-- Resend Timer -->
+              <div class="v4-resend-row">
+                <span>Didn't receive code?</span>
+                <span id="v4-countdown-text">Resend in <strong id="v4-timer-val" style="color: #7C3AED;">0:29</strong></span>
+                <a href="javascript:void(0)" id="btn-v4-resend" class="v4-recovery-link" style="display: none; font-weight: 700;" onclick="resendV4Code()">Resend OTP</a>
+              </div>
+
+              <!-- Primary Verify Button -->
+              <button type="submit" id="btn-v4-verify-otp" class="v4-btn-primary">
+                <span>Verify &amp; Sign in</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                  <path d="M5 12h14m-7-7 7 7-7 7" />
+                </svg>
+              </button>
+            </form>
+
+            <div style="text-align: center; margin-top: 14px;">
+              <a href="javascript:void(0)" class="v4-recovery-link" onclick="switchV4ToEmailStep()">← Back to Email entry</a>
+            </div>
+          </div>
+
+          <!-- MODE B: PASSWORD LOGIN FLOW -->
+          <div id="v4-step-password" class="auth-step hidden">
+            <form id="v4-password-form" onsubmit="handleV4PasswordLogin(event)">
+              <div class="v4-field-group">
+                <label for="v4-email-pwd-input" class="v4-field-label">Work email</label>
+                <div class="v4-input-shell">
+                  <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                  </svg>
+                  <input 
+                    type="email" 
+                    id="v4-email-pwd-input" 
+                    class="v4-text-input" 
+                    placeholder="you@company.com" 
+                    value="alex.chen@earthhotels.com"
+                    required 
+                  />
+                </div>
+              </div>
+
+              <div class="v4-field-group">
+                <label for="v4-password-input" class="v4-field-label">Password</label>
+                <div class="v4-input-shell">
+                  <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                  <input 
+                    type="password" 
+                    id="v4-password-input" 
+                    class="v4-text-input" 
+                    placeholder="••••••••" 
+                    value="EarthHotels2026!#" 
+                    required 
+                  />
+                  <button type="button" class="v4-pwd-toggle" onclick="toggleV4Password()" title="Toggle password visibility">
+                    <svg id="v4-eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="v4-checkbox-row">
+                <label class="v4-remember-label">
+                  <input type="checkbox" id="v4-remember-checkbox" class="v4-checkbox" checked />
+                  <span>Remember me</span>
+                </label>
+                <a href="javascript:void(0)" class="v4-forgot-link" onclick="openHelpModal()">Forgot password?</a>
+              </div>
+
+              <!-- Primary Sign In Button -->
+              <button type="submit" id="btn-v4-signin" class="v4-btn-primary">
+                <span>Sign in</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                  <path d="M5 12h14m-7-7 7 7-7 7" />
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Recovery Link -->
+          <div class="v4-recovery-row" style="margin-top: 24px;">
+            <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Can't access your login email?</a>
+          </div>
+
+          <!-- Legal Footer -->
+          <p class="v4-legal-footer">
+            By continuing, you agree to our 
+            <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')">Terms of Use</a> and 
+            <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')">Privacy Policy</a>.
+          </p>
+        </section>
+
+      </div>
+    </div> <!-- /#login-view-4 -->
+
+    <!-- ==========================================================================
+         BOTTOM PAGINATION DOCK (CLEAN ENCIRCLED PAGE 1, PAGE 2, PAGE 3 & PAGE 4)
          ========================================================================== -->
     <nav class="bottom-pagination-dock" id="bottomPaginationDock" role="navigation" aria-label="Login Pages">
       <button type="button" class="dock-nav-arrow" id="btn-dock-prev" onclick="navigatePage(-1)" title="Previous Page (Key: Left Arrow)" aria-label="Previous Page">
@@ -2594,7 +4613,7 @@
       </button>
 
       <!-- Encircled 1: Page 1 -->
-      <button type="button" class="dock-page-btn active" id="btn-page-1" onclick="switchLoginView(1)" title="Page 1 (Key: 1)" aria-label="Page 1" aria-current="page">
+      <button type="button" class="dock-page-btn" id="btn-page-1" onclick="switchLoginView(1)" title="Page 1 (Key: 1)" aria-label="Page 1">
         <span class="dock-circle-badge">1</span>
         <span class="dock-page-title">Page 1</span>
       </button>
@@ -2603,6 +4622,18 @@
       <button type="button" class="dock-page-btn" id="btn-page-2" onclick="switchLoginView(2)" title="Page 2 (Key: 2)" aria-label="Page 2">
         <span class="dock-circle-badge">2</span>
         <span class="dock-page-title">Page 2</span>
+      </button>
+
+      <!-- Encircled 3: Page 3 -->
+      <button type="button" class="dock-page-btn" id="btn-page-3" onclick="switchLoginView(3)" title="Page 3 (Key: 3)" aria-label="Page 3">
+        <span class="dock-circle-badge">3</span>
+        <span class="dock-page-title">Page 3</span>
+      </button>
+
+      <!-- Encircled 4: Page 4 (Active as requested) -->
+      <button type="button" class="dock-page-btn active" id="btn-page-4" onclick="switchLoginView(4)" title="Page 4 (Key: 4)" aria-label="Page 4" aria-current="page">
+        <span class="dock-circle-badge">4</span>
+        <span class="dock-page-title">Page 4</span>
       </button>
 
       <button type="button" class="dock-nav-arrow" id="btn-dock-next" onclick="navigatePage(1)" title="Next Page (Key: Right Arrow)" aria-label="Next Page">
@@ -2955,66 +4986,90 @@
     }
 
     /* ==========================================================================
-       DUAL VIEW PAGINATION CONTROLLER (VIEW 1 & VIEW 2 SWITCHER)
+       FOUR-VIEW PAGINATION CONTROLLER (VIEW 1, VIEW 2, VIEW 3 & VIEW 4 SWITCHER)
        ========================================================================== */
-    let activeLoginView = 1;
+    let activeLoginView = 4;
 
     function switchLoginView(viewNum) {
-      if (viewNum !== 1 && viewNum !== 2) return;
+      if (viewNum !== 1 && viewNum !== 2 && viewNum !== 3 && viewNum !== 4) return;
       activeLoginView = viewNum;
 
       const view1 = document.getElementById('login-view-1');
       const view2 = document.getElementById('login-view-2');
+      const view3 = document.getElementById('login-view-3');
+      const view4 = document.getElementById('login-view-4');
       const canvas = document.getElementById('viewport-canvas');
       const btn1 = document.getElementById('btn-page-1');
       const btn2 = document.getElementById('btn-page-2');
-      const label = document.getElementById('dockActiveLabel');
+      const btn3 = document.getElementById('btn-page-3');
+      const btn4 = document.getElementById('btn-page-4');
+
+      // Clear all active states
+      [view1, view2, view3, view4].forEach(v => v && v.classList.remove('active'));
+      [btn1, btn2, btn3, btn4].forEach(b => {
+        if (b) {
+          b.classList.remove('active');
+          b.removeAttribute('aria-current');
+        }
+      });
+      if (canvas) {
+        canvas.classList.remove('view2-mode', 'view3-mode', 'view4-mode');
+      }
 
       if (viewNum === 1) {
-        if (view2) view2.classList.remove('active');
         if (view1) view1.classList.add('active');
-        if (canvas) canvas.classList.remove('view2-mode');
         if (btn1) {
           btn1.classList.add('active');
           btn1.setAttribute('aria-current', 'page');
         }
-        if (btn2) {
-          btn2.classList.remove('active');
-          btn2.removeAttribute('aria-current');
-        }
-        if (label) label.textContent = 'Active: Page 1 • View 1 (Frosted Obsidian Bento)';
         try {
           history.replaceState(null, '', '#view1');
           localStorage.setItem('hirerkey_login_view', '1');
         } catch(e) {}
-      } else {
-        if (view1) view1.classList.remove('active');
+      } else if (viewNum === 2) {
         if (view2) view2.classList.add('active');
         if (canvas) canvas.classList.add('view2-mode');
         if (btn2) {
           btn2.classList.add('active');
           btn2.setAttribute('aria-current', 'page');
         }
-        if (btn1) {
-          btn1.classList.remove('active');
-          btn1.removeAttribute('aria-current');
-        }
-        if (label) label.textContent = 'Active: Page 2 • View 2 (Smart AI Assistant Studio)';
         try {
           history.replaceState(null, '', '#view2');
           localStorage.setItem('hirerkey_login_view', '2');
+        } catch(e) {}
+      } else if (viewNum === 3) {
+        if (view3) view3.classList.add('active');
+        if (canvas) canvas.classList.add('view3-mode');
+        if (btn3) {
+          btn3.classList.add('active');
+          btn3.setAttribute('aria-current', 'page');
+        }
+        try {
+          history.replaceState(null, '', '#view3');
+          localStorage.setItem('hirerkey_login_view', '3');
+        } catch(e) {}
+      } else if (viewNum === 4) {
+        if (view4) view4.classList.add('active');
+        if (canvas) canvas.classList.add('view4-mode');
+        if (btn4) {
+          btn4.classList.add('active');
+          btn4.setAttribute('aria-current', 'page');
+        }
+        try {
+          history.replaceState(null, '', '#view4');
+          localStorage.setItem('hirerkey_login_view', '4');
         } catch(e) {}
       }
     }
 
     function navigatePage(delta) {
       let target = activeLoginView + delta;
-      if (target < 1) target = 2;
-      if (target > 2) target = 1;
+      if (target < 1) target = 4;
+      if (target > 4) target = 1;
       switchLoginView(target);
     }
 
-    // Keyboard navigation: 1, 2, ArrowLeft, ArrowRight
+    // Keyboard navigation: 1, 2, 3, 4, ArrowLeft, ArrowRight
     document.addEventListener('keydown', (e) => {
       // Don't intercept if user is typing in an input
       if (e.target && ['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
@@ -3022,6 +5077,10 @@
         switchLoginView(1);
       } else if (e.key === '2') {
         switchLoginView(2);
+      } else if (e.key === '3') {
+        switchLoginView(3);
+      } else if (e.key === '4') {
+        switchLoginView(4);
       } else if (e.key === 'ArrowLeft') {
         navigatePage(-1);
       } else if (e.key === 'ArrowRight') {
@@ -3029,18 +5088,172 @@
       }
     });
 
-    // Check initial view from hash, query param, or localStorage
+    // Check initial view from hash or query param (Defaults directly to View 4 for immediate review)
     window.addEventListener('DOMContentLoaded', () => {
       const hash = window.location.hash;
       const params = new URLSearchParams(window.location.search);
-      const saved = localStorage.getItem('hirerkey_login_view');
 
-      if (hash === '#view2' || params.get('view') === '2' || (!hash && saved === '2')) {
-        switchLoginView(2);
-      } else {
+      if (hash === '#view1' || params.get('view') === '1') {
         switchLoginView(1);
+      } else if (hash === '#view2' || params.get('view') === '2') {
+        switchLoginView(2);
+      } else if (hash === '#view3' || params.get('view') === '3') {
+        switchLoginView(3);
+      } else if (hash === '#view4' || params.get('view') === '4') {
+        switchLoginView(4);
+      } else {
+        switchLoginView(4);
       }
     });
+
+    // View 2 Auth Mode Switcher (Email OTP vs Password)
+    function switchV2AuthMode(mode) {
+      const tabOtp = document.getElementById('tab-v2-otp');
+      const tabPwd = document.getElementById('tab-v2-pwd');
+      const stepEmailOtp = document.getElementById('v2-step-email-otp');
+      const stepPassword = document.getElementById('v2-step-password');
+      const stepOtpVerify = document.getElementById('v2-step-otp-verify');
+
+      clearInterval(v2OtpTimerInterval);
+      if (stepOtpVerify) stepOtpVerify.classList.add('hidden');
+
+      if (mode === 'otp') {
+        if (tabOtp) tabOtp.classList.add('active');
+        if (tabPwd) tabPwd.classList.remove('active');
+        if (stepEmailOtp) stepEmailOtp.classList.remove('hidden');
+        if (stepPassword) stepPassword.classList.add('hidden');
+      } else {
+        if (tabPwd) tabPwd.classList.add('active');
+        if (tabOtp) tabOtp.classList.remove('active');
+        if (stepPassword) stepPassword.classList.remove('hidden');
+        if (stepEmailOtp) stepEmailOtp.classList.add('hidden');
+      }
+    }
+
+    let v2OtpTimerInterval = null;
+    let v2SecondsRemaining = 29;
+
+    function handleV2SendOTP(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('v2-email-otp');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      if (!emailVal) return;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+        showToast('Please enter a valid corporate email address');
+        return;
+      }
+
+      const targetEl = document.getElementById('v2-sent-target-email');
+      if (targetEl) targetEl.textContent = emailVal;
+
+      const stepEmail = document.getElementById('v2-step-email-otp');
+      const stepVerify = document.getElementById('v2-step-otp-verify');
+      if (stepEmail) stepEmail.classList.add('hidden');
+      if (stepVerify) stepVerify.classList.remove('hidden');
+
+      showToast(`6-digit OTP code dispatched to ${emailVal}`);
+      startV2OtpTimer();
+
+      const firstOtp = document.querySelector('.v2-otp-box');
+      if (firstOtp) {
+        setTimeout(() => firstOtp.focus(), 100);
+      }
+    }
+
+    function switchV2ToEmailStep() {
+      clearInterval(v2OtpTimerInterval);
+      const stepEmail = document.getElementById('v2-step-email-otp');
+      const stepVerify = document.getElementById('v2-step-otp-verify');
+      if (stepVerify) stepVerify.classList.add('hidden');
+      if (stepEmail) stepEmail.classList.remove('hidden');
+    }
+
+    function startV2OtpTimer() {
+      clearInterval(v2OtpTimerInterval);
+      v2SecondsRemaining = 29;
+      const timerVal = document.getElementById('v2-timer-val');
+      const countdownText = document.getElementById('v2-countdown-text');
+      const resendBtn = document.getElementById('btn-v2-resend');
+
+      if (resendBtn) resendBtn.style.display = 'none';
+      if (countdownText) countdownText.style.display = 'inline';
+      if (timerVal) timerVal.textContent = '0:29';
+
+      v2OtpTimerInterval = setInterval(() => {
+        v2SecondsRemaining--;
+        if (v2SecondsRemaining <= 0) {
+          clearInterval(v2OtpTimerInterval);
+          if (countdownText) countdownText.style.display = 'none';
+          if (resendBtn) resendBtn.style.display = 'inline-block';
+        } else {
+          const sec = v2SecondsRemaining < 10 ? `0${v2SecondsRemaining}` : v2SecondsRemaining;
+          if (timerVal) timerVal.textContent = `0:${sec}`;
+        }
+      }, 1000);
+    }
+
+    function resendV2Code() {
+      showToast('New 6-digit verification code sent!');
+      startV2OtpTimer();
+      const firstOtp = document.querySelector('.v2-otp-box');
+      if (firstOtp) firstOtp.focus();
+    }
+
+    // View 2 OTP Digit Auto-Advancing & Pasting
+    document.addEventListener('DOMContentLoaded', () => {
+      const v2Boxes = document.querySelectorAll('.v2-otp-box');
+      v2Boxes.forEach((box, index) => {
+        box.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/[^0-9]/g, '');
+          e.target.value = val;
+          if (val && index < v2Boxes.length - 1) {
+            v2Boxes[index + 1].focus();
+          }
+        });
+
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !box.value && index > 0) {
+            v2Boxes[index - 1].focus();
+          }
+        });
+
+        box.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+          if (pasted) {
+            pasted.split('').slice(0, v2Boxes.length).forEach((char, i) => {
+              v2Boxes[i].value = char;
+            });
+            const nextIdx = Math.min(pasted.length, v2Boxes.length - 1);
+            v2Boxes[nextIdx].focus();
+          }
+        });
+      });
+    });
+
+    function handleV2VerifyOTP(e) {
+      e.preventDefault();
+      const v2Boxes = document.querySelectorAll('.v2-otp-box');
+      let code = '';
+      v2Boxes.forEach(b => code += b.value);
+      if (code.length < 6) {
+        showToast('Please enter all 6 digits of the OTP code');
+        return;
+      }
+
+      const btn = document.getElementById('btn-v2-verify-otp');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Verifying...</span>`;
+      }
+
+      showToast('Identity verified! Decrypting executive workspace...');
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 800);
+    }
 
     // View 2 Form Interactions
     function toggleV2Password() {
@@ -3102,6 +5315,444 @@
           sparkles.forEach((s) => {
             s.style.transform = '';
           });
+        });
+      }
+    });
+    // ==========================================================================
+    // VIEW 3: SYNCWISE-INSPIRED MODERN SPLIT CONTROLLERS & INTERACTIONS
+    // ==========================================================================
+    let v3IsHeroLeft = true;
+
+    function toggleV3Layout() {
+      const shell = document.getElementById('v3-card-shell');
+      const text = document.getElementById('v3-flip-text');
+      if (!shell) return;
+      v3IsHeroLeft = !v3IsHeroLeft;
+      if (v3IsHeroLeft) {
+        shell.classList.add('v3-hero-left');
+        if (text) text.textContent = 'Showcase Right';
+        showToast('Showcase moved to Left side');
+      } else {
+        shell.classList.remove('v3-hero-left');
+        if (text) text.textContent = 'Showcase Left';
+        showToast('Showcase moved to Right side');
+      }
+    }
+
+    function switchV3AuthMode(mode) {
+      const tabOtp = document.getElementById('tab-v3-otp');
+      const tabPwd = document.getElementById('tab-v3-pwd');
+      const stepEmailOtp = document.getElementById('v3-step-email-otp');
+      const stepPassword = document.getElementById('v3-step-password');
+      const stepOtpVerify = document.getElementById('v3-step-otp-verify');
+
+      clearInterval(v3OtpTimerInterval);
+      if (stepOtpVerify) stepOtpVerify.classList.add('hidden');
+
+      if (mode === 'otp') {
+        if (tabOtp) tabOtp.classList.add('active');
+        if (tabPwd) tabPwd.classList.remove('active');
+        if (stepEmailOtp) stepEmailOtp.classList.remove('hidden');
+        if (stepPassword) stepPassword.classList.add('hidden');
+      } else {
+        if (tabPwd) tabPwd.classList.add('active');
+        if (tabOtp) tabOtp.classList.remove('active');
+        if (stepPassword) stepPassword.classList.remove('hidden');
+        if (stepEmailOtp) stepEmailOtp.classList.add('hidden');
+      }
+    }
+
+    let v3OtpTimerInterval = null;
+    let v3SecondsRemaining = 29;
+
+    function handleV3SendOTP(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('v3-email-otp');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      if (!emailVal) return;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+        showToast('Please enter a valid corporate email address');
+        return;
+      }
+
+      const targetEl = document.getElementById('v3-sent-target-email');
+      if (targetEl) targetEl.textContent = emailVal;
+
+      const stepEmail = document.getElementById('v3-step-email-otp');
+      const stepVerify = document.getElementById('v3-step-otp-verify');
+      if (stepEmail) stepEmail.classList.add('hidden');
+      if (stepVerify) stepVerify.classList.remove('hidden');
+
+      showToast(`6-digit OTP code dispatched to ${emailVal}`);
+      startV3OtpTimer();
+
+      const firstOtp = document.querySelector('.v3-otp-input');
+      if (firstOtp) {
+        setTimeout(() => firstOtp.focus(), 100);
+      }
+    }
+
+    function switchV3ToEmailStep() {
+      clearInterval(v3OtpTimerInterval);
+      const stepEmail = document.getElementById('v3-step-email-otp');
+      const stepVerify = document.getElementById('v3-step-otp-verify');
+      if (stepVerify) stepVerify.classList.add('hidden');
+      if (stepEmail) stepEmail.classList.remove('hidden');
+    }
+
+    function startV3OtpTimer() {
+      clearInterval(v3OtpTimerInterval);
+      v3SecondsRemaining = 29;
+      const timerVal = document.getElementById('v3-timer-val');
+      const countdownText = document.getElementById('v3-countdown-text');
+      const resendBtn = document.getElementById('btn-v3-resend');
+
+      if (resendBtn) resendBtn.style.display = 'none';
+      if (countdownText) countdownText.style.display = 'inline';
+      if (timerVal) timerVal.textContent = '0:29';
+
+      v3OtpTimerInterval = setInterval(() => {
+        v3SecondsRemaining--;
+        if (v3SecondsRemaining <= 0) {
+          clearInterval(v3OtpTimerInterval);
+          if (countdownText) countdownText.style.display = 'none';
+          if (resendBtn) resendBtn.style.display = 'inline-block';
+        } else {
+          const sec = v3SecondsRemaining < 10 ? `0${v3SecondsRemaining}` : v3SecondsRemaining;
+          if (timerVal) timerVal.textContent = `0:${sec}`;
+        }
+      }, 1000);
+    }
+
+    function resendV3Code() {
+      showToast('New 6-digit verification code sent!');
+      startV3OtpTimer();
+      const firstOtp = document.querySelector('.v3-otp-input');
+      if (firstOtp) firstOtp.focus();
+    }
+
+    function handleV3VerifyOTP(e) {
+      e.preventDefault();
+      const v3Boxes = document.querySelectorAll('.v3-otp-input');
+      let code = '';
+      v3Boxes.forEach(b => code += b.value);
+      if (code.length < 6) {
+        showToast('Please enter all 6 digits of the OTP code');
+        return;
+      }
+
+      const btn = document.getElementById('btn-v3-verify-otp');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Verifying...</span>`;
+      }
+
+      showToast('Identity verified! Decrypting workforce dashboard...');
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 800);
+    }
+
+    function toggleV3Password() {
+      const pwd = document.getElementById('v3-password');
+      const icon = document.getElementById('v3-eye-icon');
+      if (!pwd || !icon) return;
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.innerHTML = `<path d="M9.88 9.88a3 3 0 1 0 4.24 4.24m-6.36-6.36L2 2l20 20-1.76-1.76M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/><line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="1.8"/>`;
+      } else {
+        pwd.type = 'password';
+        icon.innerHTML = `<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle>`;
+      }
+    }
+
+    function handleV3Login(e) {
+      e.preventDefault();
+      const email = document.getElementById('v3-email').value.trim();
+      const pwd = document.getElementById('v3-password').value;
+      if (!email || !pwd) {
+        showToast('Please enter both email and password');
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showToast('Please enter a valid corporate email address');
+        return;
+      }
+      const btn = document.getElementById('btn-v3-signin');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>Signing in...</span>`;
+      }
+
+      showToast('Authenticating with Hirerkey...');
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 900);
+    }
+
+    // View 3 OTP Digit Auto-Advancing & Pasting
+    document.addEventListener('DOMContentLoaded', () => {
+      const v3Boxes = document.querySelectorAll('.v3-otp-input');
+      v3Boxes.forEach((box, index) => {
+        box.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/[^0-9]/g, '');
+          e.target.value = val;
+          if (val && index < v3Boxes.length - 1) {
+            v3Boxes[index + 1].focus();
+          }
+        });
+
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !box.value && index > 0) {
+            v3Boxes[index - 1].focus();
+          }
+        });
+
+        box.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+          if (pasted) {
+            pasted.split('').slice(0, v3Boxes.length).forEach((char, i) => {
+              v3Boxes[i].value = char;
+            });
+            const nextIdx = Math.min(pasted.length, v3Boxes.length - 1);
+            v3Boxes[nextIdx].focus();
+          }
+        });
+      });
+    });
+
+    // View 3: 3D Mouse Parallax on Dashboard Mockup Card
+    document.addEventListener('DOMContentLoaded', () => {
+      const heroPanel = document.getElementById('v3HeroPanel');
+      const mockupCard = document.getElementById('v3MockupCard');
+      if (heroPanel && mockupCard) {
+        heroPanel.addEventListener('mousemove', (e) => {
+          const rect = heroPanel.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          mockupCard.style.transform = `perspective(1000px) rotateX(${10 - y * 14}deg) rotateY(${-8 + x * 16}deg) rotateZ(1deg) translateY(${y * -8}px)`;
+        });
+        heroPanel.addEventListener('mouseleave', () => {
+          mockupCard.style.transform = 'rotateX(10deg) rotateY(-8deg) rotateZ(1.5deg)';
+        });
+      }
+    });
+
+    // ==========================================================================
+    // VIEW 4: APPROVALMAX-STYLE WORKFLOW HIERARCHY CONTROLLERS & INTERACTIONS
+    // ==========================================================================
+    function switchV4AuthMode(mode) {
+      const tabOtp = document.getElementById('tab-v4-otp');
+      const tabPwd = document.getElementById('tab-v4-pwd');
+      const stepEmailOtp = document.getElementById('v4-step-email-otp');
+      const stepPassword = document.getElementById('v4-step-password');
+      const stepOtpVerify = document.getElementById('v4-step-otp-verify');
+
+      clearInterval(v4OtpTimerInterval);
+      if (stepOtpVerify) stepOtpVerify.classList.add('hidden');
+
+      if (mode === 'otp') {
+        if (tabOtp) tabOtp.classList.add('active');
+        if (tabPwd) tabPwd.classList.remove('active');
+        if (stepEmailOtp) stepEmailOtp.classList.remove('hidden');
+        if (stepPassword) stepPassword.classList.add('hidden');
+      } else {
+        if (tabPwd) tabPwd.classList.add('active');
+        if (tabOtp) tabOtp.classList.remove('active');
+        if (stepPassword) stepPassword.classList.remove('hidden');
+        if (stepEmailOtp) stepEmailOtp.classList.add('hidden');
+      }
+    }
+
+    let v4OtpTimerInterval = null;
+    let v4SecondsRemaining = 29;
+
+    function handleV4SendOTP(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('v4-email-otp-input');
+      const emailVal = emailInput ? emailInput.value.trim() : '';
+      if (!emailVal) return;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+        showToast('Please enter a valid work email address');
+        return;
+      }
+
+      const targetEl = document.getElementById('v4-sent-target-email');
+      if (targetEl) targetEl.textContent = emailVal;
+
+      const stepEmail = document.getElementById('v4-step-email-otp');
+      const stepVerify = document.getElementById('v4-step-otp-verify');
+      if (stepEmail) stepEmail.classList.add('hidden');
+      if (stepVerify) stepVerify.classList.remove('hidden');
+
+      showToast(`6-digit OTP code dispatched to ${emailVal}`);
+      startV4OtpTimer();
+
+      const firstBox = document.querySelector('.v4-otp-digit');
+      if (firstBox) firstBox.focus();
+    }
+
+    function startV4OtpTimer() {
+      clearInterval(v4OtpTimerInterval);
+      v4SecondsRemaining = 29;
+      const timerVal = document.getElementById('v4-timer-val');
+      const countdownText = document.getElementById('v4-countdown-text');
+      const btnResend = document.getElementById('btn-v4-resend');
+
+      if (countdownText) countdownText.style.display = 'inline';
+      if (btnResend) btnResend.style.display = 'none';
+
+      v4OtpTimerInterval = setInterval(() => {
+        v4SecondsRemaining--;
+        if (v4SecondsRemaining <= 0) {
+          clearInterval(v4OtpTimerInterval);
+          if (countdownText) countdownText.style.display = 'none';
+          if (btnResend) btnResend.style.display = 'inline';
+        } else {
+          if (timerVal) {
+            timerVal.textContent = `0:${v4SecondsRemaining < 10 ? '0' + v4SecondsRemaining : v4SecondsRemaining}`;
+          }
+        }
+      }, 1000);
+    }
+
+    function resendV4Code() {
+      showToast('A fresh 6-digit code has been dispatched.');
+      startV4OtpTimer();
+    }
+
+    function switchV4ToEmailStep() {
+      clearInterval(v4OtpTimerInterval);
+      const stepEmail = document.getElementById('v4-step-email-otp');
+      const stepVerify = document.getElementById('v4-step-otp-verify');
+      if (stepVerify) stepVerify.classList.add('hidden');
+      if (stepEmail) stepEmail.classList.remove('hidden');
+    }
+
+    function handleV4VerifyOTP(e) {
+      e.preventDefault();
+      const boxes = document.querySelectorAll('.v4-otp-digit');
+      let code = '';
+      boxes.forEach(b => code += b.value.trim());
+
+      if (code.length < 6) {
+        showToast('Please enter the full 6-digit verification code');
+        return;
+      }
+
+      showToast('Authentication verified! Loading workspace...');
+      const btn = document.getElementById('btn-v4-verify-otp');
+      if (btn) {
+        btn.innerHTML = '<span>Verifying...</span>';
+        btn.style.opacity = '0.7';
+      }
+
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 900);
+    }
+
+    function handleV4PasswordLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('v4-email-pwd-input').value.trim();
+      const password = document.getElementById('v4-password-input').value;
+
+      if (!email || !password) {
+        showToast('Please provide both work email and password');
+        return;
+      }
+
+      showToast(`Signing in as ${email}...`);
+      const btn = document.getElementById('btn-v4-signin');
+      if (btn) {
+        btn.innerHTML = '<span>Signing in...</span>';
+        btn.style.opacity = '0.7';
+      }
+
+      setTimeout(() => {
+        navigateToDashboard();
+      }, 900);
+    }
+
+    let v4PasswordVisible = false;
+    function toggleV4Password() {
+      const input = document.getElementById('v4-password-input');
+      const eyeIcon = document.getElementById('v4-eye-icon');
+      if (!input) return;
+
+      v4PasswordVisible = !v4PasswordVisible;
+      if (v4PasswordVisible) {
+        input.type = 'text';
+        if (eyeIcon) {
+          eyeIcon.innerHTML = `
+            <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
+            <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"></path>
+            <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"></path>
+            <line x1="2" x2="22" y1="2" y2="22"></line>
+          `;
+        }
+      } else {
+        input.type = 'password';
+        if (eyeIcon) {
+          eyeIcon.innerHTML = `
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          `;
+        }
+      }
+    }
+
+    // View 4 OTP Digit Auto-Advancing & Pasting
+    document.addEventListener('DOMContentLoaded', () => {
+      const v4Boxes = document.querySelectorAll('.v4-otp-digit');
+      v4Boxes.forEach((box, index) => {
+        box.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/[^0-9]/g, '');
+          e.target.value = val;
+          if (val && index < v4Boxes.length - 1) {
+            v4Boxes[index + 1].focus();
+          }
+        });
+
+        box.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !box.value && index > 0) {
+            v4Boxes[index - 1].focus();
+          }
+        });
+
+        box.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+          if (pasted) {
+            pasted.split('').slice(0, v4Boxes.length).forEach((char, i) => {
+              v4Boxes[i].value = char;
+            });
+            const nextIdx = Math.min(pasted.length, v4Boxes.length - 1);
+            v4Boxes[nextIdx].focus();
+          }
+        });
+      });
+    });
+
+    // View 4: Subtle mouse parallax on mini dashboard
+    document.addEventListener('DOMContentLoaded', () => {
+      const stage = document.getElementById('v4WorkflowStage');
+      const miniDash = document.getElementById('v4MiniDashboard');
+      if (stage && miniDash) {
+        stage.addEventListener('mousemove', (e) => {
+          const rect = stage.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          miniDash.style.transform = `perspective(800px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg) translateZ(8px)`;
+        });
+        stage.addEventListener('mouseleave', () => {
+          miniDash.style.transform = '';
         });
       }
     });

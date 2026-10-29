@@ -18,7 +18,7 @@ export type AuthMode = 'otp' | 'password' | 'passkey';
 export interface LoginViewProps {
   onSuccessLogin?: (email: string, method: AuthMode) => void;
   className?: string;
-  defaultView?: 1 | 2;
+  defaultView?: 1 | 2 | 3 | 4;
 }
 
 const STORIES = [
@@ -42,9 +42,9 @@ const STORIES = [
 export const LoginView: React.FC<LoginViewProps> = ({
   onSuccessLogin,
   className,
-  defaultView = 1,
+  defaultView = 4,
 }) => {
-  const [viewPage, setViewPage] = useState<1 | 2>(defaultView);
+  const [viewPage, setViewPage] = useState<1 | 2 | 3 | 4>(defaultView as 1 | 2 | 3 | 4);
   const [authTab, setAuthTab] = useState<'otp' | 'password'>('otp');
   const [step, setStep] = useState<'form' | 'otp_verify'>('form');
   const [email, setEmail] = useState('alex.chen@earthhotels.com');
@@ -59,11 +59,37 @@ export const LoginView: React.FC<LoginViewProps> = ({
   const [storyIndex, setStoryIndex] = useState(0);
 
   // View 2 form states
+  const [v2AuthMode, setV2AuthMode] = useState<'otp' | 'password'>('otp');
+  const [v2OtpStep, setV2OtpStep] = useState<'input' | 'verify'>('input');
+  const [v2OtpDigits, setV2OtpDigits] = useState<string[]>(['', '', '', '', '', '']);
+  const [v2OtpSecondsLeft, setV2OtpSecondsLeft] = useState(29);
   const [v2Email, setV2Email] = useState('alex.chen@earthhotels.com');
   const [v2Password, setV2Password] = useState('EarthHotels2026!#');
   const [v2ShowPassword, setV2ShowPassword] = useState(false);
-  const [v2Remember, setV2Remember] = useState(true);
   const [orbTilt, setOrbTilt] = useState({ x: 0, y: 0 });
+
+  // View 3 form states (SyncWise inspired with 3D dashboard preview)
+  const [v3AuthMode, setV3AuthMode] = useState<'password' | 'otp'>('password');
+  const [v3Email, setV3Email] = useState('alex.chen@earthhotels.com');
+  const [v3Password, setV3Password] = useState('EarthHotels2026!#');
+  const [v3ShowPassword, setV3ShowPassword] = useState(false);
+  const [v3RememberMe, setV3RememberMe] = useState(true);
+  const [v3OtpStep, setV3OtpStep] = useState<'input' | 'verify'>('input');
+  const [v3OtpDigits, setV3OtpDigits] = useState<string[]>(['', '', '', '', '', '']);
+  const [v3OtpSecondsLeft, setV3OtpSecondsLeft] = useState(29);
+  const [v3IsHeroLeft, setV3IsHeroLeft] = useState(true);
+  const [v3Tilt, setV3Tilt] = useState({ x: 10, y: -8 });
+
+  // View 4 form states (ApprovalMax Inspired Workflow Animation & Modern Split)
+  const [v4AuthMode, setV4AuthMode] = useState<'otp' | 'password'>('otp');
+  const [v4OtpStep, setV4OtpStep] = useState<'input' | 'verify'>('input');
+  const [v4OtpDigits, setV4OtpDigits] = useState<string[]>(['', '', '', '', '', '']);
+  const [v4OtpSecondsLeft, setV4OtpSecondsLeft] = useState(29);
+  const [v4Email, setV4Email] = useState('alex.chen@earthhotels.com');
+  const [v4Password, setV4Password] = useState('EarthHotels2026!#');
+  const [v4ShowPassword, setV4ShowPassword] = useState(false);
+  const [v4RememberMe, setV4RememberMe] = useState(true);
+  const [v4Tilt, setV4Tilt] = useState({ x: 0, y: 0 });
 
   const handleHeroMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -76,18 +102,55 @@ export const LoginView: React.FC<LoginViewProps> = ({
     setOrbTilt({ x: 0, y: 0 });
   };
 
-  // Keyboard navigation for Dual View switching (1, 2, Left Arrow, Right Arrow)
+  const handleV3MouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setV3Tilt({ x: 10 - y * 14, y: -8 + x * 16 });
+  };
+
+  const handleV3MouseLeave = () => {
+    setV3Tilt({ x: 10, y: -8 });
+  };
+
+  const handleV4MouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setV4Tilt({ x: -y * 12, y: x * 12 });
+  };
+
+  const handleV4MouseLeave = () => {
+    setV4Tilt({ x: 0, y: 0 });
+  };
+
+  // Keyboard navigation for Four-View switching (1, 2, 3, 4, Left Arrow, Right Arrow)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target && ['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement).tagName)) return;
       if (e.key === '1') setViewPage(1);
       if (e.key === '2') setViewPage(2);
-      if (e.key === 'ArrowLeft') setViewPage((p) => (p === 1 ? 2 : 1));
-      if (e.key === 'ArrowRight') setViewPage((p) => (p === 2 ? 1 : 2));
+      if (e.key === '3') setViewPage(3);
+      if (e.key === '4') setViewPage(4);
+      if (e.key === 'ArrowLeft') setViewPage((p) => (p === 1 ? 4 : ((p - 1) as 1 | 2 | 3 | 4)));
+      if (e.key === 'ArrowRight') setViewPage((p) => (p === 4 ? 1 : ((p + 1) as 1 | 2 | 3 | 4)));
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
+
+  // View 4 OTP countdown timer
+  useEffect(() => {
+    let timer: ReturnType<typeof setInterval> | null = null;
+    if (viewPage === 4 && v4OtpStep === 'verify' && v4OtpSecondsLeft > 0) {
+      timer = setInterval(() => {
+        setV4OtpSecondsLeft((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [viewPage, v4OtpStep, v4OtpSecondsLeft]);
 
   const handleV2Login = (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,6 +162,180 @@ export const LoginView: React.FC<LoginViewProps> = ({
       setLoading(false);
       onSuccessLogin?.(v2Email, 'password');
     }, 800);
+  };
+
+  const handleV2SendOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v2Email) return;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(v2Email.trim())) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setV2OtpStep('verify');
+      setV2OtpSecondsLeft(29);
+    }, 600);
+  };
+
+  const handleV2VerifyOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = v2OtpDigits.join('');
+    if (code.length < 6) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v2Email, 'otp');
+    }, 800);
+  };
+
+  const handleV2OtpDigitChange = (index: number, val: string) => {
+    const clean = val.replace(/[^0-9]/g, '');
+    const nextDigits = [...v2OtpDigits];
+    nextDigits[index] = clean ? clean[clean.length - 1] : '';
+    setV2OtpDigits(nextDigits);
+
+    if (clean && index < 5) {
+      const nextInput = document.getElementById(`v2-otp-digit-${index + 1}`);
+      nextInput?.focus();
+    }
+  };
+
+  const handleV2OtpKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === 'Backspace' && !v2OtpDigits[index] && index > 0) {
+      const prevInput = document.getElementById(`v2-otp-digit-${index - 1}`);
+      prevInput?.focus();
+    }
+  };
+
+  // View 2 OTP Timer
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (v2OtpStep === 'verify' && v2OtpSecondsLeft > 0) {
+      timer = setInterval(() => setV2OtpSecondsLeft((prev) => prev - 1), 1000);
+    }
+    return () => clearInterval(timer);
+  }, [v2OtpStep, v2OtpSecondsLeft]);
+
+  // View 3 OTP Timer
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (v3OtpStep === 'verify' && v3OtpSecondsLeft > 0) {
+      timer = setInterval(() => setV3OtpSecondsLeft((prev) => prev - 1), 1000);
+    }
+    return () => clearInterval(timer);
+  }, [v3OtpStep, v3OtpSecondsLeft]);
+
+  const handleV3Login = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v3Email || !v3Password) return;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(v3Email.trim())) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v3Email, 'password');
+    }, 800);
+  };
+
+  const handleV3SendOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v3Email) return;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(v3Email.trim())) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setV3OtpStep('verify');
+      setV3OtpSecondsLeft(29);
+    }, 600);
+  };
+
+  const handleV3VerifyOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = v3OtpDigits.join('');
+    if (code.length < 6) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v3Email, 'otp');
+    }, 800);
+  };
+
+  const handleV3OtpDigitChange = (index: number, val: string) => {
+    const clean = val.replace(/[^0-9]/g, '');
+    const nextDigits = [...v3OtpDigits];
+    nextDigits[index] = clean ? clean[clean.length - 1] : '';
+    setV3OtpDigits(nextDigits);
+
+    if (clean && index < 5) {
+      const nextInput = document.getElementById(`v3-otp-digit-${index + 1}`);
+      nextInput?.focus();
+    }
+  };
+
+  const handleV3OtpKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === 'Backspace' && !v3OtpDigits[index] && index > 0) {
+      const prevInput = document.getElementById(`v3-otp-digit-${index - 1}`);
+      prevInput?.focus();
+    }
+  };
+
+  // View 4 Form Handlers
+  const handleV4SendOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v4Email) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setV4OtpStep('verify');
+      setV4OtpSecondsLeft(29);
+      setV4OtpDigits(['', '', '', '', '', '']);
+    }, 450);
+  };
+
+  const handleV4VerifyOTP = (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = v4OtpDigits.join('');
+    if (code.length < 6) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v4Email, 'otp');
+    }, 600);
+  };
+
+  const handleV4PasswordLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!v4Email || !v4Password) return;
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      onSuccessLogin?.(v4Email, 'password');
+    }, 600);
+  };
+
+  const handleV4OtpDigitChange = (index: number, val: string) => {
+    const clean = val.replace(/[^0-9]/g, '');
+    const nextDigits = [...v4OtpDigits];
+    nextDigits[index] = clean ? clean[clean.length - 1] : '';
+    setV4OtpDigits(nextDigits);
+
+    if (clean && index < 5) {
+      const nextInput = document.getElementById(`v4-otp-digit-${index + 1}`);
+      nextInput?.focus();
+    }
+  };
+
+  const handleV4OtpKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === 'Backspace' && !v4OtpDigits[index] && index > 0) {
+      const prevInput = document.getElementById(`v4-otp-digit-${index - 1}`);
+      prevInput?.focus();
+    }
+  };
+
+  const resendV4Code = () => {
+    setV4OtpSecondsLeft(29);
+    setV4OtpDigits(['', '', '', '', '', '']);
   };
 
   // OTP Countdown Timer
@@ -158,6 +395,9 @@ export const LoginView: React.FC<LoginViewProps> = ({
   const prevStory = () => setStoryIndex((prev) => (prev - 1 + STORIES.length) % STORIES.length);
 
   const isView1 = viewPage === 1;
+  const isView2 = viewPage === 2;
+  const isView3 = viewPage === 3;
+  const isView4 = viewPage === 4;
 
   return (
     <Box
@@ -171,7 +411,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         justifyContent: 'center',
         p: { xs: 2, md: 4 },
         pb: { xs: 12, md: 14 },
-        backgroundColor: isView1 ? '#0B0719' : '#EAE7F8',
+        backgroundColor: isView1 ? '#0B0719' : isView2 ? '#EAE7F8' : isView3 ? '#EEF2F6' : '#F6F1FF',
         backgroundImage: isView1
           ? `
             radial-gradient(circle at 12% 22%, rgba(59, 130, 246, 0.42) 0%, rgba(99, 102, 241, 0.28) 32%, transparent 64%),
@@ -183,7 +423,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
             linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
             radial-gradient(ellipse at 50% 50%, transparent 40%, rgba(5, 3, 12, 0.78) 100%)
           `
-          : `
+          : isView2
+          ? `
             radial-gradient(circle at 14% 18%, rgba(216, 180, 254, 0.7) 0%, rgba(192, 132, 252, 0.35) 30%, transparent 65%),
             radial-gradient(circle at 86% 16%, rgba(244, 114, 182, 0.55) 0%, rgba(236, 72, 153, 0.28) 28%, transparent 60%),
             radial-gradient(circle at 50% 84%, rgba(167, 139, 250, 0.5) 0%, rgba(139, 92, 246, 0.22) 36%, transparent 65%),
@@ -191,10 +432,32 @@ export const LoginView: React.FC<LoginViewProps> = ({
             radial-gradient(circle at 18% 78%, rgba(192, 132, 252, 0.42) 0%, transparent 58%),
             linear-gradient(rgba(124, 58, 237, 0.045) 1px, transparent 1px),
             linear-gradient(90deg, rgba(124, 58, 237, 0.045) 1px, transparent 1px)
+          `
+          : isView3
+          ? `
+            radial-gradient(circle at 14% 18%, rgba(216, 180, 254, 0.45) 0%, transparent 55%),
+            radial-gradient(circle at 86% 16%, rgba(199, 210, 254, 0.45) 0%, transparent 55%),
+            radial-gradient(circle at 50% 84%, rgba(224, 231, 255, 0.5) 0%, transparent 60%),
+            linear-gradient(rgba(124, 58, 237, 0.035) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(124, 58, 237, 0.035) 1px, transparent 1px)
+          `
+          : `
+            url('v4_bg_gradient.png'),
+            url('/v4_bg_gradient.png'),
+            radial-gradient(ellipse 65% 55% at 90% 10%, rgba(168, 85, 247, 0.55) 0%, rgba(192, 132, 252, 0.25) 45%, transparent 75%),
+            radial-gradient(ellipse 60% 50% at 10% 90%, rgba(147, 51, 234, 0.5) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 75%),
+            linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 35%, #F3E8FF 70%, #EDE9FE 100%)
           `,
         backgroundSize: isView1
           ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px, 100% 100%'
-          : '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px',
+          : isView2
+          ? '100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 46px 46px, 46px 46px'
+          : isView3
+          ? '100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px'
+          : 'cover',
+        backgroundPosition: isView4 ? 'center center' : undefined,
+        backgroundRepeat: isView4 ? 'no-repeat' : undefined,
+        backgroundAttachment: isView4 ? 'fixed' : undefined,
         color: isView1 ? '#FFFFFF' : '#0F172A',
         fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif",
         transition: 'background-color 0.45s ease',
@@ -887,7 +1150,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
         </Box>
             </Box>
           </motion.div>
-        ) : (
+        ) : viewPage === 2 ? (
           <motion.div
             key="view-2"
             initial={{ opacity: 0, y: 16, scale: 0.985 }}
@@ -1258,26 +1521,1789 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     Sign in to access your unified workplace
                   </Typography>
 
-                  {/* Form */}
-                  <form onSubmit={handleV2Login}>
-                    <Box sx={{ mb: 1.75 }}>
-                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
+                  {/* Auth Mode Segmented Pill Switcher (Primary Purple) */}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      bgcolor: '#F1F5F9',
+                      border: '1px solid #E2E8F0',
+                      borderRadius: '9999px',
+                      p: '4px',
+                      mb: 2.5,
+                      gap: 0.5,
+                      width: '100%',
+                    }}
+                  >
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => { setV2AuthMode('otp'); setV2OtpStep('input'); }}
+                      sx={{
+                        flex: 1,
+                        py: 1,
+                        px: 2,
+                        borderRadius: '9999px',
+                        border: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0.75,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        bgcolor: v2AuthMode === 'otp' ? '#7C3AED' : 'transparent',
+                        color: v2AuthMode === 'otp' ? '#FFFFFF' : '#64748B',
+                        boxShadow: v2AuthMode === 'otp' ? '0 4px 14px rgba(124, 58, 237, 0.32)' : 'none',
+                        '&:hover': {
+                          color: v2AuthMode === 'otp' ? '#FFFFFF' : '#0F172A',
+                        },
+                      }}
+                    >
+                      <HiEnvelope size={15} />
+                      <span>Email OTP</span>
+                    </Box>
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => setV2AuthMode('password')}
+                      sx={{
+                        flex: 1,
+                        py: 1,
+                        px: 2,
+                        borderRadius: '9999px',
+                        border: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0.75,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        fontFamily: "'Plus Jakarta Sans', sans-serif",
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        bgcolor: v2AuthMode === 'password' ? '#7C3AED' : 'transparent',
+                        color: v2AuthMode === 'password' ? '#FFFFFF' : '#64748B',
+                        boxShadow: v2AuthMode === 'password' ? '0 4px 14px rgba(124, 58, 237, 0.32)' : 'none',
+                        '&:hover': {
+                          color: v2AuthMode === 'password' ? '#FFFFFF' : '#0F172A',
+                        },
+                      }}
+                    >
+                      <HiLockClosed size={15} />
+                      <span>Password</span>
+                    </Box>
+                  </Box>
+
+                  {/* Mode A: Email OTP */}
+                  {v2AuthMode === 'otp' ? (
+                    v2OtpStep === 'input' ? (
+                      <Box>
+                        <form onSubmit={handleV2SendOTP}>
+                          <Box sx={{ mb: 1.75 }}>
+                            <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Business Email</Typography>
+                            <Input
+                              type="email"
+                              value={v2Email}
+                              onChange={(e) => setV2Email(e.target.value)}
+                              startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                              placeholder="you@example.com"
+                              required
+                              sx={{
+                                height: 48,
+                                borderRadius: '14px',
+                                bgcolor: '#FFFFFF',
+                                border: '1px solid #E2E8F0',
+                                color: '#0F172A',
+                                fontSize: 14,
+                                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+                                '&:focus-within': {
+                                  bgcolor: '#FFFFFF',
+                                  borderColor: '#7C3AED',
+                                  boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04)',
+                                },
+                              }}
+                            />
+                          </Box>
+
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2.5, fontSize: 13 }}>
+                            <Typography sx={{ color: '#64748B', fontSize: 13 }}>Not getting OTP?</Typography>
+                            <Typography
+                              component="a"
+                              href="#"
+                              onClick={(e) => { e.preventDefault(); setPasskeyModalOpen(true); }}
+                              sx={{ color: '#7C3AED', textDecoration: 'none', fontWeight: 600, fontSize: 13, '&:hover': { textDecoration: 'underline' } }}
+                            >
+                              Sign in with Passkey
+                            </Typography>
+                          </Box>
+
+                          <Button
+                            type="submit"
+                            loading={loading}
+                            endDecorator={<HiArrowRight />}
+                            sx={{
+                              width: '100%',
+                              height: 48,
+                              borderRadius: '9999px',
+                              background: 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)',
+                              color: '#FFFFFF',
+                              fontWeight: 600,
+                              fontSize: 15,
+                              boxShadow: '0 10px 24px -4px rgba(168, 85, 247, 0.45)',
+                              '&:hover': {
+                                background: 'linear-gradient(135deg, #B568F8 0%, #6D28D9 100%)',
+                                boxShadow: '0 14px 28px -4px rgba(124, 58, 237, 0.58)',
+                              },
+                            }}
+                          >
+                            Send OTP
+                          </Button>
+                        </form>
+
+                        <Typography sx={{ textAlign: 'center', mt: 2 }}>
+                          <Typography
+                            component="span"
+                            sx={{ color: '#7C3AED', fontSize: 12, fontWeight: 500, cursor: 'pointer', '&:hover': { color: '#6D28D9', textDecoration: 'underline' } }}
+                            onClick={() => setHelpModalOpen(true)}
+                          >
+                            Can't access your account?
+                          </Typography>
+                        </Typography>
+                      </Box>
+                    ) : (
+                      <Box>
+                        <Typography level="h3" sx={{ fontSize: 20, fontWeight: 700, color: '#0F172A', mb: 0.5 }}>
+                          Enter Verification Code
+                        </Typography>
+                        <Typography sx={{ fontSize: 13, color: '#64748B', mb: 2 }}>
+                          We sent a 6-digit code to <strong style={{ color: '#7C3AED' }}>{v2Email}</strong>
+                        </Typography>
+
+                        <form onSubmit={handleV2VerifyOTP}>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 1, mb: 2 }}>
+                            {v2OtpDigits.map((digit, idx) => (
+                              <Box
+                                key={idx}
+                                component="input"
+                                id={`v2-otp-digit-${idx}`}
+                                type="text"
+                                maxLength={1}
+                                inputMode="numeric"
+                                pattern="[0-9]*"
+                                value={digit}
+                                onChange={(e: any) => handleV2OtpDigitChange(idx, e.target.value)}
+                                onKeyDown={(e: any) => handleV2OtpKeyDown(idx, e)}
+                                sx={{
+                                  width: 46,
+                                  height: 52,
+                                  borderRadius: '12px',
+                                  bgcolor: '#FFFFFF',
+                                  border: '1.5px solid #E2E8F0',
+                                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                                  fontSize: 22,
+                                  fontWeight: 700,
+                                  color: '#0F172A',
+                                  textAlign: 'center',
+                                  outline: 'none',
+                                  boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
+                                  '&:focus': {
+                                    borderColor: '#7C3AED',
+                                    boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.18)',
+                                  },
+                                }}
+                              />
+                            ))}
+                          </Box>
+
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2.5, fontSize: 13 }}>
+                            <Typography sx={{ color: '#64748B', fontSize: 13 }}>Didn't receive code?</Typography>
+                            {v2OtpSecondsLeft > 0 ? (
+                              <Typography sx={{ color: '#94A3B8', fontSize: 13 }}>
+                                Resend in <strong style={{ color: '#7C3AED' }}>0:{v2OtpSecondsLeft < 10 ? `0${v2OtpSecondsLeft}` : v2OtpSecondsLeft}</strong>
+                              </Typography>
+                            ) : (
+                              <Typography
+                                component="span"
+                                sx={{ color: '#7C3AED', fontWeight: 600, fontSize: 13, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                                onClick={() => { setV2OtpSecondsLeft(29); }}
+                              >
+                                Resend OTP
+                              </Typography>
+                            )}
+                          </Box>
+
+                          <Button
+                            type="submit"
+                            loading={loading}
+                            endDecorator={<HiArrowRight />}
+                            sx={{
+                              width: '100%',
+                              height: 48,
+                              borderRadius: '9999px',
+                              background: 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)',
+                              color: '#FFFFFF',
+                              fontWeight: 600,
+                              fontSize: 15,
+                              boxShadow: '0 10px 24px -4px rgba(168, 85, 247, 0.45)',
+                              '&:hover': {
+                                background: 'linear-gradient(135deg, #B568F8 0%, #6D28D9 100%)',
+                                boxShadow: '0 14px 28px -4px rgba(124, 58, 237, 0.58)',
+                              },
+                            }}
+                          >
+                            Verify &amp; Sign In
+                          </Button>
+                        </form>
+
+                        <Typography sx={{ textAlign: 'center', mt: 2 }}>
+                          <Typography
+                            component="span"
+                            sx={{ color: '#7C3AED', fontSize: 12, fontWeight: 500, cursor: 'pointer', '&:hover': { color: '#6D28D9', textDecoration: 'underline' } }}
+                            onClick={() => setV2OtpStep('input')}
+                          >
+                            ← Back to Email entry
+                          </Typography>
+                        </Typography>
+                      </Box>
+                    )
+                  ) : (
+                    /* Mode B: Password */
+                    <Box>
+                      <form onSubmit={handleV2Login}>
+                        <Box sx={{ mb: 1.75 }}>
+                          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
+                          <Input
+                            type="email"
+                            value={v2Email}
+                            onChange={(e) => setV2Email(e.target.value)}
+                            startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                            placeholder="you@example.com"
+                            required
+                            sx={{
+                              height: 48,
+                              borderRadius: '14px',
+                              bgcolor: '#FFFFFF',
+                              border: '1px solid #E2E8F0',
+                              color: '#0F172A',
+                              fontSize: 14,
+                              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+                              '&:focus-within': {
+                                bgcolor: '#FFFFFF',
+                                borderColor: '#7C3AED',
+                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04)',
+                              },
+                            }}
+                          />
+                        </Box>
+
+                        <Box sx={{ mb: 1.75 }}>
+                          <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Password</Typography>
+                          <Input
+                            type={v2ShowPassword ? 'text' : 'password'}
+                            value={v2Password}
+                            onChange={(e) => setV2Password(e.target.value)}
+                            startDecorator={<HiLockClosed color="#94A3B8" size={18} />}
+                            endDecorator={
+                              <Box
+                                component="button"
+                                type="button"
+                                onClick={() => setV2ShowPassword(!v2ShowPassword)}
+                                sx={{ background: 'none', border: 'none', p: 0, cursor: 'pointer', color: '#94A3B8', display: 'flex', alignItems: 'center' }}
+                              >
+                                {v2ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
+                              </Box>
+                            }
+                            placeholder="••••••••"
+                            required
+                            sx={{
+                              height: 48,
+                              borderRadius: '14px',
+                              bgcolor: '#FFFFFF',
+                              border: '1px solid #E2E8F0',
+                              color: '#0F172A',
+                              fontSize: 14,
+                              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.04)',
+                              '&:focus-within': {
+                                bgcolor: '#FFFFFF',
+                                borderColor: '#7C3AED',
+                                boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15), 0 1px 3px rgba(0, 0, 0, 0.04)',
+                              },
+                            }}
+                          />
+                        </Box>
+
+                        {/* Forgot Password */}
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', mb: 2.5 }}>
+                          <Typography
+                            component="a"
+                            href="#"
+                            onClick={(e) => { e.preventDefault(); setHelpModalOpen(true); }}
+                            sx={{ color: '#64748B', textDecoration: 'none', fontWeight: 500, fontSize: 12.5, '&:hover': { color: '#7C3AED', textDecoration: 'underline' } }}
+                          >
+                            Forgot Password?
+                          </Typography>
+                        </Box>
+
+                        {/* Sign In Button */}
+                        <Button
+                          type="submit"
+                          loading={loading}
+                          endDecorator={<HiArrowRight />}
+                          sx={{
+                            width: '100%',
+                            height: 48,
+                            borderRadius: '9999px',
+                            background: 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)',
+                            color: '#FFFFFF',
+                            fontWeight: 600,
+                            fontSize: 15,
+                            boxShadow: '0 10px 24px -4px rgba(168, 85, 247, 0.45)',
+                            '&:hover': {
+                              background: 'linear-gradient(135deg, #B568F8 0%, #6D28D9 100%)',
+                              boxShadow: '0 14px 28px -4px rgba(124, 58, 237, 0.58)',
+                            },
+                          }}
+                        >
+                          Sign In
+                        </Button>
+                      </form>
+
+                      {/* Recovery Link: Small and Purple */}
+                      <Typography sx={{ textAlign: 'center', mt: 2 }}>
+                        <Typography
+                          component="span"
+                          sx={{ color: '#7C3AED', fontSize: 12, fontWeight: 500, cursor: 'pointer', '&:hover': { color: '#6D28D9', textDecoration: 'underline' } }}
+                          onClick={() => setHelpModalOpen(true)}
+                        >
+                          Can't access your account?
+                        </Typography>
+                      </Typography>
+                    </Box>
+                  )}
+                </Box>
+
+                {/* Enterprise Trust Footnote */}
+                <Box sx={{ mt: 3, textAlign: 'center' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, fontSize: 11, color: '#94A3B8' }}>
+                    <span>🛡️ Enterprise-Grade</span>
+                    <span>•</span>
+                    <span>🇦🇪 UAE Data Centers</span>
+                    <span>•</span>
+                    <span>🔒 GDPR Compliant</span>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </motion.div>
+        ) : viewPage === 3 ? (
+          <motion.div
+            key="view-3"
+            initial={{ opacity: 0, y: 16, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.985 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+          >
+            {/* VIEW 3: SYNCWISE-INSPIRED MODERN SPLIT WITH 3D DASHBOARD PREVIEW */}
+            <Box
+              className="v3-card-shell"
+              sx={{
+                width: '100%',
+                maxWidth: '1080px',
+                minHeight: '640px',
+                bgcolor: '#FFFFFF',
+                borderRadius: '32px',
+                border: '1px solid rgba(226, 232, 240, 0.85)',
+                boxShadow:
+                  '0 35px 85px -15px rgba(124, 58, 237, 0.12), 0 15px 35px -5px rgba(15, 23, 42, 0.06), 0 0 1px rgba(0, 0, 0, 0.08)',
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: '1fr',
+                  md: v3IsHeroLeft ? '1.15fr 1fr' : '1fr 1.15fr',
+                },
+                p: { xs: 2.5, md: '24px' },
+                gap: { xs: 3, md: '28px' },
+                position: 'relative',
+                zIndex: 10,
+                transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+              }}
+            >
+              {/* DARK HERO SHOWCASE PANEL (WITH 3D HIRERKEY DASHBOARD MOCKUP) */}
+              <Box
+                onMouseMove={handleV3MouseMove}
+                onMouseLeave={handleV3MouseLeave}
+                sx={{
+                  order: { xs: 2, md: v3IsHeroLeft ? 1 : 2 },
+                  borderRadius: '26px',
+                  background: 'linear-gradient(145deg, #120C24 0%, #1A0F36 45%, #0B0818 100%)',
+                  border: '1px solid rgba(168, 85, 247, 0.22)',
+                  p: { xs: 3, sm: '32px 32px 28px 32px' },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.15), 0 20px 45px -10px rgba(18, 12, 36, 0.6)',
+                  perspective: '1200px',
+                }}
+              >
+                {/* Hexagonal Grid Pattern SVG */}
+                <Box
+                  component="svg"
+                  viewBox="0 0 400 400"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    opacity: 0.85,
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                >
+                  <defs>
+                    <pattern id="v3-react-hex-pattern" width="40" height="69.282" patternUnits="userSpaceOnUse">
+                      <path
+                        d="M 40 0 L 20 11.547 L 0 0 L 0 23.094 L 20 34.641 L 40 23.094 Z M 0 34.641 L 20 46.188 L 0 57.735 L 0 80.829 L 20 92.376 L 40 80.829 L 40 57.735 L 20 46.188 Z"
+                        stroke="rgba(168, 85, 247, 0.14)"
+                        strokeWidth="1.2"
+                        fill="none"
+                      />
+                      <path
+                        d="M 20 34.641 L 40 46.188 L 20 57.735 L 0 46.188 Z"
+                        stroke="rgba(124, 58, 237, 0.18)"
+                        strokeWidth="1.2"
+                        fill="none"
+                      />
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#v3-react-hex-pattern)" />
+                </Box>
+
+                {/* Glow Blobs */}
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '-60px',
+                    left: '-40px',
+                    width: 260,
+                    height: 260,
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(168, 85, 247, 0.35) 0%, transparent 70%)',
+                    filter: 'blur(35px)',
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    bottom: '-70px',
+                    right: '-40px',
+                    width: 280,
+                    height: 280,
+                    borderRadius: '50%',
+                    background: 'radial-gradient(circle, rgba(124, 58, 237, 0.32) 0%, transparent 70%)',
+                    filter: 'blur(40px)',
+                    pointerEvents: 'none',
+                    zIndex: 1,
+                  }}
+                />
+
+                {/* Hero Headline */}
+                <Box sx={{ position: 'relative', zIndex: 2 }}>
+                  <Box
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 0.75,
+                      px: 1.5,
+                      py: 0.6,
+                      borderRadius: '9999px',
+                      background: 'rgba(124, 58, 237, 0.22)',
+                      border: '1px solid rgba(168, 85, 247, 0.35)',
+                      color: '#E9D5FF',
+                      fontSize: 12,
+                      fontWeight: 600,
+                      mb: 2,
+                    }}
+                  >
+                    <span style={{ color: '#A855F7' }}>✦</span>
+                    <span>Workforce Intelligence Platform</span>
+                  </Box>
+                  <Typography
+                    level="h2"
+                    sx={{
+                      fontFamily: 'Plus Jakarta Sans, sans-serif',
+                      fontSize: { xs: 26, sm: 30 },
+                      fontWeight: 800,
+                      letterSpacing: '-0.03em',
+                      color: '#FFFFFF',
+                      lineHeight: 1.2,
+                      mb: 1.5,
+                    }}
+                  >
+                    Redefine Your<br />Workforce Experience!
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: 13.5,
+                      color: 'rgba(226, 232, 240, 0.78)',
+                      lineHeight: 1.6,
+                      maxWidth: 420,
+                    }}
+                  >
+                    Unshackle yourself from traditional HR friction and immerse yourself in the boundless intelligence that Hirerkey brings to your daily routine.
+                  </Typography>
+                </Box>
+
+                {/* 3D Perspective Floating Dashboard Mockup Card */}
+                <Box
+                  sx={{
+                    position: 'relative',
+                    zIndex: 3,
+                    mt: { xs: 3, sm: 4 },
+                    perspective: '1200px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: '100%',
+                      maxWidth: 440,
+                      background: 'rgba(15, 10, 30, 0.92)',
+                      borderRadius: '16px',
+                      border: '1px solid rgba(168, 85, 247, 0.35)',
+                      boxShadow: '0 25px 60px -10px rgba(0, 0, 0, 0.75), 0 0 35px rgba(124, 58, 237, 0.3)',
+                      overflow: 'hidden',
+                      transform: `rotateX(${v3Tilt.x}deg) rotateY(${v3Tilt.y}deg)`,
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.18s cubic-bezier(0.16, 1, 0.3, 1)',
+                      position: 'relative',
+                    }}
+                  >
+                    {/* Window Chrome Header */}
+                    <Box
+                      sx={{
+                        p: '9px 14px',
+                        background: 'linear-gradient(180deg, rgba(30, 20, 55, 0.95) 0%, rgba(20, 12, 38, 0.95) 100%)',
+                        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                        <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: '#EF4444' }} />
+                        <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: '#F59E0B' }} />
+                        <Box sx={{ width: 9, height: 9, borderRadius: '50%', bgcolor: '#10B981' }} />
+                      </Box>
+                      <Typography sx={{ fontSize: 11, color: '#94A3B8', fontFamily: 'monospace', letterSpacing: '0.02em' }}>
+                        dashboard.hirerkey.com
+                      </Typography>
+                      <Box sx={{ width: 28 }} />
+                    </Box>
+
+                    {/* Dashboard Image */}
+                    <Box sx={{ position: 'relative', overflow: 'hidden', bgcolor: '#0B0818' }}>
+                      <Box
+                        component="img"
+                        src="/hirerkey_dashboard_mockup.png"
+                        alt="Hirerkey Intelligence Dashboard"
+                        sx={{
+                          width: '100%',
+                          height: 'auto',
+                          display: 'block',
+                          objectFit: 'cover',
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          inset: 0,
+                          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%)',
+                          pointerEvents: 'none',
+                        }}
+                      />
+                    </Box>
+
+                    {/* Floating Micro-Badges */}
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 44,
+                        right: 12,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 0.75,
+                        px: 1.25,
+                        py: 0.5,
+                        borderRadius: '9999px',
+                        background: 'rgba(15, 23, 42, 0.88)',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(16, 185, 129, 0.4)',
+                        color: '#FFFFFF',
+                        fontSize: 10.5,
+                        fontWeight: 700,
+                        boxShadow: '0 6px 16px rgba(0,0,0,0.4)',
+                      }}
+                    >
+                      <Box sx={{ width: 7, height: 7, borderRadius: '50%', bgcolor: '#10B981', boxShadow: '0 0 8px #10B981' }} />
+                      <span>Ask HyIQ™ • Real-time AI</span>
+                    </Box>
+
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        bottom: 12,
+                        left: 12,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 0.5,
+                        px: 1.2,
+                        py: 0.45,
+                        borderRadius: '9999px',
+                        background: 'rgba(15, 23, 42, 0.88)',
+                        backdropFilter: 'blur(10px)',
+                        border: '1px solid rgba(168, 85, 247, 0.35)',
+                        color: '#E9D5FF',
+                        fontSize: 10.5,
+                        fontWeight: 600,
+                      }}
+                    >
+                      <span>⚡ 12ms UAE Cloud</span>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+
+              {/* CLEAN WHITE AUTHENTICATION FORM PANEL */}
+              <Box
+                sx={{
+                  order: { xs: 1, md: v3IsHeroLeft ? 2 : 1 },
+                  p: { xs: 1, sm: '16px 20px 12px 20px' },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <Box>
+                  {/* Brand Row + Flip Layout Button */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                      <Box
+                        sx={{
+                          width: 38,
+                          height: 38,
+                          borderRadius: '12px',
+                          display: 'grid',
+                          placeItems: 'center',
+                          background: 'linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(99, 102, 241, 0.06) 100%)',
+                          border: '1px solid rgba(124, 58, 237, 0.25)',
+                        }}
+                      >
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                          <rect x="4" y="3" width="6" height="15" rx="3" transform="rotate(-30 4 3)" fill="#7C3AED" />
+                          <rect x="13" y="3" width="6" height="15" rx="3" transform="rotate(-30 13 3)" fill="#A855F7" />
+                          <circle cx="17" cy="18" r="3" fill="#EC4899" />
+                        </svg>
+                      </Box>
+                      <Box sx={{ display: 'inline-flex', alignItems: 'baseline', fontSize: 23, fontWeight: 800, letterSpacing: '-0.03em', color: '#0F172A' }}>
+                        <span>h<span style={{ color: '#7C3AED' }}>i</span>rerke<span style={{ position: 'relative', display: 'inline-block' }}>y<svg style={{ position: 'absolute', bottom: -2, left: -6, width: 28, height: 6 }} viewBox="0 0 46 8" fill="none"><path d="M1 5.5C12 1.5 34 1.5 45 6" stroke="#7C3AED" strokeWidth="2.8" strokeLinecap="round"/></svg></span></span>
+                      </Box>
+                    </Box>
+
+                    {/* Interactive Flip Layout Button */}
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => setV3IsHeroLeft((prev) => !prev)}
+                      sx={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 0.75,
+                        px: 1.5,
+                        py: 0.6,
+                        borderRadius: '9999px',
+                        border: '1px solid #E2E8F0',
+                        bgcolor: '#F8FAFC',
+                        color: '#64748B',
+                        fontSize: 11.5,
+                        fontWeight: 600,
+                        cursor: 'pointer',
+                        transition: 'all 0.18s ease',
+                        '&:hover': { bgcolor: '#F1F5F9', color: '#7C3AED', borderColor: '#C4B5FD' },
+                      }}
+                      title="Switch showcase to left/right"
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                        <path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/>
+                      </svg>
+                      <span>{v3IsHeroLeft ? 'Showcase Right' : 'Showcase Left'}</span>
+                    </Box>
+                  </Box>
+
+                  {/* Form Title & Subtitle */}
+                  <Typography level="h1" sx={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.025em', color: '#0F172A', mb: 1 }}>
+                    Welcome Back!
+                  </Typography>
+                  <Typography sx={{ fontSize: 13.5, color: '#64748B', lineHeight: 1.55, mb: 3 }}>
+                    Hirerkey empowers you to manage, enhance, and streamline your workforce, putting you in control of your organisation.
+                  </Typography>
+
+                  {/* Auth Mode Switcher */}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      bgcolor: '#F1F5F9',
+                      p: '4px',
+                      borderRadius: '9999px',
+                      gap: '4px',
+                      mb: 3,
+                    }}
+                  >
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => setV3AuthMode('otp')}
+                      sx={{
+                        flex: 1,
+                        py: 1,
+                        borderRadius: '9999px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0.75,
+                        fontSize: 13,
+                        fontWeight: 700,
+                        border: 'none',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        bgcolor: v3AuthMode === 'otp' ? '#7C3AED' : 'transparent',
+                        color: v3AuthMode === 'otp' ? '#FFFFFF' : '#64748B',
+                        boxShadow: v3AuthMode === 'otp' ? '0 4px 12px rgba(124, 58, 237, 0.3)' : 'none',
+                      }}
+                    >
+                      <HiEnvelope size={15} />
+                      <span>Email OTP</span>
+                    </Box>
+                    <Box
+                      component="button"
+                      type="button"
+                      onClick={() => setV3AuthMode('password')}
+                      sx={{
+                        flex: 1,
+                        py: 1,
+                        borderRadius: '9999px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: 0.75,
+                        fontSize: 13,
+                        fontWeight: 700,
+                        border: 'none',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        bgcolor: v3AuthMode === 'password' ? '#7C3AED' : 'transparent',
+                        color: v3AuthMode === 'password' ? '#FFFFFF' : '#64748B',
+                        boxShadow: v3AuthMode === 'password' ? '0 4px 12px rgba(124, 58, 237, 0.3)' : 'none',
+                      }}
+                    >
+                      <HiLockClosed size={15} />
+                      <span>Password</span>
+                    </Box>
+                  </Box>
+
+                  {/* MODE A: PASSWORD LOGIN */}
+                  {v3AuthMode === 'password' && (
+                    <Box component="form" onSubmit={handleV3Login}>
+                      {/* Email */}
+                      <Box sx={{ mb: 2 }}>
+                        <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
+                        <Input
+                          type="email"
+                          value={v3Email}
+                          onChange={(e) => setV3Email(e.target.value)}
+                          placeholder="Enter your email"
+                          startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                          sx={{
+                            height: 48,
+                            borderRadius: '9999px',
+                            bgcolor: '#FFFFFF',
+                            border: '1.5px solid #E2E8F0',
+                            fontSize: 14,
+                            '&:focus-within': { borderColor: '#7C3AED', boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)' },
+                          }}
+                          required
+                        />
+                      </Box>
+
+                      {/* Password */}
+                      <Box sx={{ mb: 2 }}>
+                        <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Password</Typography>
+                        <Input
+                          type={v3ShowPassword ? 'text' : 'password'}
+                          value={v3Password}
+                          onChange={(e) => setV3Password(e.target.value)}
+                          placeholder="••••••••"
+                          startDecorator={<HiLockClosed color="#94A3B8" size={18} />}
+                          endDecorator={
+                            <Box
+                              component="button"
+                              type="button"
+                              onClick={() => setV3ShowPassword((prev) => !prev)}
+                              sx={{ border: 'none', bgcolor: 'transparent', cursor: 'pointer', color: '#94A3B8', display: 'flex' }}
+                            >
+                              {v3ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
+                            </Box>
+                          }
+                          sx={{
+                            height: 48,
+                            borderRadius: '9999px',
+                            bgcolor: '#FFFFFF',
+                            border: '1.5px solid #E2E8F0',
+                            fontSize: 14,
+                            '&:focus-within': { borderColor: '#7C3AED', boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)' },
+                          }}
+                          required
+                        />
+                      </Box>
+
+                      {/* Remember me & Forgot password */}
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
+                        <Box
+                          component="label"
+                          sx={{ display: 'flex', alignItems: 'center', gap: 1, cursor: 'pointer', fontSize: 13, color: '#475569' }}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={v3RememberMe}
+                            onChange={(e) => setV3RememberMe(e.target.checked)}
+                            style={{ accentColor: '#7C3AED', width: 16, height: 16 }}
+                          />
+                          <span>Remember me</span>
+                        </Box>
+                        <Typography
+                          onClick={() => setHelpModalOpen(true)}
+                          sx={{ fontSize: 13, fontWeight: 600, color: '#7C3AED', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          Forgot password
+                        </Typography>
+                      </Box>
+
+                      {/* Primary Sign In Button */}
+                      <Button
+                        type="submit"
+                        loading={loading}
+                        sx={{
+                          width: '100%',
+                          height: 48,
+                          borderRadius: '9999px',
+                          bgcolor: '#7C3AED',
+                          color: '#FFFFFF',
+                          fontWeight: 700,
+                          fontSize: 15,
+                          boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                          transition: 'all 0.2s ease',
+                          '&:hover': { bgcolor: '#6D28D9', transform: 'translateY(-1px)' },
+                          mb: 1.5,
+                        }}
+                      >
+                        Sign in
+                      </Button>
+
+                      {/* Google SSO Button */}
+                      <Button
+                        type="button"
+                        variant="outlined"
+                        onClick={() => onSuccessLogin?.('alex.chen@earthhotels.com', 'passkey')}
+                        startDecorator={<FcGoogle size={18} />}
+                        sx={{
+                          width: '100%',
+                          height: 48,
+                          borderRadius: '9999px',
+                          borderColor: '#E2E8F0',
+                          bgcolor: '#FFFFFF',
+                          color: '#0F172A',
+                          fontWeight: 600,
+                          fontSize: 14,
+                          '&:hover': { bgcolor: '#F8FAFC', borderColor: '#CBD5E1' },
+                        }}
+                      >
+                        Sign in with Google
+                      </Button>
+
+                      {/* Can't access your login mail link */}
+                      <Box sx={{ textAlign: 'center', mt: 2 }}>
+                        <Typography
+                          onClick={() => setHelpModalOpen(true)}
+                          sx={{ fontSize: 13, fontWeight: 600, color: '#7C3AED', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          Can't access your login mail?
+                        </Typography>
+                      </Box>
+                    </Box>
+                  )}
+
+                  {/* MODE B: EMAIL OTP ENTRY */}
+                  {v3AuthMode === 'otp' && v3OtpStep === 'input' && (
+                    <Box component="form" onSubmit={handleV3SendOTP}>
+                      <Box sx={{ mb: 2 }}>
+                        <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Email</Typography>
+                        <Input
+                          type="email"
+                          value={v3Email}
+                          onChange={(e) => setV3Email(e.target.value)}
+                          placeholder="Enter your email"
+                          startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                          sx={{
+                            height: 48,
+                            borderRadius: '9999px',
+                            bgcolor: '#FFFFFF',
+                            border: '1.5px solid #E2E8F0',
+                            fontSize: 14,
+                            '&:focus-within': { borderColor: '#7C3AED', boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)' },
+                          }}
+                          required
+                        />
+                      </Box>
+
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
+                        <Typography sx={{ fontSize: 13, color: '#64748B' }}>Instant one-time passcode</Typography>
+                        <Typography
+                          onClick={() => setPasskeyModalOpen(true)}
+                          sx={{ fontSize: 13, fontWeight: 600, color: '#7C3AED', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          Sign in with Passkey
+                        </Typography>
+                      </Box>
+
+                      <Button
+                        type="submit"
+                        loading={loading}
+                        sx={{
+                          width: '100%',
+                          height: 48,
+                          borderRadius: '9999px',
+                          bgcolor: '#7C3AED',
+                          color: '#FFFFFF',
+                          fontWeight: 700,
+                          fontSize: 15,
+                          boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                          transition: 'all 0.2s ease',
+                          '&:hover': { bgcolor: '#6D28D9', transform: 'translateY(-1px)' },
+                          mb: 1.5,
+                        }}
+                      >
+                        Send OTP
+                      </Button>
+
+                      <Box sx={{ textAlign: 'center', mt: 2 }}>
+                        <Typography
+                          onClick={() => setHelpModalOpen(true)}
+                          sx={{ fontSize: 13, fontWeight: 600, color: '#7C3AED', cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          Can't access your login mail?
+                        </Typography>
+                      </Box>
+                    </Box>
+                  )}
+
+                  {/* MODE C: OTP 6-DIGIT VERIFICATION */}
+                  {v3AuthMode === 'otp' && v3OtpStep === 'verify' && (
+                    <Box component="form" onSubmit={handleV3VerifyOTP}>
+                      <Typography level="h3" sx={{ fontSize: 20, fontWeight: 700, color: '#0F172A', mb: 0.5 }}>
+                        Enter Verification Code
+                      </Typography>
+                      <Typography sx={{ fontSize: 13, color: '#64748B', mb: 2 }}>
+                        We sent a 6-digit code to <strong style={{ color: '#7C3AED' }}>{v3Email}</strong>
+                      </Typography>
+
+                      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: { xs: 1, sm: 1.25 }, mb: 2.5 }}>
+                        {v3OtpDigits.map((digit, idx) => (
+                          <input
+                            key={idx}
+                            id={`v3-otp-digit-${idx}`}
+                            type="text"
+                            inputMode="numeric"
+                            maxLength={1}
+                            value={digit}
+                            onChange={(e) => handleV3OtpDigitChange(idx, e.target.value)}
+                            onKeyDown={(e) => handleV3OtpKeyDown(idx, e)}
+                            style={{
+                              width: '100%',
+                              height: 52,
+                              textAlign: 'center',
+                              fontSize: 22,
+                              fontWeight: 800,
+                              borderRadius: 12,
+                              border: '1.5px solid #CBD5E1',
+                              backgroundColor: '#FFFFFF',
+                              color: '#0F172A',
+                              outline: 'none',
+                              transition: 'all 0.15s ease',
+                            }}
+                          />
+                        ))}
+                      </Box>
+
+                      {/* Resend OTP */}
+                      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1, mb: 2.5, fontSize: 13 }}>
+                        <Typography sx={{ color: '#64748B' }}>Didn't receive code?</Typography>
+                        {v3OtpSecondsLeft > 0 ? (
+                          <Typography sx={{ color: '#94A3B8' }}>
+                            Resend in <strong style={{ color: '#7C3AED' }}>0:{v3OtpSecondsLeft < 10 ? `0${v3OtpSecondsLeft}` : v3OtpSecondsLeft}</strong>
+                          </Typography>
+                        ) : (
+                          <Typography
+                            onClick={() => setV3OtpSecondsLeft(29)}
+                            sx={{ color: '#7C3AED', fontWeight: 700, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                          >
+                            Resend OTP
+                          </Typography>
+                        )}
+                      </Box>
+
+                      <Button
+                        type="submit"
+                        loading={loading}
+                        sx={{
+                          width: '100%',
+                          height: 48,
+                          borderRadius: '9999px',
+                          bgcolor: '#7C3AED',
+                          color: '#FFFFFF',
+                          fontWeight: 700,
+                          fontSize: 15,
+                          boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                          transition: 'all 0.2s ease',
+                          '&:hover': { bgcolor: '#6D28D9', transform: 'translateY(-1px)' },
+                          mb: 1.5,
+                        }}
+                      >
+                        Verify &amp; Sign In
+                      </Button>
+
+                      <Box sx={{ textAlign: 'center', mt: 1 }}>
+                        <Typography
+                          onClick={() => setV3OtpStep('input')}
+                          sx={{ fontSize: 13, color: '#7C3AED', fontWeight: 600, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+                        >
+                          ← Back to Email entry
+                        </Typography>
+                      </Box>
+                    </Box>
+                  )}
+                </Box>
+
+                {/* Terms of Use & Privacy Policy and Enterprise Badges */}
+                <Box sx={{ mt: 3 }}>
+                  <Typography sx={{ fontSize: 12, color: '#94A3B8', textAlign: 'center', lineHeight: 1.5 }}>
+                    By signing in, you agree to our{' '}
+                    <Typography component="span" sx={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>
+                      Terms of Use
+                    </Typography>{' '}
+                    and{' '}
+                    <Typography component="span" sx={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>
+                      Privacy Policy
+                    </Typography>
+                  </Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5, fontSize: 11, color: '#94A3B8', mt: 1.5 }}>
+                    <span>🛡️ Enterprise-Grade</span>
+                    <span>•</span>
+                    <span>🇦🇪 UAE Data Centers</span>
+                    <span>•</span>
+                    <span>🔒 GDPR Compliant</span>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="view-4"
+            initial={{ opacity: 0, y: 16, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -16, scale: 0.985 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            style={{ width: '100%', maxWidth: '1220px', display: 'flex', justifyContent: 'center' }}
+          >
+            <style>{`
+              @keyframes v4DashTravel { to { stroke-dashoffset: -100; } }
+              @keyframes v4GlowPulse { 0%, 100% { stroke-dashoffset: 0; opacity: 0.3; } 50% { stroke-dashoffset: -120; opacity: 1; } }
+              @keyframes v4DotPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.5; } }
+              @keyframes v4DashPulse { 0%, 100% { transform: scale(1) translateY(0); box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.32); } 50% { transform: scale(1.02) translateY(-4px); box-shadow: 0 26px 55px -10px rgba(124, 58, 237, 0.42); } }
+              @keyframes v4Pop1 { 0%, 25%, 100% { transform: scale(1.04) translateY(-3px); border-color: #7C3AED; box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.35); } 35%, 90% { transform: scale(1) translateY(0); border-color: #E2E8F0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); } }
+              @keyframes v4Pop2 { 0%, 20% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 25%, 50% { transform: scale(1.04) translateY(-3px); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.35); } 60%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
+              @keyframes v4Pop3 { 0%, 45% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 50%, 75% { transform: scale(1.04) translateY(-3px); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.35); } 85%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
+              @keyframes v4Pop4 { 0%, 70% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 75%, 98% { transform: scale(1.04) translateY(-3px); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.35); } 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
+            `}</style>
+            <Box
+              sx={{
+                width: '100%',
+                maxWidth: '1220px',
+                minHeight: '640px',
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', lg: '1.15fr 0.95fr' },
+                gap: { xs: 4, lg: '36px' },
+                alignItems: 'center',
+                position: 'relative',
+                zIndex: 10,
+              }}
+            >
+              {/* LEFT COLUMN: HERO SHOWCASE WITH APPROVALMAX-STYLE WORKFLOW ANIMATION */}
+              <Box
+                sx={{
+                  p: { xs: 1, sm: 2 },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  position: 'relative',
+                }}
+              >
+                {/* Brand Logo Header & People Performance Progress Subtag */}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.75, mb: 2.75, flexWrap: 'wrap' }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.25 }}>
+                    <Box
+                      sx={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: '10px',
+                        background: 'linear-gradient(135deg, #7C3AED 0%, #9333EA 100%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        boxShadow: '0 8px 20px -4px rgba(124, 58, 237, 0.45)',
+                        color: '#FFFFFF',
+                        fontWeight: 800,
+                        fontSize: 20,
+                      }}
+                    >
+                      H
+                    </Box>
+                    <Typography
+                      sx={{
+                        fontFamily: 'Plus Jakarta Sans, sans-serif',
+                        fontSize: 24,
+                        fontWeight: 800,
+                        color: '#0F172A',
+                        letterSpacing: '-0.035em',
+                      }}
+                    >
+                      Hirerkey<span style={{ color: '#7C3AED' }}>.</span>
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 0.75,
+                      px: 1.5,
+                      py: 0.5,
+                      borderRadius: '9999px',
+                      background: 'rgba(124, 58, 237, 0.08)',
+                      border: '1px solid rgba(124, 58, 237, 0.2)',
+                      color: '#7C3AED',
+                      fontSize: 11,
+                      fontWeight: 700,
+                      letterSpacing: '0.16em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    <span>PEOPLE • PERFORMANCE • PROGRESS</span>
+                  </Box>
+                </Box>
+
+                {/* Headline */}
+                <Typography
+                  level="h1"
+                  sx={{
+                    fontFamily: 'Plus Jakarta Sans, sans-serif',
+                    fontSize: { xs: 34, sm: 44 },
+                    fontWeight: 800,
+                    lineHeight: 1.14,
+                    letterSpacing: '-0.035em',
+                    color: '#0F172A',
+                    mb: 1.75,
+                  }}
+                >
+                  A smarter way<br />
+                  to manage your{' '}
+                  <span
+                    style={{
+                      background: 'linear-gradient(135deg, #7C3AED 0%, #A855F7 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      display: 'inline-block',
+                    }}
+                  >
+                    people
+                  </span>
+                </Typography>
+
+                {/* Subtitle */}
+                <Typography
+                  sx={{
+                    fontSize: 16,
+                    color: '#475569',
+                    lineHeight: 1.55,
+                    maxWidth: 480,
+                    mb: 3,
+                  }}
+                >
+                  Everything you need to build, manage and grow a high-performing team.
+                </Typography>
+
+                {/* Animated Workflow Stage */}
+                <Box
+                  onMouseMove={handleV4MouseMove}
+                  onMouseLeave={handleV4MouseLeave}
+                  sx={{
+                    width: '100%',
+                    maxWidth: 540,
+                    height: 350,
+                    position: 'relative',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    perspective: 1000,
+                    mt: 0.75,
+                  }}
+                >
+                  {/* SVG Flow Lines */}
+                  <svg
+                    viewBox="0 0 540 350"
+                    preserveAspectRatio="none"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      pointerEvents: 'none',
+                      zIndex: 2,
+                    }}
+                  >
+                    <defs>
+                      <linearGradient id="v4ReactLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.9" />
+                        <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.9" />
+                        <stop offset="100%" stopColor="#A855F7" stopOpacity="0.9" />
+                      </linearGradient>
+                      <filter id="v4ReactGlow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                    </defs>
+
+                    {/* Base Paths */}
+                    <path
+                      d="M 160 75 C 210 75, 230 145, 270 160"
+                      fill="none"
+                      stroke="rgba(124, 58, 237, 0.22)"
+                      strokeWidth="2"
+                      strokeDasharray="4 4"
+                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
+                    />
+                    <path
+                      d="M 160 275 C 210 275, 230 205, 270 190"
+                      fill="none"
+                      stroke="rgba(124, 58, 237, 0.22)"
+                      strokeWidth="2"
+                      strokeDasharray="4 4"
+                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
+                    />
+                    <path
+                      d="M 270 160 C 310 145, 330 75, 380 75"
+                      fill="none"
+                      stroke="rgba(124, 58, 237, 0.22)"
+                      strokeWidth="2"
+                      strokeDasharray="4 4"
+                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
+                    />
+                    <path
+                      d="M 270 190 C 310 205, 330 275, 380 275"
+                      fill="none"
+                      stroke="rgba(124, 58, 237, 0.22)"
+                      strokeWidth="2"
+                      strokeDasharray="4 4"
+                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
+                    />
+
+                    {/* Glowing Pulses */}
+                    <path
+                      d="M 160 75 C 210 75, 230 145, 270 160"
+                      fill="none"
+                      stroke="url(#v4ReactLineGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="30 180"
+                      filter="url(#v4ReactGlow)"
+                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite' }}
+                    />
+                    <path
+                      d="M 160 275 C 210 275, 230 205, 270 190"
+                      fill="none"
+                      stroke="url(#v4ReactLineGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="30 180"
+                      filter="url(#v4ReactGlow)"
+                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-2s' }}
+                    />
+                    <path
+                      d="M 270 160 C 310 145, 330 75, 380 75"
+                      fill="none"
+                      stroke="url(#v4ReactLineGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="30 180"
+                      filter="url(#v4ReactGlow)"
+                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-1s' }}
+                    />
+                    <path
+                      d="M 270 190 C 310 205, 330 275, 380 275"
+                      fill="none"
+                      stroke="url(#v4ReactLineGrad)"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeDasharray="30 180"
+                      filter="url(#v4ReactGlow)"
+                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-3s' }}
+                    />
+                  </svg>
+
+                  {/* Module 1: Orientation (Top-Left) */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 10,
+                      left: 6,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4Pop1 9s ease-in-out infinite',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        borderColor: '#7C3AED',
+                        boxShadow: '0 16px 35px -8px rgba(124, 58, 237, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                        bgcolor: '#EDE9FE',
+                        color: '#7C3AED',
+                      }}
+                    >
+                      🧭
+                    </Box>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7C3AED', mb: 0.25 }}>
+                        01 • ONBOARDING
+                      </Typography>
+                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        Orientation
+                      </Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+                        <span>Active • Automated</span>
+                      </Box>
+                    </Box>
+                  </Box>
+
+                  {/* Module 2: Department Tour (Bottom-Left) */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 24,
+                      left: 12,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4Pop2 9s ease-in-out infinite',
+                      animationDelay: '2.25s',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        borderColor: '#3B82F6',
+                        boxShadow: '0 16px 35px -8px rgba(59, 130, 246, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                        bgcolor: '#EFF6FF',
+                        color: '#3B82F6',
+                      }}
+                    >
+                      🏢
+                    </Box>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#3B82F6', mb: 0.25 }}>
+                        02 • ALIGNMENT
+                      </Typography>
+                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        Department Tour
+                      </Typography>
+                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        Sales &amp; Marketing
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Central Mini Dashboard */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      zIndex: 5,
+                      width: 220,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '14px',
+                      border: '1px solid rgba(124, 58, 237, 0.25)',
+                      boxShadow: '0 20px 45px -10px rgba(124, 58, 237, 0.32), 0 8px 20px -4px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.9)',
+                      overflow: 'hidden',
+                      transform: `rotateX(${v4Tilt.x}deg) rotateY(${v4Tilt.y}deg)`,
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4DashPulse 6s ease-in-out infinite',
+                    }}
+                  >
+                    <Box sx={{ p: '6px 10px', bgcolor: '#F8FAFC', borderBottom: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#EF4444', display: 'inline-block' }} />
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }} />
+                        <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+                      </Box>
+                      <Typography sx={{ fontSize: 8.5, color: '#64748B', fontFamily: 'monospace', letterSpacing: '0.02em' }}>
+                        app.hirerkey.com
+                      </Typography>
+                    </Box>
+                    <Box sx={{ position: 'relative', bgcolor: '#0B0818', overflow: 'hidden' }}>
+                      <img
+                        src="hirerkey_dashboard_v4.png"
+                        onError={(e: any) => {
+                          if (!e.target.dataset.retry) {
+                            e.target.dataset.retry = '1';
+                            e.target.src = '../hirerkey_dashboard_v4.png';
+                          }
+                        }}
+                        alt="Hirerkey Core Workspace"
+                        style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                      />
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          top: 6,
+                          right: 6,
+                          px: '6px',
+                          py: '2px',
+                          borderRadius: '9999px',
+                          bgcolor: 'rgba(15, 23, 42, 0.88)',
+                          border: '1px solid rgba(16, 185, 129, 0.4)',
+                          color: '#FFFFFF',
+                          fontSize: 8,
+                          fontWeight: 700,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 0.5,
+                        }}
+                      >
+                        <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 6px #10B981', animation: 'v4DotPulse 1.8s infinite', display: 'inline-block' }} />
+                        <span>Live Sync</span>
+                      </Box>
+                    </Box>
+                  </Box>
+
+                  {/* Module 3: Ask HyIQ AI (Top-Right) */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      top: 16,
+                      right: 6,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4Pop3 9s ease-in-out infinite',
+                      animationDelay: '4.5s',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        borderColor: '#EC4899',
+                        boxShadow: '0 16px 35px -8px rgba(236, 72, 153, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                        bgcolor: '#FDF2F8',
+                        color: '#EC4899',
+                      }}
+                    >
+                      ✨
+                    </Box>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#EC4899', mb: 0.25 }}>
+                        03 • INTELLIGENCE
+                      </Typography>
+                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        Ask HyIQ™ AI
+                      </Typography>
+                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        Real-time • 12ms
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  {/* Module 4: 1-on-1 Check-ins (Bottom-Right) */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 18,
+                      right: 14,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      animation: 'v4Pop4 9s ease-in-out infinite',
+                      animationDelay: '6.75s',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        borderColor: '#10B981',
+                        boxShadow: '0 16px 35px -8px rgba(16, 185, 129, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                        bgcolor: '#ECFDF5',
+                        color: '#10B981',
+                      }}
+                    >
+                      📊
+                    </Box>
+                    <Box sx={{ flex: 1, minWidth: 0 }}>
+                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#059669', mb: 0.25 }}>
+                        04 • PERFORMANCE
+                      </Typography>
+                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        1-on-1 Check-ins
+                      </Typography>
+                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        Goal Tracking ↗
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              </Box>
+
+              {/* RIGHT COLUMN: CLEAN WHITE AUTHENTICATION CARD */}
+              <Box
+                sx={{
+                  bgcolor: '#FFFFFF',
+                  borderRadius: '28px',
+                  border: '1px solid rgba(226, 232, 240, 0.95)',
+                  boxShadow: '0 30px 70px -15px rgba(124, 58, 237, 0.12), 0 12px 30px -5px rgba(15, 23, 42, 0.04), inset 0 1px 1px #FFFFFF',
+                  p: { xs: 3, sm: '38px 38px 32px 38px' },
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'relative',
+                }}
+              >
+                {/* Top Contact Admin Row */}
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 0.6, fontSize: 13, color: '#64748B', mb: 2.5 }}>
+                  <span>New to Hirerkey?</span>
+                  <Box
+                    component="button"
+                    type="button"
+                    onClick={() => setHelpModalOpen(true)}
+                    sx={{
+                      background: 'none',
+                      border: 'none',
+                      p: 0,
+                      color: '#7C3AED',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      fontSize: 13,
+                      '&:hover': { color: '#6D28D9', textDecoration: 'underline' },
+                    }}
+                  >
+                    Contact your admin
+                  </Box>
+                </Box>
+
+                {/* Form Titles */}
+                <Typography
+                  level="h2"
+                  sx={{
+                    fontFamily: 'Plus Jakarta Sans, sans-serif',
+                    fontSize: 30,
+                    fontWeight: 800,
+                    color: '#0F172A',
+                    letterSpacing: '-0.03em',
+                    mb: 0.75,
+                  }}
+                >
+                  Welcome back
+                </Typography>
+                <Typography sx={{ fontSize: 14, color: '#64748B', mb: 3 }}>
+                  Sign in to continue to Hirerkey
+                </Typography>
+
+                {/* Dual Tab Segmented Track (OTP vs Password) */}
+                <Box
+                  sx={{
+                    display: 'flex',
+                    bgcolor: '#F8FAFC',
+                    border: '1px solid #E2E8F0',
+                    borderRadius: '12px',
+                    p: '4px',
+                    gap: '4px',
+                    mb: 3,
+                  }}
+                >
+                  <Box
+                    component="button"
+                    type="button"
+                    onClick={() => setV4AuthMode('otp')}
+                    sx={{
+                      flex: 1,
+                      py: 1.25,
+                      px: 1.75,
+                      borderRadius: '9px',
+                      border: '1px solid',
+                      borderColor: v4AuthMode === 'otp' ? 'rgba(124, 58, 237, 0.25)' : 'transparent',
+                      bgcolor: v4AuthMode === 'otp' ? '#FFFFFF' : 'transparent',
+                      color: v4AuthMode === 'otp' ? '#7C3AED' : '#64748B',
+                      fontWeight: v4AuthMode === 'otp' ? 700 : 600,
+                      boxShadow: v4AuthMode === 'otp' ? '0 2px 8px rgba(124, 58, 237, 0.12)' : 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 1,
+                      fontFamily: 'Plus Jakarta Sans, sans-serif',
+                      fontSize: 13.5,
+                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                    }}
+                  >
+                    <HiEnvelope size={16} />
+                    <span>Login with OTP</span>
+                  </Box>
+
+                  <Box
+                    component="button"
+                    type="button"
+                    onClick={() => setV4AuthMode('password')}
+                    sx={{
+                      flex: 1,
+                      py: 1.25,
+                      px: 1.75,
+                      borderRadius: '9px',
+                      border: '1px solid',
+                      borderColor: v4AuthMode === 'password' ? 'rgba(124, 58, 237, 0.25)' : 'transparent',
+                      bgcolor: v4AuthMode === 'password' ? '#FFFFFF' : 'transparent',
+                      color: v4AuthMode === 'password' ? '#7C3AED' : '#64748B',
+                      fontWeight: v4AuthMode === 'password' ? 700 : 600,
+                      boxShadow: v4AuthMode === 'password' ? '0 2px 8px rgba(124, 58, 237, 0.12)' : 'none',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 1,
+                      fontFamily: 'Plus Jakarta Sans, sans-serif',
+                      fontSize: 13.5,
+                      transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                    }}
+                  >
+                    <HiLockClosed size={16} />
+                    <span>Login with password</span>
+                  </Box>
+                </Box>
+
+                {/* MODE A: OTP FLOW */}
+                {v4AuthMode === 'otp' && v4OtpStep === 'input' && (
+                  <Box component="form" onSubmit={handleV4SendOTP}>
+                    <Box sx={{ mb: 2.25 }}>
+                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 1 }}>
+                        Work email
+                      </Typography>
                       <Input
                         type="email"
-                        value={v2Email}
-                        onChange={(e) => setV2Email(e.target.value)}
-                        startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
-                        placeholder="you@example.com"
                         required
+                        value={v4Email}
+                        onChange={(e) => setV4Email(e.target.value)}
+                        placeholder="you@company.com"
+                        startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
                         sx={{
                           height: 48,
-                          borderRadius: '14px',
-                          bgcolor: '#F8FAFC',
-                          border: '1px solid #E2E8F0',
-                          color: '#0F172A',
+                          borderRadius: '12px',
+                          border: '1.5px solid #E2E8F0',
+                          bgcolor: '#FFFFFF',
                           fontSize: 14,
                           '&:focus-within': {
-                            bgcolor: '#FFFFFF',
                             borderColor: '#7C3AED',
                             boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
                           },
@@ -1285,34 +3311,199 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       />
                     </Box>
 
-                    <Box sx={{ mb: 1.75 }}>
-                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 0.75 }}>Password</Typography>
+                    <Button
+                      type="submit"
+                      loading={loading}
+                      sx={{
+                        width: '100%',
+                        height: 48,
+                        borderRadius: '12px',
+                        bgcolor: '#7C3AED',
+                        color: '#FFFFFF',
+                        fontWeight: 700,
+                        fontSize: 15,
+                        boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                        '&:hover': {
+                          bgcolor: '#6D28D9',
+                          transform: 'translateY(-1px)',
+                          boxShadow: '0 14px 28px -5px rgba(124, 58, 237, 0.55)',
+                        },
+                      }}
+                      endDecorator={<HiArrowRight size={16} />}
+                    >
+                      Send OTP
+                    </Button>
+                  </Box>
+                )}
+
+                {/* MODE A2: OTP VERIFICATION */}
+                {v4AuthMode === 'otp' && v4OtpStep === 'verify' && (
+                  <Box component="form" onSubmit={handleV4VerifyOTP}>
+                    <Typography level="h3" sx={{ fontSize: 19, fontWeight: 700, color: '#0F172A', mb: 0.75 }}>
+                      Enter verification code
+                    </Typography>
+                    <Typography sx={{ fontSize: 13, color: '#64748B', mb: 2.5 }}>
+                      We sent a 6-digit code to <strong style={{ color: '#7C3AED' }}>{v4Email}</strong>
+                    </Typography>
+
+                    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 1.25, mb: 2.5 }}>
+                      {v4OtpDigits.map((digit, idx) => (
+                        <input
+                          key={idx}
+                          id={`v4-otp-digit-${idx}`}
+                          type="text"
+                          inputMode="numeric"
+                          maxLength={1}
+                          value={digit}
+                          onChange={(e) => handleV4OtpDigitChange(idx, e.target.value)}
+                          onKeyDown={(e) => handleV4OtpKeyDown(idx, e)}
+                          style={{
+                            height: 52,
+                            width: '100%',
+                            textAlign: 'center',
+                            fontFamily: 'Plus Jakarta Sans, sans-serif',
+                            fontSize: 22,
+                            fontWeight: 800,
+                            color: '#0F172A',
+                            borderRadius: '12px',
+                            border: '1.5px solid #CBD5E1',
+                            background: '#FFFFFF',
+                            outline: 'none',
+                            transition: 'all 0.15s ease',
+                          }}
+                        />
+                      ))}
+                    </Box>
+
+                    {/* Resend Timer Row */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0.75, fontSize: 13, color: '#64748B', mb: 2.5 }}>
+                      <span>Didn't receive code?</span>
+                      {v4OtpSecondsLeft > 0 ? (
+                        <span>
+                          Resend in <strong style={{ color: '#7C3AED' }}>0:{v4OtpSecondsLeft.toString().padStart(2, '0')}</strong>
+                        </span>
+                      ) : (
+                        <Box
+                          component="button"
+                          type="button"
+                          onClick={resendV4Code}
+                          sx={{
+                            background: 'none',
+                            border: 'none',
+                            p: 0,
+                            color: '#7C3AED',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            fontSize: 13,
+                            '&:hover': { textDecoration: 'underline' },
+                          }}
+                        >
+                          Resend OTP
+                        </Box>
+                      )}
+                    </Box>
+
+                    <Button
+                      type="submit"
+                      loading={loading}
+                      sx={{
+                        width: '100%',
+                        height: 48,
+                        borderRadius: '12px',
+                        bgcolor: '#7C3AED',
+                        color: '#FFFFFF',
+                        fontWeight: 700,
+                        fontSize: 15,
+                        boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
+                        '&:hover': {
+                          bgcolor: '#6D28D9',
+                          transform: 'translateY(-1px)',
+                          boxShadow: '0 14px 28px -5px rgba(124, 58, 237, 0.55)',
+                        },
+                      }}
+                      endDecorator={<HiArrowRight size={16} />}
+                    >
+                      Verify &amp; Sign in
+                    </Button>
+
+                    <Box sx={{ textAlign: 'center', mt: 1.75 }}>
+                      <Box
+                        component="button"
+                        type="button"
+                        onClick={() => setV4OtpStep('input')}
+                        sx={{
+                          background: 'none',
+                          border: 'none',
+                          p: 0,
+                          color: '#7C3AED',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          '&:hover': { textDecoration: 'underline' },
+                        }}
+                      >
+                        ← Back to Email entry
+                      </Box>
+                    </Box>
+                  </Box>
+                )}
+
+                {/* MODE B: PASSWORD LOGIN */}
+                {v4AuthMode === 'password' && (
+                  <Box component="form" onSubmit={handleV4PasswordLogin}>
+                    <Box sx={{ mb: 2.25 }}>
+                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 1 }}>
+                        Work email
+                      </Typography>
                       <Input
-                        type={v2ShowPassword ? 'text' : 'password'}
-                        value={v2Password}
-                        onChange={(e) => setV2Password(e.target.value)}
+                        type="email"
+                        required
+                        value={v4Email}
+                        onChange={(e) => setV4Email(e.target.value)}
+                        placeholder="you@company.com"
+                        startDecorator={<HiEnvelope color="#94A3B8" size={18} />}
+                        sx={{
+                          height: 48,
+                          borderRadius: '12px',
+                          border: '1.5px solid #E2E8F0',
+                          bgcolor: '#FFFFFF',
+                          fontSize: 14,
+                          '&:focus-within': {
+                            borderColor: '#7C3AED',
+                            boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
+                          },
+                        }}
+                      />
+                    </Box>
+
+                    <Box sx={{ mb: 2.25 }}>
+                      <Typography sx={{ fontSize: 13, fontWeight: 600, color: '#334155', mb: 1 }}>
+                        Password
+                      </Typography>
+                      <Input
+                        type={v4ShowPassword ? 'text' : 'password'}
+                        required
+                        value={v4Password}
+                        onChange={(e) => setV4Password(e.target.value)}
+                        placeholder="••••••••"
                         startDecorator={<HiLockClosed color="#94A3B8" size={18} />}
                         endDecorator={
                           <Box
                             component="button"
                             type="button"
-                            onClick={() => setV2ShowPassword(!v2ShowPassword)}
-                            sx={{ background: 'none', border: 'none', p: 0, cursor: 'pointer', color: '#94A3B8', display: 'flex', alignItems: 'center' }}
+                            onClick={() => setV4ShowPassword(!v4ShowPassword)}
+                            sx={{ background: 'none', border: 'none', p: 0.5, color: '#94A3B8', cursor: 'pointer', display: 'flex' }}
                           >
-                            {v2ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
+                            {v4ShowPassword ? <HiEyeSlash size={18} /> : <HiEye size={18} />}
                           </Box>
                         }
-                        placeholder="••••••••"
-                        required
                         sx={{
                           height: 48,
-                          borderRadius: '14px',
-                          bgcolor: '#F8FAFC',
-                          border: '1px solid #E2E8F0',
-                          color: '#0F172A',
+                          borderRadius: '12px',
+                          border: '1.5px solid #E2E8F0',
+                          bgcolor: '#FFFFFF',
                           fontSize: 14,
                           '&:focus-within': {
-                            bgcolor: '#FFFFFF',
                             borderColor: '#7C3AED',
                             boxShadow: '0 0 0 3px rgba(124, 58, 237, 0.15)',
                           },
@@ -1320,145 +3511,90 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       />
                     </Box>
 
-                    {/* Remember me & Forgot Password */}
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2.5, fontSize: 13 }}>
-                      <Box component="label" sx={{ display: 'flex', alignItems: 'center', gap: 1, color: '#475569', cursor: 'pointer' }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5, fontSize: 13 }}>
+                      <Box
+                        component="label"
+                        sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.85, color: '#475569', cursor: 'pointer' }}
+                      >
                         <input
                           type="checkbox"
-                          checked={v2Remember}
-                          onChange={(e) => setV2Remember(e.target.checked)}
-                          style={{ accentColor: '#7C3AED', width: 16, height: 16, borderRadius: 4 }}
+                          checked={v4RememberMe}
+                          onChange={(e) => setV4RememberMe(e.target.checked)}
+                          style={{ accentColor: '#7C3AED', width: 16, height: 16 }}
                         />
                         <span>Remember me</span>
                       </Box>
-                      <Typography
-                        component="a"
-                        href="#"
-                        onClick={(e) => { e.preventDefault(); setHelpModalOpen(true); }}
-                        sx={{ color: '#475569', textDecoration: 'none', fontWeight: 500, fontSize: 13, '&:hover': { color: '#7C3AED', textDecoration: 'underline' } }}
+                      <Box
+                        component="button"
+                        type="button"
+                        onClick={() => setHelpModalOpen(true)}
+                        sx={{
+                          background: 'none',
+                          border: 'none',
+                          p: 0,
+                          color: '#7C3AED',
+                          fontWeight: 600,
+                          fontSize: 13,
+                          cursor: 'pointer',
+                          '&:hover': { textDecoration: 'underline' },
+                        }}
                       >
-                        Forgot Password?
-                      </Typography>
+                        Forgot password?
+                      </Box>
                     </Box>
 
-                    {/* Sign In Button */}
                     <Button
                       type="submit"
                       loading={loading}
-                      endDecorator={<HiArrowRight />}
                       sx={{
                         width: '100%',
                         height: 48,
-                        borderRadius: '9999px',
-                        background: 'linear-gradient(135deg, #D946EF 0%, #A855F7 35%, #7C3AED 100%)',
+                        borderRadius: '12px',
+                        bgcolor: '#7C3AED',
                         color: '#FFFFFF',
-                        fontWeight: 600,
+                        fontWeight: 700,
                         fontSize: 15,
-                        boxShadow: '0 10px 24px -4px rgba(168, 85, 247, 0.45)',
+                        boxShadow: '0 10px 24px -5px rgba(124, 58, 237, 0.45)',
                         '&:hover': {
-                          background: 'linear-gradient(135deg, #E879F9 0%, #B568F8 35%, #8B5CF6 100%)',
-                          boxShadow: '0 14px 28px -4px rgba(124, 58, 237, 0.58)',
+                          bgcolor: '#6D28D9',
+                          transform: 'translateY(-1px)',
+                          boxShadow: '0 14px 28px -5px rgba(124, 58, 237, 0.55)',
                         },
                       }}
+                      endDecorator={<HiArrowRight size={16} />}
                     >
-                      Sign In
+                      Sign in
                     </Button>
-                  </form>
-
-                  {/* Divider */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, my: 2 }}>
-                    <Box sx={{ flex: 1, height: '1px', bgcolor: '#E2E8F0' }} />
-                    <Typography sx={{ fontSize: 12, color: '#94A3B8', fontWeight: 500 }}>Or Continue With</Typography>
-                    <Box sx={{ flex: 1, height: '1px', bgcolor: '#E2E8F0' }} />
                   </Box>
+                )}
 
-                  {/* Google OAuth Button */}
-                  <Button
-                    variant="outlined"
-                    onClick={() => onSuccessLogin?.(v2Email, 'otp')}
-                    startDecorator={<FcGoogle size={20} />}
+                {/* Can't access your login email recovery link */}
+                <Box sx={{ textAlign: 'center', mt: 3 }}>
+                  <Box
+                    component="button"
+                    type="button"
+                    onClick={() => setHelpModalOpen(true)}
                     sx={{
-                      width: '100%',
-                      height: 48,
-                      borderRadius: '9999px',
-                      bgcolor: '#FFFFFF',
-                      borderColor: '#E2E8F0',
-                      color: '#334155',
+                      background: 'none',
+                      border: 'none',
+                      p: 0,
+                      color: '#7C3AED',
+                      fontSize: 13,
                       fontWeight: 600,
-                      fontSize: 14.5,
-                      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.03)',
-                      '&:hover': { bgcolor: '#F8FAFC', borderColor: '#CBD5E1' },
+                      cursor: 'pointer',
+                      '&:hover': { color: '#6D28D9', textDecoration: 'underline' },
                     }}
                   >
-                    Continue with Google
-                  </Button>
-
-                  <Typography sx={{ textAlign: 'center', mt: 1.75, fontSize: 13, color: '#64748B' }}>
-                    Don't have an account?{' '}
-                    <Typography
-                      component="span"
-                      sx={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
-                      onClick={() => setHelpModalOpen(true)}
-                    >
-                      Sign up
-                    </Typography>
-                  </Typography>
-                </Box>
-
-                {/* Overlapping Users Subcard */}
-                <Box
-                  sx={{
-                    bgcolor: 'rgba(255, 255, 255, 0.94)',
-                    border: '1px solid rgba(226, 232, 240, 0.9)',
-                    borderRadius: '18px',
-                    p: '10px 16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1.75,
-                    mt: 2,
-                    boxShadow: '0 4px 16px rgba(124, 58, 237, 0.06)',
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Box
-                      component="img"
-                      src="leena_avatar.jpg"
-                      alt="Leena"
-                      onError={(e: any) => {
-                        e.target.onerror = null;
-                        e.target.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23A855F7'/><text x='50%' y='55%' font-size='12' font-weight='bold' fill='%23FFFFFF' font-family='sans-serif' text-anchor='middle' dominant-baseline='middle'>L</text></svg>";
-                      }}
-                      sx={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid #FFFFFF', objectFit: 'cover' }}
-                    />
-                    <Box
-                      component="img"
-                      src="aisha_avatar.png"
-                      alt="Aisha"
-                      onError={(e: any) => {
-                        e.target.onerror = null;
-                        e.target.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23EC4899'/><text x='50%' y='55%' font-size='12' font-weight='bold' fill='%23FFFFFF' font-family='sans-serif' text-anchor='middle' dominant-baseline='middle'>A</text></svg>";
-                      }}
-                      sx={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid #FFFFFF', ml: -1, objectFit: 'cover' }}
-                    />
-                    <Box
-                      component="img"
-                      src="rahul_avatar.png"
-                      alt="Rahul"
-                      onError={(e: any) => {
-                        e.target.onerror = null;
-                        e.target.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%2306B6D4'/><text x='50%' y='55%' font-size='12' font-weight='bold' fill='%23FFFFFF' font-family='sans-serif' text-anchor='middle' dominant-baseline='middle'>R</text></svg>";
-                      }}
-                      sx={{ width: 28, height: 28, borderRadius: '50%', border: '2px solid #FFFFFF', ml: -1, objectFit: 'cover' }}
-                    />
-                  </Box>
-                  <Box sx={{ display: 'flex', flexDirection: 'column', lineHeight: 1.25 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                      <Box sx={{ width: 6, height: 6, borderRadius: '50%', bgcolor: '#10B981', boxShadow: '0 0 8px #10B981' }} />
-                      <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#0F172A' }}>10 Million+ Users</Typography>
-                    </Box>
-                    <Typography sx={{ fontSize: 11, color: '#64748B' }}>worldwide</Typography>
+                    Can't access your login email?
                   </Box>
                 </Box>
+
+                {/* Legal Footer */}
+                <Typography sx={{ mt: 3.5, fontSize: 12, color: '#94A3B8', textAlign: 'center', lineHeight: 1.5 }}>
+                  By continuing, you agree to our{' '}
+                  <span style={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer' }}>Terms of Use</span> and{' '}
+                  <span style={{ color: '#7C3AED', fontWeight: 600, cursor: 'pointer' }}>Privacy Policy</span>.
+                </Typography>
               </Box>
             </Box>
           </motion.div>
@@ -1466,7 +3602,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
       </AnimatePresence>
 
       {/* ======================================================================
-          BOTTOM PAGINATION DOCK (COMMERCIAL WEBSITE / DASHBOARD ENCIRCLED 1 & 2)
+          BOTTOM PAGINATION DOCK (COMMERCIAL WEBSITE / DASHBOARD ENCIRCLED 1, 2, 3, 4)
           ====================================================================== */}
       <Box
         component="nav"
@@ -1508,7 +3644,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           <Box
             component="button"
             type="button"
-            onClick={() => setViewPage((p) => (p === 1 ? 2 : 1))}
+            onClick={() => setViewPage((p) => (p === 1 ? 4 : ((p - 1) as 1 | 2 | 3 | 4)))}
             title="Previous Page (Key: Left Arrow)"
             aria-label="Previous Page"
             sx={{
@@ -1621,11 +3757,103 @@ export const LoginView: React.FC<LoginViewProps> = ({
             <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#F1F5F9' }}>Page 2</Typography>
           </Box>
 
+          {/* Encircled 3: Page 3 */}
+          <Box
+            component="button"
+            type="button"
+            onClick={() => setViewPage(3)}
+            title="Page 3 (Key: 3)"
+            aria-label="Page 3"
+            aria-current={viewPage === 3 ? 'page' : undefined}
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 1,
+              px: { xs: 0.75, sm: 1.5 },
+              py: 0.5,
+              borderRadius: '9999px',
+              border: '1.5px solid',
+              borderColor: viewPage === 3 ? '#A855F7' : 'rgba(255, 255, 255, 0.16)',
+              bgcolor: viewPage === 3 ? 'rgba(124, 58, 237, 0.28)' : 'rgba(255, 255, 255, 0.06)',
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              boxShadow: viewPage === 3 ? '0 0 18px rgba(124, 58, 237, 0.45)' : 'none',
+              transition: 'all 0.22s ease',
+            }}
+          >
+            <Box
+              sx={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                bgcolor: viewPage === 3 ? '#7C3AED' : 'rgba(255, 255, 255, 0.1)',
+                background: viewPage === 3 ? 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)' : 'rgba(255, 255, 255, 0.1)',
+                border: '2px solid',
+                borderColor: viewPage === 3 ? '#E9D5FF' : 'rgba(255, 255, 255, 0.35)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 13.5,
+                fontWeight: 800,
+                boxShadow: viewPage === 3 ? '0 0 14px rgba(168, 85, 247, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.8)' : 'none',
+              }}
+            >
+              3
+            </Box>
+            <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#F1F5F9' }}>Page 3</Typography>
+          </Box>
+
+          {/* Encircled 4: Page 4 */}
+          <Box
+            component="button"
+            type="button"
+            onClick={() => setViewPage(4)}
+            title="Page 4 (Key: 4)"
+            aria-label="Page 4"
+            aria-current={viewPage === 4 ? 'page' : undefined}
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 1,
+              px: { xs: 0.75, sm: 1.5 },
+              py: 0.5,
+              borderRadius: '9999px',
+              border: '1.5px solid',
+              borderColor: viewPage === 4 ? '#A855F7' : 'rgba(255, 255, 255, 0.16)',
+              bgcolor: viewPage === 4 ? 'rgba(124, 58, 237, 0.28)' : 'rgba(255, 255, 255, 0.06)',
+              color: '#FFFFFF',
+              cursor: 'pointer',
+              boxShadow: viewPage === 4 ? '0 0 18px rgba(124, 58, 237, 0.45)' : 'none',
+              transition: 'all 0.22s ease',
+            }}
+          >
+            <Box
+              sx={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                bgcolor: viewPage === 4 ? '#7C3AED' : 'rgba(255, 255, 255, 0.1)',
+                background: viewPage === 4 ? 'linear-gradient(135deg, #A855F7 0%, #7C3AED 100%)' : 'rgba(255, 255, 255, 0.1)',
+                border: '2px solid',
+                borderColor: viewPage === 4 ? '#E9D5FF' : 'rgba(255, 255, 255, 0.35)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: 13.5,
+                fontWeight: 800,
+                boxShadow: viewPage === 4 ? '0 0 14px rgba(168, 85, 247, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.8)' : 'none',
+              }}
+            >
+              4
+            </Box>
+            <Typography sx={{ fontSize: 13, fontWeight: 700, color: '#F1F5F9' }}>Page 4</Typography>
+          </Box>
+
           {/* Next button */}
           <Box
             component="button"
             type="button"
-            onClick={() => setViewPage((p) => (p === 1 ? 2 : 1))}
+            onClick={() => setViewPage((p) => (p === 4 ? 1 : ((p + 1) as 1 | 2 | 3 | 4)))}
             title="Next Page (Key: Right Arrow)"
             aria-label="Next Page"
             sx={{
