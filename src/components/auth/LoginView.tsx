@@ -2733,8 +2733,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     mb: 1.75,
                   }}
                 >
-                  A smarter way<br />
-                  to manage your{' '}
+                  Make worklife{' '}
                   <span
                     style={{
                       background: 'linear-gradient(135deg, #7C3AED 0%, #A855F7 100%)',
@@ -2743,7 +2742,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       display: 'inline-block',
                     }}
                   >
-                    people
+                    easy
                   </span>
                 </Typography>
 
