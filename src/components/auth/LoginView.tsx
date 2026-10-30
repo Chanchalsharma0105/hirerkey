@@ -3172,28 +3172,6 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   position: 'relative',
                 }}
               >
-                {/* Top Contact Admin Row */}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 0.6, fontSize: 13, color: '#64748B', mb: 2.5 }}>
-                  <span>New to Hirerkey?</span>
-                  <Box
-                    component="button"
-                    type="button"
-                    onClick={() => setHelpModalOpen(true)}
-                    sx={{
-                      background: 'none',
-                      border: 'none',
-                      p: 0,
-                      color: '#7C3AED',
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      fontSize: 13,
-                      '&:hover': { color: '#6D28D9', textDecoration: 'underline' },
-                    }}
-                  >
-                    Contact your admin
-                  </Box>
-                </Box>
-
                 {/* Form Titles */}
                 <Typography
                   level="h2"
