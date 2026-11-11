@@ -25,7 +25,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
   defaultView,
 }) => {
   // Active page state (1: The Connected HR Ecosystem, 2: The Living Dashboard)
-  const [activePage, setActivePage] = useState<1 | 2 | 3>((defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3);
+  const [activePage, setActivePage] = useState<1 | 2 | 3 | 4>((defaultView === 4 ? 4 : defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3 | 4);
 
   // View 4 form states (ApprovalMax Inspired Workflow Animation & Modern Split)
   const [v4AuthMode, setV4AuthMode] = useState<'otp' | 'password'>('otp');
@@ -77,10 +77,12 @@ export const LoginView: React.FC<LoginViewProps> = ({
         setActivePage(2);
       } else if (e.key === '3') {
         setActivePage(3);
+      } else if (e.key === '4') {
+        setActivePage(4);
       } else if (e.key === 'ArrowLeft') {
-        setActivePage((prev) => (prev === 1 ? 3 : ((prev - 1) as 1 | 2 | 3)));
+        setActivePage((prev) => (prev === 1 ? 4 : ((prev - 1) as 1 | 2 | 3 | 4)));
       } else if (e.key === 'ArrowRight') {
-        setActivePage((prev) => (prev === 3 ? 1 : ((prev + 1) as 1 | 2 | 3)));
+        setActivePage((prev) => (prev === 4 ? 1 : ((prev + 1) as 1 | 2 | 3 | 4)));
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -2222,6 +2224,1022 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 .v4-j-payoff-title { font-size: 10px; }
               }
 
+
+    /* ==========================================================================
+       PAGE 4: THE HIRERKEY ECOSYSTEM (CONNECTED HUB) — 10.0s MASTER ANIMATION SYSTEM
+       ========================================================================== */
+
+    /* Stage */
+    #v4WorkflowStageEco {
+      position: relative;
+    }
+
+    /* Central Live Miniature Dashboard */
+    .v4-mini-dashboard-eco {
+      position: absolute;
+      z-index: 5;
+      width: 236px;
+      min-height: 178px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid rgba(124, 58, 237, 0.28);
+      box-shadow: 
+        0 20px 45px -10px rgba(124, 58, 237, 0.32),
+        0 8px 20px -4px rgba(15, 23, 42, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+      animation: v4DashMasterP4 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      will-change: transform, box-shadow;
+      user-select: none;
+    }
+
+    .v4-eco-chrome {
+      padding: 5px 9px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 23px;
+    }
+
+    .v4-eco-live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 1.5px 5.5px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #059669;
+      font-size: 7.5px;
+      font-weight: 700;
+    }
+
+    .v4-eco-body {
+      position: relative;
+      background: #FFFFFF;
+      padding: 6px;
+      min-height: 152px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Live Sheen Sweep */
+    .v4-eco-sheen {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.7) 48%, rgba(124, 58, 237, 0.15) 52%, transparent 80%);
+      transform: translateX(-120%);
+      pointer-events: none;
+      z-index: 15;
+      animation: v4EcoSheenSweep 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* 2x2 Functional Modules Grid */
+    .v4-eco-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      flex: 1;
+    }
+
+    .v4-eco-widget {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 7px;
+      padding: 5px 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      min-height: 64px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .v4-eco-w-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2px;
+    }
+
+    .v4-eco-w-title {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #0F172A;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      white-space: nowrap;
+    }
+
+    .v4-eco-w-sub {
+      font-size: 7px;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .v4-eco-pill-purple {
+      font-size: 7px;
+      font-weight: 700;
+      padding: 1px 4.5px;
+      border-radius: 9999px;
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .v4-eco-pill-blue {
+      font-size: 7px;
+      font-weight: 700;
+      padding: 1px 4.5px;
+      border-radius: 9999px;
+      background: #EFF6FF;
+      color: #3B82F6;
+    }
+
+    .v4-eco-pill-pink {
+      font-size: 7px;
+      font-weight: 700;
+      padding: 1px 4.5px;
+      border-radius: 9999px;
+      background: #FDF2F8;
+      color: #EC4899;
+    }
+
+    .v4-eco-pill-green {
+      font-size: 7px;
+      font-weight: 700;
+      padding: 1px 4.5px;
+      border-radius: 9999px;
+      background: #ECFDF5;
+      color: #059669;
+    }
+
+    .v4-eco-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .v4-eco-bar-bg {
+      flex: 1;
+      height: 4px;
+      border-radius: 9999px;
+      background: #E2E8F0;
+      overflow: hidden;
+    }
+
+    .v4-eco-bar-fill {
+      height: 100%;
+      width: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #7C3AED, #9333EA);
+    }
+
+    .v4-eco-perf-bar-fill {
+      height: 100%;
+      width: 85%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #10B981, #059669);
+      animation: v4GoalProgressFlowP4 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .v4-eco-bar-pct, .v4-eco-perf-pct {
+      font-size: 7px;
+      font-weight: 700;
+      color: #64748B;
+      min-width: 16px;
+      text-align: right;
+    }
+
+    .v4-eco-perf-pct {
+      color: #059669;
+    }
+
+    .v4-eco-badge-row {
+      display: flex;
+      align-items: center;
+    }
+
+    .v4-eco-tag-sub {
+      font-size: 7px;
+      color: #3B82F6;
+      font-weight: 600;
+    }
+
+    .v4-eco-ai-status {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .v4-eco-ai-sparkle {
+      font-size: 7px;
+      animation: v4SparkleShimmerP4 10s ease-in-out infinite;
+    }
+
+    .v4-eco-ai-hint {
+      font-size: 7px;
+      color: #EC4899;
+      font-weight: 600;
+    }
+
+    .v4-eco-dash-toast {
+      animation: v4AiToastFlowP4 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* Floating Insight Bubble on Card 3 */
+    .v4-floating-insight-bubble {
+      position: absolute;
+      top: -14px;
+      right: 8px;
+      background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+      color: #FFFFFF;
+      font-size: 8px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 6px 18px -2px rgba(124, 58, 237, 0.45);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 10;
+      animation: v4InsightBubbleMotion 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .v4-insight-sparkle {
+      font-size: 8px;
+    }
+
+    /* Page 4 Spoke Cards Positioning */
+    .v4-mod-1-p4 {
+      top: 14px;
+      left: 14px;
+      animation: v4Card1MotionP4 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-mod-1-p4 .v4-card-icon-box { background: #EDE9FE; color: #7C3AED; }
+    .v4-mod-1-p4 .v4-card-tag { color: #7C3AED; }
+
+    .v4-mod-2-p4 {
+      bottom: 18px;
+      left: 14px;
+      animation: v4Card2MotionP4 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-mod-2-p4 .v4-card-icon-box { background: #EFF6FF; color: #3B82F6; }
+    .v4-mod-2-p4 .v4-card-tag { color: #3B82F6; }
+
+    .v4-mod-3-p4 {
+      top: 14px;
+      right: 14px;
+      animation: v4Card3MotionP4 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-mod-3-p4 .v4-card-icon-box { background: #FDF2F8; color: #EC4899; }
+    .v4-mod-3-p4 .v4-card-tag { color: #EC4899; }
+
+    .v4-mod-4-p4 {
+      bottom: 18px;
+      right: 14px;
+      animation: v4Card4MotionP4 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-mod-4-p4 .v4-card-icon-box { background: #ECFDF5; color: #10B981; }
+    .v4-mod-4-p4 .v4-card-tag { color: #059669; }
+
+    .v4-sparkle-box-p4 {
+      animation: v4SparkleShimmerP4 10s ease-in-out infinite;
+    }
+
+    .v4-progress-fill-p4 {
+      height: 100%;
+      width: 0%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #10B981, #059669);
+      animation: v4GoalProgressFlowP4 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* Page 4 Connector Paths (stroke-dasharray: 144) */
+    .v4-path-p4-1 { animation: v4Path1DrawP4 10s linear infinite; }
+    .v4-path-p4-2 { animation: v4Path2DrawP4 10s linear infinite; }
+    .v4-path-p4-3 { animation: v4Path3DrawP4 10s linear infinite; }
+    .v4-path-p4-4 { animation: v4Path4DrawP4 10s linear infinite; }
+
+    /* Page 4 Travelling Particles */
+    .v4-particle-p4 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0;
+      will-change: transform, opacity, offset-distance;
+    }
+
+    .v4-particle-p4-1 {
+      background: #A855F7;
+      box-shadow: 0 0 10px 2px #A855F7, 0 0 4px #FFFFFF;
+      -webkit-offset-path: path("M 160 75 C 210 75, 230 145, 270 160");
+      offset-path: path("M 160 75 C 210 75, 230 145, 270 160");
+      animation: v4Particle1MotionP4 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+    }
+
+    .v4-particle-p4-2 {
+      background: #3B82F6;
+      box-shadow: 0 0 10px 2px #3B82F6, 0 0 4px #FFFFFF;
+      -webkit-offset-path: path("M 160 275 C 210 275, 230 205, 270 190");
+      offset-path: path("M 160 275 C 210 275, 230 205, 270 190");
+      animation: v4Particle2MotionP4 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+    }
+
+    .v4-particle-p4-3 {
+      background: #EC4899;
+      box-shadow: 0 0 10px 2px #EC4899, 0 0 4px #FFFFFF;
+      -webkit-offset-path: path("M 380 75 C 330 75, 310 145, 270 160");
+      offset-path: path("M 380 75 C 330 75, 310 145, 270 160");
+      animation: v4Particle3MotionP4 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+    }
+
+    .v4-particle-p4-4 {
+      background: #10B981;
+      box-shadow: 0 0 10px 2px #10B981, 0 0 4px #FFFFFF;
+      -webkit-offset-path: path("M 380 275 C 330 275, 310 205, 270 190");
+      offset-path: path("M 380 275 C 330 275, 310 205, 270 190");
+      animation: v4Particle4MotionP4 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+    }
+
+    /* Page 4 Keyframes (10.0s Master Loop) */
+    @keyframes v4DashMasterP4 {
+      0% {
+        opacity: 0.92;
+        transform: scale(0.97) translateY(2px);
+        box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.24);
+      }
+      10% {
+        opacity: 1;
+        transform: scale(1.008) translateY(-3px);
+        box-shadow: 0 24px 50px -10px rgba(124, 58, 237, 0.36);
+      }
+      15% {
+        opacity: 1;
+        transform: scale(1.0) translateY(0px);
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.30);
+      }
+      35% {
+        transform: scale(1.0) translateY(-2px);
+      }
+      50% {
+        transform: scale(1.0) translateY(1px);
+      }
+      60% {
+        transform: scale(1.0) translateY(0px);
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.32);
+      }
+      70% {
+        transform: scale(1.025) translateY(-3px);
+        box-shadow: 
+          0 30px 70px -10px rgba(124, 58, 237, 0.46),
+          0 0 35px 4px rgba(124, 58, 237, 0.26),
+          0 0 0 1px rgba(255, 255, 255, 0.9);
+      }
+      80% {
+        transform: scale(1.0) translateY(0px);
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.32);
+      }
+      94% {
+        opacity: 1;
+        transform: scale(0.985) translateY(1px);
+        box-shadow: 0 18px 40px -8px rgba(124, 58, 237, 0.26);
+      }
+      100% {
+        opacity: 0.92;
+        transform: scale(0.97) translateY(2px);
+        box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.24);
+      }
+    }
+
+    @keyframes v4EcoSheenSweep {
+      0%, 65% {
+        transform: translateX(-120%);
+        opacity: 0;
+      }
+      68% {
+        opacity: 0.9;
+      }
+      75% {
+        transform: translateX(120%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(120%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes v4Card1MotionP4 {
+      0%, 14% {
+        opacity: 0;
+        transform: translate(-14px, -8px) scale(0.96);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      20% {
+        opacity: 1;
+        transform: translate(1px, 1px) scale(1.02);
+        border-color: #7C3AED;
+        box-shadow: 0 14px 32px -6px rgba(124, 58, 237, 0.32);
+      }
+      24% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(124, 58, 237, 0.6);
+      }
+      50% {
+        transform: translate(0, -2px) scale(1.0);
+      }
+      60% {
+        transform: translate(0, 0) scale(1.0);
+      }
+      70% {
+        transform: translate(-1px, -3px) scale(1.03);
+        border-color: #7C3AED;
+        box-shadow: 0 16px 36px -6px rgba(124, 58, 237, 0.38);
+      }
+      80% {
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(124, 58, 237, 0.5);
+      }
+      88% {
+        opacity: 0.8;
+        border-color: #E2E8F0;
+      }
+      94%, 100% {
+        opacity: 0;
+        transform: translate(-14px, -8px) scale(0.96);
+      }
+    }
+
+    @keyframes v4Card2MotionP4 {
+      0%, 24% {
+        opacity: 0;
+        transform: translate(-14px, 8px) scale(0.96);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(1px, -1px) scale(1.02);
+        border-color: #3B82F6;
+        box-shadow: 0 14px 32px -6px rgba(59, 130, 246, 0.32);
+      }
+      34% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(59, 130, 246, 0.6);
+      }
+      55% {
+        transform: translate(0, 2px) scale(1.0);
+      }
+      60% {
+        transform: translate(0, 0) scale(1.0);
+      }
+      70% {
+        transform: translate(-1px, 3px) scale(1.03);
+        border-color: #3B82F6;
+        box-shadow: 0 16px 36px -6px rgba(59, 130, 246, 0.38);
+      }
+      80% {
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
+      88% {
+        opacity: 0.8;
+        border-color: #E2E8F0;
+      }
+      94%, 100% {
+        opacity: 0;
+        transform: translate(-14px, 8px) scale(0.96);
+      }
+    }
+
+    @keyframes v4Card3MotionP4 {
+      0%, 34% {
+        opacity: 0;
+        transform: translate(14px, -8px) scale(0.96);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      40% {
+        opacity: 1;
+        transform: translate(-1px, 1px) scale(1.02);
+        border-color: #EC4899;
+        box-shadow: 0 14px 32px -6px rgba(236, 72, 153, 0.35);
+      }
+      44% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(236, 72, 153, 0.6);
+      }
+      55% {
+        transform: translate(0, -2px) scale(1.0);
+      }
+      60% {
+        transform: translate(0, 0) scale(1.0);
+      }
+      70% {
+        transform: translate(1px, -3px) scale(1.03);
+        border-color: #EC4899;
+        box-shadow: 0 16px 36px -6px rgba(236, 72, 153, 0.40);
+      }
+      80% {
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(236, 72, 153, 0.5);
+      }
+      88% {
+        opacity: 0.8;
+        border-color: #E2E8F0;
+      }
+      94%, 100% {
+        opacity: 0;
+        transform: translate(14px, -8px) scale(0.96);
+      }
+    }
+
+    @keyframes v4InsightBubbleMotion {
+      0%, 37% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.88);
+      }
+      43% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+      }
+      76% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+      }
+      84% {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.92);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.88);
+      }
+    }
+
+    @keyframes v4Card4MotionP4 {
+      0%, 47% {
+        opacity: 0;
+        transform: translate(14px, 8px) scale(0.96);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      53% {
+        opacity: 1;
+        transform: translate(-1px, -1px) scale(1.02);
+        border-color: #10B981;
+        box-shadow: 0 14px 32px -6px rgba(16, 185, 129, 0.35);
+      }
+      57% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(16, 185, 129, 0.6);
+      }
+      60% {
+        transform: translate(0, 0) scale(1.0);
+      }
+      70% {
+        transform: translate(1px, 3px) scale(1.03);
+        border-color: #10B981;
+        box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.40);
+      }
+      80% {
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(16, 185, 129, 0.5);
+      }
+      88% {
+        opacity: 0.8;
+        border-color: #E2E8F0;
+      }
+      94%, 100% {
+        opacity: 0;
+        transform: translate(14px, 8px) scale(0.96);
+      }
+    }
+
+    @keyframes v4GoalProgressFlowP4 {
+      0%, 48% {
+        width: 0%;
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      58% {
+        width: 85%;
+      }
+      80% {
+        width: 85%;
+        opacity: 1;
+      }
+      88% {
+        opacity: 0.4;
+      }
+      94%, 100% {
+        width: 0%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes v4SparkleShimmerP4 {
+      0%, 36% {
+        transform: scale(1) rotate(0deg);
+        filter: drop-shadow(0 0 0 rgba(236, 72, 153, 0));
+      }
+      41% {
+        transform: scale(1.22) rotate(14deg);
+        filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.7));
+      }
+      46% {
+        transform: scale(1) rotate(0deg);
+        filter: drop-shadow(0 0 0 rgba(236, 72, 153, 0));
+      }
+      70% {
+        transform: scale(1.15) rotate(8deg);
+        filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.5));
+      }
+      76%, 100% {
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes v4Path1DrawP4 {
+      0%, 14% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      16% {
+        opacity: 0.9;
+      }
+      24% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      60% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      70% {
+        opacity: 1.0;
+        stroke-width: 2.8px;
+      }
+      80% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+        stroke-dashoffset: 0;
+      }
+      90% {
+        opacity: 0.15;
+        stroke-dashoffset: 0;
+      }
+      95%, 100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes v4Path2DrawP4 {
+      0%, 24% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      26% {
+        opacity: 0.9;
+      }
+      34% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      60% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      70% {
+        opacity: 1.0;
+        stroke-width: 2.8px;
+      }
+      80% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+        stroke-dashoffset: 0;
+      }
+      90% {
+        opacity: 0.15;
+        stroke-dashoffset: 0;
+      }
+      95%, 100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes v4Path3DrawP4 {
+      0%, 34% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      36% {
+        opacity: 0.9;
+      }
+      45% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      60% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      70% {
+        opacity: 1.0;
+        stroke-width: 2.8px;
+      }
+      80% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+        stroke-dashoffset: 0;
+      }
+      90% {
+        opacity: 0.15;
+        stroke-dashoffset: 0;
+      }
+      95%, 100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes v4Path4DrawP4 {
+      0%, 47% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      49% {
+        opacity: 0.9;
+      }
+      57% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      60% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      70% {
+        opacity: 1.0;
+        stroke-width: 2.8px;
+      }
+      80% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+        stroke-dashoffset: 0;
+      }
+      90% {
+        opacity: 0.15;
+        stroke-dashoffset: 0;
+      }
+      95%, 100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes v4Particle1MotionP4 {
+      0%, 18% {
+        offset-distance: 0%;
+        opacity: 0;
+      }
+      19% {
+        opacity: 1;
+      }
+      25% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+      61% {
+        offset-distance: 0%;
+        opacity: 0;
+      }
+      62% {
+        opacity: 1;
+      }
+      68% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+      100% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes v4Particle2MotionP4 {
+      0%, 28% {
+        offset-distance: 0%;
+        opacity: 0;
+      }
+      29% {
+        opacity: 1;
+      }
+      35% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+      64% {
+        offset-distance: 0%;
+        opacity: 0;
+      }
+      65% {
+        opacity: 1;
+      }
+      71% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+      100% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes v4Particle3MotionP4 {
+      0%, 38% {
+        offset-distance: 0%;
+        opacity: 0;
+      }
+      39% {
+        opacity: 1;
+      }
+      46% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+      67% {
+        offset-distance: 0%;
+        opacity: 0;
+      }
+      68% {
+        opacity: 1;
+      }
+      74% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+      100% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes v4Particle4MotionP4 {
+      0%, 51% {
+        offset-distance: 0%;
+        opacity: 0;
+      }
+      52% {
+        opacity: 1;
+      }
+      59% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+      70% {
+        offset-distance: 0%;
+        opacity: 0;
+      }
+      71% {
+        opacity: 1;
+      }
+      77% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+      100% {
+        offset-distance: 100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes v4AiToastFlowP4 {
+      0%, 37% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(12px) scale(0.92);
+        pointer-events: none;
+      }
+      42% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0px) scale(1.0);
+      }
+      78% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0px) scale(1.0);
+      }
+      85% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px) scale(0.95);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(12px) scale(0.92);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .v4-mini-dashboard-eco,
+      .v4-mod-1-p4,
+      .v4-mod-2-p4,
+      .v4-mod-3-p4,
+      .v4-mod-4-p4,
+      .v4-path-p4-1,
+      .v4-path-p4-2,
+      .v4-path-p4-3,
+      .v4-path-p4-4,
+      .v4-particle-p4-1,
+      .v4-particle-p4-2,
+      .v4-particle-p4-3,
+      .v4-particle-p4-4,
+      .v4-floating-insight-bubble,
+      .v4-eco-sheen,
+      .v4-sparkle-box-p4,
+      .v4-progress-fill-p4,
+      .v4-eco-perf-bar-fill,
+      .v4-eco-dash-toast {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .v4-path-p4-1,
+      .v4-path-p4-2,
+      .v4-path-p4-3,
+      .v4-path-p4-4 {
+        stroke-dashoffset: 0 !important;
+      }
+      .v4-progress-fill-p4,
+      .v4-eco-perf-bar-fill {
+        width: 85% !important;
+      }
+      .v4-floating-insight-bubble {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
+    /* Mobile responsive overrides for Page 4 */
+    @media (max-width: 640px) {
+      .v4-mini-dashboard-eco {
+        width: 180px;
+        min-height: 146px;
+      }
+      .v4-eco-grid {
+        gap: 3px;
+      }
+      .v4-eco-widget {
+        min-height: 48px;
+        padding: 3px 4px;
+      }
+      .v4-eco-w-title {
+        font-size: 7.5px;
+      }
+      .v4-eco-w-sub {
+        font-size: 6px;
+      }
+      .v4-eco-pill-purple,
+      .v4-eco-pill-blue,
+      .v4-eco-pill-pink,
+      .v4-eco-pill-green {
+        font-size: 6px;
+        padding: 1px 3px;
+      }
+      .v4-eco-chrome {
+        height: 20px;
+        padding: 3px 6px;
+      }
+      .v4-floating-insight-bubble {
+        font-size: 7px;
+        padding: 2px 5px;
+        top: -10px;
+        right: 4px;
+      }
+    }
+
             `}</style>
             <Box
               sx={{
@@ -3345,6 +4363,367 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   </div>
                 </Box>
                 )}
+                {activePage === 4 && (
+                <Box
+                  id="v4WorkflowStageEco"
+                  onMouseMove={handleV4MouseMove}
+                  onMouseLeave={handleV4MouseLeave}
+                  sx={{
+                    width: '100%',
+                    maxWidth: 540,
+                    height: 350,
+                    position: 'relative',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    perspective: 1000,
+                    mt: 0.75,
+                    contain: 'layout paint style',
+                  }}
+                >
+                  {/* Dynamic SVG Flow Connectors & Luminescent Particles */}
+                  <svg
+                    viewBox="0 0 540 350"
+                    preserveAspectRatio="none"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      pointerEvents: 'none',
+                      zIndex: 2,
+                    }}
+                  >
+                    <defs>
+                      <linearGradient id="v4Grad1_p4_tsx" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.95" />
+                      </linearGradient>
+                      <linearGradient id="v4Grad2_p4_tsx" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#10B981" stopOpacity="0.95" />
+                      </linearGradient>
+                      <linearGradient id="v4Grad3_p4_tsx" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#EC4899" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.95" />
+                      </linearGradient>
+                      <linearGradient id="v4Grad4_p4_tsx" x1="100%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stopColor="#10B981" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.95" />
+                      </linearGradient>
+
+                      <filter id="v4FlowGlow_p4_tsx" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="3.5" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                    </defs>
+
+                    {/* Base Ambient Dashed Tracks */}
+                    <path className="v4-track-base" d="M 160 75 C 210 75, 230 145, 270 160" />
+                    <path className="v4-track-base" d="M 160 275 C 210 275, 230 205, 270 190" />
+                    <path className="v4-track-base" d="M 380 75 C 330 75, 310 145, 270 160" />
+                    <path className="v4-track-base" d="M 380 275 C 330 275, 310 205, 270 190" />
+
+                    {/* Animated Dynamic Connector Flow Lines */}
+                    <path className="v4-path-active v4-path-p4-1" stroke="url(#v4Grad1_p4_tsx)" d="M 160 75 C 210 75, 230 145, 270 160" filter="url(#v4FlowGlow_p4_tsx)" />
+                    <path className="v4-path-active v4-path-p4-2" stroke="url(#v4Grad2_p4_tsx)" d="M 160 275 C 210 275, 230 205, 270 190" filter="url(#v4FlowGlow_p4_tsx)" />
+                    <path className="v4-path-active v4-path-p4-3" stroke="url(#v4Grad3_p4_tsx)" d="M 380 75 C 330 75, 310 145, 270 160" filter="url(#v4FlowGlow_p4_tsx)" />
+                    <path className="v4-path-active v4-path-p4-4" stroke="url(#v4Grad4_p4_tsx)" d="M 380 275 C 330 275, 310 205, 270 190" filter="url(#v4FlowGlow_p4_tsx)" />
+                  </svg>
+
+                  {/* Travelling Particle Dots */}
+                  <div className="v4-particle-p4 v4-particle-p4-1" />
+                  <div className="v4-particle-p4 v4-particle-p4-2" />
+                  <div className="v4-particle-p4 v4-particle-p4-3" />
+                  <div className="v4-particle-p4 v4-particle-p4-4" />
+
+                  {/* CARD 1: ORIENTATION (Upper-Left: top: 14px, left: 14px) */}
+                  <Box
+                    className="v4-flow-card v4-mod-1-p4"
+                    sx={{
+                      position: 'absolute',
+                      top: 14,
+                      left: 14,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        boxShadow: '0 16px 35px -8px rgba(124, 58, 237, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      className="v4-card-icon-box"
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                      }}
+                    >
+                      🧭
+                    </Box>
+                    <Box className="v4-card-meta" sx={{ flex: 1, minWidth: 0 }}>
+                      <div className="v4-card-tag">01 • ONBOARDING</div>
+                      <div className="v4-card-title">Orientation</div>
+                      <div className="v4-card-status">
+                        <span className="v4-pulse-dot" />
+                        <span>Active • Automated</span>
+                      </div>
+                    </Box>
+                  </Box>
+
+                  {/* CARD 2: DEPARTMENT TOUR (Lower-Left: bottom: 18px, left: 14px) */}
+                  <Box
+                    className="v4-flow-card v4-mod-2-p4"
+                    sx={{
+                      position: 'absolute',
+                      bottom: 18,
+                      left: 14,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        boxShadow: '0 16px 35px -8px rgba(59, 130, 246, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      className="v4-card-icon-box"
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                      }}
+                    >
+                      🏢
+                    </Box>
+                    <Box className="v4-card-meta" sx={{ flex: 1, minWidth: 0 }}>
+                      <div className="v4-card-tag">02 • ALIGNMENT</div>
+                      <div className="v4-card-title">Department Tour</div>
+                      <div className="v4-card-status">
+                        <span className="v4-status-label">Sales &amp; Marketing</span>
+                      </div>
+                    </Box>
+                  </Box>
+
+                  {/* CENTRAL LIVE MINIATURE DASHBOARD (Hub) */}
+                  <Box
+                    id="v4MiniDashboardEco"
+                    className="v4-mini-dashboard v4-mini-dashboard-eco"
+                    style={{
+                      transform: `perspective(800px) rotateX(${v4Tilt.x}deg) rotateY(${v4Tilt.y}deg) translateZ(8px)`,
+                    }}
+                  >
+                    {/* Browser Chrome */}
+                    <div className="v4-eco-chrome">
+                      <div className="v4-mini-traffic-dots">
+                        <div className="v4-mini-dot red" />
+                        <div className="v4-mini-dot amber" />
+                        <div className="v4-mini-dot green" />
+                      </div>
+                      <div className="v4-mini-dash-url">app.hirerkey.com</div>
+                      <div className="v4-eco-live-pill">
+                        <span className="v4-pulse-dot" style={{ width: 4, height: 4 }} />
+                        <span>Live Ecosystem</span>
+                      </div>
+                    </div>
+
+                    {/* Dashboard Body with Live Sheen & 4 Functional Modules */}
+                    <div className="v4-eco-body">
+                      <div className="v4-eco-sheen" />
+
+                      {/* 2x2 Grid: 4 Functional Modules */}
+                      <div className="v4-eco-grid">
+                        {/* Module 1: Onboarding */}
+                        <div className="v4-eco-widget v4-eco-w-onboard">
+                          <div className="v4-eco-w-head">
+                            <span className="v4-eco-w-title">🧭 Onboarding</span>
+                            <span className="v4-eco-pill-purple">Active</span>
+                          </div>
+                          <div className="v4-eco-w-sub">Alex C. • Design Ops</div>
+                          <div className="v4-eco-bar-wrap">
+                            <div className="v4-eco-bar-bg"><div className="v4-eco-bar-fill" /></div>
+                            <span className="v4-eco-bar-pct">100%</span>
+                          </div>
+                        </div>
+
+                        {/* Module 2: Alignment */}
+                        <div className="v4-eco-widget v4-eco-w-align">
+                          <div className="v4-eco-w-head">
+                            <span className="v4-eco-w-title">🏢 Alignment</span>
+                            <span className="v4-eco-pill-blue">Sync</span>
+                          </div>
+                          <div className="v4-eco-w-sub">Sales &amp; Marketing</div>
+                          <div className="v4-eco-badge-row">
+                            <span className="v4-eco-tag-sub">Tour Complete ✓</span>
+                          </div>
+                        </div>
+
+                        {/* Module 3: AI Intelligence */}
+                        <div className="v4-eco-widget v4-eco-w-ai">
+                          <div className="v4-eco-w-head">
+                            <span className="v4-eco-w-title">✨ Ask HyIQ</span>
+                            <span className="v4-eco-pill-pink">12ms</span>
+                          </div>
+                          <div className="v4-eco-w-sub">Workforce AI</div>
+                          <div className="v4-eco-ai-status">
+                            <span className="v4-eco-ai-sparkle">✨</span>
+                            <span className="v4-eco-ai-hint">Insights ready</span>
+                          </div>
+                        </div>
+
+                        {/* Module 4: Performance */}
+                        <div className="v4-eco-widget v4-eco-w-perf">
+                          <div className="v4-eco-w-head">
+                            <span className="v4-eco-w-title">📊 Performance</span>
+                            <span className="v4-eco-pill-green">On Track</span>
+                          </div>
+                          <div className="v4-eco-w-sub">Goal Tracking</div>
+                          <div className="v4-eco-bar-wrap">
+                            <div className="v4-eco-bar-bg"><div className="v4-eco-perf-bar-fill" /></div>
+                            <span className="v4-eco-perf-pct">85%</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Mini Dashboard AI Insight Toast */}
+                      <div className="v4-mini-dash-toast v4-eco-dash-toast" id="v4MiniDashToastEco">
+                        <span className="v4-toast-icon">✨</span>
+                        <span className="v4-toast-text">Workforce insights are ready</span>
+                      </div>
+                    </div>
+                  </Box>
+
+                  {/* CARD 3: ASK HyIQ (Upper-Right: top: 14px, right: 14px) */}
+                  <Box
+                    className="v4-flow-card v4-mod-3-p4"
+                    sx={{
+                      position: 'absolute',
+                      top: 14,
+                      right: 14,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        boxShadow: '0 16px 35px -8px rgba(236, 72, 153, 0.25)',
+                      },
+                    }}
+                  >
+                    <div className="v4-floating-insight-bubble">
+                      <span className="v4-insight-sparkle">✨</span>
+                      <span>Workforce insights are ready</span>
+                    </div>
+                    <Box
+                      className="v4-card-icon-box v4-sparkle-box-p4"
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                      }}
+                    >
+                      ✨
+                    </Box>
+                    <Box className="v4-card-meta" sx={{ flex: 1, minWidth: 0 }}>
+                      <div className="v4-card-tag">03 • INTELLIGENCE</div>
+                      <div className="v4-card-title">Ask HyIQ™ AI</div>
+                      <div className="v4-card-status">
+                        <span className="v4-ai-pulse" />
+                        <span>Real-time • 12ms</span>
+                      </div>
+                    </Box>
+                  </Box>
+
+                  {/* CARD 4: 1-ON-1 CHECK-INS (Lower-Right: bottom: 18px, right: 14px) */}
+                  <Box
+                    className="v4-flow-card v4-mod-4-p4"
+                    sx={{
+                      position: 'absolute',
+                      bottom: 18,
+                      right: 14,
+                      zIndex: 6,
+                      bgcolor: '#FFFFFF',
+                      borderRadius: '16px',
+                      border: '1.5px solid #E2E8F0',
+                      p: '10px 14px',
+                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1.25,
+                      width: 200,
+                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                      '&:hover': {
+                        transform: 'translateY(-3px) scale(1.03)',
+                        boxShadow: '0 16px 35px -8px rgba(16, 185, 129, 0.25)',
+                      },
+                    }}
+                  >
+                    <Box
+                      className="v4-card-icon-box"
+                      sx={{
+                        width: 32,
+                        height: 32,
+                        borderRadius: '10px',
+                        display: 'grid',
+                        placeItems: 'center',
+                        fontSize: 16,
+                        flexShrink: 0,
+                      }}
+                    >
+                      📊
+                    </Box>
+                    <Box className="v4-card-meta" sx={{ flex: 1, minWidth: 0 }}>
+                      <div className="v4-card-tag">04 • PERFORMANCE</div>
+                      <div className="v4-card-title">1-on-1 Check-ins</div>
+                      <div className="v4-card-status v4-progress-status">
+                        <span className="v4-progress-label">On Track</span>
+                        <div className="v4-progress-track">
+                          <div className="v4-progress-fill-p4" />
+                        </div>
+                        <span className="v4-progress-val">85%</span>
+                      </div>
+                    </Box>
+                  </Box>
+                </Box>
+                )}
               </Box>
 
               {/* RIGHT COLUMN: CLEAN WHITE AUTHENTICATION CARD */}
@@ -3823,10 +5202,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
           }}
         >
           <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>①</span>
-          <span>Ecosystem</span>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Ecosystem</Box>
           <Box
             component="span"
             sx={{
+              display: { xs: 'none', md: 'inline-block' },
               fontSize: '10px',
               fontFamily: 'monospace',
               fontWeight: 600,
@@ -3875,10 +5255,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
           }}
         >
           <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>②</span>
-          <span>Living Dashboard</span>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Living Dashboard</Box>
           <Box
             component="span"
             sx={{
+              display: { xs: 'none', md: 'inline-block' },
               fontSize: '10px',
               fontFamily: 'monospace',
               fontWeight: 600,
@@ -3927,10 +5308,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
           }}
         >
           <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>③</span>
-          <span>Employee Journey</span>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Employee Journey</Box>
           <Box
             component="span"
             sx={{
+              display: { xs: 'none', sm: 'inline-block' },
               fontSize: '9px',
               fontWeight: 800,
               px: '6px',
@@ -3947,6 +5329,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           <Box
             component="span"
             sx={{
+              display: { xs: 'none', md: 'inline-block' },
               fontSize: '10px',
               fontFamily: 'monospace',
               fontWeight: 600,
@@ -3959,6 +5342,77 @@ export const LoginView: React.FC<LoginViewProps> = ({
             }}
           >
             3
+          </Box>
+        </Box>
+
+        <Box sx={{ width: '1px', height: '18px', bgcolor: '#E2E8F0' }} />
+
+        <Box
+          component="button"
+          type="button"
+          onClick={() => setActivePage(4)}
+          aria-label="Page 4: The Hirerkey Ecosystem (Connected Hub)"
+          title="The Hirerkey Ecosystem (Key 4)"
+          sx={{
+            appearance: 'none',
+            border: activePage === 4 ? '1px solid rgba(124, 58, 237, 0.25)' : '1px solid transparent',
+            bgcolor: activePage === 4 ? '#FFFFFF' : 'transparent',
+            color: activePage === 4 ? '#7C3AED' : '#64748B',
+            fontWeight: activePage === 4 ? 700 : 600,
+            boxShadow: activePage === 4 ? '0 4px 14px -2px rgba(124, 58, 237, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05)' : 'none',
+            px: { xs: 1.5, sm: 1.75 },
+            py: 0.85,
+            borderRadius: '9999px',
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontSize: { xs: 11.5, sm: 12.5 },
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '7px',
+            cursor: 'pointer',
+            transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+            whiteSpace: 'nowrap',
+            '&:hover': {
+              color: '#0F172A',
+              bgcolor: activePage === 4 ? '#FFFFFF' : 'rgba(241, 245, 249, 0.8)',
+            },
+          }}
+        >
+          <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>④</span>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Connected Hub</Box>
+          <Box
+            component="span"
+            sx={{
+              display: { xs: 'none', sm: 'inline-block' },
+              fontSize: '9px',
+              fontWeight: 800,
+              px: '6px',
+              py: '1.5px',
+              borderRadius: '9999px',
+              bgcolor: 'rgba(16, 185, 129, 0.15)',
+              color: '#059669',
+              border: '1px solid rgba(16, 185, 129, 0.3)',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Live
+          </Box>
+          <Box
+            component="span"
+            sx={{
+              display: { xs: 'none', md: 'inline-block' },
+              fontSize: '10px',
+              fontFamily: 'monospace',
+              fontWeight: 600,
+              px: '5px',
+              py: '1px',
+              borderRadius: '4px',
+              bgcolor: activePage === 4 ? '#F5F3FF' : '#F1F5F9',
+              color: activePage === 4 ? '#8B5CF6' : '#94A3B8',
+              border: activePage === 4 ? '1px solid #DDD6FE' : '1px solid #E2E8F0',
+            }}
+          >
+            4
           </Box>
         </Box>
       </Box>
