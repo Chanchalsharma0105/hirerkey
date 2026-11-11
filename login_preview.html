@@ -3791,8 +3791,725 @@
       }
     }
 
+
     /* ==========================================================================
-       BOTTOM PAGINATION DOCK (PAGE 1 vs PAGE 2 SWITCHER)
+       PAGE 3: THE EMPLOYEE JOURNEY — 12.0s MASTER ANIMATION SYSTEM
+       ========================================================================== */
+
+    /* Stage */
+    .v4-workflow-stage-journey {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      height: 350px;
+      perspective: 1000px;
+      overflow: hidden;
+    }
+
+    /* Base Journey Node Card */
+    .v4-j-card {
+      position: absolute;
+      z-index: 6;
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1.5px solid #E2E8F0;
+      box-shadow: 
+        0 10px 25px -5px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.85);
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 164px;
+      height: 58px;
+      box-sizing: border-box;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+      will-change: transform, opacity, box-shadow;
+      user-select: none;
+    }
+
+    .v4-j-card:hover {
+      transform: translateY(-2px) scale(1.03) !important;
+      box-shadow: 0 16px 35px -8px rgba(124, 58, 237, 0.28) !important;
+      z-index: 12 !important;
+    }
+
+    /* Card Positions & Micro-Animations */
+    .v4-j-card-1 {
+      top: 12px;
+      left: 12px;
+      animation: jCard1Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-j-card-2 {
+      top: 12px;
+      left: 188px;
+      animation: jCard2Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-j-card-3 {
+      top: 12px;
+      right: 12px;
+      animation: jCard3Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-j-card-4 {
+      bottom: 12px;
+      right: 12px;
+      animation: jCard4Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-j-card-5 {
+      bottom: 12px;
+      left: 188px;
+      animation: jCard5Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .v4-j-card-6 {
+      bottom: 12px;
+      left: 12px;
+      animation: jCard6Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* Card 1: Avatar & Online Dot */
+    .v4-j-avatar-wrap {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+    .v4-j-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+      color: #FFFFFF;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 11px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+      letter-spacing: 0.02em;
+    }
+    .v4-j-online-dot {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 7.5px;
+      height: 7.5px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 0 6px #10B981;
+      animation: jGreenPulse 2s ease-in-out infinite;
+    }
+    @keyframes jGreenPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      50% { transform: scale(1.15); box-shadow: 0 0 0 3.5px rgba(16, 185, 129, 0); }
+    }
+
+    /* Icon Boxes for Cards 2 - 6 */
+    .v4-j-icon-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .v4-j-icon-purple { background: rgba(124, 58, 237, 0.1); color: #7C3AED; }
+    .v4-j-icon-blue { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+    .v4-j-icon-pink { background: rgba(236, 72, 153, 0.1); color: #EC4899; }
+    .v4-j-icon-amber { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
+    .v4-j-icon-green { background: rgba(16, 185, 129, 0.1); color: #10B981; }
+
+    /* Metadata Layout */
+    .v4-j-meta {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+    }
+    .v4-j-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 1px;
+    }
+    .v4-j-tag {
+      font-size: 7.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .v4-j-card-1 .v4-j-tag { color: #7C3AED; }
+    .v4-j-card-2 .v4-j-tag { color: #7C3AED; }
+    .v4-j-card-3 .v4-j-tag { color: #3B82F6; }
+    .v4-j-card-4 .v4-j-tag { color: #EC4899; }
+    .v4-j-card-5 .v4-j-tag { color: #D97706; }
+    .v4-j-card-6 .v4-j-tag { color: #059669; }
+
+    .v4-j-tag-new {
+      font-size: 7.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #7C3AED;
+      background: rgba(124, 58, 237, 0.08);
+      padding: 1px 4.5px;
+      border-radius: 3.5px;
+      display: inline-block;
+      line-height: 1.1;
+      margin-bottom: 1px;
+    }
+    .v4-j-title {
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .v4-j-sub {
+      font-size: 8.5px;
+      color: #64748B;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+      margin-top: 1px;
+    }
+    .v4-j-sub-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3px;
+      margin-top: 1px;
+    }
+    .v4-j-badge-done {
+      font-size: 8px;
+      font-weight: 700;
+      color: #059669;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Card 2: Progress Track & Fill */
+    .v4-j-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+    }
+    .v4-j-progress-track {
+      width: 44px;
+      height: 3.5px;
+      border-radius: 9999px;
+      background: #E2E8F0;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .v4-j-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #7C3AED, #A855F7);
+      border-radius: 9999px;
+      animation: jProgressFill 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes jProgressFill {
+      0%, 12.5% { width: 0%; }
+      25%, 95% { width: 100%; }
+      100% { width: 0%; }
+    }
+    .v4-j-status-swap {
+      position: relative;
+      height: 12px;
+      flex: 1;
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+    }
+    .v4-j-status-filling {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 8px;
+      font-weight: 600;
+      color: #64748B;
+      white-space: nowrap;
+      animation: jStatusFilling 12s ease infinite;
+    }
+    .v4-j-status-done {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 8px;
+      font-weight: 700;
+      color: #059669;
+      white-space: nowrap;
+      animation: jStatusDone 12s ease infinite;
+    }
+    @keyframes jStatusFilling {
+      0%, 16% { opacity: 1; transform: translateY(0); }
+      20%, 95% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes jStatusDone {
+      0%, 18% { opacity: 0; transform: translateY(3px); }
+      22%, 95% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(3px); }
+    }
+
+    /* Card 4: Dynamic Status ("Upcoming" -> "In Progress" -> "Completed ✓") */
+    .v4-j-stage-status {
+      position: relative;
+      height: 12px;
+      display: inline-flex;
+      align-items: center;
+      min-width: 58px;
+      justify-content: flex-end;
+    }
+    .v4-j-status-upcoming {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 8px;
+      font-weight: 600;
+      color: #94A3B8;
+      white-space: nowrap;
+      animation: jStatusUpcoming 12s ease infinite;
+    }
+    .v4-j-status-progress {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 8px;
+      font-weight: 700;
+      color: #3B82F6;
+      white-space: nowrap;
+      animation: jStatusProgress 12s ease infinite;
+    }
+    .v4-j-status-completed {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 8px;
+      font-weight: 700;
+      color: #059669;
+      white-space: nowrap;
+      animation: jStatusCompleted 12s ease infinite;
+    }
+    @keyframes jStatusUpcoming {
+      0%, 38% { opacity: 1; transform: translateY(0); }
+      41.67%, 100% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
+    }
+    @keyframes jStatusProgress {
+      0%, 38% { opacity: 0; transform: translateY(3px); }
+      41.67%, 52% { opacity: 1; transform: translateY(0); }
+      55%, 100% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
+    }
+    @keyframes jStatusCompleted {
+      0%, 52% { opacity: 0; transform: translateY(3px); }
+      55%, 95% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(3px); }
+    }
+
+    /* Card 6: Goal Metric & Status */
+    .v4-j-goal-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 1px;
+    }
+    .v4-j-goal-pill {
+      font-size: 8px;
+      font-weight: 800;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 1px 4px;
+      border-radius: 3px;
+      line-height: 1.1;
+    }
+    .v4-j-status-ontrack {
+      font-size: 8px;
+      font-weight: 700;
+      color: #059669;
+      line-height: 1.1;
+    }
+
+    /* Central Payoff Capsule (Scene 7 Bloom) */
+    .v4-j-payoff-capsule {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      z-index: 10;
+      width: 310px;
+      min-height: 48px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(14px) saturate(180%);
+      -webkit-backdrop-filter: blur(14px) saturate(180%);
+      border: 1.5px solid rgba(124, 58, 237, 0.38);
+      border-radius: 9999px;
+      box-shadow: 
+        0 16px 38px -6px rgba(124, 58, 237, 0.32),
+        0 6px 14px -3px rgba(15, 23, 42, 0.08),
+        inset 0 1px 1px rgba(255, 255, 255, 1);
+      display: flex;
+      align-items: center;
+      padding: 6px 16px;
+      gap: 11px;
+      box-sizing: border-box;
+      opacity: 0;
+      animation: jPayoffBloom 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+      user-select: none;
+      will-change: transform, opacity, box-shadow;
+    }
+
+    .v4-j-payoff-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+      color: #FFFFFF;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+    }
+
+    .v4-j-payoff-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .v4-j-payoff-title {
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.25;
+      white-space: nowrap;
+    }
+
+    .v4-j-payoff-subtitle {
+      font-size: 9px;
+      color: #7C3AED;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 1px;
+    }
+
+    .v4-j-payoff-live-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 5px #10B981;
+      display: inline-block;
+    }
+
+    @keyframes jPayoffBloom {
+      0%, 75% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.85);
+        pointer-events: none;
+      }
+      79.17% { /* 9.5s */
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(0.92);
+      }
+      83.33% { /* 10.0s */
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 
+          0 20px 48px -4px rgba(124, 58, 237, 0.45),
+          0 0 30px 4px rgba(168, 85, 247, 0.4),
+          inset 0 1px 1px rgba(255, 255, 255, 1);
+      }
+      87.5% { /* 10.5s */
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.0);
+        box-shadow: 
+          0 16px 38px -6px rgba(124, 58, 237, 0.32),
+          0 6px 14px -3px rgba(15, 23, 42, 0.08),
+          inset 0 1px 1px rgba(255, 255, 255, 1);
+      }
+      95.83% { /* 11.5s */
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.0);
+      }
+      100% { /* 12.0s */
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+        pointer-events: none;
+      }
+    }
+
+    /* SVG Master Spline & Beacons */
+    .v4-j-track-base {
+      fill: none;
+      stroke: rgba(124, 58, 237, 0.12);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-dasharray: 4 4;
+    }
+
+    .v4-j-spline-active {
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: jSplineDraw 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+    }
+
+    @keyframes jSplineDraw {
+      0% {
+        stroke-dashoffset: 1000;
+        opacity: 0.4;
+      }
+      12.5% { /* 1.5s - reaches Card 2 */
+        stroke-dashoffset: 820;
+        opacity: 1;
+      }
+      25% { /* 3.0s - reaches Card 3 */
+        stroke-dashoffset: 640;
+      }
+      41.67% { /* 5.0s - reaches Card 4 */
+        stroke-dashoffset: 460;
+      }
+      58.33% { /* 7.0s - reaches Card 5 */
+        stroke-dashoffset: 280;
+      }
+      70.83% { /* 8.5s - reaches Card 6 */
+        stroke-dashoffset: 140;
+      }
+      79.17% { /* 9.5s - reaches Center */
+        stroke-dashoffset: 0;
+      }
+      95.83% { /* 11.5s */
+        stroke-dashoffset: 0;
+        opacity: 1;
+        filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.8));
+      }
+      100% { /* 12.0s */
+        stroke-dashoffset: 0;
+        opacity: 0.4;
+      }
+    }
+
+    .v4-j-node-beacon {
+      fill: #FFFFFF;
+      stroke: #7C3AED;
+      stroke-width: 2;
+      animation: jBeaconPulse 12s ease-in-out infinite;
+    }
+    .v4-j-node-1 { animation-delay: 0s; }
+    .v4-j-node-2 { animation-delay: 1.5s; stroke: #7C3AED; }
+    .v4-j-node-3 { animation-delay: 3.0s; stroke: #3B82F6; }
+    .v4-j-node-4 { animation-delay: 5.0s; stroke: #EC4899; }
+    .v4-j-node-5 { animation-delay: 7.0s; stroke: #F59E0B; }
+    .v4-j-node-6 { animation-delay: 8.5s; stroke: #10B981; }
+    .v4-j-node-center { animation-delay: 9.5s; fill: #A855F7; stroke: #FFFFFF; stroke-width: 2; }
+
+    @keyframes jBeaconPulse {
+      0%, 90% { transform-origin: center; transform: scale(1); filter: drop-shadow(0 0 0 rgba(124, 58, 237, 0)); }
+      10%, 20% { transform-origin: center; transform: scale(1.4); filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.8)); }
+    }
+
+    /* Travelling Photon Comet Particles */
+    .v4-j-comet {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 0 12px 3px rgba(168, 85, 247, 0.9), 0 0 4px #FFFFFF;
+      offset-path: path("M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175");
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    .v4-j-comet-1 { animation: jComet1 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+    @keyframes jComet1 {
+      0% { offset-distance: 0%; opacity: 0; }
+      2% { opacity: 1; }
+      12.5% { offset-distance: 18%; opacity: 1; }
+      13.5% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .v4-j-comet-2 { animation: jComet2 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+    @keyframes jComet2 {
+      0%, 12.5% { offset-distance: 18%; opacity: 0; }
+      14% { opacity: 1; }
+      25% { offset-distance: 36%; opacity: 1; }
+      26% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .v4-j-comet-3 { animation: jComet3 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+    @keyframes jComet3 {
+      0%, 25% { offset-distance: 36%; opacity: 0; }
+      27% { opacity: 1; }
+      41.67% { offset-distance: 54%; opacity: 1; }
+      43% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .v4-j-comet-4 { animation: jComet4 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+    @keyframes jComet4 {
+      0%, 41.67% { offset-distance: 54%; opacity: 0; }
+      43.5% { opacity: 1; }
+      58.33% { offset-distance: 72%; opacity: 1; }
+      59.5% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .v4-j-comet-5 { animation: jComet5 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+    @keyframes jComet5 {
+      0%, 58.33% { offset-distance: 72%; opacity: 0; }
+      60% { opacity: 1; }
+      79.17% { offset-distance: 100%; opacity: 1; }
+      81% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    .v4-j-comet-grand {
+      animation: jCometGrand 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      width: 10px;
+      height: 10px;
+      box-shadow: 0 0 16px 4px rgba(168, 85, 247, 1), 0 0 6px #FFFFFF;
+    }
+    @keyframes jCometGrand {
+      0%, 79.17% { offset-distance: 0%; opacity: 0; }
+      80% { opacity: 1; }
+      93% { offset-distance: 100%; opacity: 1; }
+      95% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Keyframe Animations for Node Cards 1 - 6 */
+    @keyframes jCard1Motion {
+      0% { opacity: 0; transform: translateY(-8px) scale(0.96); border-color: #E2E8F0; }
+      8.33% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(124, 58, 237, 0.5); box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.28); }
+      12.5% { opacity: 1; transform: translateY(0) scale(1.0); }
+      95% { opacity: 1; transform: translateY(0) scale(1.0); }
+      100% { opacity: 0; transform: translateY(-8px) scale(0.96); }
+    }
+
+    @keyframes jCard2Motion {
+      0%, 10% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+      12.5% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #7C3AED; box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.3); }
+      25% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(124, 58, 237, 0.4); }
+      95% { opacity: 1; transform: translateY(0) scale(1.0); }
+      100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+    }
+
+    @keyframes jCard3Motion {
+      0%, 22% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+      25% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.3); }
+      37.5% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(59, 130, 246, 0.4); }
+      95% { opacity: 1; transform: translateY(0) scale(1.0); }
+      100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+    }
+
+    @keyframes jCard4Motion {
+      0%, 38% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+      41.67% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.3); }
+      58.33% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(236, 72, 153, 0.4); }
+      95% { opacity: 1; transform: translateY(0) scale(1.0); }
+      100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+    }
+
+    @keyframes jCard5Motion {
+      0%, 55% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+      58.33% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #F59E0B; box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.3); }
+      70.83% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(245, 158, 11, 0.4); }
+      95% { opacity: 1; transform: translateY(0) scale(1.0); }
+      100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+    }
+
+    @keyframes jCard6Motion {
+      0%, 68% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+      70.83% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.3); }
+      79.17% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(16, 185, 129, 0.4); }
+      95% { opacity: 1; transform: translateY(0) scale(1.0); }
+      100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+    }
+
+    /* Mobile adjustments for Page 3 */
+    @media (max-width: 640px) {
+      .v4-j-card {
+        width: 140px;
+        height: 52px;
+        padding: 6px 8px;
+        gap: 6px;
+      }
+      .v4-j-card-1 { left: 6px; }
+      .v4-j-card-2 { left: 50%; transform: translateX(-50%); }
+      .v4-j-card-3 { right: 6px; }
+      .v4-j-card-4 { right: 6px; }
+      .v4-j-card-5 { left: 50%; transform: translateX(-50%); }
+      .v4-j-card-6 { left: 6px; }
+      .v4-j-payoff-capsule {
+        width: 260px;
+        min-height: 44px;
+        padding: 5px 12px;
+      }
+      .v4-j-payoff-title {
+        font-size: 10px;
+      }
+    }
+
+    /* Accessibility Fallback for Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .v4-j-spline-active,
+      .v4-j-card,
+      .v4-j-payoff-capsule,
+      .v4-j-progress-fill,
+      .v4-j-comet,
+      .v4-j-online-dot,
+      .v4-j-node-beacon,
+      .v4-j-status-filling,
+      .v4-j-status-done,
+      .v4-j-status-upcoming,
+      .v4-j-status-progress,
+      .v4-j-status-completed {
+        animation: none !important;
+        transition: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .v4-j-payoff-capsule {
+        transform: translate(-50%, -50%) !important;
+      }
+      .v4-j-spline-active {
+        stroke-dashoffset: 0 !important;
+      }
+      .v4-j-progress-fill {
+        width: 100% !important;
+      }
+      .v4-j-status-upcoming,
+      .v4-j-status-progress,
+      .v4-j-status-filling {
+        display: none !important;
+      }
+      .v4-j-status-done,
+      .v4-j-status-completed {
+        opacity: 1 !important;
+        display: inline !important;
+      }
+    }
+
+    /* ==========================================================================
+       BOTTOM PAGINATION DOCK (PAGE 1 vs PAGE 2 vs PAGE 3 SWITCHER)
        ========================================================================== */
     .viewport-canvas.view4-mode {
       padding-bottom: 74px;
@@ -4711,6 +5428,370 @@
     </div> <!-- /#login-view-2 -->
 
     <!-- ==========================================================================
+         PAGE 3: THE EMPLOYEE JOURNEY
+         ========================================================================== -->
+    <div id="login-view-3" class="login-view-wrapper" data-page="3">
+      <div id="page-3" style="display:contents;">
+        <div class="v4-layout-container">
+          
+          <!-- LEFT COLUMN: HERO SHOWCASE WITH THE EMPLOYEE JOURNEY ANIMATION -->
+          <section class="v4-hero-section">
+            <!-- Brand Logo Header & People Performance Progress Subtag -->
+            <div class="v4-brand-top-row">
+              <div class="v4-brand-logo">
+                <div class="v4-logo-mark">H</div>
+                <div class="v4-brand-wordmark">Hirerkey<span>.</span></div>
+              </div>
+              <div class="v4-subtag-pill">
+                <span>PEOPLE • PERFORMANCE • PROGRESS</span>
+              </div>
+            </div>
+
+            <!-- Headline (Exact match: Make worklife easy) -->
+            <h1 class="v4-hero-headline">
+              Make worklife <span class="v4-highlight-purple">easy</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="v4-hero-subtitle">
+              Everything you need to build, manage and grow a high-performing team.
+            </p>
+
+            <!-- ANIMATED WORKFLOW STAGE (THE EMPLOYEE JOURNEY) -->
+            <div class="v4-workflow-stage" id="v4WorkflowStageJourney">
+              <!-- Master Curving Spline SVG & Anchor Beacons -->
+              <svg class="v4-flow-lines-svg" viewBox="0 0 540 350" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="v4GradJourney" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#8B5CF6" />
+                    <stop offset="25%" stop-color="#7C3AED" />
+                    <stop offset="50%" stop-color="#3B82F6" />
+                    <stop offset="75%" stop-color="#EC4899" />
+                    <stop offset="100%" stop-color="#10B981" />
+                  </linearGradient>
+                  <filter id="v4JourneyGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3" result="glow" />
+                    <feMerge>
+                      <feMergeNode in="glow" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Base Ambient Dashed Spline Track -->
+                <path class="v4-j-track-base" pathLength="1000" d="M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175" />
+
+                <!-- Progressive Animated Flow Spline (1000px Arc Length) -->
+                <path class="v4-j-spline-active" pathLength="1000" stroke="url(#v4GradJourney)" filter="url(#v4JourneyGlow)" d="M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175" />
+
+                <!-- Node Connection Anchor Beacons -->
+                <circle class="v4-j-node-beacon v4-j-node-1" cx="94" cy="41" r="3.5" />
+                <circle class="v4-j-node-beacon v4-j-node-2" cx="270" cy="41" r="3.5" />
+                <circle class="v4-j-node-beacon v4-j-node-3" cx="446" cy="41" r="3.5" />
+                <circle class="v4-j-node-beacon v4-j-node-4" cx="446" cy="309" r="3.5" />
+                <circle class="v4-j-node-beacon v4-j-node-5" cx="270" cy="309" r="3.5" />
+                <circle class="v4-j-node-beacon v4-j-node-6" cx="94" cy="309" r="3.5" />
+                <circle class="v4-j-node-beacon v4-j-node-center" cx="270" cy="175" r="4.5" />
+              </svg>
+
+              <!-- Travelling Photon Comet Particles -->
+              <div class="v4-j-comet v4-j-comet-1"></div>
+              <div class="v4-j-comet v4-j-comet-2"></div>
+              <div class="v4-j-comet v4-j-comet-3"></div>
+              <div class="v4-j-comet v4-j-comet-4"></div>
+              <div class="v4-j-comet v4-j-comet-5"></div>
+              <div class="v4-j-comet v4-j-comet-grand"></div>
+
+              <!-- CARD 1: PROFILE CARD (Alex Chen • Product Designer) -->
+              <div class="v4-j-card v4-j-card-1">
+                <div class="v4-j-avatar-wrap">
+                  <div class="v4-j-avatar">AC</div>
+                  <span class="v4-j-online-dot"></span>
+                </div>
+                <div class="v4-j-meta">
+                  <div class="v4-j-tag-row">
+                    <span class="v4-j-tag-new">New employee</span>
+                  </div>
+                  <div class="v4-j-title">Alex Chen</div>
+                  <div class="v4-j-sub">Product Designer</div>
+                </div>
+              </div>
+
+              <!-- CARD 2: MILESTONE 1 (01 • Onboarding) -->
+              <div class="v4-j-card v4-j-card-2">
+                <div class="v4-j-icon-box v4-j-icon-purple">🚀</div>
+                <div class="v4-j-meta">
+                  <div class="v4-j-tag">01 • ONBOARDING</div>
+                  <div class="v4-j-title">Onboarding</div>
+                  <div class="v4-j-progress-row">
+                    <div class="v4-j-progress-track">
+                      <div class="v4-j-progress-fill"></div>
+                    </div>
+                    <div class="v4-j-status-swap">
+                      <span class="v4-j-status-filling">In Progress</span>
+                      <span class="v4-j-status-done">Completed ✓</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 3: MILESTONE 2 (02 • Orientation) -->
+              <div class="v4-j-card v4-j-card-3">
+                <div class="v4-j-icon-box v4-j-icon-blue">🧭</div>
+                <div class="v4-j-meta">
+                  <div class="v4-j-tag">02 • ORIENTATION</div>
+                  <div class="v4-j-title">Orientation</div>
+                  <div class="v4-j-sub-row">
+                    <span class="v4-j-sub">Workplace intro</span>
+                    <span class="v4-j-badge-done">Completed ✓</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 4: MILESTONE 3 (03 • Department Tour) -->
+              <div class="v4-j-card v4-j-card-4">
+                <div class="v4-j-icon-box v4-j-icon-pink">🏢</div>
+                <div class="v4-j-meta">
+                  <div class="v4-j-tag">03 • DEPARTMENT TOUR</div>
+                  <div class="v4-j-title">Department Tour</div>
+                  <div class="v4-j-sub-row">
+                    <span class="v4-j-sub">Sales &amp; Marketing</span>
+                    <div class="v4-j-stage-status">
+                      <span class="v4-j-status-upcoming">Upcoming</span>
+                      <span class="v4-j-status-progress">In Progress</span>
+                      <span class="v4-j-status-completed">Completed ✓</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 5: MILESTONE 4 (04 • Tasks & Activities) -->
+              <div class="v4-j-card v4-j-card-5">
+                <div class="v4-j-icon-box v4-j-icon-amber">⚡</div>
+                <div class="v4-j-meta">
+                  <div class="v4-j-tag">04 • TASKS &amp; ACTIVITIES</div>
+                  <div class="v4-j-title">Tasks &amp; Activities</div>
+                  <div class="v4-j-sub-row">
+                    <span class="v4-j-sub">Complete orientation</span>
+                    <span class="v4-j-badge-done">Completed ✓</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CARD 6: MILESTONE 5 (05 • Performance & Check-ins) -->
+              <div class="v4-j-card v4-j-card-6">
+                <div class="v4-j-icon-box v4-j-icon-green">🎯</div>
+                <div class="v4-j-meta">
+                  <div class="v4-j-tag">05 • PERFORMANCE &amp; CHECK-INS</div>
+                  <div class="v4-j-title">1-on-1 Check-ins</div>
+                  <div class="v4-j-goal-row">
+                    <span class="v4-j-goal-pill">Goal 96%</span>
+                    <span class="v4-j-status-ontrack">On Track ✓</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CENTRAL PAYOFF CAPSULE (Scene 7 Bloom) -->
+              <div class="v4-j-payoff-capsule" id="v4JourneyPayoffCapsule">
+                <div class="v4-j-payoff-icon">✨</div>
+                <div class="v4-j-payoff-content">
+                  <div class="v4-j-payoff-title">Your journey, connected with Hirerkey.</div>
+                  <div class="v4-j-payoff-subtitle">
+                    <span class="v4-j-payoff-live-dot"></span>
+                    <span>Empowered from Day 1</span>
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- /#v4WorkflowStageJourney -->
+
+            <!-- Hand-Drawn Annotation Below Workflow -->
+            <div class="v4-annotation-row">
+              <span class="v4-annotation-text">Connected from onboarding to impact!</span>
+              <svg class="v4-annotation-arrow" viewBox="0 0 44 24">
+                <path d="M 4 20 C 18 22, 28 8, 38 4" stroke-dasharray="2 2"/>
+                <path d="M 32 4 L 38 4 L 38 10" />
+              </svg>
+            </div>
+          </section>
+
+          <!-- RIGHT COLUMN: AUTHENTICATION FORM (EXACT MATCH & SYNCHRONIZED) -->
+          <section class="v4-form-card">
+            <h2 class="v4-form-title">Welcome back</h2>
+            <p class="v4-form-subtitle">Choose your preferred sign-in method</p>
+
+            <!-- Segmented Auth Mode Switcher -->
+            <div class="v4-tab-track">
+              <button type="button" id="tab-v4-otp-p3" class="v4-tab-btn active" onclick="switchV4AuthMode('otp')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+                  <path d="M3 7l9 6 9-6"></path>
+                </svg>
+                <span>Email OTP</span>
+              </button>
+              <button type="button" id="tab-v4-pwd-p3" class="v4-tab-btn" onclick="switchV4AuthMode('password')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Password</span>
+              </button>
+            </div>
+
+            <!-- STEP 1: EMAIL FOR OTP -->
+            <div id="v4-step-email-otp-p3" class="auth-step">
+              <form id="v4-email-otp-form-p3" onsubmit="handleV4SendOTP(event)">
+                <div class="v4-field-group">
+                  <label class="v4-field-label" for="v4-email-otp-input-p3">Work Email Address</label>
+                  <div class="v4-input-shell">
+                    <span class="v4-input-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+                        <path d="M3 7l9 6 9-6"></path>
+                      </svg>
+                    </span>
+                    <input 
+                      type="email" 
+                      id="v4-email-otp-input-p3" 
+                      class="v4-text-input" 
+                      placeholder="alex.chen@earthhotels.com" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                      autocomplete="email"
+                    />
+                  </div>
+                </div>
+
+                <button type="submit" id="btn-v4-send-otp-p3" class="v4-btn-primary">
+                  <span>Send One-Time Password</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- STEP 2: 6-DIGIT OTP VERIFICATION -->
+            <div id="v4-step-otp-verify-p3" class="auth-step hidden">
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 20px;">We sent a 6-digit code to <strong id="v4-sent-target-email-p3" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+              <form id="v4-otp-verify-form-p3" onsubmit="handleV4VerifyOTP(event)">
+                <div class="v4-otp-grid">
+                  <input type="text" maxlength="1" inputmode="numeric" class="v4-otp-digit v4-otp-digit-p3" autocomplete="one-time-code" autofocus />
+                  <input type="text" maxlength="1" inputmode="numeric" class="v4-otp-digit v4-otp-digit-p3" />
+                  <input type="text" maxlength="1" inputmode="numeric" class="v4-otp-digit v4-otp-digit-p3" />
+                  <input type="text" maxlength="1" inputmode="numeric" class="v4-otp-digit v4-otp-digit-p3" />
+                  <input type="text" maxlength="1" inputmode="numeric" class="v4-otp-digit v4-otp-digit-p3" />
+                  <input type="text" maxlength="1" inputmode="numeric" class="v4-otp-digit v4-otp-digit-p3" />
+                </div>
+
+                <div class="v4-resend-row">
+                  <span id="v4-countdown-text-p3">Resend in <strong id="v4-timer-val-p3" style="color: #7C3AED;">0:29</strong></span>
+                  <a href="javascript:void(0)" id="btn-v4-resend-p3" class="v4-recovery-link" style="display: none; font-weight: 700;" onclick="resendV4Code()">Resend OTP</a>
+                </div>
+
+                <button type="submit" id="btn-v4-verify-otp-p3" class="v4-btn-primary">
+                  <span>Verify and Sign In</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v4-recovery-link" onclick="switchV4ToEmailStep()">Use different email</a>
+              </div>
+            </div>
+
+            <!-- STEP 3: WORK EMAIL + PASSWORD LOGIN -->
+            <div id="v4-step-password-p3" class="auth-step hidden">
+              <form id="v4-password-form-p3" onsubmit="handleV4PasswordLogin(event)">
+                <div class="v4-field-group">
+                  <label class="v4-field-label" for="v4-email-pwd-input-p3">Work Email Address</label>
+                  <div class="v4-input-shell">
+                    <span class="v4-input-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="5" width="18" height="14" rx="3"></rect>
+                        <path d="M3 7l9 6 9-6"></path>
+                      </svg>
+                    </span>
+                    <input 
+                      type="email" 
+                      id="v4-email-pwd-input-p3" 
+                      class="v4-text-input" 
+                      placeholder="alex.chen@earthhotels.com" 
+                      value="alex.chen@earthhotels.com"
+                      required 
+                      autocomplete="email"
+                    />
+                  </div>
+                </div>
+
+                <div class="v4-field-group">
+                  <label class="v4-field-label" for="v4-password-input-p3">Password</label>
+                  <div class="v4-input-shell">
+                    <span class="v4-input-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    </span>
+                    <input 
+                      type="password" 
+                      id="v4-password-input-p3" 
+                      class="v4-text-input" 
+                      placeholder="••••••••••••" 
+                      value="EarthHotels2026!#"
+                      required 
+                      autocomplete="current-password"
+                    />
+                    <button type="button" class="v4-pwd-toggle" onclick="toggleV4Password()" aria-label="Toggle password visibility">
+                      <svg id="v4-eye-icon-p3" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="v4-checkbox-row">
+                  <label class="v4-checkbox-label">
+                    <input type="checkbox" id="v4-remember-checkbox-p3" class="v4-checkbox" checked />
+                    <span>Keep me signed in</span>
+                  </label>
+                  <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Forgot password?</a>
+                </div>
+
+                <button type="submit" id="btn-v4-signin-p3" class="v4-btn-primary">
+                  <span>Sign in</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- Can't access your login email recovery link -->
+            <div class="v4-recovery-row" style="margin-top: 24px;">
+              <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Can't access your login email?</a>
+            </div>
+
+            <!-- Legal Footer -->
+            <p class="v4-legal-footer">
+              By continuing, you agree to our 
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')">Terms of Use</a> and 
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')">Privacy Policy</a>.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </div> <!-- /#login-view-3 -->
+
+
+    <!-- ==========================================================================
          SLEEK BOTTOM PAGINATION DOCK (PAGE 1 vs PAGE 2 SWITCHER)
          ========================================================================== -->
     <nav class="v4-pagination-dock" aria-label="Page navigation">
@@ -4723,8 +5804,14 @@
       <button type="button" class="v4-page-btn" id="btn-page-2" onclick="switchPage(2)" aria-label="Page 2: The Living Dashboard" title="The Living Dashboard (Key 2)">
         <span class="v4-page-circle">②</span>
         <span class="v4-page-title">Living Dashboard</span>
-        <span class="v4-page-badge">New</span>
         <span class="v4-shortcut-hint">2</span>
+      </button>
+      <div class="v4-page-dock-divider"></div>
+      <button type="button" class="v4-page-btn" id="btn-page-3" onclick="switchPage(3)" aria-label="Page 3: The Employee Journey" title="The Employee Journey (Key 3)">
+        <span class="v4-page-circle">③</span>
+        <span class="v4-page-title">Employee Journey</span>
+        <span class="v4-page-badge">New</span>
+        <span class="v4-shortcut-hint">3</span>
       </button>
     </nav>
 
@@ -4804,59 +5891,68 @@
     }
 
     // ==========================================================================
-    // PAGE NAVIGATION CONTROLLER (PAGE 1 vs PAGE 2)
+    // PAGE NAVIGATION CONTROLLER (PAGE 1 vs PAGE 2 vs PAGE 3)
     // ==========================================================================
     function switchPage(page) {
       const p1 = document.getElementById('login-view-1');
       const p2 = document.getElementById('login-view-2');
+      const p3 = document.getElementById('login-view-3');
       const btn1 = document.getElementById('btn-page-1');
       const btn2 = document.getElementById('btn-page-2');
+      const btn3 = document.getElementById('btn-page-3');
 
-      if (page === 1) {
-        if (p1) p1.classList.add('active');
-        if (p2) p2.classList.remove('active');
-        if (btn1) {
-          btn1.classList.add('active');
-          btn1.setAttribute('aria-selected', 'true');
+      const pages = [p1, p2, p3];
+      const btns = [btn1, btn2, btn3];
+
+      pages.forEach((p, idx) => {
+        if (!p) return;
+        if (idx + 1 === page) {
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
         }
-        if (btn2) {
-          btn2.classList.remove('active');
-          btn2.setAttribute('aria-selected', 'false');
+      });
+
+      btns.forEach((btn, idx) => {
+        if (!btn) return;
+        if (idx + 1 === page) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-selected', 'true');
+        } else {
+          btn.classList.remove('active');
+          btn.setAttribute('aria-selected', 'false');
         }
-        try { localStorage.setItem('hirerkey_login_page', '1'); } catch (err) {}
-      } else if (page === 2) {
-        if (p2) p2.classList.add('active');
-        if (p1) p1.classList.remove('active');
-        if (btn2) {
-          btn2.classList.add('active');
-          btn2.setAttribute('aria-selected', 'true');
-        }
-        if (btn1) {
-          btn1.classList.remove('active');
-          btn1.setAttribute('aria-selected', 'false');
-        }
-        try { localStorage.setItem('hirerkey_login_page', '2'); } catch (err) {}
-      }
+      });
+
+      try { localStorage.setItem('hirerkey_login_page', String(page)); } catch (err) {}
     }
 
-    // Keyboard Shortcuts: [1], [2], [ArrowLeft], [ArrowRight]
+    // Keyboard Shortcuts: [1], [2], [3], [ArrowLeft], [ArrowRight]
     document.addEventListener('keydown', (e) => {
       const target = e.target;
       if (target && (['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || target.isContentEditable)) {
         return;
       }
+      let current = 1;
+      if (document.getElementById('login-view-2') && document.getElementById('login-view-2').classList.contains('active')) current = 2;
+      else if (document.getElementById('login-view-3') && document.getElementById('login-view-3').classList.contains('active')) current = 3;
+
       if (e.key === '1') {
         switchPage(1);
       } else if (e.key === '2') {
         switchPage(2);
+      } else if (e.key === '3') {
+        switchPage(3);
       } else if (e.key === 'ArrowLeft') {
-        switchPage(1);
+        const prev = current === 1 ? 3 : current - 1;
+        switchPage(prev);
       } else if (e.key === 'ArrowRight') {
-        switchPage(2);
+        const next = current === 3 ? 1 : current + 1;
+        switchPage(next);
       }
     });
 
-    // Hash & Query Param URL routing (#page-1, #page-2, #view1, #view2, ?page=1, ?page=2)
+    // Hash & Query Param URL routing (#page-1, #page-2, #page-3, #view1, #view2, #view3, #journey, ?page=1, 2, 3)
     document.addEventListener('DOMContentLoaded', () => {
       const hash = (window.location.hash || '').toLowerCase();
       const params = new URLSearchParams(window.location.search);
@@ -4864,10 +5960,14 @@
       let stored = null;
       try { stored = localStorage.getItem('hirerkey_login_page'); } catch (err) {}
 
-      if (hash === '#page-2' || hash === '#view2' || hash === '#view-2' || hash === '#living' || pageParam === '2') {
+      if (hash === '#page-3' || hash === '#view3' || hash === '#view-3' || hash === '#journey' || pageParam === '3') {
+        switchPage(3);
+      } else if (hash === '#page-2' || hash === '#view2' || hash === '#view-2' || hash === '#living' || pageParam === '2') {
         switchPage(2);
       } else if (hash === '#page-1' || hash === '#view1' || hash === '#view-1' || hash === '#ecosystem' || pageParam === '1') {
         switchPage(1);
+      } else if (stored === '3') {
+        switchPage(3);
       } else if (stored === '2') {
         switchPage(2);
       } else {
@@ -4876,7 +5976,7 @@
     });
 
     // ==========================================================================
-    // AUTHENTICATION MODE SWITCHER (OTP vs PASSWORD) - SYNCS BOTH PAGES
+    // AUTHENTICATION MODE SWITCHER (OTP vs PASSWORD) - SYNCS ALL 3 PAGES
     // ==========================================================================
     function switchV4AuthMode(mode) {
       const tabOtp1 = document.getElementById('tab-v4-otp');
@@ -4891,30 +5991,27 @@
       const stepPassword2 = document.getElementById('v4-step-password-p2');
       const stepOtpVerify2 = document.getElementById('v4-step-otp-verify-p2');
 
+      const tabOtp3 = document.getElementById('tab-v4-otp-p3');
+      const tabPwd3 = document.getElementById('tab-v4-pwd-p3');
+      const stepEmailOtp3 = document.getElementById('v4-step-email-otp-p3');
+      const stepPassword3 = document.getElementById('v4-step-password-p3');
+      const stepOtpVerify3 = document.getElementById('v4-step-otp-verify-p3');
+
       clearInterval(v4OtpTimerInterval);
       if (stepOtpVerify1) stepOtpVerify1.classList.add('hidden');
       if (stepOtpVerify2) stepOtpVerify2.classList.add('hidden');
+      if (stepOtpVerify3) stepOtpVerify3.classList.add('hidden');
 
       if (mode === 'otp') {
-        if (tabOtp1) tabOtp1.classList.add('active');
-        if (tabPwd1) tabPwd1.classList.remove('active');
-        if (stepEmailOtp1) stepEmailOtp1.classList.remove('hidden');
-        if (stepPassword1) stepPassword1.classList.add('hidden');
-
-        if (tabOtp2) tabOtp2.classList.add('active');
-        if (tabPwd2) tabPwd2.classList.remove('active');
-        if (stepEmailOtp2) stepEmailOtp2.classList.remove('hidden');
-        if (stepPassword2) stepPassword2.classList.add('hidden');
+        [tabOtp1, tabOtp2, tabOtp3].forEach(t => t && t.classList.add('active'));
+        [tabPwd1, tabPwd2, tabPwd3].forEach(t => t && t.classList.remove('active'));
+        [stepEmailOtp1, stepEmailOtp2, stepEmailOtp3].forEach(s => s && s.classList.remove('hidden'));
+        [stepPassword1, stepPassword2, stepPassword3].forEach(s => s && s.classList.add('hidden'));
       } else {
-        if (tabPwd1) tabPwd1.classList.add('active');
-        if (tabOtp1) tabOtp1.classList.remove('active');
-        if (stepPassword1) stepPassword1.classList.remove('hidden');
-        if (stepEmailOtp1) stepEmailOtp1.classList.add('hidden');
-
-        if (tabPwd2) tabPwd2.classList.add('active');
-        if (tabOtp2) tabOtp2.classList.remove('active');
-        if (stepPassword2) stepPassword2.classList.remove('hidden');
-        if (stepEmailOtp2) stepEmailOtp2.classList.add('hidden');
+        [tabPwd1, tabPwd2, tabPwd3].forEach(t => t && t.classList.add('active'));
+        [tabOtp1, tabOtp2, tabOtp3].forEach(t => t && t.classList.remove('active'));
+        [stepPassword1, stepPassword2, stepPassword3].forEach(s => s && s.classList.remove('hidden'));
+        [stepEmailOtp1, stepEmailOtp2, stepEmailOtp3].forEach(s => s && s.classList.add('hidden'));
       }
     }
 
@@ -4925,7 +6022,10 @@
       e.preventDefault();
       const emailInput1 = document.getElementById('v4-email-otp-input');
       const emailInput2 = document.getElementById('v4-email-otp-input-p2');
-      const emailVal = (emailInput1 && emailInput1.value.trim()) || (emailInput2 && emailInput2.value.trim()) || '';
+      const emailInput3 = document.getElementById('v4-email-otp-input-p3');
+      const emailVal = (emailInput1 && emailInput1.value.trim()) || 
+                       (emailInput2 && emailInput2.value.trim()) || 
+                       (emailInput3 && emailInput3.value.trim()) || '';
       if (!emailVal) return;
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -4934,31 +6034,31 @@
         return;
       }
 
-      if (emailInput1) emailInput1.value = emailVal;
-      if (emailInput2) emailInput2.value = emailVal;
+      [emailInput1, emailInput2, emailInput3].forEach(inp => { if (inp) inp.value = emailVal; });
 
       const targetEl1 = document.getElementById('v4-sent-target-email');
       const targetEl2 = document.getElementById('v4-sent-target-email-p2');
-      if (targetEl1) targetEl1.textContent = emailVal;
-      if (targetEl2) targetEl2.textContent = emailVal;
+      const targetEl3 = document.getElementById('v4-sent-target-email-p3');
+      [targetEl1, targetEl2, targetEl3].forEach(t => { if (t) t.textContent = emailVal; });
 
       const stepEmail1 = document.getElementById('v4-step-email-otp');
       const stepVerify1 = document.getElementById('v4-step-otp-verify');
-      if (stepEmail1) stepEmail1.classList.add('hidden');
-      if (stepVerify1) stepVerify1.classList.remove('hidden');
-
       const stepEmail2 = document.getElementById('v4-step-email-otp-p2');
       const stepVerify2 = document.getElementById('v4-step-otp-verify-p2');
-      if (stepEmail2) stepEmail2.classList.add('hidden');
-      if (stepVerify2) stepVerify2.classList.remove('hidden');
+      const stepEmail3 = document.getElementById('v4-step-email-otp-p3');
+      const stepVerify3 = document.getElementById('v4-step-otp-verify-p3');
+
+      [stepEmail1, stepEmail2, stepEmail3].forEach(s => s && s.classList.add('hidden'));
+      [stepVerify1, stepVerify2, stepVerify3].forEach(s => s && s.classList.remove('hidden'));
 
       showToast(`6-digit OTP code dispatched to ${emailVal}`);
       startV4OtpTimer();
 
-      const isPage2 = document.getElementById('login-view-2') && document.getElementById('login-view-2').classList.contains('active');
-      const firstBox = isPage2 
-        ? document.querySelector('.v4-otp-digit-p2')
-        : document.querySelector('.v4-otp-digit');
+      const isP3 = document.getElementById('login-view-3') && document.getElementById('login-view-3').classList.contains('active');
+      const isP2 = document.getElementById('login-view-2') && document.getElementById('login-view-2').classList.contains('active');
+      const firstBox = isP3 
+        ? document.querySelector('.v4-otp-digit-p3')
+        : (isP2 ? document.querySelector('.v4-otp-digit-p2') : document.querySelector('#login-view-1 .v4-otp-digit'));
       if (firstBox) firstBox.focus();
     }
 
@@ -4967,28 +6067,26 @@
       v4SecondsRemaining = 29;
       const timerVal1 = document.getElementById('v4-timer-val');
       const timerVal2 = document.getElementById('v4-timer-val-p2');
+      const timerVal3 = document.getElementById('v4-timer-val-p3');
       const countdownText1 = document.getElementById('v4-countdown-text');
       const countdownText2 = document.getElementById('v4-countdown-text-p2');
+      const countdownText3 = document.getElementById('v4-countdown-text-p3');
       const btnResend1 = document.getElementById('btn-v4-resend');
       const btnResend2 = document.getElementById('btn-v4-resend-p2');
+      const btnResend3 = document.getElementById('btn-v4-resend-p3');
 
-      if (countdownText1) countdownText1.style.display = 'inline';
-      if (countdownText2) countdownText2.style.display = 'inline';
-      if (btnResend1) btnResend1.style.display = 'none';
-      if (btnResend2) btnResend2.style.display = 'none';
+      [countdownText1, countdownText2, countdownText3].forEach(t => { if (t) t.style.display = 'inline'; });
+      [btnResend1, btnResend2, btnResend3].forEach(b => { if (b) b.style.display = 'none'; });
 
       v4OtpTimerInterval = setInterval(() => {
         v4SecondsRemaining--;
         if (v4SecondsRemaining <= 0) {
           clearInterval(v4OtpTimerInterval);
-          if (countdownText1) countdownText1.style.display = 'none';
-          if (countdownText2) countdownText2.style.display = 'none';
-          if (btnResend1) btnResend1.style.display = 'inline';
-          if (btnResend2) btnResend2.style.display = 'inline';
+          [countdownText1, countdownText2, countdownText3].forEach(t => { if (t) t.style.display = 'none'; });
+          [btnResend1, btnResend2, btnResend3].forEach(b => { if (b) b.style.display = 'inline'; });
         } else {
           const str = `0:${v4SecondsRemaining < 10 ? '0' + v4SecondsRemaining : v4SecondsRemaining}`;
-          if (timerVal1) timerVal1.textContent = str;
-          if (timerVal2) timerVal2.textContent = str;
+          [timerVal1, timerVal2, timerVal3].forEach(t => { if (t) t.textContent = str; });
         }
       }, 1000);
     }
@@ -5002,21 +6100,22 @@
       clearInterval(v4OtpTimerInterval);
       const stepEmail1 = document.getElementById('v4-step-email-otp');
       const stepVerify1 = document.getElementById('v4-step-otp-verify');
-      if (stepVerify1) stepVerify1.classList.add('hidden');
-      if (stepEmail1) stepEmail1.classList.remove('hidden');
-
       const stepEmail2 = document.getElementById('v4-step-email-otp-p2');
       const stepVerify2 = document.getElementById('v4-step-otp-verify-p2');
-      if (stepVerify2) stepVerify2.classList.add('hidden');
-      if (stepEmail2) stepEmail2.classList.remove('hidden');
+      const stepEmail3 = document.getElementById('v4-step-email-otp-p3');
+      const stepVerify3 = document.getElementById('v4-step-otp-verify-p3');
+
+      [stepVerify1, stepVerify2, stepVerify3].forEach(s => s && s.classList.add('hidden'));
+      [stepEmail1, stepEmail2, stepEmail3].forEach(s => s && s.classList.remove('hidden'));
     }
 
     function handleV4VerifyOTP(e) {
       e.preventDefault();
-      const isPage2 = document.getElementById('login-view-2') && document.getElementById('login-view-2').classList.contains('active');
-      const boxes = isPage2 
-        ? document.querySelectorAll('.v4-otp-digit-p2')
-        : document.querySelectorAll('#login-view-1 .v4-otp-digit');
+      const isP3 = document.getElementById('login-view-3') && document.getElementById('login-view-3').classList.contains('active');
+      const isP2 = document.getElementById('login-view-2') && document.getElementById('login-view-2').classList.contains('active');
+      const boxes = isP3 
+        ? document.querySelectorAll('.v4-otp-digit-p3')
+        : (isP2 ? document.querySelectorAll('.v4-otp-digit-p2') : document.querySelectorAll('#login-view-1 .v4-otp-digit'));
       let code = '';
       boxes.forEach(b => code += b.value.trim());
 
@@ -5028,14 +6127,13 @@
       showToast('Authentication verified! Loading workspace...');
       const btn1 = document.getElementById('btn-v4-verify-otp');
       const btn2 = document.getElementById('btn-v4-verify-otp-p2');
-      if (btn1) {
-        btn1.innerHTML = '<span>Verifying...</span>';
-        btn1.style.opacity = '0.7';
-      }
-      if (btn2) {
-        btn2.innerHTML = '<span>Verifying...</span>';
-        btn2.style.opacity = '0.7';
-      }
+      const btn3 = document.getElementById('btn-v4-verify-otp-p3');
+      [btn1, btn2, btn3].forEach(btn => {
+        if (btn) {
+          btn.innerHTML = '<span>Verifying...</span>';
+          btn.style.opacity = '0.7';
+        }
+      });
 
       setTimeout(() => {
         navigateToDashboard();
@@ -5044,13 +6142,14 @@
 
     function handleV4PasswordLogin(e) {
       e.preventDefault();
-      const isPage2 = document.getElementById('login-view-2') && document.getElementById('login-view-2').classList.contains('active');
-      const emailInput = isPage2
-        ? document.getElementById('v4-email-pwd-input-p2')
-        : document.getElementById('v4-email-pwd-input');
-      const pwdInput = isPage2
-        ? document.getElementById('v4-password-input-p2')
-        : document.getElementById('v4-password-input');
+      const isP3 = document.getElementById('login-view-3') && document.getElementById('login-view-3').classList.contains('active');
+      const isP2 = document.getElementById('login-view-2') && document.getElementById('login-view-2').classList.contains('active');
+      const emailInput = isP3
+        ? document.getElementById('v4-email-pwd-input-p3')
+        : (isP2 ? document.getElementById('v4-email-pwd-input-p2') : document.getElementById('v4-email-pwd-input'));
+      const pwdInput = isP3
+        ? document.getElementById('v4-password-input-p3')
+        : (isP2 ? document.getElementById('v4-password-input-p2') : document.getElementById('v4-password-input'));
 
       const email = emailInput ? emailInput.value.trim() : '';
       const password = pwdInput ? pwdInput.value : '';
@@ -5063,14 +6162,13 @@
       showToast(`Signing in as ${email}...`);
       const btn1 = document.getElementById('btn-v4-signin');
       const btn2 = document.getElementById('btn-v4-signin-p2');
-      if (btn1) {
-        btn1.innerHTML = '<span>Signing in...</span>';
-        btn1.style.opacity = '0.7';
-      }
-      if (btn2) {
-        btn2.innerHTML = '<span>Signing in...</span>';
-        btn2.style.opacity = '0.7';
-      }
+      const btn3 = document.getElementById('btn-v4-signin-p3');
+      [btn1, btn2, btn3].forEach(btn => {
+        if (btn) {
+          btn.innerHTML = '<span>Signing in...</span>';
+          btn.style.opacity = '0.7';
+        }
+      });
 
       setTimeout(() => {
         navigateToDashboard();
@@ -5081,13 +6179,14 @@
     function toggleV4Password() {
       const input1 = document.getElementById('v4-password-input');
       const input2 = document.getElementById('v4-password-input-p2');
+      const input3 = document.getElementById('v4-password-input-p3');
       const eyeIcon1 = document.getElementById('v4-eye-icon');
       const eyeIcon2 = document.getElementById('v4-eye-icon-p2');
+      const eyeIcon3 = document.getElementById('v4-eye-icon-p3');
 
       v4PasswordVisible = !v4PasswordVisible;
       const type = v4PasswordVisible ? 'text' : 'password';
-      if (input1) input1.type = type;
-      if (input2) input2.type = type;
+      [input1, input2, input3].forEach(inp => { if (inp) inp.type = type; });
 
       const svgContent = v4PasswordVisible ? `
         <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"></path>
@@ -5099,61 +6198,70 @@
         <circle cx="12" cy="12" r="3"></circle>
       `;
 
-      if (eyeIcon1) eyeIcon1.innerHTML = svgContent;
-      if (eyeIcon2) eyeIcon2.innerHTML = svgContent;
+      [eyeIcon1, eyeIcon2, eyeIcon3].forEach(ico => { if (ico) ico.innerHTML = svgContent; });
     }
 
-    // Bidirectional Form Inputs Synchronization
+    // Bidirectional Form Inputs Synchronization across Page 1, Page 2, and Page 3
     document.addEventListener('DOMContentLoaded', () => {
-      // Sync Email OTP input
-      const emailOtp1 = document.getElementById('v4-email-otp-input');
-      const emailOtp2 = document.getElementById('v4-email-otp-input-p2');
-      if (emailOtp1 && emailOtp2) {
-        emailOtp1.addEventListener('input', () => { emailOtp2.value = emailOtp1.value; });
-        emailOtp2.addEventListener('input', () => { emailOtp1.value = emailOtp2.value; });
-      }
+      const syncInputs = (ids) => {
+        const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
+        elements.forEach(el => {
+          el.addEventListener('input', () => {
+            elements.forEach(other => {
+              if (other !== el) other.value = el.value;
+            });
+          });
+        });
+      };
 
-      // Sync Email Password input
-      const emailPwd1 = document.getElementById('v4-email-pwd-input');
-      const emailPwd2 = document.getElementById('v4-email-pwd-input-p2');
-      if (emailPwd1 && emailPwd2) {
-        emailPwd1.addEventListener('input', () => { emailPwd2.value = emailPwd1.value; });
-        emailPwd2.addEventListener('input', () => { emailPwd1.value = emailPwd2.value; });
-      }
+      const syncCheckboxes = (ids) => {
+        const elements = ids.map(id => document.getElementById(id)).filter(Boolean);
+        elements.forEach(el => {
+          el.addEventListener('change', () => {
+            elements.forEach(other => {
+              if (other !== el) other.checked = el.checked;
+            });
+          });
+        });
+      };
 
-      // Sync Password input
-      const pwd1 = document.getElementById('v4-password-input');
-      const pwd2 = document.getElementById('v4-password-input-p2');
-      if (pwd1 && pwd2) {
-        pwd1.addEventListener('input', () => { pwd2.value = pwd1.value; });
-        pwd2.addEventListener('input', () => { pwd1.value = pwd2.value; });
-      }
+      // Sync Email OTP inputs
+      syncInputs(['v4-email-otp-input', 'v4-email-otp-input-p2', 'v4-email-otp-input-p3']);
 
-      // Sync Remember Me checkbox
-      const rem1 = document.getElementById('v4-remember-checkbox');
-      const rem2 = document.getElementById('v4-remember-checkbox-p2');
-      if (rem1 && rem2) {
-        rem1.addEventListener('change', () => { rem2.checked = rem1.checked; });
-        rem2.addEventListener('change', () => { rem1.checked = rem2.checked; });
-      }
+      // Sync Email Password inputs
+      syncInputs(['v4-email-pwd-input', 'v4-email-pwd-input-p2', 'v4-email-pwd-input-p3']);
 
-      // OTP Digit Auto-Advancing & Pasting for Page 1 & Page 2
-      const setupOtpBoxes = (selector, otherSelector) => {
-        const boxes = document.querySelectorAll(selector);
-        const otherBoxes = document.querySelectorAll(otherSelector);
-        boxes.forEach((box, index) => {
+      // Sync Password inputs
+      syncInputs(['v4-password-input', 'v4-password-input-p2', 'v4-password-input-p3']);
+
+      // Sync Remember Me checkboxes
+      syncCheckboxes(['v4-remember-checkbox', 'v4-remember-checkbox-p2', 'v4-remember-checkbox-p3']);
+
+      // OTP Digit Auto-Advancing & Pasting across Page 1, Page 2 & Page 3
+      const boxGroups = [
+        Array.from(document.querySelectorAll('#login-view-1 .v4-otp-digit')),
+        Array.from(document.querySelectorAll('#login-view-2 .v4-otp-digit-p2')),
+        Array.from(document.querySelectorAll('#login-view-3 .v4-otp-digit-p3')),
+      ];
+
+      boxGroups.forEach((group, gIdx) => {
+        group.forEach((box, bIdx) => {
           box.addEventListener('input', (e) => {
             const val = e.target.value.replace(/[^0-9]/g, '');
             e.target.value = val;
-            if (otherBoxes[index]) otherBoxes[index].value = val;
-            if (val && index < boxes.length - 1) {
-              boxes[index + 1].focus();
+            boxGroups.forEach((otherGroup, ogIdx) => {
+              if (ogIdx !== gIdx && otherGroup[bIdx]) {
+                otherGroup[bIdx].value = val;
+              }
+            });
+            if (val && bIdx < group.length - 1) {
+              group[bIdx + 1].focus();
             }
           });
 
           box.addEventListener('keydown', (e) => {
-            if (e.key === 'Backspace' && !box.value && index > 0) {
-              boxes[index - 1].focus();
+            if (e.key === 'Backspace' && !box.value && bIdx > 0) {
+              group[bIdx - 1].focus();
             }
           });
 
@@ -5161,41 +6269,48 @@
             e.preventDefault();
             const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
             if (pasted) {
-              pasted.split('').slice(0, boxes.length).forEach((char, i) => {
-                boxes[i].value = char;
-                if (otherBoxes[i]) otherBoxes[i].value = char;
+              pasted.split('').slice(0, group.length).forEach((char, i) => {
+                boxGroups.forEach(g => {
+                  if (g[i]) g[i].value = char;
+                });
               });
-              const nextIdx = Math.min(pasted.length, boxes.length - 1);
-              boxes[nextIdx].focus();
+              const nextIdx = Math.min(pasted.length, group.length - 1);
+              group[nextIdx].focus();
             }
           });
         });
-      };
-
-      setupOtpBoxes('#login-view-1 .v4-otp-digit', '#login-view-2 .v4-otp-digit-p2');
-      setupOtpBoxes('#login-view-2 .v4-otp-digit-p2', '#login-view-1 .v4-otp-digit');
+      });
     });
 
-    // Page 1 & Page 2: Subtle 3D mouse parallax on mini dashboard
+    // Page 1, Page 2 & Page 3: Subtle 3D mouse parallax on mini dashboard & payoff capsule
     document.addEventListener('DOMContentLoaded', () => {
-      const attachParallax = (stageId, dashId) => {
+      const attachParallax = (stageId, targetId) => {
         const stage = document.getElementById(stageId);
-        const miniDash = document.getElementById(dashId);
-        if (stage && miniDash) {
+        const target = document.getElementById(targetId);
+        if (stage && target) {
           stage.addEventListener('mousemove', (e) => {
             const rect = stage.getBoundingClientRect();
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
-            miniDash.style.transform = `perspective(800px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg) translateZ(8px)`;
+            if (targetId === 'v4JourneyPayoffCapsule') {
+              target.style.transform = `translate(-50%, -50%) perspective(800px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) translateZ(8px)`;
+            } else {
+              target.style.transform = `perspective(800px) rotateX(${-y * 12}deg) rotateY(${x * 12}deg) translateZ(8px)`;
+            }
           });
           stage.addEventListener('mouseleave', () => {
-            miniDash.style.transform = '';
+            if (targetId === 'v4JourneyPayoffCapsule') {
+              target.style.transform = 'translate(-50%, -50%)';
+            } else {
+              target.style.transform = '';
+            }
           });
         }
       };
 
       attachParallax('v4WorkflowStage', 'v4MiniDashboard');
       attachParallax('v4WorkflowStageLiving', 'v4MiniDashboardLiving');
+      attachParallax('v4WorkflowStageJourney', 'v4JourneyPayoffCapsule');
     });
   </script>
 </body>

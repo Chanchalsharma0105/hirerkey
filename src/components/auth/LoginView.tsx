@@ -25,7 +25,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
   defaultView,
 }) => {
   // Active page state (1: The Connected HR Ecosystem, 2: The Living Dashboard)
-  const [activePage, setActivePage] = useState<1 | 2>((defaultView === 2 ? 2 : 1) as 1 | 2);
+  const [activePage, setActivePage] = useState<1 | 2 | 3>((defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3);
 
   // View 4 form states (ApprovalMax Inspired Workflow Animation & Modern Split)
   const [v4AuthMode, setV4AuthMode] = useState<'otp' | 'password'>('otp');
@@ -64,7 +64,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
     };
   }, [v4OtpStep, v4OtpSecondsLeft]);
 
-  // Keyboard Shortcuts: [1], [2], [ArrowLeft], [ArrowRight]
+  // Keyboard Shortcuts: [1], [2], [3], [ArrowLeft], [ArrowRight]
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
@@ -75,10 +75,12 @@ export const LoginView: React.FC<LoginViewProps> = ({
         setActivePage(1);
       } else if (e.key === '2') {
         setActivePage(2);
+      } else if (e.key === '3') {
+        setActivePage(3);
       } else if (e.key === 'ArrowLeft') {
-        setActivePage(1);
+        setActivePage((prev) => (prev === 1 ? 3 : ((prev - 1) as 1 | 2 | 3)));
       } else if (e.key === 'ArrowRight') {
-        setActivePage(2);
+        setActivePage((prev) => (prev === 3 ? 1 : ((prev + 1) as 1 | 2 | 3)));
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -155,7 +157,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
         justifyContent: 'center',
         p: { xs: 2, md: 4 }, pb: { xs: 8, sm: 10 },
         backgroundColor: '#F6F1FF',
-        backgroundImage: ,
+        backgroundImage:
+          "url('v4_bg_gradient.png'), radial-gradient(ellipse 65% 55% at 90% 10%, rgba(168, 85, 247, 0.55) 0%, rgba(192, 132, 252, 0.25) 45%, transparent 75%), radial-gradient(ellipse 60% 50% at 10% 90%, rgba(147, 51, 234, 0.5) 0%, rgba(168, 85, 247, 0.2) 50%, transparent 75%), linear-gradient(135deg, #FFFFFF 0%, #FAF5FF 35%, #F3E8FF 70%, #EDE9FE 100%)",
         backgroundSize: 'cover',
         backgroundPosition: 'center center',
         backgroundRepeat: 'no-repeat',
@@ -1648,6 +1651,577 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 .v4-ld-grid { gap: 4px; }
                 .v4-ld-widget { min-height: 56px; padding: 4px 5px; }
               }
+
+              /* PAGE 3: THE EMPLOYEE JOURNEY (12.0s MASTER ANIMATION SYSTEM) */
+              .v4-j-card {
+                position: absolute;
+                z-index: 6;
+                background: #FFFFFF;
+                border-radius: 14px;
+                border: 1.5px solid #E2E8F0;
+                box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.85);
+                padding: 8px 10px;
+                display: flex;
+                align-items: center;
+                gap: 9px;
+                width: 164px;
+                height: 58px;
+                box-sizing: border-box;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+                will-change: transform, opacity, box-shadow;
+                user-select: none;
+              }
+              .v4-j-card:hover {
+                transform: translateY(-2px) scale(1.03) !important;
+                box-shadow: 0 16px 35px -8px rgba(124, 58, 237, 0.28) !important;
+                z-index: 12 !important;
+              }
+              .v4-j-card-1 {
+                top: 12px;
+                left: 12px;
+                animation: jCard1Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+              }
+              .v4-j-card-2 {
+                top: 12px;
+                left: 188px;
+                animation: jCard2Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+              }
+              .v4-j-card-3 {
+                top: 12px;
+                right: 12px;
+                animation: jCard3Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+              }
+              .v4-j-card-4 {
+                bottom: 12px;
+                right: 12px;
+                animation: jCard4Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+              }
+              .v4-j-card-5 {
+                bottom: 12px;
+                left: 188px;
+                animation: jCard5Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+              }
+              .v4-j-card-6 {
+                bottom: 12px;
+                left: 12px;
+                animation: jCard6Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+              }
+
+              .v4-j-avatar-wrap {
+                position: relative;
+                width: 32px;
+                height: 32px;
+                flex-shrink: 0;
+              }
+              .v4-j-avatar {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
+                color: #FFFFFF;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-weight: 800;
+                font-size: 11px;
+                display: grid;
+                place-items: center;
+                box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+              }
+              .v4-j-online-dot {
+                position: absolute;
+                bottom: -1px;
+                right: -1px;
+                width: 7.5px;
+                height: 7.5px;
+                border-radius: 50%;
+                background: #10B981;
+                border: 1.5px solid #FFFFFF;
+                box-shadow: 0 0 6px #10B981;
+                animation: jGreenPulse 2s ease-in-out infinite;
+              }
+              @keyframes jGreenPulse {
+                0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+                50% { transform: scale(1.15); box-shadow: 0 0 0 3.5px rgba(16, 185, 129, 0); }
+              }
+
+              .v4-j-icon-box {
+                width: 28px;
+                height: 28px;
+                border-radius: 8px;
+                display: grid;
+                place-items: center;
+                font-size: 14px;
+                flex-shrink: 0;
+              }
+              .v4-j-icon-purple { background: rgba(124, 58, 237, 0.1); color: #7C3AED; }
+              .v4-j-icon-blue { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
+              .v4-j-icon-pink { background: rgba(236, 72, 153, 0.1); color: #EC4899; }
+              .v4-j-icon-amber { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
+              .v4-j-icon-green { background: rgba(16, 185, 129, 0.1); color: #10B981; }
+
+              .v4-j-meta {
+                flex: 1;
+                min-width: 0;
+                overflow: hidden;
+              }
+              .v4-j-tag-row {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                margin-bottom: 1px;
+              }
+              .v4-j-tag {
+                font-size: 7.5px;
+                font-weight: 800;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                line-height: 1;
+                white-space: nowrap;
+              }
+              .v4-j-card-1 .v4-j-tag { color: #7C3AED; }
+              .v4-j-card-2 .v4-j-tag { color: #7C3AED; }
+              .v4-j-card-3 .v4-j-tag { color: #3B82F6; }
+              .v4-j-card-4 .v4-j-tag { color: #EC4899; }
+              .v4-j-card-5 .v4-j-tag { color: #D97706; }
+              .v4-j-card-6 .v4-j-tag { color: #059669; }
+
+              .v4-j-tag-new {
+                font-size: 7.5px;
+                font-weight: 800;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                color: #7C3AED;
+                background: rgba(124, 58, 237, 0.08);
+                padding: 1px 4.5px;
+                border-radius: 3.5px;
+                display: inline-block;
+                line-height: 1.1;
+                margin-bottom: 1px;
+              }
+              .v4-j-title {
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 11px;
+                font-weight: 700;
+                color: #0F172A;
+                line-height: 1.2;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+              .v4-j-sub {
+                font-size: 8.5px;
+                color: #64748B;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-height: 1.2;
+                margin-top: 1px;
+              }
+              .v4-j-sub-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 3px;
+                margin-top: 1px;
+              }
+              .v4-j-badge-done {
+                font-size: 8px;
+                font-weight: 700;
+                color: #059669;
+                white-space: nowrap;
+                flex-shrink: 0;
+              }
+
+              .v4-j-progress-row {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                margin-top: 2px;
+              }
+              .v4-j-progress-track {
+                width: 44px;
+                height: 3.5px;
+                border-radius: 9999px;
+                background: #E2E8F0;
+                overflow: hidden;
+                flex-shrink: 0;
+              }
+              .v4-j-progress-fill {
+                height: 100%;
+                width: 0%;
+                background: linear-gradient(90deg, #7C3AED, #A855F7);
+                border-radius: 9999px;
+                animation: jProgressFill 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+              }
+              @keyframes jProgressFill {
+                0%, 12.5% { width: 0%; }
+                25%, 95% { width: 100%; }
+                100% { width: 0%; }
+              }
+              .v4-j-status-swap {
+                position: relative;
+                height: 12px;
+                flex: 1;
+                min-width: 0;
+                display: inline-flex;
+                align-items: center;
+              }
+              .v4-j-status-filling {
+                position: absolute;
+                left: 0;
+                top: 0;
+                font-size: 8px;
+                font-weight: 600;
+                color: #64748B;
+                white-space: nowrap;
+                animation: jStatusFilling 12s ease infinite;
+              }
+              .v4-j-status-done {
+                position: absolute;
+                left: 0;
+                top: 0;
+                font-size: 8px;
+                font-weight: 700;
+                color: #059669;
+                white-space: nowrap;
+                animation: jStatusDone 12s ease infinite;
+              }
+              @keyframes jStatusFilling {
+                0%, 16% { opacity: 1; transform: translateY(0); }
+                20%, 95% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
+                100% { opacity: 1; transform: translateY(0); }
+              }
+              @keyframes jStatusDone {
+                0%, 18% { opacity: 0; transform: translateY(3px); }
+                22%, 95% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(3px); }
+              }
+
+              .v4-j-stage-status {
+                position: relative;
+                height: 12px;
+                display: inline-flex;
+                align-items: center;
+                min-width: 58px;
+                justify-content: flex-end;
+              }
+              .v4-j-status-upcoming {
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: 8px;
+                font-weight: 600;
+                color: #94A3B8;
+                white-space: nowrap;
+                animation: jStatusUpcoming 12s ease infinite;
+              }
+              .v4-j-status-progress {
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: 8px;
+                font-weight: 700;
+                color: #3B82F6;
+                white-space: nowrap;
+                animation: jStatusProgress 12s ease infinite;
+              }
+              .v4-j-status-completed {
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: 8px;
+                font-weight: 700;
+                color: #059669;
+                white-space: nowrap;
+                animation: jStatusCompleted 12s ease infinite;
+              }
+              @keyframes jStatusUpcoming {
+                0%, 38% { opacity: 1; transform: translateY(0); }
+                41.67%, 100% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
+              }
+              @keyframes jStatusProgress {
+                0%, 38% { opacity: 0; transform: translateY(3px); }
+                41.67%, 52% { opacity: 1; transform: translateY(0); }
+                55%, 100% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
+              }
+              @keyframes jStatusCompleted {
+                0%, 52% { opacity: 0; transform: translateY(3px); }
+                55%, 95% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(3px); }
+              }
+
+              .v4-j-goal-row {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                margin-top: 1px;
+              }
+              .v4-j-goal-pill {
+                font-size: 8px;
+                font-weight: 800;
+                color: #059669;
+                background: rgba(16, 185, 129, 0.12);
+                padding: 1px 4px;
+                border-radius: 3px;
+                line-height: 1.1;
+              }
+              .v4-j-status-ontrack {
+                font-size: 8px;
+                font-weight: 700;
+                color: #059669;
+                line-height: 1.1;
+              }
+
+              .v4-j-payoff-capsule {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0.85);
+                z-index: 10;
+                width: 310px;
+                min-height: 48px;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(14px) saturate(180%);
+                -webkit-backdrop-filter: blur(14px) saturate(180%);
+                border: 1.5px solid rgba(124, 58, 237, 0.38);
+                border-radius: 9999px;
+                box-shadow: 0 16px 38px -6px rgba(124, 58, 237, 0.32), 0 6px 14px -3px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
+                display: flex;
+                align-items: center;
+                padding: 6px 16px;
+                gap: 11px;
+                box-sizing: border-box;
+                opacity: 0;
+                animation: jPayoffBloom 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+                user-select: none;
+                will-change: transform, opacity, box-shadow;
+              }
+              .v4-j-payoff-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+                color: #FFFFFF;
+                display: grid;
+                place-items: center;
+                font-size: 15px;
+                flex-shrink: 0;
+                box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
+              }
+              .v4-j-payoff-content {
+                flex: 1;
+                min-width: 0;
+              }
+              .v4-j-payoff-title {
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 11.5px;
+                font-weight: 800;
+                color: #0F172A;
+                line-height: 1.25;
+                white-space: nowrap;
+              }
+              .v4-j-payoff-subtitle {
+                font-size: 9px;
+                color: #7C3AED;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                margin-top: 1px;
+              }
+              .v4-j-payoff-live-dot {
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: #10B981;
+                box-shadow: 0 0 5px #10B981;
+                display: inline-block;
+              }
+
+              @keyframes jPayoffBloom {
+                0%, 75% { opacity: 0; transform: translate(-50%, -50%) scale(0.85); pointer-events: none; }
+                79.17% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.92); }
+                83.33% {
+                  opacity: 1;
+                  transform: translate(-50%, -50%) scale(1.05);
+                  box-shadow: 0 20px 48px -4px rgba(124, 58, 237, 0.45), 0 0 30px 4px rgba(168, 85, 247, 0.4), inset 0 1px 1px rgba(255, 255, 255, 1);
+                }
+                87.5% {
+                  opacity: 1;
+                  transform: translate(-50%, -50%) scale(1.0);
+                  box-shadow: 0 16px 38px -6px rgba(124, 58, 237, 0.32), 0 6px 14px -3px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
+                }
+                95.83% { opacity: 1; transform: translate(-50%, -50%) scale(1.0); }
+                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); pointer-events: none; }
+              }
+
+              .v4-j-track-base {
+                fill: none;
+                stroke: rgba(124, 58, 237, 0.12);
+                stroke-width: 2;
+                stroke-linecap: round;
+                stroke-dasharray: 4 4;
+              }
+              .v4-j-spline-active {
+                fill: none;
+                stroke-width: 2.5;
+                stroke-linecap: round;
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 1000;
+                animation: jSplineDraw 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+              }
+              @keyframes jSplineDraw {
+                0% { stroke-dashoffset: 1000; opacity: 0.4; }
+                12.5% { stroke-dashoffset: 820; opacity: 1; }
+                25% { stroke-dashoffset: 640; }
+                41.67% { stroke-dashoffset: 460; }
+                58.33% { stroke-dashoffset: 280; }
+                70.83% { stroke-dashoffset: 140; }
+                79.17% { stroke-dashoffset: 0; }
+                95.83% { stroke-dashoffset: 0; opacity: 1; filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.8)); }
+                100% { stroke-dashoffset: 0; opacity: 0.4; }
+              }
+
+              .v4-j-node-beacon {
+                fill: #FFFFFF;
+                stroke: #7C3AED;
+                stroke-width: 2;
+                animation: jBeaconPulse 12s ease-in-out infinite;
+              }
+              .v4-j-node-1 { animation-delay: 0s; }
+              .v4-j-node-2 { animation-delay: 1.5s; stroke: #7C3AED; }
+              .v4-j-node-3 { animation-delay: 3.0s; stroke: #3B82F6; }
+              .v4-j-node-4 { animation-delay: 5.0s; stroke: #EC4899; }
+              .v4-j-node-5 { animation-delay: 7.0s; stroke: #F59E0B; }
+              .v4-j-node-6 { animation-delay: 8.5s; stroke: #10B981; }
+              .v4-j-node-center { animation-delay: 9.5s; fill: #A855F7; stroke: #FFFFFF; stroke-width: 2; }
+
+              @keyframes jBeaconPulse {
+                0%, 90% { transform-origin: center; transform: scale(1); filter: drop-shadow(0 0 0 rgba(124, 58, 237, 0)); }
+                10%, 20% { transform-origin: center; transform: scale(1.4); filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.8)); }
+              }
+
+              .v4-j-comet {
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: #FFFFFF;
+                box-shadow: 0 0 12px 3px rgba(168, 85, 247, 0.9), 0 0 4px #FFFFFF;
+                offset-path: path("M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175");
+                pointer-events: none;
+                z-index: 5;
+                opacity: 0;
+                will-change: transform, opacity;
+              }
+              .v4-j-comet-1 { animation: jComet1 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+              @keyframes jComet1 {
+                0% { offset-distance: 0%; opacity: 0; }
+                2% { opacity: 1; }
+                12.5% { offset-distance: 18%; opacity: 1; }
+                13.5% { opacity: 0; }
+                100% { opacity: 0; }
+              }
+              .v4-j-comet-2 { animation: jComet2 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+              @keyframes jComet2 {
+                0%, 12.5% { offset-distance: 18%; opacity: 0; }
+                14% { opacity: 1; }
+                25% { offset-distance: 36%; opacity: 1; }
+                26% { opacity: 0; }
+                100% { opacity: 0; }
+              }
+              .v4-j-comet-3 { animation: jComet3 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+              @keyframes jComet3 {
+                0%, 25% { offset-distance: 36%; opacity: 0; }
+                27% { opacity: 1; }
+                41.67% { offset-distance: 54%; opacity: 1; }
+                43% { opacity: 0; }
+                100% { opacity: 0; }
+              }
+              .v4-j-comet-4 { animation: jComet4 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+              @keyframes jComet4 {
+                0%, 41.67% { offset-distance: 54%; opacity: 0; }
+                43.5% { opacity: 1; }
+                58.33% { offset-distance: 72%; opacity: 1; }
+                59.5% { opacity: 0; }
+                100% { opacity: 0; }
+              }
+              .v4-j-comet-5 { animation: jComet5 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
+              @keyframes jComet5 {
+                0%, 58.33% { offset-distance: 72%; opacity: 0; }
+                60% { opacity: 1; }
+                79.17% { offset-distance: 100%; opacity: 1; }
+                81% { opacity: 0; }
+                100% { opacity: 0; }
+              }
+              .v4-j-comet-grand {
+                animation: jCometGrand 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                width: 10px;
+                height: 10px;
+                box-shadow: 0 0 16px 4px rgba(168, 85, 247, 1), 0 0 6px #FFFFFF;
+              }
+              @keyframes jCometGrand {
+                0%, 79.17% { offset-distance: 0%; opacity: 0; }
+                80% { opacity: 1; }
+                93% { offset-distance: 100%; opacity: 1; }
+                95% { opacity: 0; }
+                100% { opacity: 0; }
+              }
+
+              @keyframes jCard1Motion {
+                0% { opacity: 0; transform: translateY(-8px) scale(0.96); border-color: #E2E8F0; }
+                8.33% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(124, 58, 237, 0.5); box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.28); }
+                12.5% { opacity: 1; transform: translateY(0) scale(1.0); }
+                95% { opacity: 1; transform: translateY(0) scale(1.0); }
+                100% { opacity: 0; transform: translateY(-8px) scale(0.96); }
+              }
+              @keyframes jCard2Motion {
+                0%, 10% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+                12.5% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #7C3AED; box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.3); }
+                25% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(124, 58, 237, 0.4); }
+                95% { opacity: 1; transform: translateY(0) scale(1.0); }
+                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+              }
+              @keyframes jCard3Motion {
+                0%, 22% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+                25% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.3); }
+                37.5% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(59, 130, 246, 0.4); }
+                95% { opacity: 1; transform: translateY(0) scale(1.0); }
+                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+              }
+              @keyframes jCard4Motion {
+                0%, 38% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+                41.67% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.3); }
+                58.33% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(236, 72, 153, 0.4); }
+                95% { opacity: 1; transform: translateY(0) scale(1.0); }
+                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+              }
+              @keyframes jCard5Motion {
+                0%, 55% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+                58.33% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #F59E0B; box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.3); }
+                70.83% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(245, 158, 11, 0.4); }
+                95% { opacity: 1; transform: translateY(0) scale(1.0); }
+                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+              }
+              @keyframes jCard6Motion {
+                0%, 68% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+                70.83% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.3); }
+                79.17% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(16, 185, 129, 0.4); }
+                95% { opacity: 1; transform: translateY(0) scale(1.0); }
+                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+              }
+
+              @media (max-width: 640px) {
+                .v4-j-card { width: 140px; height: 52px; padding: 6px 8px; gap: 6px; }
+                .v4-j-card-1 { left: 6px; }
+                .v4-j-card-2 { left: 50%; transform: translateX(-50%); }
+                .v4-j-card-3 { right: 6px; }
+                .v4-j-card-4 { right: 6px; }
+                .v4-j-card-5 { left: 50%; transform: translateX(-50%); }
+                .v4-j-card-6 { left: 6px; }
+                .v4-j-payoff-capsule { width: 260px; min-height: 44px; padding: 5px 12px; }
+                .v4-j-payoff-title { font-size: 10px; }
+              }
+
             `}</style>
             <Box
               sx={{
@@ -1766,7 +2340,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 </Typography>
 
                 {/* ANIMATED WORKFLOW STAGE (PAGE 1 vs PAGE 2) */}
-                {activePage === 1 ? (
+                {activePage === 1 && (
                 <Box
                   id="v4WorkflowStage"
                   onMouseMove={handleV4MouseMove}
@@ -2146,7 +2720,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     </Box>
                   </Box>
                 </Box>
-                ) : (
+                )}
+                {activePage === 2 && (
                 <Box
                   id="v4WorkflowStageLiving"
                   onMouseMove={handleV4MouseMove}
@@ -2581,6 +3156,193 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       </div>
                     </Box>
                   </Box>
+                </Box>
+                )}
+                {activePage === 3 && (
+                <Box
+                  id="v4WorkflowStageJourney"
+                  onMouseMove={handleV4MouseMove}
+                  onMouseLeave={handleV4MouseLeave}
+                  sx={{
+                    width: '100%',
+                    maxWidth: 540,
+                    height: 350,
+                    position: 'relative',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    perspective: 1000,
+                    mt: 0.75,
+                  }}
+                >
+                  {/* Master Curving Spline SVG & Anchor Beacons */}
+                  <svg
+                    viewBox="0 0 540 350"
+                    preserveAspectRatio="none"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      pointerEvents: 'none',
+                      zIndex: 2,
+                    }}
+                  >
+                    <defs>
+                      <linearGradient id="v4GradJourneyReact" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#8B5CF6" />
+                        <stop offset="25%" stopColor="#7C3AED" />
+                        <stop offset="50%" stopColor="#3B82F6" />
+                        <stop offset="75%" stopColor="#EC4899" />
+                        <stop offset="100%" stopColor="#10B981" />
+                      </linearGradient>
+                      <filter id="v4JourneyGlowReact" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="3" result="glow" />
+                        <feMerge>
+                          <feMergeNode in="glow" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+
+                    {/* Base Ambient Dashed Spline Track */}
+                    <path
+                      className="v4-j-track-base"
+                      d="M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175"
+                    />
+
+                    {/* Progressive Animated Flow Spline (1000px Arc Length) */}
+                    <path
+                      className="v4-j-spline-active"
+                      stroke="url(#v4GradJourneyReact)"
+                      filter="url(#v4JourneyGlowReact)"
+                      d="M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175"
+                    />
+
+                    {/* Node Connection Anchor Beacons */}
+                    <circle className="v4-j-node-beacon v4-j-node-1" cx="94" cy="41" r="3.5" />
+                    <circle className="v4-j-node-beacon v4-j-node-2" cx="270" cy="41" r="3.5" />
+                    <circle className="v4-j-node-beacon v4-j-node-3" cx="446" cy="41" r="3.5" />
+                    <circle className="v4-j-node-beacon v4-j-node-4" cx="446" cy="309" r="3.5" />
+                    <circle className="v4-j-node-beacon v4-j-node-5" cx="270" cy="309" r="3.5" />
+                    <circle className="v4-j-node-beacon v4-j-node-6" cx="94" cy="309" r="3.5" />
+                    <circle className="v4-j-node-beacon v4-j-node-center" cx="270" cy="175" r="4.5" />
+                  </svg>
+
+                  {/* Travelling Photon Comet Particles */}
+                  <div className="v4-j-comet v4-j-comet-1" />
+                  <div className="v4-j-comet v4-j-comet-2" />
+                  <div className="v4-j-comet v4-j-comet-3" />
+                  <div className="v4-j-comet v4-j-comet-4" />
+                  <div className="v4-j-comet v4-j-comet-5" />
+                  <div className="v4-j-comet v4-j-comet-grand" />
+
+                  {/* CARD 1: PROFILE CARD (Alex Chen • Product Designer) */}
+                  <div className="v4-j-card v4-j-card-1">
+                    <div className="v4-j-avatar-wrap">
+                      <div className="v4-j-avatar">AC</div>
+                      <span className="v4-j-online-dot" />
+                    </div>
+                    <div className="v4-j-meta">
+                      <div className="v4-j-tag-row">
+                        <span className="v4-j-tag-new">New employee</span>
+                      </div>
+                      <div className="v4-j-title">Alex Chen</div>
+                      <div className="v4-j-sub">Product Designer</div>
+                    </div>
+                  </div>
+
+                  {/* CARD 2: MILESTONE 1 (01 • Onboarding) */}
+                  <div className="v4-j-card v4-j-card-2">
+                    <div className="v4-j-icon-box v4-j-icon-purple">🚀</div>
+                    <div className="v4-j-meta">
+                      <div className="v4-j-tag">01 • ONBOARDING</div>
+                      <div className="v4-j-title">Onboarding</div>
+                      <div className="v4-j-progress-row">
+                        <div className="v4-j-progress-track">
+                          <div className="v4-j-progress-fill" />
+                        </div>
+                        <div className="v4-j-status-swap">
+                          <span className="v4-j-status-filling">In Progress</span>
+                          <span className="v4-j-status-done">Completed ✓</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CARD 3: MILESTONE 2 (02 • Orientation) */}
+                  <div className="v4-j-card v4-j-card-3">
+                    <div className="v4-j-icon-box v4-j-icon-blue">🧭</div>
+                    <div className="v4-j-meta">
+                      <div className="v4-j-tag">02 • ORIENTATION</div>
+                      <div className="v4-j-title">Orientation</div>
+                      <div className="v4-j-sub-row">
+                        <span className="v4-j-sub">Workplace intro</span>
+                        <span className="v4-j-badge-done">Completed ✓</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CARD 4: MILESTONE 3 (03 • Department Tour) */}
+                  <div className="v4-j-card v4-j-card-4">
+                    <div className="v4-j-icon-box v4-j-icon-pink">🏢</div>
+                    <div className="v4-j-meta">
+                      <div className="v4-j-tag">03 • DEPARTMENT TOUR</div>
+                      <div className="v4-j-title">Department Tour</div>
+                      <div className="v4-j-sub-row">
+                        <span className="v4-j-sub">Sales &amp; Marketing</span>
+                        <div className="v4-j-stage-status">
+                          <span className="v4-j-status-upcoming">Upcoming</span>
+                          <span className="v4-j-status-progress">In Progress</span>
+                          <span className="v4-j-status-completed">Completed ✓</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CARD 5: MILESTONE 4 (04 • Tasks & Activities) */}
+                  <div className="v4-j-card v4-j-card-5">
+                    <div className="v4-j-icon-box v4-j-icon-amber">⚡</div>
+                    <div className="v4-j-meta">
+                      <div className="v4-j-tag">04 • TASKS &amp; ACTIVITIES</div>
+                      <div className="v4-j-title">Tasks &amp; Activities</div>
+                      <div className="v4-j-sub-row">
+                        <span className="v4-j-sub">Complete orientation</span>
+                        <span className="v4-j-badge-done">Completed ✓</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CARD 6: MILESTONE 5 (05 • Performance & Check-ins) */}
+                  <div className="v4-j-card v4-j-card-6">
+                    <div className="v4-j-icon-box v4-j-icon-green">🎯</div>
+                    <div className="v4-j-meta">
+                      <div className="v4-j-tag">05 • PERFORMANCE &amp; CHECK-INS</div>
+                      <div className="v4-j-title">1-on-1 Check-ins</div>
+                      <div className="v4-j-goal-row">
+                        <span className="v4-j-goal-pill">Goal 96%</span>
+                        <span className="v4-j-status-ontrack">On Track ✓</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CENTRAL PAYOFF CAPSULE (Scene 7 Bloom) */}
+                  <div
+                    className="v4-j-payoff-capsule"
+                    id="v4JourneyPayoffCapsule"
+                    style={{
+                      transform: `translate(-50%, -50%) perspective(800px) rotateX(${v4Tilt.x * 0.8}deg) rotateY(${v4Tilt.y * 0.8}deg) translateZ(8px)`,
+                    }}
+                  >
+                    <div className="v4-j-payoff-icon">✨</div>
+                    <div className="v4-j-payoff-content">
+                      <div className="v4-j-payoff-title">Your journey, connected with Hirerkey.</div>
+                      <div className="v4-j-payoff-subtitle">
+                        <span className="v4-j-payoff-live-dot" />
+                        <span>Empowered from Day 1</span>
+                      </div>
+                    </div>
+                  </div>
                 </Box>
                 )}
               </Box>
@@ -3117,6 +3879,58 @@ export const LoginView: React.FC<LoginViewProps> = ({
           <Box
             component="span"
             sx={{
+              fontSize: '10px',
+              fontFamily: 'monospace',
+              fontWeight: 600,
+              px: '5px',
+              py: '1px',
+              borderRadius: '4px',
+              bgcolor: activePage === 2 ? '#F5F3FF' : '#F1F5F9',
+              color: activePage === 2 ? '#8B5CF6' : '#94A3B8',
+              border: activePage === 2 ? '1px solid #DDD6FE' : '1px solid #E2E8F0',
+            }}
+          >
+            2
+          </Box>
+        </Box>
+
+        <Box sx={{ width: '1px', height: '18px', bgcolor: '#E2E8F0' }} />
+
+        <Box
+          component="button"
+          type="button"
+          onClick={() => setActivePage(3)}
+          aria-label="Page 3: The Employee Journey"
+          title="The Employee Journey (Key 3)"
+          sx={{
+            appearance: 'none',
+            border: activePage === 3 ? '1px solid rgba(124, 58, 237, 0.25)' : '1px solid transparent',
+            bgcolor: activePage === 3 ? '#FFFFFF' : 'transparent',
+            color: activePage === 3 ? '#7C3AED' : '#64748B',
+            fontWeight: activePage === 3 ? 700 : 600,
+            boxShadow: activePage === 3 ? '0 4px 14px -2px rgba(124, 58, 237, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05)' : 'none',
+            px: { xs: 1.5, sm: 1.75 },
+            py: 0.85,
+            borderRadius: '9999px',
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontSize: { xs: 11.5, sm: 12.5 },
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '7px',
+            cursor: 'pointer',
+            transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+            whiteSpace: 'nowrap',
+            '&:hover': {
+              color: '#0F172A',
+              bgcolor: activePage === 3 ? '#FFFFFF' : 'rgba(241, 245, 249, 0.8)',
+            },
+          }}
+        >
+          <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>③</span>
+          <span>Employee Journey</span>
+          <Box
+            component="span"
+            sx={{
               fontSize: '9px',
               fontWeight: 800,
               px: '6px',
@@ -3139,12 +3953,12 @@ export const LoginView: React.FC<LoginViewProps> = ({
               px: '5px',
               py: '1px',
               borderRadius: '4px',
-              bgcolor: activePage === 2 ? '#F5F3FF' : '#F1F5F9',
-              color: activePage === 2 ? '#8B5CF6' : '#94A3B8',
-              border: activePage === 2 ? '1px solid #DDD6FE' : '1px solid #E2E8F0',
+              bgcolor: activePage === 3 ? '#F5F3FF' : '#F1F5F9',
+              color: activePage === 3 ? '#8B5CF6' : '#94A3B8',
+              border: activePage === 3 ? '1px solid #DDD6FE' : '1px solid #E2E8F0',
             }}
           >
-            2
+            3
           </Box>
         </Box>
       </Box>
