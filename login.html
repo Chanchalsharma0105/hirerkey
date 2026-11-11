@@ -3435,6 +3435,1223 @@
       }
     }
 
+    /* ==========================================================================
+       PAGE 4 SUB-VIEW SWITCHER & THE LIVING DASHBOARD (VIEW 2) ANIMATION SYSTEM
+       Master 12.0s Loop Cycle | 60fps GPU Accelerated | WCAG 2.2 AA Compliant
+       ========================================================================== */
+
+    :root {
+      --ld-loop-duration: 12.0s;
+      --ld-ease-snappy: cubic-bezier(0.16, 1.0, 0.3, 1.0);
+      --ld-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1.0);
+      --ld-ease-metric: cubic-bezier(0.4, 0.0, 0.2, 1.0);
+      --ld-ease-bell: cubic-bezier(0.36, 0.07, 0.19, 0.97);
+    }
+
+    /* Sub-View Switcher Bar */
+    .v4-view-switcher-bar {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 15;
+    }
+
+    .v4-segmented-control {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(241, 245, 249, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 3px;
+      border-radius: 9999px;
+      border: 1px solid rgba(203, 213, 225, 0.8);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+      gap: 3px;
+    }
+
+    .v4-segmented-btn {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 5px 13px;
+      border-radius: 9999px;
+      font-family: var(--font-display);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #64748B;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1.0, 0.3, 1.0);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .v4-segmented-btn:hover {
+      color: #0F172A;
+    }
+
+    .v4-segmented-btn.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.1), 0 0 0 1px rgba(124, 58, 237, 0.15);
+      font-weight: 700;
+    }
+
+    .v4-btn-dot {
+      width: 6.5px;
+      height: 6.5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-purple { background: #7C3AED; box-shadow: 0 0 6px rgba(124, 58, 237, 0.6); }
+    .dot-emerald { background: #10B981; box-shadow: 0 0 6px rgba(16, 185, 129, 0.6); }
+
+    .v4-badge-new {
+      font-size: 8.5px;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: #EDE9FE;
+      color: #7C3AED;
+      letter-spacing: 0.04em;
+    }
+
+    /* Illustration Viewport Stage */
+    .v4-illustration-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      height: 350px;
+      min-height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      margin-top: 4px;
+    }
+
+    /* Sub-View Panels */
+    .v4-subview-panel {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(10px) scale(0.96);
+      pointer-events: none;
+      visibility: hidden;
+      transition: 
+        opacity 0.45s cubic-bezier(0.16, 1.0, 0.3, 1.0),
+        transform 0.45s cubic-bezier(0.16, 1.0, 0.3, 1.0),
+        visibility 0.45s ease;
+      contain: layout paint style;
+    }
+
+    .v4-subview-panel.active {
+      opacity: 1;
+      transform: translateY(0px) scale(1.0);
+      pointer-events: auto;
+      visibility: visible;
+      z-index: 5;
+    }
+
+    /* Battery & GPU Throttling: Pause animation loop when subview is inactive */
+    .v4-subview-panel:not(.active) * {
+      animation-play-state: paused !important;
+    }
+
+    /* --------------------------------------------------------------------------
+       THE LIVING DASHBOARD (VIEW 2) CONTAINER & COMPONENT STYLING
+       -------------------------------------------------------------------------- */
+    .v4-living-dash-container {
+      width: 100%;
+      max-width: 470px;
+      height: 335px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 
+        0 20px 45px -10px rgba(124, 58, 237, 0.22),
+        0 8px 18px -4px rgba(15, 23, 42, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.85);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      animation: ldFrameGenesis var(--ld-loop-duration) var(--ld-ease-snappy) infinite;
+      will-change: transform, box-shadow;
+      user-select: none;
+    }
+
+    /* App Chrome */
+    .v4-ld-chrome {
+      padding: 5px 10px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      height: 27px;
+      flex-shrink: 0;
+    }
+
+    .v4-ld-traffic-dots {
+      display: flex;
+      align-items: center;
+      gap: 4.5px;
+      flex-shrink: 0;
+    }
+
+    .v4-ld-dot {
+      width: 6.5px;
+      height: 6.5px;
+      border-radius: 50%;
+    }
+    .v4-ld-dot.red { background: #EF4444; }
+    .v4-ld-dot.amber { background: #F59E0B; }
+    .v4-ld-dot.green { background: #10B981; }
+
+    .v4-ld-search {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 7px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 5px;
+      font-size: 9.5px;
+      color: #94A3B8;
+      flex: 1;
+      max-width: 220px;
+      height: 18px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .v4-ld-search svg {
+      flex-shrink: 0;
+      color: #94A3B8;
+    }
+
+    .v4-ld-live-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      color: #059669;
+      font-size: 8.5px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .v4-ld-live-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+    }
+
+    /* Dashboard Body Area: Sidebar + Main */
+    .v4-ld-body {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      background: #FFFFFF;
+      position: relative;
+    }
+
+    /* Micro Sidebar */
+    .v4-ld-sidebar {
+      width: 38px;
+      background: #F8FAFC;
+      border-right: 1px solid #E2E8F0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 0;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .v4-ld-nav-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748B;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .v4-ld-nav-icon:hover {
+      color: #0F172A;
+      background: rgba(226, 232, 240, 0.7);
+    }
+
+    .v4-ld-nav-icon.active {
+      color: #7C3AED;
+      background: #EDE9FE;
+    }
+
+    .v4-ld-nav-icon.ai-nav {
+      color: #8B5CF6;
+    }
+
+    /* Main Content Area */
+    .v4-ld-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 8px 10px 10px 10px;
+      position: relative;
+      min-width: 0;
+    }
+
+    /* Top Bar */
+    .v4-ld-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 26px;
+      margin-bottom: 6px;
+      flex-shrink: 0;
+    }
+
+    .v4-ld-topbar-left {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .v4-ld-greeting {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+    }
+
+    .v4-ld-hub-tag {
+      font-size: 9px;
+      font-weight: 600;
+      color: #7C3AED;
+      background: rgba(124, 58, 237, 0.08);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .v4-ld-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .v4-ld-nav-bell-wrap {
+      position: relative;
+      cursor: pointer;
+      padding: 2px;
+    }
+
+    .v4-ld-nav-bell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #475569;
+      transform-origin: top center;
+      animation: ldBellChime var(--ld-loop-duration) var(--ld-ease-bell) infinite;
+    }
+
+    .v4-ld-nav-bell-dot {
+      position: absolute;
+      top: -1px;
+      right: -1px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #EF4444;
+      opacity: 0;
+      animation: ldBellDotPing var(--ld-loop-duration) ease infinite;
+    }
+
+    .v4-ld-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+      color: #FFFFFF;
+      font-size: 9.5px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(124, 58, 237, 0.35);
+      border: 1.5px solid #FFFFFF;
+    }
+
+    /* Widget B: Sliding Executive Broadcast Toast */
+    .v4-ld-broadcast-toast {
+      position: absolute;
+      top: 36px;
+      left: 10px;
+      right: 10px;
+      z-index: 25;
+      background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+      color: #FFFFFF;
+      border-radius: 8px;
+      padding: 5px 9px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 10px 25px -4px rgba(124, 58, 237, 0.38);
+      opacity: 0;
+      transform: translateY(-12px) scale(0.94);
+      pointer-events: none;
+      animation: ldBroadcastSlide var(--ld-loop-duration) var(--ld-ease-snappy) infinite;
+    }
+
+    .v4-ld-toast-icon-wrap {
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    .v4-ld-toast-body {
+      display: flex;
+      align-items: baseline;
+      gap: 5px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .v4-ld-toast-tag {
+      font-size: 8px;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.22);
+      padding: 1px 4px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .v4-ld-toast-msg {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .v4-ld-toast-ack {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    /* 2x2 Widgets Grid */
+    .v4-ld-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* Shared Widget Card Base */
+    .v4-ld-widget {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 7px 9px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      min-height: 100px;
+    }
+
+    .v4-ld-widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+
+    .v4-ld-widget-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #0F172A;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .v4-ld-w-icon {
+      font-size: 11px;
+    }
+
+    .v4-ld-widget-sub {
+      font-size: 9px;
+      color: #64748B;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .v4-ld-badge-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-width: 68px;
+      height: 18px;
+      justify-content: flex-end;
+    }
+
+    /* Widget A: Onboarding Task Fill & Badges */
+    .v4-ld-onboard-track {
+      width: 100%;
+      height: 5px;
+      border-radius: 9999px;
+      background: #E2E8F0;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .v4-ld-onboard-fill {
+      height: 100%;
+      border-radius: 9999px;
+      animation: ldOnboardingFill var(--ld-loop-duration) var(--ld-ease-metric) infinite;
+      will-change: width, background;
+    }
+
+    .v4-ld-badge-pending-1 {
+      display: inline-flex;
+      align-items: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      background: #EDE9FE;
+      color: #7C3AED;
+      animation: ldBadgeInProgress var(--ld-loop-duration) ease infinite;
+    }
+
+    .v4-ld-badge-complete-1 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-flex;
+      align-items: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      background: #D1FAE5;
+      color: #059669;
+      opacity: 0;
+      animation: ldBadgeCompleted var(--ld-loop-duration) var(--ld-ease-spring) infinite;
+    }
+
+    /* Widget C: Approval Workflow */
+    .v4-ld-badge-pending-2 {
+      display: inline-flex;
+      align-items: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      background: #FEF3C7;
+      color: #D97706;
+      animation: ldApprovalBadgePending var(--ld-loop-duration) ease infinite;
+    }
+
+    .v4-ld-badge-approved-2 {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-flex;
+      align-items: center;
+      font-size: 8.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 9999px;
+      background: #D1FAE5;
+      color: #059669;
+      opacity: 0;
+      animation: ldApprovalBadgeApproved var(--ld-loop-duration) var(--ld-ease-spring) infinite;
+    }
+
+    .v4-ld-approval-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+
+    .v4-ld-btn-approve {
+      appearance: none;
+      border: none;
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #FFFFFF;
+      border-radius: 5px;
+      padding: 3px 8px;
+      font-size: 9px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+      animation: ldApprovalBtnClick var(--ld-loop-duration) ease infinite;
+    }
+
+    /* Widget D: Workforce Analytics Mini Chart */
+    .v4-ld-kpi-val {
+      font-size: 11px;
+      font-weight: 800;
+      color: #0F172A;
+      animation: ldKpiCounterPulse var(--ld-loop-duration) ease infinite;
+    }
+
+    .v4-ld-chart-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 52px;
+      padding: 2px 4px 0 4px;
+      gap: 6px;
+    }
+
+    .v4-ld-bar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      flex: 1;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .v4-ld-bar-track {
+      width: 100%;
+      max-width: 14px;
+      height: 40px;
+      background: #E2E8F0;
+      border-radius: 3px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .v4-ld-bar-fill {
+      width: 100%;
+      border-radius: 3px;
+      background: linear-gradient(180deg, #A855F7 0%, #7C3AED 100%);
+      will-change: height;
+    }
+
+    .v4-ld-bar-1 { animation: ldBar1Growth var(--ld-loop-duration) var(--ld-ease-metric) infinite; }
+    .v4-ld-bar-2 { animation: ldBar2Growth var(--ld-loop-duration) var(--ld-ease-metric) infinite; }
+    .v4-ld-bar-3 { animation: ldBar3Growth var(--ld-loop-duration) var(--ld-ease-metric) infinite; }
+    .v4-ld-bar-4 { animation: ldBar4Growth var(--ld-loop-duration) var(--ld-ease-metric) infinite; }
+    .v4-ld-bar-5 { animation: ldBar5Growth var(--ld-loop-duration) var(--ld-ease-metric) infinite; }
+
+    .v4-ld-bar-label {
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+    }
+
+    /* Widget E: Ask HyIQ™ AI Copilot Card */
+    .v4-ld-widget.v4-ld-widget-hyiq {
+      background: #FAF5FF;
+      border-color: rgba(233, 213, 255, 0.85);
+      overflow: hidden;
+    }
+
+    .v4-ld-hyiq-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      font-size: 9px;
+      font-weight: 700;
+      color: #7C3AED;
+      animation: ldHyiqPillGlow var(--ld-loop-duration) ease infinite;
+    }
+
+    .v4-ld-sparkle {
+      display: inline-block;
+      animation: ldSparkleSpin var(--ld-loop-duration) ease infinite;
+      transform-origin: center;
+    }
+
+    .v4-ld-hyiq-interactive-area {
+      position: relative;
+      flex: 1;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .v4-ld-hyiq-query {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      animation: ldHyiqQuerySlide var(--ld-loop-duration) var(--ld-ease-snappy) infinite;
+    }
+
+    .v4-ld-hyiq-query span {
+      font-size: 8.5px;
+      font-style: italic;
+      color: #475569;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 5px;
+      padding: 3px 6px;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .v4-ld-typing-dots {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      gap: 3.5px;
+      padding-left: 6px;
+      animation: ldTypingDotsContainer var(--ld-loop-duration) ease infinite;
+    }
+
+    .v4-ld-typing-dots span {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #7C3AED;
+      animation: ldTypingDotBouncer 0.8s ease-in-out infinite;
+    }
+    .v4-ld-typing-dots span:nth-child(2) { animation-delay: 0.16s; }
+    .v4-ld-typing-dots span:nth-child(3) { animation-delay: 0.32s; }
+
+    .v4-ld-hyiq-toast {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 7px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.95) 0%, rgba(109, 40, 217, 0.98) 100%);
+      color: #FFFFFF;
+      font-size: 8.5px;
+      font-weight: 600;
+      line-height: 1.25;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+      animation: ldHyiqInsightReveal var(--ld-loop-duration) var(--ld-ease-snappy) infinite;
+    }
+
+    .v4-ld-toast-shimmer {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 60%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transform: translateX(-100%);
+      pointer-events: none;
+      animation: ldShimmerSweep var(--ld-loop-duration) linear infinite;
+    }
+
+    /* --------------------------------------------------------------------------
+       THE LIVING DASHBOARD 12.0s MASTER LOOP KEYFRAMES
+       -------------------------------------------------------------------------- */
+    @keyframes ldFrameGenesis {
+      0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.97);
+        box-shadow: 0 10px 25px -6px rgba(15, 23, 42, 0.06);
+      }
+      8.33% {
+        opacity: 1;
+        transform: translateY(-1.5px) scale(1.005);
+        box-shadow: 0 26px 55px -10px rgba(124, 58, 237, 0.26);
+      }
+      12.50% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+        box-shadow: 
+          0 20px 45px -10px rgba(124, 58, 237, 0.22),
+          0 8px 18px -4px rgba(15, 23, 42, 0.08),
+          0 0 0 1px rgba(255, 255, 255, 0.85);
+      }
+      95.00% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+        box-shadow: 
+          0 20px 45px -10px rgba(124, 58, 237, 0.22),
+          0 8px 18px -4px rgba(15, 23, 42, 0.08),
+          0 0 0 1px rgba(255, 255, 255, 0.85);
+      }
+      100.00% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+        box-shadow: 
+          0 20px 45px -10px rgba(124, 58, 237, 0.22),
+          0 8px 18px -4px rgba(15, 23, 42, 0.08),
+          0 0 0 1px rgba(255, 255, 255, 0.85);
+      }
+    }
+
+    @keyframes ldOnboardingFill {
+      0%, 12.50% {
+        width: 40%;
+        background: linear-gradient(90deg, #6366F1, #8B5CF6);
+      }
+      14.17% {
+        width: 44%;
+      }
+      20.83% {
+        width: 100%;
+        background: linear-gradient(90deg, #10B981, #059669);
+      }
+      87.50% {
+        width: 100%;
+        background: linear-gradient(90deg, #10B981, #059669);
+      }
+      95.83% {
+        width: 40%;
+        background: linear-gradient(90deg, #6366F1, #8B5CF6);
+      }
+      100.00% {
+        width: 40%;
+        background: linear-gradient(90deg, #6366F1, #8B5CF6);
+      }
+    }
+
+    @keyframes ldBadgeInProgress {
+      0%, 19.00% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        display: inline-flex;
+      }
+      21.50% {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.9);
+      }
+      88.50% {
+        opacity: 0;
+        transform: translateY(4px) scale(0.9);
+      }
+      93.00%, 100.00% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes ldBadgeCompleted {
+      0%, 20.00% {
+        opacity: 0;
+        transform: translateY(6px) scale(0.85);
+        pointer-events: none;
+      }
+      22.50% {
+        opacity: 1;
+        transform: translateY(-1px) scale(1.16);
+        box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+      }
+      25.00% {
+        opacity: 1;
+        transform: translateY(0) scale(1.0);
+        box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+      }
+      87.50% {
+        opacity: 1;
+        transform: translateY(0) scale(1.0);
+      }
+      92.00%, 100.00% {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.9);
+      }
+    }
+
+    @keyframes ldBellChime {
+      0%, 24.99% {
+        transform: rotate(0deg);
+        transform-origin: top center;
+      }
+      25.20% { transform: rotate(-16deg); }
+      25.60% { transform: rotate(14deg); }
+      26.00% { transform: rotate(-10deg); }
+      26.40% { transform: rotate(7deg); }
+      26.80% { transform: rotate(-3deg); }
+      27.20%, 100.00% {
+        transform: rotate(0deg);
+      }
+    }
+
+    @keyframes ldBellDotPing {
+      0%, 24.99% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      25.50% {
+        opacity: 1;
+        transform: scale(1.3);
+        box-shadow: 0 0 8px #EF4444;
+      }
+      27.00% {
+        transform: scale(1.0);
+      }
+      37.50% {
+        opacity: 1;
+        transform: scale(1.0);
+      }
+      41.67%, 100.00% {
+        opacity: 0;
+        transform: scale(0.4);
+      }
+    }
+
+    @keyframes ldBroadcastSlide {
+      0%, 26.50% {
+        opacity: 0;
+        transform: translateY(-12px) scale(0.94);
+        pointer-events: none;
+      }
+      28.33% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+        box-shadow: 0 8px 24px -4px rgba(124, 58, 237, 0.28);
+      }
+      35.00% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+      }
+      37.50%, 100.00% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.95);
+        pointer-events: none;
+      }
+    }
+
+    @keyframes ldApprovalBtnClick {
+      0%, 39.00% {
+        transform: scale(1.0);
+        box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
+      }
+      40.00% {
+        transform: scale(0.92);
+        box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+      }
+      41.50% {
+        transform: scale(1.0);
+      }
+      100.00% {
+        transform: scale(1.0);
+      }
+    }
+
+    @keyframes ldApprovalBadgePending {
+      0%, 40.50% {
+        opacity: 1;
+        transform: scale(1);
+        display: inline-flex;
+      }
+      42.50% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      90.00% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      95.00%, 100.00% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes ldApprovalBadgeApproved {
+      0%, 41.50% {
+        opacity: 0;
+        transform: scale(0.7) translateY(4px);
+        pointer-events: none;
+      }
+      43.50% {
+        opacity: 1;
+        transform: scale(1.18) translateY(0);
+        box-shadow: 0 0 14px rgba(16, 185, 129, 0.45);
+      }
+      46.00% {
+        transform: scale(1.0);
+        box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+      }
+      88.00% {
+        opacity: 1;
+        transform: scale(1.0);
+      }
+      93.00%, 100.00% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    @keyframes ldBar1Growth {
+      0%, 50.00% { height: 45%; }
+      55.00%, 86.00% { height: 75%; }
+      94.00%, 100.00% { height: 45%; }
+    }
+    @keyframes ldBar2Growth {
+      0%, 50.83% { height: 55%; }
+      55.83%, 86.00% { height: 85%; }
+      94.00%, 100.00% { height: 55%; }
+    }
+    @keyframes ldBar3Growth {
+      0%, 51.67% { height: 60%; }
+      56.67%, 86.00% { height: 92%; }
+      94.00%, 100.00% { height: 60%; }
+    }
+    @keyframes ldBar4Growth {
+      0%, 52.50% { height: 70%; }
+      57.50%, 86.00% { height: 96%; }
+      94.00%, 100.00% { height: 70%; }
+    }
+    @keyframes ldBar5Growth {
+      0%, 53.33% { height: 48%; }
+      58.33%, 86.00% { height: 88%; }
+      94.00%, 100.00% { height: 48%; }
+    }
+
+    @keyframes ldKpiCounterPulse {
+      0%, 52.00% {
+        transform: scale(1.0);
+      }
+      54.50% {
+        transform: scale(1.10);
+        color: #7C3AED;
+        text-shadow: 0 0 10px rgba(124, 58, 237, 0.35);
+      }
+      57.50% {
+        transform: scale(1.0);
+        color: #0F172A;
+        text-shadow: none;
+      }
+      100.00% {
+        transform: scale(1.0);
+      }
+    }
+
+    @keyframes ldHyiqPillGlow {
+      0%, 62.00% {
+        box-shadow: 0 0 0 rgba(168, 85, 247, 0);
+        border-color: rgba(226, 232, 240, 0.9);
+      }
+      64.00% {
+        box-shadow: 0 0 18px 2px rgba(168, 85, 247, 0.45);
+        border-color: #A855F7;
+      }
+      78.00% {
+        box-shadow: 0 0 14px 1px rgba(168, 85, 247, 0.3);
+        border-color: #A855F7;
+      }
+      83.00%, 100.00% {
+        box-shadow: 0 0 0 rgba(168, 85, 247, 0);
+        border-color: rgba(226, 232, 240, 0.9);
+      }
+    }
+
+    @keyframes ldSparkleSpin {
+      0%, 62.50% { transform: scale(1) rotate(0deg); }
+      65.00% { transform: scale(1.28) rotate(18deg); }
+      72.00% { transform: scale(1.1) rotate(-8deg); }
+      78.00% { transform: scale(1) rotate(0deg); }
+      100.00% { transform: scale(1) rotate(0deg); }
+    }
+
+    @keyframes ldHyiqQuerySlide {
+      0%, 63.50% {
+        opacity: 0;
+        transform: translateY(6px) scale(0.95);
+      }
+      65.50% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+      }
+      68.50% {
+        opacity: 1;
+        transform: translateY(0px) scale(1.0);
+      }
+      70.50%, 100.00% {
+        opacity: 0;
+        transform: translateY(-4px) scale(0.95);
+      }
+    }
+
+    @keyframes ldTypingDotBouncer {
+      0%, 100% { transform: translateY(0); opacity: 0.4; }
+      50% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    @keyframes ldTypingDotsContainer {
+      0%, 68.00% {
+        opacity: 0;
+        display: none;
+      }
+      68.50% {
+        opacity: 1;
+        display: flex;
+      }
+      72.50% {
+        opacity: 1;
+      }
+      74.00%, 100.00% {
+        opacity: 0;
+        display: none;
+      }
+    }
+
+    @keyframes ldHyiqInsightReveal {
+      0%, 72.50% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.94);
+        pointer-events: none;
+      }
+      75.00% {
+        opacity: 1;
+        transform: translateY(0) scale(1.0);
+        box-shadow: 0 10px 25px -4px rgba(124, 58, 237, 0.35);
+      }
+      79.17% {
+        opacity: 1;
+        transform: translateY(0) scale(1.0);
+      }
+      86.00% {
+        opacity: 0.8;
+      }
+      89.50%, 100.00% {
+        opacity: 0;
+        transform: translateY(6px) scale(0.95);
+        pointer-events: none;
+      }
+    }
+
+    @keyframes ldShimmerSweep {
+      0%, 74.00% {
+        transform: translateX(-100%);
+      }
+      77.50% {
+        transform: translateX(120%);
+      }
+      100.00% {
+        transform: translateX(120%);
+      }
+    }
+
+    /* Accessibility Fallback for Reduced Motion Preference */
+    @media (prefers-reduced-motion: reduce) {
+      .v4-living-dash-container,
+      .v4-ld-onboard-fill,
+      .v4-ld-badge-pending-1,
+      .v4-ld-badge-complete-1,
+      .v4-ld-nav-bell,
+      .v4-ld-nav-bell-dot,
+      .v4-ld-broadcast-toast,
+      .v4-ld-btn-approve,
+      .v4-ld-badge-pending-2,
+      .v4-ld-badge-approved-2,
+      .v4-ld-bar-fill,
+      .v4-ld-kpi-val,
+      .v4-ld-hyiq-pill,
+      .v4-ld-sparkle,
+      .v4-ld-hyiq-query,
+      .v4-ld-typing-dots,
+      .v4-ld-hyiq-toast,
+      .v4-ld-toast-shimmer {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .v4-living-dash-container {
+        opacity: 1 !important;
+        transform: none !important;
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.22) !important;
+      }
+
+      .v4-ld-onboard-fill {
+        width: 100% !important;
+        background: linear-gradient(90deg, #10B981, #059669) !important;
+      }
+      .v4-ld-badge-pending-1 { display: none !important; }
+      .v4-ld-badge-complete-1 {
+        opacity: 1 !important;
+        transform: none !important;
+        display: inline-flex !important;
+      }
+
+      .v4-ld-nav-bell { transform: none !important; }
+      .v4-ld-nav-bell-dot { opacity: 0 !important; }
+      .v4-ld-broadcast-toast { display: none !important; }
+
+      .v4-ld-badge-pending-2 { display: none !important; }
+      .v4-ld-badge-approved-2 {
+        opacity: 1 !important;
+        transform: none !important;
+        display: inline-flex !important;
+      }
+
+      .v4-ld-bar-1 { height: 75% !important; }
+      .v4-ld-bar-2 { height: 85% !important; }
+      .v4-ld-bar-3 { height: 92% !important; }
+      .v4-ld-bar-4 { height: 96% !important; }
+      .v4-ld-bar-5 { height: 88% !important; }
+
+      .v4-ld-hyiq-query { display: none !important; }
+      .v4-ld-typing-dots { display: none !important; }
+      .v4-ld-hyiq-toast {
+        opacity: 1 !important;
+        transform: none !important;
+        display: flex !important;
+      }
+      .v4-ld-toast-shimmer { display: none !important; }
+
+      .v4-subview-panel {
+        transition: opacity 0.15s linear !important;
+        transform: none !important;
+      }
+    }
+
     /* Right Form Card */
     .v4-form-card {
       background: #FFFFFF;
@@ -3768,11 +4985,31 @@
       .v4-workflow-stage {
         max-width: 500px;
       }
+      .v4-illustration-viewport {
+        max-width: 500px;
+      }
+      .v4-living-dash-container {
+        max-width: 440px;
+      }
     }
 
     @media (max-width: 640px) {
       .v4-workflow-stage {
         height: 280px;
+      }
+      .v4-illustration-viewport {
+        height: 300px;
+      }
+      .v4-living-dash-container {
+        transform: scale(0.85);
+        transform-origin: center;
+      }
+      .v4-view-switcher-bar {
+        margin-bottom: 8px;
+      }
+      .v4-segmented-btn {
+        padding: 4px 9px;
+        font-size: 10.5px;
       }
       .v4-mini-dashboard {
         width: 160px;
@@ -5065,10 +6302,27 @@
             Everything you need to build, manage and grow a high-performing team.
           </p>
 
-          <!-- ANIMATED WORKFLOW STAGE (THE CONNECTED HR ECOSYSTEM) -->
-          <div class="v4-workflow-stage" id="v4WorkflowStage">
-            <!-- Dynamic SVG Flow Connectors & Luminescent Particles -->
-            <svg class="v4-flow-lines-svg" viewBox="0 0 540 350" preserveAspectRatio="none">
+          <!-- Sub-View Segmented Switcher Pill -->
+          <div class="v4-view-switcher-bar">
+            <div class="v4-segmented-control" role="tablist" aria-label="Illustration Sub-Views">
+              <button type="button" class="v4-segmented-btn" id="v4BtnEcosystem" role="tab" aria-selected="false" onclick="setIllustrationSubView('ecosystem')">
+                <span class="v4-btn-dot dot-purple"></span>
+                <span>Connected Ecosystem (View 1)</span>
+              </button>
+              <button type="button" class="v4-segmented-btn active" id="v4BtnLivingDash" role="tab" aria-selected="true" onclick="setIllustrationSubView('living')">
+                <span class="v4-btn-dot dot-emerald"></span>
+                <span>The Living Dashboard (View 2)</span>
+                <span class="v4-badge-new">NEW</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Shared Illustration Viewport Stage -->
+          <div class="v4-illustration-viewport" id="v4IllustrationViewport">
+            <!-- PANEL 1: CONNECTED ECOSYSTEM (VIEW 1) -->
+            <div class="v4-subview-panel v4-subview-ecosystem" id="v4StageEcosystem">
+              <div class="v4-workflow-stage" id="v4WorkflowStage">
+<svg class="v4-flow-lines-svg" viewBox="0 0 540 350" preserveAspectRatio="none">
               <defs>
                 <!-- Multi-Stop Cosmic Gradient for Live Stream -->
                 <linearGradient id="v4Grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -5200,6 +6454,193 @@
                     <div class="v4-progress-fill"></div>
                   </div>
                   <span class="v4-progress-val">85%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
+              </div>
+            </div>
+
+            <!-- PANEL 2: THE LIVING DASHBOARD (VIEW 2) -->
+            <div class="v4-subview-panel v4-subview-living active" id="v4StageLivingDash">
+              <div class="v4-living-dash-container" id="v4LivingDashContainer">
+                <!-- App Chrome -->
+                <div class="v4-ld-chrome">
+                  <div class="v4-ld-traffic-dots">
+                    <span class="v4-ld-dot red"></span>
+                    <span class="v4-ld-dot amber"></span>
+                    <span class="v4-ld-dot green"></span>
+                  </div>
+                  <div class="v4-ld-search">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <span>Search people, workflows...</span>
+                  </div>
+                  <div class="v4-ld-live-chip">
+                    <span class="v4-ld-live-dot"></span>
+                    <span>Live Sync</span>
+                  </div>
+                </div>
+
+                <!-- Dashboard Body Area: Sidebar + Main -->
+                <div class="v4-ld-body">
+                  <!-- Micro Sidebar -->
+                  <div class="v4-ld-sidebar">
+                    <div class="v4-ld-nav-icon active" title="Dashboard">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <div class="v4-ld-nav-icon" title="People">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
+                    <div class="v4-ld-nav-icon" title="Approvals">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                    </div>
+                    <div class="v4-ld-nav-icon ai-nav" title="HyIQ AI">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"></path></svg>
+                    </div>
+                  </div>
+
+                  <!-- Main Content Area -->
+                  <div class="v4-ld-main">
+                    <!-- Top Bar -->
+                    <div class="v4-ld-topbar">
+                      <div class="v4-ld-topbar-left">
+                        <span class="v4-ld-greeting">Good morning, Chanchal</span>
+                        <span class="v4-ld-hub-tag">People Hub</span>
+                      </div>
+                      <div class="v4-ld-topbar-right">
+                        <div class="v4-ld-nav-bell-wrap" title="Notifications">
+                          <div class="v4-ld-nav-bell">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+                          </div>
+                          <span class="v4-ld-nav-bell-dot"></span>
+                        </div>
+                        <div class="v4-ld-avatar" title="Chanchal Sharma">CS</div>
+                      </div>
+                    </div>
+
+                    <!-- Widget B: Sliding Executive Broadcast Toast -->
+                    <div class="v4-ld-broadcast-toast">
+                      <div class="v4-ld-toast-icon-wrap">📢</div>
+                      <div class="v4-ld-toast-body">
+                        <span class="v4-ld-toast-tag">Broadcast</span>
+                        <span class="v4-ld-toast-msg">Updated shift timings starting Mon</span>
+                      </div>
+                      <span class="v4-ld-toast-ack">✓</span>
+                    </div>
+
+                    <!-- 2x2 Widgets Grid -->
+                    <div class="v4-ld-grid">
+                      <!-- Widget A: Employee Onboarding Task -->
+                      <div class="v4-ld-widget v4-ld-widget-onboarding">
+                        <div class="v4-ld-widget-header">
+                          <div class="v4-ld-widget-title">
+                            <span class="v4-ld-w-icon">🧭</span>
+                            <span>Orientation</span>
+                          </div>
+                          <div class="v4-ld-badge-wrap">
+                            <span class="v4-ld-badge-pending-1">In Progress</span>
+                            <span class="v4-ld-badge-complete-1">Completed ✓</span>
+                          </div>
+                        </div>
+                        <div class="v4-ld-widget-sub">Maya Patel • Engineering</div>
+                        <div class="v4-ld-onboard-track">
+                          <div class="v4-ld-onboard-fill"></div>
+                        </div>
+                      </div>
+
+                      <!-- Widget D: Workforce Analytics Mini Chart -->
+                      <div class="v4-ld-widget v4-ld-widget-analytics">
+                        <div class="v4-ld-widget-header">
+                          <div class="v4-ld-widget-title">
+                            <span>Workforce Activity</span>
+                          </div>
+                          <span class="v4-ld-kpi-val">94%</span>
+                        </div>
+                        <div class="v4-ld-chart-row">
+                          <div class="v4-ld-bar-col">
+                            <div class="v4-ld-bar-track">
+                              <div class="v4-ld-bar-fill v4-ld-bar-1"></div>
+                            </div>
+                            <span class="v4-ld-bar-label">M</span>
+                          </div>
+                          <div class="v4-ld-bar-col">
+                            <div class="v4-ld-bar-track">
+                              <div class="v4-ld-bar-fill v4-ld-bar-2"></div>
+                            </div>
+                            <span class="v4-ld-bar-label">T</span>
+                          </div>
+                          <div class="v4-ld-bar-col">
+                            <div class="v4-ld-bar-track">
+                              <div class="v4-ld-bar-fill v4-ld-bar-3"></div>
+                            </div>
+                            <span class="v4-ld-bar-label">W</span>
+                          </div>
+                          <div class="v4-ld-bar-col">
+                            <div class="v4-ld-bar-track">
+                              <div class="v4-ld-bar-fill v4-ld-bar-4"></div>
+                            </div>
+                            <span class="v4-ld-bar-label">T</span>
+                          </div>
+                          <div class="v4-ld-bar-col">
+                            <div class="v4-ld-bar-track">
+                              <div class="v4-ld-bar-fill v4-ld-bar-5"></div>
+                            </div>
+                            <span class="v4-ld-bar-label">F</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Widget C: Approval Workflow Card -->
+                      <div class="v4-ld-widget v4-ld-widget-approval">
+                        <div class="v4-ld-widget-header">
+                          <div class="v4-ld-widget-title">
+                            <span class="v4-ld-w-icon">⚡</span>
+                            <span>Leave Approval</span>
+                          </div>
+                          <div class="v4-ld-badge-wrap">
+                            <span class="v4-ld-badge-pending-2">Pending</span>
+                            <span class="v4-ld-badge-approved-2">Approved ✓</span>
+                          </div>
+                        </div>
+                        <div class="v4-ld-widget-sub">Sarah J. • 3 days annual</div>
+                        <div class="v4-ld-approval-action-row">
+                          <button type="button" class="v4-ld-btn-approve" aria-label="Approve leave request">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>Approve</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      <!-- Widget E: Ask HyIQ™ AI Copilot Card -->
+                      <div class="v4-ld-widget v4-ld-widget-hyiq">
+                        <div class="v4-ld-widget-header">
+                          <div class="v4-ld-hyiq-pill">
+                            <span class="v4-ld-sparkle">✨</span>
+                            <span>Ask HyIQ™ AI</span>
+                          </div>
+                        </div>
+                        <div class="v4-ld-hyiq-interactive-area">
+                          <!-- User Query Bubble -->
+                          <div class="v4-ld-hyiq-query">
+                            <span>“How is onboarding progressing?”</span>
+                          </div>
+                          <!-- 3-Dot Typing Bouncer -->
+                          <div class="v4-ld-typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </div>
+                          <!-- Glassmorphic AI Insight Toast -->
+                          <div class="v4-ld-hyiq-toast">
+                            <div class="v4-ld-toast-shimmer"></div>
+                            <span class="v4-ld-sparkle">✨</span>
+                            <span class="v4-ld-toast-text">Onboarding progress is on track.</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -5827,8 +7268,10 @@
           btn4.classList.add('active');
           btn4.setAttribute('aria-current', 'page');
         }
+        initIllustrationSubView();
         try {
-          history.replaceState(null, '', '#view4');
+          const sub = localStorage.getItem('hirerkey_v4_subview') || 'living';
+          history.replaceState(null, '', sub === 'ecosystem' ? '#view4-1' : '#view4-2');
           localStorage.setItem('hirerkey_login_view', '4');
         } catch(e) {}
       }
@@ -5871,11 +7314,12 @@
         switchLoginView(2);
       } else if (hash === '#view3' || params.get('view') === '3') {
         switchLoginView(3);
-      } else if (hash === '#view4' || params.get('view') === '4') {
+      } else if (hash.startsWith('#view4') || params.get('view') === '4' || hash === '#living' || hash === '#ecosystem') {
         switchLoginView(4);
       } else {
         switchLoginView(4);
       }
+      initIllustrationSubView();
     });
 
     // View 2 Auth Mode Switcher (Email OTP vs Password)
@@ -6526,6 +7970,65 @@
         stage.addEventListener('mouseleave', () => {
           miniDash.style.transform = '';
         });
+      }
+    });
+
+    // ==========================================================================
+    // PAGE 4 SUB-VIEW CONTROLLER (CONNECTED ECOSYSTEM vs THE LIVING DASHBOARD)
+    // ==========================================================================
+    function setIllustrationSubView(view) {
+      const isEco = view === 'ecosystem';
+      const ecoStage = document.getElementById('v4StageEcosystem');
+      const livingStage = document.getElementById('v4StageLivingDash');
+      const btnEco = document.getElementById('v4BtnEcosystem');
+      const btnLiving = document.getElementById('v4BtnLivingDash');
+
+      if (ecoStage) ecoStage.classList.toggle('active', isEco);
+      if (livingStage) livingStage.classList.toggle('active', !isEco);
+      if (btnEco) {
+        btnEco.classList.toggle('active', isEco);
+        btnEco.setAttribute('aria-selected', isEco ? 'true' : 'false');
+      }
+      if (btnLiving) {
+        btnLiving.classList.toggle('active', !isEco);
+        btnLiving.setAttribute('aria-selected', !isEco ? 'true' : 'false');
+      }
+
+      try {
+        localStorage.setItem('hirerkey_v4_subview', isEco ? 'ecosystem' : 'living');
+        if (typeof activeLoginView !== 'undefined' && activeLoginView === 4) {
+          history.replaceState(null, '', isEco ? '#view4-1' : '#view4-2');
+        }
+      } catch (e) {}
+    }
+
+    function initIllustrationSubView() {
+      const hash = (window.location.hash || '').toLowerCase();
+      let saved = null;
+      try {
+        saved = localStorage.getItem('hirerkey_v4_subview');
+      } catch (e) {}
+
+      if (hash === '#view4-1' || hash === '#ecosystem' || hash === '#view4-ecosystem') {
+        setIllustrationSubView('ecosystem');
+      } else if (hash === '#view4-2' || hash === '#living' || hash === '#view4-living' || hash === '#view4') {
+        setIllustrationSubView('living');
+      } else if (saved === 'ecosystem') {
+        setIllustrationSubView('ecosystem');
+      } else {
+        // Default to 'living' (View 2) as requested
+        setIllustrationSubView('living');
+      }
+    }
+
+    window.addEventListener('hashchange', () => {
+      const hash = (window.location.hash || '').toLowerCase();
+      if (hash === '#view4-1' || hash === '#ecosystem' || hash === '#view4-ecosystem') {
+        if (typeof activeLoginView !== 'undefined' && activeLoginView !== 4) switchLoginView(4);
+        setIllustrationSubView('ecosystem');
+      } else if (hash === '#view4-2' || hash === '#living' || hash === '#view4-living') {
+        if (typeof activeLoginView !== 'undefined' && activeLoginView !== 4) switchLoginView(4);
+        setIllustrationSubView('living');
       }
     });
   </script>
