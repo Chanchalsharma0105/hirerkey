@@ -441,6 +441,10 @@
         <span>🧭 Orientation Studio</span>
         <span class="tab-badge" style="background: #7C3AED; color: #FFFFFF;">Dual View</span>
       </button>
+      <button class="nav-tab-btn" id="tab-appraisal" onclick="loadView('appraisal')">
+        <span>⭐ Appraisal 2.0</span>
+        <span class="tab-badge" style="background: #7C3AED; color: #FFFFFF; font-weight: 700;">KJR · KPO · PDP</span>
+      </button>
       <button class="nav-tab-btn" id="tab-login" onclick="loadView('login')">
         <span>🔐 Login Screen</span>
         <span class="tab-badge" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Four Views ① ② ③ ④</span>
@@ -482,6 +486,32 @@
       </div>
 
       <div class="cards-grid">
+
+        <!-- Appraisal 2.0 (Native Hirerkey 6-Step Journey) -->
+        <div class="view-card" style="border: 2px solid #7C3AED; box-shadow: 0 8px 30px -4px rgba(124, 58, 237, 0.16);">
+          <div class="card-top">
+            <div class="card-badge-row">
+              <span class="card-selection-pill" style="background: #7C3AED; color: #FFFFFF; font-weight: 800;">ANNUAL REVIEW · KJR · KPO · PDP</span>
+              <span style="font-size: 11px; color: #64748B; font-family: var(--font-mono);">views/appraisal_revamp.html</span>
+            </div>
+            <div class="card-icon-box" style="background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%); color: #FFFFFF;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+            </div>
+            <h2 class="card-title">Appraisal 2.0 — Native Hirerkey Review Experience</h2>
+            <p class="card-desc">Native Hirerkey performance evaluation matching production workflows: Colleague Dossier, Key Job Responsibilities (KJR), Key Performance Objectives (KPO), Competencies &amp; Core Values, Personal Development Plan (PDP), Side-by-Side Calibration, and Digital HR Governance Lock.</p>
+            <ul class="card-features">
+              <li>Colleague dossier with employee ID, reporting manager &amp; cycle dates</li>
+              <li>Key Job Responsibilities (KJR) rated 1–5 with HyIQ AI &amp; evidence upload</li>
+              <li>Key Performance Objectives (KPO) with weighted targets and live scoring</li>
+              <li>Competencies &amp; Core Values evaluation across 4 organizational pillars</li>
+              <li>Priority-tiered Personal Development Plan (PDP) (High, Medium, Low)</li>
+              <li>Side-by-side Calibration comparison &amp; Digital HR Finalise &amp; Lock protocol</li>
+            </ul>
+          </div>
+          <div class="card-actions">
+            <a href="views/appraisal_revamp.html" target="_blank" class="btn-card-standalone" style="width: 100%; text-align: center; justify-content: center; background: #7C3AED; color: #FFFFFF; font-weight: 700;">Open Appraisal 2.0 Review ↗</a>
+          </div>
+        </div>
 
         <!-- 0. Modal & Drawer Standardization Showcase (NEW) -->
         <div class="view-card" style="border: 2px solid #C4B5FD; box-shadow: 0 8px 30px -4px rgba(124, 58, 237, 0.15);">
@@ -779,6 +809,10 @@
       'orientation': {
         name: 'Orientation Studio (Redesign)',
         url: 'views/orientation_redesign.html'
+      },
+      'appraisal': {
+        name: 'Appraisal 2.0 (Native Hirerkey 6-Step Review)',
+        url: 'views/appraisal_revamp.html'
       },
       'login': {
         name: 'Login Screen (Dual View 1 & 2 — Frosted & Smart AI)',
