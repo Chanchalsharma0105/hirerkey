@@ -2634,14 +2634,556 @@ export const LoginView: React.FC<LoginViewProps> = ({
             style={{ width: '100%', maxWidth: '1220px', display: 'flex', justifyContent: 'center' }}
           >
             <style>{`
-              @keyframes v4DashTravel { to { stroke-dashoffset: -100; } }
-              @keyframes v4GlowPulse { 0%, 100% { stroke-dashoffset: 0; opacity: 0.3; } 50% { stroke-dashoffset: -120; opacity: 1; } }
-              @keyframes v4DotPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.4); opacity: 0.5; } }
-              @keyframes v4DashPulse { 0%, 100% { transform: scale(1) translateY(0); box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.32); } 50% { transform: scale(1.02) translateY(-4px); box-shadow: 0 26px 55px -10px rgba(124, 58, 237, 0.42); } }
-              @keyframes v4Pop1 { 0%, 25%, 100% { transform: scale(1.04) translateY(-3px); border-color: #7C3AED; box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.35); } 35%, 90% { transform: scale(1) translateY(0); border-color: #E2E8F0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); } }
-              @keyframes v4Pop2 { 0%, 20% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 25%, 50% { transform: scale(1.04) translateY(-3px); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.35); } 60%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
-              @keyframes v4Pop3 { 0%, 45% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 50%, 75% { transform: scale(1.04) translateY(-3px); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.35); } 85%, 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
-              @keyframes v4Pop4 { 0%, 70% { transform: scale(1) translateY(0); border-color: #E2E8F0; } 75%, 98% { transform: scale(1.04) translateY(-3px); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.35); } 100% { transform: scale(1) translateY(0); border-color: #E2E8F0; } }
+              @keyframes v4DotPulse {
+                0%, 100% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.4); opacity: 0.5; }
+              }
+
+              /* 1. CENTRAL MINI DASHBOARD */
+              @keyframes v4DashMaster {
+                0% {
+                  opacity: 0.92;
+                  transform: scale(0.97) translateY(2px);
+                  box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.24);
+                }
+                10% {
+                  opacity: 1;
+                  transform: scale(1.008) translateY(-3px);
+                  box-shadow: 0 24px 50px -10px rgba(124, 58, 237, 0.36);
+                }
+                15% {
+                  opacity: 1;
+                  transform: scale(1.0) translateY(0px);
+                  box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.30);
+                }
+                35% {
+                  transform: scale(1.0) translateY(-2px);
+                }
+                50% {
+                  transform: scale(1.0) translateY(1px);
+                }
+                60% {
+                  transform: scale(1.0) translateY(0px);
+                  box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.32);
+                }
+                70% {
+                  transform: scale(1.025) translateY(-3px);
+                  box-shadow: 
+                    0 30px 70px -10px rgba(124, 58, 237, 0.46),
+                    0 0 35px 4px rgba(124, 58, 237, 0.26),
+                    0 0 0 1px rgba(255, 255, 255, 0.9);
+                }
+                80% {
+                  transform: scale(1.0) translateY(0px);
+                  box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.32);
+                }
+                94% {
+                  opacity: 1;
+                  transform: scale(0.985) translateY(1px);
+                  box-shadow: 0 18px 40px -8px rgba(124, 58, 237, 0.26);
+                }
+                100% {
+                  opacity: 0.92;
+                  transform: scale(0.97) translateY(2px);
+                  box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.24);
+                }
+              }
+
+              /* 2. CARD 1: ORIENTATION (Top-Left) */
+              @keyframes v4Card1Motion {
+                0%, 14% {
+                  opacity: 0;
+                  transform: translate(-14px, -8px) scale(0.96);
+                  border-color: #E2E8F0;
+                  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+                }
+                20% {
+                  opacity: 1;
+                  transform: translate(1px, 1px) scale(1.02);
+                  border-color: #7C3AED;
+                  box-shadow: 0 14px 32px -6px rgba(124, 58, 237, 0.32);
+                }
+                24% {
+                  opacity: 1;
+                  transform: translate(0, 0) scale(1.0);
+                  border-color: rgba(124, 58, 237, 0.6);
+                }
+                50% {
+                  transform: translate(0, -2px) scale(1.0);
+                }
+                60% {
+                  transform: translate(0, 0) scale(1.0);
+                }
+                70% {
+                  transform: translate(-1px, -3px) scale(1.03);
+                  border-color: #7C3AED;
+                  box-shadow: 0 16px 36px -6px rgba(124, 58, 237, 0.38);
+                }
+                80% {
+                  transform: translate(0, 0) scale(1.0);
+                  border-color: rgba(124, 58, 237, 0.5);
+                }
+                88% {
+                  opacity: 0.8;
+                  border-color: #E2E8F0;
+                }
+                94% {
+                  opacity: 0;
+                  transform: translate(-14px, -8px) scale(0.96);
+                }
+                100% {
+                  opacity: 0;
+                  transform: translate(-14px, -8px) scale(0.96);
+                }
+              }
+
+              /* 3. CARD 2: DEPARTMENT TOUR (Bottom-Left) */
+              @keyframes v4Card2Motion {
+                0%, 24% {
+                  opacity: 0;
+                  transform: translate(-14px, 8px) scale(0.96);
+                  border-color: #E2E8F0;
+                  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+                }
+                30% {
+                  opacity: 1;
+                  transform: translate(1px, -1px) scale(1.02);
+                  border-color: #3B82F6;
+                  box-shadow: 0 14px 32px -6px rgba(59, 130, 246, 0.32);
+                }
+                34% {
+                  opacity: 1;
+                  transform: translate(0, 0) scale(1.0);
+                  border-color: rgba(59, 130, 246, 0.6);
+                }
+                55% {
+                  transform: translate(0, 2px) scale(1.0);
+                }
+                60% {
+                  transform: translate(0, 0) scale(1.0);
+                }
+                70% {
+                  transform: translate(-1px, 3px) scale(1.03);
+                  border-color: #3B82F6;
+                  box-shadow: 0 16px 36px -6px rgba(59, 130, 246, 0.38);
+                }
+                80% {
+                  transform: translate(0, 0) scale(1.0);
+                  border-color: rgba(59, 130, 246, 0.5);
+                }
+                88% {
+                  opacity: 0.8;
+                  border-color: #E2E8F0;
+                }
+                94% {
+                  opacity: 0;
+                  transform: translate(-14px, 8px) scale(0.96);
+                }
+                100% {
+                  opacity: 0;
+                  transform: translate(-14px, 8px) scale(0.96);
+                }
+              }
+
+              /* 4. CARD 3: ASK HyIQ™ AI (Top-Right) */
+              @keyframes v4Card3Motion {
+                0%, 34% {
+                  opacity: 0;
+                  transform: translate(14px, -8px) scale(0.96);
+                  border-color: #E2E8F0;
+                  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+                }
+                40% {
+                  opacity: 1;
+                  transform: translate(-1px, 1px) scale(1.02);
+                  border-color: #EC4899;
+                  box-shadow: 0 14px 32px -6px rgba(236, 72, 153, 0.35);
+                }
+                44% {
+                  opacity: 1;
+                  transform: translate(0, 0) scale(1.0);
+                  border-color: rgba(236, 72, 153, 0.6);
+                }
+                55% {
+                  transform: translate(0, -2px) scale(1.0);
+                }
+                60% {
+                  transform: translate(0, 0) scale(1.0);
+                }
+                70% {
+                  transform: translate(1px, -3px) scale(1.03);
+                  border-color: #EC4899;
+                  box-shadow: 0 16px 36px -6px rgba(236, 72, 153, 0.40);
+                }
+                80% {
+                  transform: translate(0, 0) scale(1.0);
+                  border-color: rgba(236, 72, 153, 0.5);
+                }
+                88% {
+                  opacity: 0.8;
+                  border-color: #E2E8F0;
+                }
+                94% {
+                  opacity: 0;
+                  transform: translate(14px, -8px) scale(0.96);
+                }
+                100% {
+                  opacity: 0;
+                  transform: translate(14px, -8px) scale(0.96);
+                }
+              }
+
+              /* 5. CARD 4: 1-ON-1 CHECK-INS (Bottom-Right) */
+              @keyframes v4Card4Motion {
+                0%, 47% {
+                  opacity: 0;
+                  transform: translate(14px, 8px) scale(0.96);
+                  border-color: #E2E8F0;
+                  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+                }
+                53% {
+                  opacity: 1;
+                  transform: translate(-1px, -1px) scale(1.02);
+                  border-color: #10B981;
+                  box-shadow: 0 14px 32px -6px rgba(16, 185, 129, 0.35);
+                }
+                57% {
+                  opacity: 1;
+                  transform: translate(0, 0) scale(1.0);
+                  border-color: rgba(16, 185, 129, 0.6);
+                }
+                60% {
+                  transform: translate(0, 0) scale(1.0);
+                }
+                70% {
+                  transform: translate(1px, 3px) scale(1.03);
+                  border-color: #10B981;
+                  box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.40);
+                }
+                80% {
+                  transform: translate(0, 0) scale(1.0);
+                  border-color: rgba(16, 185, 129, 0.5);
+                }
+                88% {
+                  opacity: 0.8;
+                  border-color: #E2E8F0;
+                }
+                94% {
+                  opacity: 0;
+                  transform: translate(14px, 8px) scale(0.96);
+                }
+                100% {
+                  opacity: 0;
+                  transform: translate(14px, 8px) scale(0.96);
+                }
+              }
+
+              /* 6. CONNECTOR PATHS */
+              @keyframes v4Path1Draw {
+                0%, 14% { stroke-dashoffset: 144; opacity: 0; }
+                16% { opacity: 0.9; }
+                24% { stroke-dashoffset: 0; opacity: 0.85; }
+                60% { opacity: 0.85; stroke-width: 2.2px; }
+                70% { opacity: 1.0; stroke-width: 2.8px; }
+                80% { opacity: 0.85; stroke-width: 2.2px; stroke-dashoffset: 0; }
+                90% { opacity: 0.15; stroke-dashoffset: 0; }
+                95%, 100% { opacity: 0; stroke-dashoffset: 144; }
+              }
+
+              @keyframes v4Path2Draw {
+                0%, 24% { stroke-dashoffset: 144; opacity: 0; }
+                26% { opacity: 0.9; }
+                34% { stroke-dashoffset: 0; opacity: 0.85; }
+                60% { opacity: 0.85; stroke-width: 2.2px; }
+                70% { opacity: 1.0; stroke-width: 2.8px; }
+                80% { opacity: 0.85; stroke-width: 2.2px; stroke-dashoffset: 0; }
+                90% { opacity: 0.15; stroke-dashoffset: 0; }
+                95%, 100% { opacity: 0; stroke-dashoffset: 144; }
+              }
+
+              @keyframes v4Path3Draw {
+                0%, 34% { stroke-dashoffset: 144; opacity: 0; }
+                36% { opacity: 0.9; }
+                45% { stroke-dashoffset: 0; opacity: 0.85; }
+                60% { opacity: 0.85; stroke-width: 2.2px; }
+                70% { opacity: 1.0; stroke-width: 2.8px; }
+                80% { opacity: 0.85; stroke-width: 2.2px; stroke-dashoffset: 0; }
+                90% { opacity: 0.15; stroke-dashoffset: 0; }
+                95%, 100% { opacity: 0; stroke-dashoffset: 144; }
+              }
+
+              @keyframes v4Path4Draw {
+                0%, 47% { stroke-dashoffset: 144; opacity: 0; }
+                49% { opacity: 0.9; }
+                57% { stroke-dashoffset: 0; opacity: 0.85; }
+                60% { opacity: 0.85; stroke-width: 2.2px; }
+                70% { opacity: 1.0; stroke-width: 2.8px; }
+                80% { opacity: 0.85; stroke-width: 2.2px; stroke-dashoffset: 0; }
+                90% { opacity: 0.15; stroke-dashoffset: 0; }
+                95%, 100% { opacity: 0; stroke-dashoffset: 144; }
+              }
+
+              /* 7. LUMINESCENT PARTICLES */
+              @keyframes v4Particle1Motion {
+                0%, 18% { offset-distance: 0%; opacity: 0; }
+                19% { opacity: 1; }
+                25% { offset-distance: 100%; opacity: 0; }
+                61% { offset-distance: 0%; opacity: 0; }
+                62% { opacity: 1; }
+                68% { offset-distance: 100%; opacity: 0; }
+                100% { offset-distance: 100%; opacity: 0; }
+              }
+
+              @keyframes v4Particle2Motion {
+                0%, 28% { offset-distance: 0%; opacity: 0; }
+                29% { opacity: 1; }
+                35% { offset-distance: 100%; opacity: 0; }
+                64% { offset-distance: 0%; opacity: 0; }
+                65% { opacity: 1; }
+                71% { offset-distance: 100%; opacity: 0; }
+                100% { offset-distance: 100%; opacity: 0; }
+              }
+
+              @keyframes v4Particle3Motion {
+                0%, 38% { offset-distance: 0%; opacity: 0; }
+                39% { opacity: 1; }
+                46% { offset-distance: 100%; opacity: 0; }
+                67% { offset-distance: 0%; opacity: 0; }
+                68% { opacity: 1; }
+                74% { offset-distance: 100%; opacity: 0; }
+                100% { offset-distance: 100%; opacity: 0; }
+              }
+
+              @keyframes v4Particle4Motion {
+                0%, 51% { offset-distance: 0%; opacity: 0; }
+                52% { opacity: 1; }
+                59% { offset-distance: 100%; opacity: 0; }
+                70% { offset-distance: 0%; opacity: 0; }
+                71% { opacity: 1; }
+                77% { offset-distance: 100%; opacity: 0; }
+                100% { offset-distance: 100%; opacity: 0; }
+              }
+
+              /* 8. MINI DASHBOARD AI INSIGHT TOAST */
+              @keyframes v4AiToastFlow {
+                0%, 37% { opacity: 0; transform: translateX(-50%) translateY(12px) scale(0.92); pointer-events: none; }
+                42% { opacity: 1; transform: translateX(-50%) translateY(0px) scale(1.0); }
+                78% { opacity: 1; transform: translateX(-50%) translateY(0px) scale(1.0); }
+                85% { opacity: 0; transform: translateX(-50%) translateY(8px) scale(0.95); }
+                100% { opacity: 0; transform: translateX(-50%) translateY(12px) scale(0.92); }
+              }
+
+              /* 9. GOAL PROGRESS BAR */
+              @keyframes v4GoalProgressFlow {
+                0%, 48% { width: 0%; opacity: 0; }
+                50% { opacity: 1; }
+                58% { width: 85%; }
+                80% { width: 85%; opacity: 1; }
+                88% { opacity: 0.4; }
+                94%, 100% { width: 0%; opacity: 0; }
+              }
+
+              /* 10. SPARKLE ICON ROTATION */
+              @keyframes v4SparkleShimmer {
+                0%, 36% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 rgba(236, 72, 153, 0)); }
+                41% { transform: scale(1.22) rotate(14deg); filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.7)); }
+                46% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 rgba(236, 72, 153, 0)); }
+                70% { transform: scale(1.15) rotate(8deg); filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.5)); }
+                76% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 rgba(236, 72, 153, 0)); }
+                100% { transform: scale(1) rotate(0deg); }
+              }
+
+              /* Component CSS Styles */
+              .v4-track-base {
+                fill: none;
+                stroke: rgba(148, 163, 184, 0.22);
+                stroke-width: 1.5;
+                stroke-dasharray: 4 4;
+              }
+
+              .v4-path-active {
+                fill: none;
+                stroke-width: 2.2;
+                stroke-linecap: round;
+                stroke-dasharray: 144;
+                stroke-dashoffset: 144;
+                will-change: stroke-dashoffset, opacity;
+              }
+
+              .v4-path-1 { animation: v4Path1Draw 10s linear infinite; }
+              .v4-path-2 { animation: v4Path2Draw 10s linear infinite; }
+              .v4-path-3 { animation: v4Path3Draw 10s linear infinite; }
+              .v4-path-4 { animation: v4Path4Draw 10s linear infinite; }
+
+              .v4-particle {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 7px;
+                height: 7px;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 4;
+                opacity: 0;
+                will-change: transform, opacity, offset-distance;
+              }
+
+              .v4-particle-1 {
+                background: #A855F7;
+                box-shadow: 0 0 10px 2px #A855F7, 0 0 4px #FFFFFF;
+                -webkit-offset-path: path("M 160 75 C 210 75, 230 145, 270 160");
+                offset-path: path("M 160 75 C 210 75, 230 145, 270 160");
+                animation: v4Particle1Motion 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+              }
+
+              .v4-particle-2 {
+                background: #3B82F6;
+                box-shadow: 0 0 10px 2px #3B82F6, 0 0 4px #FFFFFF;
+                -webkit-offset-path: path("M 160 275 C 210 275, 230 205, 270 190");
+                offset-path: path("M 160 275 C 210 275, 230 205, 270 190");
+                animation: v4Particle2Motion 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+              }
+
+              .v4-particle-3 {
+                background: #EC4899;
+                box-shadow: 0 0 10px 2px #EC4899, 0 0 4px #FFFFFF;
+                -webkit-offset-path: path("M 380 75 C 330 75, 310 145, 270 160");
+                offset-path: path("M 380 75 C 330 75, 310 145, 270 160");
+                animation: v4Particle3Motion 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+              }
+
+              .v4-particle-4 {
+                background: #10B981;
+                box-shadow: 0 0 10px 2px #10B981, 0 0 4px #FFFFFF;
+                -webkit-offset-path: path("M 380 275 C 330 275, 310 205, 270 190");
+                offset-path: path("M 380 275 C 330 275, 310 205, 270 190");
+                animation: v4Particle4Motion 10s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+              }
+
+              .v4-sparkle-box {
+                animation: v4SparkleShimmer 10s ease-in-out infinite;
+              }
+
+              .v4-pulse-dot {
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: #10B981;
+                box-shadow: 0 0 6px #10B981;
+                animation: v4DotPulse 1.8s infinite;
+                display: inline-block;
+              }
+
+              .v4-ai-pulse {
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: #EC4899;
+                box-shadow: 0 0 6px #EC4899;
+                animation: v4DotPulse 1.8s infinite;
+                display: inline-block;
+              }
+
+              .v4-mini-dash-toast {
+                position: absolute;
+                bottom: 8px;
+                left: 50%;
+                transform: translateX(-50%) translateY(12px) scale(0.92);
+                background: rgba(15, 23, 42, 0.92);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                border: 1px solid rgba(168, 85, 247, 0.45);
+                border-radius: 9999px;
+                padding: 3px 9px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: #FFFFFF;
+                font-size: 8px;
+                font-weight: 600;
+                white-space: nowrap;
+                z-index: 8;
+                opacity: 0;
+                animation: v4AiToastFlow 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+                box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+              }
+
+              .v4-toast-icon {
+                font-size: 8px;
+                color: #F472B6;
+              }
+
+              .v4-toast-text {
+                font-size: 8px;
+                color: #FFFFFF;
+              }
+
+              .v4-progress-status {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+              }
+
+              .v4-progress-label {
+                font-size: 10px;
+                color: #64748B;
+              }
+
+              .v4-progress-track {
+                width: 44px;
+                height: 4px;
+                border-radius: 9999px;
+                background: #E2E8F0;
+                overflow: hidden;
+                position: relative;
+              }
+
+              .v4-progress-fill {
+                height: 100%;
+                width: 0%;
+                border-radius: 9999px;
+                background: linear-gradient(90deg, #10B981, #059669);
+                animation: v4GoalProgressFlow 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+              }
+
+              .v4-progress-val {
+                font-size: 9.5px;
+                font-weight: 700;
+                color: #059669;
+              }
+
+              @media (prefers-reduced-motion: reduce) {
+                .v4-mini-dashboard,
+                .v4-flow-card,
+                .v4-path-active,
+                .v4-sparkle-box,
+                .v4-mini-dash-toast,
+                .v4-progress-fill,
+                .v4-pulse-dot,
+                .v4-ai-pulse {
+                  animation: none !important;
+                  transition: none !important;
+                }
+
+                .v4-path-active {
+                  stroke-dashoffset: 0 !important;
+                  opacity: 0.8 !important;
+                }
+
+                .v4-particle {
+                  display: none !important;
+                }
+
+                .v4-mini-dash-toast {
+                  opacity: 1 !important;
+                  transform: translateX(-50%) translateY(0) !important;
+                }
+
+                .v4-progress-fill {
+                  width: 85% !important;
+                  opacity: 1 !important;
+                }
+              }
             `}</style>
             <Box
               sx={{
@@ -2775,7 +3317,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     mt: 0.75,
                   }}
                 >
-                  {/* SVG Flow Lines */}
+                  {/* Dynamic SVG Flow Connectors & Luminescent Particles */}
                   <svg
                     viewBox="0 0 540 350"
                     preserveAspectRatio="none"
@@ -2789,96 +3331,62 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     }}
                   >
                     <defs>
-                      <linearGradient id="v4ReactLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.9" />
-                        <stop offset="50%" stopColor="#3B82F6" stopOpacity="0.9" />
-                        <stop offset="100%" stopColor="#A855F7" stopOpacity="0.9" />
+                      {/* Multi-Stop Cosmic Gradient for Live Stream */}
+                      <linearGradient id="v4Grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.95" />
                       </linearGradient>
-                      <filter id="v4ReactGlow" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="3" result="blur" />
+                      <linearGradient id="v4Grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#10B981" stopOpacity="0.95" />
+                      </linearGradient>
+                      <linearGradient id="v4Grad3" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#EC4899" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.95" />
+                      </linearGradient>
+                      <linearGradient id="v4Grad4" x1="100%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stopColor="#10B981" stopOpacity="0.95" />
+                        <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.95" />
+                      </linearGradient>
+
+                      {/* Soft Bloom Filter for Flow Lines */}
+                      <filter id="v4FlowGlow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="3.5" result="blur" />
                         <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+
+                      {/* Intense Radial Bloom for Particles */}
+                      <filter id="v4ParticleGlow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="2.5" result="glow" />
+                        <feMerge>
+                          <feMergeNode in="glow" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
                       </filter>
                     </defs>
 
-                    {/* Base Paths */}
-                    <path
-                      d="M 160 75 C 210 75, 230 145, 270 160"
-                      fill="none"
-                      stroke="rgba(124, 58, 237, 0.22)"
-                      strokeWidth="2"
-                      strokeDasharray="4 4"
-                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
-                    />
-                    <path
-                      d="M 160 275 C 210 275, 230 205, 270 190"
-                      fill="none"
-                      stroke="rgba(124, 58, 237, 0.22)"
-                      strokeWidth="2"
-                      strokeDasharray="4 4"
-                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
-                    />
-                    <path
-                      d="M 270 160 C 310 145, 330 75, 380 75"
-                      fill="none"
-                      stroke="rgba(124, 58, 237, 0.22)"
-                      strokeWidth="2"
-                      strokeDasharray="4 4"
-                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
-                    />
-                    <path
-                      d="M 270 190 C 310 205, 330 275, 380 275"
-                      fill="none"
-                      stroke="rgba(124, 58, 237, 0.22)"
-                      strokeWidth="2"
-                      strokeDasharray="4 4"
-                      style={{ animation: 'v4DashTravel 20s linear infinite' }}
-                    />
+                    {/* Base Ambient Dashed Tracks */}
+                    <path className="v4-track-base" d="M 160 75 C 210 75, 230 145, 270 160" />
+                    <path className="v4-track-base" d="M 160 275 C 210 275, 230 205, 270 190" />
+                    <path className="v4-track-base" d="M 380 75 C 330 75, 310 145, 270 160" />
+                    <path className="v4-track-base" d="M 380 275 C 330 275, 310 205, 270 190" />
 
-                    {/* Glowing Pulses */}
-                    <path
-                      d="M 160 75 C 210 75, 230 145, 270 160"
-                      fill="none"
-                      stroke="url(#v4ReactLineGrad)"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeDasharray="30 180"
-                      filter="url(#v4ReactGlow)"
-                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite' }}
-                    />
-                    <path
-                      d="M 160 275 C 210 275, 230 205, 270 190"
-                      fill="none"
-                      stroke="url(#v4ReactLineGrad)"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeDasharray="30 180"
-                      filter="url(#v4ReactGlow)"
-                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-2s' }}
-                    />
-                    <path
-                      d="M 270 160 C 310 145, 330 75, 380 75"
-                      fill="none"
-                      stroke="url(#v4ReactLineGrad)"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeDasharray="30 180"
-                      filter="url(#v4ReactGlow)"
-                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-1s' }}
-                    />
-                    <path
-                      d="M 270 190 C 310 205, 330 275, 380 275"
-                      fill="none"
-                      stroke="url(#v4ReactLineGrad)"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeDasharray="30 180"
-                      filter="url(#v4ReactGlow)"
-                      style={{ animation: 'v4GlowPulse 4s ease-in-out infinite', animationDelay: '-3s' }}
-                    />
+                    {/* Animated Dynamic Connector Flow Lines */}
+                    <path className="v4-path-active v4-path-1" stroke="url(#v4Grad1)" d="M 160 75 C 210 75, 230 145, 270 160" filter="url(#v4FlowGlow)" />
+                    <path className="v4-path-active v4-path-2" stroke="url(#v4Grad2)" d="M 160 275 C 210 275, 230 205, 270 190" filter="url(#v4FlowGlow)" />
+                    <path className="v4-path-active v4-path-3" stroke="url(#v4Grad3)" d="M 380 75 C 330 75, 310 145, 270 160" filter="url(#v4FlowGlow)" />
+                    <path className="v4-path-active v4-path-4" stroke="url(#v4Grad4)" d="M 380 275 C 330 275, 310 205, 270 190" filter="url(#v4FlowGlow)" />
                   </svg>
 
-                  {/* Module 1: Orientation (Top-Left) */}
+                  {/* Travelling Particle Dots (Driven by CSS offset-path) */}
+                  <div className="v4-particle v4-particle-1" />
+                  <div className="v4-particle v4-particle-2" />
+                  <div className="v4-particle v4-particle-3" />
+                  <div className="v4-particle v4-particle-4" />
+
+                  {/* MODULE 1: ORIENTATION (Top-Left) */}
                   <Box
+                    className="v4-flow-card v4-mod-1"
                     sx={{
                       position: 'absolute',
                       top: 10,
@@ -2894,15 +3402,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       gap: 1.25,
                       width: 200,
                       transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      animation: 'v4Pop1 9s ease-in-out infinite',
+                      animation: 'v4Card1Motion 10s cubic-bezier(0.16, 1, 0.3, 1) infinite',
                       '&:hover': {
                         transform: 'translateY(-3px) scale(1.03)',
-                        borderColor: '#7C3AED',
                         boxShadow: '0 16px 35px -8px rgba(124, 58, 237, 0.25)',
                       },
                     }}
                   >
                     <Box
+                      className="v4-card-icon-box"
                       sx={{
                         width: 32,
                         height: 32,
@@ -2925,14 +3433,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                         Orientation
                       </Typography>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: 10, color: '#64748B', mt: 0.25 }}>
-                        <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#10B981', display: 'inline-block' }} />
+                        <span className="v4-pulse-dot" />
                         <span>Active • Automated</span>
                       </Box>
                     </Box>
                   </Box>
 
-                  {/* Module 2: Department Tour (Bottom-Left) */}
+                  {/* MODULE 2: DEPARTMENT TOUR (Bottom-Left) */}
                   <Box
+                    className="v4-flow-card v4-mod-2"
                     sx={{
                       position: 'absolute',
                       bottom: 24,
@@ -2948,16 +3457,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       gap: 1.25,
                       width: 200,
                       transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      animation: 'v4Pop2 9s ease-in-out infinite',
-                      animationDelay: '2.25s',
+                      animation: 'v4Card2Motion 10s cubic-bezier(0.16, 1, 0.3, 1) infinite',
                       '&:hover': {
                         transform: 'translateY(-3px) scale(1.03)',
-                        borderColor: '#3B82F6',
                         boxShadow: '0 16px 35px -8px rgba(59, 130, 246, 0.25)',
                       },
                     }}
                   >
                     <Box
+                      className="v4-card-icon-box"
                       sx={{
                         width: 32,
                         height: 32,
@@ -2980,13 +3488,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                         Department Tour
                       </Typography>
                       <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
-                        Sales &amp; Marketing
+                        <span className="v4-status-label">Sales &amp; Marketing</span>
                       </Typography>
                     </Box>
                   </Box>
 
-                  {/* Central Mini Dashboard */}
+                  {/* CENTRAL MINI DASHBOARD (Core Hub) */}
                   <Box
+                    id="v4MiniDashboard"
+                    className="v4-mini-dashboard"
                     sx={{
                       position: 'absolute',
                       zIndex: 5,
@@ -2999,7 +3509,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       transform: `rotateX(${v4Tilt.x}deg) rotateY(${v4Tilt.y}deg)`,
                       transformStyle: 'preserve-3d',
                       transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                      animation: 'v4DashPulse 6s ease-in-out infinite',
+                      animation: 'v4DashMaster 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite',
+                      willChange: 'transform, box-shadow',
                     }}
                   >
                     <Box sx={{ p: '6px 10px', bgcolor: '#F8FAFC', borderBottom: '1px solid #E2E8F0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -3024,6 +3535,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
                         alt="Hirerkey Core Workspace"
                         style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
                       />
+                      {/* Live Sync Badge */}
                       <Box
                         sx={{
                           position: 'absolute',
@@ -3040,16 +3552,24 @@ export const LoginView: React.FC<LoginViewProps> = ({
                           display: 'flex',
                           alignItems: 'center',
                           gap: 0.5,
+                          zIndex: 7,
                         }}
                       >
-                        <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#10B981', boxShadow: '0 0 6px #10B981', animation: 'v4DotPulse 1.8s infinite', display: 'inline-block' }} />
+                        <span className="v4-pulse-dot" />
                         <span>Live Sync</span>
                       </Box>
+
+                      {/* Mini AI Insight Toast (Scene 4 & Climax) */}
+                      <div className="v4-mini-dash-toast" id="v4MiniDashToast">
+                        <span className="v4-toast-icon">✨</span>
+                        <span className="v4-toast-text">HyIQ: 4 matches ready</span>
+                      </div>
                     </Box>
                   </Box>
 
-                  {/* Module 3: Ask HyIQ AI (Top-Right) */}
+                  {/* MODULE 3: ASK HyIQ AI (Top-Right) */}
                   <Box
+                    className="v4-flow-card v4-mod-3"
                     sx={{
                       position: 'absolute',
                       top: 16,
@@ -3065,16 +3585,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       gap: 1.25,
                       width: 200,
                       transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      animation: 'v4Pop3 9s ease-in-out infinite',
-                      animationDelay: '4.5s',
+                      animation: 'v4Card3Motion 10s cubic-bezier(0.16, 1, 0.3, 1) infinite',
                       '&:hover': {
                         transform: 'translateY(-3px) scale(1.03)',
-                        borderColor: '#EC4899',
                         boxShadow: '0 16px 35px -8px rgba(236, 72, 153, 0.25)',
                       },
                     }}
                   >
                     <Box
+                      className="v4-card-icon-box v4-sparkle-box"
                       sx={{
                         width: 32,
                         height: 32,
@@ -3096,14 +3615,16 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         Ask HyIQ™ AI
                       </Typography>
-                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
-                        Real-time • 12ms
-                      </Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: 10, color: '#64748B', mt: 0.25 }}>
+                        <span className="v4-ai-pulse" />
+                        <span>Real-time • 12ms</span>
+                      </Box>
                     </Box>
                   </Box>
 
-                  {/* Module 4: 1-on-1 Check-ins (Bottom-Right) */}
+                  {/* MODULE 4: 1-ON-1 CHECK-INS (Bottom-Right) */}
                   <Box
+                    className="v4-flow-card v4-mod-4"
                     sx={{
                       position: 'absolute',
                       bottom: 18,
@@ -3119,16 +3640,15 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       gap: 1.25,
                       width: 200,
                       transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      animation: 'v4Pop4 9s ease-in-out infinite',
-                      animationDelay: '6.75s',
+                      animation: 'v4Card4Motion 10s cubic-bezier(0.16, 1, 0.3, 1) infinite',
                       '&:hover': {
                         transform: 'translateY(-3px) scale(1.03)',
-                        borderColor: '#10B981',
                         boxShadow: '0 16px 35px -8px rgba(16, 185, 129, 0.25)',
                       },
                     }}
                   >
                     <Box
+                      className="v4-card-icon-box"
                       sx={{
                         width: 32,
                         height: 32,
@@ -3150,9 +3670,13 @@ export const LoginView: React.FC<LoginViewProps> = ({
                       <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         1-on-1 Check-ins
                       </Typography>
-                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
-                        Goal Tracking ↗
-                      </Typography>
+                      <div className="v4-card-status v4-progress-status">
+                        <span className="v4-progress-label">Goal</span>
+                        <div className="v4-progress-track">
+                          <div className="v4-progress-fill" />
+                        </div>
+                        <span className="v4-progress-val">85%</span>
+                      </div>
                     </Box>
                   </Box>
                 </Box>
