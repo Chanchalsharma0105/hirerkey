@@ -5871,6 +5871,8 @@
       padding: 0 28px;
       overflow-x: auto;
       scrollbar-width: none;
+      border-bottom: 2px solid #E2E8F0;
+      position: relative;
     }
 
     .modal-stepper-bar::-webkit-scrollbar {
@@ -5880,57 +5882,62 @@
     .m-step-btn {
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 11px 16px;
-      color: var(--text-muted);
-      font-size: 12.5px;
+      gap: 10px;
+      padding: 13px 20px;
+      color: #64748B;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s ease;
-      border-bottom: 2px solid transparent;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      position: relative;
+      user-select: none;
     }
 
     .m-step-btn:hover {
-      color: var(--text-heading);
+      color: #1E293B;
     }
 
     .m-step-bubble {
-      width: 22px;
-      height: 22px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: #F1F5F9;
-      color: var(--text-muted);
+      color: #64748B;
       display: grid;
       place-items: center;
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
+      transition: all 0.2s ease;
     }
 
     .m-step-btn.active {
-      color: var(--brand-primary);
-      border-bottom-color: var(--brand-primary);
+      color: #7C3AED !important;
+      font-weight: 700 !important;
+      border-bottom: 3px solid #7C3AED !important;
     }
 
     .m-step-btn.active .m-step-bubble {
-      background: var(--brand-primary);
-      color: #FFFFFF;
+      background: #7C3AED !important;
+      color: #FFFFFF !important;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
     }
 
     .m-step-btn.completed {
-      color: var(--text-heading);
+      color: #334155;
+      font-weight: 600;
     }
 
     .m-step-btn.completed .m-step-bubble {
-      background: #F5F3FF;
-      color: var(--brand-primary);
-      border: 1px solid var(--brand-border);
+      background: #EDE9FE;
+      color: #7C3AED;
+      border: 1px solid #DDD6FE;
     }
 
     .hk-modal-accent-line {
-      height: 2px;
-      width: 100%;
-      background: linear-gradient(90deg, #7C3AED 0%, #A855F7 50%, #C084FC 100%);
+      display: none; /* Replaced by crisp 2px base border on .modal-stepper-bar so active 3px indicator stands out boldly */
     }
 
     .modal-scroll-canvas {
@@ -11439,9 +11446,9 @@
         if (p) p.classList.toggle('active', i === modalStep);
       }
 
-      // Update Stepper Buttons
-      document.querySelectorAll('.modal-stepper-bar .m-step-btn').forEach((btn, idx) => {
-        const st = idx + 1;
+      // Update Stepper Buttons (CRITICAL FIX: strictly target #mStepperBar using data-mstep)
+      document.querySelectorAll('#mStepperBar .m-step-btn').forEach((btn) => {
+        const st = parseInt(btn.getAttribute('data-mstep'), 10);
         btn.classList.remove('active', 'completed');
         if (st === modalStep) {
           btn.classList.add('active');
@@ -11614,8 +11621,8 @@
       }
 
       // 2. Stepper buttons
-      document.querySelectorAll('#cStepperBar .m-step-btn').forEach((btn, idx) => {
-        const s = idx + 1;
+      document.querySelectorAll('#cStepperBar .m-step-btn').forEach((btn) => {
+        const s = parseInt(btn.getAttribute('data-cstep'), 10);
         btn.classList.remove('active', 'completed');
         if (s === createStep) {
           btn.classList.add('active');

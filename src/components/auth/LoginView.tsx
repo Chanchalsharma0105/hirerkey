@@ -730,1500 +730,2405 @@ export const LoginView: React.FC<LoginViewProps> = ({
               }
 
               /* ==========================================================================
-                 PAGE 2: THE LIVING DASHBOARD — 12.0s MASTER ANIMATION SYSTEM
-                 ========================================================================== */
-              .v4-mini-dashboard-living {
-                position: absolute;
-                z-index: 5;
-                width: 254px;
-                min-height: 184px;
-                background: #FFFFFF;
-                border-radius: 14px;
-                border: 1px solid rgba(124, 58, 237, 0.28);
-                box-shadow: 
-                  0 20px 45px -10px rgba(124, 58, 237, 0.32),
-                  0 8px 20px -4px rgba(15, 23, 42, 0.1),
-                  0 0 0 1px rgba(255, 255, 255, 0.9);
-                overflow: hidden;
-                animation: ldFrameMaster 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-                will-change: transform, box-shadow;
-                user-select: none;
-              }
-
-              .v4-ld-chrome {
-                padding: 5px 9px;
-                background: #F8FAFC;
-                border-bottom: 1px solid #E2E8F0;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                height: 23px;
-              }
-
-              .v4-ld-traffic-dots {
-                display: flex;
-                align-items: center;
-                gap: 3.5px;
-              }
-
-              .v4-ld-dot {
-                width: 5.5px;
-                height: 5.5px;
-                border-radius: 50%;
-                display: inline-block;
-              }
-              .v4-ld-dot.red { background: #EF4444; }
-              .v4-ld-dot.amber { background: #F59E0B; }
-              .v4-ld-dot.green { background: #10B981; }
-
-              .v4-ld-chrome-title {
-                font-size: 8px;
-                color: #64748B;
-                font-family: monospace;
-                letter-spacing: 0.02em;
-              }
-
-              .v4-ld-live-chip {
-                display: inline-flex;
-                align-items: center;
-                gap: 3px;
-                padding: 1.5px 5px;
-                border-radius: 9999px;
-                background: rgba(16, 185, 129, 0.1);
-                border: 1px solid rgba(16, 185, 129, 0.3);
-                color: #059669;
-                font-size: 7.5px;
-                font-weight: 700;
-              }
-
-              .v4-ld-live-dot {
-                width: 4px;
-                height: 4px;
-                border-radius: 50%;
-                background: #10B981;
-                box-shadow: 0 0 4px #10B981;
-                animation: v4DotPulse 1.8s infinite;
-                display: inline-block;
-              }
-
-              .v4-ld-body {
-                position: relative;
-                background: #FFFFFF;
-                padding: 6px;
-                min-height: 158px;
-                display: flex;
-                flex-direction: column;
-              }
-
-              .v4-ld-broadcast-toast {
-                position: absolute;
-                top: 6px;
-                left: 6px;
-                right: 6px;
-                z-index: 20;
-                background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
-                color: #FFFFFF;
-                border-radius: 8px;
-                padding: 4px 8px;
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                box-shadow: 0 8px 20px -2px rgba(124, 58, 237, 0.42);
-                opacity: 0;
-                transform: translateY(-16px) scale(0.92);
-                pointer-events: none;
-                animation: ldBroadcastSlide 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-
-              .v4-ld-toast-icon { font-size: 11px; flex-shrink: 0; }
-              .v4-ld-toast-text { display: flex; align-items: baseline; gap: 4px; flex: 1; min-width: 0; }
-              .v4-ld-toast-badge {
-                font-size: 7px;
-                font-weight: 800;
-                background: rgba(255, 255, 255, 0.25);
-                padding: 1px 3.5px;
-                border-radius: 3px;
-                letter-spacing: 0.04em;
-                flex-shrink: 0;
-              }
-              .v4-ld-toast-msg {
-                font-size: 8px;
-                font-weight: 600;
-                color: #FFFFFF;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
-              .v4-ld-toast-check {
-                font-size: 8px;
-                font-weight: 800;
-                color: #D1FAE5;
-                background: rgba(16, 185, 129, 0.25);
-                width: 13px;
-                height: 13px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
-              }
-
-              .v4-ld-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 6px;
-                flex: 1;
-              }
-
-              .v4-ld-widget {
-                background: #F8FAFC;
-                border: 1px solid #E2E8F0;
-                border-radius: 8px;
-                padding: 5px 6px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                position: relative;
-                min-height: 70px;
-              }
-
-              .v4-ld-w-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 2px;
-              }
-
-              .v4-ld-w-title {
-                font-size: 9px;
-                font-weight: 700;
-                color: #0F172A;
-                display: inline-flex;
-                align-items: center;
-                gap: 3px;
-                white-space: nowrap;
-              }
-
-              .v4-ld-w-icon { font-size: 9px; }
-              .v4-ld-w-sub {
-                font-size: 7.5px;
-                color: #64748B;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                margin-bottom: 3px;
-              }
-
-              .v4-ld-badge-wrap {
-                position: relative;
-                display: inline-flex;
-                align-items: center;
-                justify-content: flex-end;
-                height: 15px;
-                min-width: 58px;
-              }
-
-              .v4-ld-pill-progress {
-                font-size: 7.5px;
-                font-weight: 700;
-                padding: 1px 5px;
-                border-radius: 9999px;
-                background: #EDE9FE;
-                color: #7C3AED;
-                animation: ldPillProgress 12s ease infinite;
-              }
-
-              .v4-ld-pill-completed {
-                position: absolute;
-                top: 0;
-                right: 0;
-                font-size: 7.5px;
-                font-weight: 700;
-                padding: 1px 5px;
-                border-radius: 9999px;
-                background: #D1FAE5;
-                color: #059669;
-                opacity: 0;
-                animation: ldPillCompleted 12s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
-              }
-
-              .v4-ld-bar-track-wrap {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-              }
-
-              .v4-ld-progress-bar-bg {
-                flex: 1;
-                height: 4px;
-                border-radius: 9999px;
-                background: #E2E8F0;
-                overflow: hidden;
-              }
-
-              .v4-ld-progress-bar-fill {
-                height: 100%;
-                width: 65%;
-                border-radius: 9999px;
-                background: linear-gradient(90deg, #7C3AED, #9333EA);
-                animation: ldOnboardFill 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-                will-change: width, background;
-              }
-
-              .v4-ld-progress-pct {
-                font-size: 7.5px;
-                font-weight: 700;
-                color: #64748B;
-                min-width: 18px;
-                text-align: right;
-                animation: ldProgressPctColor 12s ease infinite;
-              }
-
-              .v4-ld-kpi-wrap {
-                position: relative;
-                overflow: hidden;
-                display: inline-flex;
-                align-items: center;
-                border-radius: 4px;
-                padding: 0 3px;
-              }
-
-              .v4-ld-kpi-val {
-                font-size: 9.5px;
-                font-weight: 800;
-                color: #0F172A;
-                animation: ldKpiValUpdate 12s ease infinite;
-              }
-
-              .v4-ld-kpi-sheen {
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.8) 50%, transparent 80%);
-                transform: translateX(-100%);
-                pointer-events: none;
-                animation: ldSheenSweep 12s linear infinite;
-              }
-
-              .v4-ld-chart-bars {
-                display: flex;
-                align-items: flex-end;
-                justify-content: space-between;
-                height: 32px;
-                padding: 2px 2px 0 2px;
-                gap: 3px;
-              }
-
-              .v4-ld-micro-col {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 2px;
-                flex: 1;
-                height: 100%;
-                justify-content: flex-end;
-              }
-
-              .v4-ld-micro-track {
-                width: 100%;
-                max-width: 10px;
-                height: 22px;
-                background: #E2E8F0;
-                border-radius: 2px;
-                display: flex;
-                align-items: flex-end;
-                overflow: hidden;
-              }
-
-              .v4-ld-micro-fill {
-                width: 100%;
-                border-radius: 2px;
-                background: linear-gradient(180deg, #A855F7 0%, #7C3AED 100%);
-                will-change: height;
-              }
-
-              .v4-ld-micro-fill.bar-1 { height: 42%; animation: ldBar1Rise 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-              .v4-ld-micro-fill.bar-2 { height: 50%; animation: ldBar2Rise 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-              .v4-ld-micro-fill.bar-3 { height: 45%; animation: ldBar3Rise 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-              .v4-ld-micro-fill.bar-4 { height: 58%; animation: ldBar4Rise 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-              .v4-ld-micro-fill.bar-5 { height: 52%; animation: ldBar5Rise 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-
-              .v4-ld-micro-lbl {
-                font-size: 6.5px;
-                font-weight: 700;
-                color: #94A3B8;
-              }
-
-              .v4-ld-pill-pending {
-                font-size: 7.5px;
-                font-weight: 700;
-                padding: 1px 5px;
-                border-radius: 9999px;
-                background: #FEF3C7;
-                color: #D97706;
-                animation: ldPillPending 12s ease infinite;
-              }
-
-              .v4-ld-pill-approved {
-                position: absolute;
-                top: 0;
-                right: 0;
-                font-size: 7.5px;
-                font-weight: 700;
-                padding: 1px 5px;
-                border-radius: 9999px;
-                background: #D1FAE5;
-                color: #059669;
-                opacity: 0;
-                animation: ldPillApproved 12s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
-              }
-
-              .v4-ld-approval-actions {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-top: 2px;
-              }
-
-              .v4-ld-action-tag {
-                font-size: 7px;
-                color: #94A3B8;
-                font-weight: 600;
-              }
-
-              .v4-ld-btn-approve {
-                appearance: none;
-                border: none;
-                background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-                color: #FFFFFF;
-                border-radius: 4px;
-                padding: 2px 6px;
-                font-size: 7.5px;
-                font-weight: 700;
-                display: inline-flex;
-                align-items: center;
-                gap: 2px;
-                cursor: pointer;
-                box-shadow: 0 1px 4px rgba(16, 185, 129, 0.25);
-                animation: ldApprovalBtnPress 12s ease infinite;
-              }
-
-              .v4-ld-widget-hyiq {
-                background: #FAF5FF;
-                border-color: rgba(216, 180, 254, 0.6);
-                animation: ldHyiqGlow 12s ease infinite;
-              }
-
-              .v4-ld-hyiq-pill {
-                display: inline-flex;
-                align-items: center;
-                gap: 3px;
-                padding: 1px 5px;
-                border-radius: 9999px;
-                background: #FFFFFF;
-                border: 1px solid rgba(216, 180, 254, 0.7);
-                font-size: 8px;
-                font-weight: 700;
-                color: #7C3AED;
-              }
-
-              .v4-ld-sparkle { font-size: 8px; display: inline-block; }
-
-              .v4-ld-hyiq-stage {
-                position: relative;
-                flex: 1;
-                min-height: 28px;
-                display: flex;
-                align-items: center;
-                margin-top: 2px;
-              }
-
-              .v4-ld-hyiq-query {
-                position: absolute;
-                inset: 0;
-                display: flex;
-                align-items: center;
-                animation: ldQueryFade 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-
-              .v4-ld-hyiq-query span {
-                font-size: 7.5px;
-                font-style: italic;
-                color: #64748B;
-                background: #FFFFFF;
-                border: 1px solid #E2E8F0;
-                border-radius: 4px;
-                padding: 2px 5px;
-                display: block;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                width: 100%;
-              }
-
-              .v4-ld-typing-dots {
-                position: absolute;
-                inset: 0;
-                display: flex;
-                align-items: center;
-                gap: 3px;
-                padding-left: 4px;
-                opacity: 0;
-                animation: ldTypingDots 12s ease infinite;
-              }
-
-              .v4-ld-typing-dots span {
-                width: 3.5px;
-                height: 3.5px;
-                border-radius: 50%;
-                background: #7C3AED;
-                animation: ldDotBounce 0.75s ease-in-out infinite;
-              }
-              .v4-ld-typing-dots span:nth-child(2) { animation-delay: 0.15s; }
-              .v4-ld-typing-dots span:nth-child(3) { animation-delay: 0.3s; }
-
-              .v4-ld-hyiq-toast {
-                position: absolute;
-                inset: 0;
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                padding: 3px 6px;
-                border-radius: 5px;
-                background: linear-gradient(135deg, rgba(124, 58, 237, 0.95) 0%, rgba(109, 40, 217, 0.98) 100%);
-                color: #FFFFFF;
-                font-size: 7px;
-                font-weight: 600;
-                line-height: 1.2;
-                overflow: hidden;
-                opacity: 0;
-                pointer-events: none;
-                box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
-                animation: ldToastReveal 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-
-              .v4-ld-hyiq-sheen {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                width: 50%;
-                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-                transform: translateX(-100%);
-                pointer-events: none;
-                animation: ldAiShimmer 12s linear infinite;
-              }
-
-              .v4-ld-toast-sparkle {
-                font-size: 8px;
-                color: #F472B6;
-                flex-shrink: 0;
-              }
-
-              .v4-ld-hyiq-ans {
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
-
-              /* 12.0s Keyframe Animations */
-              @keyframes ldFrameMaster {
-                0% { opacity: 0.94; transform: scale(0.97) translateY(2px); box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.24); }
-                8.33% { opacity: 1; transform: scale(1.008) translateY(-2px); box-shadow: 0 24px 50px -10px rgba(124, 58, 237, 0.36); }
-                12.5% { opacity: 1; transform: scale(1.0) translateY(0); box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.28); }
-                25% { transform: scale(1.0) translateY(-1px); }
-                37.5% { transform: scale(1.0) translateY(0); }
-                50% { transform: scale(1.0) translateY(-1px); }
-                62.5% { transform: scale(1.0) translateY(0); }
-                75% { transform: scale(1.01) translateY(-2px); box-shadow: 0 28px 60px -10px rgba(124, 58, 237, 0.42), 0 0 30px rgba(124, 58, 237, 0.22); }
-                87.5% { transform: scale(1.0) translateY(0); box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.28); }
-                96% { opacity: 1; transform: scale(0.985) translateY(1px); box-shadow: 0 18px 40px -8px rgba(124, 58, 237, 0.24); }
-                100% { opacity: 0.94; transform: scale(0.97) translateY(2px); box-shadow: 0 16px 36px -8px rgba(124, 58, 237, 0.24); }
-              }
-
-              @keyframes ldOnboardFill {
-                0%, 12.5% { width: 65%; background: linear-gradient(90deg, #7C3AED, #9333EA); }
-                15% { width: 68%; }
-                23% { width: 100%; background: linear-gradient(90deg, #10B981, #059669); }
-                25%, 82% { width: 100%; background: linear-gradient(90deg, #10B981, #059669); }
-                90%, 100% { width: 65%; background: linear-gradient(90deg, #7C3AED, #9333EA); }
-              }
-
-              @keyframes ldPillProgress {
-                0%, 15% { opacity: 1; transform: scale(1); }
-                18% { opacity: 0; transform: scale(0.85); }
-                86% { opacity: 0; transform: scale(0.85); }
-                90%, 100% { opacity: 1; transform: scale(1); }
-              }
-
-              @keyframes ldPillCompleted {
-                0%, 16% { opacity: 0; transform: scale(0.7); }
-                20% { opacity: 1; transform: scale(1.15); }
-                23%, 82% { opacity: 1; transform: scale(1); }
-                87% { opacity: 0; transform: scale(0.85); }
-                100% { opacity: 0; transform: scale(0.7); }
-              }
-
-              @keyframes ldProgressPctColor {
-                0%, 15% { color: #64748B; }
-                23%, 82% { color: #059669; }
-                90%, 100% { color: #64748B; }
-              }
-
-              @keyframes ldBroadcastSlide {
-                0%, 24% { opacity: 0; transform: translateY(-16px) scale(0.92); pointer-events: none; }
-                26.5% { opacity: 1; transform: translateY(0) scale(1.0); pointer-events: auto; }
-                34% { opacity: 1; transform: translateY(0) scale(1.0); }
-                37% { opacity: 0; transform: translateY(-8px) scale(0.96); pointer-events: none; }
-                100% { opacity: 0; transform: translateY(-16px) scale(0.92); pointer-events: none; }
-              }
-
-              @keyframes ldApprovalBtnPress {
-                0%, 38% { transform: scale(1); opacity: 1; }
-                40% { transform: scale(0.88); }
-                42.5% { transform: scale(1); opacity: 0.25; pointer-events: none; }
-                84% { opacity: 0.25; }
-                89%, 100% { transform: scale(1); opacity: 1; pointer-events: auto; }
-              }
-
-              @keyframes ldPillPending {
-                0%, 39% { opacity: 1; transform: scale(1); }
-                42% { opacity: 0; transform: scale(0.85); }
-                85% { opacity: 0; transform: scale(0.85); }
-                89%, 100% { opacity: 1; transform: scale(1); }
-              }
-
-              @keyframes ldPillApproved {
-                0%, 41% { opacity: 0; transform: scale(0.7); }
-                44% { opacity: 1; transform: scale(1.18); }
-                47%, 83% { opacity: 1; transform: scale(1); }
-                87% { opacity: 0; transform: scale(0.85); }
-                100% { opacity: 0; transform: scale(0.7); }
-              }
-
-              @keyframes ldBar1Rise { 0%, 50% { height: 42%; } 53% { height: 78%; } 82% { height: 78%; } 88%, 100% { height: 42%; } }
-              @keyframes ldBar2Rise { 0%, 51.5% { height: 50%; } 54.5% { height: 88%; } 82% { height: 88%; } 88%, 100% { height: 50%; } }
-              @keyframes ldBar3Rise { 0%, 53% { height: 45%; } 56% { height: 95%; } 82% { height: 95%; } 88%, 100% { height: 45%; } }
-              @keyframes ldBar4Rise { 0%, 54.5% { height: 58%; } 57.5% { height: 92%; } 82% { height: 92%; } 88%, 100% { height: 58%; } }
-              @keyframes ldBar5Rise { 0%, 56% { height: 52%; } 59% { height: 98%; } 82% { height: 98%; } 88%, 100% { height: 52%; } }
-
-              @keyframes ldKpiValUpdate {
-                0%, 52% { transform: scale(1); color: #0F172A; }
-                54% { transform: scale(1.25); color: #7C3AED; }
-                58%, 82% { transform: scale(1); color: #059669; }
-                88%, 100% { transform: scale(1); color: #0F172A; }
-              }
-
-              @keyframes ldSheenSweep {
-                0%, 53% { transform: translateX(-100%); opacity: 0; }
-                54% { opacity: 1; }
-                60% { transform: translateX(120%); opacity: 0; }
-                100% { transform: translateX(120%); opacity: 0; }
-              }
-
-              @keyframes ldHyiqGlow {
-                0%, 61% { box-shadow: 0 0 0 rgba(124, 58, 237, 0); border-color: rgba(216, 180, 254, 0.6); }
-                64%, 79% { box-shadow: 0 0 16px rgba(168, 85, 247, 0.45); border-color: rgba(168, 85, 247, 0.7); }
-                84%, 100% { box-shadow: 0 0 0 rgba(124, 58, 237, 0); border-color: rgba(216, 180, 254, 0.6); }
-              }
-
-              @keyframes ldQueryFade {
-                0%, 62% { opacity: 1; transform: translateY(0); }
-                64% { opacity: 0; transform: translateY(-6px); }
-                83% { opacity: 0; }
-                86%, 100% { opacity: 1; transform: translateY(0); }
-              }
-
-              @keyframes ldTypingDots {
-                0%, 63% { opacity: 0; transform: scale(0.8); }
-                65%, 70% { opacity: 1; transform: scale(1); }
-                71.5% { opacity: 0; transform: scale(0.85); }
-                100% { opacity: 0; }
-              }
-
-              @keyframes ldDotBounce {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-4px); }
-              }
-
-              @keyframes ldToastReveal {
-                0%, 70.5% { opacity: 0; transform: translateY(8px) scale(0.92); pointer-events: none; }
-                73%, 80% { opacity: 1; transform: translateY(0) scale(1); }
-                83% { opacity: 0; transform: translateY(-6px) scale(0.96); }
-                100% { opacity: 0; transform: translateY(8px) scale(0.92); pointer-events: none; }
-              }
-
-              @keyframes ldAiShimmer {
-                0%, 72% { transform: translateX(-100%); }
-                76% { transform: translateX(140%); }
-                100% { transform: translateX(140%); }
-              }
-
-              /* Page 2 Orbiting Cards & Connectors */
-              .v4-mod-1-p2 {
-                top: 10px;
-                left: 6px;
-                animation: v4Card1MotionP2 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-mod-1-p2 .v4-card-icon-box { background: #EDE9FE; color: #7C3AED; }
-              .v4-mod-1-p2 .v4-card-tag { color: #7C3AED; }
-
-              .v4-mod-2-p2 {
-                bottom: 24px;
-                left: 12px;
-                animation: v4Card2MotionP2 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-mod-2-p2 .v4-card-icon-box { background: #EFF6FF; color: #3B82F6; }
-              .v4-mod-2-p2 .v4-card-tag { color: #3B82F6; }
-
-              .v4-mod-3-p2 {
-                top: 16px;
-                right: 6px;
-                animation: v4Card3MotionP2 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-mod-3-p2 .v4-card-icon-box { background: #FDF2F8; color: #EC4899; }
-              .v4-mod-3-p2 .v4-card-tag { color: #EC4899; }
-
-              .v4-mod-4-p2 {
-                bottom: 18px;
-                right: 14px;
-                animation: v4Card4MotionP2 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-mod-4-p2 .v4-card-icon-box { background: #ECFDF5; color: #10B981; }
-              .v4-mod-4-p2 .v4-card-tag { color: #059669; }
-
-              .v4-sparkle-box-p2 {
-                animation: v4SparkleShimmerP2 12s ease-in-out infinite;
-              }
-
-              .v4-progress-fill-p2 {
-                height: 100%;
-                width: 0%;
-                border-radius: 9999px;
-                background: linear-gradient(90deg, #10B981, #059669);
-                animation: v4GoalProgressFlowP2 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-
-              .v4-path-1-p2 { animation: v4Path1DrawP2 12s linear infinite; }
-              .v4-path-2-p2 { animation: v4Path2DrawP2 12s linear infinite; }
-              .v4-path-3-p2 { animation: v4Path3DrawP2 12s linear infinite; }
-              .v4-path-4-p2 { animation: v4Path4DrawP2 12s linear infinite; }
-
-              .v4-particle-1-p2 {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 4;
-                opacity: 0;
-                background: #A855F7;
-                box-shadow: 0 0 10px 2px #A855F7, 0 0 4px #FFFFFF;
-                -webkit-offset-path: path("M 160 75 C 210 75, 230 145, 270 160");
-                offset-path: path("M 160 75 C 210 75, 230 145, 270 160");
-                animation: v4Particle1MotionP2 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-              }
-
-              .v4-particle-2-p2 {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 4;
-                opacity: 0;
-                background: #3B82F6;
-                box-shadow: 0 0 10px 2px #3B82F6, 0 0 4px #FFFFFF;
-                -webkit-offset-path: path("M 160 275 C 210 275, 230 205, 270 190");
-                offset-path: path("M 160 275 C 210 275, 230 205, 270 190");
-                animation: v4Particle2MotionP2 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-              }
-
-              .v4-particle-3-p2 {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 4;
-                opacity: 0;
-                background: #EC4899;
-                box-shadow: 0 0 10px 2px #EC4899, 0 0 4px #FFFFFF;
-                -webkit-offset-path: path("M 380 75 C 330 75, 310 145, 270 160");
-                offset-path: path("M 380 75 C 330 75, 310 145, 270 160");
-                animation: v4Particle3MotionP2 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-              }
-
-              .v4-particle-4-p2 {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 7px;
-                height: 7px;
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 4;
-                opacity: 0;
-                background: #10B981;
-                box-shadow: 0 0 10px 2px #10B981, 0 0 4px #FFFFFF;
-                -webkit-offset-path: path("M 380 275 C 330 275, 310 205, 270 190");
-                offset-path: path("M 380 275 C 330 275, 310 205, 270 190");
-                animation: v4Particle4MotionP2 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-              }
-
-              @keyframes v4Card1MotionP2 {
-                0%, 10% { opacity: 0; transform: translate(-14px, -8px) scale(0.96); border-color: #E2E8F0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); }
-                16% { opacity: 1; transform: translate(1px, 1px) scale(1.02); border-color: #7C3AED; box-shadow: 0 14px 32px -6px rgba(124, 58, 237, 0.32); }
-                22%, 78% { opacity: 1; transform: translate(0, 0) scale(1.0); border-color: rgba(124, 58, 237, 0.5); }
-                88% { opacity: 0.8; border-color: #E2E8F0; }
-                94%, 100% { opacity: 0; transform: translate(-14px, -8px) scale(0.96); }
-              }
-
-              @keyframes v4Card2MotionP2 {
-                0%, 32% { opacity: 0; transform: translate(-14px, 8px) scale(0.96); border-color: #E2E8F0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); }
-                38% { opacity: 1; transform: translate(1px, -1px) scale(1.02); border-color: #3B82F6; box-shadow: 0 14px 32px -6px rgba(59, 130, 246, 0.32); }
-                44%, 78% { opacity: 1; transform: translate(0, 0) scale(1.0); border-color: rgba(59, 130, 246, 0.5); }
-                88% { opacity: 0.8; border-color: #E2E8F0; }
-                94%, 100% { opacity: 0; transform: translate(-14px, 8px) scale(0.96); }
-              }
-
-              @keyframes v4Card4MotionP2 {
-                0%, 45% { opacity: 0; transform: translate(14px, 8px) scale(0.96); border-color: #E2E8F0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); }
-                51% { opacity: 1; transform: translate(-1px, -1px) scale(1.02); border-color: #10B981; box-shadow: 0 14px 32px -6px rgba(16, 185, 129, 0.35); }
-                57%, 78% { opacity: 1; transform: translate(0, 0) scale(1.0); border-color: rgba(16, 185, 129, 0.5); }
-                88% { opacity: 0.8; border-color: #E2E8F0; }
-                94%, 100% { opacity: 0; transform: translate(14px, 8px) scale(0.96); }
-              }
-
-              @keyframes v4Card3MotionP2 {
-                0%, 58% { opacity: 0; transform: translate(14px, -8px) scale(0.96); border-color: #E2E8F0; box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08); }
-                64% { opacity: 1; transform: translate(-1px, 1px) scale(1.02); border-color: #EC4899; box-shadow: 0 14px 32px -6px rgba(236, 72, 153, 0.35); }
-                70%, 80% { opacity: 1; transform: translate(0, 0) scale(1.0); border-color: rgba(236, 72, 153, 0.5); }
-                88% { opacity: 0.8; border-color: #E2E8F0; }
-                94%, 100% { opacity: 0; transform: translate(14px, -8px) scale(0.96); }
-              }
-
-              @keyframes v4Path1DrawP2 {
-                0%, 10% { stroke-dashoffset: 144; opacity: 0; }
-                14% { opacity: 0.9; }
-                22%, 78% { stroke-dashoffset: 0; opacity: 0.85; }
-                88% { opacity: 0.2; stroke-dashoffset: 0; }
-                94%, 100% { opacity: 0; stroke-dashoffset: 144; }
-              }
-
-              @keyframes v4Path2DrawP2 {
-                0%, 32% { stroke-dashoffset: 144; opacity: 0; }
-                36% { opacity: 0.9; }
-                44%, 78% { stroke-dashoffset: 0; opacity: 0.85; }
-                88% { opacity: 0.2; stroke-dashoffset: 0; }
-                94%, 100% { opacity: 0; stroke-dashoffset: 144; }
-              }
-
-              @keyframes v4Path4DrawP2 {
-                0%, 45% { stroke-dashoffset: 144; opacity: 0; }
-                49% { opacity: 0.9; }
-                57%, 78% { stroke-dashoffset: 0; opacity: 0.85; }
-                88% { opacity: 0.2; stroke-dashoffset: 0; }
-                94%, 100% { opacity: 0; stroke-dashoffset: 144; }
-              }
-
-              @keyframes v4Path3DrawP2 {
-                0%, 58% { stroke-dashoffset: 144; opacity: 0; }
-                62% { opacity: 0.9; }
-                70%, 80% { stroke-dashoffset: 0; opacity: 0.85; }
-                88% { opacity: 0.2; stroke-dashoffset: 0; }
-                94%, 100% { opacity: 0; stroke-dashoffset: 144; }
-              }
-
-              @keyframes v4Particle1MotionP2 {
-                0%, 14% { offset-distance: 0%; opacity: 0; }
-                15% { opacity: 1; }
-                22% { offset-distance: 100%; opacity: 0; }
-                100% { offset-distance: 100%; opacity: 0; }
-              }
-
-              @keyframes v4Particle2MotionP2 {
-                0%, 36% { offset-distance: 0%; opacity: 0; }
-                37% { opacity: 1; }
-                44% { offset-distance: 100%; opacity: 0; }
-                100% { offset-distance: 100%; opacity: 0; }
-              }
-
-              @keyframes v4Particle4MotionP2 {
-                0%, 49% { offset-distance: 0%; opacity: 0; }
-                50% { opacity: 1; }
-                57% { offset-distance: 100%; opacity: 0; }
-                100% { offset-distance: 100%; opacity: 0; }
-              }
-
-              @keyframes v4Particle3MotionP2 {
-                0%, 62% { offset-distance: 0%; opacity: 0; }
-                63% { opacity: 1; }
-                70% { offset-distance: 100%; opacity: 0; }
-                100% { offset-distance: 100%; opacity: 0; }
-              }
-
-              @keyframes v4GoalProgressFlowP2 {
-                0%, 48% { width: 0%; opacity: 0; }
-                50% { opacity: 1; }
-                58%, 80% { width: 96%; opacity: 1; }
-                88% { opacity: 0.4; }
-                94%, 100% { width: 0%; opacity: 0; }
-              }
-
-              @keyframes v4SparkleShimmerP2 {
-                0%, 60% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 rgba(236, 72, 153, 0)); }
-                65% { transform: scale(1.25) rotate(16deg); filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.7)); }
-                70% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 rgba(236, 72, 153, 0)); }
-                75% { transform: scale(1.15) rotate(8deg); filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.5)); }
-                80%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 rgba(236, 72, 153, 0)); }
-              }
-
-              @media (prefers-reduced-motion: reduce) {
-                .v4-mini-dashboard-living,
-                .v4-mod-1-p2,
-                .v4-mod-2-p2,
-                .v4-mod-3-p2,
-                .v4-mod-4-p2,
-                .v4-path-1-p2,
-                .v4-path-2-p2,
-                .v4-path-3-p2,
-                .v4-path-4-p2,
-                .v4-particle-1-p2,
-                .v4-particle-2-p2,
-                .v4-particle-3-p2,
-                .v4-particle-4-p2,
-                .v4-progress-fill-p2,
-                .v4-sparkle-box-p2,
-                .v4-ld-progress-bar-fill,
-                .v4-ld-pill-progress,
-                .v4-ld-pill-completed,
-                .v4-ld-broadcast-toast,
-                .v4-ld-btn-approve,
-                .v4-ld-pill-pending,
-                .v4-ld-pill-approved,
-                .v4-ld-micro-fill,
-                .v4-ld-kpi-val,
-                .v4-ld-kpi-sheen,
-                .v4-ld-widget-hyiq,
-                .v4-ld-hyiq-query,
-                .v4-ld-typing-dots,
-                .v4-ld-hyiq-toast,
-                .v4-ld-hyiq-sheen {
-                  animation: none !important;
-                  transition: none !important;
-                }
-
-                .v4-mini-dashboard-living {
-                  opacity: 1 !important;
-                  transform: none !important;
-                }
-                .v4-mod-1-p2 { border-color: rgba(124, 58, 237, 0.4) !important; opacity: 1 !important; transform: none !important; }
-                .v4-mod-2-p2 { border-color: rgba(59, 130, 246, 0.4) !important; opacity: 1 !important; transform: none !important; }
-                .v4-mod-3-p2 { border-color: rgba(236, 72, 153, 0.4) !important; opacity: 1 !important; transform: none !important; }
-                .v4-mod-4-p2 { border-color: rgba(16, 185, 129, 0.4) !important; opacity: 1 !important; transform: none !important; }
-                .v4-progress-fill-p2 { width: 96% !important; opacity: 1 !important; }
-                .v4-ld-broadcast-toast { display: none !important; }
-                .v4-ld-pill-progress { display: none !important; }
-                .v4-ld-pill-completed { position: static !important; opacity: 1 !important; }
-                .v4-ld-progress-bar-fill { width: 100% !important; background: linear-gradient(90deg, #10B981, #059669) !important; }
-                .v4-ld-pill-pending { display: none !important; }
-                .v4-ld-pill-approved { position: static !important; opacity: 1 !important; }
-                .v4-ld-kpi-val { color: #059669 !important; }
-                .v4-ld-micro-fill.bar-1 { height: 78% !important; }
-                .v4-ld-micro-fill.bar-2 { height: 88% !important; }
-                .v4-ld-micro-fill.bar-3 { height: 95% !important; }
-                .v4-ld-micro-fill.bar-4 { height: 92% !important; }
-                .v4-ld-micro-fill.bar-5 { height: 98% !important; }
-                .v4-ld-hyiq-query { display: none !important; }
-                .v4-ld-typing-dots { display: none !important; }
-                .v4-ld-hyiq-toast { position: static !important; opacity: 1 !important; pointer-events: auto !important; }
-              }
-
-              @media (max-width: 640px) {
-                .v4-mini-dashboard-living {
-                  width: 200px;
-                  min-height: 155px;
-                }
-                .v4-ld-grid { gap: 4px; }
-                .v4-ld-widget { min-height: 56px; padding: 4px 5px; }
-              }
-
-              /* PAGE 3: THE EMPLOYEE JOURNEY (12.0s MASTER ANIMATION SYSTEM) */
-              .v4-j-card {
-                position: absolute;
-                z-index: 6;
-                background: #FFFFFF;
-                border-radius: 14px;
-                border: 1.5px solid #E2E8F0;
-                box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.85);
-                padding: 8px 10px;
-                display: flex;
-                align-items: center;
-                gap: 9px;
-                width: 164px;
-                height: 58px;
-                box-sizing: border-box;
-                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-                will-change: transform, opacity, box-shadow;
-                user-select: none;
-              }
-              .v4-j-card:hover {
-                transform: translateY(-2px) scale(1.03) !important;
-                box-shadow: 0 16px 35px -8px rgba(124, 58, 237, 0.28) !important;
-                z-index: 12 !important;
-              }
-              .v4-j-card-1 {
-                top: 12px;
-                left: 12px;
-                animation: jCard1Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-2 {
-                top: 12px;
-                left: 188px;
-                animation: jCard2Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-3 {
-                top: 12px;
-                right: 12px;
-                animation: jCard3Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-4 {
-                bottom: 12px;
-                right: 12px;
-                animation: jCard4Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-5 {
-                bottom: 12px;
-                left: 188px;
-                animation: jCard5Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-6 {
-                bottom: 12px;
-                left: 12px;
-                animation: jCard6Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-
-              .v4-j-avatar-wrap {
-                position: relative;
-                width: 32px;
-                height: 32px;
-                flex-shrink: 0;
-              }
-              .v4-j-avatar {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
-                color: #FFFFFF;
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-weight: 800;
-                font-size: 11px;
-                display: grid;
-                place-items: center;
-                box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
-              }
-              .v4-j-online-dot {
-                position: absolute;
-                bottom: -1px;
-                right: -1px;
-                width: 7.5px;
-                height: 7.5px;
-                border-radius: 50%;
-                background: #10B981;
-                border: 1.5px solid #FFFFFF;
-                box-shadow: 0 0 6px #10B981;
-                animation: jGreenPulse 2s ease-in-out infinite;
-              }
-              @keyframes jGreenPulse {
-                0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-                50% { transform: scale(1.15); box-shadow: 0 0 0 3.5px rgba(16, 185, 129, 0); }
-              }
-
-              .v4-j-icon-box {
-                width: 28px;
-                height: 28px;
-                border-radius: 8px;
-                display: grid;
-                place-items: center;
-                font-size: 14px;
-                flex-shrink: 0;
-              }
-              .v4-j-icon-purple { background: rgba(124, 58, 237, 0.1); color: #7C3AED; }
-              .v4-j-icon-blue { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
-              .v4-j-icon-pink { background: rgba(236, 72, 153, 0.1); color: #EC4899; }
-              .v4-j-icon-amber { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
-              .v4-j-icon-green { background: rgba(16, 185, 129, 0.1); color: #10B981; }
-
-              .v4-j-meta {
-                flex: 1;
-                min-width: 0;
-                overflow: hidden;
-              }
-              .v4-j-tag-row {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                margin-bottom: 1px;
-              }
-              .v4-j-tag {
-                font-size: 7.5px;
-                font-weight: 800;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
-                line-height: 1;
-                white-space: nowrap;
-              }
-              .v4-j-card-1 .v4-j-tag { color: #7C3AED; }
-              .v4-j-card-2 .v4-j-tag { color: #7C3AED; }
-              .v4-j-card-3 .v4-j-tag { color: #3B82F6; }
-              .v4-j-card-4 .v4-j-tag { color: #EC4899; }
-              .v4-j-card-5 .v4-j-tag { color: #D97706; }
-              .v4-j-card-6 .v4-j-tag { color: #059669; }
-
-              .v4-j-tag-new {
-                font-size: 7.5px;
-                font-weight: 800;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
-                color: #7C3AED;
-                background: rgba(124, 58, 237, 0.08);
-                padding: 1px 4.5px;
-                border-radius: 3.5px;
-                display: inline-block;
-                line-height: 1.1;
-                margin-bottom: 1px;
-              }
-              .v4-j-title {
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-size: 11px;
-                font-weight: 700;
-                color: #0F172A;
-                line-height: 1.2;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
-              .v4-j-sub {
-                font-size: 8.5px;
-                color: #64748B;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                line-height: 1.2;
-                margin-top: 1px;
-              }
-              .v4-j-sub-row {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 3px;
-                margin-top: 1px;
-              }
-              .v4-j-badge-done {
-                font-size: 8px;
-                font-weight: 700;
-                color: #059669;
-                white-space: nowrap;
-                flex-shrink: 0;
-              }
-
-              .v4-j-progress-row {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                margin-top: 2px;
-              }
-              .v4-j-progress-track {
-                width: 44px;
-                height: 3.5px;
-                border-radius: 9999px;
-                background: #E2E8F0;
-                overflow: hidden;
-                flex-shrink: 0;
-              }
-              .v4-j-progress-fill {
-                height: 100%;
-                width: 0%;
-                background: linear-gradient(90deg, #7C3AED, #A855F7);
-                border-radius: 9999px;
-                animation: jProgressFill 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-              }
-              @keyframes jProgressFill {
-                0%, 12.5% { width: 0%; }
-                25%, 95% { width: 100%; }
-                100% { width: 0%; }
-              }
-              .v4-j-status-swap {
-                position: relative;
-                height: 12px;
-                flex: 1;
-                min-width: 0;
-                display: inline-flex;
-                align-items: center;
-              }
-              .v4-j-status-filling {
-                position: absolute;
-                left: 0;
-                top: 0;
-                font-size: 8px;
-                font-weight: 600;
-                color: #64748B;
-                white-space: nowrap;
-                animation: jStatusFilling 12s ease infinite;
-              }
-              .v4-j-status-done {
-                position: absolute;
-                left: 0;
-                top: 0;
-                font-size: 8px;
-                font-weight: 700;
-                color: #059669;
-                white-space: nowrap;
-                animation: jStatusDone 12s ease infinite;
-              }
-              @keyframes jStatusFilling {
-                0%, 16% { opacity: 1; transform: translateY(0); }
-                20%, 95% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
-                100% { opacity: 1; transform: translateY(0); }
-              }
-              @keyframes jStatusDone {
-                0%, 18% { opacity: 0; transform: translateY(3px); }
-                22%, 95% { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(3px); }
-              }
-
-              .v4-j-stage-status {
-                position: relative;
-                height: 12px;
-                display: inline-flex;
-                align-items: center;
-                min-width: 58px;
-                justify-content: flex-end;
-              }
-              .v4-j-status-upcoming {
-                position: absolute;
-                right: 0;
-                top: 0;
-                font-size: 8px;
-                font-weight: 600;
-                color: #94A3B8;
-                white-space: nowrap;
-                animation: jStatusUpcoming 12s ease infinite;
-              }
-              .v4-j-status-progress {
-                position: absolute;
-                right: 0;
-                top: 0;
-                font-size: 8px;
-                font-weight: 700;
-                color: #3B82F6;
-                white-space: nowrap;
-                animation: jStatusProgress 12s ease infinite;
-              }
-              .v4-j-status-completed {
-                position: absolute;
-                right: 0;
-                top: 0;
-                font-size: 8px;
-                font-weight: 700;
-                color: #059669;
-                white-space: nowrap;
-                animation: jStatusCompleted 12s ease infinite;
-              }
-              @keyframes jStatusUpcoming {
-                0%, 38% { opacity: 1; transform: translateY(0); }
-                41.67%, 100% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
-              }
-              @keyframes jStatusProgress {
-                0%, 38% { opacity: 0; transform: translateY(3px); }
-                41.67%, 52% { opacity: 1; transform: translateY(0); }
-                55%, 100% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
-              }
-              @keyframes jStatusCompleted {
-                0%, 52% { opacity: 0; transform: translateY(3px); }
-                55%, 95% { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(3px); }
-              }
-
-              .v4-j-goal-row {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                margin-top: 1px;
-              }
-              .v4-j-goal-pill {
-                font-size: 8px;
-                font-weight: 800;
-                color: #059669;
-                background: rgba(16, 185, 129, 0.12);
-                padding: 1px 4px;
-                border-radius: 3px;
-                line-height: 1.1;
-              }
-              .v4-j-status-ontrack {
-                font-size: 8px;
-                font-weight: 700;
-                color: #059669;
-                line-height: 1.1;
-              }
-
-              .v4-j-payoff-capsule {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(0.85);
-                z-index: 10;
-                width: 310px;
-                min-height: 48px;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(14px) saturate(180%);
-                -webkit-backdrop-filter: blur(14px) saturate(180%);
-                border: 1.5px solid rgba(124, 58, 237, 0.38);
-                border-radius: 9999px;
-                box-shadow: 0 16px 38px -6px rgba(124, 58, 237, 0.32), 0 6px 14px -3px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
-                display: flex;
-                align-items: center;
-                padding: 6px 16px;
-                gap: 11px;
-                box-sizing: border-box;
-                opacity: 0;
-                animation: jPayoffBloom 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-                user-select: none;
-                will-change: transform, opacity, box-shadow;
-              }
-              .v4-j-payoff-icon {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
-                color: #FFFFFF;
-                display: grid;
-                place-items: center;
-                font-size: 15px;
-                flex-shrink: 0;
-                box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
-              }
-              .v4-j-payoff-content {
-                flex: 1;
-                min-width: 0;
-              }
-              .v4-j-payoff-title {
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-size: 11.5px;
-                font-weight: 800;
-                color: #0F172A;
-                line-height: 1.25;
-                white-space: nowrap;
-              }
-              .v4-j-payoff-subtitle {
-                font-size: 9px;
-                color: #7C3AED;
-                font-weight: 700;
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                margin-top: 1px;
-              }
-              .v4-j-payoff-live-dot {
-                width: 5px;
-                height: 5px;
-                border-radius: 50%;
-                background: #10B981;
-                box-shadow: 0 0 5px #10B981;
-                display: inline-block;
-              }
-
-              @keyframes jPayoffBloom {
-                0%, 75% { opacity: 0; transform: translate(-50%, -50%) scale(0.85); pointer-events: none; }
-                79.17% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.92); }
-                83.33% {
-                  opacity: 1;
-                  transform: translate(-50%, -50%) scale(1.05);
-                  box-shadow: 0 20px 48px -4px rgba(124, 58, 237, 0.45), 0 0 30px 4px rgba(168, 85, 247, 0.4), inset 0 1px 1px rgba(255, 255, 255, 1);
-                }
-                87.5% {
-                  opacity: 1;
-                  transform: translate(-50%, -50%) scale(1.0);
-                  box-shadow: 0 16px 38px -6px rgba(124, 58, 237, 0.32), 0 6px 14px -3px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
-                }
-                95.83% { opacity: 1; transform: translate(-50%, -50%) scale(1.0); }
-                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); pointer-events: none; }
-              }
-
-              .v4-j-track-base {
-                fill: none;
-                stroke: rgba(124, 58, 237, 0.12);
-                stroke-width: 2;
-                stroke-linecap: round;
-                stroke-dasharray: 4 4;
-              }
-              .v4-j-spline-active {
-                fill: none;
-                stroke-width: 2.5;
-                stroke-linecap: round;
-                stroke-dasharray: 1000;
-                stroke-dashoffset: 1000;
-                animation: jSplineDraw 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-              }
-              @keyframes jSplineDraw {
-                0% { stroke-dashoffset: 1000; opacity: 0.4; }
-                12.5% { stroke-dashoffset: 820; opacity: 1; }
-                25% { stroke-dashoffset: 640; }
-                41.67% { stroke-dashoffset: 460; }
-                58.33% { stroke-dashoffset: 280; }
-                70.83% { stroke-dashoffset: 140; }
-                79.17% { stroke-dashoffset: 0; }
-                95.83% { stroke-dashoffset: 0; opacity: 1; filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.8)); }
-                100% { stroke-dashoffset: 0; opacity: 0.4; }
-              }
-
-              .v4-j-node-beacon {
-                fill: #FFFFFF;
-                stroke: #7C3AED;
-                stroke-width: 2;
-                animation: jBeaconPulse 12s ease-in-out infinite;
-              }
-              .v4-j-node-1 { animation-delay: 0s; }
-              .v4-j-node-2 { animation-delay: 1.5s; stroke: #7C3AED; }
-              .v4-j-node-3 { animation-delay: 3.0s; stroke: #3B82F6; }
-              .v4-j-node-4 { animation-delay: 5.0s; stroke: #EC4899; }
-              .v4-j-node-5 { animation-delay: 7.0s; stroke: #F59E0B; }
-              .v4-j-node-6 { animation-delay: 8.5s; stroke: #10B981; }
-              .v4-j-node-center { animation-delay: 9.5s; fill: #A855F7; stroke: #FFFFFF; stroke-width: 2; }
-
-              @keyframes jBeaconPulse {
-                0%, 90% { transform-origin: center; transform: scale(1); filter: drop-shadow(0 0 0 rgba(124, 58, 237, 0)); }
-                10%, 20% { transform-origin: center; transform: scale(1.4); filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.8)); }
-              }
-
-              .v4-j-comet {
-                position: absolute;
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: #FFFFFF;
-                box-shadow: 0 0 12px 3px rgba(168, 85, 247, 0.9), 0 0 4px #FFFFFF;
-                offset-path: path("M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175");
-                pointer-events: none;
-                z-index: 5;
-                opacity: 0;
-                will-change: transform, opacity;
-              }
-              .v4-j-comet-1 { animation: jComet1 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet1 {
-                0% { offset-distance: 0%; opacity: 0; }
-                2% { opacity: 1; }
-                12.5% { offset-distance: 18%; opacity: 1; }
-                13.5% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-2 { animation: jComet2 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet2 {
-                0%, 12.5% { offset-distance: 18%; opacity: 0; }
-                14% { opacity: 1; }
-                25% { offset-distance: 36%; opacity: 1; }
-                26% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-3 { animation: jComet3 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet3 {
-                0%, 25% { offset-distance: 36%; opacity: 0; }
-                27% { opacity: 1; }
-                41.67% { offset-distance: 54%; opacity: 1; }
-                43% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-4 { animation: jComet4 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet4 {
-                0%, 41.67% { offset-distance: 54%; opacity: 0; }
-                43.5% { opacity: 1; }
-                58.33% { offset-distance: 72%; opacity: 1; }
-                59.5% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-5 { animation: jComet5 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet5 {
-                0%, 58.33% { offset-distance: 72%; opacity: 0; }
-                60% { opacity: 1; }
-                79.17% { offset-distance: 100%; opacity: 1; }
-                81% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-grand {
-                animation: jCometGrand 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-                width: 10px;
-                height: 10px;
-                box-shadow: 0 0 16px 4px rgba(168, 85, 247, 1), 0 0 6px #FFFFFF;
-              }
-              @keyframes jCometGrand {
-                0%, 79.17% { offset-distance: 0%; opacity: 0; }
-                80% { opacity: 1; }
-                93% { offset-distance: 100%; opacity: 1; }
-                95% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-
-              @keyframes jCard1Motion {
-                0% { opacity: 0; transform: translateY(-8px) scale(0.96); border-color: #E2E8F0; }
-                8.33% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(124, 58, 237, 0.5); box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.28); }
-                12.5% { opacity: 1; transform: translateY(0) scale(1.0); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0; transform: translateY(-8px) scale(0.96); }
-              }
-              @keyframes jCard2Motion {
-                0%, 10% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                12.5% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #7C3AED; box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.3); }
-                25% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(124, 58, 237, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-              }
-              @keyframes jCard3Motion {
-                0%, 22% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                25% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.3); }
-                37.5% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(59, 130, 246, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-              }
-              @keyframes jCard4Motion {
-                0%, 38% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                41.67% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.3); }
-                58.33% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(236, 72, 153, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-              }
-              @keyframes jCard5Motion {
-                0%, 55% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                58.33% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #F59E0B; box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.3); }
-                70.83% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(245, 158, 11, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-              }
-              @keyframes jCard6Motion {
-                0%, 68% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                70.83% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.3); }
-                79.17% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(16, 185, 129, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-              }
-
-              @media (max-width: 640px) {
-                .v4-j-card { width: 140px; height: 52px; padding: 6px 8px; gap: 6px; }
-                .v4-j-card-1 { left: 6px; }
-                .v4-j-card-2 { left: 50%; transform: translateX(-50%); }
-                .v4-j-card-3 { right: 6px; }
-                .v4-j-card-4 { right: 6px; }
-                .v4-j-card-5 { left: 50%; transform: translateX(-50%); }
-                .v4-j-card-6 { left: 6px; }
-                .v4-j-payoff-capsule { width: 260px; min-height: 44px; padding: 5px 12px; }
-                .v4-j-payoff-title { font-size: 10px; }
-              }
-
+       PAGE 2: THE LIVE INTERACTIVE GLASS BENTO COMMAND DECK
+       ========================================================================== */
+
+    /* Bento Container & Glassmorphism Deck */
+    .p2-bento-deck {
+      position: relative;
+      width: 100%;
+      max-width: 524px;
+      height: 342px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 8px 10px 9px 10px;
+      border-radius: 16px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 20px 45px -12px rgba(124, 58, 237, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+      box-sizing: border-box;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      user-select: none;
+      contain: layout style;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Ambient Specular Glow */
+    .p2-bento-ambient-glow {
+      position: absolute;
+      inset: -15px;
+      border-radius: 24px;
+      background: radial-gradient(circle at 50% 30%, rgba(124, 58, 237, 0.12) 0%, rgba(6, 182, 212, 0.08) 40%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: p2BentoGlowBreath 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes p2BentoGlowBreath {
+      0% { opacity: 0.6; transform: scale(0.98); }
+      100% { opacity: 1; transform: scale(1.02); }
+    }
+
+    /* Chrome Header */
+    .p2-bento-chrome {
+      position: relative;
+      z-index: 1;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+      border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+      padding-bottom: 5px;
+    }
+
+    .p2-bento-chrome-dots {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .p2-bento-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+    .p2-bento-dot.red { background: #EF4444; }
+    .p2-bento-dot.amber { background: #F59E0B; }
+    .p2-bento-dot.green { background: #10B981; }
+
+    .p2-bento-chrome-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #64748B;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .p2-bento-chrome-badge {
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #7C3AED;
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(124, 58, 237, 0.25);
+      border-radius: 4px;
+      padding: 1px 4px;
+    }
+
+    .p2-bento-chrome-status {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #059669;
+      letter-spacing: 0.05em;
+    }
+
+    .p2-bento-live-beacon {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      animation: p2BentoBeaconPulse 1.4s ease infinite;
+    }
+
+    @keyframes p2BentoBeaconPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.45; }
+    }
+
+    /* Bento 2x2 Core Grid */
+    .p2-bento-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.14fr 1fr;
+      grid-template-rows: 124px 124px;
+      gap: 7px;
+    }
+
+    /* Common Bento Tile Styling */
+    .p2-bento-tile {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 12px;
+      padding: 8px 10px;
+      box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .p2-bento-tile:hover {
+      border-color: rgba(124, 58, 237, 0.35);
+      box-shadow: 0 8px 20px -4px rgba(124, 58, 237, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+    }
+
+    .p2-bento-tile-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    /* Badges */
+    .p2-bento-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3.5px;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 1.5px 5px;
+      border-radius: 4px;
+    }
+
+    .p2-bento-badge.cyan {
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: #0891B2;
+    }
+
+    .p2-bento-badge.emerald {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #059669;
+    }
+
+    .p2-bento-badge.rose {
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      color: #E11D48;
+    }
+
+    .p2-bento-badge.purple {
+      background: rgba(124, 58, 237, 0.1);
+      border: 1px solid rgba(124, 58, 237, 0.3);
+      color: #7C3AED;
+    }
+
+    .p2-bento-badge-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    /* ==========================================================================
+       TILE 1: WORKFORCE VELOCITY & SINE SPARKLINE
+       ========================================================================== */
+    .p2-bento-retention-pill {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 999px;
+      padding: 1px 6px;
+    }
+
+    .p2-bento-kpi-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin-top: 3px;
+    }
+
+    .p2-bento-kpi-val {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0F172A;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+
+    .p2-bento-trend-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .p2-bento-kpi-sub {
+      font-size: 9px;
+      color: #64748B;
+      font-weight: 500;
+      margin-top: 1px;
+    }
+
+    .p2-bento-sparkline-canvas {
+      position: relative;
+      width: 100%;
+      height: 38px;
+      margin-top: 4px;
+      overflow: hidden;
+      border-radius: 6px;
+    }
+
+    .p2-bento-sparkline-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .p2-bento-sparkline-path {
+      fill: none;
+      stroke: url(#p2SparklineGrad);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-dasharray: 280;
+      stroke-dashoffset: 280;
+      filter: url(#p2NeonGlow);
+      animation: p2BentoSparklineDraw 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    @keyframes p2BentoSparklineDraw {
+      0%, 12% {
+        stroke-dashoffset: 280;
+        opacity: 0.3;
+      }
+      28%, 88% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+      96%, 100% {
+        stroke-dashoffset: 0;
+        opacity: 0.35;
+      }
+    }
+
+    .p2-bento-sparkline-fill {
+      fill: url(#p2SparklineFillGrad);
+      opacity: 0;
+      animation: p2BentoSparklineFill 10s ease-out infinite;
+    }
+
+    @keyframes p2BentoSparklineFill {
+      0%, 16% { opacity: 0; transform: translateY(3px); }
+      30%, 88% { opacity: 1; transform: translateY(0); }
+      96%, 100% { opacity: 0.25; }
+    }
+
+    .p2-bento-sparkline-cursor {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 10px 2px #10B981, 0 0 3px #FFFFFF;
+      pointer-events: none;
+      offset-path: path("M 0 32 Q 35 30 65 20 T 130 16 T 195 8 T 240 4");
+      offset-distance: 0%;
+      opacity: 0;
+      animation: p2BentoCursorScan 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    @keyframes p2BentoCursorScan {
+      0%, 12% { offset-distance: 0%; opacity: 0; transform: scale(0.5); }
+      15% { opacity: 1; transform: scale(1.2); }
+      30%, 88% { offset-distance: 100%; opacity: 1; transform: scale(1.0); }
+      94%, 100% { opacity: 0; transform: scale(0.6); }
+    }
+
+    .p2-bento-sparkline-scan-beam {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, transparent, rgba(6, 182, 212, 0.8), transparent);
+      box-shadow: 0 0 8px rgba(6, 182, 212, 0.6);
+      opacity: 0;
+      animation: p2BentoScanBeam 10s ease-in-out infinite;
+    }
+
+    @keyframes p2BentoScanBeam {
+      0%, 12% { left: 0%; opacity: 0; }
+      15% { opacity: 0.75; }
+      30% { left: 96%; opacity: 0.75; }
+      34%, 100% { opacity: 0; left: 96%; }
+    }
+
+    /* ==========================================================================
+       TILE 2: HyIQ™ AUTONOMOUS COPILOT
+       ========================================================================== */
+    .p2-bento-ai-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .p2-bento-ai-orb {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #7C3AED, #06B6D4);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(124, 58, 237, 0.4);
+    }
+
+    .p2-bento-ai-halo-1,
+    .p2-bento-ai-halo-2 {
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 1px solid rgba(139, 92, 246, 0.45);
+      pointer-events: none;
+      animation: p2BentoAiHalo 2.6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    }
+    .p2-bento-ai-halo-2 {
+      animation-delay: 1.3s;
+    }
+
+    @keyframes p2BentoAiHalo {
+      0% { transform: scale(0.85); opacity: 0.9; border-color: rgba(6, 182, 212, 0.6); }
+      100% { transform: scale(1.65); opacity: 0; border-color: rgba(139, 92, 246, 0); }
+    }
+
+    .p2-bento-ai-icon {
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .p2-bento-ai-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p2-bento-ai-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+
+    .p2-bento-ai-sub {
+      font-size: 8px;
+      font-weight: 600;
+      color: #7C3AED;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* 5 Dancing EQ Bars */
+    .p2-bento-eq-cluster {
+      display: flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 14px;
+    }
+
+    .p2-bento-eq-bar {
+      width: 2px;
+      border-radius: 1px;
+      background: linear-gradient(180deg, #06B6D4 0%, #7C3AED 100%);
+      animation: p2BentoEqDance 0.75s ease-in-out infinite alternate;
+    }
+
+    .p2-bento-eq-bar.bar-1 { height: 35%; animation-delay: 0.0s; }
+    .p2-bento-eq-bar.bar-2 { height: 90%; animation-delay: 0.15s; }
+    .p2-bento-eq-bar.bar-3 { height: 55%; animation-delay: 0.3s; }
+    .p2-bento-eq-bar.bar-4 { height: 85%; animation-delay: 0.1s; }
+    .p2-bento-eq-bar.bar-5 { height: 45%; animation-delay: 0.25s; }
+
+    @keyframes p2BentoEqDance {
+      0% { transform: scaleY(0.4); opacity: 0.55; }
+      100% { transform: scaleY(1.0); opacity: 1; filter: drop-shadow(0 0 3px #06B6D4); }
+    }
+
+    /* Cycling AI Insight Stream */
+    .p2-bento-insight-viewport {
+      position: relative;
+      height: 48px;
+      width: 100%;
+      margin-top: 6px;
+    }
+
+    .p2-bento-insight-item {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(124, 58, 237, 0.06);
+      border: 1px solid rgba(124, 58, 237, 0.16);
+      border-radius: 8px;
+      padding: 5px 8px;
+      opacity: 0;
+      transform: translateY(8px);
+      box-sizing: border-box;
+    }
+
+    .p2-bento-insight-item.insight-1 { animation: p2BentoInsight1 10s ease infinite; }
+    .p2-bento-insight-item.insight-2 { animation: p2BentoInsight2 10s ease infinite; }
+    .p2-bento-insight-item.insight-3 { animation: p2BentoInsight3 10s ease infinite; }
+
+    @keyframes p2BentoInsight1 {
+      0%, 2% { opacity: 0; transform: translateY(8px); }
+      6%, 30% { opacity: 1; transform: translateY(0); }
+      34%, 100% { opacity: 0; transform: translateY(-8px); }
+    }
+    @keyframes p2BentoInsight2 {
+      0%, 33% { opacity: 0; transform: translateY(8px); }
+      37%, 63% { opacity: 1; transform: translateY(0); }
+      67%, 100% { opacity: 0; transform: translateY(-8px); }
+    }
+    @keyframes p2BentoInsight3 {
+      0%, 66% { opacity: 0; transform: translateY(8px); }
+      70%, 94% { opacity: 1; transform: translateY(0); }
+      98%, 100% { opacity: 0; transform: translateY(-8px); }
+    }
+
+    .p2-bento-insight-bullet {
+      color: #7C3AED;
+      font-size: 10px;
+      line-height: 1;
+      filter: drop-shadow(0 0 2px rgba(124, 58, 237, 0.5));
+    }
+
+    .p2-bento-insight-text {
+      font-size: 10px;
+      font-weight: 600;
+      color: #4338CA;
+      line-height: 1.25;
+    }
+
+    .p2-bento-insight-pips {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .p2-bento-insight-pip {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #CBD5E1;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    /* ==========================================================================
+       TILE 3: LIVE COMPLIANCE & APPROVAL RADAR
+       ========================================================================== */
+    .p2-bento-radar-layout {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .p2-bento-radar-screen {
+      position: relative;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, rgba(15, 23, 42, 0.88) 78%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      box-shadow: 0 0 14px rgba(16, 185, 129, 0.15) inset;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .p2-bento-radar-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed rgba(16, 185, 129, 0.22);
+    }
+    .p2-bento-radar-ring.ring-1 { inset: 10px; }
+    .p2-bento-radar-ring.ring-2 { inset: 22px; }
+    .p2-bento-radar-ring.ring-3 { inset: 33px; }
+
+    .p2-bento-radar-crosshair-h {
+      position: absolute; top: 50%; left: 0; right: 0; height: 1px;
+      background: rgba(16, 185, 129, 0.18);
+    }
+    .p2-bento-radar-crosshair-v {
+      position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+      background: rgba(16, 185, 129, 0.18);
+    }
+
+    .p2-bento-radar-beam {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 44px;
+      height: 44px;
+      transform-origin: 0% 0%;
+      background: conic-gradient(from 0deg, rgba(16, 185, 129, 0.55) 0deg, rgba(16, 185, 129, 0.0) 65deg, transparent 65deg);
+      border-radius: 0 100% 0 0;
+      animation: p2BentoRadarSweep 3s linear infinite;
+    }
+
+    @keyframes p2BentoRadarSweep {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .p2-bento-radar-blip {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .p2-bento-radar-blip.blip-pto { top: 16px; left: 18px; }
+    .p2-bento-radar-blip.blip-gear { bottom: 14px; right: 10px; }
+
+    .p2-bento-blip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      flex-shrink: 0;
+    }
+
+    .p2-bento-blip-ripple {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      border: 1px solid #10B981;
+      animation: p2BentoBlipRipple 3s ease-out infinite;
+    }
+
+    @keyframes p2BentoBlipRipple {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(3.5); opacity: 0; }
+    }
+
+    .p2-bento-blip-tag {
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #10B981;
+      background: rgba(16, 185, 129, 0.22);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      border-radius: 3px;
+      padding: 0.5px 3px;
+      white-space: nowrap;
+      opacity: 0;
+      transform: scale(0.85);
+      animation: p2BentoBlipLock 3s ease-in-out infinite;
+    }
+
+    .p2-bento-radar-blip.blip-gear .p2-bento-blip-tag {
+      animation-delay: 1.5s;
+    }
+    .p2-bento-radar-blip.blip-gear .p2-bento-blip-ripple {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes p2BentoBlipLock {
+      0%, 18% { opacity: 0; transform: scale(0.7); }
+      26%, 72% { opacity: 1; transform: scale(1.0); }
+      85%, 100% { opacity: 0; transform: scale(0.8); }
+    }
+
+    .p2-bento-radar-meta {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .p2-bento-radar-kpi {
+      font-size: 19px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1.1;
+      margin-top: 2px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .p2-bento-radar-unit {
+      font-size: 11px;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    .p2-bento-radar-sub {
+      font-size: 8.5px;
+      color: #64748B;
+      font-weight: 500;
+    }
+
+    .p2-bento-radar-stat-pill {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 4px;
+      padding: 1.5px 5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      margin-top: 4px;
+      width: fit-content;
+    }
+
+    /* ==========================================================================
+       TILE 4: CULTURE & ENGAGEMENT PULSE
+       ========================================================================== */
+    .p2-bento-sentiment-pill {
+      font-size: 8.5px;
+      font-weight: 700;
+      color: #BE185D;
+      background: rgba(244, 63, 94, 0.1);
+      border: 1px solid rgba(244, 63, 94, 0.25);
+      border-radius: 999px;
+      padding: 1px 6px;
+    }
+
+    .p2-bento-sentiment-body {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2px;
+    }
+
+    .p2-bento-gauge-wrap {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      flex-shrink: 0;
+    }
+
+    .p2-bento-gauge-svg {
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    .p2-bento-gauge-track {
+      fill: none;
+      stroke: rgba(226, 232, 240, 0.8);
+      stroke-width: 5;
+    }
+
+    .p2-bento-gauge-fill {
+      fill: none;
+      stroke: url(#p2GaugeGrad);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: p2BentoGaugeDraw 10s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    @keyframes p2BentoGaugeDraw {
+      0%, 30% { stroke-dashoffset: 100; }
+      46%, 90% { stroke-dashoffset: 4; } /* 96% fill */
+      98%, 100% { stroke-dashoffset: 100; }
+    }
+
+    .p2-bento-gauge-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .p2-bento-gauge-val {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0F172A;
+      line-height: 1;
+      font-family: "Plus Jakarta Sans", sans-serif;
+    }
+
+    .p2-bento-gauge-sub {
+      font-size: 8px;
+      font-weight: 700;
+      color: #7C3AED;
+      letter-spacing: 0.04em;
+    }
+
+    .p2-bento-sentiment-right {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .p2-bento-avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .p2-bento-micro-avatar {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid #FFFFFF;
+      font-size: 8.5px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      position: relative;
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.1);
+    }
+    .p2-bento-micro-avatar:not(:first-child) {
+      margin-left: -6px;
+    }
+
+    .p2-bento-micro-avatar.av-1 { background: #EDE9FE; color: #7C3AED; }
+    .p2-bento-micro-avatar.av-2 { background: #E0F2FE; color: #0284C7; }
+    .p2-bento-micro-avatar.av-3 { background: #ECFDF5; color: #059669; }
+
+    .p2-bento-av-dot {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      border: 1px solid #FFFFFF;
+    }
+
+    .p2-bento-sentiment-sub {
+      font-size: 8px;
+      color: #64748B;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* Floating Celebration Reactions */
+    .p2-bento-reaction-float {
+      position: absolute;
+      font-size: 13px;
+      pointer-events: none;
+      opacity: 0;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.25));
+    }
+
+    .p2-bento-reaction-float.r-party {
+      bottom: 6px;
+      right: 12px;
+      animation: p2BentoReactionFloat 6s ease-out infinite 1.2s;
+    }
+    .p2-bento-reaction-float.r-rocket {
+      bottom: 4px;
+      right: 28px;
+      animation: p2BentoReactionFloat 6s ease-out infinite 3.2s;
+    }
+    .p2-bento-reaction-float.r-heart {
+      bottom: 8px;
+      right: 20px;
+      animation: p2BentoReactionFloat 6s ease-out infinite 4.6s;
+    }
+
+    @keyframes p2BentoReactionFloat {
+      0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+      15% { opacity: 1; transform: translate(-3px, -12px) scale(1.15); }
+      50% { opacity: 0.9; transform: translate(5px, -30px) scale(1.0); }
+      75% { opacity: 0; transform: translate(-2px, -44px) scale(0.85); }
+      100% { opacity: 0; transform: translate(0, 0); }
+    }
+
+    /* ==========================================================================
+       TILE 5: BOTTOM REAL-TIME OPERATIONS MARQUEE STREAM
+       ========================================================================== */
+    .p2-bento-ticker-tile {
+      position: relative;
+      z-index: 1;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 10px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 9px;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .p2-bento-ticker-label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #10B981;
+      text-transform: uppercase;
+      white-space: nowrap;
+      padding-right: 7px;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+    }
+
+    .p2-bento-ticker-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      animation: p2BentoBeaconPulse 1.4s ease infinite;
+    }
+
+    .p2-bento-ticker-window {
+      flex: 1;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+    }
+
+    .p2-bento-ticker-track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+      will-change: transform;
+      animation: p2BentoTicker 26s linear infinite;
+    }
+
+    .p2-bento-ticker-track:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes p2BentoTicker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .p2-bento-ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10.5px;
+      color: #E2E8F0;
+      font-weight: 500;
+    }
+
+    .p2-bento-ticker-dot-metric {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+    .p2-bento-ticker-dot-metric.green { background: #10B981; }
+    .p2-bento-ticker-dot-metric.cyan { background: #06B6D4; }
+    .p2-bento-ticker-dot-metric.purple { background: #8B5CF6; }
+    .p2-bento-ticker-dot-metric.emerald { background: #34D399; }
+    .p2-bento-ticker-dot-metric.amber { background: #F59E0B; }
+
+    .p2-bento-ticker-sep {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 9px;
+    }
+
+    /* Accessibility for Page 2 */
+    @media (prefers-reduced-motion: reduce) {
+      .p2-bento-deck,
+      .p2-bento-sparkline-path,
+      .p2-bento-sparkline-fill,
+      .p2-bento-sparkline-cursor,
+      .p2-bento-sparkline-scan-beam,
+      .p2-bento-ai-halo-1,
+      .p2-bento-ai-halo-2,
+      .p2-bento-eq-bar,
+      .p2-bento-insight-item,
+      .p2-bento-radar-beam,
+      .p2-bento-radar-blip,
+      .p2-bento-blip-ripple,
+      .p2-bento-blip-tag,
+      .p2-bento-gauge-fill,
+      .p2-bento-reaction-float,
+      .p2-bento-live-beacon,
+      .p2-bento-ticker-dot,
+      .p2-bento-ticker-track,
+      .p2-bento-ambient-glow {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+      }
+
+      .p2-bento-sparkline-path {
+        stroke-dashoffset: 0 !important;
+        opacity: 1 !important;
+      }
+
+      .p2-bento-sparkline-fill {
+        opacity: 0.6 !important;
+        transform: none !important;
+      }
+
+      .p2-bento-sparkline-cursor,
+      .p2-bento-sparkline-scan-beam,
+      .p2-bento-radar-beam,
+      .p2-bento-reaction-float {
+        display: none !important;
+      }
+
+      .p2-bento-blip-tag {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .p2-bento-gauge-fill {
+        stroke-dashoffset: 4 !important;
+      }
+
+      .p2-bento-insight-item {
+        display: none !important;
+      }
+
+      .p2-bento-insight-item.insight-1 {
+        display: flex !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .p2-bento-ticker-track {
+        transform: none !important;
+      }
+    }
+
+    /* Responsive adjustments for Living Bento Command Deck */
+    @media (max-width: 640px) {
+      #v4WorkflowStageLiving {
+        height: 280px;
+      }
+      .p2-bento-deck {
+        max-width: 420px;
+        height: 270px;
+        padding: 6px 8px;
+        gap: 5px;
+        transform: none !important;
+      }
+      .p2-bento-chrome {
+        height: 18px;
+        padding-bottom: 3px;
+      }
+      .p2-bento-chrome-title {
+        font-size: 8.5px;
+      }
+      .p2-bento-grid {
+        grid-template-columns: 1.1fr 1fr;
+        grid-template-rows: 96px 96px;
+        gap: 5px;
+      }
+      .p2-bento-tile {
+        padding: 5px 7px;
+        border-radius: 9px;
+      }
+      .p2-bento-kpi-val {
+        font-size: 15px;
+      }
+      .p2-bento-sparkline-canvas {
+        height: 26px;
+      }
+      .p2-bento-radar-screen {
+        width: 62px;
+        height: 62px;
+      }
+      .p2-bento-radar-beam {
+        width: 31px;
+        height: 31px;
+      }
+      .p2-bento-radar-kpi {
+        font-size: 14px;
+      }
+      .p2-bento-gauge-wrap {
+        width: 48px;
+        height: 48px;
+      }
+      .p2-bento-gauge-val {
+        font-size: 11px;
+      }
+      .p2-bento-micro-avatar {
+        width: 18px;
+        height: 18px;
+        font-size: 7.5px;
+      }
+      .p2-bento-ticker-tile {
+        height: 24px;
+        padding: 0 7px;
+      }
+      .p2-bento-ticker-item {
+        font-size: 9.5px;
+      }
+      .v4-pagination-dock {
+        bottom: 12px;
+        padding: 4px;
+      }
+      .v4-page-btn {
+        padding: 5px 10px;
+        font-size: 11.5px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #v4WorkflowStageLiving {
+        height: 270px;
+      }
+      .p2-bento-deck {
+        max-width: 100%;
+        height: 264px;
+        padding: 5px 6px;
+        gap: 4px;
+      }
+      .p2-bento-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 94px 94px;
+        gap: 4px;
+      }
+      .p2-bento-chrome-status {
+        display: none;
+      }
+      .p2-bento-retention-pill {
+        display: none;
+      }
+      .p2-bento-sentiment-sub {
+        display: none;
+      }
+      .p2-bento-ticker-label span:last-child {
+        display: none;
+      }
+    }
+
+              /* ==========================================================================
+       PAGE 3: THE PROCESS-BASED CONNECTED HR ECOSYSTEM — 14.0s SEQUENTIAL STORY
+       ========================================================================== */
+
+    /* Stage Container */
+    #p3ProcessStage {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      height: 350px;
+      perspective: 1000px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 6px;
+      contain: layout paint style;
+      transform-style: preserve-3d;
+    }
+
+    /* 1. Subtle Technical Dot & Line Grid Pattern with Radial Mask */
+    .p3-proc-grid-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background-image: 
+        radial-gradient(circle, rgba(124, 58, 237, 0.09) 1px, transparent 1px),
+        linear-gradient(to right, rgba(124, 58, 237, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(124, 58, 237, 0.025) 1px, transparent 1px);
+      background-size: 20px 20px, 40px 40px, 40px 40px;
+      background-position: center center;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000000 45%, transparent 95%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000000 45%, transparent 95%);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.85;
+    }
+
+    /* 2. Soft Ambient Underlay Glow */
+    .p3-proc-ambient {
+      position: absolute;
+      width: 340px;
+      height: 230px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 70%);
+      filter: blur(34px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 3. SVG Flow Lines & Optical Connectors */
+    .p3-proc-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .p3-proc-track-base {
+      stroke: rgba(148, 163, 184, 0.22);
+      stroke-width: 1.5px;
+      stroke-dasharray: 3 3;
+      fill: none;
+    }
+
+    .p3-proc-track-active {
+      fill: none;
+      stroke-width: 2.2px;
+      stroke-linecap: round;
+      stroke-dasharray: 144;
+      stroke-dashoffset: 144;
+      opacity: 0;
+      will-change: stroke-dashoffset, stroke-width, opacity;
+    }
+
+    .p3-proc-line-1 {
+      animation: p3ProcPath1Draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .p3-proc-line-2 {
+      animation: p3ProcPath2Draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .p3-proc-line-3 {
+      animation: p3ProcPath3Draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .p3-proc-line-4 {
+      animation: p3ProcPath4Draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* 4. Photonic Light Particles navigating Bezier paths */
+    .p3-proc-particle {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0;
+      will-change: transform, opacity, offset-distance;
+    }
+
+    .p3-proc-particle-1 {
+      background: #A855F7;
+      box-shadow: 0 0 10px 2px #A855F7, 0 0 4px #FFFFFF;
+      offset-path: path("M 160 75 C 210 75, 230 145, 270 160");
+      animation: p3ProcParticle1Cycle 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .p3-proc-particle-2 {
+      background: #3B82F6;
+      box-shadow: 0 0 10px 2px #3B82F6, 0 0 4px #FFFFFF;
+      offset-path: path("M 380 75 C 330 75, 310 145, 270 160");
+      animation: p3ProcParticle2Cycle 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .p3-proc-particle-3 {
+      background: #EC4899;
+      box-shadow: 0 0 10px 2px #EC4899, 0 0 4px #FFFFFF;
+      offset-path: path("M 160 275 C 210 275, 230 205, 270 190");
+      animation: p3ProcParticle3Cycle 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .p3-proc-particle-4 {
+      background: #10B981;
+      box-shadow: 0 0 10px 2px #10B981, 0 0 4px #FFFFFF;
+      offset-path: path("M 380 275 C 330 275, 310 205, 270 190");
+      animation: p3ProcParticle4Cycle 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* 5. Central Miniature Dashboard Anchor (Living Command Center) */
+    .p3-proc-dashboard {
+      position: absolute;
+      top: 102.5px;
+      left: 162px;
+      width: 216px;
+      height: 145px;
+      z-index: 5;
+      background: #FFFFFF;
+      border-radius: 13px;
+      border: 1.5px solid rgba(124, 58, 237, 0.28);
+      box-shadow: 
+        0 20px 45px -10px rgba(124, 58, 237, 0.30),
+        0 8px 20px -4px rgba(15, 23, 42, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+      transform-origin: center center;
+      will-change: transform, box-shadow, opacity;
+      user-select: none;
+      animation: p3ProcDashCycle 14s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      transition: transform 0.15s ease-out;
+    }
+
+    .p3-proc-dash-chrome {
+      height: 22px;
+      padding: 0 8px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .p3-proc-dash-dots {
+      display: flex;
+      align-items: center;
+      gap: 3.5px;
+    }
+
+    .p3-proc-dash-dot-red {
+      width: 5.5px;
+      height: 5.5px;
+      border-radius: 50%;
+      background: #EF4444;
+    }
+
+    .p3-proc-dash-dot-amber {
+      width: 5.5px;
+      height: 5.5px;
+      border-radius: 50%;
+      background: #F59E0B;
+    }
+
+    .p3-proc-dash-dot-green {
+      width: 5.5px;
+      height: 5.5px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+
+    .p3-proc-dash-url {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 8px;
+      color: #64748B;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .p3-proc-dash-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 1px 5px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #059669;
+      font-size: 7.5px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .p3-proc-dash-beacon {
+      width: 4.5px;
+      height: 4.5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      animation: p3ProcBeaconPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes p3ProcBeaconPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.6; }
+    }
+
+    .p3-proc-dash-body {
+      position: relative;
+      width: 100%;
+      height: 123px;
+      background: #0B0818;
+      overflow: hidden;
+    }
+
+    .p3-proc-dash-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Micro AI Insight Toast inside Dashboard */
+    .p3-proc-dash-toast {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px) scale(0.9);
+      opacity: 0;
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 7.5px;
+      font-weight: 600;
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      z-index: 8;
+      pointer-events: none;
+      animation: p3ProcDashToastCycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-toast-sparkle {
+      font-size: 8px;
+      line-height: 1;
+    }
+
+    .p3-proc-toast-text {
+      line-height: 1;
+      letter-spacing: -0.1px;
+    }
+
+    /* 6. Module Cards (Quad Spoke Elements) */
+    .p3-proc-card {
+      position: absolute;
+      width: 185px;
+      min-height: 52px;
+      padding: 6px 10px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1.5px solid #E2E8F0;
+      box-shadow: 
+        0 10px 25px -5px rgba(124, 58, 237, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.85);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      will-change: transform, opacity, border-color, box-shadow;
+      user-select: none;
+    }
+
+    .p3-proc-card-tl {
+      top: 14px;
+      left: 10px;
+      animation: p3ProcCard1Cycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-card-tr {
+      top: 14px;
+      right: 10px;
+      animation: p3ProcCard2Cycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-card-bl {
+      bottom: 14px;
+      left: 10px;
+      animation: p3ProcCard3Cycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-card-br {
+      bottom: 14px;
+      right: 10px;
+      animation: p3ProcCard4Cycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-card-icon-box {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .p3-proc-icon-purple {
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .p3-proc-icon-blue {
+      background: #EFF6FF;
+      color: #2563EB;
+    }
+
+    .p3-proc-icon-pink {
+      background: #FDF2F8;
+      color: #EC4899;
+      animation: p3ProcSparkleBox 2.5s ease-in-out infinite;
+    }
+
+    @keyframes p3ProcSparkleBox {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(6deg); }
+    }
+
+    .p3-proc-icon-emerald {
+      background: #ECFDF5;
+      color: #10B981;
+    }
+
+    .p3-proc-card-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .p3-proc-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .p3-proc-card-tag {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .p3-proc-tag-purple { color: #7C3AED; }
+    .p3-proc-tag-blue { color: #2563EB; }
+    .p3-proc-tag-pink { color: #EC4899; }
+    .p3-proc-tag-emerald { color: #10B981; }
+
+    .p3-proc-card-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .p3-proc-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 1px;
+      position: relative;
+      min-height: 14px;
+    }
+
+    .p3-proc-card-sub {
+      font-size: 8.5px;
+      color: #64748B;
+      white-space: nowrap;
+    }
+
+    /* Micro-interactions: Card 1 (Orientation) */
+    .p3-proc-badge-check {
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 1px 5px;
+      border-radius: 9999px;
+      opacity: 0;
+      transform: scale(0);
+      will-change: transform, opacity;
+      animation: p3ProcCheckmarkPop 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    .p3-proc-progress-track {
+      width: 46px;
+      height: 4px;
+      background: #E2E8F0;
+      border-radius: 9999px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .p3-proc-progress-bar {
+      height: 100%;
+      border-radius: 9999px;
+      width: 0%;
+      will-change: width;
+    }
+
+    .p3-proc-progress-purple {
+      background: linear-gradient(90deg, #7C3AED, #A855F7);
+      animation: p3ProcOnboardProgress 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* Micro-interactions: Card 2 (Department Tour) */
+    .p3-proc-badge-blue {
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #0284C7;
+      background: rgba(2, 132, 199, 0.1);
+      padding: 1px 5px;
+      border-radius: 9999px;
+    }
+
+    .p3-proc-avatar-stack {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .p3-proc-avatar {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 1.5px solid #FFFFFF;
+      font-size: 7px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-left: -4px;
+      will-change: transform, opacity;
+    }
+
+    .p3-proc-av-1 {
+      margin-left: 0;
+      background: #EDE9FE;
+      color: #7C3AED;
+      animation: p3ProcAvatar1Pop 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    .p3-proc-av-2 {
+      background: #EFF6FF;
+      color: #2563EB;
+      animation: p3ProcAvatar2Pop 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    .p3-proc-av-3 {
+      background: #ECFDF5;
+      color: #059669;
+      animation: p3ProcAvatar3Pop 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    /* Micro-interactions: Card 3 (Ask HyIQ AI) */
+    .p3-proc-badge-pink {
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #BE185D;
+      background: rgba(236, 72, 153, 0.1);
+      padding: 1px 5px;
+      border-radius: 9999px;
+    }
+
+    .p3-proc-typewriter-container {
+      display: inline-flex;
+      align-items: center;
+      max-width: 130px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .p3-proc-typewriter-text {
+      font-size: 8px;
+      color: #475569;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: p3ProcTypewriterQuery 14s steps(22, end) infinite;
+      will-change: width;
+    }
+
+    .p3-proc-typewriter-cursor {
+      font-size: 8px;
+      color: #EC4899;
+      font-weight: 700;
+      animation: p3ProcBlinkCursor 0.8s infinite;
+      margin-left: 1px;
+    }
+
+    @keyframes p3ProcBlinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .p3-proc-ai-response-pill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 600;
+      color: #9D174D;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(236, 72, 153, 0.28);
+      border-radius: 9999px;
+      padding: 1px 5px;
+      white-space: nowrap;
+      opacity: 0;
+      will-change: opacity, transform;
+      animation: p3ProcAiAnswerFade 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* Micro-interactions: Card 4 (1-on-1 Check-ins) */
+    .p3-proc-badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #047857;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 1px 5px;
+      border-radius: 9999px;
+    }
+
+    .p3-proc-date-pill {
+      font-size: 8px;
+      color: #059669;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .p3-proc-goal-track {
+      width: 44px;
+      height: 4px;
+      background: #E2E8F0;
+      border-radius: 9999px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .p3-proc-goal-bar {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #10B981, #059669);
+      width: 0%;
+      will-change: width;
+      animation: p3ProcGoalProgress 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* ==========================================================================
+       MASTER KEYFRAMES (14.0s SEQUENTIAL CYCLE)
+       ========================================================================== */
+
+    /* 1. Dashboard Master Cycle */
+    @keyframes p3ProcDashCycle {
+      0% {
+        opacity: 0;
+        transform: scale(0.92);
+        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.15);
+      }
+      6% {
+        opacity: 1;
+        transform: scale(1.02);
+        box-shadow: 0 24px 50px -10px rgba(124, 58, 237, 0.35);
+      }
+      10% {
+        opacity: 1;
+        transform: scale(1.0);
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.28);
+      }
+      30% {
+        transform: translateY(-2px) scale(1.0);
+      }
+      50% {
+        transform: translateY(1.5px) scale(1.0);
+      }
+      70% {
+        transform: translateY(0px) scale(1.0);
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.28);
+      }
+      80% {
+        transform: translateY(-2px) scale(1.025);
+        box-shadow: 
+          0 30px 75px -10px rgba(124, 58, 237, 0.50),
+          0 0 45px 6px rgba(124, 58, 237, 0.32),
+          0 0 0 1.5px rgba(255, 255, 255, 0.95);
+      }
+      92% {
+        transform: translateY(0px) scale(1.02);
+        box-shadow: 
+          0 30px 75px -10px rgba(124, 58, 237, 0.45),
+          0 0 40px 4px rgba(124, 58, 237, 0.28);
+        opacity: 1;
+      }
+      97% {
+        opacity: 0.6;
+        transform: scale(0.96);
+        box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.20);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.92);
+        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.15);
+      }
+    }
+
+    /* 2. Card 1 (Orientation) */
+    @keyframes p3ProcCard1Cycle {
+      0%, 15% {
+        opacity: 0;
+        transform: translate(-16px, -12px) scale(0.94);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      19% {
+        opacity: 1;
+        transform: translate(1px, 1px) scale(1.02);
+        border-color: #7C3AED;
+        box-shadow: 0 14px 32px -6px rgba(124, 58, 237, 0.32);
+      }
+      22% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(124, 58, 237, 0.5);
+      }
+      50% {
+        transform: translate(0, -2px) scale(1.0);
+      }
+      75% {
+        transform: translate(0, 1px) scale(1.0);
+      }
+      80% {
+        transform: translate(-1px, -3px) scale(1.03);
+        border-color: #7C3AED;
+        box-shadow: 0 16px 36px -6px rgba(124, 58, 237, 0.38);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(124, 58, 237, 0.5);
+      }
+      97% {
+        opacity: 0.2;
+        transform: translate(-12px, -8px) scale(0.96);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-16px, -12px) scale(0.94);
+      }
+    }
+
+    /* 3. Card 2 (Department Tour) */
+    @keyframes p3ProcCard2Cycle {
+      0%, 32% {
+        opacity: 0;
+        transform: translate(16px, -12px) scale(0.94);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      36% {
+        opacity: 1;
+        transform: translate(-1px, 1px) scale(1.02);
+        border-color: #3B82F6;
+        box-shadow: 0 14px 32px -6px rgba(59, 130, 246, 0.32);
+      }
+      38% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
+      55% {
+        transform: translate(0, -2px) scale(1.0);
+      }
+      75% {
+        transform: translate(0, 1px) scale(1.0);
+      }
+      80% {
+        transform: translate(1px, -3px) scale(1.03);
+        border-color: #3B82F6;
+        box-shadow: 0 16px 36px -6px rgba(59, 130, 246, 0.38);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
+      97% {
+        opacity: 0.2;
+        transform: translate(12px, -8px) scale(0.96);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(16px, -12px) scale(0.94);
+      }
+    }
+
+    /* 4. Card 3 (Ask HyIQ AI) */
+    @keyframes p3ProcCard3Cycle {
+      0%, 48% {
+        opacity: 0;
+        transform: translate(-16px, 12px) scale(0.94);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      52% {
+        opacity: 1;
+        transform: translate(1px, -1px) scale(1.02);
+        border-color: #EC4899;
+        box-shadow: 0 14px 32px -6px rgba(236, 72, 153, 0.35);
+      }
+      54% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(236, 72, 153, 0.5);
+      }
+      65% {
+        transform: translate(0, 2px) scale(1.0);
+      }
+      75% {
+        transform: translate(0, -1px) scale(1.0);
+      }
+      80% {
+        transform: translate(-1px, 3px) scale(1.03);
+        border-color: #EC4899;
+        box-shadow: 0 16px 36px -6px rgba(236, 72, 153, 0.40);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(236, 72, 153, 0.5);
+      }
+      97% {
+        opacity: 0.2;
+        transform: translate(-12px, 8px) scale(0.96);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-16px, 12px) scale(0.94);
+      }
+    }
+
+    /* 5. Card 4 (1-on-1 Check-ins) */
+    @keyframes p3ProcCard4Cycle {
+      0%, 64% {
+        opacity: 0;
+        transform: translate(16px, 12px) scale(0.94);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      68% {
+        opacity: 1;
+        transform: translate(-1px, -1px) scale(1.02);
+        border-color: #10B981;
+        box-shadow: 0 14px 32px -6px rgba(16, 185, 129, 0.35);
+      }
+      70% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(16, 185, 129, 0.5);
+      }
+      75% {
+        transform: translate(0, 2px) scale(1.0);
+      }
+      80% {
+        transform: translate(1px, 3px) scale(1.03);
+        border-color: #10B981;
+        box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.40);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(16, 185, 129, 0.5);
+      }
+      97% {
+        opacity: 0.2;
+        transform: translate(12px, 8px) scale(0.96);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(16px, 12px) scale(0.94);
+      }
+    }
+
+    /* 6. Progressive Drawing of SVG Paths */
+    @keyframes p3ProcPath1Draw {
+      0%, 25% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      26% {
+        opacity: 0.95;
+      }
+      31% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      78% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      80% {
+        opacity: 1.0;
+        stroke-width: 3.0px;
+      }
+      92% {
+        opacity: 0.9;
+        stroke-width: 2.8px;
+        stroke-dashoffset: 0;
+      }
+      97% {
+        opacity: 0.1;
+        stroke-dashoffset: 0;
+      }
+      100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes p3ProcPath2Draw {
+      0%, 41% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      42% {
+        opacity: 0.95;
+      }
+      47% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      78% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      80% {
+        opacity: 1.0;
+        stroke-width: 3.0px;
+      }
+      92% {
+        opacity: 0.9;
+        stroke-width: 2.8px;
+        stroke-dashoffset: 0;
+      }
+      97% {
+        opacity: 0.1;
+        stroke-dashoffset: 0;
+      }
+      100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes p3ProcPath3Draw {
+      0%, 57% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      58% {
+        opacity: 0.95;
+      }
+      63% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      78% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      80% {
+        opacity: 1.0;
+        stroke-width: 3.0px;
+      }
+      92% {
+        opacity: 0.9;
+        stroke-width: 2.8px;
+        stroke-dashoffset: 0;
+      }
+      97% {
+        opacity: 0.1;
+        stroke-dashoffset: 0;
+      }
+      100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes p3ProcPath4Draw {
+      0%, 73% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      74% {
+        opacity: 0.95;
+      }
+      79% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      78% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      80% {
+        opacity: 1.0;
+        stroke-width: 3.0px;
+      }
+      92% {
+        opacity: 0.9;
+        stroke-width: 2.8px;
+        stroke-dashoffset: 0;
+      }
+      97% {
+        opacity: 0.1;
+        stroke-dashoffset: 0;
+      }
+      100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    /* 7. Travelling Photonic Particles */
+    @keyframes p3ProcParticle1Cycle {
+      0%, 27% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      28% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      32% {
+        offset-distance: 100%;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      33%, 79% {
+        opacity: 0;
+      }
+      80% {
+        offset-distance: 0%;
+        opacity: 1;
+      }
+      86% {
+        offset-distance: 100%;
+        opacity: 0.8;
+      }
+      87%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes p3ProcParticle2Cycle {
+      0%, 43% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      44% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      48% {
+        offset-distance: 100%;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      49%, 81% {
+        opacity: 0;
+      }
+      82% {
+        offset-distance: 0%;
+        opacity: 1;
+      }
+      88% {
+        offset-distance: 100%;
+        opacity: 0.8;
+      }
+      89%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes p3ProcParticle3Cycle {
+      0%, 59% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      64% {
+        offset-distance: 100%;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      65%, 83% {
+        opacity: 0;
+      }
+      84% {
+        offset-distance: 0%;
+        opacity: 1;
+      }
+      90% {
+        offset-distance: 100%;
+        opacity: 0.8;
+      }
+      91%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes p3ProcParticle4Cycle {
+      0%, 75% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      76% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      80% {
+        offset-distance: 100%;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      81%, 85% {
+        opacity: 0;
+      }
+      86% {
+        offset-distance: 0%;
+        opacity: 1;
+      }
+      91% {
+        offset-distance: 100%;
+        opacity: 0.8;
+      }
+      92%, 100% {
+        opacity: 0;
+      }
+    }
+
+    /* 8. Micro-Interaction Keyframes */
+    @keyframes p3ProcOnboardProgress {
+      0%, 22% { width: 0%; }
+      27%, 92% { width: 100%; }
+      96%, 100% { width: 0%; }
+    }
+
+    @keyframes p3ProcCheckmarkPop {
+      0%, 25% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      27% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      29%, 92% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      95%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    @keyframes p3ProcAvatar1Pop {
+      0%, 37% { opacity: 0; transform: scale(0); }
+      39%, 92% { opacity: 1; transform: scale(1); }
+      95%, 100% { opacity: 0; transform: scale(0); }
+    }
+
+    @keyframes p3ProcAvatar2Pop {
+      0%, 39% { opacity: 0; transform: scale(0); }
+      41%, 92% { opacity: 1; transform: scale(1); }
+      95%, 100% { opacity: 0; transform: scale(0); }
+    }
+
+    @keyframes p3ProcAvatar3Pop {
+      0%, 41% { opacity: 0; transform: scale(0); }
+      43%, 92% { opacity: 1; transform: scale(1); }
+      95%, 100% { opacity: 0; transform: scale(0); }
+    }
+
+    @keyframes p3ProcTypewriterQuery {
+      0%, 53% { width: 0; }
+      57%, 92% { width: 100%; }
+      96%, 100% { width: 0; }
+    }
+
+    @keyframes p3ProcAiAnswerFade {
+      0%, 58% {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      61%, 92% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      95%, 100% {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+    }
+
+    @keyframes p3ProcGoalProgress {
+      0%, 70% { width: 0%; }
+      75%, 92% { width: 85%; }
+      96%, 100% { width: 0%; }
+    }
+
+    @keyframes p3ProcDashToastCycle {
+      0%, 61% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px) scale(0.9);
+      }
+      64% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1.0);
+      }
+      90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1.0);
+      }
+      94%, 100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px) scale(0.9);
+      }
+    }
+
+    /* 9. Responsive Adjustments */
+    @media (max-width: 1024px) {
+      #p3ProcessStage {
+        transform: scale(0.94);
+        transform-origin: center center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .v4-workflow-stage#p3ProcessStage {
+        height: 280px;
+      }
+      #p3ProcessStage {
+        transform: scale(0.76);
+        transform-origin: center center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .v4-workflow-stage#p3ProcessStage {
+        height: 270px;
+      }
+      #p3ProcessStage {
+        transform: scale(0.68);
+        transform-origin: center center;
+      }
+    }
+
+    @media (max-width: 380px) {
+      #p3ProcessStage {
+        transform: scale(0.60);
+        transform-origin: center center;
+      }
+    }
+
+    /* 10. Reduced-Motion Accessibility Fallback */
+    @media (prefers-reduced-motion: reduce) {
+      .p3-proc-dashboard,
+      .p3-proc-card,
+      .p3-proc-track-active,
+      .p3-proc-particle,
+      .p3-proc-progress-bar,
+      .p3-proc-badge-check,
+      .p3-proc-avatar,
+      .p3-proc-typewriter-text,
+      .p3-proc-typewriter-cursor,
+      .p3-proc-ai-response-pill,
+      .p3-proc-goal-bar,
+      .p3-proc-dash-toast,
+      .p3-proc-dash-beacon,
+      .p3-proc-icon-pink {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .p3-proc-dashboard {
+        opacity: 1 !important;
+        transform: none !important;
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.30) !important;
+      }
+
+      .p3-proc-card {
+        opacity: 1 !important;
+        transform: none !important;
+        border-color: #E2E8F0 !important;
+        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.12) !important;
+      }
+
+      .p3-proc-track-active {
+        stroke-dashoffset: 0 !important;
+        opacity: 0.85 !important;
+      }
+
+      .p3-proc-particle {
+        display: none !important;
+      }
+
+      .p3-proc-progress-bar {
+        width: 100% !important;
+      }
+
+      .p3-proc-badge-check {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+      }
+
+      .p3-proc-avatar {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+      }
+
+      .p3-proc-typewriter-text {
+        width: auto !important;
+      }
+
+      .p3-proc-typewriter-cursor {
+        display: none !important;
+      }
+
+      .p3-proc-ai-response-pill {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .p3-proc-goal-bar {
+        width: 85% !important;
+      }
+
+      .p3-proc-dash-toast {
+        opacity: 1 !important;
+        transform: translateX(-50%) translateY(0) scale(1) !important;
+      }
+    }
 
     /* ==========================================================================
        PAGE 4: THE HIRERKEY ECOSYSTEM (CONNECTED HUB) — 10.0s MASTER ANIMATION SYSTEM
@@ -3756,431 +4661,270 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     mt: 0.75,
                   }}
                 >
-                  {/* Dynamic SVG Flow Connectors & Luminescent Particles for Page 2 */}
-                  <svg
-                    viewBox="0 0 540 350"
-                    preserveAspectRatio="none"
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      width: '100%',
-                      height: '100%',
-                      pointerEvents: 'none',
-                      zIndex: 2,
-                    }}
-                  >
-                    <defs>
-                      <linearGradient id="v4Grad1_p2_tsx" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.95" />
-                        <stop offset="100%" stopColor="#A855F7" stopOpacity="0.95" />
-                      </linearGradient>
-                      <linearGradient id="v4Grad2_p2_tsx" x1="0%" y1="100%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.95" />
-                        <stop offset="100%" stopColor="#60A5FA" stopOpacity="0.95" />
-                      </linearGradient>
-                      <linearGradient id="v4Grad3_p2_tsx" x1="100%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stopColor="#EC4899" stopOpacity="0.95" />
-                        <stop offset="100%" stopColor="#F472B6" stopOpacity="0.95" />
-                      </linearGradient>
-                      <linearGradient id="v4Grad4_p2_tsx" x1="100%" y1="100%" x2="0%" y2="0%">
-                        <stop offset="0%" stopColor="#10B981" stopOpacity="0.95" />
-                        <stop offset="100%" stopColor="#34D399" stopOpacity="0.95" />
-                      </linearGradient>
-                      <filter id="v4FlowGlow_p2_tsx" x="-30%" y="-30%" width="160%" height="160%">
-                        <feGaussianBlur stdDeviation="3.5" result="glow" />
-                        <feMerge>
-                          <feMergeNode in="glow" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
-
-                    <path className="v4-track-base" d="M 160 75 C 210 75, 230 145, 270 160" />
-                    <path className="v4-track-base" d="M 160 275 C 210 275, 230 205, 270 190" />
-                    <path className="v4-track-base" d="M 380 75 C 330 75, 310 145, 270 160" />
-                    <path className="v4-track-base" d="M 380 275 C 330 275, 310 205, 270 190" />
-
-                    <path className="v4-path-active v4-path-1-p2" stroke="url(#v4Grad1_p2_tsx)" d="M 160 75 C 210 75, 230 145, 270 160" filter="url(#v4FlowGlow_p2_tsx)" />
-                    <path className="v4-path-active v4-path-2-p2" stroke="url(#v4Grad2_p2_tsx)" d="M 160 275 C 210 275, 230 205, 270 190" filter="url(#v4FlowGlow_p2_tsx)" />
-                    <path className="v4-path-active v4-path-3-p2" stroke="url(#v4Grad3_p2_tsx)" d="M 380 75 C 330 75, 310 145, 270 160" filter="url(#v4FlowGlow_p2_tsx)" />
-                    <path className="v4-path-active v4-path-4-p2" stroke="url(#v4Grad4_p2_tsx)" d="M 380 275 C 330 275, 310 205, 270 190" filter="url(#v4FlowGlow_p2_tsx)" />
-                  </svg>
-
-                  <div className="v4-particle v4-particle-1-p2" />
-                  <div className="v4-particle v4-particle-2-p2" />
-                  <div className="v4-particle v4-particle-3-p2" />
-                  <div className="v4-particle v4-particle-4-p2" />
-
-                  {/* MODULE 1: ORIENTATION (Top-Left) */}
                   <Box
-                    className="v4-flow-card v4-mod-1-p2"
+                    id="p2BentoDeck"
+                    className="p2-bento-deck"
                     sx={{
-                      position: 'absolute',
-                      top: 10,
-                      left: 6,
-                      zIndex: 6,
-                      bgcolor: '#FFFFFF',
-                      borderRadius: '16px',
-                      border: '1.5px solid #E2E8F0',
-                      p: '10px 14px',
-                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1.25,
-                      width: 200,
-                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      '&:hover': {
-                        transform: 'translateY(-3px) scale(1.03)',
-                        boxShadow: '0 16px 35px -8px rgba(124, 58, 237, 0.25)',
-                      },
-                    }}
-                  >
-                    <Box
-                      className="v4-card-icon-box"
-                      sx={{
-                        width: 32,
-                        height: 32,
-                        borderRadius: '10px',
-                        display: 'grid',
-                        placeItems: 'center',
-                        fontSize: 16,
-                        flexShrink: 0,
-                        bgcolor: '#EDE9FE',
-                        color: '#7C3AED',
-                      }}
-                    >
-                      🧭
-                    </Box>
-                    <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#7C3AED', mb: 0.25 }}>
-                        01 • ONBOARDING
-                      </Typography>
-                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        Orientation
-                      </Typography>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: 10, color: '#64748B', mt: 0.25 }}>
-                        <span className="v4-pulse-dot" />
-                        <span>Auto Assigned</span>
-                      </Box>
-                    </Box>
-                  </Box>
-
-                  {/* MODULE 2: DEPARTMENT TOUR (Bottom-Left) */}
-                  <Box
-                    className="v4-flow-card v4-mod-2-p2"
-                    sx={{
-                      position: 'absolute',
-                      bottom: 24,
-                      left: 12,
-                      zIndex: 6,
-                      bgcolor: '#FFFFFF',
-                      borderRadius: '16px',
-                      border: '1.5px solid #E2E8F0',
-                      p: '10px 14px',
-                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1.25,
-                      width: 200,
-                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      '&:hover': {
-                        transform: 'translateY(-3px) scale(1.03)',
-                        boxShadow: '0 16px 35px -8px rgba(59, 130, 246, 0.25)',
-                      },
-                    }}
-                  >
-                    <Box
-                      className="v4-card-icon-box"
-                      sx={{
-                        width: 32,
-                        height: 32,
-                        borderRadius: '10px',
-                        display: 'grid',
-                        placeItems: 'center',
-                        fontSize: 16,
-                        flexShrink: 0,
-                        bgcolor: '#EFF6FF',
-                        color: '#3B82F6',
-                      }}
-                    >
-                      🏢
-                    </Box>
-                    <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#3B82F6', mb: 0.25 }}>
-                        02 • ALIGNMENT
-                      </Typography>
-                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        Department Tour
-                      </Typography>
-                      <Typography sx={{ fontSize: 10, color: '#64748B', mt: 0.25 }}>
-                        <span className="v4-status-label">Sales &amp; Marketing</span>
-                      </Typography>
-                    </Box>
-                  </Box>
-
-                  {/* CENTRAL MINIATURE DASHBOARD (THE LIVING DASHBOARD) */}
-                  <Box
-                    id="v4MiniDashboardLiving"
-                    className="v4-mini-dashboard v4-mini-dashboard-living"
-                    sx={{
-                      transform: `rotateX(${v4Tilt.x}deg) rotateY(${v4Tilt.y}deg)`,
+                      transform: `perspective(1000px) rotateX(${v4Tilt.x * 0.6}deg) rotateY(${v4Tilt.y * 0.6}deg) translateZ(6px)`,
                       transformStyle: 'preserve-3d',
-                      transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                      transition: 'transform 0.15s ease-out',
                     }}
                   >
-                    {/* App Chrome */}
-                    <div className="v4-ld-chrome">
-                      <div className="v4-ld-traffic-dots">
-                        <span className="v4-ld-dot red" />
-                        <span className="v4-ld-dot amber" />
-                        <span className="v4-ld-dot green" />
+                    {/* Ambient Specular Glow Underlay */}
+                    <div className="p2-bento-ambient-glow" aria-hidden="true" />
+
+                    {/* Deck Chrome Header */}
+                    <div className="p2-bento-chrome">
+                      <div className="p2-bento-chrome-dots">
+                        <span className="p2-bento-dot red" />
+                        <span className="p2-bento-dot amber" />
+                        <span className="p2-bento-dot green" />
                       </div>
-                      <div className="v4-ld-chrome-title">app.hirerkey.com • Living OS</div>
-                      <div className="v4-ld-live-chip">
-                        <span className="v4-ld-live-dot" />
-                        <span>Live</span>
+                      <div className="p2-bento-chrome-title">
+                        <span className="p2-bento-chrome-badge">BENTO OS 2.0</span>
+                        <span className="p2-bento-chrome-url">app.hirerkey.com • Autonomous Command Deck</span>
+                      </div>
+                      <div className="p2-bento-chrome-status">
+                        <span className="p2-bento-live-beacon" />
+                        <span>LIVE TELEMETRY</span>
                       </div>
                     </div>
 
-                    {/* Dashboard Body */}
-                    <div className="v4-ld-body">
-                      {/* Scene 3: Sliding Executive Broadcast Toast */}
-                      <div className="v4-ld-broadcast-toast">
-                        <span className="v4-ld-toast-icon">📢</span>
-                        <div className="v4-ld-toast-text">
-                          <span className="v4-ld-toast-badge">BROADCAST</span>
-                          <span className="v4-ld-toast-msg">Team sync at 2 PM • Updated shift timings</span>
+                    {/* Bento 2x2 Core Grid */}
+                    <div className="p2-bento-grid">
+                      {/* TILE 1: WORKFORCE VELOCITY & SINE SPARKLINE */}
+                      <article className="p2-bento-tile p2-bento-tile-1" aria-label="Workforce Growth and Velocity">
+                        <div className="p2-bento-tile-header">
+                          <div className="p2-bento-badge cyan">
+                            <span className="p2-bento-badge-dot" />
+                            <span>GROWTH METRICS</span>
+                          </div>
+                          <span className="p2-bento-retention-pill">98.4% Retained</span>
                         </div>
-                        <span className="v4-ld-toast-check">✓</span>
+
+                        <div className="p2-bento-kpi-row">
+                          <div className="p2-bento-kpi-val">1,248</div>
+                          <div className="p2-bento-trend-badge">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3}>
+                              <polyline points="18 15 12 9 6 15" />
+                            </svg>
+                            <span>+14.2%</span>
+                          </div>
+                        </div>
+                        <div className="p2-bento-kpi-sub">Active Global Headcount (MoM)</div>
+
+                        {/* Animated Sine Sparkline Chart Canvas */}
+                        <div className="p2-bento-sparkline-canvas">
+                          <svg className="p2-bento-sparkline-svg" viewBox="0 0 240 38" preserveAspectRatio="none">
+                            <defs>
+                              <linearGradient id="p2SparklineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#06B6D4" stopOpacity={0.9} />
+                                <stop offset="50%" stopColor="#8B5CF6" stopOpacity={1} />
+                                <stop offset="100%" stopColor="#10B981" stopOpacity={1} />
+                              </linearGradient>
+                              <linearGradient id="p2SparklineFillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stopColor="#8B5CF6" stopOpacity={0.28} />
+                                <stop offset="100%" stopColor="#8B5CF6" stopOpacity={0.0} />
+                              </linearGradient>
+                              <filter id="p2NeonGlow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation={2} result="blur" />
+                                <feMerge>
+                                  <feMergeNode in="blur" />
+                                  <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                              </filter>
+                            </defs>
+                            <path className="p2-bento-sparkline-fill" d="M 0 32 Q 35 30 65 20 T 130 16 T 195 8 T 240 4 L 240 38 L 0 38 Z" />
+                            <path className="p2-bento-sparkline-path" pathLength={280} d="M 0 32 Q 35 30 65 20 T 130 16 T 195 8 T 240 4" />
+                          </svg>
+                          <div className="p2-bento-sparkline-cursor" aria-hidden="true" />
+                          <div className="p2-bento-sparkline-scan-beam" aria-hidden="true" />
+                        </div>
+                      </article>
+
+                      {/* TILE 2: HyIQ™ AUTONOMOUS COPILOT */}
+                      <article className="p2-bento-tile p2-bento-tile-2" aria-label="HyIQ Autonomous Copilot">
+                        <div className="p2-bento-tile-header">
+                          <div className="p2-bento-ai-brand">
+                            <div className="p2-bento-ai-orb">
+                              <div className="p2-bento-ai-halo-1" />
+                              <div className="p2-bento-ai-halo-2" />
+                              <span className="p2-bento-ai-icon">✨</span>
+                            </div>
+                            <div className="p2-bento-ai-meta">
+                              <span className="p2-bento-ai-title">HyIQ™ Copilot</span>
+                              <span className="p2-bento-ai-sub">Autonomous Mode</span>
+                            </div>
+                          </div>
+                          {/* 5 Dancing Audio EQ Frequency Bars */}
+                          <div className="p2-bento-eq-cluster" aria-hidden="true">
+                            <span className="p2-bento-eq-bar bar-1" />
+                            <span className="p2-bento-eq-bar bar-2" />
+                            <span className="p2-bento-eq-bar bar-3" />
+                            <span className="p2-bento-eq-bar bar-4" />
+                            <span className="p2-bento-eq-bar bar-5" />
+                          </div>
+                        </div>
+
+                        {/* Cycling AI Insight Stream */}
+                        <div className="p2-bento-insight-viewport">
+                          <div className="p2-bento-insight-item insight-1">
+                            <span className="p2-bento-insight-bullet">✦</span>
+                            <span className="p2-bento-insight-text">34 Onboarding milestones auto-verified</span>
+                          </div>
+                          <div className="p2-bento-insight-item insight-2">
+                            <span className="p2-bento-insight-bullet">✦</span>
+                            <span className="p2-bento-insight-text">Cross-dept 1-on-1 schedule synthesized</span>
+                          </div>
+                          <div className="p2-bento-insight-item insight-3">
+                            <span className="p2-bento-insight-bullet">✦</span>
+                            <span className="p2-bento-insight-text">Real-time payroll anomalies: 0 detected</span>
+                          </div>
+                        </div>
+
+                        {/* Stream Progress Pips */}
+                        <div className="p2-bento-insight-pips" aria-hidden="true">
+                          <span className="p2-bento-insight-pip pip-1" />
+                          <span className="p2-bento-insight-pip pip-2" />
+                          <span className="p2-bento-insight-pip pip-3" />
+                        </div>
+                      </article>
+
+                      {/* TILE 3: LIVE COMPLIANCE & APPROVAL RADAR */}
+                      <article className="p2-bento-tile p2-bento-tile-3" aria-label="Smart Approvals Radar">
+                        <div className="p2-bento-radar-layout">
+                          {/* Circular Radar HUD Display */}
+                          <div className="p2-bento-radar-screen">
+                            <div className="p2-bento-radar-ring ring-1" />
+                            <div className="p2-bento-radar-ring ring-2" />
+                            <div className="p2-bento-radar-ring ring-3" />
+                            <div className="p2-bento-radar-crosshair-h" />
+                            <div className="p2-bento-radar-crosshair-v" />
+
+                            {/* 360° Conic Sweep Beam */}
+                            <div className="p2-bento-radar-beam" aria-hidden="true" />
+
+                            {/* Radar Target Blips */}
+                            <div className="p2-bento-radar-blip blip-pto" title="Time-off Approved">
+                              <span className="p2-bento-blip-dot" />
+                              <span className="p2-bento-blip-ripple" />
+                              <span className="p2-bento-blip-tag">PTO ✓</span>
+                            </div>
+                            <div className="p2-bento-radar-blip blip-gear" title="Equipment Authorized">
+                              <span className="p2-bento-blip-dot" />
+                              <span className="p2-bento-blip-ripple" />
+                              <span className="p2-bento-blip-tag">M3 Max ✓</span>
+                            </div>
+                          </div>
+
+                          {/* Radar Telemetry & Key Metric */}
+                          <div className="p2-bento-radar-meta">
+                            <div className="p2-bento-badge emerald">
+                              <span className="p2-bento-badge-dot" />
+                              <span>SMART RADAR</span>
+                            </div>
+                            <div className="p2-bento-radar-kpi">4.2 <span className="p2-bento-radar-unit">min</span></div>
+                            <div className="p2-bento-radar-sub">Avg Approval Turnaround</div>
+                            <div className="p2-bento-radar-stat-pill">
+                              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth={3}>
+                                <polyline points="20 6 9 17 4 12" />
+                              </svg>
+                              <span>99.8% auto-cleared</span>
+                            </div>
+                          </div>
+                        </div>
+                      </article>
+
+                      {/* TILE 4: CULTURE & ENGAGEMENT PULSE */}
+                      <article className="p2-bento-tile p2-bento-tile-4" aria-label="Team Alignment and Sentiment">
+                        <div className="p2-bento-tile-header">
+                          <div className="p2-bento-badge rose">
+                            <span className="p2-bento-badge-dot" />
+                            <span>SENTIMENT PULSE</span>
+                          </div>
+                          <span className="p2-bento-sentiment-pill">96% Vibe</span>
+                        </div>
+
+                        <div className="p2-bento-sentiment-body">
+                          {/* Radial SVG Arc Gauge (96% eNPS) */}
+                          <div className="p2-bento-gauge-wrap">
+                            <svg className="p2-bento-gauge-svg" viewBox="0 0 64 64">
+                              <defs>
+                                <linearGradient id="p2GaugeGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                                  <stop offset="0%" stopColor="#F43F5E" />
+                                  <stop offset="50%" stopColor="#F59E0B" />
+                                  <stop offset="100%" stopColor="#8B5CF6" />
+                                </linearGradient>
+                              </defs>
+                              <circle className="p2-bento-gauge-track" cx="32" cy="32" r="26" />
+                              <circle className="p2-bento-gauge-fill" cx="32" cy="32" r="26" pathLength={100} />
+                            </svg>
+                            <div className="p2-bento-gauge-center">
+                              <span className="p2-bento-gauge-val">96%</span>
+                              <span className="p2-bento-gauge-sub">eNPS</span>
+                            </div>
+                          </div>
+
+                          {/* Avatar Stack & Reactions */}
+                          <div className="p2-bento-sentiment-right">
+                            <div className="p2-bento-avatar-stack">
+                              <div className="p2-bento-micro-avatar av-1" title="Aisha K.">AK<span className="p2-bento-av-dot" /></div>
+                              <div className="p2-bento-micro-avatar av-2" title="Rahul S.">RS<span className="p2-bento-av-dot" /></div>
+                              <div className="p2-bento-micro-avatar av-3" title="Sara J.">SJ<span className="p2-bento-av-dot" /></div>
+                            </div>
+                            <div className="p2-bento-sentiment-sub">100% Weekly Participation</div>
+
+                            {/* Floating Celebration Reactions */}
+                            <div className="p2-bento-reaction-float r-party" aria-hidden="true">🎉</div>
+                            <div className="p2-bento-reaction-float r-rocket" aria-hidden="true">🚀</div>
+                            <div className="p2-bento-reaction-float r-heart" aria-hidden="true">❤️</div>
+                          </div>
+                        </div>
+                      </article>
+                    </div>
+
+                    {/* TILE 5: REAL-TIME OPERATIONS MARQUEE STREAM */}
+                    <div className="p2-bento-tile-5 p2-bento-ticker-tile" aria-label="Real-time Operations Stream">
+                      <div className="p2-bento-ticker-label">
+                        <span className="p2-bento-ticker-dot" />
+                        <span>LIVE OPS</span>
                       </div>
-
-                      {/* 2x2 Widgets Grid */}
-                      <div className="v4-ld-grid">
-                        {/* Widget 1: Onboarding Task (Scene 2) */}
-                        <div className="v4-ld-widget v4-ld-widget-onboarding">
-                          <div className="v4-ld-w-header">
-                            <div className="v4-ld-w-title">
-                              <span className="v4-ld-w-icon">🧭</span>
-                              <span>Orientation</span>
-                            </div>
-                            <div className="v4-ld-badge-wrap">
-                              <span className="v4-ld-pill-progress">In Progress</span>
-                              <span className="v4-ld-pill-completed">Completed ✓</span>
-                            </div>
-                          </div>
-                          <div className="v4-ld-w-sub">Alex C. • Design Ops</div>
-                          <div className="v4-ld-bar-track-wrap">
-                            <div className="v4-ld-progress-bar-bg">
-                              <div className="v4-ld-progress-bar-fill" />
-                            </div>
-                            <span className="v4-ld-progress-pct">65%</span>
-                          </div>
+                      <div className="p2-bento-ticker-window">
+                        <div className="p2-bento-ticker-track">
+                          {/* Loop items sequence */}
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric green" />Alex C. completed Day 1 Orientation</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric cyan" />Smart Contract: Equity grant auto-executed</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric purple" />HyIQ synthesized 18 performance reviews in 3.4s</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric emerald" />Sara J. PTO approved instantly (Manager AI-proxy)</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric amber" />Global Headcount milestone unlocked: 1,248</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          {/* Cloned seamless duplicate */}
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric green" />Alex C. completed Day 1 Orientation</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric cyan" />Smart Contract: Equity grant auto-executed</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric purple" />HyIQ synthesized 18 performance reviews in 3.4s</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric emerald" />Sara J. PTO approved instantly (Manager AI-proxy)</span>
+                          <span className="p2-bento-ticker-sep">•</span>
+                          <span className="p2-bento-ticker-item"><span className="p2-bento-ticker-dot-metric amber" />Global Headcount milestone unlocked: 1,248</span>
                         </div>
-
-                        {/* Widget 2: Workforce Analytics (Scene 5) */}
-                        <div className="v4-ld-widget v4-ld-widget-analytics">
-                          <div className="v4-ld-w-header">
-                            <div className="v4-ld-w-title">
-                              <span className="v4-ld-w-icon">📊</span>
-                              <span>Workforce</span>
-                            </div>
-                            <div className="v4-ld-kpi-wrap">
-                              <span className="v4-ld-kpi-val">96%</span>
-                              <div className="v4-ld-kpi-sheen" />
-                            </div>
-                          </div>
-                          <div className="v4-ld-chart-bars">
-                            <div className="v4-ld-micro-col">
-                              <div className="v4-ld-micro-track"><div className="v4-ld-micro-fill bar-1" /></div>
-                              <span className="v4-ld-micro-lbl">M</span>
-                            </div>
-                            <div className="v4-ld-micro-col">
-                              <div className="v4-ld-micro-track"><div className="v4-ld-micro-fill bar-2" /></div>
-                              <span className="v4-ld-micro-lbl">T</span>
-                            </div>
-                            <div className="v4-ld-micro-col">
-                              <div className="v4-ld-micro-track"><div className="v4-ld-micro-fill bar-3" /></div>
-                              <span className="v4-ld-micro-lbl">W</span>
-                            </div>
-                            <div className="v4-ld-micro-col">
-                              <div className="v4-ld-micro-track"><div className="v4-ld-micro-fill bar-4" /></div>
-                              <span className="v4-ld-micro-lbl">T</span>
-                            </div>
-                            <div className="v4-ld-micro-col">
-                              <div className="v4-ld-micro-track"><div className="v4-ld-micro-fill bar-5" /></div>
-                              <span className="v4-ld-micro-lbl">F</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Widget 3: Leave Approval Workflow (Scene 4) */}
-                        <div className="v4-ld-widget v4-ld-widget-approval">
-                          <div className="v4-ld-w-header">
-                            <div className="v4-ld-w-title">
-                              <span className="v4-ld-w-icon">⚡</span>
-                              <span>Leave Approval</span>
-                            </div>
-                            <div className="v4-ld-badge-wrap">
-                              <span className="v4-ld-pill-pending">Pending</span>
-                              <span className="v4-ld-pill-approved">Approved ✓</span>
-                            </div>
-                          </div>
-                          <div className="v4-ld-w-sub">Sara J. • Leave</div>
-                          <div className="v4-ld-approval-actions">
-                            <span className="v4-ld-action-tag">Annual • 2d</span>
-                            <button type="button" className="v4-ld-btn-approve" tabIndex={-1}>
-                              <span>Approve</span>
-                              <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Widget 4: Ask HyIQ™ AI Insight (Scene 6) */}
-                        <div className="v4-ld-widget v4-ld-widget-hyiq">
-                          <div className="v4-ld-w-header">
-                            <div className="v4-ld-hyiq-pill">
-                              <span className="v4-ld-sparkle">✨</span>
-                              <span>Ask HyIQ™ AI</span>
-                            </div>
-                          </div>
-                          <div className="v4-ld-hyiq-stage">
-                            <div className="v4-ld-hyiq-query">
-                              <span>“How is onboarding?”</span>
-                            </div>
-                            <div className="v4-ld-typing-dots">
-                              <span />
-                              <span />
-                              <span />
-                            </div>
-                            <div className="v4-ld-hyiq-toast">
-                              <div className="v4-ld-hyiq-sheen" />
-                              <span className="v4-ld-toast-sparkle">✨</span>
-                              <span className="v4-ld-hyiq-ans">Onboarding progress is on track</span>
-                            </div>
-                          </div>
-                        </div>
-
                       </div>
                     </div>
-                  </Box>
-
-                  {/* MODULE 3: ASK HyIQ AI (Top-Right) */}
-                  <Box
-                    className="v4-flow-card v4-mod-3-p2"
-                    sx={{
-                      position: 'absolute',
-                      top: 16,
-                      right: 6,
-                      zIndex: 6,
-                      bgcolor: '#FFFFFF',
-                      borderRadius: '16px',
-                      border: '1.5px solid #E2E8F0',
-                      p: '10px 14px',
-                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1.25,
-                      width: 200,
-                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      '&:hover': {
-                        transform: 'translateY(-3px) scale(1.03)',
-                        boxShadow: '0 16px 35px -8px rgba(236, 72, 153, 0.25)',
-                      },
-                    }}
-                  >
-                    <Box
-                      className="v4-card-icon-box v4-sparkle-box-p2"
-                      sx={{
-                        width: 32,
-                        height: 32,
-                        borderRadius: '10px',
-                        display: 'grid',
-                        placeItems: 'center',
-                        fontSize: 16,
-                        flexShrink: 0,
-                        bgcolor: '#FDF2F8',
-                        color: '#EC4899',
-                      }}
-                    >
-                      ✨
-                    </Box>
-                    <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#EC4899', mb: 0.25 }}>
-                        03 • INTELLIGENCE
-                      </Typography>
-                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        Ask HyIQ™ AI
-                      </Typography>
-                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, fontSize: 10, color: '#64748B', mt: 0.25 }}>
-                        <span className="v4-ai-pulse" />
-                        <span>Real-time • 12ms</span>
-                      </Box>
-                    </Box>
-                  </Box>
-
-                  {/* MODULE 4: 1-ON-1 CHECK-INS (Bottom-Right) */}
-                  <Box
-                    className="v4-flow-card v4-mod-4-p2"
-                    sx={{
-                      position: 'absolute',
-                      bottom: 18,
-                      right: 14,
-                      zIndex: 6,
-                      bgcolor: '#FFFFFF',
-                      borderRadius: '16px',
-                      border: '1.5px solid #E2E8F0',
-                      p: '10px 14px',
-                      boxShadow: '0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1.25,
-                      width: 200,
-                      transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                      '&:hover': {
-                        transform: 'translateY(-3px) scale(1.03)',
-                        boxShadow: '0 16px 35px -8px rgba(16, 185, 129, 0.25)',
-                      },
-                    }}
-                  >
-                    <Box
-                      className="v4-card-icon-box"
-                      sx={{
-                        width: 32,
-                        height: 32,
-                        borderRadius: '10px',
-                        display: 'grid',
-                        placeItems: 'center',
-                        fontSize: 16,
-                        flexShrink: 0,
-                        bgcolor: '#ECFDF5',
-                        color: '#10B981',
-                      }}
-                    >
-                      📊
-                    </Box>
-                    <Box sx={{ flex: 1, minWidth: 0 }}>
-                      <Typography sx={{ fontSize: 9, fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#059669', mb: 0.25 }}>
-                        04 • PERFORMANCE
-                      </Typography>
-                      <Typography sx={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontSize: 12.5, fontWeight: 700, color: '#0F172A', lineHeight: 1.25, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                        1-on-1 Check-ins
-                      </Typography>
-                      <div className="v4-card-status v4-progress-status">
-                        <span className="v4-progress-label">Goal</span>
-                        <div className="v4-progress-track">
-                          <div className="v4-progress-fill-p2" />
-                        </div>
-                        <span className="v4-progress-val">96%</span>
-                      </div>
-                    </Box>
                   </Box>
                 </Box>
                 )}
                 {activePage === 3 && (
                 <Box
-                  id="v4WorkflowStageJourney"
+                  id="p3ProcessStage"
+                  className="v4-workflow-stage"
                   onMouseMove={handleV4MouseMove}
                   onMouseLeave={handleV4MouseLeave}
+                  aria-label="Hirerkey Connected HR Ecosystem Process Hero"
                   sx={{
                     width: '100%',
                     maxWidth: 540,
@@ -4190,174 +4934,176 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     alignItems: 'center',
                     justifyContent: 'center',
                     perspective: 1000,
+                    overflow: 'hidden',
                     mt: 0.75,
+                    contain: 'layout paint style',
+                    transformStyle: 'preserve-3d',
                   }}
                 >
-                  {/* Master Curving Spline SVG & Anchor Beacons */}
-                  <svg
-                    viewBox="0 0 540 350"
-                    preserveAspectRatio="none"
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      width: '100%',
-                      height: '100%',
-                      pointerEvents: 'none',
-                      zIndex: 2,
-                    }}
-                  >
+                  {/* Subtle Technical Grid Background with Radial Mask */}
+                  <div className="p3-proc-grid-bg" />
+
+                  {/* Ambient Underlay Radial Glow Bloom */}
+                  <div className="p3-proc-ambient" />
+
+                  {/* SVG Connectors & Photonic Particles Layer */}
+                  <svg className="p3-proc-svg" viewBox="0 0 540 350" preserveAspectRatio="none">
                     <defs>
-                      <linearGradient id="v4GradJourneyReact" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#8B5CF6" />
-                        <stop offset="25%" stopColor="#7C3AED" />
-                        <stop offset="50%" stopColor="#3B82F6" />
-                        <stop offset="75%" stopColor="#EC4899" />
-                        <stop offset="100%" stopColor="#10B981" />
+                      <linearGradient id="p3ProcGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#7C3AED" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#6366F1" stopOpacity="0.9" />
                       </linearGradient>
-                      <filter id="v4JourneyGlowReact" x="-30%" y="-30%" width="160%" height="160%">
-                        <feGaussianBlur stdDeviation="3" result="glow" />
-                        <feMerge>
-                          <feMergeNode in="glow" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
+                      <linearGradient id="p3ProcGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#3B82F6" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.9" />
+                      </linearGradient>
+                      <linearGradient id="p3ProcGrad3" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#EC4899" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.9" />
+                      </linearGradient>
+                      <linearGradient id="p3ProcGrad4" x1="100%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stopColor="#10B981" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#059669" stopOpacity="0.9" />
+                      </linearGradient>
+                      <filter id="p3ProcFlowGlow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="2.5" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
                       </filter>
                     </defs>
 
-                    {/* Base Ambient Dashed Spline Track */}
-                    <path
-                      className="v4-j-track-base"
-                      d="M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175"
-                    />
+                    {/* Base Ambient Dashed Guide Tracks */}
+                    <path className="p3-proc-track-base" d="M 160 75 C 210 75, 230 145, 270 160" />
+                    <path className="p3-proc-track-base" d="M 380 75 C 330 75, 310 145, 270 160" />
+                    <path className="p3-proc-track-base" d="M 160 275 C 210 275, 230 205, 270 190" />
+                    <path className="p3-proc-track-base" d="M 380 275 C 330 275, 310 205, 270 190" />
 
-                    {/* Progressive Animated Flow Spline (1000px Arc Length) */}
-                    <path
-                      className="v4-j-spline-active"
-                      stroke="url(#v4GradJourneyReact)"
-                      filter="url(#v4JourneyGlowReact)"
-                      d="M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175"
-                    />
-
-                    {/* Node Connection Anchor Beacons */}
-                    <circle className="v4-j-node-beacon v4-j-node-1" cx="94" cy="41" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-2" cx="270" cy="41" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-3" cx="446" cy="41" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-4" cx="446" cy="309" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-5" cx="270" cy="309" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-6" cx="94" cy="309" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-center" cx="270" cy="175" r="4.5" />
+                    {/* Dynamic Active Connector Flow Lines */}
+                    <path className="p3-proc-track-active p3-proc-line-1" id="p3ProcLine1" stroke="url(#p3ProcGrad1)" filter="url(#p3ProcFlowGlow)" d="M 160 75 C 210 75, 230 145, 270 160" />
+                    <path className="p3-proc-track-active p3-proc-line-2" id="p3ProcLine2" stroke="url(#p3ProcGrad2)" filter="url(#p3ProcFlowGlow)" d="M 380 75 C 330 75, 310 145, 270 160" />
+                    <path className="p3-proc-track-active p3-proc-line-3" id="p3ProcLine3" stroke="url(#p3ProcGrad3)" filter="url(#p3ProcFlowGlow)" d="M 160 275 C 210 275, 230 205, 270 190" />
+                    <path className="p3-proc-track-active p3-proc-line-4" id="p3ProcLine4" stroke="url(#p3ProcGrad4)" filter="url(#p3ProcFlowGlow)" d="M 380 275 C 330 275, 310 205, 270 190" />
                   </svg>
 
-                  {/* Travelling Photon Comet Particles */}
-                  <div className="v4-j-comet v4-j-comet-1" />
-                  <div className="v4-j-comet v4-j-comet-2" />
-                  <div className="v4-j-comet v4-j-comet-3" />
-                  <div className="v4-j-comet v4-j-comet-4" />
-                  <div className="v4-j-comet v4-j-comet-5" />
-                  <div className="v4-j-comet v4-j-comet-grand" />
+                  {/* Travelling Photonic Light Particles */}
+                  <div className="p3-proc-particle p3-proc-particle-1" />
+                  <div className="p3-proc-particle p3-proc-particle-2" />
+                  <div className="p3-proc-particle p3-proc-particle-3" />
+                  <div className="p3-proc-particle p3-proc-particle-4" />
 
-                  {/* CARD 1: PROFILE CARD (Alex Chen • Product Designer) */}
-                  <div className="v4-j-card v4-j-card-1">
-                    <div className="v4-j-avatar-wrap">
-                      <div className="v4-j-avatar">AC</div>
-                      <span className="v4-j-online-dot" />
-                    </div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag-row">
-                        <span className="v4-j-tag-new">New employee</span>
-                      </div>
-                      <div className="v4-j-title">Alex Chen</div>
-                      <div className="v4-j-sub">Product Designer</div>
-                    </div>
-                  </div>
-
-                  {/* CARD 2: MILESTONE 1 (01 • Onboarding) */}
-                  <div className="v4-j-card v4-j-card-2">
-                    <div className="v4-j-icon-box v4-j-icon-purple">🚀</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">01 • ONBOARDING</div>
-                      <div className="v4-j-title">Onboarding</div>
-                      <div className="v4-j-progress-row">
-                        <div className="v4-j-progress-track">
-                          <div className="v4-j-progress-fill" />
-                        </div>
-                        <div className="v4-j-status-swap">
-                          <span className="v4-j-status-filling">In Progress</span>
-                          <span className="v4-j-status-done">Completed ✓</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CARD 3: MILESTONE 2 (02 • Orientation) */}
-                  <div className="v4-j-card v4-j-card-3">
-                    <div className="v4-j-icon-box v4-j-icon-blue">🧭</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">02 • ORIENTATION</div>
-                      <div className="v4-j-title">Orientation</div>
-                      <div className="v4-j-sub-row">
-                        <span className="v4-j-sub">Workplace intro</span>
-                        <span className="v4-j-badge-done">Completed ✓</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CARD 4: MILESTONE 3 (03 • Department Tour) */}
-                  <div className="v4-j-card v4-j-card-4">
-                    <div className="v4-j-icon-box v4-j-icon-pink">🏢</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">03 • DEPARTMENT TOUR</div>
-                      <div className="v4-j-title">Department Tour</div>
-                      <div className="v4-j-sub-row">
-                        <span className="v4-j-sub">Sales &amp; Marketing</span>
-                        <div className="v4-j-stage-status">
-                          <span className="v4-j-status-upcoming">Upcoming</span>
-                          <span className="v4-j-status-progress">In Progress</span>
-                          <span className="v4-j-status-completed">Completed ✓</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CARD 5: MILESTONE 4 (04 • Tasks & Activities) */}
-                  <div className="v4-j-card v4-j-card-5">
-                    <div className="v4-j-icon-box v4-j-icon-amber">⚡</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">04 • TASKS &amp; ACTIVITIES</div>
-                      <div className="v4-j-title">Tasks &amp; Activities</div>
-                      <div className="v4-j-sub-row">
-                        <span className="v4-j-sub">Complete orientation</span>
-                        <span className="v4-j-badge-done">Completed ✓</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CARD 6: MILESTONE 5 (05 • Performance & Check-ins) */}
-                  <div className="v4-j-card v4-j-card-6">
-                    <div className="v4-j-icon-box v4-j-icon-green">🎯</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">05 • PERFORMANCE &amp; CHECK-INS</div>
-                      <div className="v4-j-title">1-on-1 Check-ins</div>
-                      <div className="v4-j-goal-row">
-                        <span className="v4-j-goal-pill">Goal 96%</span>
-                        <span className="v4-j-status-ontrack">On Track ✓</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CENTRAL PAYOFF CAPSULE (Scene 7 Bloom) */}
-                  <div
-                    className="v4-j-payoff-capsule"
-                    id="v4JourneyPayoffCapsule"
+                  {/* CENTRAL MINIATURE DASHBOARD (Living Command Center Anchor) */}
+                  <Box
+                    id="p3DashboardAnchor"
+                    className="p3-proc-dashboard"
                     style={{
-                      transform: `translate(-50%, -50%) perspective(800px) rotateX(${v4Tilt.x * 0.8}deg) rotateY(${v4Tilt.y * 0.8}deg) translateZ(8px)`,
+                      transform: (v4Tilt.x || v4Tilt.y) ? `perspective(800px) rotateX(${v4Tilt.x * 0.8}deg) rotateY(${v4Tilt.y * 0.8}deg) translateZ(10px)` : undefined,
                     }}
                   >
-                    <div className="v4-j-payoff-icon">✨</div>
-                    <div className="v4-j-payoff-content">
-                      <div className="v4-j-payoff-title">Your journey, connected with Hirerkey.</div>
-                      <div className="v4-j-payoff-subtitle">
-                        <span className="v4-j-payoff-live-dot" />
-                        <span>Empowered from Day 1</span>
+                    <div className="p3-proc-dash-chrome">
+                      <div className="p3-proc-dash-dots">
+                        <span className="p3-proc-dash-dot-red" />
+                        <span className="p3-proc-dash-dot-amber" />
+                        <span className="p3-proc-dash-dot-green" />
+                      </div>
+                      <div className="p3-proc-dash-url">app.hirerkey.com</div>
+                      <div className="p3-proc-dash-badge">
+                        <span className="p3-proc-dash-beacon" />
+                        <span>Live</span>
+                      </div>
+                    </div>
+                    <div className="p3-proc-dash-body">
+                      <img
+                        src="assets/hirerkey_actual_dashboard.png"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (!target.dataset.retry) {
+                            target.dataset.retry = '1';
+                            target.src = 'views/assets/hirerkey_actual_dashboard.png';
+                          }
+                        }}
+                        alt="Hirerkey Executive Workspace"
+                        className="p3-proc-dash-img"
+                      />
+                      
+                      {/* Micro AI Insight Toast */}
+                      <div className="p3-proc-dash-toast" id="p3DashToast">
+                        <span className="p3-proc-toast-sparkle">✨</span>
+                        <span className="p3-proc-toast-text">3 reviews synchronized</span>
+                      </div>
+                    </div>
+                  </Box>
+
+                  {/* CARD 1: ORIENTATION (Top-Left) */}
+                  <div className="p3-proc-card p3-proc-card-tl" id="p3CardOrientation">
+                    <div className="p3-proc-card-icon-box p3-proc-icon-purple">🧭</div>
+                    <div className="p3-proc-card-body">
+                      <div className="p3-proc-card-meta">
+                        <span className="p3-proc-card-tag p3-proc-tag-purple">01 • ONBOARDING</span>
+                        <span className="p3-proc-badge-check" id="p3Card1Check">✓ Completed</span>
+                      </div>
+                      <div className="p3-proc-card-title">Orientation</div>
+                      <div className="p3-proc-card-footer">
+                        <span className="p3-proc-card-sub">Welcome aboard!</span>
+                        <div className="p3-proc-progress-track">
+                          <div className="p3-proc-progress-bar p3-proc-progress-purple" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CARD 2: DEPARTMENT TOUR (Top-Right) */}
+                  <div className="p3-proc-card p3-proc-card-tr" id="p3CardTour">
+                    <div className="p3-proc-card-icon-box p3-proc-icon-blue">🏢</div>
+                    <div className="p3-proc-card-body">
+                      <div className="p3-proc-card-meta">
+                        <span className="p3-proc-card-tag p3-proc-tag-blue">02 • ALIGNMENT</span>
+                        <span className="p3-proc-badge-blue">3/3 Met ✓</span>
+                      </div>
+                      <div className="p3-proc-card-title">Department Tour</div>
+                      <div className="p3-proc-card-footer">
+                        <span className="p3-proc-card-sub">Meet your team</span>
+                        <div className="p3-proc-avatar-stack">
+                          <span className="p3-proc-avatar p3-proc-av-1" title="Aisha K.">AK</span>
+                          <span className="p3-proc-avatar p3-proc-av-2" title="Rahul S.">RS</span>
+                          <span className="p3-proc-avatar p3-proc-av-3" title="Sara J.">SJ</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CARD 3: ASK HyIQ AI (Bottom-Left) */}
+                  <div className="p3-proc-card p3-proc-card-bl" id="p3CardHyiq">
+                    <div className="p3-proc-card-icon-box p3-proc-icon-pink">✨</div>
+                    <div className="p3-proc-card-body">
+                      <div className="p3-proc-card-meta">
+                        <span className="p3-proc-card-tag p3-proc-tag-pink">03 • INTELLIGENCE</span>
+                        <span className="p3-proc-badge-pink">12ms • AI</span>
+                      </div>
+                      <div className="p3-proc-card-title">Ask HyIQ™ AI</div>
+                      <div className="p3-proc-card-footer">
+                        <div className="p3-proc-typewriter-container">
+                          <span className="p3-proc-typewriter-text">Show my pending tasks</span><span className="p3-proc-typewriter-cursor">|</span>
+                        </div>
+                        <div className="p3-proc-ai-response-pill">
+                          <span>✨ 3 reviews due today</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CARD 4: 1-ON-1 CHECK-INS (Bottom-Right) */}
+                  <div className="p3-proc-card p3-proc-card-br" id="p3CardCheckin">
+                    <div className="p3-proc-card-icon-box p3-proc-icon-emerald">📊</div>
+                    <div className="p3-proc-card-body">
+                      <div className="p3-proc-card-meta">
+                        <span className="p3-proc-card-tag p3-proc-tag-emerald">04 • PERFORMANCE</span>
+                        <span className="p3-proc-badge-emerald">85% On Track</span>
+                      </div>
+                      <div className="p3-proc-card-title">1-on-1 Check-ins</div>
+                      <div className="p3-proc-card-footer">
+                        <span className="p3-proc-date-pill">📅 Thu, 2:30 PM</span>
+                        <div className="p3-proc-goal-track">
+                          <div className="p3-proc-goal-bar" />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -5281,8 +6027,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
           component="button"
           type="button"
           onClick={() => setActivePage(3)}
-          aria-label="Page 3: The Employee Journey"
-          title="The Employee Journey (Key 3)"
+          aria-label="Page 3: The Process-Based Connected HR Ecosystem"
+          title="The Process-Based Connected HR Ecosystem (Key 3)"
           sx={{
             appearance: 'none',
             border: activePage === 3 ? '1px solid rgba(124, 58, 237, 0.25)' : '1px solid transparent',
@@ -5308,7 +6054,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           }}
         >
           <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>③</span>
-          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Employee Journey</Box>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Process Flow</Box>
           <Box
             component="span"
             sx={{
@@ -5324,7 +6070,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
               textTransform: 'uppercase',
             }}
           >
-            New
+            3D Stack
           </Box>
           <Box
             component="span"
