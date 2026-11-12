@@ -6721,6 +6721,13 @@
       background: #F3E8FF;
       border-color: #A78BFA;
     }
+
+    /* CRITICAL FIX: Ensure Dashboard View 2 (Appraisal Module) is ALWAYS visible */
+    #dashboard-view-2 {
+      display: block !important;
+      min-height: 100vh;
+      width: 100%;
+    }
 </style>
 </head>
 <body>
@@ -9054,106 +9061,11 @@
   }
 
   function switchDashboardView(viewNumber) {
-    const v1 = document.getElementById('dashboard-view-1');
     const v2 = document.getElementById('dashboard-view-2');
-    const v3 = document.getElementById('dashboard-view-3');
-    const v4 = document.getElementById('dashboard-view-4');
-    const v5 = document.getElementById('dashboard-view-5');
-    const v6 = document.getElementById('dashboard-view-6');
-
-    // Clear active states and dots across all tabs in all 6 toolbars
-    document.querySelectorAll('[id^="tab1-view-"], [id^="tab2-view-"], [id^="tab3-view-"], [id^="tab4-view-"], [id^="tab5-view-"], [id^="tab6-view-"]').forEach(b => {
-      b.classList.remove('active');
-      b.querySelector('.screen-tab-dot')?.remove();
-    });
-
-    // Hide all views first
-    if (v1) v1.style.display = 'none';
-    if (v2) v2.style.display = 'none';
-    if (v3) v3.style.display = 'none';
-    if (v4) v4.style.display = 'none';
-    if (v5) v5.style.display = 'none';
-    if (v6) v6.style.display = 'none';
-
-    if (viewNumber === 6) {
-      if (v6) v6.style.display = 'block';
-      document.querySelectorAll('[id$="-view-6"]').forEach(b => {
-        b.classList.add('active');
-        if (!b.querySelector('.screen-tab-dot')) {
-          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
-        }
-      });
-      localStorage.setItem('hirerkey_dashboard_active_view', '6');
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, '', '#view6');
-      }
-      showToast('Switched to View 6: Diagonal Gradient');
-    } else if (viewNumber === 5) {
-      if (v5) v5.style.display = 'block';
-      document.querySelectorAll('[id$="-view-5"]').forEach(b => {
-        b.classList.add('active');
-        if (!b.querySelector('.screen-tab-dot')) {
-          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
-        }
-      });
-      localStorage.setItem('hirerkey_dashboard_active_view', '5');
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, '', '#view5');
-      }
-      showToast('Switched to View 5: Soft Lilac');
-    } else if (viewNumber === 2) {
-      if (v2) v2.style.display = 'block';
-      document.querySelectorAll('[id$="-view-2"]').forEach(b => {
-        b.classList.add('active');
-        if (!b.querySelector('.screen-tab-dot')) {
-          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
-        }
-      });
-      localStorage.setItem('hirerkey_dashboard_active_view', '2');
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, '', '#view2');
-      }
-      showToast('Switched to View 2 (Recommended View)');
-    } else if (viewNumber === 3) {
-      if (v3) v3.style.display = 'block';
-      document.querySelectorAll('[id$="-view-3"]').forEach(b => {
-        b.classList.add('active');
-        if (!b.querySelector('.screen-tab-dot')) {
-          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
-        }
-      });
-      localStorage.setItem('hirerkey_dashboard_active_view', '3');
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, '', '#view3');
-      }
-      showToast('Switched to View 3: Light Purple Accent');
-    } else if (viewNumber === 4) {
-      if (v4) v4.style.display = 'block';
-      document.querySelectorAll('[id$="-view-4"]').forEach(b => {
-        b.classList.add('active');
-        if (!b.querySelector('.screen-tab-dot')) {
-          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
-        }
-      });
-      localStorage.setItem('hirerkey_dashboard_active_view', '4');
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, '', '#view4');
-      }
-      showToast('Switched to View 4: Primary Color (Vibrant Purple)');
-    } else {
-      if (v1) v1.style.display = 'block';
-      document.querySelectorAll('[id$="-view-1"]').forEach(b => {
-        b.classList.add('active');
-        if (!b.querySelector('.screen-tab-dot')) {
-          b.insertAdjacentHTML('afterbegin', '<span class="screen-tab-dot"></span>');
-        }
-      });
-      localStorage.setItem('hirerkey_dashboard_active_view', '1');
-      if (window.history && window.history.replaceState) {
-        window.history.replaceState(null, '', '#view1');
-      }
-      showToast('Switched to View 1: Standard Dashboard');
+    if (v2) {
+      v2.style.display = 'block';
     }
+    localStorage.setItem('hirerkey_dashboard_active_view', '2');
   }
 
   // Complete data dictionary of empty states for all 22 menus in View 2
@@ -11445,25 +11357,12 @@
       setDashboardBg(savedTone, true);
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const hash = window.location.hash;
-    const savedView = localStorage.getItem('hirerkey_dashboard_active_view');
-    if (params.get('view') === '6' || hash === '#view6' || savedView === '6') {
-      switchDashboardView(6);
-    } else if (params.get('view') === '5' || hash === '#view5' || savedView === '5') {
-      switchDashboardView(5);
-    } else if (params.get('view') === '4' || hash === '#view4' || savedView === '4') {
-      switchDashboardView(4);
-    } else if (params.get('view') === '3' || hash === '#view3' || savedView === '3') {
-      switchDashboardView(3);
-    } else if (params.get('view') === '2' || hash === '#view2' || savedView === '2') {
-      switchDashboardView(2);
-    } else if (params.get('view') === '1' || hash === '#view1' || savedView === '1') {
-      switchDashboardView(1);
-    } else {
-      // Default to View 2 (Recommended View)
-      switchDashboardView(2);
+    // Ensure View 2 (Appraisal Module) is unconditionally visible
+    const v2 = document.getElementById('dashboard-view-2');
+    if (v2) {
+      v2.style.display = 'block';
     }
+    localStorage.setItem('hirerkey_dashboard_active_view', '2');
     document.querySelectorAll('.donezo-nav-item').forEach(it => {
       if (!it.getAttribute('title')) {
         const dt = it.getAttribute('data-title');

@@ -5338,6 +5338,12 @@
       font-family: var(--font-main);
     }
 
+    /* CRITICAL FIX: Ensure Dashboard View 2 is ALWAYS visible in standalone view */
+    #dashboard-view-2 {
+      display: block !important;
+      min-height: 100vh;
+      width: 100%;
+    }
 </style>
 </head>
 <body>
@@ -7656,19 +7662,16 @@
     const v5 = document.getElementById('dashboard-view-5');
     const v6 = document.getElementById('dashboard-view-6');
 
-    // Clear active states and dots across all tabs in all 6 toolbars
-    document.querySelectorAll('[id^="tab1-view-"], [id^="tab2-view-"], [id^="tab3-view-"], [id^="tab4-view-"], [id^="tab5-view-"], [id^="tab6-view-"]').forEach(b => {
-      b.classList.remove('active');
-      b.querySelector('.screen-tab-dot')?.remove();
-    });
-
-    // Hide all views first
-    if (v1) v1.style.display = 'none';
-    if (v2) v2.style.display = 'none';
-    if (v3) v3.style.display = 'none';
-    if (v4) v4.style.display = 'none';
-    if (v5) v5.style.display = 'none';
-    if (v6) v6.style.display = 'none';
+    // Never hide v2 if the other target views do not exist
+    const target = viewNumber === 1 ? v1 : viewNumber === 3 ? v3 : viewNumber === 4 ? v4 : viewNumber === 5 ? v5 : viewNumber === 6 ? v6 : v2;
+    if (target && target !== v2 && v2) {
+      v2.style.display = 'none';
+    }
+    if (target) {
+      target.style.display = 'block';
+    } else if (v2) {
+      v2.style.display = 'block';
+    }
 
     if (viewNumber === 6) {
       if (v6) v6.style.display = 'block';
@@ -10040,25 +10043,12 @@
       setDashboardBg(savedTone, true);
     }
 
-    const params = new URLSearchParams(window.location.search);
-    const hash = window.location.hash;
-    const savedView = localStorage.getItem('hirerkey_dashboard_active_view');
-    if (params.get('view') === '6' || hash === '#view6' || savedView === '6') {
-      switchDashboardView(6);
-    } else if (params.get('view') === '5' || hash === '#view5' || savedView === '5') {
-      switchDashboardView(5);
-    } else if (params.get('view') === '4' || hash === '#view4' || savedView === '4') {
-      switchDashboardView(4);
-    } else if (params.get('view') === '3' || hash === '#view3' || savedView === '3') {
-      switchDashboardView(3);
-    } else if (params.get('view') === '2' || hash === '#view2' || savedView === '2') {
-      switchDashboardView(2);
-    } else if (params.get('view') === '1' || hash === '#view1' || savedView === '1') {
-      switchDashboardView(1);
-    } else {
-      // Default to View 2 (Recommended View)
-      switchDashboardView(2);
+    // Ensure View 2 is unconditionally visible
+    const v2 = document.getElementById('dashboard-view-2');
+    if (v2) {
+      v2.style.display = 'block';
     }
+    localStorage.setItem('hirerkey_dashboard_active_view', '2');
     document.querySelectorAll('.donezo-nav-item').forEach(it => {
       if (!it.getAttribute('title')) {
         const dt = it.getAttribute('data-title');
