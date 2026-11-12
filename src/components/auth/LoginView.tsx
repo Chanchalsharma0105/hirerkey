@@ -1819,574 +1819,760 @@ export const LoginView: React.FC<LoginViewProps> = ({
       }
     }
 
-              /* PAGE 3: THE EMPLOYEE JOURNEY (12.0s MASTER ANIMATION SYSTEM) */
-              .v4-j-card {
-                position: absolute;
-                z-index: 6;
-                background: #FFFFFF;
-                border-radius: 14px;
-                border: 1.5px solid #E2E8F0;
-                box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.85);
-                padding: 8px 10px;
-                display: flex;
-                align-items: center;
-                gap: 9px;
-                width: 164px;
-                height: 58px;
-                box-sizing: border-box;
-                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-                will-change: transform, opacity, box-shadow;
-                user-select: none;
-              }
-              .v4-j-card:hover {
-                transform: translateY(-2px) scale(1.03) !important;
-                box-shadow: 0 16px 35px -8px rgba(124, 58, 237, 0.28) !important;
-                z-index: 12 !important;
-              }
-              .v4-j-card-1 {
-                top: 12px;
-                left: 12px;
-                animation: jCard1Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-2 {
-                top: 12px;
-                left: 188px;
-                animation: jCard2Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-3 {
-                top: 12px;
-                right: 12px;
-                animation: jCard3Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-4 {
-                bottom: 12px;
-                right: 12px;
-                animation: jCard4Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-5 {
-                bottom: 12px;
-                left: 188px;
-                animation: jCard5Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-              .v4-j-card-6 {
-                bottom: 12px;
-                left: 12px;
-                animation: jCard6Motion 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-              }
-
-              .v4-j-avatar-wrap {
+              /* PAGE 3: THE 3D ISOMETRIC GLASS PLATFORM STACK (HIRERKEY AUTONOMOUS ENGINE) */
+              #v4WorkflowStageJourney {
                 position: relative;
-                width: 32px;
-                height: 32px;
-                flex-shrink: 0;
-              }
-              .v4-j-avatar {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                background: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
-                color: #FFFFFF;
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-weight: 800;
-                font-size: 11px;
-                display: grid;
-                place-items: center;
-                box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
-              }
-              .v4-j-online-dot {
-                position: absolute;
-                bottom: -1px;
-                right: -1px;
-                width: 7.5px;
-                height: 7.5px;
-                border-radius: 50%;
-                background: #10B981;
-                border: 1.5px solid #FFFFFF;
-                box-shadow: 0 0 6px #10B981;
-                animation: jGreenPulse 2s ease-in-out infinite;
-              }
-              @keyframes jGreenPulse {
-                0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-                50% { transform: scale(1.15); box-shadow: 0 0 0 3.5px rgba(16, 185, 129, 0); }
-              }
-
-              .v4-j-icon-box {
-                width: 28px;
-                height: 28px;
-                border-radius: 8px;
-                display: grid;
-                place-items: center;
-                font-size: 14px;
-                flex-shrink: 0;
-              }
-              .v4-j-icon-purple { background: rgba(124, 58, 237, 0.1); color: #7C3AED; }
-              .v4-j-icon-blue { background: rgba(59, 130, 246, 0.1); color: #3B82F6; }
-              .v4-j-icon-pink { background: rgba(236, 72, 153, 0.1); color: #EC4899; }
-              .v4-j-icon-amber { background: rgba(245, 158, 11, 0.1); color: #F59E0B; }
-              .v4-j-icon-green { background: rgba(16, 185, 129, 0.1); color: #10B981; }
-
-              .v4-j-meta {
-                flex: 1;
-                min-width: 0;
-                overflow: hidden;
-              }
-              .v4-j-tag-row {
+                width: 100%;
+                max-width: 540px;
+                height: 350px;
+                perspective: 1200px;
+                perspective-origin: 50% 46%;
+                transform-style: preserve-3d;
                 display: flex;
                 align-items: center;
-                gap: 4px;
-                margin-bottom: 1px;
+                justify-content: center;
+                overflow: visible;
+                contain: none;
               }
-              .v4-j-tag {
-                font-size: 7.5px;
-                font-weight: 800;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
-                line-height: 1;
-                white-space: nowrap;
-              }
-              .v4-j-card-1 .v4-j-tag { color: #7C3AED; }
-              .v4-j-card-2 .v4-j-tag { color: #7C3AED; }
-              .v4-j-card-3 .v4-j-tag { color: #3B82F6; }
-              .v4-j-card-4 .v4-j-tag { color: #EC4899; }
-              .v4-j-card-5 .v4-j-tag { color: #D97706; }
-              .v4-j-card-6 .v4-j-tag { color: #059669; }
 
-              .v4-j-tag-new {
-                font-size: 7.5px;
-                font-weight: 800;
-                letter-spacing: 0.05em;
-                text-transform: uppercase;
-                color: #7C3AED;
-                background: rgba(124, 58, 237, 0.08);
-                padding: 1px 4.5px;
-                border-radius: 3.5px;
-                display: inline-block;
-                line-height: 1.1;
-                margin-bottom: 1px;
+              .p3-iso-stage {
+                position: relative;
+                width: 100%;
+                max-width: 540px;
+                height: 350px;
+                perspective: 1200px;
+                perspective-origin: 50% 46%;
+                transform-style: preserve-3d;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: visible;
               }
-              .v4-j-title {
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-size: 11px;
-                font-weight: 700;
-                color: #0F172A;
-                line-height: 1.2;
-                white-space: nowrap;
+
+              .p3-iso-ambient {
+                position: absolute;
+                width: 440px;
+                height: 280px;
+                background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.22) 0%, rgba(56, 189, 248, 0.14) 40%, transparent 70%);
+                filter: blur(45px);
+                pointer-events: none;
+                z-index: 1;
+                transform: translateZ(-120px);
+              }
+
+              .p3-iso-stack {
+                position: relative;
+                width: 380px;
+                height: 230px;
+                transform-style: preserve-3d;
+                transform: rotateX(56deg) rotateZ(-34deg) rotateY(4deg);
+                transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+                will-change: transform;
+                z-index: 2;
+              }
+
+              .p3-iso-laser-pillar {
+                position: absolute;
+                width: 3px;
+                height: 180px;
+                margin-left: -1.5px;
+                margin-top: -90px;
+                background: linear-gradient(to top, 
+                  rgba(99, 102, 241, 0.35) 0%, 
+                  rgba(56, 189, 248, 0.9) 50%, 
+                  rgba(167, 139, 250, 0.95) 100%
+                );
+                box-shadow: 
+                  0 0 10px rgba(56, 189, 248, 0.8),
+                  0 0 20px rgba(124, 58, 237, 0.5);
+                transform-style: preserve-3d;
+                transform: rotateX(-90deg);
+                pointer-events: none;
+                z-index: 8;
+              }
+
+              .p3-iso-laser-tl { left: 24px; top: 22px; }
+              .p3-iso-laser-tr { left: 356px; top: 22px; }
+              .p3-iso-laser-bl { left: 24px; top: 208px; }
+              .p3-iso-laser-br { left: 356px; top: 208px; }
+
+              .p3-iso-photon {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 8px;
+                height: 8px;
+                margin-left: -4px;
+                margin-top: -4px;
+                border-radius: 50%;
+                background: #FFFFFF;
+                box-shadow: 
+                  0 0 12px 3px #38BDF8, 
+                  0 0 22px 6px #818CF8,
+                  0 0 35px 10px #C084FC;
+                transform-style: preserve-3d;
+                will-change: transform, opacity;
+              }
+
+              @keyframes p3PhotonAscend {
+                0% {
+                  transform: translateY(80px) scale(0.6);
+                  opacity: 0;
+                }
+                15% {
+                  opacity: 1;
+                  transform: translateY(60px) scale(1.1);
+                }
+                50% {
+                  opacity: 1;
+                  transform: translateY(0px) scale(1.3);
+                  box-shadow: 0 0 16px 4px #38BDF8, 0 0 28px 8px #C084FC;
+                }
+                85% {
+                  opacity: 1;
+                  transform: translateY(-60px) scale(1.1);
+                }
+                100% {
+                  transform: translateY(-80px) scale(0.6);
+                  opacity: 0;
+                }
+              }
+
+              @keyframes p3PhotonDescend {
+                0% {
+                  transform: translateY(-80px) scale(0.6);
+                  opacity: 0;
+                }
+                15% {
+                  opacity: 1;
+                  transform: translateY(-60px) scale(1.1);
+                }
+                50% {
+                  opacity: 1;
+                  transform: translateY(0px) scale(1.3);
+                  box-shadow: 0 0 16px 4px #A78BFA, 0 0 28px 8px #38BDF8;
+                }
+                85% {
+                  opacity: 1;
+                  transform: translateY(60px) scale(1.1);
+                }
+                100% {
+                  transform: translateY(80px) scale(0.6);
+                  opacity: 0;
+                }
+              }
+
+              .p3-iso-photon-ascend-1 {
+                animation: p3PhotonAscend 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+              }
+              .p3-iso-photon-descend-1 {
+                animation: p3PhotonDescend 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.7s;
+              }
+              .p3-iso-photon-ascend-2 {
+                animation: p3PhotonAscend 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.5s;
+              }
+              .p3-iso-photon-descend-2 {
+                animation: p3PhotonDescend 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite 2.2s;
+              }
+
+              .p3-iso-slab {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                transform-style: preserve-3d;
+                transition: box-shadow 0.4s ease, border-color 0.4s ease;
+                will-change: transform;
                 overflow: hidden;
-                text-overflow: ellipsis;
+                user-select: none;
+                box-sizing: border-box;
               }
-              .v4-j-sub {
-                font-size: 8.5px;
-                color: #64748B;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                line-height: 1.2;
-                margin-top: 1px;
+
+              .p3-iso-sheen {
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.6) 48%, rgba(167, 139, 250, 0.3) 52%, transparent 80%);
+                transform: translateX(-150%) skewX(-25deg);
+                pointer-events: none;
+                z-index: 10;
+                animation: p3GlassSheen 6.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
               }
-              .v4-j-sub-row {
+
+              @keyframes p3GlassSheen {
+                0% {
+                  transform: translateX(-150%) skewX(-25deg);
+                  opacity: 0;
+                }
+                15% {
+                  opacity: 0.6;
+                }
+                45% {
+                  transform: translateX(180%) skewX(-25deg);
+                  opacity: 0.8;
+                }
+                65% {
+                  opacity: 0;
+                }
+                100% {
+                  transform: translateX(180%) skewX(-25deg);
+                  opacity: 0;
+                }
+              }
+
+              /* LAYER 01: FOUNDATION */
+              .p3-iso-slab-foundation {
+                background: linear-gradient(135deg, 
+                  rgba(15, 23, 42, 0.86) 0%, 
+                  rgba(30, 27, 75, 0.76) 50%,
+                  rgba(15, 23, 42, 0.92) 100%
+                );
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+                border: 1.5px solid rgba(99, 102, 241, 0.35);
+                box-shadow: 
+                  0 35px 70px -15px rgba(0, 0, 0, 0.75),
+                  0 0 28px rgba(99, 102, 241, 0.2),
+                  inset 0 1px 1.5px rgba(255, 255, 255, 0.15),
+                  inset 0 -1px 1px rgba(0, 0, 0, 0.5);
+                transform: translateZ(-80px);
+                animation: p3LevitateBase 6.2s ease-in-out infinite;
+                z-index: 3;
+              }
+              .p3-iso-slab-foundation .p3-iso-sheen {
+                animation-delay: 4.4s;
+              }
+
+              @keyframes p3LevitateBase {
+                0%, 100% {
+                  transform: translateZ(-80px) rotateX(0deg);
+                }
+                50% {
+                  transform: translateZ(-74px) rotateX(-0.4deg);
+                }
+              }
+
+              .p3-iso-foundation-content {
+                position: relative;
+                height: 100%;
+                padding: 14px 18px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                box-sizing: border-box;
+                color: #FFFFFF;
+              }
+
+              .p3-iso-tier-header {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                gap: 3px;
-                margin-top: 1px;
-              }
-              .v4-j-badge-done {
-                font-size: 8px;
-                font-weight: 700;
-                color: #059669;
-                white-space: nowrap;
-                flex-shrink: 0;
               }
 
-              .v4-j-progress-row {
-                display: flex;
+              .p3-iso-tier-badge {
+                display: inline-flex;
                 align-items: center;
                 gap: 5px;
-                margin-top: 2px;
-              }
-              .v4-j-progress-track {
-                width: 44px;
-                height: 3.5px;
-                border-radius: 9999px;
-                background: #E2E8F0;
-                overflow: hidden;
-                flex-shrink: 0;
-              }
-              .v4-j-progress-fill {
-                height: 100%;
-                width: 0%;
-                background: linear-gradient(90deg, #7C3AED, #A855F7);
-                border-radius: 9999px;
-                animation: jProgressFill 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-              }
-              @keyframes jProgressFill {
-                0%, 12.5% { width: 0%; }
-                25%, 95% { width: 100%; }
-                100% { width: 0%; }
-              }
-              .v4-j-status-swap {
-                position: relative;
-                height: 12px;
-                flex: 1;
-                min-width: 0;
-                display: inline-flex;
-                align-items: center;
-              }
-              .v4-j-status-filling {
-                position: absolute;
-                left: 0;
-                top: 0;
-                font-size: 8px;
-                font-weight: 600;
-                color: #64748B;
-                white-space: nowrap;
-                animation: jStatusFilling 12s ease infinite;
-              }
-              .v4-j-status-done {
-                position: absolute;
-                left: 0;
-                top: 0;
-                font-size: 8px;
+                font-size: 9px;
                 font-weight: 700;
-                color: #059669;
-                white-space: nowrap;
-                animation: jStatusDone 12s ease infinite;
-              }
-              @keyframes jStatusFilling {
-                0%, 16% { opacity: 1; transform: translateY(0); }
-                20%, 95% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
-                100% { opacity: 1; transform: translateY(0); }
-              }
-              @keyframes jStatusDone {
-                0%, 18% { opacity: 0; transform: translateY(3px); }
-                22%, 95% { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(3px); }
+                letter-spacing: 0.05em;
+                padding: 3px 8px;
+                border-radius: 9999px;
+                text-transform: uppercase;
               }
 
-              .v4-j-stage-status {
+              .p3-iso-badge-indigo {
+                background: rgba(99, 102, 241, 0.2);
+                border: 1px solid rgba(129, 140, 248, 0.45);
+                color: #A5B4FC;
+              }
+
+              .p3-iso-tier-label {
+                font-size: 9px;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                color: #6366F1;
+                background: rgba(99, 102, 241, 0.1);
+                padding: 2px 6px;
+                border-radius: 4px;
+              }
+
+              .p3-iso-foundation-mesh {
                 position: relative;
-                height: 12px;
+                width: 100%;
+                height: 105px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              }
+
+              .p3-iso-mesh-svg {
+                width: 100%;
+                height: 100%;
+                overflow: visible;
+              }
+
+              @keyframes p3RadarRotate {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+
+              .p3-iso-radar-sweep {
+                transform-origin: 120px 50px;
+                animation: p3RadarRotate 8s linear infinite;
+              }
+
+              @keyframes p3NodePulse {
+                0%, 100% { transform: scale(1); opacity: 0.8; }
+                50% { transform: scale(1.3); opacity: 1; }
+              }
+
+              .p3-iso-node-pulse {
+                transform-origin: center;
+                animation: p3NodePulse 2.8s ease-in-out infinite;
+              }
+              .p3-iso-node-pulse:nth-child(2) { animation-delay: 0.9s; }
+              .p3-iso-node-pulse:nth-child(3) { animation-delay: 1.8s; }
+
+              .p3-iso-tier-footer {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                padding-top: 8px;
+              }
+
+              .p3-iso-tier-name {
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: -0.01em;
+                color: #F8FAFC;
+              }
+
+              .p3-iso-tier-metric {
                 display: inline-flex;
                 align-items: center;
-                min-width: 58px;
-                justify-content: flex-end;
-              }
-              .v4-j-status-upcoming {
-                position: absolute;
-                right: 0;
-                top: 0;
-                font-size: 8px;
+                gap: 5px;
+                font-size: 10px;
                 font-weight: 600;
                 color: #94A3B8;
-                white-space: nowrap;
-                animation: jStatusUpcoming 12s ease infinite;
-              }
-              .v4-j-status-progress {
-                position: absolute;
-                right: 0;
-                top: 0;
-                font-size: 8px;
-                font-weight: 700;
-                color: #3B82F6;
-                white-space: nowrap;
-                animation: jStatusProgress 12s ease infinite;
-              }
-              .v4-j-status-completed {
-                position: absolute;
-                right: 0;
-                top: 0;
-                font-size: 8px;
-                font-weight: 700;
-                color: #059669;
-                white-space: nowrap;
-                animation: jStatusCompleted 12s ease infinite;
-              }
-              @keyframes jStatusUpcoming {
-                0%, 38% { opacity: 1; transform: translateY(0); }
-                41.67%, 100% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
-              }
-              @keyframes jStatusProgress {
-                0%, 38% { opacity: 0; transform: translateY(3px); }
-                41.67%, 52% { opacity: 1; transform: translateY(0); }
-                55%, 100% { opacity: 0; transform: translateY(-3px); pointer-events: none; }
-              }
-              @keyframes jStatusCompleted {
-                0%, 52% { opacity: 0; transform: translateY(3px); }
-                55%, 95% { opacity: 1; transform: translateY(0); }
-                100% { opacity: 0; transform: translateY(3px); }
               }
 
-              .v4-j-goal-row {
-                display: flex;
-                align-items: center;
-                gap: 4px;
-                margin-top: 1px;
+              .p3-iso-metric-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                display: inline-block;
               }
-              .v4-j-goal-pill {
-                font-size: 8px;
-                font-weight: 800;
-                color: #059669;
-                background: rgba(16, 185, 129, 0.12);
-                padding: 1px 4px;
-                border-radius: 3px;
-                line-height: 1.1;
+              .p3-iso-metric-dot.green { background: #10B981; box-shadow: 0 0 6px #10B981; }
+              .p3-iso-metric-dot.cyan { background: #38BDF8; box-shadow: 0 0 6px #38BDF8; }
+              .p3-iso-metric-dot.purple { background: #C084FC; box-shadow: 0 0 6px #C084FC; }
+
+              /* LAYER 02: WORKFLOWS */
+              .p3-iso-slab-workflows {
+                background: linear-gradient(135deg, 
+                  rgba(30, 41, 59, 0.78) 0%, 
+                  rgba(67, 56, 202, 0.52) 50%,
+                  rgba(14, 165, 233, 0.32) 100%
+                );
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border: 1.5px solid rgba(56, 189, 248, 0.45);
+                box-shadow: 
+                  0 25px 50px -10px rgba(14, 165, 233, 0.28),
+                  0 0 32px rgba(67, 56, 202, 0.25),
+                  inset 0 1px 1.5px rgba(255, 255, 255, 0.25);
+                transform: translateZ(0px);
+                animation: p3LevitateMid 5.4s ease-in-out infinite 1.4s;
+                z-index: 5;
               }
-              .v4-j-status-ontrack {
-                font-size: 8px;
-                font-weight: 700;
-                color: #059669;
-                line-height: 1.1;
+              .p3-iso-slab-workflows .p3-iso-sheen {
+                animation-delay: 2.2s;
               }
 
-              .v4-j-payoff-capsule {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(0.85);
-                z-index: 10;
-                width: 310px;
-                min-height: 48px;
-                background: rgba(255, 255, 255, 0.95);
-                backdrop-filter: blur(14px) saturate(180%);
-                -webkit-backdrop-filter: blur(14px) saturate(180%);
-                border: 1.5px solid rgba(124, 58, 237, 0.38);
-                border-radius: 9999px;
-                box-shadow: 0 16px 38px -6px rgba(124, 58, 237, 0.32), 0 6px 14px -3px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
+              @keyframes p3LevitateMid {
+                0%, 100% {
+                  transform: translateZ(0px) rotateX(0deg);
+                }
+                50% {
+                  transform: translateZ(7px) rotateX(0.5deg);
+                }
+              }
+
+              .p3-iso-workflows-content {
+                position: relative;
+                height: 100%;
+                padding: 14px 18px;
                 display: flex;
-                align-items: center;
-                padding: 6px 16px;
-                gap: 11px;
+                flex-direction: column;
+                justify-content: space-between;
                 box-sizing: border-box;
-                opacity: 0;
-                animation: jPayoffBloom 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-                user-select: none;
-                will-change: transform, opacity, box-shadow;
-              }
-              .v4-j-payoff-icon {
-                width: 32px;
-                height: 32px;
-                border-radius: 50%;
-                background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
                 color: #FFFFFF;
-                display: grid;
-                place-items: center;
-                font-size: 15px;
-                flex-shrink: 0;
-                box-shadow: 0 4px 12px rgba(124, 58, 237, 0.35);
               }
-              .v4-j-payoff-content {
-                flex: 1;
-                min-width: 0;
+
+              .p3-iso-badge-cyan {
+                background: rgba(14, 165, 233, 0.22);
+                border: 1px solid rgba(56, 189, 248, 0.5);
+                color: #7DD3FC;
               }
-              .v4-j-payoff-title {
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-size: 11.5px;
-                font-weight: 800;
-                color: #0F172A;
-                line-height: 1.25;
-                white-space: nowrap;
-              }
-              .v4-j-payoff-subtitle {
-                font-size: 9px;
-                color: #7C3AED;
+
+              .p3-iso-live-rate {
+                font-size: 10px;
+                font-family: monospace;
                 font-weight: 700;
+                color: #38BDF8;
+                background: rgba(56, 189, 248, 0.15);
+                padding: 2px 7px;
+                border-radius: 4px;
+                border: 1px solid rgba(56, 189, 248, 0.3);
+              }
+
+              .p3-iso-pipeline-deck {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                margin: 6px 0;
+              }
+
+              .p3-iso-pipeline-lane {
                 display: flex;
                 align-items: center;
-                gap: 4px;
-                margin-top: 1px;
+                gap: 8px;
+                background: rgba(15, 23, 42, 0.55);
+                border: 1px solid rgba(56, 189, 248, 0.25);
+                border-radius: 8px;
+                padding: 7px 10px;
               }
-              .v4-j-payoff-live-dot {
-                width: 5px;
-                height: 5px;
-                border-radius: 50%;
-                background: #10B981;
-                box-shadow: 0 0 5px #10B981;
+
+              .p3-iso-pipeline-tag {
+                font-size: 9.5px;
+                font-weight: 700;
+                color: #E2E8F0;
+                min-width: 78px;
+                white-space: nowrap;
+              }
+
+              .p3-iso-lane-track {
+                flex: 1;
+                height: 4px;
+                border-radius: 9999px;
+                background: rgba(255, 255, 255, 0.12);
+                overflow: hidden;
+                position: relative;
+              }
+
+              .p3-iso-lane-fill {
+                height: 100%;
+                width: 100%;
+                background: linear-gradient(90deg, #6366F1, #38BDF8);
+                border-radius: 9999px;
+                animation: p3LanePulse 3.6s ease-in-out infinite;
+              }
+              .p3-iso-lane-fill.cyan {
+                background: linear-gradient(90deg, #38BDF8, #34D399);
+                animation-delay: 1.2s;
+              }
+
+              @keyframes p3LanePulse {
+                0% { transform: translateX(-100%); }
+                50%, 100% { transform: translateX(0%); }
+              }
+
+              .p3-iso-lane-status {
+                font-size: 9px;
+                font-weight: 700;
+                color: #34D399;
+                white-space: nowrap;
+              }
+
+              /* LAYER 03: TOP CROWN (HyIQ AI) */
+              .p3-iso-slab-hyiq {
+                background: linear-gradient(135deg, 
+                  rgba(76, 29, 149, 0.68) 0%, 
+                  rgba(124, 58, 237, 0.48) 50%,
+                  rgba(236, 72, 153, 0.35) 100%
+                );
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                border: 1.5px solid rgba(167, 139, 250, 0.7);
+                box-shadow: 
+                  0 30px 65px -5px rgba(124, 58, 237, 0.52),
+                  0 0 42px rgba(236, 72, 153, 0.32),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.45);
+                transform: translateZ(80px);
+                animation: p3LevitateTop 4.8s ease-in-out infinite;
+                z-index: 7;
+              }
+
+              @keyframes p3LevitateTop {
+                0%, 100% {
+                  transform: translateZ(80px) rotateX(0deg) rotateY(0deg);
+                }
+                50% {
+                  transform: translateZ(90px) rotateX(-0.8deg) rotateY(0.6deg);
+                }
+              }
+
+              .p3-iso-hyiq-content {
+                position: relative;
+                height: 100%;
+                padding: 14px 18px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                box-sizing: border-box;
+                color: #FFFFFF;
+              }
+
+              .p3-iso-badge-amethyst {
+                background: rgba(124, 58, 237, 0.3);
+                border: 1px solid rgba(192, 132, 252, 0.55);
+                color: #E9D5FF;
+              }
+
+              .p3-iso-sparkle-icon {
+                font-size: 11px;
+              }
+
+              .p3-iso-eq-group {
+                display: flex;
+                align-items: flex-end;
+                gap: 3px;
+                height: 18px;
+              }
+
+              .p3-iso-eq-bar {
+                width: 3px;
+                background: linear-gradient(to top, #A855F7, #F472B6);
+                border-radius: 2px;
+              }
+
+              .p3-iso-eq-1 { animation: p3WaveDance1 1.2s ease-in-out infinite; height: 10px; }
+              .p3-iso-eq-2 { animation: p3WaveDance2 0.9s ease-in-out infinite 0.15s; height: 16px; }
+              .p3-iso-eq-3 { animation: p3WaveDance3 1.4s ease-in-out infinite 0.3s; height: 12px; }
+              .p3-iso-eq-4 { animation: p3WaveDance4 1.1s ease-in-out infinite 0.2s; height: 18px; }
+              .p3-iso-eq-5 { animation: p3WaveDance5 1.3s ease-in-out infinite 0.4s; height: 9px; }
+
+              @keyframes p3WaveDance1 { 0%, 100% { height: 7px; } 50% { height: 16px; } }
+              @keyframes p3WaveDance2 { 0%, 100% { height: 16px; } 50% { height: 8px; } }
+              @keyframes p3WaveDance3 { 0%, 100% { height: 10px; } 50% { height: 18px; } }
+              @keyframes p3WaveDance4 { 0%, 100% { height: 17px; } 50% { height: 9px; } }
+              @keyframes p3WaveDance5 { 0%, 100% { height: 8px; } 50% { height: 15px; } }
+
+              .p3-iso-reasoning-card {
+                background: rgba(15, 23, 42, 0.6);
+                border: 1px solid rgba(167, 139, 250, 0.35);
+                border-radius: 9px;
+                padding: 9px 12px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 4px 0;
+              }
+
+              .p3-iso-reasoning-chip {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                font-size: 10.5px;
+                font-weight: 600;
+                color: #F3E8FF;
+              }
+
+              .p3-iso-pulsing-brain {
+                font-size: 13px;
+                animation: p3BrainBeat 2s ease-in-out infinite;
                 display: inline-block;
               }
 
-              @keyframes jPayoffBloom {
-                0%, 75% { opacity: 0; transform: translate(-50%, -50%) scale(0.85); pointer-events: none; }
-                79.17% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.92); }
-                83.33% {
-                  opacity: 1;
-                  transform: translate(-50%, -50%) scale(1.05);
-                  box-shadow: 0 20px 48px -4px rgba(124, 58, 237, 0.45), 0 0 30px 4px rgba(168, 85, 247, 0.4), inset 0 1px 1px rgba(255, 255, 255, 1);
-                }
-                87.5% {
-                  opacity: 1;
-                  transform: translate(-50%, -50%) scale(1.0);
-                  box-shadow: 0 16px 38px -6px rgba(124, 58, 237, 0.32), 0 6px 14px -3px rgba(15, 23, 42, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
-                }
-                95.83% { opacity: 1; transform: translate(-50%, -50%) scale(1.0); }
-                100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); pointer-events: none; }
+              @keyframes p3BrainBeat {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.18); }
               }
 
-              .v4-j-track-base {
-                fill: none;
-                stroke: rgba(124, 58, 237, 0.12);
-                stroke-width: 2;
-                stroke-linecap: round;
-                stroke-dasharray: 4 4;
-              }
-              .v4-j-spline-active {
-                fill: none;
-                stroke-width: 2.5;
-                stroke-linecap: round;
-                stroke-dasharray: 1000;
-                stroke-dashoffset: 1000;
-                animation: jSplineDraw 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-              }
-              @keyframes jSplineDraw {
-                0% { stroke-dashoffset: 1000; opacity: 0.4; }
-                12.5% { stroke-dashoffset: 820; opacity: 1; }
-                25% { stroke-dashoffset: 640; }
-                41.67% { stroke-dashoffset: 460; }
-                58.33% { stroke-dashoffset: 280; }
-                70.83% { stroke-dashoffset: 140; }
-                79.17% { stroke-dashoffset: 0; }
-                95.83% { stroke-dashoffset: 0; opacity: 1; filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.8)); }
-                100% { stroke-dashoffset: 0; opacity: 0.4; }
+              .p3-iso-reasoning-confidence {
+                font-size: 9.5px;
+                font-weight: 700;
+                color: #34D399;
+                background: rgba(16, 185, 129, 0.15);
+                border: 1px solid rgba(16, 185, 129, 0.3);
+                padding: 2px 6px;
+                border-radius: 4px;
+                white-space: nowrap;
               }
 
-              .v4-j-node-beacon {
-                fill: #FFFFFF;
-                stroke: #7C3AED;
-                stroke-width: 2;
-                animation: jBeaconPulse 12s ease-in-out infinite;
-              }
-              .v4-j-node-1 { animation-delay: 0s; }
-              .v4-j-node-2 { animation-delay: 1.5s; stroke: #7C3AED; }
-              .v4-j-node-3 { animation-delay: 3.0s; stroke: #3B82F6; }
-              .v4-j-node-4 { animation-delay: 5.0s; stroke: #EC4899; }
-              .v4-j-node-5 { animation-delay: 7.0s; stroke: #F59E0B; }
-              .v4-j-node-6 { animation-delay: 8.5s; stroke: #10B981; }
-              .v4-j-node-center { animation-delay: 9.5s; fill: #A855F7; stroke: #FFFFFF; stroke-width: 2; }
-
-              @keyframes jBeaconPulse {
-                0%, 90% { transform-origin: center; transform: scale(1); filter: drop-shadow(0 0 0 rgba(124, 58, 237, 0)); }
-                10%, 20% { transform-origin: center; transform: scale(1.4); filter: drop-shadow(0 0 6px rgba(124, 58, 237, 0.8)); }
-              }
-
-              .v4-j-comet {
+              /* FLOATING HOLOGRAPHIC TELEMETRY BADGES */
+              .p3-holo-badge,
+              .p3-iso-hud-badge {
                 position: absolute;
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background: #FFFFFF;
-                box-shadow: 0 0 12px 3px rgba(168, 85, 247, 0.9), 0 0 4px #FFFFFF;
-                offset-path: path("M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175");
-                pointer-events: none;
-                z-index: 5;
-                opacity: 0;
-                will-change: transform, opacity;
-              }
-              .v4-j-comet-1 { animation: jComet1 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet1 {
-                0% { offset-distance: 0%; opacity: 0; }
-                2% { opacity: 1; }
-                12.5% { offset-distance: 18%; opacity: 1; }
-                13.5% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-2 { animation: jComet2 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet2 {
-                0%, 12.5% { offset-distance: 18%; opacity: 0; }
-                14% { opacity: 1; }
-                25% { offset-distance: 36%; opacity: 1; }
-                26% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-3 { animation: jComet3 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet3 {
-                0%, 25% { offset-distance: 36%; opacity: 0; }
-                27% { opacity: 1; }
-                41.67% { offset-distance: 54%; opacity: 1; }
-                43% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-4 { animation: jComet4 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet4 {
-                0%, 41.67% { offset-distance: 54%; opacity: 0; }
-                43.5% { opacity: 1; }
-                58.33% { offset-distance: 72%; opacity: 1; }
-                59.5% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-5 { animation: jComet5 12s cubic-bezier(0.25, 0.1, 0.25, 1) infinite; }
-              @keyframes jComet5 {
-                0%, 58.33% { offset-distance: 72%; opacity: 0; }
-                60% { opacity: 1; }
-                79.17% { offset-distance: 100%; opacity: 1; }
-                81% { opacity: 0; }
-                100% { opacity: 0; }
-              }
-              .v4-j-comet-grand {
-                animation: jCometGrand 12s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-                width: 10px;
-                height: 10px;
-                box-shadow: 0 0 16px 4px rgba(168, 85, 247, 1), 0 0 6px #FFFFFF;
-              }
-              @keyframes jCometGrand {
-                0%, 79.17% { offset-distance: 0%; opacity: 0; }
-                80% { opacity: 1; }
-                93% { offset-distance: 100%; opacity: 1; }
-                95% { opacity: 0; }
-                100% { opacity: 0; }
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 7px 13px;
+                border-radius: 9999px;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 10.5px;
+                font-weight: 600;
+                letter-spacing: 0.02em;
+                color: #FFFFFF;
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                white-space: nowrap;
+                pointer-events: auto;
+                cursor: pointer;
+                transform-style: preserve-3d;
+                transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+                box-shadow: 0 10px 26px -4px rgba(0, 0, 0, 0.5);
+                z-index: 20;
               }
 
-              @keyframes jCard1Motion {
-                0% { opacity: 0; transform: translateY(-8px) scale(0.96); border-color: #E2E8F0; }
-                8.33% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(124, 58, 237, 0.5); box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.28); }
-                12.5% { opacity: 1; transform: translateY(0) scale(1.0); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0; transform: translateY(-8px) scale(0.96); }
+              .p3-holo-dot,
+              .p3-iso-hud-dot {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                flex-shrink: 0;
               }
-              @keyframes jCard2Motion {
-                0%, 10% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                12.5% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #7C3AED; box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.3); }
-                25% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(124, 58, 237, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+
+              .p3-holo-badge-03,
+              .p3-iso-hud-badge-03 {
+                background: rgba(124, 58, 237, 0.32);
+                border: 1px solid rgba(192, 132, 252, 0.55);
+                transform: translate3d(280px, -20px, 110px);
+                animation: p3HoloFloat3 5.2s ease-in-out infinite;
               }
-              @keyframes jCard3Motion {
-                0%, 22% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                25% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #3B82F6; box-shadow: 0 14px 30px -6px rgba(59, 130, 246, 0.3); }
-                37.5% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(59, 130, 246, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+              .p3-holo-badge-03:hover,
+              .p3-iso-hud-badge-03:hover {
+                transform: translate3d(280px, -20px, 125px) scale(1.06) !important;
+                border-color: rgba(192, 132, 252, 0.9);
+                box-shadow: 0 14px 32px -4px rgba(124, 58, 237, 0.6);
               }
-              @keyframes jCard4Motion {
-                0%, 38% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                41.67% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #EC4899; box-shadow: 0 14px 30px -6px rgba(236, 72, 153, 0.3); }
-                58.33% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(236, 72, 153, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+              .p3-holo-badge-03 .p3-holo-dot,
+              .p3-iso-hud-badge-03 .p3-iso-hud-dot {
+                background: #C084FC;
+                box-shadow: 0 0 8px #C084FC;
               }
-              @keyframes jCard5Motion {
-                0%, 55% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                58.33% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #F59E0B; box-shadow: 0 14px 30px -6px rgba(245, 158, 11, 0.3); }
-                70.83% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(245, 158, 11, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+
+              .p3-holo-badge-02,
+              .p3-iso-hud-badge-02 {
+                background: rgba(14, 165, 233, 0.28);
+                border: 1px solid rgba(56, 189, 248, 0.55);
+                transform: translate3d(-60px, 95px, 20px);
+                animation: p3HoloFloat2 5.6s ease-in-out infinite 1.2s;
               }
-              @keyframes jCard6Motion {
-                0%, 68% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
-                70.83% { opacity: 1; transform: translateY(-2px) scale(1.03); border-color: #10B981; box-shadow: 0 14px 30px -6px rgba(16, 185, 129, 0.3); }
-                79.17% { opacity: 1; transform: translateY(0) scale(1.0); border-color: rgba(16, 185, 129, 0.4); }
-                95% { opacity: 1; transform: translateY(0) scale(1.0); }
-                100% { opacity: 0.5; transform: scale(0.97); border-color: #E2E8F0; }
+              .p3-holo-badge-02:hover,
+              .p3-iso-hud-badge-02:hover {
+                transform: translate3d(-60px, 95px, 35px) scale(1.06) !important;
+                border-color: rgba(56, 189, 248, 0.9);
+                box-shadow: 0 14px 32px -4px rgba(14, 165, 233, 0.6);
+              }
+              .p3-holo-badge-02 .p3-holo-dot,
+              .p3-iso-hud-badge-02 .p3-iso-hud-dot {
+                background: #38BDF8;
+                box-shadow: 0 0 8px #38BDF8;
+              }
+
+              .p3-holo-badge-01,
+              .p3-iso-hud-badge-01 {
+                background: rgba(99, 102, 241, 0.28);
+                border: 1px solid rgba(129, 140, 248, 0.5);
+                transform: translate3d(270px, 210px, -65px);
+                animation: p3HoloFloat1 6.0s ease-in-out infinite 2.4s;
+              }
+              .p3-holo-badge-01:hover,
+              .p3-iso-hud-badge-01:hover {
+                transform: translate3d(270px, 210px, -50px) scale(1.06) !important;
+                border-color: rgba(129, 140, 248, 0.9);
+                box-shadow: 0 14px 32px -4px rgba(99, 102, 241, 0.6);
+              }
+              .p3-holo-badge-01 .p3-holo-dot,
+              .p3-iso-hud-badge-01 .p3-iso-hud-dot {
+                background: #34D399;
+                box-shadow: 0 0 8px #34D399;
+              }
+
+              @keyframes p3HoloFloat3 {
+                0%, 100% { transform: translate3d(280px, -20px, 110px); }
+                50% { transform: translate3d(280px, -24px, 118px); }
+              }
+              @keyframes p3HoloFloat2 {
+                0%, 100% { transform: translate3d(-60px, 95px, 20px); }
+                50% { transform: translate3d(-60px, 91px, 28px); }
+              }
+              @keyframes p3HoloFloat1 {
+                0%, 100% { transform: translate3d(270px, 210px, -65px); }
+                50% { transform: translate3d(270px, 206px, -57px); }
               }
 
               @media (max-width: 640px) {
-                .v4-j-card { width: 140px; height: 52px; padding: 6px 8px; gap: 6px; }
-                .v4-j-card-1 { left: 6px; }
-                .v4-j-card-2 { left: 50%; transform: translateX(-50%); }
-                .v4-j-card-3 { right: 6px; }
-                .v4-j-card-4 { right: 6px; }
-                .v4-j-card-5 { left: 50%; transform: translateX(-50%); }
-                .v4-j-card-6 { left: 6px; }
-                .v4-j-payoff-capsule { width: 260px; min-height: 44px; padding: 5px 12px; }
-                .v4-j-payoff-title { font-size: 10px; }
+                #v4WorkflowStageJourney {
+                  height: 280px;
+                  perspective: 900px;
+                }
+                .p3-iso-stage {
+                  height: 280px;
+                  perspective: 900px;
+                }
+                .p3-iso-ambient {
+                  width: 320px;
+                  height: 220px;
+                }
+                .p3-iso-stack {
+                  width: 290px;
+                  height: 175px;
+                  transform: rotateX(48deg) rotateZ(-28deg) rotateY(2deg) scale(0.8);
+                }
+                .p3-iso-laser-pillar {
+                  height: 140px;
+                  margin-top: -70px;
+                }
+                .p3-iso-laser-tl { left: 18px; top: 16px; }
+                .p3-iso-laser-tr { left: 272px; top: 16px; }
+                .p3-iso-laser-bl { left: 18px; top: 159px; }
+                .p3-iso-laser-br { left: 272px; top: 159px; }
+                .p3-iso-slab-foundation { transform: translateZ(-45px) !important; }
+                .p3-iso-slab-workflows  { transform: translateZ(0px) !important; }
+                .p3-iso-slab-hyiq       { transform: translateZ(45px) !important; }
+                .p3-holo-badge-03, .p3-iso-hud-badge-03 { transform: translate3d(160px, -15px, 50px) scale(0.8) !important; }
+                .p3-holo-badge-02, .p3-iso-hud-badge-02 { transform: translate3d(-20px, 65px, 10px) scale(0.8) !important; }
+                .p3-holo-badge-01, .p3-iso-hud-badge-01 { transform: translate3d(150px, 145px, -35px) scale(0.8) !important; }
+              }
+
+              @media (max-width: 480px) {
+                #v4WorkflowStageJourney {
+                  height: 260px;
+                }
+                .p3-iso-stage {
+                  height: 260px;
+                }
+                .p3-iso-stack {
+                  width: 260px;
+                  height: 160px;
+                  transform: rotateX(46deg) rotateZ(-26deg) scale(0.72) !important;
+                }
+                .p3-holo-badge, .p3-iso-hud-badge {
+                  display: none !important;
+                }
+              }
+
+              @media (prefers-reduced-motion: reduce) {
+                .p3-iso-slab,
+                .p3-holo-badge,
+                .p3-iso-hud-badge,
+                .p3-iso-photon,
+                .p3-iso-eq-bar,
+                .p3-iso-sheen,
+                .p3-iso-radar-sweep,
+                .p3-iso-node-pulse,
+                .p3-iso-pulsing-brain,
+                .p3-iso-lane-fill {
+                  animation: none !important;
+                  transition: none !important;
+                }
+                .p3-iso-stack {
+                  transform: rotateX(45deg) rotateZ(-25deg) !important;
+                }
               }
 
 
@@ -4191,178 +4377,177 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    perspective: 1000,
+                    perspective: 1200,
+                    perspectiveOrigin: '50% 46%',
+                    transformStyle: 'preserve-3d',
                     mt: 0.75,
+                    overflow: 'visible',
                   }}
                 >
-                  {/* Master Curving Spline SVG & Anchor Beacons */}
-                  <svg
-                    viewBox="0 0 540 350"
-                    preserveAspectRatio="none"
-                    style={{
-                      position: 'absolute',
-                      inset: 0,
-                      width: '100%',
-                      height: '100%',
-                      pointerEvents: 'none',
-                      zIndex: 2,
-                    }}
-                  >
-                    <defs>
-                      <linearGradient id="v4GradJourneyReact" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#8B5CF6" />
-                        <stop offset="25%" stopColor="#7C3AED" />
-                        <stop offset="50%" stopColor="#3B82F6" />
-                        <stop offset="75%" stopColor="#EC4899" />
-                        <stop offset="100%" stopColor="#10B981" />
-                      </linearGradient>
-                      <filter id="v4JourneyGlowReact" x="-30%" y="-30%" width="160%" height="160%">
-                        <feGaussianBlur stdDeviation="3" result="glow" />
-                        <feMerge>
-                          <feMergeNode in="glow" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
+                  <div className="p3-iso-stage" id="p3IsoStage">
+                    {/* Master Ambient Backlight Aura */}
+                    <div className="p3-iso-ambient" />
 
-                    {/* Base Ambient Dashed Spline Track */}
-                    <path
-                      className="v4-j-track-base"
-                      d="M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175"
-                    />
-
-                    {/* Progressive Animated Flow Spline (1000px Arc Length) */}
-                    <path
-                      className="v4-j-spline-active"
-                      stroke="url(#v4GradJourneyReact)"
-                      filter="url(#v4JourneyGlowReact)"
-                      d="M 94 41 L 270 41 L 446 41 C 516 41 526 100 526 175 C 526 250 516 309 446 309 L 270 309 L 94 309 C 30 309 18 250 20 190 C 22 135 90 140 180 155 L 270 175"
-                    />
-
-                    {/* Node Connection Anchor Beacons */}
-                    <circle className="v4-j-node-beacon v4-j-node-1" cx="94" cy="41" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-2" cx="270" cy="41" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-3" cx="446" cy="41" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-4" cx="446" cy="309" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-5" cx="270" cy="309" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-6" cx="94" cy="309" r="3.5" />
-                    <circle className="v4-j-node-beacon v4-j-node-center" cx="270" cy="175" r="4.5" />
-                  </svg>
-
-                  {/* Travelling Photon Comet Particles */}
-                  <div className="v4-j-comet v4-j-comet-1" />
-                  <div className="v4-j-comet v4-j-comet-2" />
-                  <div className="v4-j-comet v4-j-comet-3" />
-                  <div className="v4-j-comet v4-j-comet-4" />
-                  <div className="v4-j-comet v4-j-comet-5" />
-                  <div className="v4-j-comet v4-j-comet-grand" />
-
-                  {/* CARD 1: PROFILE CARD (Alex Chen • Product Designer) */}
-                  <div className="v4-j-card v4-j-card-1">
-                    <div className="v4-j-avatar-wrap">
-                      <div className="v4-j-avatar">AC</div>
-                      <span className="v4-j-online-dot" />
-                    </div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag-row">
-                        <span className="v4-j-tag-new">New employee</span>
+                    {/* Master 3D Isometric Rig / Stack */}
+                    <div
+                      className="p3-iso-stack"
+                      id="p3IsoStack"
+                      style={{
+                        transform: `rotateX(${56 + v4Tilt.x}deg) rotateZ(${-34 + v4Tilt.y}deg) rotateY(${4 + v4Tilt.y * 0.5}deg)`,
+                      }}
+                    >
+                      {/* 4 VERTICAL LASER CONDUITS (Spanning Z: -80px to +80px) */}
+                      <div className="p3-iso-laser-pillar p3-iso-laser-tl">
+                        <div className="p3-iso-photon p3-iso-photon-ascend-1" />
                       </div>
-                      <div className="v4-j-title">Alex Chen</div>
-                      <div className="v4-j-sub">Product Designer</div>
-                    </div>
-                  </div>
+                      <div className="p3-iso-laser-pillar p3-iso-laser-tr">
+                        <div className="p3-iso-photon p3-iso-photon-descend-1" />
+                      </div>
+                      <div className="p3-iso-laser-pillar p3-iso-laser-bl">
+                        <div className="p3-iso-photon p3-iso-photon-ascend-2" />
+                      </div>
+                      <div className="p3-iso-laser-pillar p3-iso-laser-br">
+                        <div className="p3-iso-photon p3-iso-photon-descend-2" />
+                      </div>
 
-                  {/* CARD 2: MILESTONE 1 (01 • Onboarding) */}
-                  <div className="v4-j-card v4-j-card-2">
-                    <div className="v4-j-icon-box v4-j-icon-purple">🚀</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">01 • ONBOARDING</div>
-                      <div className="v4-j-title">Onboarding</div>
-                      <div className="v4-j-progress-row">
-                        <div className="v4-j-progress-track">
-                          <div className="v4-j-progress-fill" />
-                        </div>
-                        <div className="v4-j-status-swap">
-                          <span className="v4-j-status-filling">In Progress</span>
-                          <span className="v4-j-status-done">Completed ✓</span>
+                      {/* ============================================================= */}
+                      {/* LAYER 01: FOUNDATION (Global People Graph & Compliance Core)   */}
+                      {/* ============================================================= */}
+                      <div className="p3-iso-slab p3-iso-slab-foundation" id="p3SlabFoundation">
+                        <div className="p3-iso-sheen" />
+
+                        {/* Surface Micro-UI */}
+                        <div className="p3-iso-foundation-content">
+                          <div className="p3-iso-tier-header">
+                            <span className="p3-iso-tier-badge p3-iso-badge-indigo">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                              SOC2 TYPE II • AES-256
+                            </span>
+                            <span className="p3-iso-tier-label">CORE 01</span>
+                          </div>
+
+                          {/* Encrypted Database Radar Grid SVG */}
+                          <div className="p3-iso-foundation-mesh">
+                            <svg viewBox="0 0 240 100" className="p3-iso-mesh-svg">
+                              <circle cx="120" cy="50" r="40" stroke="rgba(99,102,241,0.25)" strokeWidth="1" fill="none" strokeDasharray="3 3" />
+                              <circle cx="120" cy="50" r="22" stroke="rgba(99,102,241,0.4)" strokeWidth="1" fill="none" />
+                              <line x1="120" y1="50" x2="160" y2="50" stroke="#818CF8" strokeWidth="1.5" className="p3-iso-radar-sweep" />
+                              {/* Synced Workforce Nodes */}
+                              <circle cx="70" cy="35" r="4" fill="#6366F1" className="p3-iso-node-pulse" />
+                              <circle cx="170" cy="40" r="4" fill="#10B981" className="p3-iso-node-pulse" />
+                              <circle cx="120" cy="80" r="4" fill="#38BDF8" className="p3-iso-node-pulse" />
+                              <path d="M 70 35 Q 120 20 170 40 T 120 80" stroke="rgba(99,102,241,0.3)" fill="none" strokeWidth="1" />
+                            </svg>
+                          </div>
+
+                          <div className="p3-iso-tier-footer">
+                            <span className="p3-iso-tier-name">Global People Graph</span>
+                            <span className="p3-iso-tier-metric"><span className="p3-iso-metric-dot green" />100% Encrypted</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* CARD 3: MILESTONE 2 (02 • Orientation) */}
-                  <div className="v4-j-card v4-j-card-3">
-                    <div className="v4-j-icon-box v4-j-icon-blue">🧭</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">02 • ORIENTATION</div>
-                      <div className="v4-j-title">Orientation</div>
-                      <div className="v4-j-sub-row">
-                        <span className="v4-j-sub">Workplace intro</span>
-                        <span className="v4-j-badge-done">Completed ✓</span>
-                      </div>
-                    </div>
-                  </div>
+                      {/* ============================================================= */}
+                      {/* LAYER 02: MIDDLE TIER (Autonomous Workflows & Automation)     */}
+                      {/* ============================================================= */}
+                      <div className="p3-iso-slab p3-iso-slab-workflows" id="p3SlabWorkflows">
+                        <div className="p3-iso-sheen" />
 
-                  {/* CARD 4: MILESTONE 3 (03 • Department Tour) */}
-                  <div className="v4-j-card v4-j-card-4">
-                    <div className="v4-j-icon-box v4-j-icon-pink">🏢</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">03 • DEPARTMENT TOUR</div>
-                      <div className="v4-j-title">Department Tour</div>
-                      <div className="v4-j-sub-row">
-                        <span className="v4-j-sub">Sales &amp; Marketing</span>
-                        <div className="v4-j-stage-status">
-                          <span className="v4-j-status-upcoming">Upcoming</span>
-                          <span className="v4-j-status-progress">In Progress</span>
-                          <span className="v4-j-status-completed">Completed ✓</span>
+                        {/* Surface Micro-UI */}
+                        <div className="p3-iso-workflows-content">
+                          <div className="p3-iso-tier-header">
+                            <span className="p3-iso-tier-badge p3-iso-badge-cyan">
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
+                              AUTONOMOUS ENGINE
+                            </span>
+                            <span className="p3-iso-live-rate">4,820 ops/s</span>
+                          </div>
+
+                          {/* Pipeline Execution Flow Tracks */}
+                          <div className="p3-iso-pipeline-deck">
+                            <div className="p3-iso-pipeline-lane">
+                              <span className="p3-iso-pipeline-tag">Onboarding</span>
+                              <div className="p3-iso-lane-track">
+                                <div className="p3-iso-lane-fill" />
+                              </div>
+                              <span className="p3-iso-lane-status">Auto-Provisioned ✓</span>
+                            </div>
+
+                            <div className="p3-iso-pipeline-lane">
+                              <span className="p3-iso-pipeline-tag">Appraisal 360</span>
+                              <div className="p3-iso-lane-track">
+                                <div className="p3-iso-lane-fill cyan" />
+                              </div>
+                              <span className="p3-iso-lane-status">Calibrated 14ms ✓</span>
+                            </div>
+                          </div>
+
+                          <div className="p3-iso-tier-footer">
+                            <span className="p3-iso-tier-name">Workflow Orchestration</span>
+                            <span className="p3-iso-tier-metric"><span className="p3-iso-metric-dot cyan" />Zero-Touch Latency</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
 
-                  {/* CARD 5: MILESTONE 4 (04 • Tasks & Activities) */}
-                  <div className="v4-j-card v4-j-card-5">
-                    <div className="v4-j-icon-box v4-j-icon-amber">⚡</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">04 • TASKS &amp; ACTIVITIES</div>
-                      <div className="v4-j-title">Tasks &amp; Activities</div>
-                      <div className="v4-j-sub-row">
-                        <span className="v4-j-sub">Complete orientation</span>
-                        <span className="v4-j-badge-done">Completed ✓</span>
-                      </div>
-                    </div>
-                  </div>
+                      {/* ============================================================= */}
+                      {/* LAYER 03: TOP CROWN (HyIQ™ Generative AI & Decision Layer)    */}
+                      {/* ============================================================= */}
+                      <div className="p3-iso-slab p3-iso-slab-hyiq" id="p3SlabHyiq">
+                        <div className="p3-iso-sheen" />
 
-                  {/* CARD 6: MILESTONE 5 (05 • Performance & Check-ins) */}
-                  <div className="v4-j-card v4-j-card-6">
-                    <div className="v4-j-icon-box v4-j-icon-green">🎯</div>
-                    <div className="v4-j-meta">
-                      <div className="v4-j-tag">05 • PERFORMANCE &amp; CHECK-INS</div>
-                      <div className="v4-j-title">1-on-1 Check-ins</div>
-                      <div className="v4-j-goal-row">
-                        <span className="v4-j-goal-pill">Goal 96%</span>
-                        <span className="v4-j-status-ontrack">On Track ✓</span>
-                      </div>
-                    </div>
-                  </div>
+                        {/* Surface Micro-UI */}
+                        <div className="p3-iso-hyiq-content">
+                          <div className="p3-iso-tier-header">
+                            <span className="p3-iso-tier-badge p3-iso-badge-amethyst">
+                              <span className="p3-iso-sparkle-icon">✨</span>
+                              HyIQ™ COPILOT
+                            </span>
+                            {/* Dynamic Audio Equalizer Bars */}
+                            <div className="p3-iso-eq-group">
+                              <span className="p3-iso-eq-bar p3-iso-eq-1" />
+                              <span className="p3-iso-eq-bar p3-iso-eq-2" />
+                              <span className="p3-iso-eq-bar p3-iso-eq-3" />
+                              <span className="p3-iso-eq-bar p3-iso-eq-4" />
+                              <span className="p3-iso-eq-bar p3-iso-eq-5" />
+                            </div>
+                          </div>
 
-                  {/* CENTRAL PAYOFF CAPSULE (Scene 7 Bloom) */}
-                  <div
-                    className="v4-j-payoff-capsule"
-                    id="v4JourneyPayoffCapsule"
-                    style={{
-                      transform: `translate(-50%, -50%) perspective(800px) rotateX(${v4Tilt.x * 0.8}deg) rotateY(${v4Tilt.y * 0.8}deg) translateZ(8px)`,
-                    }}
-                  >
-                    <div className="v4-j-payoff-icon">✨</div>
-                    <div className="v4-j-payoff-content">
-                      <div className="v4-j-payoff-title">Your journey, connected with Hirerkey.</div>
-                      <div className="v4-j-payoff-subtitle">
-                        <span className="v4-j-payoff-live-dot" />
-                        <span>Empowered from Day 1</span>
+                          {/* Neural Synapse Decision Banner */}
+                          <div className="p3-iso-reasoning-card">
+                            <div className="p3-iso-reasoning-chip">
+                              <span className="p3-iso-pulsing-brain">🧠</span>
+                              <span>Predictive Talent Engine Active</span>
+                            </div>
+                            <div className="p3-iso-reasoning-confidence">99.8% Precision</div>
+                          </div>
+
+                          <div className="p3-iso-tier-footer">
+                            <span className="p3-iso-tier-name">Autonomous Decision Core</span>
+                            <span className="p3-iso-tier-metric"><span className="p3-iso-metric-dot purple" />Continuous Synthesis</span>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+
+                      {/* ============================================================= */}
+                      {/* FLOATING HOLOGRAPHIC TELEMETRY BADGES (Parallax Depth)        */}
+                      {/* ============================================================= */}
+                      <div className="p3-holo-badge p3-iso-hud-badge p3-holo-badge-03 p3-iso-hud-badge-03" title="Layer 03 Telemetry">
+                        <span className="p3-holo-dot p3-iso-hud-dot" />
+                        <span>Layer 03: HyIQ™ Copilot • 99.8% Precision</span>
+                      </div>
+
+                      <div className="p3-holo-badge p3-iso-hud-badge p3-holo-badge-02 p3-iso-hud-badge-02" title="Layer 02 Telemetry">
+                        <span className="p3-holo-dot p3-iso-hud-dot" />
+                        <span>Layer 02: Event Engine • 14ms Latency</span>
+                      </div>
+
+                      <div className="p3-holo-badge p3-iso-hud-badge p3-holo-badge-01 p3-iso-hud-badge-01" title="Layer 01 Telemetry">
+                        <span className="p3-holo-dot p3-iso-hud-dot" />
+                        <span>Layer 01: Global Core • 100% Encrypted</span>
+                      </div>
+
+                    </div> {/* /#p3IsoStack */}
+                  </div> {/* /#p3IsoStage */}
                 </Box>
                 )}
                 {activePage === 4 && (
@@ -5283,8 +5468,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
           component="button"
           type="button"
           onClick={() => setActivePage(3)}
-          aria-label="Page 3: The Employee Journey"
-          title="The Employee Journey (Key 3)"
+          aria-label="Page 3: The 3D Isometric Glass Platform Stack"
+          title="The 3D Isometric Glass Platform Stack (The Hirerkey Autonomous Engine) (Key 3)"
           sx={{
             appearance: 'none',
             border: activePage === 3 ? '1px solid rgba(124, 58, 237, 0.25)' : '1px solid transparent',
@@ -5310,7 +5495,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           }}
         >
           <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>③</span>
-          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Employee Journey</Box>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Autonomous Engine</Box>
           <Box
             component="span"
             sx={{
@@ -5326,7 +5511,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
               textTransform: 'uppercase',
             }}
           >
-            New
+            3D Stack
           </Box>
           <Box
             component="span"
