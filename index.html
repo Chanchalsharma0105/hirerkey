@@ -447,7 +447,7 @@
       </button>
       <button class="nav-tab-btn" id="tab-login" onclick="loadView('login')">
         <span>🔐 Login Screen</span>
-        <span class="tab-badge" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Four Views ① ② ③ ④</span>
+        <span class="tab-badge" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">4 Pages ① ② ③ ④</span>
       </button>
     </nav>
 
@@ -475,6 +475,17 @@
 
   <!-- Main View Area -->
   <main class="main-viewport">
+    <!-- Local file:// protocol notice bar -->
+    <div id="fileProtocolNotice" style="display: none; background: #FAF5FF; border-bottom: 1px solid #DDD6FE; color: #581C87; padding: 10px 24px; font-size: 13px; font-weight: 500; align-items: center; justify-content: space-between; gap: 16px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 16px;">💡</span>
+        <span>Opened via <code>file://</code> protocol. If your browser restricts embedded iframes on local files, you can launch the active view directly in full screen.</span>
+      </div>
+      <a id="btnDirectFileLink" href="views/appraisal_revamp.html" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: #7C3AED; color: #FFFFFF; border-radius: 8px; text-decoration: none; font-size: 12px; font-weight: 700; white-space: nowrap; box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);">
+        <span>Open Directly In Tab ↗</span>
+      </a>
+    </div>
+
     <!-- Active View IFrame -->
     <iframe id="activeViewFrame" class="view-frame" src="views/dashboard_view2.html" title="Hirerkey Selected View Frame"></iframe>
 
@@ -823,6 +834,14 @@
     let currentViewKey = 'dashboard';
     let isGridMode = false;
 
+    const isInsideViewsDir = (window.location.pathname || '').includes('/views/') || (window.location.pathname || '').endsWith('views/index.html');
+    const resolveViewUrl = (url) => {
+      if (isInsideViewsDir && url.startsWith('views/')) {
+        return url.replace(/^views\//, '');
+      }
+      return url;
+    };
+
     function loadView(key) {
       if (!VIEWS[key]) return;
       currentViewKey = key;
@@ -837,16 +856,24 @@
       const activeBtn = document.getElementById('tab-' + key);
       if (activeBtn) activeBtn.classList.add('active');
 
+      const targetUrl = resolveViewUrl(VIEWS[key].url);
+
       // Update IFrame src
       const frame = document.getElementById('activeViewFrame');
-      if (frame && frame.src !== VIEWS[key].url) {
-        frame.src = VIEWS[key].url;
+      if (frame) {
+        frame.src = targetUrl;
       }
 
       // Update Standalone Link
       const link = document.getElementById('btnStandaloneLink');
       if (link) {
-        link.href = VIEWS[key].url;
+        link.href = targetUrl;
+      }
+
+      // Update file protocol notice direct button
+      const directFileLink = document.getElementById('btnDirectFileLink');
+      if (directFileLink) {
+        directFileLink.href = targetUrl;
       }
 
       // Update URL hash
@@ -888,6 +915,15 @@
 
     // Check URL hash on load
     window.addEventListener('DOMContentLoaded', function() {
+      if (window.location.protocol === 'file:') {
+        const notice = document.getElementById('fileProtocolNotice');
+        if (notice) notice.style.display = 'flex';
+      }
+      if (isInsideViewsDir) {
+        document.querySelectorAll('a[href^="views/"]').forEach(a => {
+          a.href = a.getAttribute('href').replace(/^views\//, '');
+        });
+      }
       const hash = window.location.hash.replace('#', '');
       if (hash && VIEWS[hash]) {
         loadView(hash);
