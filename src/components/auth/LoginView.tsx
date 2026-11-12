@@ -1819,762 +1819,1316 @@ export const LoginView: React.FC<LoginViewProps> = ({
       }
     }
 
-              /* PAGE 3: THE 3D ISOMETRIC GLASS PLATFORM STACK (HIRERKEY AUTONOMOUS ENGINE) */
-              #v4WorkflowStageJourney {
-                position: relative;
-                width: 100%;
-                max-width: 540px;
-                height: 350px;
-                perspective: 1200px;
-                perspective-origin: 50% 46%;
-                transform-style: preserve-3d;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: visible;
-                contain: none;
-              }
-
-              .p3-iso-stage {
-                position: relative;
-                width: 100%;
-                max-width: 540px;
-                height: 350px;
-                perspective: 1200px;
-                perspective-origin: 50% 46%;
-                transform-style: preserve-3d;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: visible;
-              }
-
-              .p3-iso-ambient {
-                position: absolute;
-                width: 440px;
-                height: 280px;
-                background: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.22) 0%, rgba(56, 189, 248, 0.14) 40%, transparent 70%);
-                filter: blur(45px);
-                pointer-events: none;
-                z-index: 1;
-                transform: translateZ(-120px);
-              }
-
-              .p3-iso-stack {
-                position: relative;
-                width: 380px;
-                height: 230px;
-                transform-style: preserve-3d;
-                transform: rotateX(56deg) rotateZ(-34deg) rotateY(4deg);
-                transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-                will-change: transform;
-                z-index: 2;
-              }
-
-              .p3-iso-laser-pillar {
-                position: absolute;
-                width: 3px;
-                height: 180px;
-                margin-left: -1.5px;
-                margin-top: -90px;
-                background: linear-gradient(to top, 
-                  rgba(99, 102, 241, 0.35) 0%, 
-                  rgba(56, 189, 248, 0.9) 50%, 
-                  rgba(167, 139, 250, 0.95) 100%
-                );
-                box-shadow: 
-                  0 0 10px rgba(56, 189, 248, 0.8),
-                  0 0 20px rgba(124, 58, 237, 0.5);
-                transform-style: preserve-3d;
-                transform: rotateX(-90deg);
-                pointer-events: none;
-                z-index: 8;
-              }
-
-              .p3-iso-laser-tl { left: 24px; top: 22px; }
-              .p3-iso-laser-tr { left: 356px; top: 22px; }
-              .p3-iso-laser-bl { left: 24px; top: 208px; }
-              .p3-iso-laser-br { left: 356px; top: 208px; }
-
-              .p3-iso-photon {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                width: 8px;
-                height: 8px;
-                margin-left: -4px;
-                margin-top: -4px;
-                border-radius: 50%;
-                background: #FFFFFF;
-                box-shadow: 
-                  0 0 12px 3px #38BDF8, 
-                  0 0 22px 6px #818CF8,
-                  0 0 35px 10px #C084FC;
-                transform-style: preserve-3d;
-                will-change: transform, opacity;
-              }
-
-              @keyframes p3PhotonAscend {
-                0% {
-                  transform: translateY(80px) scale(0.6);
-                  opacity: 0;
-                }
-                15% {
-                  opacity: 1;
-                  transform: translateY(60px) scale(1.1);
-                }
-                50% {
-                  opacity: 1;
-                  transform: translateY(0px) scale(1.3);
-                  box-shadow: 0 0 16px 4px #38BDF8, 0 0 28px 8px #C084FC;
-                }
-                85% {
-                  opacity: 1;
-                  transform: translateY(-60px) scale(1.1);
-                }
-                100% {
-                  transform: translateY(-80px) scale(0.6);
-                  opacity: 0;
-                }
-              }
-
-              @keyframes p3PhotonDescend {
-                0% {
-                  transform: translateY(-80px) scale(0.6);
-                  opacity: 0;
-                }
-                15% {
-                  opacity: 1;
-                  transform: translateY(-60px) scale(1.1);
-                }
-                50% {
-                  opacity: 1;
-                  transform: translateY(0px) scale(1.3);
-                  box-shadow: 0 0 16px 4px #A78BFA, 0 0 28px 8px #38BDF8;
-                }
-                85% {
-                  opacity: 1;
-                  transform: translateY(60px) scale(1.1);
-                }
-                100% {
-                  transform: translateY(80px) scale(0.6);
-                  opacity: 0;
-                }
-              }
-
-              .p3-iso-photon-ascend-1 {
-                animation: p3PhotonAscend 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-              }
-              .p3-iso-photon-descend-1 {
-                animation: p3PhotonDescend 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.7s;
-              }
-              .p3-iso-photon-ascend-2 {
-                animation: p3PhotonAscend 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite 1.5s;
-              }
-              .p3-iso-photon-descend-2 {
-                animation: p3PhotonDescend 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite 2.2s;
-              }
-
-              .p3-iso-slab {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                border-radius: 20px;
-                transform-style: preserve-3d;
-                transition: box-shadow 0.4s ease, border-color 0.4s ease;
-                will-change: transform;
-                overflow: hidden;
-                user-select: none;
-                box-sizing: border-box;
-              }
-
-              .p3-iso-sheen {
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.6) 48%, rgba(167, 139, 250, 0.3) 52%, transparent 80%);
-                transform: translateX(-150%) skewX(-25deg);
-                pointer-events: none;
-                z-index: 10;
-                animation: p3GlassSheen 6.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-              }
-
-              @keyframes p3GlassSheen {
-                0% {
-                  transform: translateX(-150%) skewX(-25deg);
-                  opacity: 0;
-                }
-                15% {
-                  opacity: 0.6;
-                }
-                45% {
-                  transform: translateX(180%) skewX(-25deg);
-                  opacity: 0.8;
-                }
-                65% {
-                  opacity: 0;
-                }
-                100% {
-                  transform: translateX(180%) skewX(-25deg);
-                  opacity: 0;
-                }
-              }
-
-              /* LAYER 01: FOUNDATION */
-              .p3-iso-slab-foundation {
-                background: linear-gradient(135deg, 
-                  rgba(15, 23, 42, 0.86) 0%, 
-                  rgba(30, 27, 75, 0.76) 50%,
-                  rgba(15, 23, 42, 0.92) 100%
-                );
-                backdrop-filter: blur(18px);
-                -webkit-backdrop-filter: blur(18px);
-                border: 1.5px solid rgba(99, 102, 241, 0.35);
-                box-shadow: 
-                  0 35px 70px -15px rgba(0, 0, 0, 0.75),
-                  0 0 28px rgba(99, 102, 241, 0.2),
-                  inset 0 1px 1.5px rgba(255, 255, 255, 0.15),
-                  inset 0 -1px 1px rgba(0, 0, 0, 0.5);
-                transform: translateZ(-80px);
-                animation: p3LevitateBase 6.2s ease-in-out infinite;
-                z-index: 3;
-              }
-              .p3-iso-slab-foundation .p3-iso-sheen {
-                animation-delay: 4.4s;
-              }
-
-              @keyframes p3LevitateBase {
-                0%, 100% {
-                  transform: translateZ(-80px) rotateX(0deg);
-                }
-                50% {
-                  transform: translateZ(-74px) rotateX(-0.4deg);
-                }
-              }
-
-              .p3-iso-foundation-content {
-                position: relative;
-                height: 100%;
-                padding: 14px 18px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                box-sizing: border-box;
-                color: #FFFFFF;
-              }
-
-              .p3-iso-tier-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-              }
-
-              .p3-iso-tier-badge {
-                display: inline-flex;
-                align-items: center;
-                gap: 5px;
-                font-size: 9px;
-                font-weight: 700;
-                letter-spacing: 0.05em;
-                padding: 3px 8px;
-                border-radius: 9999px;
-                text-transform: uppercase;
-              }
-
-              .p3-iso-badge-indigo {
-                background: rgba(99, 102, 241, 0.2);
-                border: 1px solid rgba(129, 140, 248, 0.45);
-                color: #A5B4FC;
-              }
-
-              .p3-iso-tier-label {
-                font-size: 9px;
-                font-weight: 800;
-                letter-spacing: 0.08em;
-                color: #6366F1;
-                background: rgba(99, 102, 241, 0.1);
-                padding: 2px 6px;
-                border-radius: 4px;
-              }
-
-              .p3-iso-foundation-mesh {
-                position: relative;
-                width: 100%;
-                height: 105px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              }
-
-              .p3-iso-mesh-svg {
-                width: 100%;
-                height: 100%;
-                overflow: visible;
-              }
-
-              @keyframes p3RadarRotate {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-              }
-
-              .p3-iso-radar-sweep {
-                transform-origin: 120px 50px;
-                animation: p3RadarRotate 8s linear infinite;
-              }
-
-              @keyframes p3NodePulse {
-                0%, 100% { transform: scale(1); opacity: 0.8; }
-                50% { transform: scale(1.3); opacity: 1; }
-              }
-
-              .p3-iso-node-pulse {
-                transform-origin: center;
-                animation: p3NodePulse 2.8s ease-in-out infinite;
-              }
-              .p3-iso-node-pulse:nth-child(2) { animation-delay: 0.9s; }
-              .p3-iso-node-pulse:nth-child(3) { animation-delay: 1.8s; }
-
-              .p3-iso-tier-footer {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                border-top: 1px solid rgba(255, 255, 255, 0.08);
-                padding-top: 8px;
-              }
-
-              .p3-iso-tier-name {
-                font-size: 11px;
-                font-weight: 700;
-                letter-spacing: -0.01em;
-                color: #F8FAFC;
-              }
-
-              .p3-iso-tier-metric {
-                display: inline-flex;
-                align-items: center;
-                gap: 5px;
-                font-size: 10px;
-                font-weight: 600;
-                color: #94A3B8;
-              }
-
-              .p3-iso-metric-dot {
-                width: 6px;
-                height: 6px;
-                border-radius: 50%;
-                display: inline-block;
-              }
-              .p3-iso-metric-dot.green { background: #10B981; box-shadow: 0 0 6px #10B981; }
-              .p3-iso-metric-dot.cyan { background: #38BDF8; box-shadow: 0 0 6px #38BDF8; }
-              .p3-iso-metric-dot.purple { background: #C084FC; box-shadow: 0 0 6px #C084FC; }
-
-              /* LAYER 02: WORKFLOWS */
-              .p3-iso-slab-workflows {
-                background: linear-gradient(135deg, 
-                  rgba(30, 41, 59, 0.78) 0%, 
-                  rgba(67, 56, 202, 0.52) 50%,
-                  rgba(14, 165, 233, 0.32) 100%
-                );
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-                border: 1.5px solid rgba(56, 189, 248, 0.45);
-                box-shadow: 
-                  0 25px 50px -10px rgba(14, 165, 233, 0.28),
-                  0 0 32px rgba(67, 56, 202, 0.25),
-                  inset 0 1px 1.5px rgba(255, 255, 255, 0.25);
-                transform: translateZ(0px);
-                animation: p3LevitateMid 5.4s ease-in-out infinite 1.4s;
-                z-index: 5;
-              }
-              .p3-iso-slab-workflows .p3-iso-sheen {
-                animation-delay: 2.2s;
-              }
-
-              @keyframes p3LevitateMid {
-                0%, 100% {
-                  transform: translateZ(0px) rotateX(0deg);
-                }
-                50% {
-                  transform: translateZ(7px) rotateX(0.5deg);
-                }
-              }
-
-              .p3-iso-workflows-content {
-                position: relative;
-                height: 100%;
-                padding: 14px 18px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                box-sizing: border-box;
-                color: #FFFFFF;
-              }
-
-              .p3-iso-badge-cyan {
-                background: rgba(14, 165, 233, 0.22);
-                border: 1px solid rgba(56, 189, 248, 0.5);
-                color: #7DD3FC;
-              }
-
-              .p3-iso-live-rate {
-                font-size: 10px;
-                font-family: monospace;
-                font-weight: 700;
-                color: #38BDF8;
-                background: rgba(56, 189, 248, 0.15);
-                padding: 2px 7px;
-                border-radius: 4px;
-                border: 1px solid rgba(56, 189, 248, 0.3);
-              }
-
-              .p3-iso-pipeline-deck {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                margin: 6px 0;
-              }
-
-              .p3-iso-pipeline-lane {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                background: rgba(15, 23, 42, 0.55);
-                border: 1px solid rgba(56, 189, 248, 0.25);
-                border-radius: 8px;
-                padding: 7px 10px;
-              }
-
-              .p3-iso-pipeline-tag {
-                font-size: 9.5px;
-                font-weight: 700;
-                color: #E2E8F0;
-                min-width: 78px;
-                white-space: nowrap;
-              }
-
-              .p3-iso-lane-track {
-                flex: 1;
-                height: 4px;
-                border-radius: 9999px;
-                background: rgba(255, 255, 255, 0.12);
-                overflow: hidden;
-                position: relative;
-              }
-
-              .p3-iso-lane-fill {
-                height: 100%;
-                width: 100%;
-                background: linear-gradient(90deg, #6366F1, #38BDF8);
-                border-radius: 9999px;
-                animation: p3LanePulse 3.6s ease-in-out infinite;
-              }
-              .p3-iso-lane-fill.cyan {
-                background: linear-gradient(90deg, #38BDF8, #34D399);
-                animation-delay: 1.2s;
-              }
-
-              @keyframes p3LanePulse {
-                0% { transform: translateX(-100%); }
-                50%, 100% { transform: translateX(0%); }
-              }
-
-              .p3-iso-lane-status {
-                font-size: 9px;
-                font-weight: 700;
-                color: #34D399;
-                white-space: nowrap;
-              }
-
-              /* LAYER 03: TOP CROWN (HyIQ AI) */
-              .p3-iso-slab-hyiq {
-                background: linear-gradient(135deg, 
-                  rgba(76, 29, 149, 0.68) 0%, 
-                  rgba(124, 58, 237, 0.48) 50%,
-                  rgba(236, 72, 153, 0.35) 100%
-                );
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                border: 1.5px solid rgba(167, 139, 250, 0.7);
-                box-shadow: 
-                  0 30px 65px -5px rgba(124, 58, 237, 0.52),
-                  0 0 42px rgba(236, 72, 153, 0.32),
-                  inset 0 1px 2px rgba(255, 255, 255, 0.45);
-                transform: translateZ(80px);
-                animation: p3LevitateTop 4.8s ease-in-out infinite;
-                z-index: 7;
-              }
-
-              @keyframes p3LevitateTop {
-                0%, 100% {
-                  transform: translateZ(80px) rotateX(0deg) rotateY(0deg);
-                }
-                50% {
-                  transform: translateZ(90px) rotateX(-0.8deg) rotateY(0.6deg);
-                }
-              }
-
-              .p3-iso-hyiq-content {
-                position: relative;
-                height: 100%;
-                padding: 14px 18px;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                box-sizing: border-box;
-                color: #FFFFFF;
-              }
-
-              .p3-iso-badge-amethyst {
-                background: rgba(124, 58, 237, 0.3);
-                border: 1px solid rgba(192, 132, 252, 0.55);
-                color: #E9D5FF;
-              }
-
-              .p3-iso-sparkle-icon {
-                font-size: 11px;
-              }
-
-              .p3-iso-eq-group {
-                display: flex;
-                align-items: flex-end;
-                gap: 3px;
-                height: 18px;
-              }
-
-              .p3-iso-eq-bar {
-                width: 3px;
-                background: linear-gradient(to top, #A855F7, #F472B6);
-                border-radius: 2px;
-              }
-
-              .p3-iso-eq-1 { animation: p3WaveDance1 1.2s ease-in-out infinite; height: 10px; }
-              .p3-iso-eq-2 { animation: p3WaveDance2 0.9s ease-in-out infinite 0.15s; height: 16px; }
-              .p3-iso-eq-3 { animation: p3WaveDance3 1.4s ease-in-out infinite 0.3s; height: 12px; }
-              .p3-iso-eq-4 { animation: p3WaveDance4 1.1s ease-in-out infinite 0.2s; height: 18px; }
-              .p3-iso-eq-5 { animation: p3WaveDance5 1.3s ease-in-out infinite 0.4s; height: 9px; }
-
-              @keyframes p3WaveDance1 { 0%, 100% { height: 7px; } 50% { height: 16px; } }
-              @keyframes p3WaveDance2 { 0%, 100% { height: 16px; } 50% { height: 8px; } }
-              @keyframes p3WaveDance3 { 0%, 100% { height: 10px; } 50% { height: 18px; } }
-              @keyframes p3WaveDance4 { 0%, 100% { height: 17px; } 50% { height: 9px; } }
-              @keyframes p3WaveDance5 { 0%, 100% { height: 8px; } 50% { height: 15px; } }
-
-              .p3-iso-reasoning-card {
-                background: rgba(15, 23, 42, 0.6);
-                border: 1px solid rgba(167, 139, 250, 0.35);
-                border-radius: 9px;
-                padding: 9px 12px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin: 4px 0;
-              }
-
-              .p3-iso-reasoning-chip {
-                display: flex;
-                align-items: center;
-                gap: 7px;
-                font-size: 10.5px;
-                font-weight: 600;
-                color: #F3E8FF;
-              }
-
-              .p3-iso-pulsing-brain {
-                font-size: 13px;
-                animation: p3BrainBeat 2s ease-in-out infinite;
-                display: inline-block;
-              }
-
-              @keyframes p3BrainBeat {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.18); }
-              }
-
-              .p3-iso-reasoning-confidence {
-                font-size: 9.5px;
-                font-weight: 700;
-                color: #34D399;
-                background: rgba(16, 185, 129, 0.15);
-                border: 1px solid rgba(16, 185, 129, 0.3);
-                padding: 2px 6px;
-                border-radius: 4px;
-                white-space: nowrap;
-              }
-
-              /* FLOATING HOLOGRAPHIC TELEMETRY BADGES */
-              .p3-holo-badge,
-              .p3-iso-hud-badge {
-                position: absolute;
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 7px 13px;
-                border-radius: 9999px;
-                font-family: 'Plus Jakarta Sans', sans-serif;
-                font-size: 10.5px;
-                font-weight: 600;
-                letter-spacing: 0.02em;
-                color: #FFFFFF;
-                backdrop-filter: blur(14px);
-                -webkit-backdrop-filter: blur(14px);
-                white-space: nowrap;
-                pointer-events: auto;
-                cursor: pointer;
-                transform-style: preserve-3d;
-                transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-                box-shadow: 0 10px 26px -4px rgba(0, 0, 0, 0.5);
-                z-index: 20;
-              }
-
-              .p3-holo-dot,
-              .p3-iso-hud-dot {
-                width: 6px;
-                height: 6px;
-                border-radius: 50%;
-                flex-shrink: 0;
-              }
-
-              .p3-holo-badge-03,
-              .p3-iso-hud-badge-03 {
-                background: rgba(124, 58, 237, 0.32);
-                border: 1px solid rgba(192, 132, 252, 0.55);
-                transform: translate3d(280px, -20px, 110px);
-                animation: p3HoloFloat3 5.2s ease-in-out infinite;
-              }
-              .p3-holo-badge-03:hover,
-              .p3-iso-hud-badge-03:hover {
-                transform: translate3d(280px, -20px, 125px) scale(1.06) !important;
-                border-color: rgba(192, 132, 252, 0.9);
-                box-shadow: 0 14px 32px -4px rgba(124, 58, 237, 0.6);
-              }
-              .p3-holo-badge-03 .p3-holo-dot,
-              .p3-iso-hud-badge-03 .p3-iso-hud-dot {
-                background: #C084FC;
-                box-shadow: 0 0 8px #C084FC;
-              }
-
-              .p3-holo-badge-02,
-              .p3-iso-hud-badge-02 {
-                background: rgba(14, 165, 233, 0.28);
-                border: 1px solid rgba(56, 189, 248, 0.55);
-                transform: translate3d(-60px, 95px, 20px);
-                animation: p3HoloFloat2 5.6s ease-in-out infinite 1.2s;
-              }
-              .p3-holo-badge-02:hover,
-              .p3-iso-hud-badge-02:hover {
-                transform: translate3d(-60px, 95px, 35px) scale(1.06) !important;
-                border-color: rgba(56, 189, 248, 0.9);
-                box-shadow: 0 14px 32px -4px rgba(14, 165, 233, 0.6);
-              }
-              .p3-holo-badge-02 .p3-holo-dot,
-              .p3-iso-hud-badge-02 .p3-iso-hud-dot {
-                background: #38BDF8;
-                box-shadow: 0 0 8px #38BDF8;
-              }
-
-              .p3-holo-badge-01,
-              .p3-iso-hud-badge-01 {
-                background: rgba(99, 102, 241, 0.28);
-                border: 1px solid rgba(129, 140, 248, 0.5);
-                transform: translate3d(270px, 210px, -65px);
-                animation: p3HoloFloat1 6.0s ease-in-out infinite 2.4s;
-              }
-              .p3-holo-badge-01:hover,
-              .p3-iso-hud-badge-01:hover {
-                transform: translate3d(270px, 210px, -50px) scale(1.06) !important;
-                border-color: rgba(129, 140, 248, 0.9);
-                box-shadow: 0 14px 32px -4px rgba(99, 102, 241, 0.6);
-              }
-              .p3-holo-badge-01 .p3-holo-dot,
-              .p3-iso-hud-badge-01 .p3-iso-hud-dot {
-                background: #34D399;
-                box-shadow: 0 0 8px #34D399;
-              }
-
-              @keyframes p3HoloFloat3 {
-                0%, 100% { transform: translate3d(280px, -20px, 110px); }
-                50% { transform: translate3d(280px, -24px, 118px); }
-              }
-              @keyframes p3HoloFloat2 {
-                0%, 100% { transform: translate3d(-60px, 95px, 20px); }
-                50% { transform: translate3d(-60px, 91px, 28px); }
-              }
-              @keyframes p3HoloFloat1 {
-                0%, 100% { transform: translate3d(270px, 210px, -65px); }
-                50% { transform: translate3d(270px, 206px, -57px); }
-              }
-
-              @media (max-width: 640px) {
-                #v4WorkflowStageJourney {
-                  height: 280px;
-                  perspective: 900px;
-                }
-                .p3-iso-stage {
-                  height: 280px;
-                  perspective: 900px;
-                }
-                .p3-iso-ambient {
-                  width: 320px;
-                  height: 220px;
-                }
-                .p3-iso-stack {
-                  width: 290px;
-                  height: 175px;
-                  transform: rotateX(48deg) rotateZ(-28deg) rotateY(2deg) scale(0.8);
-                }
-                .p3-iso-laser-pillar {
-                  height: 140px;
-                  margin-top: -70px;
-                }
-                .p3-iso-laser-tl { left: 18px; top: 16px; }
-                .p3-iso-laser-tr { left: 272px; top: 16px; }
-                .p3-iso-laser-bl { left: 18px; top: 159px; }
-                .p3-iso-laser-br { left: 272px; top: 159px; }
-                .p3-iso-slab-foundation { transform: translateZ(-45px) !important; }
-                .p3-iso-slab-workflows  { transform: translateZ(0px) !important; }
-                .p3-iso-slab-hyiq       { transform: translateZ(45px) !important; }
-                .p3-holo-badge-03, .p3-iso-hud-badge-03 { transform: translate3d(160px, -15px, 50px) scale(0.8) !important; }
-                .p3-holo-badge-02, .p3-iso-hud-badge-02 { transform: translate3d(-20px, 65px, 10px) scale(0.8) !important; }
-                .p3-holo-badge-01, .p3-iso-hud-badge-01 { transform: translate3d(150px, 145px, -35px) scale(0.8) !important; }
-              }
-
-              @media (max-width: 480px) {
-                #v4WorkflowStageJourney {
-                  height: 260px;
-                }
-                .p3-iso-stage {
-                  height: 260px;
-                }
-                .p3-iso-stack {
-                  width: 260px;
-                  height: 160px;
-                  transform: rotateX(46deg) rotateZ(-26deg) scale(0.72) !important;
-                }
-                .p3-holo-badge, .p3-iso-hud-badge {
-                  display: none !important;
-                }
-              }
-
-              @media (prefers-reduced-motion: reduce) {
-                .p3-iso-slab,
-                .p3-holo-badge,
-                .p3-iso-hud-badge,
-                .p3-iso-photon,
-                .p3-iso-eq-bar,
-                .p3-iso-sheen,
-                .p3-iso-radar-sweep,
-                .p3-iso-node-pulse,
-                .p3-iso-pulsing-brain,
-                .p3-iso-lane-fill {
-                  animation: none !important;
-                  transition: none !important;
-                }
-                .p3-iso-stack {
-                  transform: rotateX(45deg) rotateZ(-25deg) !important;
-                }
-              }
-
+              /* ==========================================================================
+       PAGE 3: THE PROCESS-BASED CONNECTED HR ECOSYSTEM — 14.0s SEQUENTIAL STORY
+       ========================================================================== */
+
+    /* Stage Container */
+    #p3ProcessStage {
+      position: relative;
+      width: 100%;
+      max-width: 540px;
+      height: 350px;
+      perspective: 1000px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-top: 6px;
+      contain: layout paint style;
+      transform-style: preserve-3d;
+    }
+
+    /* 1. Subtle Technical Dot & Line Grid Pattern with Radial Mask */
+    .p3-proc-grid-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background-image: 
+        radial-gradient(circle, rgba(124, 58, 237, 0.09) 1px, transparent 1px),
+        linear-gradient(to right, rgba(124, 58, 237, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(124, 58, 237, 0.025) 1px, transparent 1px);
+      background-size: 20px 20px, 40px 40px, 40px 40px;
+      background-position: center center;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000000 45%, transparent 95%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000000 45%, transparent 95%);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.85;
+    }
+
+    /* 2. Soft Ambient Underlay Glow */
+    .p3-proc-ambient {
+      position: absolute;
+      width: 340px;
+      height: 230px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 70%);
+      filter: blur(34px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* 3. SVG Flow Lines & Optical Connectors */
+    .p3-proc-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .p3-proc-track-base {
+      stroke: rgba(148, 163, 184, 0.22);
+      stroke-width: 1.5px;
+      stroke-dasharray: 3 3;
+      fill: none;
+    }
+
+    .p3-proc-track-active {
+      fill: none;
+      stroke-width: 2.2px;
+      stroke-linecap: round;
+      stroke-dasharray: 144;
+      stroke-dashoffset: 144;
+      opacity: 0;
+      will-change: stroke-dashoffset, stroke-width, opacity;
+    }
+
+    .p3-proc-line-1 {
+      animation: p3ProcPath1Draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .p3-proc-line-2 {
+      animation: p3ProcPath2Draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .p3-proc-line-3 {
+      animation: p3ProcPath3Draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+    .p3-proc-line-4 {
+      animation: p3ProcPath4Draw 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* 4. Photonic Light Particles navigating Bezier paths */
+    .p3-proc-particle {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0;
+      will-change: transform, opacity, offset-distance;
+    }
+
+    .p3-proc-particle-1 {
+      background: #A855F7;
+      box-shadow: 0 0 10px 2px #A855F7, 0 0 4px #FFFFFF;
+      offset-path: path("M 160 75 C 210 75, 230 145, 270 160");
+      animation: p3ProcParticle1Cycle 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .p3-proc-particle-2 {
+      background: #3B82F6;
+      box-shadow: 0 0 10px 2px #3B82F6, 0 0 4px #FFFFFF;
+      offset-path: path("M 380 75 C 330 75, 310 145, 270 160");
+      animation: p3ProcParticle2Cycle 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .p3-proc-particle-3 {
+      background: #EC4899;
+      box-shadow: 0 0 10px 2px #EC4899, 0 0 4px #FFFFFF;
+      offset-path: path("M 160 275 C 210 275, 230 205, 270 190");
+      animation: p3ProcParticle3Cycle 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    .p3-proc-particle-4 {
+      background: #10B981;
+      box-shadow: 0 0 10px 2px #10B981, 0 0 4px #FFFFFF;
+      offset-path: path("M 380 275 C 330 275, 310 205, 270 190");
+      animation: p3ProcParticle4Cycle 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* 5. Central Miniature Dashboard Anchor (Living Command Center) */
+    .p3-proc-dashboard {
+      position: absolute;
+      top: 102.5px;
+      left: 162px;
+      width: 216px;
+      height: 145px;
+      z-index: 5;
+      background: #FFFFFF;
+      border-radius: 13px;
+      border: 1.5px solid rgba(124, 58, 237, 0.28);
+      box-shadow: 
+        0 20px 45px -10px rgba(124, 58, 237, 0.30),
+        0 8px 20px -4px rgba(15, 23, 42, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.9);
+      overflow: hidden;
+      transform-origin: center center;
+      will-change: transform, box-shadow, opacity;
+      user-select: none;
+      animation: p3ProcDashCycle 14s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      transition: transform 0.15s ease-out;
+    }
+
+    .p3-proc-dash-chrome {
+      height: 22px;
+      padding: 0 8px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .p3-proc-dash-dots {
+      display: flex;
+      align-items: center;
+      gap: 3.5px;
+    }
+
+    .p3-proc-dash-dot-red {
+      width: 5.5px;
+      height: 5.5px;
+      border-radius: 50%;
+      background: #EF4444;
+    }
+
+    .p3-proc-dash-dot-amber {
+      width: 5.5px;
+      height: 5.5px;
+      border-radius: 50%;
+      background: #F59E0B;
+    }
+
+    .p3-proc-dash-dot-green {
+      width: 5.5px;
+      height: 5.5px;
+      border-radius: 50%;
+      background: #10B981;
+    }
+
+    .p3-proc-dash-url {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 8px;
+      color: #64748B;
+      font-weight: 500;
+      letter-spacing: -0.2px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .p3-proc-dash-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      padding: 1px 5px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #059669;
+      font-size: 7.5px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .p3-proc-dash-beacon {
+      width: 4.5px;
+      height: 4.5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 6px #10B981;
+      animation: p3ProcBeaconPulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes p3ProcBeaconPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.35); opacity: 0.6; }
+    }
+
+    .p3-proc-dash-body {
+      position: relative;
+      width: 100%;
+      height: 123px;
+      background: #0B0818;
+      overflow: hidden;
+    }
+
+    .p3-proc-dash-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* Micro AI Insight Toast inside Dashboard */
+    .p3-proc-dash-toast {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px) scale(0.9);
+      opacity: 0;
+      background: rgba(15, 23, 42, 0.94);
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-size: 7.5px;
+      font-weight: 600;
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      z-index: 8;
+      pointer-events: none;
+      animation: p3ProcDashToastCycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-toast-sparkle {
+      font-size: 8px;
+      line-height: 1;
+    }
+
+    .p3-proc-toast-text {
+      line-height: 1;
+      letter-spacing: -0.1px;
+    }
+
+    /* 6. Module Cards (Quad Spoke Elements) */
+    .p3-proc-card {
+      position: absolute;
+      width: 185px;
+      min-height: 52px;
+      padding: 6px 10px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1.5px solid #E2E8F0;
+      box-shadow: 
+        0 10px 25px -5px rgba(124, 58, 237, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.85);
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      will-change: transform, opacity, border-color, box-shadow;
+      user-select: none;
+    }
+
+    .p3-proc-card-tl {
+      top: 14px;
+      left: 10px;
+      animation: p3ProcCard1Cycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-card-tr {
+      top: 14px;
+      right: 10px;
+      animation: p3ProcCard2Cycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-card-bl {
+      bottom: 14px;
+      left: 10px;
+      animation: p3ProcCard3Cycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-card-br {
+      bottom: 14px;
+      right: 10px;
+      animation: p3ProcCard4Cycle 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .p3-proc-card-icon-box {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .p3-proc-icon-purple {
+      background: #EDE9FE;
+      color: #7C3AED;
+    }
+
+    .p3-proc-icon-blue {
+      background: #EFF6FF;
+      color: #2563EB;
+    }
+
+    .p3-proc-icon-pink {
+      background: #FDF2F8;
+      color: #EC4899;
+      animation: p3ProcSparkleBox 2.5s ease-in-out infinite;
+    }
+
+    @keyframes p3ProcSparkleBox {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.1) rotate(6deg); }
+    }
+
+    .p3-proc-icon-emerald {
+      background: #ECFDF5;
+      color: #10B981;
+    }
+
+    .p3-proc-card-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .p3-proc-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+    }
+
+    .p3-proc-card-tag {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
+    .p3-proc-tag-purple { color: #7C3AED; }
+    .p3-proc-tag-blue { color: #2563EB; }
+    .p3-proc-tag-pink { color: #EC4899; }
+    .p3-proc-tag-emerald { color: #10B981; }
+
+    .p3-proc-card-title {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .p3-proc-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 1px;
+      position: relative;
+      min-height: 14px;
+    }
+
+    .p3-proc-card-sub {
+      font-size: 8.5px;
+      color: #64748B;
+      white-space: nowrap;
+    }
+
+    /* Micro-interactions: Card 1 (Orientation) */
+    .p3-proc-badge-check {
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 1px 5px;
+      border-radius: 9999px;
+      opacity: 0;
+      transform: scale(0);
+      will-change: transform, opacity;
+      animation: p3ProcCheckmarkPop 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    .p3-proc-progress-track {
+      width: 46px;
+      height: 4px;
+      background: #E2E8F0;
+      border-radius: 9999px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .p3-proc-progress-bar {
+      height: 100%;
+      border-radius: 9999px;
+      width: 0%;
+      will-change: width;
+    }
+
+    .p3-proc-progress-purple {
+      background: linear-gradient(90deg, #7C3AED, #A855F7);
+      animation: p3ProcOnboardProgress 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* Micro-interactions: Card 2 (Department Tour) */
+    .p3-proc-badge-blue {
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #0284C7;
+      background: rgba(2, 132, 199, 0.1);
+      padding: 1px 5px;
+      border-radius: 9999px;
+    }
+
+    .p3-proc-avatar-stack {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .p3-proc-avatar {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      border: 1.5px solid #FFFFFF;
+      font-size: 7px;
+      font-weight: 700;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-left: -4px;
+      will-change: transform, opacity;
+    }
+
+    .p3-proc-av-1 {
+      margin-left: 0;
+      background: #EDE9FE;
+      color: #7C3AED;
+      animation: p3ProcAvatar1Pop 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    .p3-proc-av-2 {
+      background: #EFF6FF;
+      color: #2563EB;
+      animation: p3ProcAvatar2Pop 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    .p3-proc-av-3 {
+      background: #ECFDF5;
+      color: #059669;
+      animation: p3ProcAvatar3Pop 14s cubic-bezier(0.34, 1.56, 0.64, 1) infinite;
+    }
+
+    /* Micro-interactions: Card 3 (Ask HyIQ AI) */
+    .p3-proc-badge-pink {
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #BE185D;
+      background: rgba(236, 72, 153, 0.1);
+      padding: 1px 5px;
+      border-radius: 9999px;
+    }
+
+    .p3-proc-typewriter-container {
+      display: inline-flex;
+      align-items: center;
+      max-width: 130px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .p3-proc-typewriter-text {
+      font-size: 8px;
+      color: #475569;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: p3ProcTypewriterQuery 14s steps(22, end) infinite;
+      will-change: width;
+    }
+
+    .p3-proc-typewriter-cursor {
+      font-size: 8px;
+      color: #EC4899;
+      font-weight: 700;
+      animation: p3ProcBlinkCursor 0.8s infinite;
+      margin-left: 1px;
+    }
+
+    @keyframes p3ProcBlinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .p3-proc-ai-response-pill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 600;
+      color: #9D174D;
+      background: rgba(236, 72, 153, 0.12);
+      border: 1px solid rgba(236, 72, 153, 0.28);
+      border-radius: 9999px;
+      padding: 1px 5px;
+      white-space: nowrap;
+      opacity: 0;
+      will-change: opacity, transform;
+      animation: p3ProcAiAnswerFade 14s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* Micro-interactions: Card 4 (1-on-1 Check-ins) */
+    .p3-proc-badge-emerald {
+      display: inline-flex;
+      align-items: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      color: #047857;
+      background: rgba(16, 185, 129, 0.12);
+      padding: 1px 5px;
+      border-radius: 9999px;
+    }
+
+    .p3-proc-date-pill {
+      font-size: 8px;
+      color: #059669;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .p3-proc-goal-track {
+      width: 44px;
+      height: 4px;
+      background: #E2E8F0;
+      border-radius: 9999px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .p3-proc-goal-bar {
+      height: 100%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #10B981, #059669);
+      width: 0%;
+      will-change: width;
+      animation: p3ProcGoalProgress 14s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* ==========================================================================
+       MASTER KEYFRAMES (14.0s SEQUENTIAL CYCLE)
+       ========================================================================== */
+
+    /* 1. Dashboard Master Cycle */
+    @keyframes p3ProcDashCycle {
+      0% {
+        opacity: 0;
+        transform: scale(0.92);
+        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.15);
+      }
+      6% {
+        opacity: 1;
+        transform: scale(1.02);
+        box-shadow: 0 24px 50px -10px rgba(124, 58, 237, 0.35);
+      }
+      10% {
+        opacity: 1;
+        transform: scale(1.0);
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.28);
+      }
+      30% {
+        transform: translateY(-2px) scale(1.0);
+      }
+      50% {
+        transform: translateY(1.5px) scale(1.0);
+      }
+      70% {
+        transform: translateY(0px) scale(1.0);
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.28);
+      }
+      80% {
+        transform: translateY(-2px) scale(1.025);
+        box-shadow: 
+          0 30px 75px -10px rgba(124, 58, 237, 0.50),
+          0 0 45px 6px rgba(124, 58, 237, 0.32),
+          0 0 0 1.5px rgba(255, 255, 255, 0.95);
+      }
+      92% {
+        transform: translateY(0px) scale(1.02);
+        box-shadow: 
+          0 30px 75px -10px rgba(124, 58, 237, 0.45),
+          0 0 40px 4px rgba(124, 58, 237, 0.28);
+        opacity: 1;
+      }
+      97% {
+        opacity: 0.6;
+        transform: scale(0.96);
+        box-shadow: 0 14px 30px -6px rgba(124, 58, 237, 0.20);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0.92);
+        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.15);
+      }
+    }
+
+    /* 2. Card 1 (Orientation) */
+    @keyframes p3ProcCard1Cycle {
+      0%, 15% {
+        opacity: 0;
+        transform: translate(-16px, -12px) scale(0.94);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      19% {
+        opacity: 1;
+        transform: translate(1px, 1px) scale(1.02);
+        border-color: #7C3AED;
+        box-shadow: 0 14px 32px -6px rgba(124, 58, 237, 0.32);
+      }
+      22% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(124, 58, 237, 0.5);
+      }
+      50% {
+        transform: translate(0, -2px) scale(1.0);
+      }
+      75% {
+        transform: translate(0, 1px) scale(1.0);
+      }
+      80% {
+        transform: translate(-1px, -3px) scale(1.03);
+        border-color: #7C3AED;
+        box-shadow: 0 16px 36px -6px rgba(124, 58, 237, 0.38);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(124, 58, 237, 0.5);
+      }
+      97% {
+        opacity: 0.2;
+        transform: translate(-12px, -8px) scale(0.96);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-16px, -12px) scale(0.94);
+      }
+    }
+
+    /* 3. Card 2 (Department Tour) */
+    @keyframes p3ProcCard2Cycle {
+      0%, 32% {
+        opacity: 0;
+        transform: translate(16px, -12px) scale(0.94);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      36% {
+        opacity: 1;
+        transform: translate(-1px, 1px) scale(1.02);
+        border-color: #3B82F6;
+        box-shadow: 0 14px 32px -6px rgba(59, 130, 246, 0.32);
+      }
+      38% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
+      55% {
+        transform: translate(0, -2px) scale(1.0);
+      }
+      75% {
+        transform: translate(0, 1px) scale(1.0);
+      }
+      80% {
+        transform: translate(1px, -3px) scale(1.03);
+        border-color: #3B82F6;
+        box-shadow: 0 16px 36px -6px rgba(59, 130, 246, 0.38);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(59, 130, 246, 0.5);
+      }
+      97% {
+        opacity: 0.2;
+        transform: translate(12px, -8px) scale(0.96);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(16px, -12px) scale(0.94);
+      }
+    }
+
+    /* 4. Card 3 (Ask HyIQ AI) */
+    @keyframes p3ProcCard3Cycle {
+      0%, 48% {
+        opacity: 0;
+        transform: translate(-16px, 12px) scale(0.94);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      52% {
+        opacity: 1;
+        transform: translate(1px, -1px) scale(1.02);
+        border-color: #EC4899;
+        box-shadow: 0 14px 32px -6px rgba(236, 72, 153, 0.35);
+      }
+      54% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(236, 72, 153, 0.5);
+      }
+      65% {
+        transform: translate(0, 2px) scale(1.0);
+      }
+      75% {
+        transform: translate(0, -1px) scale(1.0);
+      }
+      80% {
+        transform: translate(-1px, 3px) scale(1.03);
+        border-color: #EC4899;
+        box-shadow: 0 16px 36px -6px rgba(236, 72, 153, 0.40);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(236, 72, 153, 0.5);
+      }
+      97% {
+        opacity: 0.2;
+        transform: translate(-12px, 8px) scale(0.96);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-16px, 12px) scale(0.94);
+      }
+    }
+
+    /* 5. Card 4 (1-on-1 Check-ins) */
+    @keyframes p3ProcCard4Cycle {
+      0%, 64% {
+        opacity: 0;
+        transform: translate(16px, 12px) scale(0.94);
+        border-color: #E2E8F0;
+        box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      }
+      68% {
+        opacity: 1;
+        transform: translate(-1px, -1px) scale(1.02);
+        border-color: #10B981;
+        box-shadow: 0 14px 32px -6px rgba(16, 185, 129, 0.35);
+      }
+      70% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(16, 185, 129, 0.5);
+      }
+      75% {
+        transform: translate(0, 2px) scale(1.0);
+      }
+      80% {
+        transform: translate(1px, 3px) scale(1.03);
+        border-color: #10B981;
+        box-shadow: 0 16px 36px -6px rgba(16, 185, 129, 0.40);
+      }
+      92% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1.0);
+        border-color: rgba(16, 185, 129, 0.5);
+      }
+      97% {
+        opacity: 0.2;
+        transform: translate(12px, 8px) scale(0.96);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(16px, 12px) scale(0.94);
+      }
+    }
+
+    /* 6. Progressive Drawing of SVG Paths */
+    @keyframes p3ProcPath1Draw {
+      0%, 25% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      26% {
+        opacity: 0.95;
+      }
+      31% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      78% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      80% {
+        opacity: 1.0;
+        stroke-width: 3.0px;
+      }
+      92% {
+        opacity: 0.9;
+        stroke-width: 2.8px;
+        stroke-dashoffset: 0;
+      }
+      97% {
+        opacity: 0.1;
+        stroke-dashoffset: 0;
+      }
+      100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes p3ProcPath2Draw {
+      0%, 41% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      42% {
+        opacity: 0.95;
+      }
+      47% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      78% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      80% {
+        opacity: 1.0;
+        stroke-width: 3.0px;
+      }
+      92% {
+        opacity: 0.9;
+        stroke-width: 2.8px;
+        stroke-dashoffset: 0;
+      }
+      97% {
+        opacity: 0.1;
+        stroke-dashoffset: 0;
+      }
+      100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes p3ProcPath3Draw {
+      0%, 57% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      58% {
+        opacity: 0.95;
+      }
+      63% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      78% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      80% {
+        opacity: 1.0;
+        stroke-width: 3.0px;
+      }
+      92% {
+        opacity: 0.9;
+        stroke-width: 2.8px;
+        stroke-dashoffset: 0;
+      }
+      97% {
+        opacity: 0.1;
+        stroke-dashoffset: 0;
+      }
+      100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    @keyframes p3ProcPath4Draw {
+      0%, 73% {
+        stroke-dashoffset: 144;
+        opacity: 0;
+      }
+      74% {
+        opacity: 0.95;
+      }
+      79% {
+        stroke-dashoffset: 0;
+        opacity: 0.85;
+      }
+      78% {
+        opacity: 0.85;
+        stroke-width: 2.2px;
+      }
+      80% {
+        opacity: 1.0;
+        stroke-width: 3.0px;
+      }
+      92% {
+        opacity: 0.9;
+        stroke-width: 2.8px;
+        stroke-dashoffset: 0;
+      }
+      97% {
+        opacity: 0.1;
+        stroke-dashoffset: 0;
+      }
+      100% {
+        opacity: 0;
+        stroke-dashoffset: 144;
+      }
+    }
+
+    /* 7. Travelling Photonic Particles */
+    @keyframes p3ProcParticle1Cycle {
+      0%, 27% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      28% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      32% {
+        offset-distance: 100%;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      33%, 79% {
+        opacity: 0;
+      }
+      80% {
+        offset-distance: 0%;
+        opacity: 1;
+      }
+      86% {
+        offset-distance: 100%;
+        opacity: 0.8;
+      }
+      87%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes p3ProcParticle2Cycle {
+      0%, 43% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      44% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      48% {
+        offset-distance: 100%;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      49%, 81% {
+        opacity: 0;
+      }
+      82% {
+        offset-distance: 0%;
+        opacity: 1;
+      }
+      88% {
+        offset-distance: 100%;
+        opacity: 0.8;
+      }
+      89%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes p3ProcParticle3Cycle {
+      0%, 59% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      64% {
+        offset-distance: 100%;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      65%, 83% {
+        opacity: 0;
+      }
+      84% {
+        offset-distance: 0%;
+        opacity: 1;
+      }
+      90% {
+        offset-distance: 100%;
+        opacity: 0.8;
+      }
+      91%, 100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes p3ProcParticle4Cycle {
+      0%, 75% {
+        offset-distance: 0%;
+        opacity: 0;
+        transform: scale(0.6);
+      }
+      76% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      80% {
+        offset-distance: 100%;
+        opacity: 0.9;
+        transform: scale(1);
+      }
+      81%, 85% {
+        opacity: 0;
+      }
+      86% {
+        offset-distance: 0%;
+        opacity: 1;
+      }
+      91% {
+        offset-distance: 100%;
+        opacity: 0.8;
+      }
+      92%, 100% {
+        opacity: 0;
+      }
+    }
+
+    /* 8. Micro-Interaction Keyframes */
+    @keyframes p3ProcOnboardProgress {
+      0%, 22% { width: 0%; }
+      27%, 92% { width: 100%; }
+      96%, 100% { width: 0%; }
+    }
+
+    @keyframes p3ProcCheckmarkPop {
+      0%, 25% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      27% {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+      29%, 92% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      95%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    @keyframes p3ProcAvatar1Pop {
+      0%, 37% { opacity: 0; transform: scale(0); }
+      39%, 92% { opacity: 1; transform: scale(1); }
+      95%, 100% { opacity: 0; transform: scale(0); }
+    }
+
+    @keyframes p3ProcAvatar2Pop {
+      0%, 39% { opacity: 0; transform: scale(0); }
+      41%, 92% { opacity: 1; transform: scale(1); }
+      95%, 100% { opacity: 0; transform: scale(0); }
+    }
+
+    @keyframes p3ProcAvatar3Pop {
+      0%, 41% { opacity: 0; transform: scale(0); }
+      43%, 92% { opacity: 1; transform: scale(1); }
+      95%, 100% { opacity: 0; transform: scale(0); }
+    }
+
+    @keyframes p3ProcTypewriterQuery {
+      0%, 53% { width: 0; }
+      57%, 92% { width: 100%; }
+      96%, 100% { width: 0; }
+    }
+
+    @keyframes p3ProcAiAnswerFade {
+      0%, 58% {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      61%, 92% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      95%, 100% {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+    }
+
+    @keyframes p3ProcGoalProgress {
+      0%, 70% { width: 0%; }
+      75%, 92% { width: 85%; }
+      96%, 100% { width: 0%; }
+    }
+
+    @keyframes p3ProcDashToastCycle {
+      0%, 61% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px) scale(0.9);
+      }
+      64% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1.0);
+      }
+      90% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1.0);
+      }
+      94%, 100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(8px) scale(0.9);
+      }
+    }
+
+    /* 9. Responsive Adjustments */
+    @media (max-width: 1024px) {
+      #p3ProcessStage {
+        transform: scale(0.94);
+        transform-origin: center center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .v4-workflow-stage#p3ProcessStage {
+        height: 280px;
+      }
+      #p3ProcessStage {
+        transform: scale(0.76);
+        transform-origin: center center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .v4-workflow-stage#p3ProcessStage {
+        height: 270px;
+      }
+      #p3ProcessStage {
+        transform: scale(0.68);
+        transform-origin: center center;
+      }
+    }
+
+    @media (max-width: 380px) {
+      #p3ProcessStage {
+        transform: scale(0.60);
+        transform-origin: center center;
+      }
+    }
+
+    /* 10. Reduced-Motion Accessibility Fallback */
+    @media (prefers-reduced-motion: reduce) {
+      .p3-proc-dashboard,
+      .p3-proc-card,
+      .p3-proc-track-active,
+      .p3-proc-particle,
+      .p3-proc-progress-bar,
+      .p3-proc-badge-check,
+      .p3-proc-avatar,
+      .p3-proc-typewriter-text,
+      .p3-proc-typewriter-cursor,
+      .p3-proc-ai-response-pill,
+      .p3-proc-goal-bar,
+      .p3-proc-dash-toast,
+      .p3-proc-dash-beacon,
+      .p3-proc-icon-pink {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      .p3-proc-dashboard {
+        opacity: 1 !important;
+        transform: none !important;
+        box-shadow: 0 20px 45px -10px rgba(124, 58, 237, 0.30) !important;
+      }
+
+      .p3-proc-card {
+        opacity: 1 !important;
+        transform: none !important;
+        border-color: #E2E8F0 !important;
+        box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.12) !important;
+      }
+
+      .p3-proc-track-active {
+        stroke-dashoffset: 0 !important;
+        opacity: 0.85 !important;
+      }
+
+      .p3-proc-particle {
+        display: none !important;
+      }
+
+      .p3-proc-progress-bar {
+        width: 100% !important;
+      }
+
+      .p3-proc-badge-check {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+      }
+
+      .p3-proc-avatar {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+      }
+
+      .p3-proc-typewriter-text {
+        width: auto !important;
+      }
+
+      .p3-proc-typewriter-cursor {
+        display: none !important;
+      }
+
+      .p3-proc-ai-response-pill {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .p3-proc-goal-bar {
+        width: 85% !important;
+      }
+
+      .p3-proc-dash-toast {
+        opacity: 1 !important;
+        transform: translateX(-50%) translateY(0) scale(1) !important;
+      }
+    }
 
     /* ==========================================================================
        PAGE 4: THE HIRERKEY ECOSYSTEM (CONNECTED HUB) — 10.0s MASTER ANIMATION SYSTEM
@@ -4366,9 +4920,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 )}
                 {activePage === 3 && (
                 <Box
-                  id="v4WorkflowStageJourney"
+                  id="p3ProcessStage"
+                  className="v4-workflow-stage"
                   onMouseMove={handleV4MouseMove}
                   onMouseLeave={handleV4MouseLeave}
+                  aria-label="Hirerkey Connected HR Ecosystem Process Hero"
                   sx={{
                     width: '100%',
                     maxWidth: 540,
@@ -4377,177 +4933,180 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    perspective: 1200,
-                    perspectiveOrigin: '50% 46%',
-                    transformStyle: 'preserve-3d',
+                    perspective: 1000,
+                    overflow: 'hidden',
                     mt: 0.75,
-                    overflow: 'visible',
+                    contain: 'layout paint style',
+                    transformStyle: 'preserve-3d',
                   }}
                 >
-                  <div className="p3-iso-stage" id="p3IsoStage">
-                    {/* Master Ambient Backlight Aura */}
-                    <div className="p3-iso-ambient" />
+                  {/* Subtle Technical Grid Background with Radial Mask */}
+                  <div className="p3-proc-grid-bg" />
 
-                    {/* Master 3D Isometric Rig / Stack */}
-                    <div
-                      className="p3-iso-stack"
-                      id="p3IsoStack"
-                      style={{
-                        transform: `rotateX(${56 + v4Tilt.x}deg) rotateZ(${-34 + v4Tilt.y}deg) rotateY(${4 + v4Tilt.y * 0.5}deg)`,
-                      }}
-                    >
-                      {/* 4 VERTICAL LASER CONDUITS (Spanning Z: -80px to +80px) */}
-                      <div className="p3-iso-laser-pillar p3-iso-laser-tl">
-                        <div className="p3-iso-photon p3-iso-photon-ascend-1" />
+                  {/* Ambient Underlay Radial Glow Bloom */}
+                  <div className="p3-proc-ambient" />
+
+                  {/* SVG Connectors & Photonic Particles Layer */}
+                  <svg className="p3-proc-svg" viewBox="0 0 540 350" preserveAspectRatio="none">
+                    <defs>
+                      <linearGradient id="p3ProcGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#7C3AED" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#6366F1" stopOpacity="0.9" />
+                      </linearGradient>
+                      <linearGradient id="p3ProcGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stopColor="#3B82F6" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#06B6D4" stopOpacity="0.9" />
+                      </linearGradient>
+                      <linearGradient id="p3ProcGrad3" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#EC4899" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.9" />
+                      </linearGradient>
+                      <linearGradient id="p3ProcGrad4" x1="100%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" stopColor="#10B981" stopOpacity="1" />
+                        <stop offset="100%" stopColor="#059669" stopOpacity="0.9" />
+                      </linearGradient>
+                      <filter id="p3ProcFlowGlow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feGaussianBlur stdDeviation="2.5" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                    </defs>
+
+                    {/* Base Ambient Dashed Guide Tracks */}
+                    <path className="p3-proc-track-base" d="M 160 75 C 210 75, 230 145, 270 160" />
+                    <path className="p3-proc-track-base" d="M 380 75 C 330 75, 310 145, 270 160" />
+                    <path className="p3-proc-track-base" d="M 160 275 C 210 275, 230 205, 270 190" />
+                    <path className="p3-proc-track-base" d="M 380 275 C 330 275, 310 205, 270 190" />
+
+                    {/* Dynamic Active Connector Flow Lines */}
+                    <path className="p3-proc-track-active p3-proc-line-1" id="p3ProcLine1" stroke="url(#p3ProcGrad1)" filter="url(#p3ProcFlowGlow)" d="M 160 75 C 210 75, 230 145, 270 160" />
+                    <path className="p3-proc-track-active p3-proc-line-2" id="p3ProcLine2" stroke="url(#p3ProcGrad2)" filter="url(#p3ProcFlowGlow)" d="M 380 75 C 330 75, 310 145, 270 160" />
+                    <path className="p3-proc-track-active p3-proc-line-3" id="p3ProcLine3" stroke="url(#p3ProcGrad3)" filter="url(#p3ProcFlowGlow)" d="M 160 275 C 210 275, 230 205, 270 190" />
+                    <path className="p3-proc-track-active p3-proc-line-4" id="p3ProcLine4" stroke="url(#p3ProcGrad4)" filter="url(#p3ProcFlowGlow)" d="M 380 275 C 330 275, 310 205, 270 190" />
+                  </svg>
+
+                  {/* Travelling Photonic Light Particles */}
+                  <div className="p3-proc-particle p3-proc-particle-1" />
+                  <div className="p3-proc-particle p3-proc-particle-2" />
+                  <div className="p3-proc-particle p3-proc-particle-3" />
+                  <div className="p3-proc-particle p3-proc-particle-4" />
+
+                  {/* CENTRAL MINIATURE DASHBOARD (Living Command Center Anchor) */}
+                  <Box
+                    id="p3DashboardAnchor"
+                    className="p3-proc-dashboard"
+                    style={{
+                      transform: (v4Tilt.x || v4Tilt.y) ? `perspective(800px) rotateX(${v4Tilt.x * 0.8}deg) rotateY(${v4Tilt.y * 0.8}deg) translateZ(10px)` : undefined,
+                    }}
+                  >
+                    <div className="p3-proc-dash-chrome">
+                      <div className="p3-proc-dash-dots">
+                        <span className="p3-proc-dash-dot-red" />
+                        <span className="p3-proc-dash-dot-amber" />
+                        <span className="p3-proc-dash-dot-green" />
                       </div>
-                      <div className="p3-iso-laser-pillar p3-iso-laser-tr">
-                        <div className="p3-iso-photon p3-iso-photon-descend-1" />
+                      <div className="p3-proc-dash-url">app.hirerkey.com</div>
+                      <div className="p3-proc-dash-badge">
+                        <span className="p3-proc-dash-beacon" />
+                        <span>Live</span>
                       </div>
-                      <div className="p3-iso-laser-pillar p3-iso-laser-bl">
-                        <div className="p3-iso-photon p3-iso-photon-ascend-2" />
+                    </div>
+                    <div className="p3-proc-dash-body">
+                      <img
+                        src="assets/hirerkey_actual_dashboard.png"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          if (!target.dataset.retry) {
+                            target.dataset.retry = '1';
+                            target.src = 'views/assets/hirerkey_actual_dashboard.png';
+                          }
+                        }}
+                        alt="Hirerkey Executive Workspace"
+                        className="p3-proc-dash-img"
+                      />
+                      
+                      {/* Micro AI Insight Toast */}
+                      <div className="p3-proc-dash-toast" id="p3DashToast">
+                        <span className="p3-proc-toast-sparkle">✨</span>
+                        <span className="p3-proc-toast-text">3 reviews synchronized</span>
                       </div>
-                      <div className="p3-iso-laser-pillar p3-iso-laser-br">
-                        <div className="p3-iso-photon p3-iso-photon-descend-2" />
+                    </div>
+                  </Box>
+
+                  {/* CARD 1: ORIENTATION (Top-Left) */}
+                  <div className="p3-proc-card p3-proc-card-tl" id="p3CardOrientation">
+                    <div className="p3-proc-card-icon-box p3-proc-icon-purple">🧭</div>
+                    <div className="p3-proc-card-body">
+                      <div className="p3-proc-card-meta">
+                        <span className="p3-proc-card-tag p3-proc-tag-purple">01 • ONBOARDING</span>
+                        <span className="p3-proc-badge-check" id="p3Card1Check">✓ Completed</span>
                       </div>
-
-                      {/* ============================================================= */}
-                      {/* LAYER 01: FOUNDATION (Global People Graph & Compliance Core)   */}
-                      {/* ============================================================= */}
-                      <div className="p3-iso-slab p3-iso-slab-foundation" id="p3SlabFoundation">
-                        <div className="p3-iso-sheen" />
-
-                        {/* Surface Micro-UI */}
-                        <div className="p3-iso-foundation-content">
-                          <div className="p3-iso-tier-header">
-                            <span className="p3-iso-tier-badge p3-iso-badge-indigo">
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
-                              SOC2 TYPE II • AES-256
-                            </span>
-                            <span className="p3-iso-tier-label">CORE 01</span>
-                          </div>
-
-                          {/* Encrypted Database Radar Grid SVG */}
-                          <div className="p3-iso-foundation-mesh">
-                            <svg viewBox="0 0 240 100" className="p3-iso-mesh-svg">
-                              <circle cx="120" cy="50" r="40" stroke="rgba(99,102,241,0.25)" strokeWidth="1" fill="none" strokeDasharray="3 3" />
-                              <circle cx="120" cy="50" r="22" stroke="rgba(99,102,241,0.4)" strokeWidth="1" fill="none" />
-                              <line x1="120" y1="50" x2="160" y2="50" stroke="#818CF8" strokeWidth="1.5" className="p3-iso-radar-sweep" />
-                              {/* Synced Workforce Nodes */}
-                              <circle cx="70" cy="35" r="4" fill="#6366F1" className="p3-iso-node-pulse" />
-                              <circle cx="170" cy="40" r="4" fill="#10B981" className="p3-iso-node-pulse" />
-                              <circle cx="120" cy="80" r="4" fill="#38BDF8" className="p3-iso-node-pulse" />
-                              <path d="M 70 35 Q 120 20 170 40 T 120 80" stroke="rgba(99,102,241,0.3)" fill="none" strokeWidth="1" />
-                            </svg>
-                          </div>
-
-                          <div className="p3-iso-tier-footer">
-                            <span className="p3-iso-tier-name">Global People Graph</span>
-                            <span className="p3-iso-tier-metric"><span className="p3-iso-metric-dot green" />100% Encrypted</span>
-                          </div>
+                      <div className="p3-proc-card-title">Orientation</div>
+                      <div className="p3-proc-card-footer">
+                        <span className="p3-proc-card-sub">Welcome aboard!</span>
+                        <div className="p3-proc-progress-track">
+                          <div className="p3-proc-progress-bar p3-proc-progress-purple" />
                         </div>
                       </div>
+                    </div>
+                  </div>
 
-                      {/* ============================================================= */}
-                      {/* LAYER 02: MIDDLE TIER (Autonomous Workflows & Automation)     */}
-                      {/* ============================================================= */}
-                      <div className="p3-iso-slab p3-iso-slab-workflows" id="p3SlabWorkflows">
-                        <div className="p3-iso-sheen" />
-
-                        {/* Surface Micro-UI */}
-                        <div className="p3-iso-workflows-content">
-                          <div className="p3-iso-tier-header">
-                            <span className="p3-iso-tier-badge p3-iso-badge-cyan">
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
-                              AUTONOMOUS ENGINE
-                            </span>
-                            <span className="p3-iso-live-rate">4,820 ops/s</span>
-                          </div>
-
-                          {/* Pipeline Execution Flow Tracks */}
-                          <div className="p3-iso-pipeline-deck">
-                            <div className="p3-iso-pipeline-lane">
-                              <span className="p3-iso-pipeline-tag">Onboarding</span>
-                              <div className="p3-iso-lane-track">
-                                <div className="p3-iso-lane-fill" />
-                              </div>
-                              <span className="p3-iso-lane-status">Auto-Provisioned ✓</span>
-                            </div>
-
-                            <div className="p3-iso-pipeline-lane">
-                              <span className="p3-iso-pipeline-tag">Appraisal 360</span>
-                              <div className="p3-iso-lane-track">
-                                <div className="p3-iso-lane-fill cyan" />
-                              </div>
-                              <span className="p3-iso-lane-status">Calibrated 14ms ✓</span>
-                            </div>
-                          </div>
-
-                          <div className="p3-iso-tier-footer">
-                            <span className="p3-iso-tier-name">Workflow Orchestration</span>
-                            <span className="p3-iso-tier-metric"><span className="p3-iso-metric-dot cyan" />Zero-Touch Latency</span>
-                          </div>
+                  {/* CARD 2: DEPARTMENT TOUR (Top-Right) */}
+                  <div className="p3-proc-card p3-proc-card-tr" id="p3CardTour">
+                    <div className="p3-proc-card-icon-box p3-proc-icon-blue">🏢</div>
+                    <div className="p3-proc-card-body">
+                      <div className="p3-proc-card-meta">
+                        <span className="p3-proc-card-tag p3-proc-tag-blue">02 • ALIGNMENT</span>
+                        <span className="p3-proc-badge-blue">3/3 Met ✓</span>
+                      </div>
+                      <div className="p3-proc-card-title">Department Tour</div>
+                      <div className="p3-proc-card-footer">
+                        <span className="p3-proc-card-sub">Meet your team</span>
+                        <div className="p3-proc-avatar-stack">
+                          <span className="p3-proc-avatar p3-proc-av-1" title="Aisha K.">AK</span>
+                          <span className="p3-proc-avatar p3-proc-av-2" title="Rahul S.">RS</span>
+                          <span className="p3-proc-avatar p3-proc-av-3" title="Sara J.">SJ</span>
                         </div>
                       </div>
+                    </div>
+                  </div>
 
-                      {/* ============================================================= */}
-                      {/* LAYER 03: TOP CROWN (HyIQ™ Generative AI & Decision Layer)    */}
-                      {/* ============================================================= */}
-                      <div className="p3-iso-slab p3-iso-slab-hyiq" id="p3SlabHyiq">
-                        <div className="p3-iso-sheen" />
-
-                        {/* Surface Micro-UI */}
-                        <div className="p3-iso-hyiq-content">
-                          <div className="p3-iso-tier-header">
-                            <span className="p3-iso-tier-badge p3-iso-badge-amethyst">
-                              <span className="p3-iso-sparkle-icon">✨</span>
-                              HyIQ™ COPILOT
-                            </span>
-                            {/* Dynamic Audio Equalizer Bars */}
-                            <div className="p3-iso-eq-group">
-                              <span className="p3-iso-eq-bar p3-iso-eq-1" />
-                              <span className="p3-iso-eq-bar p3-iso-eq-2" />
-                              <span className="p3-iso-eq-bar p3-iso-eq-3" />
-                              <span className="p3-iso-eq-bar p3-iso-eq-4" />
-                              <span className="p3-iso-eq-bar p3-iso-eq-5" />
-                            </div>
-                          </div>
-
-                          {/* Neural Synapse Decision Banner */}
-                          <div className="p3-iso-reasoning-card">
-                            <div className="p3-iso-reasoning-chip">
-                              <span className="p3-iso-pulsing-brain">🧠</span>
-                              <span>Predictive Talent Engine Active</span>
-                            </div>
-                            <div className="p3-iso-reasoning-confidence">99.8% Precision</div>
-                          </div>
-
-                          <div className="p3-iso-tier-footer">
-                            <span className="p3-iso-tier-name">Autonomous Decision Core</span>
-                            <span className="p3-iso-tier-metric"><span className="p3-iso-metric-dot purple" />Continuous Synthesis</span>
-                          </div>
+                  {/* CARD 3: ASK HyIQ AI (Bottom-Left) */}
+                  <div className="p3-proc-card p3-proc-card-bl" id="p3CardHyiq">
+                    <div className="p3-proc-card-icon-box p3-proc-icon-pink">✨</div>
+                    <div className="p3-proc-card-body">
+                      <div className="p3-proc-card-meta">
+                        <span className="p3-proc-card-tag p3-proc-tag-pink">03 • INTELLIGENCE</span>
+                        <span className="p3-proc-badge-pink">12ms • AI</span>
+                      </div>
+                      <div className="p3-proc-card-title">Ask HyIQ™ AI</div>
+                      <div className="p3-proc-card-footer">
+                        <div className="p3-proc-typewriter-container">
+                          <span className="p3-proc-typewriter-text">Show my pending tasks</span><span className="p3-proc-typewriter-cursor">|</span>
+                        </div>
+                        <div className="p3-proc-ai-response-pill">
+                          <span>✨ 3 reviews due today</span>
                         </div>
                       </div>
+                    </div>
+                  </div>
 
-                      {/* ============================================================= */}
-                      {/* FLOATING HOLOGRAPHIC TELEMETRY BADGES (Parallax Depth)        */}
-                      {/* ============================================================= */}
-                      <div className="p3-holo-badge p3-iso-hud-badge p3-holo-badge-03 p3-iso-hud-badge-03" title="Layer 03 Telemetry">
-                        <span className="p3-holo-dot p3-iso-hud-dot" />
-                        <span>Layer 03: HyIQ™ Copilot • 99.8% Precision</span>
+                  {/* CARD 4: 1-ON-1 CHECK-INS (Bottom-Right) */}
+                  <div className="p3-proc-card p3-proc-card-br" id="p3CardCheckin">
+                    <div className="p3-proc-card-icon-box p3-proc-icon-emerald">📊</div>
+                    <div className="p3-proc-card-body">
+                      <div className="p3-proc-card-meta">
+                        <span className="p3-proc-card-tag p3-proc-tag-emerald">04 • PERFORMANCE</span>
+                        <span className="p3-proc-badge-emerald">85% On Track</span>
                       </div>
-
-                      <div className="p3-holo-badge p3-iso-hud-badge p3-holo-badge-02 p3-iso-hud-badge-02" title="Layer 02 Telemetry">
-                        <span className="p3-holo-dot p3-iso-hud-dot" />
-                        <span>Layer 02: Event Engine • 14ms Latency</span>
+                      <div className="p3-proc-card-title">1-on-1 Check-ins</div>
+                      <div className="p3-proc-card-footer">
+                        <span className="p3-proc-date-pill">📅 Thu, 2:30 PM</span>
+                        <div className="p3-proc-goal-track">
+                          <div className="p3-proc-goal-bar" />
+                        </div>
                       </div>
-
-                      <div className="p3-holo-badge p3-iso-hud-badge p3-holo-badge-01 p3-iso-hud-badge-01" title="Layer 01 Telemetry">
-                        <span className="p3-holo-dot p3-iso-hud-dot" />
-                        <span>Layer 01: Global Core • 100% Encrypted</span>
-                      </div>
-
-                    </div> {/* /#p3IsoStack */}
-                  </div> {/* /#p3IsoStage */}
+                    </div>
+                  </div>
                 </Box>
                 )}
                 {activePage === 4 && (
@@ -5468,8 +6027,8 @@ export const LoginView: React.FC<LoginViewProps> = ({
           component="button"
           type="button"
           onClick={() => setActivePage(3)}
-          aria-label="Page 3: The 3D Isometric Glass Platform Stack"
-          title="The 3D Isometric Glass Platform Stack (The Hirerkey Autonomous Engine) (Key 3)"
+          aria-label="Page 3: The Process-Based Connected HR Ecosystem"
+          title="The Process-Based Connected HR Ecosystem (Key 3)"
           sx={{
             appearance: 'none',
             border: activePage === 3 ? '1px solid rgba(124, 58, 237, 0.25)' : '1px solid transparent',
@@ -5495,7 +6054,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
           }}
         >
           <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>③</span>
-          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Autonomous Engine</Box>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Process Flow</Box>
           <Box
             component="span"
             sx={{
