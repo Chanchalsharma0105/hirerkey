@@ -6729,111 +6729,6 @@
       border-color: #A78BFA;
     }
 
-    /* Preview Modal Feature-Matched Styles (Matching Creation Form Design & Attributes) */
-    .m-cover-banner {
-      background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 50%, #7C3AED 100%);
-      border-radius: 14px;
-      padding: 24px 28px;
-      color: #FFFFFF;
-      margin-bottom: 24px;
-      box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.25);
-      position: relative;
-      overflow: hidden;
-    }
-    .m-cover-banner::after {
-      content: '';
-      position: absolute;
-      right: -20px;
-      bottom: -40px;
-      width: 220px;
-      height: 220px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-    .m-cover-title {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      color: #FFFFFF;
-    }
-    .m-cover-desc {
-      font-size: 13.5px;
-      line-height: 1.55;
-      color: #DDD6FE;
-      max-width: 820px;
-      margin-bottom: 16px;
-    }
-    .m-cover-meta-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-    .m-cover-meta-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 12px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(8px);
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 600;
-      color: #FFFFFF;
-    }
-    .evidence-chip-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      margin-top: 8px;
-    }
-    .evidence-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #F1F5F9;
-      border: 1px solid #CBD5E1;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      color: #334155;
-      font-weight: 500;
-      transition: all 0.15s ease;
-    }
-    .evidence-chip .remove-ev-btn {
-      background: none;
-      border: none;
-      color: #94A3B8;
-      cursor: pointer;
-      font-size: 12px;
-      margin-left: 2px;
-      padding: 0 2px;
-      line-height: 1;
-    }
-    .evidence-chip .remove-ev-btn:hover {
-      color: #EF4444;
-    }
-    .required-tag {
-      font-size: 11px;
-      font-weight: 700;
-      color: #EF4444;
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-    .governance-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 14px;
-      margin-bottom: 14px;
-    }
-
     /* CRITICAL FIX: Ensure Dashboard View 2 (Appraisal Module) is ALWAYS visible */
     #dashboard-view-2 {
       display: block !important;
@@ -11616,18 +11511,10 @@
       recalcModalAll();
     }
 
-    function getRubricDescriptor(score) {
-      if (score >= 4.5) return 'Outstanding';
-      if (score >= 3.5) return 'Exceeds Expectations';
-      if (score >= 2.5) return 'Meets Expectations';
-      if (score >= 1.5) return 'Needs Improvement';
-      return 'Unsatisfactory';
-    }
-
     function recalcModalAll() {
-      // 1. KJR Score (Weighted: arch 15%, velocity 12%, devops 8% -> 35% component)
+      // 1. KJR Score
       const kjrVals = Object.values(mKjrRatings);
-      const avgKjr = kjrVals.reduce((a, b) => a + b, 0) / (kjrVals.length || 1);
+      const avgKjr = kjrVals.reduce((a, b) => a + b, 0) / kjrVals.length;
       const kjrDisp = document.getElementById('mKjrAverageDisplay');
       if (kjrDisp) kjrDisp.textContent = `${avgKjr.toFixed(2)} / 5.0`;
 
@@ -11638,7 +11525,7 @@
 
       // 3. Competencies Score
       const compVals = Object.values(mCompetencyRatings);
-      const avgComp = compVals.reduce((a, b) => a + b, 0) / (compVals.length || 1);
+      const avgComp = compVals.reduce((a, b) => a + b, 0) / compVals.length;
       const compDisp = document.getElementById('mCompetenciesAverageDisplay');
       if (compDisp) compDisp.textContent = `${avgComp.toFixed(2)} / 5.0`;
 
@@ -11654,142 +11541,17 @@
       if (fKpo) fKpo.textContent = kpoScore.toFixed(2);
       if (fComp) fComp.textContent = avgComp.toFixed(2);
       if (fOverall) fOverall.textContent = overall.toFixed(2);
-
-      const dKjr = document.getElementById('mFinalKjrDesc');
-      const dKpo = document.getElementById('mFinalKpoDesc');
-      const dComp = document.getElementById('mFinalCompDesc');
-      const dOverall = document.getElementById('mFinalOverallDesc');
-
-      if (dKjr) dKjr.textContent = getRubricDescriptor(avgKjr);
-      if (dKpo) dKpo.textContent = getRubricDescriptor(kpoScore);
-      if (dComp) dComp.textContent = getRubricDescriptor(avgComp);
-      if (dOverall) dOverall.textContent = `Grade A (${getRubricDescriptor(overall)})`;
     }
 
-    function enhanceCommentWithAI(fieldId, topic) {
+    function enhanceCommentWithAI(fieldId) {
       const textarea = document.getElementById(fieldId);
-      if (!textarea) return;
-      showToast('✨ Enhancing with HyIQ AI...');
-      setTimeout(() => {
-        let addition = "Demonstrates strong technical acumen and leadership alignment with organizational OKRs.";
-        if (topic === 'architecture') {
-          addition = "Architected low-latency microservices pipeline achieving 99.99% uptime and zero SLA regressions under peak load.";
-        } else if (topic === 'velocity') {
-          addition = "Optimized sprint cadence and test automation, elevating deployment throughput by 28% without code regression.";
-        } else if (topic === 'security') {
-          addition = "Enforced zero-trust RBAC policies across all cloud tiers with 100% compliance during annual audit.";
-        } else if (topic === 'leadership') {
-          addition = "Actively coached senior contributors, sponsored 4 internal engineering workshops, and championed cross-team cohesion.";
-        } else if (topic === 'excellence') {
-          addition = "Elevated automated test coverage from 68% to 92.4% while standardizing production observability dashboards.";
-        } else if (topic === 'innovation') {
-          addition = "Pioneered internal developer productivity tooling that saved 14 developer-hours per sprint across the engineering fleet.";
-        } else if (topic === 'breakthroughs') {
-          addition = "Spearheaded multi-region cloud disaster recovery and zero-downtime database failover with verified audit logs.";
-        }
-        if (textarea.value.trim() && !textarea.value.includes(addition)) {
-          textarea.value = textarea.value.trim() + " " + addition;
-        } else if (!textarea.value.trim()) {
-          textarea.value = addition;
-        }
-        showToast('✓ Enhanced with HyIQ AI (Executive Tone)');
-      }, 500);
-    }
-
-    function promptAddEvidence(containerId) {
-      const container = document.getElementById(containerId);
-      if (!container) return;
-      const fileNames = [
-        'Audit_Evidence_Q3.pdf (1.2 MB)',
-        'Benchmarking_Report_2026.xlsx (420 KB)',
-        'Architecture_Decision_Record_ADR-42.pdf (890 KB)',
-        'Sprint_Velocity_Metrics_Q2.pdf (640 KB)',
-        'Stakeholder_Feedback_Summary.pdf (310 KB)'
-      ];
-      const randomFile = fileNames[Math.floor(Math.random() * fileNames.length)];
-      const chip = document.createElement('div');
-      chip.className = 'evidence-chip';
-      chip.innerHTML = `
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-        <span>${randomFile}</span>
-        <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-      `;
-      const addBtn = container.querySelector('button.btn-action-tool');
-      if (addBtn) {
-        container.insertBefore(chip, addBtn);
-      } else {
-        container.appendChild(chip);
+      if (textarea) {
+        showToast('✨ Enhancing with HyIQ AI...');
+        setTimeout(() => {
+          textarea.value = textarea.value.trim() + " Demonstrates strong technical acumen and leadership alignment with organizational OKRs.";
+          showToast('✓ Enhanced with HyIQ AI (Professional Tone)');
+        }, 600);
       }
-      showToast(`📎 Evidence file attached: ${randomFile}`);
-    }
-
-    function removeEvidenceChip(btn) {
-      const chip = btn.closest('.evidence-chip');
-      if (chip) {
-        chip.remove();
-        showToast('Evidence attachment removed');
-      }
-    }
-
-    let pdpGoalCount = 3;
-    function addNewPdpGoal() {
-      pdpGoalCount++;
-      const container = document.getElementById('m-pane-5');
-      if (!container) return;
-      const addBtn = container.querySelector('.btn-c-add-sec');
-      const goalNum = pdpGoalCount;
-      const newCard = document.createElement('div');
-      newCard.className = 'm-card';
-      newCard.innerHTML = `
-        <div class="m-card-title-row">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span class="m-card-label">DEVELOPMENT GOAL ${goalNum}</span>
-            <span class="pdp-priority-badge p3">Priority 3 (Growth)</span>
-          </div>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <span class="status-pill live">Planned</span>
-            <button style="border: none; background: none; color: #EF4444; cursor: pointer; font-size: 13px; font-weight: 600;" onclick="this.closest('.m-card').remove(); showToast('Goal removed')">✕ Remove</button>
-          </div>
-        </div>
-        <div class="m-grid-2">
-          <div class="m-field-group">
-            <label class="m-field-lbl">Goal Description</label>
-            <input type="text" class="m-input" placeholder="e.g. AI-Assisted Engineering Workflows Certification" style="font-weight: 600;">
-          </div>
-          <div class="m-field-group">
-            <label class="m-field-lbl">Target Timeline</label>
-            <input type="text" class="m-input" placeholder="e.g. Q3 2027 (6 Months)">
-          </div>
-        </div>
-        <div class="m-field-group" style="margin-top: 10px;">
-          <label class="m-field-lbl">Action Steps &amp; Practical Execution</label>
-          <textarea class="m-textarea" rows="2" placeholder="Specify key milestones, practical exercises, and measurable outcomes."></textarea>
-        </div>
-        <div class="m-field-group" style="margin-top: 10px;">
-          <div style="display: flex; align-items: center; justify-content: space-between;">
-            <label class="m-field-lbl">Support &amp; Resources Required</label>
-            <button class="btn-action-tool" style="font-size: 11px; padding: 2px 8px;" onclick="showToast('✨ HyIQ Goal Generator: SMART milestones mapped.')">
-              <span>✨ HyIQ Refine Goal</span>
-            </button>
-          </div>
-          <textarea class="m-textarea" rows="2" placeholder="Detail internal sponsorship, budget, or certification vouchers needed."></textarea>
-        </div>
-        <div style="margin-top: 12px; border-top: 1px dashed #E2E8F0; padding-top: 10px;">
-          <span style="font-size: 11.5px; font-weight: 600; color: #64748B;">ATTACHED SYLLABUS &amp; RESOURCES:</span>
-          <div class="evidence-chip-list" id="evListPdp${goalNum}">
-            <button class="btn-action-tool" onclick="promptAddEvidence('evListPdp${goalNum}')">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              <span>+ Attach Resource / Syllabus</span>
-            </button>
-          </div>
-        </div>
-      `;
-      if (addBtn) {
-        container.insertBefore(newCard, addBtn);
-      } else {
-        container.appendChild(newCard);
-      }
-      showToast(`✓ Added Development Goal ${goalNum}`);
     }
 
     function attachEvidence(fieldId) {
@@ -12756,112 +12518,12 @@
       <div class="modal-scroll-canvas" id="modalScrollCanvas">
         <div class="modal-content-container">
 
-<!-- STEP 1: COLLEAGUE DETAILS, CYCLE IDENTITY & REVIEW SCOPE -->
+          <!-- STEP 1: COLLEAGUE DETAILS & REVIEW SCOPE -->
           <div class="m-pane active" id="m-pane-1">
             <div class="m-section-tag">SECTION 1 · REVIEW CONTEXT</div>
             <h1 class="m-heading">Colleague &amp; Appraisal Context</h1>
-            <p class="m-subtext">Confirm employee identification, reporting line, evaluation components, and performance cycle parameters before continuing.</p>
+            <p class="m-subtext">Confirm employee identification, reporting line, and performance cycle parameters before continuing.</p>
 
-            <!-- 1. Cycle Identity & Executive Scope (Matching Creation Step 4) -->
-            <div class="m-cover-banner">
-              <div class="m-cover-title">Annual Appraisal 2026 - Engineering &amp; Product</div>
-              <div class="m-cover-desc">This annual performance appraisal evaluates engineering and product contributors across technical architecture, sprint velocity, OKR achievements, and cross-functional leadership for the 2025–2026 review period.</div>
-              <div class="m-cover-meta-strip">
-                <span class="m-cover-meta-chip">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  <span>Review Period: 01 Oct 2025 – 30 Sep 2026</span>
-                </span>
-                <span class="m-cover-meta-chip" style="background: rgba(239, 68, 68, 0.25); border-color: rgba(254, 202, 202, 0.4); color: #FFF;">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                  <span>Due Date: 30 Nov 2026 (⏳ 17 Days Remaining)</span>
-                </span>
-                <span class="m-cover-meta-chip">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                  <span>Template: Standard Engineering &amp; Product 2026</span>
-                </span>
-              </div>
-            </div>
-
-            <!-- 2. Target Audience & Cohort Scope (Matching Creation Step 1) -->
-            <div class="m-card">
-              <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">AUDIENCE &amp; COHORT SCOPE</span>
-                  <span class="status-pill live">Specific Departments (3 Selected)</span>
-                </div>
-                <span style="font-size: 12px; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 4px 10px; border-radius: 6px;">42 Colleagues Eligible</span>
-              </div>
-              <p style="font-size: 12.5px; color: #64748B; margin-bottom: 12px;">Defined targeting cohort scope configured for this evaluation cycle:</p>
-              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-                <div class="c-dept-chip selected" style="cursor: default;">
-                  <span>Engineering</span>
-                  <span class="c-dept-chip-badge">24</span>
-                </div>
-                <div class="c-dept-chip selected" style="cursor: default;">
-                  <span>Product &amp; Design</span>
-                  <span class="c-dept-chip-badge">11</span>
-                </div>
-                <div class="c-dept-chip selected" style="cursor: default;">
-                  <span>People &amp; Culture</span>
-                  <span class="c-dept-chip-badge">7</span>
-                </div>
-                <div class="c-dept-chip" style="opacity: 0.5; cursor: default;">
-                  <span>Sales &amp; Commercial</span>
-                  <span class="c-dept-chip-badge">12</span>
-                </div>
-                <div class="c-dept-chip" style="opacity: 0.5; cursor: default;">
-                  <span>Finance &amp; Governance</span>
-                  <span class="c-dept-chip-badge">6</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- 3. Activated Evaluation Components & Alignment (Matching Creation Step 2) -->
-            <div class="m-card">
-              <div class="m-card-title-row">
-                <span class="m-card-label">ACTIVATED EVALUATION COMPONENTS &amp; WEIGHT ALLOCATION</span>
-                <span class="status-pill live">100% Weight Balanced</span>
-              </div>
-              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px;">
-                <div style="border: 1px solid #DDD6FE; background: #FAF5FF; border-radius: 10px; padding: 12px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-size: 11px; font-weight: 800; color: #6D28D9; text-transform: uppercase;">1. KJR</span>
-                    <span style="font-size: 12px; font-weight: 800; color: #7C3AED;">35%</span>
-                  </div>
-                  <div style="font-size: 12px; font-weight: 700; color: #0F172A; margin-top: 4px;">Operational Deliverables</div>
-                  <div style="font-size: 11px; color: #64748B; margin-top: 2px;">3 Core Deliverables Rated</div>
-                </div>
-
-                <div style="border: 1px solid #DDD6FE; background: #FAF5FF; border-radius: 10px; padding: 12px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-size: 11px; font-weight: 800; color: #6D28D9; text-transform: uppercase;">2. KPO</span>
-                    <span style="font-size: 12px; font-weight: 800; color: #7C3AED;">40%</span>
-                  </div>
-                  <div style="font-size: 12px; font-weight: 700; color: #0F172A; margin-top: 4px;">Strategic OKR Targets</div>
-                  <div style="font-size: 11px; color: #64748B; margin-top: 2px;">3 Metrics &amp; Key Results</div>
-                </div>
-
-                <div style="border: 1px solid #DDD6FE; background: #FAF5FF; border-radius: 10px; padding: 12px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-size: 11px; font-weight: 800; color: #6D28D9; text-transform: uppercase;">3. Competencies</span>
-                    <span style="font-size: 12px; font-weight: 800; color: #7C3AED;">25%</span>
-                  </div>
-                  <div style="font-size: 12px; font-weight: 700; color: #0F172A; margin-top: 4px;">Behaviour &amp; Culture</div>
-                  <div style="font-size: 11px; color: #64748B; margin-top: 2px;">3 Pillars + Breakthroughs</div>
-                </div>
-
-                <div style="border: 1px solid #FEF3C7; background: #FFFBEB; border-radius: 10px; padding: 12px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <span style="font-size: 11px; font-weight: 800; color: #B45309; text-transform: uppercase;">4. PDP</span>
-                    <span style="font-size: 11px; font-weight: 700; color: #D97706; background: #FEF3C7; padding: 1px 6px; border-radius: 4px;">Track</span>
-                  </div>
-                  <div style="font-size: 12px; font-weight: 700; color: #92400E; margin-top: 4px;">Development Plan</div>
-                  <div style="font-size: 11px; color: #B45309; margin-top: 2px;">High, Medium &amp; Low Tiers</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- 4. Colleague Profile Card -->
             <div class="m-card">
               <div class="m-card-title-row">
                 <span class="m-card-label">COLLEAGUE PROFILE</span>
@@ -12895,7 +12557,6 @@
               </div>
             </div>
 
-            <!-- 5. Review Parameters Card -->
             <div class="m-card">
               <div class="m-card-title-row">
                 <span class="m-card-label">APPRAISAL CYCLE PARAMETERS</span>
@@ -12907,11 +12568,11 @@
                 </div>
                 <div class="m-field-group">
                   <label class="m-field-lbl">Review Period</label>
-                  <input type="text" class="m-input" value="01 Oct 2025 – 30 Sep 2026" readonly style="background: #F8FAFC;">
+                  <input type="text" class="m-input" value="01 Jan 2026 – 31 Dec 2026" readonly style="background: #F8FAFC;">
                 </div>
                 <div class="m-field-group">
                   <label class="m-field-lbl">Closing Due Date</label>
-                  <input type="text" class="m-input" value="30 Nov 2026" readonly style="background: #F8FAFC; color: #7C3AED; font-weight: 700;">
+                  <input type="text" class="m-input" value="15 Nov 2026" readonly style="background: #F8FAFC; color: #7C3AED; font-weight: 700;">
                 </div>
               </div>
             </div>
@@ -12920,61 +12581,20 @@
           <!-- STEP 2: KEY JOB RESPONSIBILITIES (KJR) -->
           <div class="m-pane" id="m-pane-2">
             <div class="m-section-tag">SECTION 2 · OPERATIONAL DELIVERABLES</div>
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 6px;">
-              <div>
-                <h1 class="m-heading" style="margin-bottom: 2px;">Key Job Responsibilities (KJR)</h1>
-                <p class="m-subtext">Evaluate role deliverables, daily operational standards, and technical governance execution against defined benchmarks.</p>
-              </div>
-              <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700; white-space: nowrap; padding: 6px 14px; font-size: 12.5px;">Component Weight: 35%</span>
-            </div>
-
-            <!-- 5-Point Measurement Model Rubric Reference Card (Matching Creation Step 3) -->
-            <div class="m-card" style="background: #FAF8FF; border-color: #DDD6FE; padding: 14px 18px; margin-bottom: 20px;">
-              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span style="font-size: 13px; font-weight: 700; color: #4C1D95;">📋 5-Point Rating Rubric Guidance</span>
-                  <span style="font-size: 10.5px; background: #EDE9FE; color: #7C3AED; font-weight: 700; padding: 2px 7px; border-radius: 4px;">Configured in Step 3</span>
-                </div>
-                <span style="font-size: 11.5px; color: #64748B;">Standardized behavioral anchors across all evaluators</span>
-              </div>
-              <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;">
-                <div style="background: white; border: 1px solid #FECACA; border-radius: 8px; padding: 9px; font-size: 11px;">
-                  <span style="display: block; font-weight: 800; color: #DC2626;">1.0 Unsatisfactory</span>
-                  <span style="color: #64748B; font-size: 10px; line-height: 1.35; display: block; margin-top: 3px;">Critical performance gaps requiring remediation</span>
-                </div>
-                <div style="background: white; border: 1px solid #FDE68A; border-radius: 8px; padding: 9px; font-size: 11px;">
-                  <span style="display: block; font-weight: 800; color: #D97706;">2.0 Needs Improvement</span>
-                  <span style="color: #64748B; font-size: 10px; line-height: 1.35; display: block; margin-top: 3px;">Inconsistent execution against baseline goals</span>
-                </div>
-                <div style="background: white; border: 1px solid #DDD6FE; border-radius: 8px; padding: 9px; font-size: 11px;">
-                  <span style="display: block; font-weight: 800; color: #7C3AED;">3.0 Meets Expectations</span>
-                  <span style="color: #64748B; font-size: 10px; line-height: 1.35; display: block; margin-top: 3px;">Consistently achieves defined targets &amp; quality</span>
-                </div>
-                <div style="background: white; border: 1px solid #C7D2FE; border-radius: 8px; padding: 9px; font-size: 11px;">
-                  <span style="display: block; font-weight: 800; color: #4F46E5;">4.0 Exceeds Expectations</span>
-                  <span style="color: #64748B; font-size: 10px; line-height: 1.35; display: block; margin-top: 3px;">Surpasses deliverables with measurable high impact</span>
-                </div>
-                <div style="background: white; border: 1px solid #A7F3D0; border-radius: 8px; padding: 9px; font-size: 11px;">
-                  <span style="display: block; font-weight: 800; color: #059669;">5.0 Outstanding</span>
-                  <span style="color: #64748B; font-size: 10px; line-height: 1.35; display: block; margin-top: 3px;">Role-model excellence with transformative leadership</span>
-                </div>
-              </div>
-            </div>
+            <h1 class="m-heading">Key Job Responsibilities (KJR)</h1>
+            <p class="m-subtext">Evaluate role deliverables, daily operational standards, and technical governance execution against defined benchmarks.</p>
 
             <!-- KJR 1 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">KJR 1 · ARCHITECTURE &amp; SYSTEM RELIABILITY</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Weight: 15%</span>
+                <span class="m-card-label">KJR 1 · ARCHITECTURE &amp; SYSTEM RELIABILITY</span>
+                <span class="status-pill live">Core Deliverable</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 12px;">
                 Maintain 99.9% platform availability across production workloads, conduct rigorous architecture reviews for microservices, and uphold zero-downtime engineering standards.
               </p>
 
-              <div style="font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 4px;">Manager Evaluation Rating (5-Point Model)</div>
+              <div style="font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 4px;">Manager Evaluation Rating (1 to 5)</div>
               <div class="rating-scale-deck">
                 <div class="rating-pill-opt" data-kjr-key="arch" data-rate-val="1" onclick="setKjrRating('arch', 1)">
                   <span class="rate-num">1</span>
@@ -12982,19 +12602,19 @@
                 </div>
                 <div class="rating-pill-opt" data-kjr-key="arch" data-rate-val="2" onclick="setKjrRating('arch', 2)">
                   <span class="rate-num">2</span>
-                  <span class="rate-desc">Needs Improvement</span>
+                  <span class="rate-desc">Developing</span>
                 </div>
                 <div class="rating-pill-opt" data-kjr-key="arch" data-rate-val="3" onclick="setKjrRating('arch', 3)">
                   <span class="rate-num">3</span>
-                  <span class="rate-desc">Meets Expectations</span>
+                  <span class="rate-desc">Proficient</span>
                 </div>
                 <div class="rating-pill-opt active" data-kjr-key="arch" data-rate-val="4" onclick="setKjrRating('arch', 4)">
                   <span class="rate-num">4</span>
-                  <span class="rate-desc">Exceeds Expectations</span>
+                  <span class="rate-desc">Commendable</span>
                 </div>
                 <div class="rating-pill-opt" data-kjr-key="arch" data-rate-val="5" onclick="setKjrRating('arch', 5)">
                   <span class="rate-num">5</span>
-                  <span class="rate-desc">Outstanding</span>
+                  <span class="rate-desc">Role Model</span>
                 </div>
               </div>
 
@@ -13003,47 +12623,28 @@
                 <textarea class="m-textarea" rows="2" id="m_kjr_comment_1">Exceeded infrastructure targets by leading zero-downtime database migrations. Maintains exceptional code quality and architecture oversight.</textarea>
               </div>
 
-              <!-- Evidence & Attachments Strip (Matching Creation Step 5 [x] Attachments) -->
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Supporting Evidence &amp; Attachments</span>
-                  <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_kjr_comment_1', 'architecture')">
-                    <span>✨ Enhance with HyIQ</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListKjr1">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Architecture_Audit_Q3.pdf (1.8 MB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Microservices_RFC_Approved.pdf (640 KB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListKjr1')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Add Evidence Document</span>
-                  </button>
-                </div>
+              <div class="field-action-strip">
+                <button class="btn-action-tool" onclick="attachEvidence('m_kjr_comment_1')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                  <span>Architecture_Audit_Q3.pdf</span>
+                </button>
+                <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_kjr_comment_1')">
+                  <span>✨ Enhance with HyIQ</span>
+                </button>
               </div>
             </div>
 
             <!-- KJR 2 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">KJR 2 · SPRINT DELIVERY VELOCITY &amp; RELEASE CADENCE</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Weight: 12%</span>
+                <span class="m-card-label">KJR 2 · SPRINT DELIVERY VELOCITY &amp; RELEASE CADENCE</span>
+                <span class="status-pill live">Core Deliverable</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 12px;">
                 Drive on-time sprint completions, actively resolve cross-team blockers, and maintain high deployment frequency while sustaining high unit test coverage.
               </p>
 
-              <div style="font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 4px;">Manager Evaluation Rating (5-Point Model)</div>
+              <div style="font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 4px;">Manager Evaluation Rating (1 to 5)</div>
               <div class="rating-scale-deck">
                 <div class="rating-pill-opt" data-kjr-key="velocity" data-rate-val="1" onclick="setKjrRating('velocity', 1)">
                   <span class="rate-num">1</span>
@@ -13051,19 +12652,19 @@
                 </div>
                 <div class="rating-pill-opt" data-kjr-key="velocity" data-rate-val="2" onclick="setKjrRating('velocity', 2)">
                   <span class="rate-num">2</span>
-                  <span class="rate-desc">Needs Improvement</span>
+                  <span class="rate-desc">Developing</span>
                 </div>
                 <div class="rating-pill-opt" data-kjr-key="velocity" data-rate-val="3" onclick="setKjrRating('velocity', 3)">
                   <span class="rate-num">3</span>
-                  <span class="rate-desc">Meets Expectations</span>
+                  <span class="rate-desc">Proficient</span>
                 </div>
-                <div class="rating-pill-opt active" data-kjr-key="velocity" data-rate-val="4" onclick="setKjrRating('velocity', 4)">
+                <div class="rating-pill-opt" data-kjr-key="velocity" data-rate-val="4" onclick="setKjrRating('velocity', 4)">
                   <span class="rate-num">4</span>
-                  <span class="rate-desc">Exceeds Expectations</span>
+                  <span class="rate-desc">Commendable</span>
                 </div>
-                <div class="rating-pill-opt" data-kjr-key="velocity" data-rate-val="5" onclick="setKjrRating('velocity', 5)">
+                <div class="rating-pill-opt active" data-kjr-key="velocity" data-rate-val="5" onclick="setKjrRating('velocity', 5)">
                   <span class="rate-num">5</span>
-                  <span class="rate-desc">Outstanding</span>
+                  <span class="rate-desc">Role Model</span>
                 </div>
               </div>
 
@@ -13072,42 +12673,28 @@
                 <textarea class="m-textarea" rows="2" id="m_kjr_comment_2">Exceptional release velocity. Completed all Q3 and Q4 product epics ahead of planned schedules without critical regressions.</textarea>
               </div>
 
-              <!-- Evidence & Attachments Strip -->
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Supporting Evidence &amp; Attachments</span>
-                  <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_kjr_comment_2', 'velocity')">
-                    <span>✨ Enhance with HyIQ</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListKjr2">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Sprint_Velocity_Report_Q3_Q4.pdf (2.1 MB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListKjr2')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Add Evidence Document</span>
-                  </button>
-                </div>
+              <div class="field-action-strip">
+                <button class="btn-action-tool" onclick="attachEvidence('m_kjr_comment_2')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                  <span>Sprint_Velocity_Report.pdf</span>
+                </button>
+                <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_kjr_comment_2')">
+                  <span>✨ Enhance with HyIQ</span>
+                </button>
               </div>
             </div>
 
             <!-- KJR 3 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">KJR 3 · DEVOPS AUTOMATION &amp; ZERO-TRUST SECURITY</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Weight: 8%</span>
+                <span class="m-card-label">KJR 3 · DEVOPS AUTOMATION &amp; ZERO-TRUST SECURITY</span>
+                <span class="status-pill live">Core Deliverable</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 12px;">
                 Enforce SOC2 security protocols, Cloudflare Zero-Trust policies, continuous vulnerability scanning, and disaster recovery readiness across edge infrastructure.
               </p>
 
-              <div style="font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 4px;">Manager Evaluation Rating (5-Point Model)</div>
+              <div style="font-size: 11.5px; font-weight: 700; color: #475569; margin-bottom: 4px;">Manager Evaluation Rating (1 to 5)</div>
               <div class="rating-scale-deck">
                 <div class="rating-pill-opt" data-kjr-key="devops" data-rate-val="1" onclick="setKjrRating('devops', 1)">
                   <span class="rate-num">1</span>
@@ -13115,19 +12702,19 @@
                 </div>
                 <div class="rating-pill-opt" data-kjr-key="devops" data-rate-val="2" onclick="setKjrRating('devops', 2)">
                   <span class="rate-num">2</span>
-                  <span class="rate-desc">Needs Improvement</span>
+                  <span class="rate-desc">Developing</span>
                 </div>
                 <div class="rating-pill-opt" data-kjr-key="devops" data-rate-val="3" onclick="setKjrRating('devops', 3)">
                   <span class="rate-num">3</span>
-                  <span class="rate-desc">Meets Expectations</span>
+                  <span class="rate-desc">Proficient</span>
                 </div>
                 <div class="rating-pill-opt active" data-kjr-key="devops" data-rate-val="4" onclick="setKjrRating('devops', 4)">
                   <span class="rate-num">4</span>
-                  <span class="rate-desc">Exceeds Expectations</span>
+                  <span class="rate-desc">Commendable</span>
                 </div>
                 <div class="rating-pill-opt" data-kjr-key="devops" data-rate-val="5" onclick="setKjrRating('devops', 5)">
                   <span class="rate-num">5</span>
-                  <span class="rate-desc">Outstanding</span>
+                  <span class="rate-desc">Role Model</span>
                 </div>
               </div>
 
@@ -13136,54 +12723,35 @@
                 <textarea class="m-textarea" rows="2" id="m_kjr_comment_3">Successfully transitioned microservices into automated CI/CD pipelines with zero compliance findings during annual security audits.</textarea>
               </div>
 
-              <!-- Evidence & Attachments Strip -->
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Supporting Evidence &amp; Attachments</span>
-                  <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_kjr_comment_3', 'security')">
-                    <span>✨ Enhance with HyIQ</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListKjr3">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Security_Compliance_Cert.pdf (890 KB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListKjr3')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Add Evidence Document</span>
-                  </button>
-                </div>
+              <div class="field-action-strip">
+                <button class="btn-action-tool" onclick="attachEvidence('m_kjr_comment_3')">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                  <span>Security_Compliance_Cert.pdf</span>
+                </button>
+                <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_kjr_comment_3')">
+                  <span>✨ Enhance with HyIQ</span>
+                </button>
               </div>
             </div>
 
             <!-- KJR Live Average -->
             <div class="m-card" style="background: #FAF8FF; border-color: #DDD6FE; display: flex; align-items: center; justify-content: space-between;">
-              <span style="font-size: 13px; font-weight: 700; color: #4C1D95;">Key Job Responsibilities (KJR) Average Score (35% Component Weight)</span>
-              <span style="font-size: 16px; font-weight: 800; color: #7C3AED;" id="mKjrAverageDisplay">4.00 / 5.0</span>
+              <span style="font-size: 13px; font-weight: 700; color: #4C1D95;">Key Job Responsibilities (KJR) Average Score</span>
+              <span style="font-size: 16px; font-weight: 800; color: #7C3AED;" id="mKjrAverageDisplay">4.33 / 5.0</span>
             </div>
           </div>
 
           <!-- STEP 3: KEY PERFORMANCE OBJECTIVES (KPO) -->
           <div class="m-pane" id="m-pane-3">
             <div class="m-section-tag">SECTION 3 · STRATEGIC METRICS &amp; OKRs</div>
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 6px;">
-              <div>
-                <h1 class="m-heading" style="margin-bottom: 2px;">Key Performance Objectives (KPO)</h1>
-                <p class="m-subtext">Review quantitative objectives, achievement against planned targets, and cumulative strategic scorecards.</p>
-              </div>
-              <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700; white-space: nowrap; padding: 6px 14px; font-size: 12.5px;">Component Weight: 40%</span>
-            </div>
+            <h1 class="m-heading">Key Performance Objectives (KPO)</h1>
+            <p class="m-subtext">Review quantitative objectives, achievement against planned targets, and cumulative strategic scorecards.</p>
 
             <!-- KPO 1 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">KPO 1 · CORE API LATENCY &amp; EDGE MIGRATION</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Objective Weight: 40%</span>
+                <span class="m-card-label">KPO 1 · CORE API LATENCY &amp; EDGE MIGRATION</span>
+                <span class="status-pill live">Weight: 40%</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5;">
                 Optimize core gateway microservices to reduce p95 API response latency below 120ms and deploy edge worker caching across all regions.
@@ -13207,37 +12775,13 @@
                   <span class="metric-num" style="color: #7C3AED;">4.50 / 5.0</span>
                 </div>
               </div>
-
-              <!-- Evidence & Attachments Strip -->
-              <div style="margin-top: 12px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">OKR Artifacts &amp; Metric Verification</span>
-                  <button class="btn-ai-enhance-pill" onclick="showToast('✨ HyIQ OKR Analysis: Goal achieved at 126% efficiency with zero latency regressions.')">
-                    <span>✨ HyIQ OKR Analysis</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListKpo1">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                    <span>Datadog_p95_Latency_Benchmark.png (420 KB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListKpo1')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Metric Report</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- KPO 2 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">KPO 2 · ENGINEERING TALENT HIRING &amp; RETENTION</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Objective Weight: 35%</span>
+                <span class="m-card-label">KPO 2 · ENGINEERING TALENT HIRING &amp; RETENTION</span>
+                <span class="status-pill live">Weight: 35%</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5;">
                 Recruit, onboard, and ramp up 8 senior full-stack and distributed systems engineers with a 90-day retention index above 90%.
@@ -13261,37 +12805,13 @@
                   <span class="metric-num" style="color: #7C3AED;">5.00 / 5.0</span>
                 </div>
               </div>
-
-              <!-- Evidence & Attachments Strip -->
-              <div style="margin-top: 12px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">OKR Artifacts &amp; Metric Verification</span>
-                  <button class="btn-ai-enhance-pill" onclick="showToast('✨ HyIQ OKR Analysis: Hiring targets exceeded by 1 hire with 94.4% 90-day retention rate.')">
-                    <span>✨ HyIQ OKR Analysis</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListKpo2">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Talent_Hiring_Retention_Report.pdf (1.2 MB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListKpo2')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Metric Report</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- KPO 3 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">KPO 3 · AUTOMATED TEST COVERAGE &amp; CI QUALITY</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Objective Weight: 25%</span>
+                <span class="m-card-label">KPO 3 · AUTOMATED TEST COVERAGE &amp; CI QUALITY</span>
+                <span class="status-pill live">Weight: 25%</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5;">
                 Increase automated unit, integration, and E2E regression test coverage from 74% to at least 85% across all core backend services.
@@ -13315,58 +12835,29 @@
                   <span class="metric-num" style="color: #7C3AED;">4.50 / 5.0</span>
                 </div>
               </div>
-
-              <!-- Evidence & Attachments Strip -->
-              <div style="margin-top: 12px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">OKR Artifacts &amp; Metric Verification</span>
-                  <button class="btn-ai-enhance-pill" onclick="showToast('✨ HyIQ OKR Analysis: Automated coverage surpassed target by +3.2% across 14 microservices.')">
-                    <span>✨ HyIQ OKR Analysis</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListKpo3">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Codecov_CI_Audit_Report.pdf (940 KB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListKpo3')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Metric Report</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Weighted KPO Score -->
             <div class="m-card" style="background: #FAF8FF; border-color: #DDD6FE; display: flex; align-items: center; justify-content: space-between;">
-              <span style="font-size: 13px; font-weight: 700; color: #4C1D95;">Weighted Key Performance Objectives (KPO) Score (40% Component Weight)</span>
+              <span style="font-size: 13px; font-weight: 700; color: #4C1D95;">Weighted Key Performance Objectives (KPO) Score</span>
               <span style="font-size: 16px; font-weight: 800; color: #7C3AED;" id="mKpoAverageDisplay">4.68 / 5.0</span>
             </div>
           </div>
 
-          <!-- STEP 4: BEHAVIOURAL COMPETENCIES & CULTURE -->
+          <!-- STEP 4: COMPETENCIES & CORE VALUES -->
           <div class="m-pane" id="m-pane-4">
             <div class="m-section-tag">SECTION 4 · BEHAVIOURAL COMPETENCIES</div>
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 6px;">
-              <div>
-                <h1 class="m-heading" style="margin-bottom: 2px;">Competencies &amp; Workplace Culture</h1>
-                <p class="m-subtext">Assess adherence to organizational values, collaborative impact, technical ownership, and team enablement.</p>
-              </div>
-              <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700; white-space: nowrap; padding: 6px 14px; font-size: 12.5px;">Component Weight: 25%</span>
-            </div>
+            <h1 class="m-heading">Competencies &amp; Workplace Culture</h1>
+            <p class="m-subtext">Evaluate core leadership behaviours, technical problem-solving, and cross-functional team collaboration.</p>
 
             <!-- Competency 1 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">COMPETENCY 1 · LEADERSHIP &amp; PEOPLE ENABLEMENT</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Weight: 10%</span>
+                <span class="m-card-label">COMPETENCY 1 · LEADERSHIP &amp; PEOPLE ENABLEMENT</span>
+                <span class="status-pill live">Rating: 5/5</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 12px;">
-                Demonstrates authentic mentorship, actively develops junior and mid-level colleagues, fosters psychological safety, and leads cross-functional alignment.
+                Inspires technical leads, creates an inclusive culture of psychological safety, and mentors mid-level engineers to step into senior technical roles.
               </p>
 
               <div class="rating-scale-deck">
@@ -13376,59 +12867,36 @@
                 </div>
                 <div class="rating-pill-opt" data-comp-key="leadership" data-rate-val="2" onclick="setCompetencyRating('leadership', 2)">
                   <span class="rate-num">2</span>
-                  <span class="rate-desc">Needs Improvement</span>
+                  <span class="rate-desc">Developing</span>
                 </div>
                 <div class="rating-pill-opt" data-comp-key="leadership" data-rate-val="3" onclick="setCompetencyRating('leadership', 3)">
                   <span class="rate-num">3</span>
-                  <span class="rate-desc">Meets Expectations</span>
+                  <span class="rate-desc">Proficient</span>
                 </div>
                 <div class="rating-pill-opt" data-comp-key="leadership" data-rate-val="4" onclick="setCompetencyRating('leadership', 4)">
                   <span class="rate-num">4</span>
-                  <span class="rate-desc">Exceeds Expectations</span>
+                  <span class="rate-desc">Commendable</span>
                 </div>
                 <div class="rating-pill-opt active" data-comp-key="leadership" data-rate-val="5" onclick="setCompetencyRating('leadership', 5)">
                   <span class="rate-num">5</span>
-                  <span class="rate-desc">Outstanding</span>
+                  <span class="rate-desc">Role Model</span>
                 </div>
               </div>
 
               <div class="m-field-group" style="margin-top: 10px;">
                 <label class="m-field-lbl">Manager Feedback &amp; Evidence</label>
-                <textarea class="m-textarea" rows="2" id="m_comp_comment_1">Chanchal has been pivotal in scaling the engineering leadership guild and mentoring two engineers to team lead promotions.</textarea>
-              </div>
-
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Supporting Evidence &amp; 360 Feedback</span>
-                  <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_comp_comment_1', 'leadership')">
-                    <span>✨ Enhance with HyIQ</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListComp1">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>360_Peer_Feedback_Summary.pdf (1.1 MB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListComp1')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Feedback Evidence</span>
-                  </button>
-                </div>
+                <textarea class="m-textarea" rows="2" id="m_comp_comment_1">Chanchal is an exceptional mentor. Engineering managers consistently highlight her guidance in navigating cross-functional stakeholder negotiations.</textarea>
               </div>
             </div>
 
             <!-- Competency 2 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">COMPETENCY 2 · TECHNICAL EXCELLENCE &amp; QUALITY MINDSET</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Weight: 10%</span>
+                <span class="m-card-label">COMPETENCY 2 · TECHNICAL EXCELLENCE &amp; QUALITY MINDSET</span>
+                <span class="status-pill live">Rating: 4/5</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 12px;">
-                Champions engineering excellence, maintains zero-defect standards, advocates architectural simplification, and eliminates technical debt proactively.
+                Maintains exemplary technical standards, advocates architectural simplification, and eliminates technical debt proactively.
               </p>
 
               <div class="rating-scale-deck">
@@ -13438,19 +12906,19 @@
                 </div>
                 <div class="rating-pill-opt" data-comp-key="excellence" data-rate-val="2" onclick="setCompetencyRating('excellence', 2)">
                   <span class="rate-num">2</span>
-                  <span class="rate-desc">Needs Improvement</span>
+                  <span class="rate-desc">Developing</span>
                 </div>
                 <div class="rating-pill-opt" data-comp-key="excellence" data-rate-val="3" onclick="setCompetencyRating('excellence', 3)">
                   <span class="rate-num">3</span>
-                  <span class="rate-desc">Meets Expectations</span>
+                  <span class="rate-desc">Proficient</span>
                 </div>
                 <div class="rating-pill-opt active" data-comp-key="excellence" data-rate-val="4" onclick="setCompetencyRating('excellence', 4)">
                   <span class="rate-num">4</span>
-                  <span class="rate-desc">Exceeds Expectations</span>
+                  <span class="rate-desc">Commendable</span>
                 </div>
                 <div class="rating-pill-opt" data-comp-key="excellence" data-rate-val="5" onclick="setCompetencyRating('excellence', 5)">
                   <span class="rate-num">5</span>
-                  <span class="rate-desc">Outstanding</span>
+                  <span class="rate-desc">Role Model</span>
                 </div>
               </div>
 
@@ -13458,36 +12926,13 @@
                 <label class="m-field-lbl">Manager Feedback &amp; Evidence</label>
                 <textarea class="m-textarea" rows="2" id="m_comp_comment_2">Establishes robust engineering guardrails and conducts clear post-mortems that enhance team resilience.</textarea>
               </div>
-
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Supporting Evidence</span>
-                  <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_comp_comment_2', 'excellence')">
-                    <span>✨ Enhance with HyIQ</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListComp2">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Architecture_Review_Guardrails.pdf (680 KB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListComp2')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Feedback Evidence</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Competency 3 -->
             <div class="m-card">
               <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">COMPETENCY 3 · INNOVATION &amp; PROBLEM SOLVING</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Weight: 5%</span>
+                <span class="m-card-label">COMPETENCY 3 · INNOVATION &amp; PROBLEM SOLVING</span>
+                <span class="status-pill live">Rating: 5/5</span>
               </div>
               <p style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 12px;">
                 Pioneers modern agentic workflows, identifies system bottlenecks, and drives automation across development lifecycles.
@@ -13500,19 +12945,19 @@
                 </div>
                 <div class="rating-pill-opt" data-comp-key="innovation" data-rate-val="2" onclick="setCompetencyRating('innovation', 2)">
                   <span class="rate-num">2</span>
-                  <span class="rate-desc">Needs Improvement</span>
+                  <span class="rate-desc">Developing</span>
                 </div>
                 <div class="rating-pill-opt" data-comp-key="innovation" data-rate-val="3" onclick="setCompetencyRating('innovation', 3)">
                   <span class="rate-num">3</span>
-                  <span class="rate-desc">Meets Expectations</span>
+                  <span class="rate-desc">Proficient</span>
                 </div>
                 <div class="rating-pill-opt" data-comp-key="innovation" data-rate-val="4" onclick="setCompetencyRating('innovation', 4)">
                   <span class="rate-num">4</span>
-                  <span class="rate-desc">Exceeds Expectations</span>
+                  <span class="rate-desc">Commendable</span>
                 </div>
                 <div class="rating-pill-opt active" data-comp-key="innovation" data-rate-val="5" onclick="setCompetencyRating('innovation', 5)">
                   <span class="rate-num">5</span>
-                  <span class="rate-desc">Outstanding</span>
+                  <span class="rate-desc">Role Model</span>
                 </div>
               </div>
 
@@ -13520,69 +12965,11 @@
                 <label class="m-field-lbl">Manager Feedback &amp; Evidence</label>
                 <textarea class="m-textarea" rows="2" id="m_comp_comment_3">Spearheaded the integration of AI-assisted code reviews, cutting pull request turnaround by 34%.</textarea>
               </div>
-
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Supporting Evidence</span>
-                  <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_comp_comment_3', 'innovation')">
-                    <span>✨ Enhance with HyIQ</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListComp3">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>AI_CodeReview_Turnaround_Study.pdf (510 KB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListComp3')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Feedback Evidence</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Qualitative Accomplishments Section (Matching Creation Step 5 Section 2 Question 2) -->
-            <div class="m-card" style="border-left: 4px solid #7C3AED;">
-              <div class="m-card-title-row">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span class="m-card-label">QUALITATIVE ACCOMPLISHMENTS, BREAKTHROUGH WINS &amp; SELF-REFLECTION</span>
-                  <span class="required-tag">* Required</span>
-                </div>
-                <span class="status-pill live" style="background: #EDE9FE; color: #7C3AED; font-weight: 700;">Qualitative Feedback (10% Weight)</span>
-              </div>
-              <p style="font-size: 13px; color: #334155; line-height: 1.5; margin-bottom: 12px;">
-                Highlight key breakthroughs, cross-functional impact initiatives, and self-reflection contributions delivered throughout the annual cycle.
-              </p>
-              <div class="m-field-group">
-                <label class="m-field-lbl">Colleague Self-Reflection &amp; Manager Executive Observation</label>
-                <textarea class="m-textarea" rows="3" id="m_qualitative_accomplishments">Spearheaded the zero-downtime multi-region edge deployment for Hirerkey 2.0, successfully onboarded 4 senior engineering leads, and co-founded the internal Architecture Guild to standardize microservice design patterns across teams.</textarea>
-              </div>
-
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Attached Breakthrough Documentation</span>
-                  <button class="btn-ai-enhance-pill" onclick="enhanceCommentWithAI('m_qualitative_accomplishments', 'breakthroughs')">
-                    <span>✨ Enhance with HyIQ</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListQual">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Annual_Breakthrough_Wins_2026.pdf (1.5 MB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListQual')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Document</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <!-- Competencies Live Average -->
             <div class="m-card" style="background: #FAF8FF; border-color: #DDD6FE; display: flex; align-items: center; justify-content: space-between;">
-              <span style="font-size: 13px; font-weight: 700; color: #4C1D95;">Competencies Average Score (25% Component Weight)</span>
+              <span style="font-size: 13px; font-weight: 700; color: #4C1D95;">Competencies Average Score</span>
               <span style="font-size: 16px; font-weight: 800; color: #7C3AED;" id="mCompetenciesAverageDisplay">4.67 / 5.0</span>
             </div>
           </div>
@@ -13590,13 +12977,8 @@
           <!-- STEP 5: PERSONAL DEVELOPMENT PLAN (PDP) -->
           <div class="m-pane" id="m-pane-5">
             <div class="m-section-tag">SECTION 5 · GROWTH &amp; UPSKILLING</div>
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 6px;">
-              <div>
-                <h1 class="m-heading" style="margin-bottom: 2px;">Personal Development Plan (PDP)</h1>
-                <p class="m-subtext">Establish concrete development commitments, target timelines, and priority classifications for the upcoming cycle.</p>
-              </div>
-              <span class="status-pill live" style="background: #FEF3C7; color: #D97706; font-weight: 700; white-space: nowrap; padding: 6px 14px; font-size: 12.5px;">Active Priority Track · 3 Strategic Goals</span>
-            </div>
+            <h1 class="m-heading">Personal Development Plan (PDP)</h1>
+            <p class="m-subtext">Establish concrete development commitments, target timelines, and priority classifications for the upcoming cycle.</p>
 
             <!-- Goal 1 -->
             <div class="m-card">
@@ -13617,34 +12999,13 @@
                   <input type="text" class="m-input" value="Q1 2027 (3 Months)" readonly>
                 </div>
               </div>
-              <div class="m-field-group" style="margin-top: 10px;">
+              <div class="m-field-group" style="margin-top: 12px;">
                 <label class="m-field-lbl">Action Steps &amp; Practical Execution</label>
-                <textarea class="m-textarea" rows="2" id="pdp_action_1" readonly>Participate in the Executive Strategic Leadership Roundtable and sponsor quarterly cross-functional operational reviews.</textarea>
+                <textarea class="m-textarea" rows="2" readonly>Participate in the Executive Strategic Leadership Roundtable and sponsor quarterly cross-functional operational reviews.</textarea>
               </div>
-              <div class="m-field-group" style="margin-top: 10px;">
+              <div class="m-field-group" style="margin-top: 12px;">
                 <label class="m-field-lbl">Support &amp; Resources Required</label>
-                <textarea class="m-textarea" rows="2" id="pdp_resource_1" readonly>Executive coaching sessions and leadership program sponsorship.</textarea>
-              </div>
-
-              <!-- Attachments & HyIQ for Goal 1 -->
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Attached Syllabus &amp; Growth Resources</span>
-                  <button class="btn-ai-enhance-pill" onclick="showToast('✨ HyIQ Goal Generator: SMART milestones mapped for Q1 2027.')">
-                    <span>✨ HyIQ Refine Goal</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListPdp1">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>VP_Readiness_Leadership_Curriculum.pdf (840 KB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListPdp1')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Resource / Syllabus</span>
-                  </button>
-                </div>
+                <input type="text" class="m-input" value="Executive coaching sessions and leadership program sponsorship." readonly style="background: #F8FAFC;">
               </div>
             </div>
 
@@ -13655,7 +13016,7 @@
                   <span class="m-card-label">DEVELOPMENT GOAL 2</span>
                   <span class="pdp-priority-badge p2">Priority 2 (Medium)</span>
                 </div>
-                <span class="status-pill live" style="background: #EFF6FF; color: #1D4ED8;">Planned</span>
+                <span class="status-pill draft">Planned</span>
               </div>
               <div class="m-grid-2">
                 <div class="m-field-group">
@@ -13667,34 +13028,13 @@
                   <input type="text" class="m-input" value="Q2 2027 (6 Months)" readonly>
                 </div>
               </div>
-              <div class="m-field-group" style="margin-top: 10px;">
+              <div class="m-field-group" style="margin-top: 12px;">
                 <label class="m-field-lbl">Action Steps &amp; Practical Execution</label>
-                <textarea class="m-textarea" rows="2" id="pdp_action_2" readonly>Lead multi-region live failover drills and formulate automated disaster recovery runbooks with infrastructure team.</textarea>
+                <textarea class="m-textarea" rows="2" readonly>Lead multi-region live failover drills and formulate automated disaster recovery runbooks with infrastructure team.</textarea>
               </div>
-              <div class="m-field-group" style="margin-top: 10px;">
+              <div class="m-field-group" style="margin-top: 12px;">
                 <label class="m-field-lbl">Support &amp; Resources Required</label>
-                <textarea class="m-textarea" rows="2" id="pdp_resource_2" readonly>Cloud architecture lab environments and AWS Disaster Recovery specialist consultation.</textarea>
-              </div>
-
-              <!-- Attachments & HyIQ for Goal 2 -->
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Attached Syllabus &amp; Growth Resources</span>
-                  <button class="btn-ai-enhance-pill" onclick="showToast('✨ HyIQ Goal Generator: Disaster recovery simulation drills scheduled.')">
-                    <span>✨ HyIQ Refine Goal</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListPdp2">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>MultiRegion_Disaster_Recovery_Blueprint.pdf (1.4 MB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListPdp2')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Resource / Syllabus</span>
-                  </button>
-                </div>
+                <input type="text" class="m-input" value="Cloud staging infrastructure allocation and Chaos Engineering tooling." readonly style="background: #F8FAFC;">
               </div>
             </div>
 
@@ -13703,9 +13043,9 @@
               <div class="m-card-title-row">
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <span class="m-card-label">DEVELOPMENT GOAL 3</span>
-                  <span class="pdp-priority-badge p3">Priority 3 (Low)</span>
+                  <span class="pdp-priority-badge p3">Priority 3 (Neutral)</span>
                 </div>
-                <span class="status-pill live" style="background: #F8FAFC; color: #64748B;">Backlog</span>
+                <span class="status-pill live">Ongoing</span>
               </div>
               <div class="m-grid-2">
                 <div class="m-field-group">
@@ -13714,87 +13054,51 @@
                 </div>
                 <div class="m-field-group">
                   <label class="m-field-lbl">Target Timeline</label>
-                  <input type="text" class="m-input" value="Q3 2027 (9 Months)" readonly>
+                  <input type="text" class="m-input" value="Ongoing / Bi-Weekly" readonly>
                 </div>
               </div>
-              <div class="m-field-group" style="margin-top: 10px;">
+              <div class="m-field-group" style="margin-top: 12px;">
                 <label class="m-field-lbl">Action Steps &amp; Practical Execution</label>
-                <textarea class="m-textarea" rows="2" id="pdp_action_3" readonly>Author 4 comprehensive technical RFC whitepapers and mentor 3 junior engineers to tech lead readiness.</textarea>
-              </div>
-              <div class="m-field-group" style="margin-top: 10px;">
-                <label class="m-field-lbl">Support &amp; Resources Required</label>
-                <textarea class="m-textarea" rows="2" id="pdp_resource_3" readonly>Internal guild scheduling support and technical writing stipend.</textarea>
-              </div>
-
-              <!-- Attachments & HyIQ for Goal 3 -->
-              <div style="margin-top: 10px; padding-top: 8px; border-top: 1px dashed #E2E8F0;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-                  <span style="font-size: 11.5px; font-weight: 700; color: #475569;">Attached Syllabus &amp; Growth Resources</span>
-                  <button class="btn-ai-enhance-pill" onclick="showToast('✨ HyIQ Goal Generator: Mentorship syllabus aligned with tech lead progression.')">
-                    <span>✨ HyIQ Refine Goal</span>
-                  </button>
-                </div>
-                <div class="evidence-chip-list" id="evListPdp3">
-                  <div class="evidence-chip">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                    <span>Architecture_Guild_Charter.pdf (320 KB)</span>
-                    <button class="remove-ev-btn" onclick="removeEvidenceChip(this)">✕</button>
-                  </div>
-                  <button class="btn-action-tool" onclick="promptAddEvidence('evListPdp3')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                    <span>+ Attach Resource / Syllabus</span>
-                  </button>
-                </div>
+                <textarea class="m-textarea" rows="2" readonly>Host bi-weekly engineering brown-bag workshops and author internal RFC standards for new service onboarding.</textarea>
               </div>
             </div>
-
-            <!-- Add PDP Goal Button (Matching Creation Question/Goal Adding Feature) -->
-            <button class="btn-c-add-sec" onclick="addNewPdpGoal()" style="margin-top: 14px;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              <span>+ Add New Development Commitment</span>
-            </button>
           </div>
 
           <!-- STEP 6: SUMMARY, CALIBRATION & SIGN-OFF -->
           <div class="m-pane" id="m-pane-6">
             <div class="m-section-tag">SECTION 6 · GOVERNANCE &amp; SIGN-OFF</div>
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 6px;">
-              <div>
-                <h1 class="m-heading" style="margin-bottom: 2px;">Summary, Calibration &amp; Digital Sign-Off</h1>
-                <p class="m-subtext">Review consolidated scorecards, side-by-side delta calibrations, and execute formal HR sign-off.</p>
-              </div>
-              <span class="status-pill live" id="mLockSealTag" style="display: none; background: #ECFDF5; color: #059669; font-weight: 700;">✓ Digitally Certified &amp; Locked</span>
-            </div>
+            <h1 class="m-heading">Summary, Calibration &amp; Digital Sign-Off</h1>
+            <p class="m-subtext">Review consolidated scorecards, side-by-side delta calibrations, and execute formal HR sign-off.</p>
 
-            <!-- 4 Top Metric Scorecards (Matching 5-Point Rubric Descriptors from Creation Step 3) -->
+            <!-- 4 Top Metric Scorecards -->
             <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
-              <div class="m-card" style="margin-bottom: 0; text-align: center; padding: 18px 12px; border-top: 3px solid #7C3AED;">
-                <div style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">KJR Score (35% Weight)</div>
-                <div style="font-size: 26px; font-weight: 800; color: #0F172A; margin-top: 4px;" id="mFinalKjrVal">4.00</div>
-                <div style="font-size: 11px; color: #4F46E5; font-weight: 700; margin-top: 2px;" id="mFinalKjrDesc">Exceeds Expectations</div>
+              <div class="m-card" style="margin-bottom: 0; text-align: center; padding: 18px 12px;">
+                <div style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">KJR Score (35%)</div>
+                <div style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 4px;" id="mFinalKjrVal">4.33</div>
+                <div style="font-size: 11px; color: #059669; font-weight: 600; margin-top: 2px;">Role Model</div>
               </div>
-              <div class="m-card" style="margin-bottom: 0; text-align: center; padding: 18px 12px; border-top: 3px solid #7C3AED;">
-                <div style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">KPO Score (40% Weight)</div>
-                <div style="font-size: 26px; font-weight: 800; color: #0F172A; margin-top: 4px;" id="mFinalKpoVal">4.68</div>
-                <div style="font-size: 11px; color: #059669; font-weight: 700; margin-top: 2px;" id="mFinalKpoDesc">Outstanding</div>
+              <div class="m-card" style="margin-bottom: 0; text-align: center; padding: 18px 12px;">
+                <div style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">KPO Score (40%)</div>
+                <div style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 4px;" id="mFinalKpoVal">4.68</div>
+                <div style="font-size: 11px; color: #059669; font-weight: 600; margin-top: 2px;">Exceeded Target</div>
               </div>
-              <div class="m-card" style="margin-bottom: 0; text-align: center; padding: 18px 12px; border-top: 3px solid #7C3AED;">
-                <div style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">Competencies (25% Weight)</div>
-                <div style="font-size: 26px; font-weight: 800; color: #0F172A; margin-top: 4px;" id="mFinalCompVal">4.67</div>
-                <div style="font-size: 11px; color: #059669; font-weight: 700; margin-top: 2px;" id="mFinalCompDesc">Outstanding</div>
+              <div class="m-card" style="margin-bottom: 0; text-align: center; padding: 18px 12px;">
+                <div style="font-size: 11px; font-weight: 800; color: #64748B; text-transform: uppercase;">Competencies (25%)</div>
+                <div style="font-size: 24px; font-weight: 800; color: #0F172A; margin-top: 4px;" id="mFinalCompVal">4.67</div>
+                <div style="font-size: 11px; color: #059669; font-weight: 600; margin-top: 2px;">Role Model</div>
               </div>
-              <div class="m-card" style="margin-bottom: 0; text-align: center; padding: 18px 12px; background: #FAF5FF; border: 2px solid #C4B5FD;">
-                <div style="font-size: 11px; font-weight: 800; color: #6D28D9; text-transform: uppercase;">Overall Blended Rating</div>
-                <div style="font-size: 28px; font-weight: 800; color: #7C3AED; margin-top: 4px;" id="mFinalOverallVal">4.44</div>
-                <div style="font-size: 11.5px; color: #6D28D9; font-weight: 800; margin-top: 2px;" id="mFinalOverallDesc">Grade A (Exceeding Benchmark)</div>
+              <div class="m-card" style="margin-bottom: 0; text-align: center; padding: 18px 12px; background: #FAF8FF; border-color: #DDD6FE;">
+                <div style="font-size: 11px; font-weight: 800; color: #6D28D9; text-transform: uppercase;">Overall Rating</div>
+                <div style="font-size: 26px; font-weight: 800; color: #7C3AED; margin-top: 4px;" id="mFinalOverallVal">4.55</div>
+                <div style="font-size: 11px; color: #6D28D9; font-weight: 700; margin-top: 2px;">Grade A (Exceeding)</div>
               </div>
             </div>
 
-            <!-- Side-by-Side Calibration Matrix (Reflecting all 10 evaluation criteria) -->
+            <!-- Side-by-Side Calibration Comparison Table -->
             <div class="m-card">
               <div class="m-card-title-row">
                 <span class="m-card-label">SIDE-BY-SIDE REVIEW &amp; CALIBRATION DELTA</span>
-                <span class="status-pill live" style="background: #ECFDF5; color: #059669;">Calibration Committee Aligned</span>
+                <span class="status-pill live">Calibration Committee Aligned</span>
               </div>
               <p style="font-size: 12.5px; color: #64748B;">Compares employee self-ratings against direct manager evaluation and committee calibration scores.</p>
 
@@ -13802,7 +13106,6 @@
                 <thead>
                   <tr>
                     <th>Evaluation Criteria</th>
-                    <th>Weight</th>
                     <th style="text-align: center;">Self Score</th>
                     <th style="text-align: center;">Manager Score</th>
                     <th style="text-align: center;">Calibrated</th>
@@ -13812,7 +13115,6 @@
                 <tbody>
                   <tr>
                     <td><strong>Architecture &amp; System Reliability</strong> (KJR)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">15%</span></td>
                     <td style="text-align: center;"><span class="score-badge-round self">4.0</span></td>
                     <td style="text-align: center;"><span class="score-badge-round mgr">4.0</span></td>
                     <td style="text-align: center;"><span class="score-badge-round cal">4.0</span></td>
@@ -13820,96 +13122,60 @@
                   </tr>
                   <tr>
                     <td><strong>Sprint Velocity &amp; Release Cadence</strong> (KJR)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">12%</span></td>
                     <td style="text-align: center;"><span class="score-badge-round self">4.0</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round mgr">4.0</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round cal">4.0</span></td>
-                    <td style="text-align: center;"><span class="delta-status-pill aligned">Aligned (0.0)</span></td>
+                    <td style="text-align: center;"><span class="score-badge-round mgr">5.0</span></td>
+                    <td style="text-align: center;"><span class="score-badge-round cal">5.0</span></td>
+                    <td style="text-align: center;"><span class="delta-status-pill deviation">+1.0 Manager</span></td>
                   </tr>
                   <tr>
                     <td><strong>DevOps Automation &amp; Security</strong> (KJR)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">8%</span></td>
                     <td style="text-align: center;"><span class="score-badge-round self">4.0</span></td>
                     <td style="text-align: center;"><span class="score-badge-round mgr">4.0</span></td>
                     <td style="text-align: center;"><span class="score-badge-round cal">4.0</span></td>
                     <td style="text-align: center;"><span class="delta-status-pill aligned">Aligned (0.0)</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Core API Latency</strong> (KPO)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">40%</span></td>
+                    <td><strong>Core API Latency</strong> (KPO · 40% Weight)</td>
                     <td style="text-align: center;"><span class="score-badge-round self">4.5</span></td>
                     <td style="text-align: center;"><span class="score-badge-round mgr">4.5</span></td>
                     <td style="text-align: center;"><span class="score-badge-round cal">4.5</span></td>
                     <td style="text-align: center;"><span class="delta-status-pill aligned">Aligned (0.0)</span></td>
                   </tr>
                   <tr>
-                    <td><strong>Engineering Talent Hiring</strong> (KPO)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">35%</span></td>
+                    <td><strong>Engineering Talent Hiring</strong> (KPO · 35% Weight)</td>
                     <td style="text-align: center;"><span class="score-badge-round self">5.0</span></td>
                     <td style="text-align: center;"><span class="score-badge-round mgr">5.0</span></td>
                     <td style="text-align: center;"><span class="score-badge-round cal">5.0</span></td>
                     <td style="text-align: center;"><span class="delta-status-pill aligned">Aligned (0.0)</span></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Automated CI Quality</strong> (KPO)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">25%</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round self">4.0</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round mgr">4.5</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round cal">4.5</span></td>
-                    <td style="text-align: center;"><span class="delta-status-pill plus">+0.5 Manager</span></td>
                   </tr>
                   <tr>
                     <td><strong>Leadership &amp; People Enablement</strong> (Competency)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">10%</span></td>
                     <td style="text-align: center;"><span class="score-badge-round self">4.0</span></td>
                     <td style="text-align: center;"><span class="score-badge-round mgr">5.0</span></td>
                     <td style="text-align: center;"><span class="score-badge-round cal">5.0</span></td>
-                    <td style="text-align: center;"><span class="delta-status-pill plus">+1.0 Manager</span></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Technical Excellence &amp; Quality</strong> (Competency)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">10%</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round self">4.0</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round mgr">4.0</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round cal">4.0</span></td>
-                    <td style="text-align: center;"><span class="delta-status-pill aligned">Aligned (0.0)</span></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Innovation &amp; Problem Solving</strong> (Competency)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">5%</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round self">5.0</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round mgr">5.0</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round cal">5.0</span></td>
-                    <td style="text-align: center;"><span class="delta-status-pill aligned">Aligned (0.0)</span></td>
-                  </tr>
-                  <tr>
-                    <td><strong>Qualitative Breakthroughs</strong> (Accomplishments)</td>
-                    <td><span style="font-size: 11px; color: #6D28D9; font-weight: 700;">10%</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round self">4.5</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round mgr">5.0</span></td>
-                    <td style="text-align: center;"><span class="score-badge-round cal">5.0</span></td>
-                    <td style="text-align: center;"><span class="delta-status-pill plus">+0.5 Manager</span></td>
+                    <td style="text-align: center;"><span class="delta-status-pill deviation">+1.0 Manager</span></td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <!-- Multi-Stakeholder Digital Governance Lock -->
-            <div class="m-card" style="border: 2px solid #C4B5FD; background: #FAF8FF;">
-              <div class="m-card-title-row">
+            <!-- Digital Governance & HR Sign-Off Deck -->
+            <div class="digital-signoff-deck">
+              <div class="m-card-title-row" style="margin-bottom: 14px;">
                 <span class="m-card-label" style="color: #5B21B6;">DIGITAL GOVERNANCE &amp; MULTI-STAKEHOLDER SIGN-OFF</span>
-                <span class="status-pill live">3 of 3 Signatures Authenticated</span>
+                <span class="status-pill live" id="mLockSealTag" style="display: none; background: #ECFDF5; color: #059669; border-color: #A7F3D0;">✓ Sealed &amp; Locked</span>
               </div>
-              <div class="governance-grid">
+
+              <div class="governance-stages-grid">
                 <div class="governance-stage-card verified">
-                  <span class="stage-card-title">1. Colleague Digital Sign-Off</span>
-                  <span class="stage-card-status">✓ Signed &amp; Acknowledged</span>
-                  <span class="stage-card-meta">Chanchal Sharma · 29 Oct 2026 · 18:07</span>
+                  <span class="stage-card-title">1. Self-Appraisal</span>
+                  <span class="stage-card-status">✓ Submitted</span>
+                  <span class="stage-card-meta">Chanchal Sharma · 28 Oct 2026, 17:42</span>
                 </div>
                 <div class="governance-stage-card verified">
-                  <span class="stage-card-title">2. Reporting Manager Approval</span>
-                  <span class="stage-card-status">✓ Evaluated &amp; Approved</span>
-                  <span class="stage-card-meta">Uneet Kumar · 02 Nov 2026 · 11:42</span>
+                  <span class="stage-card-title">2. Manager Review</span>
+                  <span class="stage-card-status">✓ Evaluated</span>
+                  <span class="stage-card-meta">Uneet Kumar · 02 Nov 2026, 14:15</span>
                 </div>
                 <div class="governance-stage-card verified">
                   <span class="stage-card-title">3. Side-by-Side Calibration</span>
@@ -13918,7 +13184,7 @@
                 </div>
               </div>
 
-              <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #DDD6FE; padding-top: 16px; margin-top: 16px; flex-wrap: wrap; gap: 12px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #DDD6FE; padding-top: 16px;">
                 <div style="font-size: 12px; color: #64748B; max-width: 580px;">
                   Executing HR Sign-off calculates final merit alignment, generates the verifiable audit trail, and secures the record against unauthorized edits.
                 </div>
