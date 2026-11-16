@@ -19,6 +19,461 @@ export interface LoginViewProps {
   defaultView?: number;
 }
 
+interface V3MinimalStageProps {
+  active?: boolean;
+}
+
+const V3MinimalStage: React.FC<V3MinimalStageProps> = ({ active = true }) => {
+  const [currentCard, setCurrentCard] = useState<number>(0);
+  const [isExiting, setIsExiting] = useState<boolean>(false);
+
+  // Micro-interaction states
+  // Card 1
+  const [card1Progress, setCard1Progress] = useState<string>('0%');
+  const [card1CheckVisible, setCard1CheckVisible] = useState<boolean>(false);
+
+  // Card 2
+  const [card2Av1, setCard2Av1] = useState<boolean>(false);
+  const [card2Av2, setCard2Av2] = useState<boolean>(false);
+  const [card2Av3, setCard2Av3] = useState<boolean>(false);
+  const [card2Completed, setCard2Completed] = useState<boolean>(false);
+
+  // Card 3
+  const [card3TypedText, setCard3TypedText] = useState<string>('');
+  const [card3Thinking, setCard3Thinking] = useState<boolean>(false);
+  const [card3AiVisible, setCard3AiVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setCurrentCard(0);
+      setIsExiting(false);
+      setCard1Progress('80%');
+      setCard1CheckVisible(true);
+      return;
+    }
+
+    let isMounted = true;
+    let cardTimer: NodeJS.Timeout;
+    let exitTimer: NodeJS.Timeout;
+    let microTimers: (NodeJS.Timeout | number)[] = [];
+
+    const clearTimers = () => {
+      clearTimeout(cardTimer);
+      clearTimeout(exitTimer);
+      microTimers.forEach((t) => {
+        if (typeof t === 'number') {
+          clearInterval(t);
+          clearTimeout(t);
+        } else {
+          clearTimeout(t);
+        }
+      });
+      microTimers = [];
+    };
+
+    const runCard = (idx: number) => {
+      if (!isMounted) return;
+      clearTimers();
+      setIsExiting(false);
+      setCurrentCard(idx);
+
+      // Reset micro-interactions
+      setCard1Progress('0%');
+      setCard1CheckVisible(false);
+      setCard2Av1(false);
+      setCard2Av2(false);
+      setCard2Av3(false);
+      setCard2Completed(false);
+      setCard3TypedText('');
+      setCard3Thinking(false);
+      setCard3AiVisible(false);
+
+      if (idx === 0) {
+        // Card 1: Orientation Progress & Checkmark
+        microTimers.push(setTimeout(() => { if (isMounted) setCard1Progress('80%'); }, 300));
+        microTimers.push(setTimeout(() => { if (isMounted) setCard1CheckVisible(true); }, 1400));
+      } else if (idx === 1) {
+        // Card 2: Department Tour Avatars & Completed Pill
+        microTimers.push(setTimeout(() => { if (isMounted) setCard2Av1(true); }, 250));
+        microTimers.push(setTimeout(() => { if (isMounted) setCard2Av2(true); }, 550));
+        microTimers.push(setTimeout(() => { if (isMounted) setCard2Av3(true); }, 850));
+        microTimers.push(setTimeout(() => { if (isMounted) setCard2Completed(true); }, 1250));
+      } else if (idx === 2) {
+        // Card 3: Ask HyIQ Typewriter, Thinking Wave, & AI Response
+        const textToType = 'Show my pending tasks';
+        let charIdx = 0;
+        const typeInterval = setInterval(() => {
+          if (!isMounted) { clearInterval(typeInterval); return; }
+          if (charIdx <= textToType.length) {
+            setCard3TypedText(textToType.slice(0, charIdx));
+            charIdx++;
+          } else {
+            clearInterval(typeInterval);
+          }
+        }, 35);
+        microTimers.push(typeInterval as unknown as NodeJS.Timeout);
+
+        microTimers.push(setTimeout(() => { if (isMounted) setCard3Thinking(true); }, 1050));
+        microTimers.push(setTimeout(() => {
+          if (isMounted) {
+            setCard3Thinking(false);
+            setCard3AiVisible(true);
+          }
+        }, 1750));
+      }
+
+      // Graceful exit start at 3.05s
+      exitTimer = setTimeout(() => {
+        if (isMounted) setIsExiting(true);
+      }, 3050);
+
+      // Next card transition at 3.5s
+      cardTimer = setTimeout(() => {
+        if (isMounted) {
+          runCard((idx + 1) % 4);
+        }
+      }, 3500);
+    };
+
+    runCard(0);
+
+    return () => {
+      isMounted = false;
+      clearTimers();
+    };
+  }, [active]);
+
+  return (
+    <Box
+      id="v3MinimalStage"
+      className="v3-minimal-stage"
+      role="region"
+      aria-label="Hirerkey Features Overview"
+    >
+      {/* Central Dashboard Anchor (~340px wide, continuous floating animation) */}
+      <Box className="v3-dashboard" id="v3Dashboard">
+        {/* Browser Chrome Bar */}
+        <Box className="v3-chrome">
+          <Box className="v3-chrome-dots">
+            <span className="v3-dot v3-dot-red" />
+            <span className="v3-dot v3-dot-yellow" />
+            <span className="v3-dot v3-dot-green" />
+          </Box>
+          <Box className="v3-chrome-url">
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span>app.hirerkey.com/dashboard</span>
+          </Box>
+          <Box className="v3-chrome-sync">
+            <span className="v3-sync-dot" />
+            <span className="v3-sync-text">Live Sync</span>
+          </Box>
+        </Box>
+
+        {/* Dashboard Preview Image */}
+        <Box className="v3-dashboard-canvas">
+          <img
+            src="assets/hirerkey_actual_dashboard.png"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.onerror = null;
+              target.src = 'views/assets/hirerkey_actual_dashboard.png';
+            }}
+            alt="Hirerkey Central Dashboard Preview"
+            className="v3-dashboard-img"
+            loading="eager"
+          />
+        </Box>
+      </Box>
+
+      {/* Floating Feature Card Deck (Only 1 Active Card at a Time, positioned bottom-right ~280px wide) */}
+      <Box className="v3-card-deck" id="v3CardDeck">
+        {/* Card 1: Orientation */}
+        <Box
+          className={`v3-feature-card ${currentCard === 0 ? (isExiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v3Card1"
+          aria-hidden={currentCard !== 0}
+        >
+          <Box className="v3-card-header">
+            <Box className="v3-card-tag-wrap">
+              <span className="v3-card-icon-pill v3-pill-purple">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+                <span>Orientation</span>
+              </span>
+              <span className="v3-status-pill v3-status-success">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="11"
+                  height="11"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>Active</span>
+              </span>
+            </Box>
+          </Box>
+          <Box className="v3-card-body">
+            <h4 className="v3-card-title">Welcome aboard!</h4>
+            <p className="v3-card-desc">
+              Employee onboarding progress: <strong className="v3-card-accent">80%</strong>
+            </p>
+            <Box className="v3-progress-container">
+              <Box className="v3-progress-track">
+                <Box
+                  className="v3-progress-bar"
+                  id="v3ProgressFill1"
+                  sx={{ width: card1Progress }}
+                />
+              </Box>
+              <Box
+                className={`v3-check-badge ${card1CheckVisible ? 'is-visible' : ''}`}
+                id="v3CheckBadge1"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Card 2: Department Tour */}
+        <Box
+          className={`v3-feature-card ${currentCard === 1 ? (isExiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v3Card2"
+          aria-hidden={currentCard !== 1}
+        >
+          <Box className="v3-card-header">
+            <Box className="v3-card-tag-wrap">
+              <span className="v3-card-icon-pill v3-pill-indigo">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <span>Department Tour</span>
+              </span>
+              <span
+                className={`v3-status-pill v3-status-completed ${card2Completed ? 'is-visible' : ''}`}
+                id="v3CompletedPill2"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="11"
+                  height="11"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>Completed</span>
+              </span>
+            </Box>
+          </Box>
+          <Box className="v3-card-body">
+            <h4 className="v3-card-title">Meet your team</h4>
+            <p className="v3-card-desc">Connected with 3 department leads</p>
+            <Box className="v3-avatar-deck">
+              <Box className="v3-avatar-group">
+                <Box className={`v3-avatar v3-av-1 ${card2Av1 ? 'is-visible' : ''}`} title="Maya Santos">
+                  <span>MS</span>
+                </Box>
+                <Box className={`v3-avatar v3-av-2 ${card2Av2 ? 'is-visible' : ''}`} title="James Liu">
+                  <span>JL</span>
+                </Box>
+                <Box className={`v3-avatar v3-av-3 ${card2Av3 ? 'is-visible' : ''}`} title="Sarah Khan">
+                  <span>SK</span>
+                </Box>
+              </Box>
+              <span className="v3-avatar-summary">+ 8 teammates</span>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Card 3: Ask HyIQ */}
+        <Box
+          className={`v3-feature-card ${currentCard === 2 ? (isExiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v3Card3"
+          aria-hidden={currentCard !== 2}
+        >
+          <Box className="v3-card-header">
+            <Box className="v3-card-tag-wrap">
+              <span className="v3-card-icon-pill v3-pill-ai">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+                </svg>
+                <span>Ask HyIQ</span>
+              </span>
+              <span className="v3-status-pill v3-status-ai">
+                <span className="v3-ai-sparkle">✦</span>
+                <span>AI Copilot</span>
+              </span>
+            </Box>
+          </Box>
+          <Box className="v3-card-body">
+            <Box className="v3-chat-user-bubble">
+              <span className="v3-bubble-prefix">User:</span>
+              <span className="v3-typewriter-text" id="v3PromptText">
+                {card3TypedText}
+              </span>
+              <span className="v3-typewriter-cursor" id="v3PromptCursor">
+                |
+              </span>
+            </Box>
+            <Box
+              className={`v3-thinking-wave ${card3Thinking ? 'is-active' : ''}`}
+              id="v3ThinkingWave"
+            >
+              <span />
+              <span />
+              <span />
+            </Box>
+            <Box
+              className={`v3-chat-ai-bubble ${card3AiVisible ? 'is-visible' : ''}`}
+              id="v3AiResponse"
+            >
+              <span className="v3-ai-avatar">✨</span>
+              <span className="v3-ai-msg">
+                You have <strong style={{ color: '#7C3AED' }}>3 tasks</strong> awaiting completion.
+              </span>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Card 4: 1-on-1 Check-in */}
+        <Box
+          className={`v3-feature-card ${currentCard === 3 ? (isExiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v3Card4"
+          aria-hidden={currentCard !== 3}
+        >
+          <Box className="v3-card-header">
+            <Box className="v3-card-tag-wrap">
+              <span className="v3-card-icon-pill v3-pill-blue">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="13"
+                  height="13"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                <span>1-on-1 Check-in</span>
+              </span>
+              <span className="v3-status-pill v3-status-scheduled">
+                <span className="v3-radar-ring">
+                  <span className="v3-radar-pulse" />
+                  <span className="v3-radar-core" />
+                </span>
+                <span>Scheduled</span>
+              </span>
+            </Box>
+          </Box>
+          <Box className="v3-card-body">
+            <h4 className="v3-card-title">Upcoming check-in</h4>
+            <Box className="v3-schedule-row">
+              <Box className="v3-schedule-time">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="12"
+                  height="12"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                <span>Today · 3:30 PM</span>
+              </Box>
+              <span className="v3-schedule-tag">Sync with Manager</span>
+            </Box>
+            <Box className="v3-schedule-footer">
+              <Box className="v3-agenda-bullet">
+                <span className="v3-bullet-dot" />
+                <span>Monthly milestone review &amp; feedback</span>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
 export const LoginView: React.FC<LoginViewProps> = ({
   onSuccessLogin,
   className,
@@ -727,6 +1182,577 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 }
               }
 
+
+                /* ==========================================================================
+                   VIEW 3: MINIMAL HERO ANIMATION (ONE DASHBOARD + 1 CARD AT A TIME)
+                   ========================================================================== */
+                .v3-minimal-stage {
+                  width: 100%;
+                  max-width: 540px;
+                  height: 380px;
+                  position: relative;
+                  margin-top: 8px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  user-select: none;
+                  -webkit-user-select: none;
+                }
+
+                .v3-dashboard {
+                  position: absolute;
+                  top: 14px;
+                  left: 20px;
+                  width: 340px;
+                  background: #FFFFFF;
+                  border-radius: 14px;
+                  border: 1px solid rgba(226, 232, 240, 0.95);
+                  box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.12), 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+                  overflow: hidden;
+                  z-index: 2;
+                  animation: v3DashboardFloat 6s ease-in-out infinite alternate;
+                  will-change: transform;
+                }
+
+                @keyframes v3DashboardFloat {
+                  0% { transform: translateY(0px) rotate(0deg); }
+                  100% { transform: translateY(-8px) rotate(0.35deg); }
+                }
+
+                .v3-chrome {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  padding: 7px 12px;
+                  background: #F8FAFC;
+                  border-bottom: 1px solid #E2E8F0;
+                  gap: 10px;
+                }
+
+                .v3-chrome-dots {
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  flex-shrink: 0;
+                }
+
+                .v3-dot {
+                  width: 8px;
+                  height: 8px;
+                  border-radius: 50%;
+                  display: inline-block;
+                }
+
+                .v3-dot-red { background: #EF4444; }
+                .v3-dot-yellow { background: #F59E0B; }
+                .v3-dot-green { background: #10B981; }
+
+                .v3-chrome-url {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 5px;
+                  background: #FFFFFF;
+                  border: 1px solid #E2E8F0;
+                  border-radius: 6px;
+                  padding: 3px 8px;
+                  font-size: 10.5px;
+                  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                  color: #64748B;
+                  flex: 1;
+                  max-width: 200px;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+
+                .v3-chrome-url svg {
+                  color: #94A3B8;
+                  flex-shrink: 0;
+                }
+
+                .v3-chrome-sync {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 5px;
+                  font-size: 10px;
+                  font-weight: 700;
+                  color: #059669;
+                  background: rgba(16, 185, 129, 0.1);
+                  border: 1px solid rgba(16, 185, 129, 0.2);
+                  padding: 2px 7px;
+                  border-radius: 999px;
+                  flex-shrink: 0;
+                }
+
+                .v3-sync-dot {
+                  width: 6px;
+                  height: 6px;
+                  border-radius: 50%;
+                  background: #10B981;
+                  box-shadow: 0 0 6px #10B981;
+                  animation: v3LiveDotPulse 2s ease-in-out infinite;
+                }
+
+                @keyframes v3LiveDotPulse {
+                  0%, 100% { opacity: 1; transform: scale(1); }
+                  50% { opacity: 0.4; transform: scale(0.85); }
+                }
+
+                .v3-dashboard-canvas {
+                  width: 100%;
+                  background: #F1F5F9;
+                  line-height: 0;
+                }
+
+                .v3-dashboard-img {
+                  width: 100%;
+                  height: auto;
+                  display: block;
+                  object-fit: cover;
+                }
+
+                .v3-card-deck {
+                  position: absolute;
+                  inset: 0;
+                  pointer-events: none;
+                  z-index: 5;
+                }
+
+                .v3-feature-card {
+                  position: absolute;
+                  right: 16px;
+                  bottom: 16px;
+                  width: 280px;
+                  background: #FFFFFF;
+                  border-radius: 16px;
+                  border: 1px solid rgba(226, 232, 240, 0.95);
+                  box-shadow: 0 20px 40px -10px rgba(124, 58, 237, 0.18), 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+                  padding: 14px 16px;
+                  opacity: 0;
+                  visibility: hidden;
+                  transform: translateY(18px) scale(0.96);
+                  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                              transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                              visibility 0.5s;
+                  pointer-events: none;
+                  will-change: transform, opacity;
+                }
+
+                .v3-feature-card.is-active {
+                  opacity: 1;
+                  visibility: visible;
+                  transform: translateY(0) scale(1);
+                  pointer-events: auto;
+                }
+
+                .v3-feature-card.is-exiting {
+                  opacity: 0;
+                  visibility: hidden;
+                  transform: translateY(-14px) scale(0.98);
+                  transition: opacity 0.35s cubic-bezier(0.4, 0, 1, 1),
+                              transform 0.35s cubic-bezier(0.4, 0, 1, 1),
+                              visibility 0.35s;
+                }
+
+                .v3-card-header {
+                  margin-bottom: 10px;
+                }
+
+                .v3-card-tag-wrap {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  gap: 8px;
+                }
+
+                .v3-card-icon-pill {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 5px;
+                  font-size: 11px;
+                  font-weight: 700;
+                  padding: 3px 8px;
+                  border-radius: 999px;
+                }
+
+                .v3-pill-purple {
+                  background: #F3EEFF;
+                  color: #7C3AED;
+                  border: 1px solid #E9D5FF;
+                }
+
+                .v3-pill-indigo {
+                  background: #EEF2FF;
+                  color: #4F46E5;
+                  border: 1px solid #C7D2FE;
+                }
+
+                .v3-pill-ai {
+                  background: linear-gradient(135deg, #F3EEFF 0%, #EEF2FF 100%);
+                  color: #7C3AED;
+                  border: 1px solid #DDD6FE;
+                }
+
+                .v3-pill-blue {
+                  background: #EFF6FF;
+                  color: #2563EB;
+                  border: 1px solid #BFDBFE;
+                }
+
+                .v3-status-pill {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  font-size: 10px;
+                  font-weight: 700;
+                  padding: 2.5px 7px;
+                  border-radius: 999px;
+                }
+
+                .v3-status-success {
+                  background: #ECFDF5;
+                  color: #059669;
+                  border: 1px solid #A7F3D0;
+                }
+
+                .v3-status-completed {
+                  background: #ECFDF5;
+                  color: #059669;
+                  border: 1px solid #A7F3D0;
+                  transform: scale(0.9);
+                  opacity: 0.6;
+                  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+                }
+
+                .v3-status-completed.is-visible {
+                  transform: scale(1);
+                  opacity: 1;
+                }
+
+                .v3-status-ai {
+                  background: #FAF5FF;
+                  color: #9333EA;
+                  border: 1px solid #E9D5FF;
+                }
+
+                .v3-ai-sparkle {
+                  font-size: 11px;
+                  animation: v3SparkleSpin 3s ease-in-out infinite;
+                }
+
+                @keyframes v3SparkleSpin {
+                  0%, 100% { transform: scale(1) rotate(0deg); }
+                  50% { transform: scale(1.25) rotate(15deg); }
+                }
+
+                .v3-status-scheduled {
+                  background: #EFF6FF;
+                  color: #2563EB;
+                  border: 1px solid #BFDBFE;
+                }
+
+                .v3-radar-ring {
+                  position: relative;
+                  width: 8px;
+                  height: 8px;
+                  display: inline-flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+
+                .v3-radar-core {
+                  width: 6px;
+                  height: 6px;
+                  border-radius: 50%;
+                  background: #2563EB;
+                }
+
+                .v3-radar-pulse {
+                  position: absolute;
+                  inset: -3px;
+                  border-radius: 50%;
+                  background: rgba(37, 99, 235, 0.35);
+                  animation: v3RadarPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+                }
+
+                @keyframes v3RadarPing {
+                  0% { transform: scale(0.8); opacity: 0.9; }
+                  100% { transform: scale(2.2); opacity: 0; }
+                }
+
+                .v3-card-body {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 6px;
+                }
+
+                .v3-card-title {
+                  font-size: 14.5px;
+                  font-weight: 700;
+                  color: #0F172A;
+                  margin: 0;
+                  letter-spacing: -0.01em;
+                }
+
+                .v3-card-desc {
+                  font-size: 12px;
+                  color: #64748B;
+                  margin: 0;
+                  line-height: 1.4;
+                }
+
+                .v3-card-accent {
+                  color: #7C3AED;
+                  font-weight: 700;
+                }
+
+                .v3-progress-container {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-top: 4px;
+                }
+
+                .v3-progress-track {
+                  flex: 1;
+                  height: 7px;
+                  background: #F1F5F9;
+                  border-radius: 999px;
+                  overflow: hidden;
+                  position: relative;
+                }
+
+                .v3-progress-bar {
+                  height: 100%;
+                  background: linear-gradient(90deg, #7C3AED 0%, #10B981 100%);
+                  border-radius: 999px;
+                  width: 0%;
+                  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .v3-check-badge {
+                  width: 22px;
+                  height: 22px;
+                  border-radius: 50%;
+                  background: #10B981;
+                  color: #FFFFFF;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  transform: scale(0);
+                  opacity: 0;
+                  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+                  flex-shrink: 0;
+                  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.35);
+                }
+
+                .v3-check-badge.is-visible {
+                  transform: scale(1);
+                  opacity: 1;
+                }
+
+                .v3-avatar-deck {
+                  display: flex;
+                  align-items: center;
+                  gap: 10px;
+                  margin-top: 4px;
+                }
+
+                .v3-avatar-group {
+                  display: flex;
+                  align-items: center;
+                }
+
+                .v3-avatar {
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #FFFFFF;
+                  font-size: 11px;
+                  font-weight: 700;
+                  border: 2px solid #FFFFFF;
+                  margin-left: -7px;
+                  transform: scale(0);
+                  opacity: 0;
+                  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+                  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+                }
+
+                .v3-avatar:first-child {
+                  margin-left: 0;
+                }
+
+                .v3-avatar.is-visible {
+                  transform: scale(1);
+                  opacity: 1;
+                }
+
+                .v3-av-1 { background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%); }
+                .v3-av-2 { background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%); }
+                .v3-av-3 { background: linear-gradient(135deg, #059669 0%, #34D399 100%); }
+
+                .v3-avatar-summary {
+                  font-size: 11.5px;
+                  font-weight: 600;
+                  color: #64748B;
+                }
+
+                .v3-chat-user-bubble {
+                  background: #F8FAFC;
+                  border: 1px solid #E2E8F0;
+                  border-radius: 8px;
+                  padding: 5px 8px;
+                  font-size: 11.5px;
+                  color: #1E293B;
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                  min-height: 28px;
+                }
+
+                .v3-bubble-prefix {
+                  font-weight: 700;
+                  color: #64748B;
+                  font-size: 10.5px;
+                }
+
+                .v3-typewriter-text {
+                  color: #0F172A;
+                  font-weight: 500;
+                }
+
+                .v3-typewriter-cursor {
+                  color: #7C3AED;
+                  font-weight: 700;
+                  animation: v3BlinkCursor 0.8s infinite;
+                }
+
+                @keyframes v3BlinkCursor {
+                  0%, 100% { opacity: 1; }
+                  50% { opacity: 0; }
+                }
+
+                .v3-thinking-wave {
+                  display: none;
+                  align-items: center;
+                  gap: 4px;
+                  padding: 2px 6px;
+                }
+
+                .v3-thinking-wave.is-active {
+                  display: inline-flex;
+                }
+
+                .v3-thinking-wave span {
+                  width: 5px;
+                  height: 5px;
+                  border-radius: 50%;
+                  background: #7C3AED;
+                  animation: v3WaveBounce 1s infinite ease-in-out;
+                }
+
+                .v3-thinking-wave span:nth-child(2) { animation-delay: 0.2s; }
+                .v3-thinking-wave span:nth-child(3) { animation-delay: 0.4s; }
+
+                @keyframes v3WaveBounce {
+                  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+                  40% { transform: translateY(-4px); opacity: 1; }
+                }
+
+                .v3-chat-ai-bubble {
+                  display: flex;
+                  align-items: center;
+                  gap: 7px;
+                  background: #F3EEFF;
+                  border: 1px solid #E9D5FF;
+                  border-radius: 8px;
+                  padding: 6px 9px;
+                  font-size: 11.5px;
+                  color: #3B0764;
+                  line-height: 1.35;
+                  opacity: 0;
+                  transform: translateY(6px);
+                  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .v3-chat-ai-bubble.is-visible {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+
+                .v3-ai-avatar {
+                  font-size: 12px;
+                  flex-shrink: 0;
+                }
+
+                .v3-schedule-row {
+                  display: flex;
+                  align-items: center;
+                  gap: 8px;
+                  flex-wrap: wrap;
+                  margin-top: 2px;
+                }
+
+                .v3-schedule-time {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 5px;
+                  background: #EFF6FF;
+                  color: #1D4ED8;
+                  font-size: 11.5px;
+                  font-weight: 700;
+                  padding: 3px 8px;
+                  border-radius: 6px;
+                  border: 1px solid #DBEAFE;
+                }
+
+                .v3-schedule-tag {
+                  font-size: 11.5px;
+                  color: #475569;
+                  font-weight: 500;
+                }
+
+                .v3-schedule-footer {
+                  margin-top: 2px;
+                }
+
+                .v3-agenda-bullet {
+                  display: flex;
+                  align-items: center;
+                  gap: 6px;
+                  font-size: 11px;
+                  color: #64748B;
+                }
+
+                .v3-bullet-dot {
+                  width: 5px;
+                  height: 5px;
+                  border-radius: 50%;
+                  background: #3B82F6;
+                  flex-shrink: 0;
+                }
+
+                @media (max-width: 640px) {
+                  .v3-minimal-stage {
+                    height: 360px;
+                  }
+                  .v3-dashboard {
+                    left: 12px;
+                    top: 12px;
+                    width: calc(100% - 24px);
+                    max-width: 320px;
+                  }
+                  .v3-feature-card {
+                    right: 12px;
+                    bottom: 12px;
+                    width: calc(100% - 24px);
+                    max-width: 270px;
+                  }
+                }
+
               `}</style>
             <Box
               sx={{
@@ -1225,6 +2251,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
                     </Box>
                   </Box>
                 </Box>
+                )}
+
+                {/* VIEW 3: MINIMAL HERO ANIMATION (PAGE 3) */}
+                {activePage === 3 && (
+                  <V3MinimalStage active={activePage === 3} />
                 )}
                 
               </Box>
