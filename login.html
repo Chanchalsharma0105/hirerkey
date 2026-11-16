@@ -6831,21 +6831,6 @@
 
               <div class="v5-canvas">
 
-                <!-- FEATURE RAIL: pick a story · progress of the current one · pause -->
-                <div class="v5-rail">
-                  <div class="v5-rail-track" role="group" aria-label="Choose a feature to watch">
-                    <button type="button" class="v5-chip is-active" data-goto="0" aria-pressed="true" style="--dot:#7C3AED;--dot-soft:rgba(124,58,237,0.18);"><span class="v5-chip-dot"></span>Checklist<span class="v5-chip-bar"></span></button>
-                    <button type="button" class="v5-chip" data-goto="1" aria-pressed="false" style="--dot:#2563EB;--dot-soft:rgba(37,99,235,0.18);"><span class="v5-chip-dot"></span>Broadcast<span class="v5-chip-bar"></span></button>
-                    <button type="button" class="v5-chip" data-goto="2" aria-pressed="false" style="--dot:#D97706;--dot-soft:rgba(217,119,6,0.2);"><span class="v5-chip-dot"></span>Orientation<span class="v5-chip-bar"></span></button>
-                    <button type="button" class="v5-chip" data-goto="3" aria-pressed="false" style="--dot:#059669;--dot-soft:rgba(5,150,105,0.18);"><span class="v5-chip-dot"></span>Onboarding<span class="v5-chip-bar"></span></button>
-                    <button type="button" class="v5-chip" data-goto="4" aria-pressed="false" style="--dot:#DB2777;--dot-soft:rgba(219,39,119,0.18);"><span class="v5-chip-dot"></span>Business Card<span class="v5-chip-bar"></span></button>
-                    <button type="button" class="v5-chip" data-goto="5" aria-pressed="false" style="--dot:#0D9488;--dot-soft:rgba(13,148,136,0.18);"><span class="v5-chip-dot"></span>Pulse Survey<span class="v5-chip-bar"></span></button>
-                  </div>
-                  <button type="button" class="v5-pause" id="v5Pause-p3" aria-label="Pause the tour">
-                    <svg class="v5-ic v5-fill v5-ic-pause"><use href="#v5i-pause"/></svg>
-                    <svg class="v5-ic v5-fill v5-ic-play"><use href="#v5i-play"/></svg>
-                  </button>
-                </div>
 
                 <!-- DELIVERY NETWORK: dotted field + connector paths (paths built by script) -->
                 <div class="v5-backdrop" aria-hidden="true"></div>
@@ -7351,16 +7336,6 @@
                   </div>
                 </div>
 
-                <!-- STORY CAPTION: the four beats of the current feature -->
-                <div class="v5-steps" id="v5Steps-p3" aria-hidden="true">
-                  <div class="v5-step"><i><b>1</b><svg class="v5-ic"><use href="#v5i-check"/></svg></i><span>HR builds a checklist</span></div>
-                  <svg class="v5-ic v5-sep"><use href="#v5i-chevr"/></svg>
-                  <div class="v5-step"><i><b>2</b><svg class="v5-ic"><use href="#v5i-check"/></svg></i><span>Pushed to 24 staff</span></div>
-                  <svg class="v5-ic v5-sep"><use href="#v5i-chevr"/></svg>
-                  <div class="v5-step"><i><b>3</b><svg class="v5-ic"><use href="#v5i-check"/></svg></i><span>Ticked off on mobile</span></div>
-                  <svg class="v5-ic v5-sep"><use href="#v5i-chevr"/></svg>
-                  <div class="v5-step"><i><b>4</b><svg class="v5-ic"><use href="#v5i-check"/></svg></i><span>Progress syncs live</span></div>
-                </div>
 
               </div>
             </div>
@@ -7997,7 +7972,7 @@
       const hub = document.getElementById('v5Hub' + pSuffix) || stage.querySelector('.v5-hub');
       const pauseBtn = document.getElementById('v5Pause' + pSuffix) || stage.querySelector('.v5-pause');
       const stepsEl = document.getElementById('v5Steps' + pSuffix) || stage.querySelector('.v5-steps');
-      const stepEls = Array.from(stepsEl.querySelectorAll('.v5-step'));
+      const stepEls = stepsEl ? Array.from(stepsEl.querySelectorAll('.v5-step')) : [];
       const chips = Array.from(stage.querySelectorAll('.v5-chip'));
       const avatars = Array.from(stage.querySelectorAll('.v5-av'));
       const sideItems = Array.from(stage.querySelectorAll('.v5-con-side i'));
@@ -8401,6 +8376,7 @@
       const stepState = stepEls.map(() => null);
 
       function renderSteps(t, A) {
+        if (!stepEls.length) return;
         const bounds = [0, A.S, A.S + NOTIFY_AT, A.U + 100, Infinity];
         stepEls.forEach((el, k) => {
           const st = t >= bounds[k + 1] ? 2 : t >= bounds[k] ? 1 : 0;
@@ -8414,6 +8390,7 @@
 
       let swapTimer = 0;
       function setStepLabels(labels, instant) {
+        if (!stepsEl || !stepEls.length) return;
         clearTimeout(swapTimer);
         const apply = () => {
           stepEls.forEach((el, k) => { el.querySelector('span').textContent = labels[k]; });
@@ -8469,7 +8446,7 @@
         renderNet(t, sc.A);
         renderCursor(t, sc);
         renderSteps(t, sc.A);
-        chips[scene].style.setProperty('--p', reduced ? '0' : clamp01(t / sc.A.E).toFixed(3));
+        if (chips[scene]) chips[scene].style.setProperty('--p', reduced ? '0' : clamp01(t / sc.A.E).toFixed(3));
       }
 
       function setScene(k, instant) {
@@ -8533,8 +8510,10 @@
 
         stage.classList.toggle('is-frozen', !play);
         stage.classList.toggle('is-paused', userPaused);
-        pauseBtn.style.display = reduced ? 'none' : '';
-        pauseBtn.setAttribute('aria-label', userPaused ? 'Play the tour' : 'Pause the tour');
+        if (pauseBtn) {
+          pauseBtn.style.display = reduced ? 'none' : '';
+          pauseBtn.setAttribute('aria-label', userPaused ? 'Play the tour' : 'Pause the tour');
+        }
 
         if (pageOn) {
           updateScale();
@@ -8562,10 +8541,12 @@
         });
       });
 
-      pauseBtn.addEventListener('click', () => {
-        userPaused = !userPaused;
-        sync();
-      });
+      if (pauseBtn) {
+        pauseBtn.addEventListener('click', () => {
+          userPaused = !userPaused;
+          sync();
+        });
+      }
 
       new MutationObserver(sync).observe(view, { attributes: true, attributeFilter: ['class'] });
 
