@@ -474,13 +474,661 @@ const V3MinimalStage: React.FC<V3MinimalStageProps> = ({ active = true }) => {
   );
 };
 
+interface V4EcosystemStageProps {
+  active?: boolean;
+}
+
+const V4EcosystemStage: React.FC<V4EcosystemStageProps> = ({ active = true }) => {
+  // Visibility and exiting states for 4 cards
+  const [card1Active, setCard1Active] = useState<boolean>(false);
+  const [card1Exiting, setCard1Exiting] = useState<boolean>(false);
+  const [card1Progress, setCard1Progress] = useState<string>('0%');
+  const [card1CheckVisible, setCard1CheckVisible] = useState<boolean>(false);
+
+  const [card2Active, setCard2Active] = useState<boolean>(false);
+  const [card2Exiting, setCard2Exiting] = useState<boolean>(false);
+  const [card2Av1, setCard2Av1] = useState<boolean>(false);
+  const [card2Av2, setCard2Av2] = useState<boolean>(false);
+  const [card2Av3, setCard2Av3] = useState<boolean>(false);
+  const [card2Completed, setCard2Completed] = useState<boolean>(false);
+
+  const [card3Active, setCard3Active] = useState<boolean>(false);
+  const [card3Exiting, setCard3Exiting] = useState<boolean>(false);
+  const [card3TypedText, setCard3TypedText] = useState<string>('');
+  const [card3Thinking, setCard3Thinking] = useState<boolean>(false);
+  const [card3AiVisible, setCard3AiVisible] = useState<boolean>(false);
+
+  const [card4Active, setCard4Active] = useState<boolean>(false);
+  const [card4Exiting, setCard4Exiting] = useState<boolean>(false);
+
+  // SVG lines active/exiting states
+  const [line1Active, setLine1Active] = useState<boolean>(false);
+  const [line1Exiting, setLine1Exiting] = useState<boolean>(false);
+  const [line2Active, setLine2Active] = useState<boolean>(false);
+  const [line2Exiting, setLine2Exiting] = useState<boolean>(false);
+  const [line3Active, setLine3Active] = useState<boolean>(false);
+  const [line3Exiting, setLine3Exiting] = useState<boolean>(false);
+  const [line4Active, setLine4Active] = useState<boolean>(false);
+  const [line4Exiting, setLine4Exiting] = useState<boolean>(false);
+
+  // Dashboard overlays
+  const [dashBlooming, setDashBlooming] = useState<boolean>(false);
+  const [goalUpdated, setGoalUpdated] = useState<boolean>(false);
+  const [goalVal, setGoalVal] = useState<string>('88%');
+  const [aiNoticeVisible, setAiNoticeVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setCard1Active(true);
+      setCard1Exiting(false);
+      setCard1Progress('80%');
+      setCard1CheckVisible(true);
+      setLine1Active(true);
+
+      setCard3Active(true);
+      setCard3Exiting(false);
+      setCard3TypedText('Show my pending tasks');
+      setCard3AiVisible(true);
+      setLine3Active(true);
+
+      setGoalVal('100%');
+      return;
+    }
+
+    let isMounted = true;
+    let loopTimer: NodeJS.Timeout;
+    const sceneTimers: (NodeJS.Timeout | number)[] = [];
+    let typeInterval: NodeJS.Timeout | number | null = null;
+
+    const clearTimers = () => {
+      clearTimeout(loopTimer);
+      if (typeInterval) {
+        clearInterval(typeInterval as number);
+        typeInterval = null;
+      }
+      sceneTimers.forEach((t) => {
+        clearTimeout(t as NodeJS.Timeout);
+      });
+      sceneTimers.length = 0;
+    };
+
+    const resetState = () => {
+      setCard1Active(false);
+      setCard1Exiting(false);
+      setCard1Progress('0%');
+      setCard1CheckVisible(false);
+      setLine1Active(false);
+      setLine1Exiting(false);
+
+      setCard2Active(false);
+      setCard2Exiting(false);
+      setCard2Av1(false);
+      setCard2Av2(false);
+      setCard2Av3(false);
+      setCard2Completed(false);
+      setLine2Active(false);
+      setLine2Exiting(false);
+
+      setCard3Active(false);
+      setCard3Exiting(false);
+      setCard3TypedText('');
+      setCard3Thinking(false);
+      setCard3AiVisible(false);
+      setLine3Active(false);
+      setLine3Exiting(false);
+
+      setCard4Active(false);
+      setCard4Exiting(false);
+      setLine4Active(false);
+      setLine4Exiting(false);
+
+      setDashBlooming(false);
+      setGoalUpdated(false);
+      setGoalVal('88%');
+      setAiNoticeVisible(false);
+    };
+
+    const runMasterLoop = () => {
+      if (!isMounted) return;
+      clearTimers();
+      resetState();
+
+      // SCENE 1: Dashboard Genesis & Ambient Float (0.0s - 2.2s)
+
+      // SCENE 2: Orientation Connects (2.2s - 5.7s)
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard1Active(true);
+        setCard1Exiting(false);
+        setLine1Active(true);
+        setLine1Exiting(false);
+      }, 2200));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard1Progress('80%');
+      }, 2500));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard1CheckVisible(true);
+        setGoalUpdated(true);
+        setGoalVal('91%');
+      }, 3600));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard1Exiting(true);
+        setLine1Exiting(true);
+      }, 5200));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard1Active(false);
+        setCard1Exiting(false);
+        setLine1Active(false);
+        setLine1Exiting(false);
+        setGoalUpdated(false);
+      }, 5700));
+
+      // SCENE 3: Department Tour Connects (5.7s - 9.2s)
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard2Active(true);
+        setCard2Exiting(false);
+        setLine2Active(true);
+        setLine2Exiting(false);
+      }, 5700));
+
+      sceneTimers.push(setTimeout(() => { if (isMounted) setCard2Av1(true); }, 6000));
+      sceneTimers.push(setTimeout(() => { if (isMounted) setCard2Av2(true); }, 6350));
+      sceneTimers.push(setTimeout(() => { if (isMounted) setCard2Av3(true); }, 6700));
+      sceneTimers.push(setTimeout(() => { if (isMounted) setCard2Completed(true); }, 7150));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard2Exiting(true);
+        setLine2Exiting(true);
+      }, 8700));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard2Active(false);
+        setCard2Exiting(false);
+        setLine2Active(false);
+        setLine2Exiting(false);
+      }, 9200));
+
+      // SCENE 4: Ask HyIQ Intelligence (9.2s - 13.0s)
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard3Active(true);
+        setCard3Exiting(false);
+        setLine3Active(true);
+        setLine3Exiting(false);
+      }, 9200));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        const textToType = 'Show my pending tasks';
+        let charIdx = 0;
+        const interval = setInterval(() => {
+          if (!isMounted) {
+            clearInterval(interval);
+            return;
+          }
+          if (charIdx <= textToType.length) {
+            setCard3TypedText(textToType.slice(0, charIdx));
+            charIdx++;
+          } else {
+            clearInterval(interval);
+          }
+        }, 32);
+        typeInterval = interval;
+      }, 9550));
+
+      sceneTimers.push(setTimeout(() => {
+        if (isMounted) setCard3Thinking(true);
+      }, 10300));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard3Thinking(false);
+        setCard3AiVisible(true);
+        setAiNoticeVisible(true);
+      }, 11100));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard3Exiting(true);
+        setLine3Exiting(true);
+        setAiNoticeVisible(false);
+      }, 12500));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard3Active(false);
+        setCard3Exiting(false);
+        setLine3Active(false);
+        setLine3Exiting(false);
+      }, 13000));
+
+      // SCENE 5: 1-on-1 Check-in Connects (13.0s - 16.5s)
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard4Active(true);
+        setCard4Exiting(false);
+        setLine4Active(true);
+        setLine4Exiting(false);
+        setGoalUpdated(true);
+        setGoalVal('94%');
+      }, 13000));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard4Exiting(true);
+        setLine4Exiting(true);
+      }, 16000));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard4Active(false);
+        setCard4Exiting(false);
+        setLine4Active(false);
+        setLine4Exiting(false);
+        setGoalUpdated(false);
+      }, 16500));
+
+      // SCENE 6: Two-Module Ecosystem (16.5s - 20.5s)
+      // Card 1 (Upper-Left) AND Card 3 (Upper-Right) appear TOGETHER!
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard1Active(true);
+        setCard1Exiting(false);
+        setCard1Progress('80%');
+        setCard1CheckVisible(true);
+        setLine1Active(true);
+        setLine1Exiting(false);
+
+        setCard3Active(true);
+        setCard3Exiting(false);
+        setCard3TypedText('Show my pending tasks');
+        setCard3AiVisible(true);
+        setLine3Active(true);
+        setLine3Exiting(false);
+
+        setAiNoticeVisible(true);
+      }, 16500));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard1Exiting(true);
+        setLine1Exiting(true);
+        setCard3Exiting(true);
+        setLine3Exiting(true);
+        setAiNoticeVisible(false);
+      }, 20000));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setCard1Active(false);
+        setCard1Exiting(false);
+        setLine1Active(false);
+        setLine1Exiting(false);
+        setCard3Active(false);
+        setCard3Exiting(false);
+        setLine3Active(false);
+        setLine3Exiting(false);
+      }, 20500));
+
+      // SCENE 7: Climax Bloom & Reset (20.5s - 23.0s)
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setDashBlooming(true);
+        setGoalUpdated(true);
+        setGoalVal('100% ✨');
+      }, 20500));
+
+      sceneTimers.push(setTimeout(() => {
+        if (!isMounted) return;
+        setDashBlooming(false);
+      }, 22200));
+
+      // Seamless Restart
+      loopTimer = setTimeout(() => {
+        if (isMounted) {
+          runMasterLoop();
+        }
+      }, 23000);
+    };
+
+    runMasterLoop();
+
+    return () => {
+      isMounted = false;
+      clearTimers();
+    };
+  }, [active]);
+
+  return (
+    <Box
+      id="v4EcoStage"
+      className="v4-eco-stage"
+      role="region"
+      aria-label="The Connected HR Ecosystem"
+    >
+      {/* SVG CONNECTING PATHS & TRAVELLING PARTICLES */}
+      <svg className="v4-eco-svg-canvas" viewBox="0 0 540 380" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="v4EcoGrad1React" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#6366F1" stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id="v4EcoGrad2React" x1="100%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#10B981" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#6366F1" stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id="v4EcoGrad3React" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#EC4899" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#8B5CF6" stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id="v4EcoGrad4React" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.9" />
+          </linearGradient>
+          <filter id="v4EcoGlowReact" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Lines */}
+        <path
+          className={`v4-eco-line ${line1Active ? (line1Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoLine1"
+          stroke="url(#v4EcoGrad1React)"
+          d="M 175 80 C 205 90, 220 110, 235 130"
+          filter="url(#v4EcoGlowReact)"
+        />
+        <path
+          className={`v4-eco-line ${line2Active ? (line2Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoLine2"
+          stroke="url(#v4EcoGrad2React)"
+          d="M 365 300 C 335 290, 320 270, 305 250"
+          filter="url(#v4EcoGlowReact)"
+        />
+        <path
+          className={`v4-eco-line ${line3Active ? (line3Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoLine3"
+          stroke="url(#v4EcoGrad3React)"
+          d="M 365 80 C 335 90, 320 110, 305 130"
+          filter="url(#v4EcoGlowReact)"
+        />
+        <path
+          className={`v4-eco-line ${line4Active ? (line4Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoLine4"
+          stroke="url(#v4EcoGrad4React)"
+          d="M 175 300 C 205 290, 220 270, 235 250"
+          filter="url(#v4EcoGlowReact)"
+        />
+
+        {/* Travelling Particles */}
+        <circle
+          className={`v4-eco-particle ${line1Active ? (line1Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoParticle1"
+          r="3"
+          fill="#8B5CF6"
+          filter="url(#v4EcoGlowReact)"
+        >
+          <animateMotion dur="1.8s" repeatCount="indefinite" path="M 175 80 C 205 90, 220 110, 235 130" />
+        </circle>
+        <circle
+          className={`v4-eco-particle ${line2Active ? (line2Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoParticle2"
+          r="3"
+          fill="#10B981"
+          filter="url(#v4EcoGlowReact)"
+        >
+          <animateMotion dur="1.8s" repeatCount="indefinite" path="M 365 300 C 335 290, 320 270, 305 250" />
+        </circle>
+        <circle
+          className={`v4-eco-particle ${line3Active ? (line3Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoParticle3"
+          r="3"
+          fill="#EC4899"
+          filter="url(#v4EcoGlowReact)"
+        >
+          <animateMotion dur="1.8s" repeatCount="indefinite" path="M 365 80 C 335 90, 320 110, 305 130" />
+        </circle>
+        <circle
+          className={`v4-eco-particle ${line4Active ? (line4Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoParticle4"
+          r="3"
+          fill="#3B82F6"
+          filter="url(#v4EcoGlowReact)"
+        >
+          <animateMotion dur="1.8s" repeatCount="indefinite" path="M 175 300 C 205 290, 220 270, 235 250" />
+        </circle>
+      </svg>
+
+      {/* CENTRAL MINIATURE DASHBOARD HUB */}
+      <Box
+        className={`v4-eco-dashboard ${dashBlooming ? 'is-blooming' : ''}`}
+        id="v4EcoDashboard"
+      >
+        <Box className="v4-eco-chrome">
+          <Box className="v4-eco-chrome-dots">
+            <span className="v4-eco-dot v4-eco-dot-red" />
+            <span className="v4-eco-dot v4-eco-dot-yellow" />
+            <span className="v4-eco-dot v4-eco-dot-green" />
+          </Box>
+          <Box className="v4-eco-chrome-url">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span>app.hirerkey.com/dashboard</span>
+          </Box>
+          <Box className="v4-eco-chrome-sync">
+            <span className="v4-eco-sync-dot" />
+            <span className="v4-eco-sync-text">Live Sync</span>
+          </Box>
+        </Box>
+
+        <Box className="v4-eco-dash-canvas">
+          <img
+            src="assets/hirerkey_actual_dashboard.png"
+            onError={(e) => {
+              const target = e.currentTarget;
+              target.onerror = null;
+              target.src = 'views/assets/hirerkey_actual_dashboard.png';
+            }}
+            alt="Hirerkey Ecosystem Hub"
+            className="v4-eco-dash-img"
+            loading="eager"
+          />
+
+          {/* Goal Metric */}
+          <Box className={`v4-eco-goal-metric ${goalUpdated ? 'is-updated' : ''}`} id="v4EcoGoalMetric">
+            <span className="v4-eco-goal-icon">🎯</span>
+            <span className="v4-eco-goal-text">Q4 Goals: <strong id="v4EcoGoalVal">{goalVal}</strong></span>
+          </Box>
+
+          {/* AI Notice */}
+          <Box className={`v4-eco-ai-notice ${aiNoticeVisible ? 'is-visible' : ''}`} id="v4EcoAiNotice">
+            <span className="v4-eco-ai-notice-sparkle">✨</span>
+            <span className="v4-eco-ai-notice-text">HyIQ: 3 tasks awaiting completion</span>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* 4 FLOATING MODULE CARDS */}
+      <Box className="v4-eco-card-deck" id="v4EcoCardDeck">
+        {/* Card 1: Orientation (Upper-Left) */}
+        <Box
+          className={`v4-eco-card v4-eco-card-1 ${card1Active ? (card1Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoCard1"
+          aria-hidden={!card1Active}
+        >
+          <Box className="v4-eco-card-header">
+            <span className="v4-eco-pill v4-pill-purple">
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+              <span>Orientation</span>
+            </span>
+            <span className="v4-eco-pill v4-pill-success">
+              <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Active</span>
+            </span>
+          </Box>
+          <Box className="v4-eco-card-body">
+            <h4 className="v4-eco-card-title">Welcome aboard!</h4>
+            <p className="v4-eco-card-desc">Onboarding: <strong className="v4-eco-card-accent">80%</strong></p>
+            <Box className="v4-eco-progress-row">
+              <Box className="v4-eco-progress-track">
+                <Box className="v4-eco-progress-fill" style={{ width: card1Progress }} />
+              </Box>
+              <Box className={`v4-eco-check-badge ${card1CheckVisible ? 'is-visible' : ''}`}>
+                <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Card 2: Department Tour (Lower-Right) */}
+        <Box
+          className={`v4-eco-card v4-eco-card-2 ${card2Active ? (card2Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoCard2"
+          aria-hidden={!card2Active}
+        >
+          <Box className="v4-eco-card-header">
+            <span className="v4-eco-pill v4-pill-indigo">
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+              <span>Department Tour</span>
+            </span>
+            <span className={`v4-eco-pill v4-pill-completed ${card2Completed ? 'is-visible' : ''}`}>
+              <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Done</span>
+            </span>
+          </Box>
+          <Box className="v4-eco-card-body">
+            <h4 className="v4-eco-card-title">Meet your team</h4>
+            <p className="v4-eco-card-desc">Connected with 3 leads</p>
+            <Box className="v4-eco-avatar-row">
+              <Box className="v4-eco-avatar-group">
+                <Box className={`v4-eco-av v4-av-ms ${card2Av1 ? 'is-visible' : ''}`} title="Maya Santos"><span>MS</span></Box>
+                <Box className={`v4-eco-av v4-av-jl ${card2Av2 ? 'is-visible' : ''}`} title="James Liu"><span>JL</span></Box>
+                <Box className={`v4-eco-av v4-av-sk ${card2Av3 ? 'is-visible' : ''}`} title="Sarah Khan"><span>SK</span></Box>
+              </Box>
+              <span className="v4-eco-avatar-extra">+8 team</span>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Card 3: Ask HyIQ (Upper-Right) */}
+        <Box
+          className={`v4-eco-card v4-eco-card-3 ${card3Active ? (card3Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoCard3"
+          aria-hidden={!card3Active}
+        >
+          <Box className="v4-eco-card-header">
+            <span className="v4-eco-pill v4-pill-ai">
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z" />
+              </svg>
+              <span>Ask HyIQ</span>
+            </span>
+            <span className="v4-eco-pill v4-pill-ai-status">
+              <span className="v4-eco-sparkle">✦</span>
+              <span>Copilot</span>
+            </span>
+          </Box>
+          <Box className="v4-eco-card-body">
+            <Box className="v4-eco-user-bubble">
+              <span className="v4-eco-bubble-prefix">User:</span>
+              <span className="v4-eco-type-text">{card3TypedText}</span>
+              <span className="v4-eco-type-cursor">|</span>
+            </Box>
+            <Box className={`v4-eco-thinking-wave ${card3Thinking ? 'is-active' : ''}`}>
+              <span /><span /><span />
+            </Box>
+            <Box className={`v4-eco-ai-bubble ${card3AiVisible ? 'is-visible' : ''}`}>
+              <span className="v4-eco-ai-icon">✨</span>
+              <span className="v4-eco-ai-text">You have <strong style={{ color: '#7C3AED' }}>3 tasks</strong> awaiting completion.</span>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Card 4: 1-on-1 Check-in (Lower-Left) */}
+        <Box
+          className={`v4-eco-card v4-eco-card-4 ${card4Active ? (card4Exiting ? 'is-exiting' : 'is-active') : ''}`}
+          id="v4EcoCard4"
+          aria-hidden={!card4Active}
+        >
+          <Box className="v4-eco-card-header">
+            <span className="v4-eco-pill v4-pill-blue">
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              <span>1-on-1 Check-in</span>
+            </span>
+            <span className="v4-eco-pill v4-pill-radar">
+              <span className="v4-eco-radar-core" />
+              <span className="v4-eco-radar-ring" />
+              <span>Scheduled</span>
+            </span>
+          </Box>
+          <Box className="v4-eco-card-body">
+            <h4 className="v4-eco-card-title">Upcoming check-in</h4>
+            <Box className="v4-eco-time-badge">
+              <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              <span>Today · 3:30 PM</span>
+            </Box>
+            <Box className="v4-eco-agenda-note">
+              <span className="v4-eco-agenda-dot" />
+              <span>Milestone review &amp; feedback</span>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
 export const LoginView: React.FC<LoginViewProps> = ({
   onSuccessLogin,
   className,
   defaultView,
 }) => {
-  // Active page state (1: The Connected HR Ecosystem, 2: How Hirerkey Works, 3: How Hirerkey Works Replica)
-  const [activePage, setActivePage] = useState<1 | 2 | 3>((defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3);
+  // Active page state (1: The Connected HR Ecosystem, 2: How Hirerkey Works, 3: How Hirerkey Works Replica, 4: The Connected HR Ecosystem V4)
+  const [activePage, setActivePage] = useState<1 | 2 | 3 | 4>((defaultView === 4 ? 4 : defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3 | 4);
 
   // View 4 form states (ApprovalMax Inspired Workflow Animation & Modern Split)
   const [v4AuthMode, setV4AuthMode] = useState<'otp' | 'password'>('otp');
@@ -532,10 +1180,12 @@ export const LoginView: React.FC<LoginViewProps> = ({
         setActivePage(2);
       } else if (e.key === '3') {
         setActivePage(3);
+      } else if (e.key === '4') {
+        setActivePage(4);
       } else if (e.key === 'ArrowLeft') {
-        setActivePage((prev) => (prev === 1 ? 3 : ((prev - 1) as 1 | 2 | 3)));
+        setActivePage((prev) => (prev === 1 ? 4 : ((prev - 1) as 1 | 2 | 3 | 4)));
       } else if (e.key === 'ArrowRight') {
-        setActivePage((prev) => (prev === 3 ? 1 : ((prev + 1) as 1 | 2 | 3)));
+        setActivePage((prev) => (prev === 4 ? 1 : ((prev + 1) as 1 | 2 | 3 | 4)));
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -1753,6 +2403,716 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   }
                 }
 
+                /* ==========================================================================
+                   VIEW 4: THE CONNECTED HR ECOSYSTEM — DELICATE 4-QUADRANT SVG HERO
+                   Central Dashboard Hub + 4 Dedicated Quadrant Cards + Travelling Particles
+                   ========================================================================== */
+                .v4-eco-stage {
+                  width: 100%;
+                  max-width: 540px;
+                  height: 380px;
+                  position: relative;
+                  margin-top: 8px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  contain: layout style;
+                  user-select: none;
+                  -webkit-user-select: none;
+                }
+
+                /* Central Miniature Dashboard Hub (~280px wide, Centered) */
+                .v4-eco-dashboard {
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 280px;
+                  background: #FFFFFF;
+                  border-radius: 14px;
+                  border: 1px solid rgba(226, 232, 240, 0.95);
+                  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.12), 0 4px 14px -2px rgba(15, 23, 42, 0.05);
+                  overflow: hidden;
+                  z-index: 2;
+                  animation: v4EcoDashFloat 5s ease-in-out infinite;
+                  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                              box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                              border-color 0.6s ease;
+                  will-change: transform, box-shadow;
+                }
+
+                @keyframes v4EcoDashFloat {
+                  0%, 100% {
+                    transform: translate(-50%, -50%) translateY(0px);
+                  }
+                  50% {
+                    transform: translate(-50%, -50%) translateY(-6px);
+                  }
+                }
+
+                /* Climax Bloom Aura on Central Dashboard */
+                .v4-eco-dashboard.is-blooming {
+                  box-shadow: 0 0 45px rgba(124, 58, 237, 0.42), 0 20px 48px -10px rgba(124, 58, 237, 0.28);
+                  border-color: rgba(168, 85, 247, 0.55);
+                  transform: translate(-50%, -50%) scale(1.025);
+                }
+
+                /* Browser Chrome Bar */
+                .v4-eco-chrome {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  padding: 6px 10px;
+                  background: #F8FAFC;
+                  border-bottom: 1px solid #E2E8F0;
+                  gap: 8px;
+                }
+
+                .v4-eco-chrome-dots {
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                  flex-shrink: 0;
+                }
+
+                .v4-eco-dot {
+                  width: 7px;
+                  height: 7px;
+                  border-radius: 50%;
+                  display: inline-block;
+                }
+
+                .v4-eco-dot-red { background: #EF4444; }
+                .v4-eco-dot-yellow { background: #F59E0B; }
+                .v4-eco-dot-green { background: #10B981; }
+
+                .v4-eco-chrome-url {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  background: #FFFFFF;
+                  border: 1px solid #E2E8F0;
+                  border-radius: 5px;
+                  padding: 2.5px 7px;
+                  font-size: 10px;
+                  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+                  color: #64748B;
+                  flex: 1;
+                  max-width: 175px;
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+
+                .v4-eco-chrome-url svg {
+                  color: #94A3B8;
+                  flex-shrink: 0;
+                }
+
+                .v4-eco-chrome-sync {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  font-size: 9.5px;
+                  font-weight: 700;
+                  color: #059669;
+                  background: rgba(16, 185, 129, 0.1);
+                  border: 1px solid rgba(16, 185, 129, 0.2);
+                  padding: 1.5px 6px;
+                  border-radius: 999px;
+                  flex-shrink: 0;
+                }
+
+                .v4-eco-sync-dot {
+                  width: 5px;
+                  height: 5px;
+                  border-radius: 50%;
+                  background: #10B981;
+                  box-shadow: 0 0 5px #10B981;
+                  animation: v4EcoSyncPulse 2s ease-in-out infinite;
+                }
+
+                @keyframes v4EcoSyncPulse {
+                  0%, 100% { opacity: 1; transform: scale(1); }
+                  50% { opacity: 0.4; transform: scale(0.85); }
+                }
+
+                .v4-eco-dash-canvas {
+                  width: 100%;
+                  background: #F1F5F9;
+                  line-height: 0;
+                  position: relative;
+                }
+
+                .v4-eco-dash-img {
+                  width: 100%;
+                  height: auto;
+                  display: block;
+                  object-fit: cover;
+                }
+
+                /* Live Overlays on Dashboard */
+                .v4-eco-goal-metric {
+                  position: absolute;
+                  bottom: 8px;
+                  right: 8px;
+                  background: rgba(255, 255, 255, 0.94);
+                  backdrop-filter: blur(8px);
+                  -webkit-backdrop-filter: blur(8px);
+                  border: 1px solid rgba(226, 232, 240, 0.9);
+                  border-radius: 999px;
+                  padding: 2.5px 8px;
+                  font-size: 9.5px;
+                  font-weight: 700;
+                  color: #0F172A;
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+                  z-index: 3;
+                  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .v4-eco-goal-metric.is-updated {
+                  transform: scale(1.06);
+                  border-color: #A7F3D0;
+                  background: rgba(236, 253, 245, 0.96);
+                }
+
+                .v4-eco-ai-notice {
+                  position: absolute;
+                  top: 8px;
+                  left: 8px;
+                  right: 8px;
+                  background: rgba(243, 238, 255, 0.96);
+                  backdrop-filter: blur(8px);
+                  -webkit-backdrop-filter: blur(8px);
+                  border: 1px solid rgba(216, 180, 254, 0.85);
+                  border-radius: 7px;
+                  padding: 4px 8px;
+                  font-size: 9.5px;
+                  font-weight: 600;
+                  color: #581C87;
+                  display: flex;
+                  align-items: center;
+                  gap: 5px;
+                  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+                  opacity: 0;
+                  transform: translateY(-8px);
+                  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                  pointer-events: none;
+                  z-index: 4;
+                }
+
+                .v4-eco-ai-notice.is-visible {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+
+                .v4-eco-ai-notice-sparkle {
+                  font-size: 11px;
+                  animation: v4EcoSparkle 2s ease-in-out infinite;
+                }
+
+                @keyframes v4EcoSparkle {
+                  0%, 100% { transform: scale(1) rotate(0deg); }
+                  50% { transform: scale(1.2) rotate(15deg); }
+                }
+
+                /* SVG Layer: Connecting Lines & Travelling Glowing Particles */
+                .v4-eco-svg-canvas {
+                  position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  pointer-events: none;
+                  z-index: 3;
+                }
+
+                .v4-eco-line {
+                  fill: none;
+                  stroke-width: 1.75px;
+                  stroke-dasharray: 100;
+                  stroke-dashoffset: 100;
+                  opacity: 0;
+                  transition: stroke-dashoffset 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                              opacity 0.4s ease;
+                }
+
+                .v4-eco-line.is-active {
+                  stroke-dashoffset: 0;
+                  opacity: 1;
+                }
+
+                .v4-eco-line.is-exiting {
+                  opacity: 0;
+                  transition: opacity 0.35s ease;
+                }
+
+                .v4-eco-particle {
+                  opacity: 0;
+                  transition: opacity 0.4s ease;
+                }
+
+                .v4-eco-particle.is-active {
+                  opacity: 1;
+                }
+
+                .v4-eco-particle.is-exiting {
+                  opacity: 0;
+                  transition: opacity 0.3s ease;
+                }
+
+                /* Floating Cards Deck & Dedicated Quadrants */
+                .v4-eco-card-deck {
+                  position: absolute;
+                  inset: 0;
+                  pointer-events: none;
+                  z-index: 5;
+                }
+
+                .v4-eco-card {
+                  position: absolute;
+                  width: 190px;
+                  background: #FFFFFF;
+                  border-radius: 14px;
+                  border: 1px solid rgba(226, 232, 240, 0.95);
+                  box-shadow: 0 16px 34px -8px rgba(124, 58, 237, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+                  padding: 10px 12px;
+                  opacity: 0;
+                  visibility: hidden;
+                  transform: translateY(14px) scale(0.96);
+                  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                              visibility 0.45s;
+                  pointer-events: none;
+                  will-change: transform, opacity;
+                  contain: layout style;
+                }
+
+                .v4-eco-card.is-active {
+                  opacity: 1;
+                  visibility: visible;
+                  transform: translateY(0) scale(1);
+                  pointer-events: auto;
+                }
+
+                .v4-eco-card.is-exiting {
+                  opacity: 0;
+                  visibility: hidden;
+                  transform: translateY(-10px) scale(0.97);
+                  transition: opacity 0.35s cubic-bezier(0.4, 0, 1, 1),
+                              transform 0.35s cubic-bezier(0.4, 0, 1, 1),
+                              visibility 0.35s;
+                }
+
+                /* Quadrant Placements */
+                .v4-eco-card-1 {
+                  top: 20px;
+                  left: 16px;
+                }
+
+                .v4-eco-card-2 {
+                  bottom: 24px;
+                  right: 16px;
+                }
+
+                .v4-eco-card-3 {
+                  top: 20px;
+                  right: 16px;
+                }
+
+                .v4-eco-card-4 {
+                  bottom: 24px;
+                  left: 16px;
+                }
+
+                /* Internal Card Header & Badges */
+                .v4-eco-card-header {
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  gap: 6px;
+                  margin-bottom: 7px;
+                }
+
+                .v4-eco-pill {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 3.5px;
+                  font-size: 9.5px;
+                  font-weight: 700;
+                  padding: 2px 6px;
+                  border-radius: 999px;
+                }
+
+                .v4-pill-purple {
+                  background: #F3EEFF;
+                  color: #7C3AED;
+                  border: 1px solid #E9D5FF;
+                }
+
+                .v4-pill-success {
+                  background: #ECFDF5;
+                  color: #059669;
+                  border: 1px solid #A7F3D0;
+                }
+
+                .v4-pill-indigo {
+                  background: #EEF2FF;
+                  color: #4F46E5;
+                  border: 1px solid #C7D2FE;
+                }
+
+                .v4-pill-completed {
+                  background: #ECFDF5;
+                  color: #059669;
+                  border: 1px solid #A7F3D0;
+                  transform: scale(0.9);
+                  opacity: 0.5;
+                  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+                }
+
+                .v4-pill-completed.is-visible {
+                  transform: scale(1);
+                  opacity: 1;
+                }
+
+                .v4-pill-ai {
+                  background: linear-gradient(135deg, #F3EEFF 0%, #EEF2FF 100%);
+                  color: #7C3AED;
+                  border: 1px solid #DDD6FE;
+                }
+
+                .v4-pill-ai-status {
+                  background: #FAF5FF;
+                  color: #9333EA;
+                  border: 1px solid #E9D5FF;
+                }
+
+                .v4-eco-sparkle {
+                  font-size: 10px;
+                  animation: v4EcoSparkle 2s ease-in-out infinite;
+                }
+
+                .v4-pill-blue {
+                  background: #EFF6FF;
+                  color: #2563EB;
+                  border: 1px solid #BFDBFE;
+                }
+
+                .v4-pill-radar {
+                  position: relative;
+                  background: #EFF6FF;
+                  color: #2563EB;
+                  border: 1px solid #BFDBFE;
+                }
+
+                .v4-eco-radar-core {
+                  width: 5px;
+                  height: 5px;
+                  border-radius: 50%;
+                  background: #2563EB;
+                  display: inline-block;
+                  margin-right: 2px;
+                }
+
+                .v4-eco-radar-ring {
+                  position: absolute;
+                  left: 5px;
+                  top: 50%;
+                  width: 5px;
+                  height: 5px;
+                  margin-top: -2.5px;
+                  border-radius: 50%;
+                  background: rgba(37, 99, 235, 0.4);
+                  animation: v4EcoRadarPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+                }
+
+                @keyframes v4EcoRadarPing {
+                  0% { transform: scale(0.8); opacity: 0.9; }
+                  100% { transform: scale(2.4); opacity: 0; }
+                }
+
+                /* Card Body */
+                .v4-eco-card-body {
+                  display: flex;
+                  flex-direction: column;
+                  gap: 4px;
+                }
+
+                .v4-eco-card-title {
+                  font-size: 12.5px;
+                  font-weight: 700;
+                  color: #0F172A;
+                  margin: 0;
+                  letter-spacing: -0.01em;
+                }
+
+                .v4-eco-card-desc {
+                  font-size: 10.5px;
+                  color: #64748B;
+                  margin: 0;
+                  line-height: 1.35;
+                }
+
+                .v4-eco-card-accent {
+                  color: #7C3AED;
+                  font-weight: 700;
+                }
+
+                /* Card 1 Progress & Checkmark */
+                .v4-eco-progress-row {
+                  display: flex;
+                  align-items: center;
+                  gap: 7px;
+                  margin-top: 3px;
+                }
+
+                .v4-eco-progress-track {
+                  flex: 1;
+                  height: 6px;
+                  background: #F1F5F9;
+                  border-radius: 999px;
+                  overflow: hidden;
+                }
+
+                .v4-eco-progress-fill {
+                  height: 100%;
+                  background: linear-gradient(90deg, #7C3AED 0%, #10B981 100%);
+                  border-radius: 999px;
+                  width: 0%;
+                  transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .v4-eco-check-badge {
+                  width: 18px;
+                  height: 18px;
+                  border-radius: 50%;
+                  background: #10B981;
+                  color: #FFFFFF;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  transform: scale(0);
+                  opacity: 0;
+                  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+                  flex-shrink: 0;
+                  box-shadow: 0 2px 5px rgba(16, 185, 129, 0.35);
+                }
+
+                .v4-eco-check-badge.is-visible {
+                  transform: scale(1);
+                  opacity: 1;
+                }
+
+                /* Card 2 Avatars */
+                .v4-eco-avatar-row {
+                  display: flex;
+                  align-items: center;
+                  gap: 7px;
+                  margin-top: 3px;
+                }
+
+                .v4-eco-avatar-group {
+                  display: flex;
+                  align-items: center;
+                }
+
+                .v4-eco-av {
+                  width: 22px;
+                  height: 22px;
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #FFFFFF;
+                  font-size: 8.5px;
+                  font-weight: 700;
+                  border: 1.5px solid #FFFFFF;
+                  margin-left: -5px;
+                  transform: scale(0);
+                  opacity: 0;
+                  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+                  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.12);
+                }
+
+                .v4-eco-av:first-child { margin-left: 0; }
+                .v4-eco-av.is-visible { transform: scale(1); opacity: 1; }
+                .v4-av-ms { background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%); }
+                .v4-av-jl { background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%); }
+                .v4-av-sk { background: linear-gradient(135deg, #059669 0%, #34D399 100%); }
+
+                .v4-eco-avatar-extra {
+                  font-size: 9.5px;
+                  font-weight: 600;
+                  color: #64748B;
+                }
+
+                /* Card 3 Chat & Typewriter */
+                .v4-eco-user-bubble {
+                  background: #F8FAFC;
+                  border: 1px solid #E2E8F0;
+                  border-radius: 6px;
+                  padding: 3px 6px;
+                  font-size: 9.5px;
+                  color: #1E293B;
+                  display: flex;
+                  align-items: center;
+                  gap: 3px;
+                  min-height: 22px;
+                }
+
+                .v4-eco-bubble-prefix {
+                  font-weight: 700;
+                  color: #64748B;
+                  font-size: 9px;
+                }
+
+                .v4-eco-type-text {
+                  color: #0F172A;
+                  font-weight: 500;
+                }
+
+                .v4-eco-type-cursor {
+                  color: #7C3AED;
+                  font-weight: 700;
+                  animation: v4EcoBlinkCursor 0.8s infinite;
+                }
+
+                @keyframes v4EcoBlinkCursor {
+                  0%, 100% { opacity: 1; }
+                  50% { opacity: 0; }
+                }
+
+                .v4-eco-thinking-wave {
+                  display: none;
+                  align-items: center;
+                  gap: 3px;
+                  padding: 2px 4px;
+                }
+
+                .v4-eco-thinking-wave.is-active {
+                  display: inline-flex;
+                }
+
+                .v4-eco-thinking-wave span {
+                  width: 4px;
+                  height: 4px;
+                  border-radius: 50%;
+                  background: #7C3AED;
+                  animation: v4EcoWaveBounce 1s infinite ease-in-out;
+                }
+
+                .v4-eco-thinking-wave span:nth-child(2) { animation-delay: 0.2s; }
+                .v4-eco-thinking-wave span:nth-child(3) { animation-delay: 0.4s; }
+
+                @keyframes v4EcoWaveBounce {
+                  0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+                  40% { transform: translateY(-3px); opacity: 1; }
+                }
+
+                .v4-eco-ai-bubble {
+                  display: flex;
+                  align-items: flex-start;
+                  gap: 5px;
+                  background: #F3EEFF;
+                  border: 1px solid #E9D5FF;
+                  border-radius: 7px;
+                  padding: 4px 7px;
+                  font-size: 9.5px;
+                  color: #3B0764;
+                  line-height: 1.3;
+                  opacity: 0;
+                  transform: translateY(4px);
+                  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                  margin-top: 2px;
+                }
+
+                .v4-eco-ai-bubble.is-visible {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+
+                .v4-eco-ai-icon {
+                  font-size: 10px;
+                  flex-shrink: 0;
+                }
+
+                /* Card 4 1-on-1 */
+                .v4-eco-time-badge {
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 4px;
+                  background: #EFF6FF;
+                  color: #1D4ED8;
+                  font-size: 10px;
+                  font-weight: 700;
+                  padding: 2px 6px;
+                  border-radius: 5px;
+                  border: 1px solid #DBEAFE;
+                  margin-top: 2px;
+                }
+
+                .v4-eco-agenda-note {
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                  font-size: 9px;
+                  color: #64748B;
+                  margin-top: 2px;
+                }
+
+                .v4-eco-agenda-dot {
+                  width: 4px;
+                  height: 4px;
+                  border-radius: 50%;
+                  background: #3B82F6;
+                  flex-shrink: 0;
+                }
+
+                /* Responsive Adjustments */
+                @media (max-width: 640px) {
+                  .v4-eco-stage {
+                    height: 360px;
+                  }
+                  .v4-eco-dashboard {
+                    width: 240px;
+                  }
+                  .v4-eco-card {
+                    width: 160px;
+                    padding: 8px 10px;
+                  }
+                  .v4-eco-card-1 { top: 12px; left: 10px; }
+                  .v4-eco-card-2 { bottom: 16px; right: 10px; }
+                  .v4-eco-card-3 { top: 12px; right: 10px; }
+                  .v4-eco-card-4 { bottom: 16px; left: 10px; }
+                }
+
+                /* Reduced Motion */
+                @media (prefers-reduced-motion: reduce) {
+                  .v4-eco-dashboard {
+                    animation: none !important;
+                    transition: none !important;
+                  }
+                  .v4-eco-card,
+                  .v4-eco-line,
+                  .v4-eco-particle,
+                  .v4-eco-progress-fill,
+                  .v4-eco-check-badge,
+                  .v4-eco-av,
+                  .v4-eco-ai-bubble,
+                  .v4-eco-ai-notice {
+                    transition: none !important;
+                  }
+                  .v4-eco-particle animateMotion {
+                    dur: 0s !important;
+                  }
+                  .v4-eco-radar-ring {
+                    animation: none !important;
+                  }
+                }
+
               `}</style>
             <Box
               sx={{
@@ -2256,6 +3616,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 {/* VIEW 3: MINIMAL HERO ANIMATION (PAGE 3) */}
                 {activePage === 3 && (
                   <V3MinimalStage active={activePage === 3} />
+                )}
+
+                {/* VIEW 4: THE CONNECTED HR ECOSYSTEM HERO ANIMATION (PAGE 4) */}
+                {activePage === 4 && (
+                  <V4EcosystemStage active={activePage === 4} />
                 )}
                 
               </Box>
@@ -2895,6 +4260,77 @@ export const LoginView: React.FC<LoginViewProps> = ({
             }}
           >
             3
+          </Box>
+        </Box>
+
+        <Box sx={{ width: '1px', height: '18px', bgcolor: '#E2E8F0' }} />
+
+        <Box
+          component="button"
+          type="button"
+          onClick={() => setActivePage(4)}
+          aria-label="Page 4: The Connected HR Ecosystem"
+          title="The Connected HR Ecosystem (Key 4)"
+          sx={{
+            appearance: 'none',
+            border: activePage === 4 ? '1px solid rgba(124, 58, 237, 0.25)' : '1px solid transparent',
+            bgcolor: activePage === 4 ? '#FFFFFF' : 'transparent',
+            color: activePage === 4 ? '#7C3AED' : '#64748B',
+            fontWeight: activePage === 4 ? 700 : 600,
+            boxShadow: activePage === 4 ? '0 4px 14px -2px rgba(124, 58, 237, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05)' : 'none',
+            px: { xs: 1.5, sm: 1.75 },
+            py: 0.85,
+            borderRadius: '9999px',
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontSize: { xs: 11.5, sm: 12.5 },
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '7px',
+            cursor: 'pointer',
+            transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+            whiteSpace: 'nowrap',
+            '&:hover': {
+              color: '#0F172A',
+              bgcolor: activePage === 4 ? '#FFFFFF' : 'rgba(241, 245, 249, 0.8)',
+            },
+          }}
+        >
+          <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>④</span>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Ecosystem</Box>
+          <Box
+            component="span"
+            sx={{
+              display: { xs: 'none', sm: 'inline-block' },
+              fontSize: '9px',
+              fontWeight: 800,
+              px: '6px',
+              py: '1.5px',
+              borderRadius: '9999px',
+              bgcolor: 'rgba(124, 58, 237, 0.12)',
+              color: '#7C3AED',
+              border: '1px solid rgba(124, 58, 237, 0.28)',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Live
+          </Box>
+          <Box
+            component="span"
+            sx={{
+              display: { xs: 'none', md: 'inline-block' },
+              fontSize: '10px',
+              fontFamily: 'monospace',
+              fontWeight: 600,
+              px: '5px',
+              py: '1px',
+              borderRadius: '4px',
+              bgcolor: activePage === 4 ? '#F5F3FF' : '#F1F5F9',
+              color: activePage === 4 ? '#8B5CF6' : '#94A3B8',
+              border: activePage === 4 ? '1px solid #DDD6FE' : '1px solid #E2E8F0',
+            }}
+          >
+            4
           </Box>
         </Box>
 

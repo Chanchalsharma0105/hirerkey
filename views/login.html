@@ -6262,6 +6262,716 @@
       }
     }
 
+    /* ==========================================================================
+       VIEW 4: THE CONNECTED HR ECOSYSTEM — DELICATE 4-QUADRANT SVG HERO
+       Central Dashboard Hub + 4 Dedicated Quadrant Cards + Travelling Particles
+       ========================================================================== */
+    .v4-eco-stage {
+      width: 100%;
+      max-width: 540px;
+      height: 380px;
+      position: relative;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      contain: layout style;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Central Miniature Dashboard Hub (~280px wide, Centered) */
+    .v4-eco-dashboard {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.12), 0 4px 14px -2px rgba(15, 23, 42, 0.05);
+      overflow: hidden;
+      z-index: 2;
+      animation: v4EcoDashFloat 5s ease-in-out infinite;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.6s ease;
+      will-change: transform, box-shadow;
+    }
+
+    @keyframes v4EcoDashFloat {
+      0%, 100% {
+        transform: translate(-50%, -50%) translateY(0px);
+      }
+      50% {
+        transform: translate(-50%, -50%) translateY(-6px);
+      }
+    }
+
+    /* Climax Bloom Aura on Central Dashboard */
+    .v4-eco-dashboard.is-blooming {
+      box-shadow: 0 0 45px rgba(124, 58, 237, 0.42), 0 20px 48px -10px rgba(124, 58, 237, 0.28);
+      border-color: rgba(168, 85, 247, 0.55);
+      transform: translate(-50%, -50%) scale(1.025);
+    }
+
+    /* Browser Chrome Bar */
+    .v4-eco-chrome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: #F8FAFC;
+      border-bottom: 1px solid #E2E8F0;
+      gap: 8px;
+    }
+
+    .v4-eco-chrome-dots {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .v4-eco-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .v4-eco-dot-red { background: #EF4444; }
+    .v4-eco-dot-yellow { background: #F59E0B; }
+    .v4-eco-dot-green { background: #10B981; }
+
+    .v4-eco-chrome-url {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 5px;
+      padding: 2.5px 7px;
+      font-size: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #64748B;
+      flex: 1;
+      max-width: 175px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .v4-eco-chrome-url svg {
+      color: #94A3B8;
+      flex-shrink: 0;
+    }
+
+    .v4-eco-chrome-sync {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #059669;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      padding: 1.5px 6px;
+      border-radius: 999px;
+      flex-shrink: 0;
+    }
+
+    .v4-eco-sync-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 5px #10B981;
+      animation: v4EcoSyncPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes v4EcoSyncPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .v4-eco-dash-canvas {
+      width: 100%;
+      background: #F1F5F9;
+      line-height: 0;
+      position: relative;
+    }
+
+    .v4-eco-dash-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Live Overlays on Dashboard */
+    .v4-eco-goal-metric {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      border-radius: 999px;
+      padding: 2.5px 8px;
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #0F172A;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+      z-index: 3;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v4-eco-goal-metric.is-updated {
+      transform: scale(1.06);
+      border-color: #A7F3D0;
+      background: rgba(236, 253, 245, 0.96);
+    }
+
+    .v4-eco-ai-notice {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      background: rgba(243, 238, 255, 0.96);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(216, 180, 254, 0.85);
+      border-radius: 7px;
+      padding: 4px 8px;
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #581C87;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .v4-eco-ai-notice.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .v4-eco-ai-notice-sparkle {
+      font-size: 11px;
+      animation: v4EcoSparkle 2s ease-in-out infinite;
+    }
+
+    @keyframes v4EcoSparkle {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(15deg); }
+    }
+
+    /* SVG Layer: Connecting Lines & Travelling Glowing Particles */
+    .v4-eco-svg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .v4-eco-line {
+      fill: none;
+      stroke-width: 1.75px;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      opacity: 0;
+      transition: stroke-dashoffset 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.4s ease;
+    }
+
+    .v4-eco-line.is-active {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+
+    .v4-eco-line.is-exiting {
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .v4-eco-particle {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .v4-eco-particle.is-active {
+      opacity: 1;
+    }
+
+    .v4-eco-particle.is-exiting {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Floating Cards Deck & Dedicated Quadrants */
+    .v4-eco-card-deck {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .v4-eco-card {
+      position: absolute;
+      width: 190px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      box-shadow: 0 16px 34px -8px rgba(124, 58, 237, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+      padding: 10px 12px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(14px) scale(0.96);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.45s;
+      pointer-events: none;
+      will-change: transform, opacity;
+      contain: layout style;
+    }
+
+    .v4-eco-card.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .v4-eco-card.is-exiting {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px) scale(0.97);
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 1, 1),
+                  transform 0.35s cubic-bezier(0.4, 0, 1, 1),
+                  visibility 0.35s;
+    }
+
+    /* Quadrant Placements */
+    .v4-eco-card-1 {
+      top: 20px;
+      left: 16px;
+    }
+
+    .v4-eco-card-2 {
+      bottom: 24px;
+      right: 16px;
+    }
+
+    .v4-eco-card-3 {
+      top: 20px;
+      right: 16px;
+    }
+
+    .v4-eco-card-4 {
+      bottom: 24px;
+      left: 16px;
+    }
+
+    /* Internal Card Header & Badges */
+    .v4-eco-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 7px;
+    }
+
+    .v4-eco-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 3.5px;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+
+    .v4-pill-purple {
+      background: #F3EEFF;
+      color: #7C3AED;
+      border: 1px solid #E9D5FF;
+    }
+
+    .v4-pill-success {
+      background: #ECFDF5;
+      color: #059669;
+      border: 1px solid #A7F3D0;
+    }
+
+    .v4-pill-indigo {
+      background: #EEF2FF;
+      color: #4F46E5;
+      border: 1px solid #C7D2FE;
+    }
+
+    .v4-pill-completed {
+      background: #ECFDF5;
+      color: #059669;
+      border: 1px solid #A7F3D0;
+      transform: scale(0.9);
+      opacity: 0.5;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .v4-pill-completed.is-visible {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .v4-pill-ai {
+      background: linear-gradient(135deg, #F3EEFF 0%, #EEF2FF 100%);
+      color: #7C3AED;
+      border: 1px solid #DDD6FE;
+    }
+
+    .v4-pill-ai-status {
+      background: #FAF5FF;
+      color: #9333EA;
+      border: 1px solid #E9D5FF;
+    }
+
+    .v4-eco-sparkle {
+      font-size: 10px;
+      animation: v4EcoSparkle 2s ease-in-out infinite;
+    }
+
+    .v4-pill-blue {
+      background: #EFF6FF;
+      color: #2563EB;
+      border: 1px solid #BFDBFE;
+    }
+
+    .v4-pill-radar {
+      position: relative;
+      background: #EFF6FF;
+      color: #2563EB;
+      border: 1px solid #BFDBFE;
+    }
+
+    .v4-eco-radar-core {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #2563EB;
+      display: inline-block;
+      margin-right: 2px;
+    }
+
+    .v4-eco-radar-ring {
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      margin-top: -2.5px;
+      border-radius: 50%;
+      background: rgba(37, 99, 235, 0.4);
+      animation: v4EcoRadarPing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes v4EcoRadarPing {
+      0% { transform: scale(0.8); opacity: 0.9; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    /* Card Body */
+    .v4-eco-card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .v4-eco-card-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #0F172A;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .v4-eco-card-desc {
+      font-size: 10.5px;
+      color: #64748B;
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .v4-eco-card-accent {
+      color: #7C3AED;
+      font-weight: 700;
+    }
+
+    /* Card 1 Progress & Checkmark */
+    .v4-eco-progress-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 3px;
+    }
+
+    .v4-eco-progress-track {
+      flex: 1;
+      height: 6px;
+      background: #F1F5F9;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .v4-eco-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #7C3AED 0%, #10B981 100%);
+      border-radius: 999px;
+      width: 0%;
+      transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v4-eco-check-badge {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #10B981;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+      flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(16, 185, 129, 0.35);
+    }
+
+    .v4-eco-check-badge.is-visible {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* Card 2 Avatars */
+    .v4-eco-avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 3px;
+    }
+
+    .v4-eco-avatar-group {
+      display: flex;
+      align-items: center;
+    }
+
+    .v4-eco-av {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 8.5px;
+      font-weight: 700;
+      border: 1.5px solid #FFFFFF;
+      margin-left: -5px;
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.12);
+    }
+
+    .v4-eco-av:first-child { margin-left: 0; }
+    .v4-eco-av.is-visible { transform: scale(1); opacity: 1; }
+    .v4-av-ms { background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%); }
+    .v4-av-jl { background: linear-gradient(135deg, #2563EB 0%, #38BDF8 100%); }
+    .v4-av-sk { background: linear-gradient(135deg, #059669 0%, #34D399 100%); }
+
+    .v4-eco-avatar-extra {
+      font-size: 9.5px;
+      font-weight: 600;
+      color: #64748B;
+    }
+
+    /* Card 3 Chat & Typewriter */
+    .v4-eco-user-bubble {
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-radius: 6px;
+      padding: 3px 6px;
+      font-size: 9.5px;
+      color: #1E293B;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      min-height: 22px;
+    }
+
+    .v4-eco-bubble-prefix {
+      font-weight: 700;
+      color: #64748B;
+      font-size: 9px;
+    }
+
+    .v4-eco-type-text {
+      color: #0F172A;
+      font-weight: 500;
+    }
+
+    .v4-eco-type-cursor {
+      color: #7C3AED;
+      font-weight: 700;
+      animation: v4EcoBlinkCursor 0.8s infinite;
+    }
+
+    @keyframes v4EcoBlinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .v4-eco-thinking-wave {
+      display: none;
+      align-items: center;
+      gap: 3px;
+      padding: 2px 4px;
+    }
+
+    .v4-eco-thinking-wave.is-active {
+      display: inline-flex;
+    }
+
+    .v4-eco-thinking-wave span {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #7C3AED;
+      animation: v4EcoWaveBounce 1s infinite ease-in-out;
+    }
+
+    .v4-eco-thinking-wave span:nth-child(2) { animation-delay: 0.2s; }
+    .v4-eco-thinking-wave span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes v4EcoWaveBounce {
+      0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+      40% { transform: translateY(-3px); opacity: 1; }
+    }
+
+    .v4-eco-ai-bubble {
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      background: #F3EEFF;
+      border: 1px solid #E9D5FF;
+      border-radius: 7px;
+      padding: 4px 7px;
+      font-size: 9.5px;
+      color: #3B0764;
+      line-height: 1.3;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 2px;
+    }
+
+    .v4-eco-ai-bubble.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .v4-eco-ai-icon {
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Card 4 1-on-1 */
+    .v4-eco-time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #EFF6FF;
+      color: #1D4ED8;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 5px;
+      border: 1px solid #DBEAFE;
+      margin-top: 2px;
+    }
+
+    .v4-eco-agenda-note {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 9px;
+      color: #64748B;
+      margin-top: 2px;
+    }
+
+    .v4-eco-agenda-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #3B82F6;
+      flex-shrink: 0;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+      .v4-eco-stage {
+        height: 360px;
+      }
+      .v4-eco-dashboard {
+        width: 240px;
+      }
+      .v4-eco-card {
+        width: 160px;
+        padding: 8px 10px;
+      }
+      .v4-eco-card-1 { top: 12px; left: 10px; }
+      .v4-eco-card-2 { bottom: 16px; right: 10px; }
+      .v4-eco-card-3 { top: 12px; right: 10px; }
+      .v4-eco-card-4 { bottom: 16px; left: 10px; }
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .v4-eco-dashboard {
+        animation: none !important;
+        transition: none !important;
+      }
+      .v4-eco-card,
+      .v4-eco-line,
+      .v4-eco-particle,
+      .v4-eco-progress-fill,
+      .v4-eco-check-badge,
+      .v4-eco-av,
+      .v4-eco-ai-bubble,
+      .v4-eco-ai-notice {
+        transition: none !important;
+      }
+      .v4-eco-particle animateMotion {
+        dur: 0s !important;
+      }
+      .v4-eco-radar-ring {
+        animation: none !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -7789,6 +8499,464 @@
       </div>
     </div> <!-- /#login-view-3 -->
 
+    <!-- ==========================================================================
+         PAGE 4: THE CONNECTED HR ECOSYSTEM — 4-QUADRANT DELICATE SVG HERO
+         Central Dashboard Hub + Sequential Quadrant Modules + Dual-Module Ecosystem
+         ========================================================================== -->
+    <div id="login-view-4" class="login-view-wrapper" data-page="4">
+      <div id="page-4" style="display:contents;">
+        <div class="v4-layout-container">
+
+          <!-- LEFT COLUMN: HERO SHOWCASE WITH CONNECTED HR ECOSYSTEM ANIMATION -->
+          <section class="v4-hero-section">
+            <!-- Brand Logo Header & People Performance Progress Subtag -->
+            <div class="v4-brand-top-row">
+              <div class="v4-brand-logo">
+                <div class="v4-logo-mark">H</div>
+                <div class="v4-brand-wordmark">Hirerkey<span>.</span></div>
+              </div>
+              <div class="v4-subtag-pill">
+                <span>PEOPLE • PERFORMANCE • PROGRESS</span>
+              </div>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="v4-hero-headline">
+              Make worklife <span class="v4-highlight-purple">easy</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="v4-hero-subtitle">
+              Everything you need to build, manage and grow a high-performing team.
+            </p>
+
+            <!-- CONNECTED HR ECOSYSTEM HERO STAGE -->
+            <div class="v4-eco-stage" id="v4EcoStage" role="region" aria-roledescription="interactive ecosystem animation" aria-label="The Connected HR Ecosystem">
+
+              <!-- SVG CONNECTING PATHS & TRAVELLING PARTICLES LAYER -->
+              <svg class="v4-eco-svg-canvas" viewBox="0 0 540 380" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <!-- Gradient 1: Orientation (Purple -> Indigo) -->
+                  <linearGradient id="v4EcoGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#6366F1" stop-opacity="0.9" />
+                  </linearGradient>
+
+                  <!-- Gradient 2: Department Tour (Indigo -> Emerald) -->
+                  <linearGradient id="v4EcoGrad2" x1="100%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#10B981" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#6366F1" stop-opacity="0.9" />
+                  </linearGradient>
+
+                  <!-- Gradient 3: Ask HyIQ (Violet -> Pink) -->
+                  <linearGradient id="v4EcoGrad3" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#EC4899" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.9" />
+                  </linearGradient>
+
+                  <!-- Gradient 4: 1-on-1 Check-in (Blue -> Cyan) -->
+                  <linearGradient id="v4EcoGrad4" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.9" />
+                  </linearGradient>
+
+                  <!-- Delicate Bloom Filter for Line & Glow -->
+                  <filter id="v4EcoGlow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="2" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Thin Delicate Connecting Lines (Active per Scene) -->
+                <!-- Line 1: Card 1 (Upper-Left) to Center Dashboard -->
+                <path class="v4-eco-line" id="v4EcoLine1" stroke="url(#v4EcoGrad1)" d="M 175 80 C 205 90, 220 110, 235 130" filter="url(#v4EcoGlow)" />
+
+                <!-- Line 2: Card 2 (Lower-Right) to Center Dashboard -->
+                <path class="v4-eco-line" id="v4EcoLine2" stroke="url(#v4EcoGrad2)" d="M 365 300 C 335 290, 320 270, 305 250" filter="url(#v4EcoGlow)" />
+
+                <!-- Line 3: Card 3 (Upper-Right) to Center Dashboard -->
+                <path class="v4-eco-line" id="v4EcoLine3" stroke="url(#v4EcoGrad3)" d="M 365 80 C 335 90, 320 110, 305 130" filter="url(#v4EcoGlow)" />
+
+                <!-- Line 4: Card 4 (Lower-Left) to Center Dashboard -->
+                <path class="v4-eco-line" id="v4EcoLine4" stroke="url(#v4EcoGrad4)" d="M 175 300 C 205 290, 220 270, 235 250" filter="url(#v4EcoGlow)" />
+
+                <!-- Travelling Glowing Particles along paths -->
+                <circle class="v4-eco-particle" id="v4EcoParticle1" r="3" fill="#8B5CF6" filter="url(#v4EcoGlow)">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" path="M 175 80 C 205 90, 220 110, 235 130" />
+                </circle>
+
+                <circle class="v4-eco-particle" id="v4EcoParticle2" r="3" fill="#10B981" filter="url(#v4EcoGlow)">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" path="M 365 300 C 335 290, 320 270, 305 250" />
+                </circle>
+
+                <circle class="v4-eco-particle" id="v4EcoParticle3" r="3" fill="#EC4899" filter="url(#v4EcoGlow)">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" path="M 365 80 C 335 90, 320 110, 305 130" />
+                </circle>
+
+                <circle class="v4-eco-particle" id="v4EcoParticle4" r="3" fill="#3B82F6" filter="url(#v4EcoGlow)">
+                  <animateMotion dur="1.8s" repeatCount="indefinite" path="M 175 300 C 205 290, 220 270, 235 250" />
+                </circle>
+              </svg>
+
+              <!-- CENTRAL MINIATURE DASHBOARD HUB (~280px wide, Centered) -->
+              <div class="v4-eco-dashboard" id="v4EcoDashboard">
+                <!-- Browser Chrome Bar -->
+                <div class="v4-eco-chrome">
+                  <div class="v4-eco-chrome-dots">
+                    <span class="v4-eco-dot v4-eco-dot-red"></span>
+                    <span class="v4-eco-dot v4-eco-dot-yellow"></span>
+                    <span class="v4-eco-dot v4-eco-dot-green"></span>
+                  </div>
+                  <div class="v4-eco-chrome-url">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
+                    <span>app.hirerkey.com/dashboard</span>
+                  </div>
+                  <div class="v4-eco-chrome-sync">
+                    <span class="v4-eco-sync-dot"></span>
+                    <span class="v4-eco-sync-text">Live Sync</span>
+                  </div>
+                </div>
+
+                <!-- Dashboard Preview Image & Micro-Overlays -->
+                <div class="v4-eco-dash-canvas">
+                  <img
+                    src="assets/hirerkey_actual_dashboard.png"
+                    onerror="this.onerror=null;this.src='views/assets/hirerkey_actual_dashboard.png';"
+                    alt="Hirerkey Ecosystem Hub"
+                    class="v4-eco-dash-img"
+                    loading="eager"
+                  />
+
+                  <!-- Goal Tracking Metric Badge (Live Reactive) -->
+                  <div class="v4-eco-goal-metric" id="v4EcoGoalMetric">
+                    <span class="v4-eco-goal-icon">🎯</span>
+                    <span class="v4-eco-goal-text">Q4 Goals: <strong id="v4EcoGoalVal">88%</strong></span>
+                  </div>
+
+                  <!-- Mini Dashboard AI Insight Notification -->
+                  <div class="v4-eco-ai-notice" id="v4EcoAiNotice">
+                    <span class="v4-eco-ai-notice-sparkle">✨</span>
+                    <span class="v4-eco-ai-notice-text">HyIQ: 3 tasks awaiting completion</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4 FLOATING MODULE CARDS IN DEDICATED QUADRANTS (Max 2 visible at any moment) -->
+              <div class="v4-eco-card-deck" id="v4EcoCardDeck">
+
+                <!-- CARD 1: ORIENTATION (Upper-Left: top: 20px, left: 16px, width: 190px) -->
+                <div class="v4-eco-card v4-eco-card-1" id="v4EcoCard1" aria-hidden="true">
+                  <div class="v4-eco-card-header">
+                    <span class="v4-eco-pill v4-pill-purple">
+                      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                      </svg>
+                      <span>Orientation</span>
+                    </span>
+                    <span class="v4-eco-pill v4-pill-success">
+                      <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Active</span>
+                    </span>
+                  </div>
+                  <div class="v4-eco-card-body">
+                    <h4 class="v4-eco-card-title">Welcome aboard!</h4>
+                    <p class="v4-eco-card-desc">Onboarding: <strong class="v4-eco-card-accent" id="v4EcoProgText1">80%</strong></p>
+                    <div class="v4-eco-progress-row">
+                      <div class="v4-eco-progress-track">
+                        <div class="v4-eco-progress-fill" id="v4EcoProgressFill1" style="width: 0%;"></div>
+                      </div>
+                      <div class="v4-eco-check-badge" id="v4EcoCheckBadge1">
+                        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 2: DEPARTMENT TOUR (Lower-Right: bottom: 24px, right: 16px, width: 190px) -->
+                <div class="v4-eco-card v4-eco-card-2" id="v4EcoCard2" aria-hidden="true">
+                  <div class="v4-eco-card-header">
+                    <span class="v4-eco-pill v4-pill-indigo">
+                      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                      </svg>
+                      <span>Department Tour</span>
+                    </span>
+                    <span class="v4-eco-pill v4-pill-completed" id="v4EcoCompletedPill2">
+                      <svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Done</span>
+                    </span>
+                  </div>
+                  <div class="v4-eco-card-body">
+                    <h4 class="v4-eco-card-title">Meet your team</h4>
+                    <p class="v4-eco-card-desc">Connected with 3 leads</p>
+                    <div class="v4-eco-avatar-row">
+                      <div class="v4-eco-avatar-group">
+                        <div class="v4-eco-av v4-av-ms" title="Maya Santos"><span>MS</span></div>
+                        <div class="v4-eco-av v4-av-jl" title="James Liu"><span>JL</span></div>
+                        <div class="v4-eco-av v4-av-sk" title="Sarah Khan"><span>SK</span></div>
+                      </div>
+                      <span class="v4-eco-avatar-extra">+8 team</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 3: ASK HyIQ (Upper-Right: top: 20px, right: 16px, width: 190px) -->
+                <div class="v4-eco-card v4-eco-card-3" id="v4EcoCard3" aria-hidden="true">
+                  <div class="v4-eco-card-header">
+                    <span class="v4-eco-pill v4-pill-ai">
+                      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+                      </svg>
+                      <span>Ask HyIQ</span>
+                    </span>
+                    <span class="v4-eco-pill v4-pill-ai-status">
+                      <span class="v4-eco-sparkle">✦</span>
+                      <span>Copilot</span>
+                    </span>
+                  </div>
+                  <div class="v4-eco-card-body">
+                    <div class="v4-eco-user-bubble">
+                      <span class="v4-eco-bubble-prefix">User:</span>
+                      <span class="v4-eco-type-text" id="v4EcoPromptText"></span>
+                      <span class="v4-eco-type-cursor" id="v4EcoPromptCursor">|</span>
+                    </div>
+                    <div class="v4-eco-thinking-wave" id="v4EcoThinkingWave">
+                      <span></span><span></span><span></span>
+                    </div>
+                    <div class="v4-eco-ai-bubble" id="v4EcoAiResponse">
+                      <span class="v4-eco-ai-icon">✨</span>
+                      <span class="v4-eco-ai-text">You have <strong style="color:#7C3AED;">3 tasks</strong> awaiting completion.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- CARD 4: 1-ON-1 CHECK-IN (Lower-Left: bottom: 24px, left: 16px, width: 190px) -->
+                <div class="v4-eco-card v4-eco-card-4" id="v4EcoCard4" aria-hidden="true">
+                  <div class="v4-eco-card-header">
+                    <span class="v4-eco-pill v4-pill-blue">
+                      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                      </svg>
+                      <span>1-on-1 Check-in</span>
+                    </span>
+                    <span class="v4-eco-pill v4-pill-radar">
+                      <span class="v4-eco-radar-core"></span>
+                      <span class="v4-eco-radar-ring"></span>
+                      <span>Scheduled</span>
+                    </span>
+                  </div>
+                  <div class="v4-eco-card-body">
+                    <h4 class="v4-eco-card-title">Upcoming check-in</h4>
+                    <div class="v4-eco-time-badge">
+                      <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                      </svg>
+                      <span>Today · 3:30 PM</span>
+                    </div>
+                    <div class="v4-eco-agenda-note">
+                      <span class="v4-eco-agenda-dot"></span>
+                      <span>Milestone review &amp; feedback</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- RIGHT COLUMN: AUTHENTICATION CARD (-p4 DUPLICATION) -->
+          <section class="v4-form-card">
+            <!-- Form Titles -->
+            <h2 class="v4-form-title">Welcome back</h2>
+            <p class="v4-form-subtitle">Sign in to continue to Hirerkey</p>
+
+            <!-- Dual Tab Segmented Track (OTP vs Password) -->
+            <div class="v4-tab-track">
+              <button type="button" id="tab-v4-otp-p4" class="v4-tab-btn active" onclick="switchV4AuthMode('otp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span>Login with OTP</span>
+              </button>
+              <button type="button" id="tab-v4-pwd-p4" class="v4-tab-btn" onclick="switchV4AuthMode('password')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Login with password</span>
+              </button>
+            </div>
+
+            <!-- MODE A: EMAIL OTP FLOW -->
+            <div id="v4-step-email-otp-p4" class="auth-step">
+              <form id="v4-email-otp-form-p4" onsubmit="handleV4SendOTP(event)">
+                <div class="v4-field-group">
+                  <label for="v4-email-otp-input-p4" class="v4-field-label">Work email</label>
+                  <div class="v4-input-shell">
+                    <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input
+                      type="email"
+                      id="v4-email-otp-input-p4"
+                      class="v4-text-input"
+                      placeholder="you@company.com"
+                      value="alex.chen@earthhotels.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <!-- Primary Action: Send OTP Button -->
+                <button type="submit" id="btn-v4-send-otp-p4" class="v4-btn-primary">
+                  <span>Send OTP</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- MODE A2: OTP VERIFICATION STEP -->
+            <div id="v4-step-otp-verify-p4" class="auth-step hidden">
+              <h3 style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Enter verification code</h3>
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 20px;">We sent a 6-digit code to <strong id="v4-sent-target-email-p4" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+
+              <form id="v4-otp-verify-form-p4" onsubmit="handleV4VerifyOTP(event)">
+                <div class="v4-otp-grid">
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p4" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p4" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p4" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p4" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p4" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p4" inputmode="numeric" pattern="[0-9]*" />
+                </div>
+
+                <!-- Resend Timer -->
+                <div class="v4-resend-row">
+                  <span>Didn't receive code?</span>
+                  <span id="v4-countdown-text-p4">Resend in <strong id="v4-timer-val-p4" style="color: #7C3AED;">0:29</strong></span>
+                  <a href="javascript:void(0)" id="btn-v4-resend-p4" class="v4-recovery-link" style="display: none; font-weight: 700;" onclick="resendV4Code()">Resend OTP</a>
+                </div>
+
+                <!-- Primary Verify Button -->
+                <button type="submit" id="btn-v4-verify-otp-p4" class="v4-btn-primary">
+                  <span>Verify &amp; Sign in</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                  </svg>
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v4-recovery-link" onclick="switchV4ToEmailStep()">← Back to Email entry</a>
+              </div>
+            </div>
+
+            <!-- MODE B: PASSWORD LOGIN FLOW -->
+            <div id="v4-step-password-p4" class="auth-step hidden">
+              <form id="v4-password-form-p4" onsubmit="handleV4PasswordLogin(event)">
+                <div class="v4-field-group">
+                  <label for="v4-email-pwd-input-p4" class="v4-field-label">Work email</label>
+                  <div class="v4-input-shell">
+                    <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input
+                      type="email"
+                      id="v4-email-pwd-input-p4"
+                      class="v4-text-input"
+                      placeholder="you@company.com"
+                      value="alex.chen@earthhotels.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="v4-field-group">
+                  <label for="v4-password-input-p4" class="v4-field-label">Password</label>
+                  <div class="v4-input-shell">
+                    <span class="v4-input-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    </span>
+                    <input
+                      type="password"
+                      id="v4-password-input-p4"
+                      class="v4-text-input"
+                      placeholder="••••••••••••"
+                      value="EarthHotels2026!#"
+                      required
+                      autocomplete="current-password"
+                    />
+                    <button type="button" class="v4-pwd-toggle" onclick="toggleV4Password()" aria-label="Toggle password visibility">
+                      <svg id="v4-eye-icon-p4" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="v4-checkbox-row">
+                  <label class="v4-checkbox-label">
+                    <input type="checkbox" id="v4-remember-checkbox-p4" class="v4-checkbox" checked />
+                    <span>Keep me signed in</span>
+                  </label>
+                  <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Forgot password?</a>
+                </div>
+
+                <button type="submit" id="btn-v4-signin-p4" class="v4-btn-primary">
+                  <span>Sign in</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- Can't access your login email recovery link -->
+            <div class="v4-recovery-row" style="margin-top: 24px;">
+              <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Can't access your login email?</a>
+            </div>
+
+            <!-- Legal Footer -->
+            <p class="v4-legal-footer">
+              By continuing, you agree to our
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')">Terms of Use</a> and
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')">Privacy Policy</a>.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </div> <!-- /#login-view-4 -->
+
 
     <!-- ==========================================================================
          SLEEK BOTTOM PAGINATION DOCK (PAGE 1 vs PAGE 2 SWITCHER)
@@ -7816,6 +8984,14 @@
         <span class="v4-page-title">How It Works</span>
         <span class="v4-page-badge" style="background: rgba(219, 39, 119, 0.12); color: #DB2777; border-color: rgba(219, 39, 119, 0.28);">New</span>
         <span class="v4-shortcut-hint">3</span>
+      </button>
+
+      <div class="v4-page-dock-divider"></div>
+      <button type="button" class="v4-page-btn" id="btn-page-4" onclick="switchPage(4)" aria-label="Page 4: The Connected HR Ecosystem" title="The Connected HR Ecosystem (Key 4)">
+        <span class="v4-page-circle">④</span>
+        <span class="v4-page-title">Ecosystem</span>
+        <span class="v4-page-badge" style="background: rgba(124, 58, 237, 0.12); color: #7C3AED; border-color: rgba(124, 58, 237, 0.28);">Live</span>
+        <span class="v4-shortcut-hint">4</span>
       </button>
     </nav>
 
@@ -7899,7 +9075,7 @@
     // Each login view is #login-view-N with a dock button #btn-page-N. Auth
     // elements repeat once per page: no ID suffix on page 1, "-pN" on the rest.
     // ==========================================================================
-    const V4_PAGES = [1, 2, 3];
+    const V4_PAGES = [1, 2, 3, 4];
 
     function v4Suffix(page) {
       return page === 1 ? '' : `-p${page}`;
@@ -7981,6 +9157,10 @@
       '#page-2': 2,
       '#view3': 3,
       '#page-3': 3,
+      '#view4': 4,
+      '#page-4': 4,
+      '#v4': 4,
+      '#ecosystem-v4': 4,
       '#view5': 2,
       '#page-5': 2,
     };
@@ -8864,6 +10044,7 @@
 
     initFeatureStorySequencer('login-view-2', '');
     initView3MinimalAnimation();
+    initView4EcosystemAnimation();
 
     // ==========================================================================
     // VIEW 3 MINIMAL SEQUENCER CONTROLLER: Central Dashboard + 1 Floating Card
@@ -9082,6 +10263,370 @@
       updateRunningState();
     }
 
+    // ==========================================================================
+    // VIEW 4 HERO SEQUENCER CONTROLLER: The Connected HR Ecosystem
+    // Central Hub (~280px) + 4 Quadrant Cards + Progressive Connecting Paths +
+    // Travelling Glowing Particles + AI Insight Notification & Goal Tracking.
+    // 7 Scenes in ~23.0s Master Loop. Max TWO cards visible at any moment.
+    // Zero CPU: MutationObserver on #login-view-4 + IntersectionObserver on stage.
+    // ==========================================================================
+    function initView4EcosystemAnimation() {
+      const view4 = document.getElementById('login-view-4');
+      const stage = document.getElementById('v4EcoStage');
+      if (!view4 || !stage) return;
+
+      const card1 = document.getElementById('v4EcoCard1');
+      const card2 = document.getElementById('v4EcoCard2');
+      const card3 = document.getElementById('v4EcoCard3');
+      const card4 = document.getElementById('v4EcoCard4');
+      const allCards = [card1, card2, card3, card4].filter(Boolean);
+
+      const line1 = document.getElementById('v4EcoLine1');
+      const line2 = document.getElementById('v4EcoLine2');
+      const line3 = document.getElementById('v4EcoLine3');
+      const line4 = document.getElementById('v4EcoLine4');
+      const allLines = [line1, line2, line3, line4].filter(Boolean);
+
+      const part1 = document.getElementById('v4EcoParticle1');
+      const part2 = document.getElementById('v4EcoParticle2');
+      const part3 = document.getElementById('v4EcoParticle3');
+      const part4 = document.getElementById('v4EcoParticle4');
+      const allParticles = [part1, part2, part3, part4].filter(Boolean);
+
+      const dash = document.getElementById('v4EcoDashboard');
+      const goalMetric = document.getElementById('v4EcoGoalMetric');
+      const goalVal = document.getElementById('v4EcoGoalVal');
+      const aiNotice = document.getElementById('v4EcoAiNotice');
+
+      let loopTimer = null;
+      let sceneTimers = [];
+      let typeInterval = null;
+      let isRunning = false;
+
+      const clearAllTimers = () => {
+        if (loopTimer) {
+          clearTimeout(loopTimer);
+          loopTimer = null;
+        }
+        if (typeInterval) {
+          clearInterval(typeInterval);
+          typeInterval = null;
+        }
+        sceneTimers.forEach(t => clearTimeout(t));
+        sceneTimers = [];
+      };
+
+      const resetAll = () => {
+        allCards.forEach(c => {
+          c.classList.remove('is-active', 'is-exiting');
+          c.setAttribute('aria-hidden', 'true');
+        });
+        allLines.forEach(l => l.classList.remove('is-active', 'is-exiting'));
+        allParticles.forEach(p => p.classList.remove('is-active', 'is-exiting'));
+
+        // Reset Card 1
+        const pFill1 = document.getElementById('v4EcoProgressFill1');
+        if (pFill1) pFill1.style.width = '0%';
+        const pText1 = document.getElementById('v4EcoProgText1');
+        if (pText1) pText1.textContent = '80%';
+        const chk1 = document.getElementById('v4EcoCheckBadge1');
+        if (chk1) chk1.classList.remove('is-visible');
+
+        // Reset Card 2
+        const avs = stage.querySelectorAll('.v4-eco-av');
+        avs.forEach(av => av.classList.remove('is-visible'));
+        const compPill = document.getElementById('v4EcoCompletedPill2');
+        if (compPill) compPill.classList.remove('is-visible');
+
+        // Reset Card 3
+        const promptText = document.getElementById('v4EcoPromptText');
+        if (promptText) promptText.textContent = '';
+        const thinking = document.getElementById('v4EcoThinkingWave');
+        if (thinking) thinking.classList.remove('is-active');
+        const aiResp = document.getElementById('v4EcoAiResponse');
+        if (aiResp) aiResp.classList.remove('is-visible');
+
+        // Reset Dashboard
+        if (dash) dash.classList.remove('is-blooming');
+        if (aiNotice) aiNotice.classList.remove('is-visible');
+        if (goalMetric) goalMetric.classList.remove('is-updated');
+        if (goalVal) goalVal.textContent = '88%';
+      };
+
+      const setCardVisible = (cardIdx, visible, exiting = false) => {
+        const c = allCards[cardIdx - 1];
+        const l = allLines[cardIdx - 1];
+        const p = allParticles[cardIdx - 1];
+        if (!c) return;
+
+        if (visible) {
+          c.classList.remove('is-exiting');
+          c.classList.add('is-active');
+          c.setAttribute('aria-hidden', 'false');
+          if (l) { l.classList.remove('is-exiting'); l.classList.add('is-active'); }
+          if (p) { p.classList.remove('is-exiting'); p.classList.add('is-active'); }
+        } else if (exiting) {
+          c.classList.remove('is-active');
+          c.classList.add('is-exiting');
+          if (l) { l.classList.remove('is-active'); l.classList.add('is-exiting'); }
+          if (p) { p.classList.remove('is-active'); p.classList.add('is-exiting'); }
+        } else {
+          c.classList.remove('is-active', 'is-exiting');
+          c.setAttribute('aria-hidden', 'true');
+          if (l) l.classList.remove('is-active', 'is-exiting');
+          if (p) p.classList.remove('is-active', 'is-exiting');
+        }
+      };
+
+      const runMasterLoop = () => {
+        clearAllTimers();
+        resetAll();
+
+        // SCENE 1: Dashboard Genesis & Ambient Float (0.0s - 2.2s)
+        // Dashboard rests & floats gently
+
+        // SCENE 2: Orientation Connects (2.2s - 5.7s)
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(1, true);
+        }, 2200));
+
+        sceneTimers.push(setTimeout(() => {
+          const pFill1 = document.getElementById('v4EcoProgressFill1');
+          if (pFill1) pFill1.style.width = '80%';
+        }, 2500));
+
+        sceneTimers.push(setTimeout(() => {
+          const chk1 = document.getElementById('v4EcoCheckBadge1');
+          if (chk1) chk1.classList.add('is-visible');
+          if (goalMetric) goalMetric.classList.add('is-updated');
+          if (goalVal) goalVal.textContent = '91%';
+        }, 3600));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(1, false, true); // start graceful exit
+        }, 5200));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(1, false);
+          if (goalMetric) goalMetric.classList.remove('is-updated');
+        }, 5700));
+
+        // SCENE 3: Department Tour Connects (5.7s - 9.2s)
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(2, true);
+        }, 5700));
+
+        sceneTimers.push(setTimeout(() => {
+          const av1 = stage.querySelector('.v4-av-ms');
+          if (av1) av1.classList.add('is-visible');
+        }, 6000));
+
+        sceneTimers.push(setTimeout(() => {
+          const av2 = stage.querySelector('.v4-av-jl');
+          if (av2) av2.classList.add('is-visible');
+        }, 6350));
+
+        sceneTimers.push(setTimeout(() => {
+          const av3 = stage.querySelector('.v4-av-sk');
+          if (av3) av3.classList.add('is-visible');
+        }, 6700));
+
+        sceneTimers.push(setTimeout(() => {
+          const compPill = document.getElementById('v4EcoCompletedPill2');
+          if (compPill) compPill.classList.add('is-visible');
+        }, 7150));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(2, false, true); // exit
+        }, 8700));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(2, false);
+        }, 9200));
+
+        // SCENE 4: Ask HyIQ Intelligence (9.2s - 13.0s)
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(3, true);
+        }, 9200));
+
+        sceneTimers.push(setTimeout(() => {
+          const promptText = document.getElementById('v4EcoPromptText');
+          const textToType = 'Show my pending tasks';
+          let charIdx = 0;
+          if (typeInterval) clearInterval(typeInterval);
+          typeInterval = setInterval(() => {
+            if (!isRunning) {
+              clearInterval(typeInterval);
+              return;
+            }
+            if (promptText && charIdx <= textToType.length) {
+              promptText.textContent = textToType.slice(0, charIdx);
+              charIdx++;
+            } else {
+              clearInterval(typeInterval);
+              typeInterval = null;
+            }
+          }, 32);
+        }, 9550));
+
+        sceneTimers.push(setTimeout(() => {
+          const thinking = document.getElementById('v4EcoThinkingWave');
+          if (thinking) thinking.classList.add('is-active');
+        }, 10300));
+
+        sceneTimers.push(setTimeout(() => {
+          const thinking = document.getElementById('v4EcoThinkingWave');
+          if (thinking) thinking.classList.remove('is-active');
+          const aiResp = document.getElementById('v4EcoAiResponse');
+          if (aiResp) aiResp.classList.add('is-visible');
+          if (aiNotice) aiNotice.classList.add('is-visible');
+        }, 11100));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(3, false, true);
+          if (aiNotice) aiNotice.classList.remove('is-visible');
+        }, 12500));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(3, false);
+        }, 13000));
+
+        // SCENE 5: 1-on-1 Check-in Connects (13.0s - 16.5s)
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(4, true);
+          if (goalMetric) goalMetric.classList.add('is-updated');
+          if (goalVal) goalVal.textContent = '94%';
+        }, 13000));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(4, false, true);
+        }, 16000));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(4, false);
+          if (goalMetric) goalMetric.classList.remove('is-updated');
+        }, 16500));
+
+        // SCENE 6: Two-Module Ecosystem (16.5s - 20.5s)
+        // Card 1 (Upper-Left) and Card 3 (Upper-Right) appear TOGETHER!
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(1, true);
+          setCardVisible(3, true);
+
+          // Card 1 content ready
+          const pFill1 = document.getElementById('v4EcoProgressFill1');
+          if (pFill1) pFill1.style.width = '80%';
+          const chk1 = document.getElementById('v4EcoCheckBadge1');
+          if (chk1) chk1.classList.add('is-visible');
+
+          // Card 3 content ready
+          const promptText = document.getElementById('v4EcoPromptText');
+          if (promptText) promptText.textContent = 'Show my pending tasks';
+          const aiResp = document.getElementById('v4EcoAiResponse');
+          if (aiResp) aiResp.classList.add('is-visible');
+          if (aiNotice) aiNotice.classList.add('is-visible');
+        }, 16500));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(1, false, true);
+          setCardVisible(3, false, true);
+          if (aiNotice) aiNotice.classList.remove('is-visible');
+        }, 20000));
+
+        sceneTimers.push(setTimeout(() => {
+          setCardVisible(1, false);
+          setCardVisible(3, false);
+        }, 20500));
+
+        // SCENE 7: Climax Bloom & Reset (20.5s - 23.0s)
+        sceneTimers.push(setTimeout(() => {
+          if (dash) dash.classList.add('is-blooming');
+          if (goalMetric) goalMetric.classList.add('is-updated');
+          if (goalVal) goalVal.textContent = '100% ✨';
+        }, 20500));
+
+        sceneTimers.push(setTimeout(() => {
+          if (dash) dash.classList.remove('is-blooming');
+        }, 22200));
+
+        // Master Loop Seamless Restart (23.0s)
+        loopTimer = setTimeout(() => {
+          runMasterLoop();
+        }, 23000);
+      };
+
+      const startAnimation = () => {
+        if (isRunning) return;
+        isRunning = true;
+        runMasterLoop();
+      };
+
+      const stopAnimation = () => {
+        isRunning = false;
+        clearAllTimers();
+      };
+
+      // prefers-reduced-motion fallback
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        setCardVisible(1, true);
+        setCardVisible(3, true);
+        const pFill1 = document.getElementById('v4EcoProgressFill1');
+        if (pFill1) pFill1.style.width = '80%';
+        const chk1 = document.getElementById('v4EcoCheckBadge1');
+        if (chk1) chk1.classList.add('is-visible');
+        const promptText = document.getElementById('v4EcoPromptText');
+        if (promptText) promptText.textContent = 'Show my pending tasks';
+        const aiResp = document.getElementById('v4EcoAiResponse');
+        if (aiResp) aiResp.classList.add('is-visible');
+        if (goalVal) goalVal.textContent = '100%';
+        return;
+      }
+
+      let isViewActive = view4.classList.contains('active');
+      let isStageIntersecting = false;
+
+      const updateRunningState = () => {
+        if (isViewActive && isStageIntersecting) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      };
+
+      // IntersectionObserver for stage visibility in viewport
+      if ('IntersectionObserver' in window) {
+        const intersectObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            isStageIntersecting = entry.isIntersecting;
+            updateRunningState();
+          });
+        }, { threshold: 0.1 });
+        intersectObserver.observe(stage);
+      } else {
+        isStageIntersecting = true;
+      }
+
+      // MutationObserver for #login-view-4 active class toggling
+      if ('MutationObserver' in window) {
+        const mutationObserver = new MutationObserver((mutations) => {
+          mutations.forEach(mutation => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+              const currentlyActive = view4.classList.contains('active');
+              if (currentlyActive !== isViewActive) {
+                isViewActive = currentlyActive;
+                updateRunningState();
+              }
+            }
+          });
+        });
+        mutationObserver.observe(view4, { attributes: true, attributeFilter: ['class'] });
+      }
+
+      // Initial check
+      updateRunningState();
+    }
+
     // Page 1, Page 2, Page 3 & Page 4: Subtle 3D mouse parallax on mini dashboard & isometric stack
     document.addEventListener('DOMContentLoaded', () => {
       const attachParallax = (stageId, targetId) => {
@@ -9104,6 +10649,7 @@
       };
 
       attachParallax('v4WorkflowStage', 'v4MiniDashboard');
+      attachParallax('v4EcoStage', 'v4EcoDashboard');
     });
   </script>
 </body>
