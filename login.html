@@ -9255,13 +9255,11 @@
 
                 <!-- HIRERKEY HUB + EVERYONE WHO RECEIVES IT -->
                 <div class="v5-hub" id="v5Hub-p5" aria-hidden="true"><b>H</b></div>
-                <div class="v5-aud" aria-hidden="true"><svg class="v5-ic"><use href="#v5i-users"/></svg><span id="v5Aud-p5">Front Office · 24</span></div>
                 <div class="v5-av v5-c1" style="left: 368px; top: 92px;" aria-hidden="true"><span>MS</span><i class="v5-ping"></i><em class="v5-badge"><svg class="v5-ic v5-b-bell"><use href="#v5i-bell"/></svg><svg class="v5-ic v5-b-ok"><use href="#v5i-check"/></svg></em><small class="v5-av-role"></small></div>
                 <div class="v5-av v5-c2" style="left: 368px; top: 144px;" aria-hidden="true"><span>JL</span><i class="v5-ping"></i><em class="v5-badge"><svg class="v5-ic v5-b-bell"><use href="#v5i-bell"/></svg><svg class="v5-ic v5-b-ok"><use href="#v5i-check"/></svg></em><small class="v5-av-role"></small></div>
                 <div class="v5-av is-me" style="left: 368px; top: 196px;" aria-hidden="true"><span>RK</span><i class="v5-ping"></i><em class="v5-badge"><svg class="v5-ic v5-b-bell"><use href="#v5i-bell"/></svg><svg class="v5-ic v5-b-ok"><use href="#v5i-check"/></svg></em><small class="v5-av-role"></small></div>
                 <div class="v5-av v5-c3" style="left: 368px; top: 248px;" aria-hidden="true"><span>NP</span><i class="v5-ping"></i><em class="v5-badge"><svg class="v5-ic v5-b-bell"><use href="#v5i-bell"/></svg><svg class="v5-ic v5-b-ok"><use href="#v5i-check"/></svg></em><small class="v5-av-role"></small></div>
                 <div class="v5-av v5-c4" style="left: 368px; top: 300px;" aria-hidden="true"><span>DV</span><i class="v5-ping"></i><em class="v5-badge"><svg class="v5-ic v5-b-bell"><use href="#v5i-bell"/></svg><svg class="v5-ic v5-b-ok"><use href="#v5i-check"/></svg></em><small class="v5-av-role"></small></div>
-                <div class="v5-more" id="v5More-p5" aria-hidden="true">+19 more</div>
 
                 <!-- EMPLOYEE PHONE -->
                 <div class="v5-phone" aria-hidden="true">
@@ -10648,12 +10646,14 @@
         own.forEach(p => p.classList.remove('v5-snap'));
         panes.forEach(p => p.classList.toggle('is-active', Number(p.dataset.scene) === k));
 
-        label.url.textContent = sc.url;
-        label.clock.textContent = sc.clock;
-        label.audience.textContent = sc.audience;
-        label.more.textContent = sc.more;
-        label.more.classList.toggle('is-empty', !sc.more);
-        label.desc.textContent = sc.desc;
+        if (label.url) label.url.textContent = sc.url;
+        if (label.clock) label.clock.textContent = sc.clock;
+        if (label.audience) label.audience.textContent = sc.audience;
+        if (label.more) {
+          label.more.textContent = sc.more;
+          label.more.classList.toggle('is-empty', !sc.more);
+        }
+        if (label.desc) label.desc.textContent = sc.desc;
         sideItems.forEach((el, i) => el.classList.toggle('is-on', i === k));
         avatars.forEach((av, i) => {
           av.querySelector('span').textContent = sc.people[i];
