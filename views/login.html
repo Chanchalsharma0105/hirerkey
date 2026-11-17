@@ -2663,6 +2663,61 @@
       text-align: left;
     }
 
+    /* Narrow stages (< 500px, i.e. phones): the sequencer switches the stage
+       to a 340-wide "camera" window that pans between the HR console and the
+       people + phone side, so text stays readable instead of the whole 600px
+       canvas shrinking to half size. */
+    .v5-stage.is-compact {
+      aspect-ratio: 340 / 400;
+      overflow: hidden;
+    }
+
+    .v5-stage.is-compact .v5-rail {
+      width: 340px;
+      gap: 4px;
+    }
+
+    /* Only the playing story keeps its label; the others shrink to their dot */
+    .v5-stage.is-compact .v5-chip {
+      flex: 0 0 22px;
+      gap: 0;
+      padding: 0;
+      font-size: 0;
+    }
+
+    .v5-stage.is-compact .v5-chip.is-active {
+      flex: 1 1 auto;
+      gap: 5px;
+      padding: 0 8px;
+      font-size: 10px;
+    }
+
+    .v5-stage.is-compact .v5-steps {
+      width: 340px;
+      padding: 0 2px;
+      justify-content: flex-start;
+      gap: 6px;
+    }
+
+    .v5-stage.is-compact .v5-step > span {
+      display: none;
+    }
+
+    .v5-stage.is-compact .v5-step.is-active > span {
+      display: inline;
+    }
+
+    /* Phones: use the hero column's side padding, so the camera window lines
+       up with the auth card below */
+    @media (max-width: 480px) {
+      .v4-hero-section > .v5-stage {
+        width: calc(100% + 28px);
+        max-width: none;
+        margin-left: -14px;
+        margin-right: -14px;
+      }
+    }
+
     .v5-sprite {
       position: absolute;
       width: 0;
@@ -16271,6 +16326,7 @@
       const pauseBtn = document.getElementById('v5Pause' + pSuffix) || stage.querySelector('.v5-pause');
       const stepsEl = document.getElementById('v5Steps' + pSuffix) || stage.querySelector('.v5-steps');
       const stepEls = stepsEl ? Array.from(stepsEl.querySelectorAll('.v5-step')) : [];
+      const rail = stage.querySelector('.v5-rail');
       const chips = Array.from(stage.querySelectorAll('.v5-chip'));
       const avatars = Array.from(stage.querySelectorAll('.v5-av'));
       const sideItems = Array.from(stage.querySelectorAll('.v5-con-side i'));
@@ -16288,6 +16344,8 @@
       const RESULTS_HOLD = 3300;   // R → E: time to read the live results
       const FAN_DELAY = [100, 50, 0, 50, 100];   // hub → people, centre first
       const DONE_AT = [380, 240, 440, 300, 500]; // U → each person finishes
+      const CAM = { hr: 0, emp: 260 };           // narrow-screen camera stops (canvas x)
+      const CAM_BLEND = 700;                     // ease the camera into each new story
 
       const SCENES = [
         {
@@ -16411,6 +16469,9 @@
         const R = U + RETURN_LAG;
         const A = { S, U, R, E: R + RESULTS_HOLD };
         sc.A = A;
+        // Narrow screens: watch HR build it, follow it out to the people and
+        // the phone, then come back to the console as the results arrive
+        sc.camList = [[0, CAM.hr], [S + 300, CAM.hr], [S + 1200, CAM.emp], [U + 300, CAM.emp], [U + 1200, CAM.hr]];
         sc.index = index;
 
         const ranges = new Map();
@@ -16744,6 +16805,7 @@
         renderNet(t, sc.A);
         renderCursor(t, sc);
         renderSteps(t, sc.A);
+        renderView(t, sc);
         if (chips[scene]) chips[scene].style.setProperty('--p', reduced ? '0' : clamp01(t / sc.A.E).toFixed(3));
       }
 
@@ -16752,6 +16814,7 @@
         const sc = SCENES[k];
         // Reduced motion shows each story as one finished still frame
         t = reduced ? sc.A.E - 1 : 0;
+        camFrom = compact && !instant && !reduced && camera.x !== null ? camera.x : null;
         schedule(sc.A);
 
         // Rewind this story's screens to their first frame without animating
@@ -16799,9 +16862,53 @@
         rafId = requestAnimationFrame(frame);
       }
 
+      // --- Fit to the stage; narrow stages get a camera that follows the action
+      let compact = false;
+      let scale = 1;
+      let camFrom = null;
+      const camera = { x: null, s: null };
+
+      function camAt(t, list) {
+        if (t <= list[0][0]) return list[0][1];
+        for (let i = 1; i < list.length; i++) {
+          const [t1, x1] = list[i];
+          if (t < t1) {
+            const [t0, x0] = list[i - 1];
+            return x0 === x1 ? x0 : x0 + (x1 - x0) * easeInOut((t - t0) / (t1 - t0));
+          }
+        }
+        return list[list.length - 1][1];
+      }
+
+      function renderView(t, sc) {
+        let x = 0;
+        if (compact) {
+          x = camAt(t, sc.camList);
+          if (camFrom !== null && t < CAM_BLEND) x = camFrom + (x - camFrom) * easeInOut(t / CAM_BLEND);
+          x = Math.round(x * 10) / 10;
+        }
+        if (x === camera.x && scale === camera.s) return;
+        camera.x = x;
+        camera.s = scale;
+        // The canvas pans under the window while the rail and steps stay put.
+        // `translate` stacks with the CSS transforms already on these elements.
+        canvas.style.translate = x ? `${(-x * scale).toFixed(2)}px 0` : '';
+        const pin = x ? `${x}px 0` : '';
+        if (rail) rail.style.translate = pin;
+        if (stepsEl) stepsEl.style.translate = pin;
+      }
+
       function updateScale() {
         const w = stage.clientWidth;
-        if (w > 0) stage.style.setProperty('--v5-scale', (w / 600).toFixed(4));
+        if (!w) return;
+        const narrow = w < 500;
+        if (narrow !== compact) {
+          compact = narrow;
+          stage.classList.toggle('is-compact', narrow);
+        }
+        scale = Math.round((w / (narrow ? 340 : 600)) * 10000) / 10000;
+        stage.style.setProperty('--v5-scale', String(scale));
+        renderView(t, SCENES[scene]);
       }
 
       function sync() {
