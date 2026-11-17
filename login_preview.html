@@ -6972,6 +6972,528 @@
       }
     }
 
+    /* ==========================================================================
+       VIEW 6: THE LIVING HIRERKEY FORM — ABSTRACT BRAND-LED ANIMATION
+       Central Organic Morphing Purple Orb + 4 Abstract Satellite Jewel Nodes +
+       Progressive Bézier Connective Paths + Glowing Photons (21.0s Master Loop)
+       ========================================================================== */
+    .v6-brand-stage {
+      width: 100%;
+      max-width: 540px;
+      height: 380px;
+      position: relative;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      contain: layout style;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* SVG Connective Layer */
+    .v6-brand-svg-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .v6-guide-line {
+      fill: none;
+      stroke: rgba(124, 58, 237, 0.12);
+      stroke-width: 1.5px;
+      stroke-dasharray: 3 4;
+    }
+
+    .v6-brand-line {
+      fill: none;
+      stroke-width: 2.25px;
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      stroke-linecap: round;
+      opacity: 0;
+      transition: stroke-dashoffset 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.4s ease;
+    }
+
+    .v6-brand-line.is-active {
+      stroke-dashoffset: 0;
+      opacity: 1;
+    }
+
+    .v6-brand-line.is-exiting {
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .v6-photon {
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .v6-photon.is-active {
+      opacity: 1;
+    }
+
+    .v6-photon.is-exiting {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Central Organic Translucent Purple Orb */
+    .v6-brand-orb-container {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 136px;
+      height: 136px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 4;
+      pointer-events: none;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v6-orb-halo {
+      position: absolute;
+      inset: -26px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(124, 58, 237, 0.42) 0%, rgba(147, 51, 234, 0.22) 42%, rgba(124, 58, 237, 0) 72%);
+      filter: blur(14px);
+      animation: v6AuraBreathe 6s ease-in-out infinite;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.8s ease,
+                  filter 0.8s ease,
+                  background 0.8s ease;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+
+    @keyframes v6AuraBreathe {
+      0%, 100% {
+        transform: scale(0.96);
+        opacity: 0.75;
+      }
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
+      }
+    }
+
+    .v6-brand-orb-container.is-blooming .v6-orb-halo {
+      transform: scale(1.35);
+      opacity: 1;
+      filter: blur(20px);
+      background: radial-gradient(circle, rgba(168, 85, 247, 0.65) 0%, rgba(124, 58, 237, 0.4) 45%, rgba(124, 58, 237, 0) 75%);
+    }
+
+    .v6-orb-core {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      border-radius: 60% 40% 55% 45% / 48% 58% 42% 52%;
+      background: radial-gradient(circle at 35% 30%, #D8B4FE 0%, #A855F7 28%, #7C3AED 58%, #581C87 95%);
+      box-shadow: 0 16px 36px -6px rgba(124, 58, 237, 0.45),
+                  0 0 24px rgba(147, 51, 234, 0.35),
+                  inset 0 3px 10px rgba(255, 255, 255, 0.5),
+                  inset 0 -8px 20px rgba(76, 29, 149, 0.7);
+      animation: v6OrbMorph 12s ease-in-out infinite alternate;
+      overflow: hidden;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.6s ease;
+      will-change: border-radius, transform, box-shadow;
+    }
+
+    @keyframes v6OrbMorph {
+      0% {
+        border-radius: 60% 40% 55% 45% / 48% 58% 42% 52%;
+        transform: rotate(0deg) scale(1);
+      }
+      33% {
+        border-radius: 46% 54% 42% 58% / 56% 44% 56% 44%;
+        transform: rotate(4deg) scale(1.02);
+      }
+      66% {
+        border-radius: 54% 46% 58% 42% / 44% 56% 46% 54%;
+        transform: rotate(-3deg) scale(0.98);
+      }
+      100% {
+        border-radius: 48% 52% 44% 56% / 54% 46% 54% 46%;
+        transform: rotate(2deg) scale(1.01);
+      }
+    }
+
+    .v6-brand-orb-container.is-blooming .v6-orb-core {
+      transform: scale(1.1);
+      box-shadow: 0 20px 48px rgba(124, 58, 237, 0.6),
+                  0 0 45px rgba(192, 132, 252, 0.7),
+                  inset 0 4px 14px rgba(255, 255, 255, 0.75),
+                  inset 0 -8px 24px rgba(88, 28, 135, 0.85);
+    }
+
+    .v6-orb-sheen {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(ellipse at 32% 22%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.18) 32%, transparent 62%),
+                  linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 48%);
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    /* Central Glowing 'H' Emblem Nucleus */
+    .v6-orb-nucleus {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
+                  inset 0 0 12px rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                  background-color 0.5s ease;
+    }
+
+    .v6-orb-nucleus.is-illuminated {
+      transform: translate(-50%, -50%) scale(1.15);
+      background: rgba(255, 255, 255, 0.38);
+      border-color: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 0 32px rgba(255, 255, 255, 0.9),
+                  0 0 50px rgba(236, 72, 153, 0.65),
+                  inset 0 0 16px rgba(255, 255, 255, 0.8);
+    }
+
+    .v6-emblem-h {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: #FFFFFF;
+      text-shadow: 0 2px 8px rgba(124, 58, 237, 0.8),
+                   0 0 12px rgba(255, 255, 255, 0.9);
+      line-height: 1;
+      transform: translateY(-0.5px);
+    }
+
+    /* 4 Abstract Satellite Jewel Nodes */
+    .v6-node {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      contain: layout style;
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v6-node-jewel {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.08),
+                  0 2px 6px -1px rgba(124, 58, 237, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v6-node-label {
+      position: absolute;
+      top: calc(100% + 7px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748B;
+      white-space: nowrap;
+      transition: color 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+    }
+
+    /* Node 1 Active: Orientation (#10B981) */
+    .v6-node-1.is-active .v6-node-jewel {
+      border-color: #10B981;
+      box-shadow: 0 0 22px rgba(16, 185, 129, 0.38),
+                  0 8px 22px -3px rgba(16, 185, 129, 0.22);
+      transform: scale(1.08);
+    }
+    .v6-node-1.is-active .v6-node-label {
+      color: #059669;
+      transform: translateX(-50%) translateY(1px);
+    }
+
+    /* Node 2 Active: Team Tour (#6366F1) */
+    .v6-node-2.is-active .v6-node-jewel {
+      border-color: #6366F1;
+      box-shadow: 0 0 22px rgba(99, 102, 241, 0.38),
+                  0 8px 22px -3px rgba(99, 102, 241, 0.22);
+      transform: scale(1.08);
+    }
+    .v6-node-2.is-active .v6-node-label {
+      color: #4F46E5;
+      transform: translateX(-50%) translateY(1px);
+    }
+
+    /* Node 3 Active: Ask HyIQ (#EC4899) */
+    .v6-node-3.is-active .v6-node-jewel {
+      border-color: #EC4899;
+      box-shadow: 0 0 22px rgba(236, 72, 153, 0.38),
+                  0 8px 22px -3px rgba(236, 72, 153, 0.22);
+      transform: scale(1.08);
+    }
+    .v6-node-3.is-active .v6-node-label {
+      color: #DB2777;
+      transform: translateX(-50%) translateY(1px);
+    }
+
+    /* Node 4 Active: 1-on-1 Check-ins (#06B6D4) */
+    .v6-node-4.is-active .v6-node-jewel {
+      border-color: #06B6D4;
+      box-shadow: 0 0 22px rgba(6, 182, 212, 0.38),
+                  0 8px 22px -3px rgba(6, 182, 212, 0.22);
+      transform: scale(1.08);
+    }
+    .v6-node-4.is-active .v6-node-label {
+      color: #0891B2;
+      transform: translateX(-50%) translateY(1px);
+    }
+
+    /* Node Exiting Transitions */
+    .v6-node.is-exiting .v6-node-jewel {
+      transform: scale(1);
+      box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.08);
+      border-color: rgba(226, 232, 240, 0.9);
+      transition: all 0.35s ease;
+    }
+    .v6-node.is-exiting .v6-node-label {
+      color: #64748B;
+      transform: translateX(-50%);
+      transition: all 0.35s ease;
+    }
+
+    /* Node 1 Internal: Progress Ring & Checkmark */
+    .v6-ring-svg {
+      width: 40px;
+      height: 40px;
+      transform: rotate(-90deg);
+      position: absolute;
+    }
+
+    .v6-ring-bg {
+      fill: none;
+      stroke: rgba(226, 232, 240, 0.8);
+      stroke-width: 2.5px;
+    }
+
+    .v6-ring-progress {
+      fill: none;
+      stroke: #10B981;
+      stroke-width: 2.5px;
+      stroke-linecap: round;
+      stroke-dasharray: 106.8;
+      stroke-dashoffset: 106.8;
+      transition: stroke-dashoffset 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .v6-check-icon {
+      width: 18px;
+      height: 18px;
+      opacity: 0;
+      transform: scale(0.4);
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      z-index: 2;
+    }
+
+    .v6-check-icon.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Node 2 Internal: Triad Interconnected Circles */
+    .v6-triad-svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .v6-triad-line {
+      stroke: rgba(99, 102, 241, 0.45);
+      stroke-width: 1.4px;
+    }
+
+    .v6-triad-dot {
+      transition: transform 0.3s ease, fill 0.3s ease;
+    }
+
+    .v6-triad-svg.is-pulsing .v6-triad-dot-1 {
+      animation: v6TriadPulse 1.2s ease-in-out infinite alternate;
+    }
+    .v6-triad-svg.is-pulsing .v6-triad-dot-2 {
+      animation: v6TriadPulse 1.2s ease-in-out infinite 0.3s alternate;
+    }
+    .v6-triad-svg.is-pulsing .v6-triad-dot-3 {
+      animation: v6TriadPulse 1.2s ease-in-out infinite 0.6s alternate;
+    }
+
+    @keyframes v6TriadPulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.3);
+        opacity: 1;
+        filter: drop-shadow(0 0 4px #6366F1);
+      }
+    }
+
+    /* Node 3 Internal: 4-Point Diamond Sparkle */
+    .v6-sparkle-svg {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  filter 0.35s ease;
+    }
+
+    .v6-sparkle-svg.is-pulsing {
+      animation: v6SparklePulse 1.4s ease-in-out infinite;
+      filter: drop-shadow(0 0 6px #EC4899);
+    }
+
+    @keyframes v6SparklePulse {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+      }
+      50% {
+        transform: scale(1.28) rotate(10deg);
+      }
+    }
+
+    /* Node 4 Internal: Resonant Overlapping Circles */
+    .v6-resonance-svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .v6-res-circle {
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .v6-resonance-svg.is-pulsing .v6-res-1 {
+      animation: v6ResonancePulse1 1.5s ease-in-out infinite alternate;
+    }
+    .v6-resonance-svg.is-pulsing .v6-res-2 {
+      animation: v6ResonancePulse2 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes v6ResonancePulse1 {
+      0% {
+        stroke-width: 2px;
+        opacity: 0.7;
+      }
+      100% {
+        stroke-width: 2.6px;
+        opacity: 1;
+        filter: drop-shadow(0 0 4px #06B6D4);
+      }
+    }
+
+    @keyframes v6ResonancePulse2 {
+      0% {
+        stroke-width: 2px;
+        opacity: 0.7;
+      }
+      100% {
+        stroke-width: 2.6px;
+        opacity: 1;
+        filter: drop-shadow(0 0 4px #06B6D4);
+      }
+    }
+
+    /* Responsive Adjustments for View 6 */
+    @media (max-width: 640px) {
+      .v6-brand-stage {
+        height: 360px;
+      }
+      .v6-brand-orb-container {
+        width: 110px;
+        height: 110px;
+      }
+      .v6-orb-core {
+        width: 104px;
+        height: 104px;
+      }
+      .v6-orb-nucleus {
+        width: 40px;
+        height: 40px;
+      }
+      .v6-emblem-h {
+        font-size: 20px;
+      }
+      .v6-node {
+        width: 44px;
+        height: 44px;
+      }
+      .v6-node-jewel {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    /* View 6 Prefers Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      .v6-orb-halo,
+      .v6-orb-core,
+      .v6-triad-svg.is-pulsing .v6-triad-dot-1,
+      .v6-triad-svg.is-pulsing .v6-triad-dot-2,
+      .v6-triad-svg.is-pulsing .v6-triad-dot-3,
+      .v6-sparkle-svg.is-pulsing,
+      .v6-resonance-svg.is-pulsing .v6-res-1,
+      .v6-resonance-svg.is-pulsing .v6-res-2 {
+        animation: none !important;
+      }
+      .v6-brand-line,
+      .v6-photon,
+      .v6-ring-progress,
+      .v6-check-icon,
+      .v6-node,
+      .v6-node-jewel,
+      .v6-node-label,
+      .v6-orb-nucleus {
+        transition: none !important;
+      }
+      .v6-photon animateMotion {
+        dur: 0s !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -9676,6 +10198,360 @@
       </div>
     </div> <!-- /#login-view-5 -->
 
+    <!-- ==========================================================================
+         PAGE 6: THE LIVING HIRERKEY FORM — ABSTRACT BRAND-LED ANIMATION
+         Central Organic Morphing Purple Orb + 4 Abstract Satellite Jewel Nodes +
+         Progressive Connecting Paths + Travelling Glowing Photons
+         ========================================================================== -->
+    <div id="login-view-6" class="login-view-wrapper" data-page="6">
+      <div id="page-6" style="display:contents;">
+        <div class="v4-layout-container">
+
+          <!-- LEFT COLUMN: HERO SHOWCASE WITH THE LIVING HIRERKEY FORM BRAND ANIMATION -->
+          <section class="v4-hero-section">
+            <!-- Brand Logo Header & People Performance Progress Subtag -->
+            <div class="v4-brand-top-row">
+              <div class="v4-brand-logo">
+                <div class="v4-logo-mark">H</div>
+                <div class="v4-brand-wordmark">Hirerkey<span>.</span></div>
+              </div>
+              <div class="v4-subtag-pill">
+                <span>PEOPLE • PERFORMANCE • PROGRESS</span>
+              </div>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="v4-hero-headline">
+              Make worklife <span class="v4-highlight-purple">easy</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="v4-hero-subtitle">
+              Everything you need to build, manage and grow a high-performing team.
+            </p>
+
+            <!-- THE LIVING HIRERKEY FORM HERO STAGE -->
+            <div class="v6-brand-stage" id="v6BrandStage" role="region" aria-roledescription="interactive brand animation" aria-label="The Living Hirerkey Form">
+
+              <!-- SVG CONNECTING PATHS & TRAVELLING PARTICLES LAYER -->
+              <svg class="v6-brand-svg-canvas" viewBox="0 0 540 380" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                  <!-- Gradient 1: Orientation (Emerald -> Purple) -->
+                  <linearGradient id="v6Grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#10B981" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.9" />
+                  </linearGradient>
+
+                  <!-- Gradient 2: Department Tour (Indigo -> Purple) -->
+                  <linearGradient id="v6Grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#6366F1" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.9" />
+                  </linearGradient>
+
+                  <!-- Gradient 3: Ask HyIQ (Pink -> Purple) -->
+                  <linearGradient id="v6Grad3" x1="100%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#EC4899" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.9" />
+                  </linearGradient>
+
+                  <!-- Gradient 4: 1-on-1 Check-ins (Cyan -> Purple) -->
+                  <linearGradient id="v6Grad4" x1="100%" y1="100%" x2="0%" y2="0%">
+                    <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.9" />
+                  </linearGradient>
+
+                  <!-- Delicate Bloom Filter for Line & Glow -->
+                  <filter id="v6Glow" x="-25%" y="-25%" width="150%" height="150%">
+                    <feGaussianBlur stdDeviation="2.5" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Subtle Static Constellation Guide Paths -->
+                <path class="v6-guide-line" d="M 95 80 C 160 85, 205 130, 235 160" />
+                <path class="v6-guide-line" d="M 95 300 C 160 295, 205 250, 235 220" />
+                <path class="v6-guide-line" d="M 445 80 C 380 85, 335 130, 305 160" />
+                <path class="v6-guide-line" d="M 445 300 C 380 295, 335 250, 305 220" />
+
+                <!-- Thin Delicate Connecting Lines (Active per Scene) -->
+                <!-- Path 1: Orientation (Top-Left) to Center Orb -->
+                <path class="v6-brand-line" id="v6Line1" stroke="url(#v6Grad1)" d="M 95 80 C 160 85, 205 130, 235 160" filter="url(#v6Glow)" />
+
+                <!-- Path 2: Department Tour (Bottom-Left) to Center Orb -->
+                <path class="v6-brand-line" id="v6Line2" stroke="url(#v6Grad2)" d="M 95 300 C 160 295, 205 250, 235 220" filter="url(#v6Glow)" />
+
+                <!-- Path 3: Ask HyIQ (Top-Right) to Center Orb -->
+                <path class="v6-brand-line" id="v6Line3" stroke="url(#v6Grad3)" d="M 445 80 C 380 85, 335 130, 305 160" filter="url(#v6Glow)" />
+
+                <!-- Path 4: 1-on-1 Check-ins (Bottom-Right) to Center Orb -->
+                <path class="v6-brand-line" id="v6Line4" stroke="url(#v6Grad4)" d="M 445 300 C 380 295, 335 250, 305 220" filter="url(#v6Glow)" />
+
+                <!-- Travelling Glowing Photons along paths -->
+                <circle class="v6-photon" id="v6Photon1" r="3.5" fill="#10B981" filter="url(#v6Glow)">
+                  <animateMotion dur="1.7s" repeatCount="indefinite" path="M 95 80 C 160 85, 205 130, 235 160" />
+                </circle>
+
+                <circle class="v6-photon" id="v6Photon2" r="3.5" fill="#6366F1" filter="url(#v6Glow)">
+                  <animateMotion dur="1.7s" repeatCount="indefinite" path="M 95 300 C 160 295, 205 250, 235 220" />
+                </circle>
+
+                <circle class="v6-photon" id="v6Photon3" r="3.5" fill="#EC4899" filter="url(#v6Glow)">
+                  <animateMotion dur="1.7s" repeatCount="indefinite" path="M 445 80 C 380 85, 335 130, 305 160" />
+                </circle>
+
+                <circle class="v6-photon" id="v6Photon4" r="3.5" fill="#06B6D4" filter="url(#v6Glow)">
+                  <animateMotion dur="1.7s" repeatCount="indefinite" path="M 445 300 C 380 295, 335 250, 305 220" />
+                </circle>
+              </svg>
+
+              <!-- CENTRAL ORGANIC TRANSLUCENT PURPLE ORB / FORM -->
+              <div class="v6-brand-orb-container" id="v6BrandOrb">
+                <!-- Breathing Aura Halo -->
+                <div class="v6-orb-halo" id="v6OrbHalo"></div>
+
+                <!-- Organic Morphing Core with Multi-stop Radial Gradient -->
+                <div class="v6-orb-core" id="v6OrbCore">
+                  <!-- Caustic Specular Sheen Overlay -->
+                  <div class="v6-orb-sheen"></div>
+                </div>
+
+                <!-- Central Glowing 'H' Emblem Nucleus -->
+                <div class="v6-orb-nucleus" id="v6OrbNucleus">
+                  <span class="v6-emblem-h">H</span>
+                </div>
+              </div>
+
+              <!-- 4 MINIMAL ABSTRACT SATELLITE JEWEL NODES -->
+              <!-- Node 1: Orientation (Top-Left: x: 95, y: 80) -->
+              <div class="v6-node v6-node-1" id="v6Node1" style="left: 95px; top: 80px;">
+                <div class="v6-node-jewel">
+                  <svg class="v6-ring-svg" viewBox="0 0 44 44" aria-hidden="true">
+                    <circle class="v6-ring-bg" cx="22" cy="22" r="17" />
+                    <circle class="v6-ring-progress" id="v6RingProgress1" cx="22" cy="22" r="17" />
+                  </svg>
+                  <svg class="v6-check-icon" id="v6CheckBadge1" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20 6 9 17l-5-5"/>
+                  </svg>
+                </div>
+                <span class="v6-node-label">Orientation</span>
+              </div>
+
+              <!-- Node 2: Department Tour (Bottom-Left: x: 95, y: 300) -->
+              <div class="v6-node v6-node-2" id="v6Node2" style="left: 95px; top: 300px;">
+                <div class="v6-node-jewel">
+                  <svg class="v6-triad-svg" id="v6Triad" viewBox="0 0 30 30" aria-hidden="true">
+                    <line x1="15" y1="7" x2="8" y2="21" class="v6-triad-line" />
+                    <line x1="15" y1="7" x2="22" y2="21" class="v6-triad-line" />
+                    <line x1="8" y1="21" x2="22" y2="21" class="v6-triad-line" />
+                    <circle cx="15" cy="7" r="3.6" class="v6-triad-dot v6-triad-dot-1" fill="#6366F1" />
+                    <circle cx="8" cy="21" r="3.6" class="v6-triad-dot v6-triad-dot-2" fill="#6366F1" />
+                    <circle cx="22" cy="21" r="3.6" class="v6-triad-dot v6-triad-dot-3" fill="#6366F1" />
+                  </svg>
+                </div>
+                <span class="v6-node-label">Team Tour</span>
+              </div>
+
+              <!-- Node 3: Ask HyIQ (Top-Right: x: 445, y: 80) -->
+              <div class="v6-node v6-node-3" id="v6Node3" style="left: 445px; top: 80px;">
+                <div class="v6-node-jewel">
+                  <svg class="v6-sparkle-svg" id="v6Sparkle" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="#EC4899" />
+                  </svg>
+                </div>
+                <span class="v6-node-label">Ask HyIQ™</span>
+              </div>
+
+              <!-- Node 4: 1-on-1 Check-ins (Bottom-Right: x: 445, y: 300) -->
+              <div class="v6-node v6-node-4" id="v6Node4" style="left: 445px; top: 300px;">
+                <div class="v6-node-jewel">
+                  <svg class="v6-resonance-svg" id="v6Resonance" viewBox="0 0 28 28" aria-hidden="true">
+                    <circle class="v6-res-circle v6-res-1" cx="11" cy="14" r="7" fill="none" stroke="#06B6D4" stroke-width="2" />
+                    <circle class="v6-res-circle v6-res-2" cx="17" cy="14" r="7" fill="none" stroke="#06B6D4" stroke-width="2" />
+                  </svg>
+                </div>
+                <span class="v6-node-label">1-on-1 Check-ins</span>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- RIGHT COLUMN: AUTHENTICATION CARD -->
+          <section class="v4-form-card">
+            <!-- Form Titles -->
+            <h2 class="v4-form-title">Welcome back</h2>
+            <p class="v4-form-subtitle">Sign in to continue to Hirerkey</p>
+
+            <!-- Dual Tab Segmented Track (OTP vs Password) -->
+            <div class="v4-tab-track">
+              <button type="button" id="tab-v4-otp-p6" class="v4-tab-btn active" onclick="switchV4AuthMode('otp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span>Login with OTP</span>
+              </button>
+              <button type="button" id="tab-v4-pwd-p6" class="v4-tab-btn" onclick="switchV4AuthMode('password')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Login with password</span>
+              </button>
+            </div>
+
+            <!-- MODE A: EMAIL OTP FLOW -->
+            <div id="v4-step-email-otp-p6" class="auth-step">
+              <form id="v4-email-otp-form-p6" onsubmit="handleV4SendOTP(event)">
+                <div class="v4-field-group">
+                  <label for="v4-email-otp-input-p6" class="v4-field-label">Work email</label>
+                  <div class="v4-input-shell">
+                    <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input
+                      type="email"
+                      id="v4-email-otp-input-p6"
+                      class="v4-text-input"
+                      placeholder="you@company.com"
+                      value="alex.chen@earthhotels.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <!-- Primary Action: Send OTP Button -->
+                <button type="submit" id="btn-v4-send-otp-p6" class="v4-btn-primary">
+                  <span>Send OTP</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- MODE A2: OTP VERIFICATION STEP -->
+            <div id="v4-step-otp-verify-p6" class="auth-step hidden">
+              <h3 style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Enter verification code</h3>
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 20px;">We sent a 6-digit code to <strong id="v4-sent-target-email-p6" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+
+              <form id="v4-otp-verify-form-p6" onsubmit="handleV4VerifyOTP(event)">
+                <div class="v4-otp-grid">
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p6" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p6" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p6" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p6" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p6" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p6" inputmode="numeric" pattern="[0-9]*" />
+                </div>
+
+                <!-- Resend Timer -->
+                <div class="v4-resend-row">
+                  <span>Didn't receive code?</span>
+                  <span id="v4-countdown-text-p6">Resend in <strong id="v4-timer-val-p6" style="color: #7C3AED;">0:29</strong></span>
+                  <a href="javascript:void(0)" id="btn-v4-resend-p6" class="v4-recovery-link" style="display: none; font-weight: 700;" onclick="resendV4Code()">Resend OTP</a>
+                </div>
+
+                <!-- Primary Verify Button -->
+                <button type="submit" id="btn-v4-verify-otp-p6" class="v4-btn-primary">
+                  <span>Verify &amp; Sign in</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                  </svg>
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v4-recovery-link" onclick="switchV4ToEmailStep()">← Back to Email entry</a>
+              </div>
+            </div>
+
+            <!-- MODE B: PASSWORD LOGIN FLOW -->
+            <div id="v4-step-password-p6" class="auth-step hidden">
+              <form id="v4-password-form-p6" onsubmit="handleV4PasswordLogin(event)">
+                <div class="v4-field-group">
+                  <label for="v4-email-pwd-input-p6" class="v4-field-label">Work email</label>
+                  <div class="v4-input-shell">
+                    <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input
+                      type="email"
+                      id="v4-email-pwd-input-p6"
+                      class="v4-text-input"
+                      placeholder="you@company.com"
+                      value="alex.chen@earthhotels.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="v4-field-group">
+                  <label for="v4-password-input-p6" class="v4-field-label">Password</label>
+                  <div class="v4-input-shell">
+                    <span class="v4-input-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    </span>
+                    <input
+                      type="password"
+                      id="v4-password-input-p6"
+                      class="v4-text-input"
+                      placeholder="••••••••••••"
+                      value="EarthHotels2026!#"
+                      required
+                      autocomplete="current-password"
+                    />
+                    <button type="button" class="v4-pwd-toggle" onclick="toggleV4Password()" aria-label="Toggle password visibility">
+                      <svg id="v4-eye-icon-p6" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="v4-checkbox-row">
+                  <label class="v4-checkbox-label">
+                    <input type="checkbox" id="v4-remember-checkbox-p6" class="v4-checkbox" checked />
+                    <span>Keep me signed in</span>
+                  </label>
+                  <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Forgot password?</a>
+                </div>
+
+                <button type="submit" id="btn-v4-signin-p6" class="v4-btn-primary">
+                  <span>Sign in</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- Can't access your login email recovery link -->
+            <div class="v4-recovery-row" style="margin-top: 24px;">
+              <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Can't access your login email?</a>
+            </div>
+
+            <!-- Legal Footer -->
+            <p class="v4-legal-footer">
+              By continuing, you agree to our
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')">Terms of Use</a> and
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')">Privacy Policy</a>.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </div> <!-- /#login-view-6 -->
+
 
     <!-- ==========================================================================
          SLEEK BOTTOM PAGINATION DOCK (PAGE 1 vs PAGE 2 SWITCHER)
@@ -9718,6 +10594,13 @@
         <span class="v4-page-title">How It Works</span>
         <span class="v4-page-badge" style="background: rgba(219, 39, 119, 0.12); color: #DB2777; border-color: rgba(219, 39, 119, 0.28);">New</span>
         <span class="v4-shortcut-hint">5</span>
+      </button>
+      <div class="v4-page-dock-divider"></div>
+      <button type="button" class="v4-page-btn" id="btn-page-6" onclick="switchPage(6)" aria-label="Page 6: The Living Hirerkey Form" title="The Living Hirerkey Form (Key 6)">
+        <span class="v4-page-circle">⑥</span>
+        <span class="v4-page-title">Brand</span>
+        <span class="v4-page-badge" style="background: rgba(124, 58, 237, 0.12); color: #7C3AED; border-color: rgba(124, 58, 237, 0.28);">Living</span>
+        <span class="v4-shortcut-hint">6</span>
       </button>
     </nav>
 
@@ -9797,11 +10680,11 @@
     }
 
     // ==========================================================================
-    // PAGE NAVIGATION CONTROLLER (PAGES 1–5)
+    // PAGE NAVIGATION CONTROLLER (PAGES 1–6)
     // Each login view is #login-view-N with a dock button #btn-page-N. Auth
     // elements repeat once per page: no ID suffix on page 1, "-pN" on the rest.
     // ==========================================================================
-    const V4_PAGES = [1, 2, 3, 4, 5];
+    const V4_PAGES = [1, 2, 3, 4, 5, 6];
 
     function v4Suffix(page) {
       return page === 1 ? '' : `-p${page}`;
@@ -9847,7 +10730,7 @@
       try { localStorage.setItem('hirerkey_login_page', String(page)); } catch (err) {}
     }
 
-    // Keyboard Shortcuts: [1]–[5], [ArrowLeft], [ArrowRight]
+    // Keyboard Shortcuts: [1]–[6], [ArrowLeft], [ArrowRight]
     document.addEventListener('keydown', (e) => {
       const target = e.target;
       if (target && (['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName) || target.isContentEditable)) {
@@ -9890,6 +10773,12 @@
       '#view5': 5,
       '#page-5': 5,
       '#v5': 5,
+      '#brand': 6,
+      '#living': 6,
+      '#living-brand': 6,
+      '#view6': 6,
+      '#page-6': 6,
+      '#v6': 6,
     };
 
     function v4PageFromHash() {
@@ -9917,7 +10806,7 @@
     });
 
     // ==========================================================================
-    // AUTHENTICATION MODE SWITCHER (OTP vs PASSWORD) - SYNCS ALL 5 PAGES
+    // AUTHENTICATION MODE SWITCHER (OTP vs PASSWORD) - SYNCS ALL 6 PAGES
     // ==========================================================================
     let v4OtpTimerInterval = null;
     let v4SecondsRemaining = 29;
@@ -10055,7 +10944,7 @@
       v4All('v4-eye-icon').forEach(ico => { ico.innerHTML = svgContent; });
     }
 
-    // Bidirectional Form Inputs Synchronization across all 5 pages
+    // Bidirectional Form Inputs Synchronization across all 6 pages
     document.addEventListener('DOMContentLoaded', () => {
       const syncInputs = (baseId) => {
         const elements = v4All(baseId);
@@ -10775,6 +11664,7 @@
     initFeatureStorySequencer('login-view-5', '-p5');
     initView3MinimalAnimation();
     initView4EcosystemAnimation();
+    initView6BrandAnimation();
 
     // ==========================================================================
     // VIEW 3 MINIMAL SEQUENCER CONTROLLER: Central Dashboard + 1 Floating Card
@@ -11357,7 +12247,295 @@
       updateRunningState();
     }
 
-    // Page 1, Page 2, Page 3 & Page 4: Subtle 3D mouse parallax on mini dashboard & isometric stack
+    // ==========================================================================
+    // VIEW 6 BRAND SEQUENCER CONTROLLER: The Living Hirerkey Form
+    // Central Organic Morphing Orb + 4 Abstract Satellite Jewel Nodes +
+    // Progressive Connecting Paths + Travelling Glowing Photons.
+    // 6 Scenes in 21.0s Master Loop.
+    // Zero CPU: MutationObserver on #login-view-6 + IntersectionObserver on stage.
+    // ==========================================================================
+    function initView6BrandAnimation() {
+      const view6 = document.getElementById('login-view-6');
+      const stage = document.getElementById('v6BrandStage');
+      if (!view6 || !stage) return;
+
+      const node1 = document.getElementById('v6Node1');
+      const node2 = document.getElementById('v6Node2');
+      const node3 = document.getElementById('v6Node3');
+      const node4 = document.getElementById('v6Node4');
+      const allNodes = [node1, node2, node3, node4].filter(Boolean);
+
+      const line1 = document.getElementById('v6Line1');
+      const line2 = document.getElementById('v6Line2');
+      const line3 = document.getElementById('v6Line3');
+      const line4 = document.getElementById('v6Line4');
+      const allLines = [line1, line2, line3, line4].filter(Boolean);
+
+      const photon1 = document.getElementById('v6Photon1');
+      const photon2 = document.getElementById('v6Photon2');
+      const photon3 = document.getElementById('v6Photon3');
+      const photon4 = document.getElementById('v6Photon4');
+      const allPhotons = [photon1, photon2, photon3, photon4].filter(Boolean);
+
+      const orb = document.getElementById('v6BrandOrb');
+      const orbNucleus = document.getElementById('v6OrbNucleus');
+      const ringProg1 = document.getElementById('v6RingProgress1');
+      const check1 = document.getElementById('v6CheckBadge1');
+      const triad = document.getElementById('v6Triad');
+      const sparkle = document.getElementById('v6Sparkle');
+      const resonance = document.getElementById('v6Resonance');
+
+      let loopTimer = null;
+      let sceneTimers = [];
+      let isRunning = false;
+
+      const clearAllTimers = () => {
+        if (loopTimer) {
+          clearTimeout(loopTimer);
+          loopTimer = null;
+        }
+        sceneTimers.forEach(t => clearTimeout(t));
+        sceneTimers = [];
+      };
+
+      const resetAll = () => {
+        allNodes.forEach(n => {
+          n.classList.remove('is-active', 'is-exiting');
+        });
+        allLines.forEach(l => l.classList.remove('is-active', 'is-exiting'));
+        allPhotons.forEach(p => p.classList.remove('is-active', 'is-exiting'));
+
+        // Reset Node 1
+        if (ringProg1) ringProg1.style.strokeDashoffset = '106.8';
+        if (check1) check1.classList.remove('is-visible');
+
+        // Reset Node 2
+        if (triad) triad.classList.remove('is-pulsing');
+
+        // Reset Node 3
+        if (sparkle) sparkle.classList.remove('is-pulsing');
+
+        // Reset Node 4
+        if (resonance) resonance.classList.remove('is-pulsing');
+
+        // Reset Orb & Nucleus
+        if (orb) orb.classList.remove('is-blooming');
+        if (orbNucleus) orbNucleus.classList.remove('is-illuminated');
+      };
+
+      const runMasterLoop = () => {
+        clearAllTimers();
+        resetAll();
+
+        // SCENE 1 (0.0s - 3.0s): Equilibrium & Genesis
+        // Orb breathes in serenity, nodes idle
+
+        // SCENE 2 (3.0s - 6.5s): Flow 1 — Orientation
+        // Path 1 draws, progress ring sweeps 0%->100%, emerald check flashes
+        sceneTimers.push(setTimeout(() => {
+          if (line1) line1.classList.add('is-active');
+          if (photon1) photon1.classList.add('is-active');
+          if (node1) node1.classList.add('is-active');
+        }, 3000));
+
+        sceneTimers.push(setTimeout(() => {
+          if (ringProg1) ringProg1.style.strokeDashoffset = '0';
+        }, 3300));
+
+        sceneTimers.push(setTimeout(() => {
+          if (check1) check1.classList.add('is-visible');
+        }, 4400));
+
+        sceneTimers.push(setTimeout(() => {
+          if (line1) { line1.classList.remove('is-active'); line1.classList.add('is-exiting'); }
+          if (photon1) { photon1.classList.remove('is-active'); photon1.classList.add('is-exiting'); }
+          if (node1) { node1.classList.remove('is-active'); node1.classList.add('is-exiting'); }
+        }, 5900));
+
+        sceneTimers.push(setTimeout(() => {
+          if (line1) line1.classList.remove('is-exiting');
+          if (photon1) photon1.classList.remove('is-exiting');
+          if (node1) node1.classList.remove('is-exiting');
+          if (ringProg1) ringProg1.style.strokeDashoffset = '106.8';
+          if (check1) check1.classList.remove('is-visible');
+        }, 6500));
+
+        // SCENE 3 (6.5s - 10.0s): Flow 2 — Department Tour
+        // Path 2 streams indigo light, triad nodes pulse in harmonic cascade
+        sceneTimers.push(setTimeout(() => {
+          if (line2) line2.classList.add('is-active');
+          if (photon2) photon2.classList.add('is-active');
+          if (node2) node2.classList.add('is-active');
+        }, 6500));
+
+        sceneTimers.push(setTimeout(() => {
+          if (triad) triad.classList.add('is-pulsing');
+        }, 6800));
+
+        sceneTimers.push(setTimeout(() => {
+          if (line2) { line2.classList.remove('is-active'); line2.classList.add('is-exiting'); }
+          if (photon2) { photon2.classList.remove('is-active'); photon2.classList.add('is-exiting'); }
+          if (node2) { node2.classList.remove('is-active'); node2.classList.add('is-exiting'); }
+        }, 9400));
+
+        sceneTimers.push(setTimeout(() => {
+          if (line2) line2.classList.remove('is-exiting');
+          if (photon2) photon2.classList.remove('is-exiting');
+          if (node2) node2.classList.remove('is-exiting');
+          if (triad) triad.classList.remove('is-pulsing');
+        }, 10000));
+
+        // SCENE 4 (10.0s - 13.5s): Flow 3 — Ask HyIQ
+        // Path 3 streams pink-violet light, 4-point star pulses, 'H' nucleus illuminates with brilliance
+        sceneTimers.push(setTimeout(() => {
+          if (line3) line3.classList.add('is-active');
+          if (photon3) photon3.classList.add('is-active');
+          if (node3) node3.classList.add('is-active');
+        }, 10000));
+
+        sceneTimers.push(setTimeout(() => {
+          if (sparkle) sparkle.classList.add('is-pulsing');
+        }, 10300));
+
+        sceneTimers.push(setTimeout(() => {
+          if (orbNucleus) orbNucleus.classList.add('is-illuminated');
+        }, 10800));
+
+        sceneTimers.push(setTimeout(() => {
+          if (line3) { line3.classList.remove('is-active'); line3.classList.add('is-exiting'); }
+          if (photon3) { photon3.classList.remove('is-active'); photon3.classList.add('is-exiting'); }
+          if (node3) { node3.classList.remove('is-active'); node3.classList.add('is-exiting'); }
+          if (orbNucleus) orbNucleus.classList.remove('is-illuminated');
+        }, 12900));
+
+        sceneTimers.push(setTimeout(() => {
+          if (line3) line3.classList.remove('is-exiting');
+          if (photon3) photon3.classList.remove('is-exiting');
+          if (node3) node3.classList.remove('is-exiting');
+          if (sparkle) sparkle.classList.remove('is-pulsing');
+        }, 13500));
+
+        // SCENE 5 (13.5s - 17.0s): Flow 4 — 1-on-1 Check-ins
+        // Path 4 illuminates, overlapping circles pulse with cyan ripples
+        sceneTimers.push(setTimeout(() => {
+          if (line4) line4.classList.add('is-active');
+          if (photon4) photon4.classList.add('is-active');
+          if (node4) node4.classList.add('is-active');
+        }, 13500));
+
+        sceneTimers.push(setTimeout(() => {
+          if (resonance) resonance.classList.add('is-pulsing');
+        }, 13800));
+
+        sceneTimers.push(setTimeout(() => {
+          if (line4) { line4.classList.remove('is-active'); line4.classList.add('is-exiting'); }
+          if (photon4) { photon4.classList.remove('is-active'); photon4.classList.add('is-exiting'); }
+          if (node4) { node4.classList.remove('is-active'); node4.classList.add('is-exiting'); }
+        }, 16400));
+
+        sceneTimers.push(setTimeout(() => {
+          if (line4) line4.classList.remove('is-exiting');
+          if (photon4) photon4.classList.remove('is-exiting');
+          if (node4) node4.classList.remove('is-exiting');
+          if (resonance) resonance.classList.remove('is-pulsing');
+        }, 17000));
+
+        // SCENE 6 (17.0s - 21.0s): Convergence & Unified Ecosystem
+        // All 4 nodes and paths illuminate simultaneously, orb reaches peak bloom
+        sceneTimers.push(setTimeout(() => {
+          allLines.forEach(l => l.classList.add('is-active'));
+          allPhotons.forEach(p => p.classList.add('is-active'));
+          allNodes.forEach(n => n.classList.add('is-active'));
+          if (ringProg1) ringProg1.style.strokeDashoffset = '0';
+          if (check1) check1.classList.add('is-visible');
+          if (triad) triad.classList.add('is-pulsing');
+          if (sparkle) sparkle.classList.add('is-pulsing');
+          if (resonance) resonance.classList.add('is-pulsing');
+          if (orb) orb.classList.add('is-blooming');
+          if (orbNucleus) orbNucleus.classList.add('is-illuminated');
+        }, 17000));
+
+        sceneTimers.push(setTimeout(() => {
+          allLines.forEach(l => { l.classList.remove('is-active'); l.classList.add('is-exiting'); });
+          allPhotons.forEach(p => { p.classList.remove('is-active'); p.classList.add('is-exiting'); });
+          allNodes.forEach(n => { n.classList.remove('is-active'); n.classList.add('is-exiting'); });
+          if (orb) orb.classList.remove('is-blooming');
+          if (orbNucleus) orbNucleus.classList.remove('is-illuminated');
+        }, 20300));
+
+        // Seamless Loop Restart (21.0s)
+        loopTimer = setTimeout(() => {
+          runMasterLoop();
+        }, 21000);
+      };
+
+      const startAnimation = () => {
+        if (isRunning) return;
+        isRunning = true;
+        runMasterLoop();
+      };
+
+      const stopAnimation = () => {
+        isRunning = false;
+        clearAllTimers();
+      };
+
+      // prefers-reduced-motion fallback
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) {
+        allLines.forEach(l => l.classList.add('is-active'));
+        allNodes.forEach(n => n.classList.add('is-active'));
+        if (ringProg1) ringProg1.style.strokeDashoffset = '0';
+        if (check1) check1.classList.add('is-visible');
+        if (orbNucleus) orbNucleus.classList.add('is-illuminated');
+        return;
+      }
+
+      let isViewActive = view6.classList.contains('active');
+      let isStageIntersecting = false;
+
+      const updateRunningState = () => {
+        if (isViewActive && isStageIntersecting) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      };
+
+      // IntersectionObserver for stage visibility in viewport
+      if ('IntersectionObserver' in window) {
+        const intersectObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            isStageIntersecting = entry.isIntersecting;
+            updateRunningState();
+          });
+        }, { threshold: 0.1 });
+        intersectObserver.observe(stage);
+      } else {
+        isStageIntersecting = true;
+      }
+
+      // MutationObserver for #login-view-6 active class toggling
+      if ('MutationObserver' in window) {
+        const mutationObserver = new MutationObserver((mutations) => {
+          mutations.forEach(mutation => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+              const currentlyActive = view6.classList.contains('active');
+              if (currentlyActive !== isViewActive) {
+                isViewActive = currentlyActive;
+                updateRunningState();
+              }
+            }
+          });
+        });
+        mutationObserver.observe(view6, { attributes: true, attributeFilter: ['class'] });
+      }
+
+      // Initial check
+      updateRunningState();
+    }
+
+    // Page 1, Page 2, Page 3, Page 4 & Page 6: Subtle 3D mouse parallax on mini dashboard, isometric stack & living orb
     document.addEventListener('DOMContentLoaded', () => {
       const attachParallax = (stageId, targetId) => {
         const stage = document.getElementById(stageId);
@@ -11380,6 +12558,7 @@
 
       attachParallax('v4WorkflowStage', 'v4MiniDashboard');
       attachParallax('v4EcoStage', 'v4EcoDashboard');
+      attachParallax('v6BrandStage', 'v6BrandOrb');
     });
   </script>
 </body>

@@ -1122,13 +1122,577 @@ const V4EcosystemStage: React.FC<V4EcosystemStageProps> = ({ active = true }) =>
   );
 };
 
+interface V6BrandStageProps {
+  active?: boolean;
+}
+
+const V6BrandStage: React.FC<V6BrandStageProps> = ({ active = true }) => {
+  // Node 1: Orientation
+  const [node1Active, setNode1Active] = useState<boolean>(false);
+  const [node1Exiting, setNode1Exiting] = useState<boolean>(false);
+  const [node1Progress, setNode1Progress] = useState<string>('106.8');
+  const [node1CheckVisible, setNode1CheckVisible] = useState<boolean>(false);
+
+  // Node 2: Team Tour
+  const [node2Active, setNode2Active] = useState<boolean>(false);
+  const [node2Exiting, setNode2Exiting] = useState<boolean>(false);
+  const [node2TriadPulsing, setNode2TriadPulsing] = useState<boolean>(false);
+
+  // Node 3: Ask HyIQ
+  const [node3Active, setNode3Active] = useState<boolean>(false);
+  const [node3Exiting, setNode3Exiting] = useState<boolean>(false);
+  const [node3SparklePulsing, setNode3SparklePulsing] = useState<boolean>(false);
+
+  // Node 4: 1-on-1 Check-ins
+  const [node4Active, setNode4Active] = useState<boolean>(false);
+  const [node4Exiting, setNode4Exiting] = useState<boolean>(false);
+  const [node4ResonancePulsing, setNode4ResonancePulsing] = useState<boolean>(false);
+
+  // SVG Lines & Photons
+  const [line1Active, setLine1Active] = useState<boolean>(false);
+  const [line1Exiting, setLine1Exiting] = useState<boolean>(false);
+  const [line2Active, setLine2Active] = useState<boolean>(false);
+  const [line2Exiting, setLine2Exiting] = useState<boolean>(false);
+  const [line3Active, setLine3Active] = useState<boolean>(false);
+  const [line3Exiting, setLine3Exiting] = useState<boolean>(false);
+  const [line4Active, setLine4Active] = useState<boolean>(false);
+  const [line4Exiting, setLine4Exiting] = useState<boolean>(false);
+
+  // Central Orb states
+  const [orbBlooming, setOrbBlooming] = useState<boolean>(false);
+  const [orbNucleusIlluminated, setOrbNucleusIlluminated] = useState<boolean>(false);
+  const [orbTilt, setOrbTilt] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    setOrbTilt({ x: -y * 12, y: x * 12 });
+  };
+
+  const handleMouseLeave = () => {
+    setOrbTilt({ x: 0, y: 0 });
+  };
+
+  useEffect(() => {
+    if (!active) return;
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      setNode1Active(true);
+      setNode1Progress('0');
+      setNode1CheckVisible(true);
+      setLine1Active(true);
+
+      setNode2Active(true);
+      setLine2Active(true);
+
+      setNode3Active(true);
+      setLine3Active(true);
+
+      setNode4Active(true);
+      setLine4Active(true);
+
+      setOrbNucleusIlluminated(true);
+      return;
+    }
+
+    let isMounted = true;
+    let loopTimer: NodeJS.Timeout;
+    const sceneTimers: (NodeJS.Timeout | number)[] = [];
+
+    const clearTimers = () => {
+      clearTimeout(loopTimer);
+      sceneTimers.forEach((t) => clearTimeout(t as NodeJS.Timeout));
+      sceneTimers.length = 0;
+    };
+
+    const resetState = () => {
+      setNode1Active(false);
+      setNode1Exiting(false);
+      setNode1Progress('106.8');
+      setNode1CheckVisible(false);
+      setLine1Active(false);
+      setLine1Exiting(false);
+
+      setNode2Active(false);
+      setNode2Exiting(false);
+      setNode2TriadPulsing(false);
+      setLine2Active(false);
+      setLine2Exiting(false);
+
+      setNode3Active(false);
+      setNode3Exiting(false);
+      setNode3SparklePulsing(false);
+      setLine3Active(false);
+      setLine3Exiting(false);
+
+      setNode4Active(false);
+      setNode4Exiting(false);
+      setNode4ResonancePulsing(false);
+      setLine4Active(false);
+      setLine4Exiting(false);
+
+      setOrbBlooming(false);
+      setOrbNucleusIlluminated(false);
+    };
+
+    const runMasterLoop = () => {
+      if (!isMounted) return;
+      clearTimers();
+      resetState();
+
+      // Scene 2: Flow 1 — Orientation (3.0s - 6.5s)
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine1Active(true);
+          setNode1Active(true);
+        }, 3000)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setNode1Progress('0');
+        }, 3300)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setNode1CheckVisible(true);
+        }, 4400)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine1Active(false);
+          setLine1Exiting(true);
+          setNode1Active(false);
+          setNode1Exiting(true);
+        }, 5900)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine1Exiting(false);
+          setNode1Exiting(false);
+          setNode1Progress('106.8');
+          setNode1CheckVisible(false);
+        }, 6500)
+      );
+
+      // Scene 3: Flow 2 — Department Tour (6.5s - 10.0s)
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine2Active(true);
+          setNode2Active(true);
+        }, 6500)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setNode2TriadPulsing(true);
+        }, 6800)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine2Active(false);
+          setLine2Exiting(true);
+          setNode2Active(false);
+          setNode2Exiting(true);
+        }, 9400)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine2Exiting(false);
+          setNode2Exiting(false);
+          setNode2TriadPulsing(false);
+        }, 10000)
+      );
+
+      // Scene 4: Flow 3 — Ask HyIQ (10.0s - 13.5s)
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine3Active(true);
+          setNode3Active(true);
+        }, 10000)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setNode3SparklePulsing(true);
+        }, 10300)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setOrbNucleusIlluminated(true);
+        }, 10800)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine3Active(false);
+          setLine3Exiting(true);
+          setNode3Active(false);
+          setNode3Exiting(true);
+          setOrbNucleusIlluminated(false);
+        }, 12900)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine3Exiting(false);
+          setNode3Exiting(false);
+          setNode3SparklePulsing(false);
+        }, 13500)
+      );
+
+      // Scene 5: Flow 4 — 1-on-1 Check-ins (13.5s - 17.0s)
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine4Active(true);
+          setNode4Active(true);
+        }, 13500)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setNode4ResonancePulsing(true);
+        }, 13800)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine4Active(false);
+          setLine4Exiting(true);
+          setNode4Active(false);
+          setNode4Exiting(true);
+        }, 16400)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine4Exiting(false);
+          setNode4Exiting(false);
+          setNode4ResonancePulsing(false);
+        }, 17000)
+      );
+
+      // Scene 6: Convergence & Unified Ecosystem (17.0s - 21.0s)
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine1Active(true);
+          setLine2Active(true);
+          setLine3Active(true);
+          setLine4Active(true);
+
+          setNode1Active(true);
+          setNode1Progress('0');
+          setNode1CheckVisible(true);
+
+          setNode2Active(true);
+          setNode2TriadPulsing(true);
+
+          setNode3Active(true);
+          setNode3SparklePulsing(true);
+
+          setNode4Active(true);
+          setNode4ResonancePulsing(true);
+
+          setOrbBlooming(true);
+          setOrbNucleusIlluminated(true);
+        }, 17000)
+      );
+
+      sceneTimers.push(
+        setTimeout(() => {
+          if (!isMounted) return;
+          setLine1Active(false); setLine1Exiting(true);
+          setLine2Active(false); setLine2Exiting(true);
+          setLine3Active(false); setLine3Exiting(true);
+          setLine4Active(false); setLine4Exiting(true);
+
+          setNode1Active(false); setNode1Exiting(true);
+          setNode2Active(false); setNode2Exiting(true);
+          setNode3Active(false); setNode3Exiting(true);
+          setNode4Active(false); setNode4Exiting(true);
+
+          setOrbBlooming(false);
+          setOrbNucleusIlluminated(false);
+        }, 20300)
+      );
+
+      // Loop restart at 21.0s
+      loopTimer = setTimeout(() => {
+        if (isMounted) runMasterLoop();
+      }, 21000);
+    };
+
+    runMasterLoop();
+
+    return () => {
+      isMounted = false;
+      clearTimers();
+    };
+  }, [active]);
+
+  return (
+    <Box
+      id="v6BrandStage"
+      className="v6-brand-stage"
+      role="region"
+      aria-label="The Living Hirerkey Form"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* SVG Canvas with Connecting Paths & Travelling Photons */}
+      <svg className="v6-brand-svg-canvas" viewBox="0 0 540 380" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="v6Grad1React" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#10B981" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id="v6Grad2React" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#6366F1" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id="v6Grad3React" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#EC4899" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.9" />
+          </linearGradient>
+          <linearGradient id="v6Grad4React" x1="100%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#06B6D4" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#7C3AED" stopOpacity="0.9" />
+          </linearGradient>
+          <filter id="v6GlowReact" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur stdDeviation="2.5" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+
+        {/* Subtle Guide Lines */}
+        <path className="v6-guide-line" d="M 95 80 C 160 85, 205 130, 235 160" />
+        <path className="v6-guide-line" d="M 95 300 C 160 295, 205 250, 235 220" />
+        <path className="v6-guide-line" d="M 445 80 C 380 85, 335 130, 305 160" />
+        <path className="v6-guide-line" d="M 445 300 C 380 295, 335 250, 305 220" />
+
+        {/* Dynamic Lines */}
+        <path
+          className={`v6-brand-line ${line1Active ? 'is-active' : ''} ${line1Exiting ? 'is-exiting' : ''}`}
+          stroke="url(#v6Grad1React)"
+          d="M 95 80 C 160 85, 205 130, 235 160"
+          filter="url(#v6GlowReact)"
+        />
+        <path
+          className={`v6-brand-line ${line2Active ? 'is-active' : ''} ${line2Exiting ? 'is-exiting' : ''}`}
+          stroke="url(#v6Grad2React)"
+          d="M 95 300 C 160 295, 205 250, 235 220"
+          filter="url(#v6GlowReact)"
+        />
+        <path
+          className={`v6-brand-line ${line3Active ? 'is-active' : ''} ${line3Exiting ? 'is-exiting' : ''}`}
+          stroke="url(#v6Grad3React)"
+          d="M 445 80 C 380 85, 335 130, 305 160"
+          filter="url(#v6GlowReact)"
+        />
+        <path
+          className={`v6-brand-line ${line4Active ? 'is-active' : ''} ${line4Exiting ? 'is-exiting' : ''}`}
+          stroke="url(#v6Grad4React)"
+          d="M 445 300 C 380 295, 335 250, 305 220"
+          filter="url(#v6GlowReact)"
+        />
+
+        {/* Photons */}
+        <circle
+          className={`v6-photon ${line1Active ? 'is-active' : ''} ${line1Exiting ? 'is-exiting' : ''}`}
+          r="3.5"
+          fill="#10B981"
+          filter="url(#v6GlowReact)"
+        >
+          <animateMotion dur="1.7s" repeatCount="indefinite" path="M 95 80 C 160 85, 205 130, 235 160" />
+        </circle>
+        <circle
+          className={`v6-photon ${line2Active ? 'is-active' : ''} ${line2Exiting ? 'is-exiting' : ''}`}
+          r="3.5"
+          fill="#6366F1"
+          filter="url(#v6GlowReact)"
+        >
+          <animateMotion dur="1.7s" repeatCount="indefinite" path="M 95 300 C 160 295, 205 250, 235 220" />
+        </circle>
+        <circle
+          className={`v6-photon ${line3Active ? 'is-active' : ''} ${line3Exiting ? 'is-exiting' : ''}`}
+          r="3.5"
+          fill="#EC4899"
+          filter="url(#v6GlowReact)"
+        >
+          <animateMotion dur="1.7s" repeatCount="indefinite" path="M 445 80 C 380 85, 335 130, 305 160" />
+        </circle>
+        <circle
+          className={`v6-photon ${line4Active ? 'is-active' : ''} ${line4Exiting ? 'is-exiting' : ''}`}
+          r="3.5"
+          fill="#06B6D4"
+          filter="url(#v6GlowReact)"
+        >
+          <animateMotion dur="1.7s" repeatCount="indefinite" path="M 445 300 C 380 295, 335 250, 305 220" />
+        </circle>
+      </svg>
+
+      {/* Central Living Form (Hirerkey Orb) */}
+      <Box
+        id="v6BrandOrb"
+        className={`v6-brand-orb-container ${orbBlooming ? 'is-blooming' : ''}`}
+        sx={{
+          transform: `translate(-50%, -50%) perspective(800px) rotateX(${orbTilt.x}deg) rotateY(${orbTilt.y}deg) translateZ(8px)`,
+        }}
+      >
+        <Box className="v6-orb-halo" id="v6OrbHalo" />
+        <Box className="v6-orb-core" id="v6OrbCore">
+          <Box className="v6-orb-sheen" />
+        </Box>
+        <Box
+          className={`v6-orb-nucleus ${orbNucleusIlluminated ? 'is-illuminated' : ''}`}
+          id="v6OrbNucleus"
+        >
+          <span className="v6-emblem-h">H</span>
+        </Box>
+      </Box>
+
+      {/* 4 Satellite Jewel Nodes */}
+      {/* Node 1: Orientation */}
+      <Box
+        className={`v6-node v6-node-1 ${node1Active ? 'is-active' : ''} ${node1Exiting ? 'is-exiting' : ''}`}
+        id="v6Node1"
+        style={{ left: 95, top: 80 }}
+      >
+        <Box className="v6-node-jewel">
+          <svg className="v6-ring-svg" viewBox="0 0 44 44" aria-hidden="true">
+            <circle className="v6-ring-bg" cx="22" cy="22" r="17" />
+            <circle
+              className="v6-ring-progress"
+              id="v6RingProgress1"
+              cx="22"
+              cy="22"
+              r="17"
+              style={{ strokeDashoffset: node1Progress }}
+            />
+          </svg>
+          <svg
+            className={`v6-check-icon ${node1CheckVisible ? 'is-visible' : ''}`}
+            id="v6CheckBadge1"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#10B981"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        </Box>
+        <span className="v6-node-label">Orientation</span>
+      </Box>
+
+      {/* Node 2: Team Tour */}
+      <Box
+        className={`v6-node v6-node-2 ${node2Active ? 'is-active' : ''} ${node2Exiting ? 'is-exiting' : ''}`}
+        id="v6Node2"
+        style={{ left: 95, top: 300 }}
+      >
+        <Box className="v6-node-jewel">
+          <svg
+            className={`v6-triad-svg ${node2TriadPulsing ? 'is-pulsing' : ''}`}
+            id="v6Triad"
+            viewBox="0 0 30 30"
+            aria-hidden="true"
+          >
+            <line x1="15" y1="7" x2="8" y2="21" className="v6-triad-line" />
+            <line x1="15" y1="7" x2="22" y2="21" className="v6-triad-line" />
+            <line x1="8" y1="21" x2="22" y2="21" className="v6-triad-line" />
+            <circle cx="15" cy="7" r="3.6" className="v6-triad-dot v6-triad-dot-1" fill="#6366F1" />
+            <circle cx="8" cy="21" r="3.6" className="v6-triad-dot v6-triad-dot-2" fill="#6366F1" />
+            <circle cx="22" cy="21" r="3.6" className="v6-triad-dot v6-triad-dot-3" fill="#6366F1" />
+          </svg>
+        </Box>
+        <span className="v6-node-label">Team Tour</span>
+      </Box>
+
+      {/* Node 3: Ask HyIQ */}
+      <Box
+        className={`v6-node v6-node-3 ${node3Active ? 'is-active' : ''} ${node3Exiting ? 'is-exiting' : ''}`}
+        id="v6Node3"
+        style={{ left: 445, top: 80 }}
+      >
+        <Box className="v6-node-jewel">
+          <svg
+            className={`v6-sparkle-svg ${node3SparklePulsing ? 'is-pulsing' : ''}`}
+            id="v6Sparkle"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" fill="#EC4899" />
+          </svg>
+        </Box>
+        <span className="v6-node-label">Ask HyIQ™</span>
+      </Box>
+
+      {/* Node 4: 1-on-1 Check-ins */}
+      <Box
+        className={`v6-node v6-node-4 ${node4Active ? 'is-active' : ''} ${node4Exiting ? 'is-exiting' : ''}`}
+        id="v6Node4"
+        style={{ left: 445, top: 300 }}
+      >
+        <Box className="v6-node-jewel">
+          <svg
+            className={`v6-resonance-svg ${node4ResonancePulsing ? 'is-pulsing' : ''}`}
+            id="v6Resonance"
+            viewBox="0 0 28 28"
+            aria-hidden="true"
+          >
+            <circle className="v6-res-circle v6-res-1" cx="11" cy="14" r="7" fill="none" stroke="#06B6D4" strokeWidth="2" />
+            <circle className="v6-res-circle v6-res-2" cx="17" cy="14" r="7" fill="none" stroke="#06B6D4" strokeWidth="2" />
+          </svg>
+        </Box>
+        <span className="v6-node-label">1-on-1 Check-ins</span>
+      </Box>
+    </Box>
+  );
+};
+
 export const LoginView: React.FC<LoginViewProps> = ({
   onSuccessLogin,
   className,
   defaultView,
 }) => {
-  // Active page state (1: The Connected HR Ecosystem, 2: How Hirerkey Works, 3: How Hirerkey Works Replica, 4: The Connected HR Ecosystem V4, 5: How Hirerkey Works Copy)
-  const [activePage, setActivePage] = useState<1 | 2 | 3 | 4 | 5>((defaultView === 5 ? 5 : defaultView === 4 ? 4 : defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3 | 4 | 5);
+  // Active page state (1: The Connected HR Ecosystem, 2: How Hirerkey Works, 3: How Hirerkey Works Replica, 4: The Connected HR Ecosystem V4, 5: How Hirerkey Works Copy, 6: The Living Hirerkey Form)
+  const [activePage, setActivePage] = useState<1 | 2 | 3 | 4 | 5 | 6>((defaultView === 6 ? 6 : defaultView === 5 ? 5 : defaultView === 4 ? 4 : defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3 | 4 | 5 | 6);
 
   // View 4 form states (ApprovalMax Inspired Workflow Animation & Modern Split)
   const [v4AuthMode, setV4AuthMode] = useState<'otp' | 'password'>('otp');
@@ -1167,7 +1731,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
     };
   }, [v4OtpStep, v4OtpSecondsLeft]);
 
-  // Keyboard Shortcuts: [1], [2], [3], [ArrowLeft], [ArrowRight]
+  // Keyboard Shortcuts: [1]–[6], [ArrowLeft], [ArrowRight]
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const target = e.target as HTMLElement | null;
@@ -1184,10 +1748,12 @@ export const LoginView: React.FC<LoginViewProps> = ({
         setActivePage(4);
       } else if (e.key === '5') {
         setActivePage(5);
+      } else if (e.key === '6') {
+        setActivePage(6);
       } else if (e.key === 'ArrowLeft') {
-        setActivePage((prev) => (prev === 1 ? 5 : ((prev - 1) as 1 | 2 | 3 | 4 | 5)));
+        setActivePage((prev) => (prev === 1 ? 6 : ((prev - 1) as 1 | 2 | 3 | 4 | 5 | 6)));
       } else if (e.key === 'ArrowRight') {
-        setActivePage((prev) => (prev === 5 ? 1 : ((prev + 1) as 1 | 2 | 3 | 4 | 5)));
+        setActivePage((prev) => (prev === 6 ? 1 : ((prev + 1) as 1 | 2 | 3 | 4 | 5 | 6)));
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -3115,6 +3681,528 @@ export const LoginView: React.FC<LoginViewProps> = ({
                   }
                 }
 
+                /* ==========================================================================
+                   VIEW 6: THE LIVING HIRERKEY FORM — ABSTRACT BRAND-LED ANIMATION
+                   Central Organic Morphing Purple Orb + 4 Abstract Satellite Jewel Nodes +
+                   Progressive Bézier Connective Paths + Glowing Photons (21.0s Master Loop)
+                   ========================================================================== */
+                .v6-brand-stage {
+                  width: 100%;
+                  max-width: 540px;
+                  height: 380px;
+                  position: relative;
+                  margin-top: 8px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  contain: layout style;
+                  user-select: none;
+                  -webkit-user-select: none;
+                }
+
+                /* SVG Connective Layer */
+                .v6-brand-svg-canvas {
+                  position: absolute;
+                  inset: 0;
+                  width: 100%;
+                  height: 100%;
+                  pointer-events: none;
+                  z-index: 2;
+                }
+
+                .v6-guide-line {
+                  fill: none;
+                  stroke: rgba(124, 58, 237, 0.12);
+                  stroke-width: 1.5px;
+                  stroke-dasharray: 3 4;
+                }
+
+                .v6-brand-line {
+                  fill: none;
+                  stroke-width: 2.25px;
+                  stroke-dasharray: 200;
+                  stroke-dashoffset: 200;
+                  stroke-linecap: round;
+                  opacity: 0;
+                  transition: stroke-dashoffset 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                              opacity 0.4s ease;
+                }
+
+                .v6-brand-line.is-active {
+                  stroke-dashoffset: 0;
+                  opacity: 1;
+                }
+
+                .v6-brand-line.is-exiting {
+                  opacity: 0;
+                  transition: opacity 0.35s ease;
+                }
+
+                .v6-photon {
+                  opacity: 0;
+                  transition: opacity 0.35s ease;
+                }
+
+                .v6-photon.is-active {
+                  opacity: 1;
+                }
+
+                .v6-photon.is-exiting {
+                  opacity: 0;
+                  transition: opacity 0.3s ease;
+                }
+
+                /* Central Organic Translucent Purple Orb */
+                .v6-brand-orb-container {
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 136px;
+                  height: 136px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  z-index: 4;
+                  pointer-events: none;
+                  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .v6-orb-halo {
+                  position: absolute;
+                  inset: -26px;
+                  border-radius: 50%;
+                  background: radial-gradient(circle, rgba(124, 58, 237, 0.42) 0%, rgba(147, 51, 234, 0.22) 42%, rgba(124, 58, 237, 0) 72%);
+                  filter: blur(14px);
+                  animation: v6AuraBreathe 6s ease-in-out infinite;
+                  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                              opacity 0.8s ease,
+                              filter 0.8s ease,
+                              background 0.8s ease;
+                  will-change: transform, opacity;
+                  pointer-events: none;
+                }
+
+                @keyframes v6AuraBreathe {
+                  0%, 100% {
+                    transform: scale(0.96);
+                    opacity: 0.75;
+                  }
+                  50% {
+                    transform: scale(1.08);
+                    opacity: 1;
+                  }
+                }
+
+                .v6-brand-orb-container.is-blooming .v6-orb-halo {
+                  transform: scale(1.35);
+                  opacity: 1;
+                  filter: blur(20px);
+                  background: radial-gradient(circle, rgba(168, 85, 247, 0.65) 0%, rgba(124, 58, 237, 0.4) 45%, rgba(124, 58, 237, 0) 75%);
+                }
+
+                .v6-orb-core {
+                  position: relative;
+                  width: 130px;
+                  height: 130px;
+                  border-radius: 60% 40% 55% 45% / 48% 58% 42% 52%;
+                  background: radial-gradient(circle at 35% 30%, #D8B4FE 0%, #A855F7 28%, #7C3AED 58%, #581C87 95%);
+                  box-shadow: 0 16px 36px -6px rgba(124, 58, 237, 0.45),
+                              0 0 24px rgba(147, 51, 234, 0.35),
+                              inset 0 3px 10px rgba(255, 255, 255, 0.5),
+                              inset 0 -8px 20px rgba(76, 29, 149, 0.7);
+                  animation: v6OrbMorph 12s ease-in-out infinite alternate;
+                  overflow: hidden;
+                  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                              box-shadow 0.6s ease;
+                  will-change: border-radius, transform, box-shadow;
+                }
+
+                @keyframes v6OrbMorph {
+                  0% {
+                    border-radius: 60% 40% 55% 45% / 48% 58% 42% 52%;
+                    transform: rotate(0deg) scale(1);
+                  }
+                  33% {
+                    border-radius: 46% 54% 42% 58% / 56% 44% 56% 44%;
+                    transform: rotate(4deg) scale(1.02);
+                  }
+                  66% {
+                    border-radius: 54% 46% 58% 42% / 44% 56% 46% 54%;
+                    transform: rotate(-3deg) scale(0.98);
+                  }
+                  100% {
+                    border-radius: 48% 52% 44% 56% / 54% 46% 54% 46%;
+                    transform: rotate(2deg) scale(1.01);
+                  }
+                }
+
+                .v6-brand-orb-container.is-blooming .v6-orb-core {
+                  transform: scale(1.1);
+                  box-shadow: 0 20px 48px rgba(124, 58, 237, 0.6),
+                              0 0 45px rgba(192, 132, 252, 0.7),
+                              inset 0 4px 14px rgba(255, 255, 255, 0.75),
+                              inset 0 -8px 24px rgba(88, 28, 135, 0.85);
+                }
+
+                .v6-orb-sheen {
+                  position: absolute;
+                  inset: 0;
+                  border-radius: inherit;
+                  background: radial-gradient(ellipse at 32% 22%, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.18) 32%, transparent 62%),
+                              linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 48%);
+                  mix-blend-mode: overlay;
+                  pointer-events: none;
+                }
+
+                /* Central Glowing 'H' Emblem Nucleus */
+                .v6-orb-nucleus {
+                  position: absolute;
+                  left: 50%;
+                  top: 50%;
+                  transform: translate(-50%, -50%);
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 14px;
+                  background: rgba(255, 255, 255, 0.2);
+                  backdrop-filter: blur(8px);
+                  -webkit-backdrop-filter: blur(8px);
+                  border: 1px solid rgba(255, 255, 255, 0.45);
+                  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
+                              inset 0 0 12px rgba(255, 255, 255, 0.35);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  z-index: 5;
+                  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                              box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                              background-color 0.5s ease;
+                }
+
+                .v6-orb-nucleus.is-illuminated {
+                  transform: translate(-50%, -50%) scale(1.15);
+                  background: rgba(255, 255, 255, 0.38);
+                  border-color: rgba(255, 255, 255, 0.85);
+                  box-shadow: 0 0 32px rgba(255, 255, 255, 0.9),
+                              0 0 50px rgba(236, 72, 153, 0.65),
+                              inset 0 0 16px rgba(255, 255, 255, 0.8);
+                }
+
+                .v6-emblem-h {
+                  font-family: var(--font-display);
+                  font-size: 24px;
+                  font-weight: 800;
+                  color: #FFFFFF;
+                  text-shadow: 0 2px 8px rgba(124, 58, 237, 0.8),
+                               0 0 12px rgba(255, 255, 255, 0.9);
+                  line-height: 1;
+                  transform: translateY(-0.5px);
+                }
+
+                /* 4 Abstract Satellite Jewel Nodes */
+                .v6-node {
+                  position: absolute;
+                  width: 50px;
+                  height: 50px;
+                  transform: translate(-50%, -50%);
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  z-index: 5;
+                  contain: layout style;
+                  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .v6-node-jewel {
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                  background: rgba(255, 255, 255, 0.92);
+                  backdrop-filter: blur(10px);
+                  -webkit-backdrop-filter: blur(10px);
+                  border: 1.5px solid rgba(226, 232, 240, 0.9);
+                  box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.08),
+                              0 2px 6px -1px rgba(124, 58, 237, 0.05);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  position: relative;
+                  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .v6-node-label {
+                  position: absolute;
+                  top: calc(100% + 7px);
+                  left: 50%;
+                  transform: translateX(-50%);
+                  font-size: 9px;
+                  font-weight: 700;
+                  letter-spacing: 0.08em;
+                  text-transform: uppercase;
+                  color: #64748B;
+                  white-space: nowrap;
+                  transition: color 0.35s ease, transform 0.35s ease;
+                  pointer-events: none;
+                }
+
+                /* Node 1 Active: Orientation (#10B981) */
+                .v6-node-1.is-active .v6-node-jewel {
+                  border-color: #10B981;
+                  box-shadow: 0 0 22px rgba(16, 185, 129, 0.38),
+                              0 8px 22px -3px rgba(16, 185, 129, 0.22);
+                  transform: scale(1.08);
+                }
+                .v6-node-1.is-active .v6-node-label {
+                  color: #059669;
+                  transform: translateX(-50%) translateY(1px);
+                }
+
+                /* Node 2 Active: Team Tour (#6366F1) */
+                .v6-node-2.is-active .v6-node-jewel {
+                  border-color: #6366F1;
+                  box-shadow: 0 0 22px rgba(99, 102, 241, 0.38),
+                              0 8px 22px -3px rgba(99, 102, 241, 0.22);
+                  transform: scale(1.08);
+                }
+                .v6-node-2.is-active .v6-node-label {
+                  color: #4F46E5;
+                  transform: translateX(-50%) translateY(1px);
+                }
+
+                /* Node 3 Active: Ask HyIQ (#EC4899) */
+                .v6-node-3.is-active .v6-node-jewel {
+                  border-color: #EC4899;
+                  box-shadow: 0 0 22px rgba(236, 72, 153, 0.38),
+                              0 8px 22px -3px rgba(236, 72, 153, 0.22);
+                  transform: scale(1.08);
+                }
+                .v6-node-3.is-active .v6-node-label {
+                  color: #DB2777;
+                  transform: translateX(-50%) translateY(1px);
+                }
+
+                /* Node 4 Active: 1-on-1 Check-ins (#06B6D4) */
+                .v6-node-4.is-active .v6-node-jewel {
+                  border-color: #06B6D4;
+                  box-shadow: 0 0 22px rgba(6, 182, 212, 0.38),
+                              0 8px 22px -3px rgba(6, 182, 212, 0.22);
+                  transform: scale(1.08);
+                }
+                .v6-node-4.is-active .v6-node-label {
+                  color: #0891B2;
+                  transform: translateX(-50%) translateY(1px);
+                }
+
+                /* Node Exiting Transitions */
+                .v6-node.is-exiting .v6-node-jewel {
+                  transform: scale(1);
+                  box-shadow: 0 8px 18px -4px rgba(15, 23, 42, 0.08);
+                  border-color: rgba(226, 232, 240, 0.9);
+                  transition: all 0.35s ease;
+                }
+                .v6-node.is-exiting .v6-node-label {
+                  color: #64748B;
+                  transform: translateX(-50%);
+                  transition: all 0.35s ease;
+                }
+
+                /* Node 1 Internal: Progress Ring & Checkmark */
+                .v6-ring-svg {
+                  width: 40px;
+                  height: 40px;
+                  transform: rotate(-90deg);
+                  position: absolute;
+                }
+
+                .v6-ring-bg {
+                  fill: none;
+                  stroke: rgba(226, 232, 240, 0.8);
+                  stroke-width: 2.5px;
+                }
+
+                .v6-ring-progress {
+                  fill: none;
+                  stroke: #10B981;
+                  stroke-width: 2.5px;
+                  stroke-linecap: round;
+                  stroke-dasharray: 106.8;
+                  stroke-dashoffset: 106.8;
+                  transition: stroke-dashoffset 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+                }
+
+                .v6-check-icon {
+                  width: 18px;
+                  height: 18px;
+                  opacity: 0;
+                  transform: scale(0.4);
+                  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                  position: relative;
+                  z-index: 2;
+                }
+
+                .v6-check-icon.is-visible {
+                  opacity: 1;
+                  transform: scale(1);
+                }
+
+                /* Node 2 Internal: Triad Interconnected Circles */
+                .v6-triad-svg {
+                  width: 30px;
+                  height: 30px;
+                }
+
+                .v6-triad-line {
+                  stroke: rgba(99, 102, 241, 0.45);
+                  stroke-width: 1.4px;
+                }
+
+                .v6-triad-dot {
+                  transition: transform 0.3s ease, fill 0.3s ease;
+                }
+
+                .v6-triad-svg.is-pulsing .v6-triad-dot-1 {
+                  animation: v6TriadPulse 1.2s ease-in-out infinite alternate;
+                }
+                .v6-triad-svg.is-pulsing .v6-triad-dot-2 {
+                  animation: v6TriadPulse 1.2s ease-in-out infinite 0.3s alternate;
+                }
+                .v6-triad-svg.is-pulsing .v6-triad-dot-3 {
+                  animation: v6TriadPulse 1.2s ease-in-out infinite 0.6s alternate;
+                }
+
+                @keyframes v6TriadPulse {
+                  0% {
+                    transform: scale(1);
+                    opacity: 0.8;
+                  }
+                  100% {
+                    transform: scale(1.3);
+                    opacity: 1;
+                    filter: drop-shadow(0 0 4px #6366F1);
+                  }
+                }
+
+                /* Node 3 Internal: 4-Point Diamond Sparkle */
+                .v6-sparkle-svg {
+                  width: 24px;
+                  height: 24px;
+                  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                              filter 0.35s ease;
+                }
+
+                .v6-sparkle-svg.is-pulsing {
+                  animation: v6SparklePulse 1.4s ease-in-out infinite;
+                  filter: drop-shadow(0 0 6px #EC4899);
+                }
+
+                @keyframes v6SparklePulse {
+                  0%, 100% {
+                    transform: scale(1) rotate(0deg);
+                  }
+                  50% {
+                    transform: scale(1.28) rotate(10deg);
+                  }
+                }
+
+                /* Node 4 Internal: Resonant Overlapping Circles */
+                .v6-resonance-svg {
+                  width: 28px;
+                  height: 28px;
+                }
+
+                .v6-res-circle {
+                  transition: transform 0.3s ease, opacity 0.3s ease;
+                }
+
+                .v6-resonance-svg.is-pulsing .v6-res-1 {
+                  animation: v6ResonancePulse1 1.5s ease-in-out infinite alternate;
+                }
+                .v6-resonance-svg.is-pulsing .v6-res-2 {
+                  animation: v6ResonancePulse2 1.5s ease-in-out infinite alternate;
+                }
+
+                @keyframes v6ResonancePulse1 {
+                  0% {
+                    stroke-width: 2px;
+                    opacity: 0.7;
+                  }
+                  100% {
+                    stroke-width: 2.6px;
+                    opacity: 1;
+                    filter: drop-shadow(0 0 4px #06B6D4);
+                  }
+                }
+
+                @keyframes v6ResonancePulse2 {
+                  0% {
+                    stroke-width: 2px;
+                    opacity: 0.7;
+                  }
+                  100% {
+                    stroke-width: 2.6px;
+                    opacity: 1;
+                    filter: drop-shadow(0 0 4px #06B6D4);
+                  }
+                }
+
+                /* Responsive Adjustments for View 6 */
+                @media (max-width: 640px) {
+                  .v6-brand-stage {
+                    height: 360px;
+                  }
+                  .v6-brand-orb-container {
+                    width: 110px;
+                    height: 110px;
+                  }
+                  .v6-orb-core {
+                    width: 104px;
+                    height: 104px;
+                  }
+                  .v6-orb-nucleus {
+                    width: 40px;
+                    height: 40px;
+                  }
+                  .v6-emblem-h {
+                    font-size: 20px;
+                  }
+                  .v6-node {
+                    width: 44px;
+                    height: 44px;
+                  }
+                  .v6-node-jewel {
+                    width: 44px;
+                    height: 44px;
+                  }
+                }
+
+                /* View 6 Prefers Reduced Motion */
+                @media (prefers-reduced-motion: reduce) {
+                  .v6-orb-halo,
+                  .v6-orb-core,
+                  .v6-triad-svg.is-pulsing .v6-triad-dot-1,
+                  .v6-triad-svg.is-pulsing .v6-triad-dot-2,
+                  .v6-triad-svg.is-pulsing .v6-triad-dot-3,
+                  .v6-sparkle-svg.is-pulsing,
+                  .v6-resonance-svg.is-pulsing .v6-res-1,
+                  .v6-resonance-svg.is-pulsing .v6-res-2 {
+                    animation: none !important;
+                  }
+                  .v6-brand-line,
+                  .v6-photon,
+                  .v6-ring-progress,
+                  .v6-check-icon,
+                  .v6-node,
+                  .v6-node-jewel,
+                  .v6-node-label,
+                  .v6-orb-nucleus {
+                    transition: none !important;
+                  }
+                  .v6-photon animateMotion {
+                    dur: 0s !important;
+                  }
+                }
+
               `}</style>
             <Box
               sx={{
@@ -3623,6 +4711,11 @@ export const LoginView: React.FC<LoginViewProps> = ({
                 {/* VIEW 4: THE CONNECTED HR ECOSYSTEM HERO ANIMATION (PAGE 4) */}
                 {activePage === 4 && (
                   <V4EcosystemStage active={activePage === 4} />
+                )}
+
+                {/* VIEW 6: THE LIVING HIRERKEY FORM BRAND ANIMATION (PAGE 6) */}
+                {activePage === 6 && (
+                  <V6BrandStage active={activePage === 6} />
                 )}
                 
               </Box>
@@ -4404,6 +5497,75 @@ export const LoginView: React.FC<LoginViewProps> = ({
             }}
           >
             5
+          </Box>
+        </Box>
+
+        <Box
+          component="button"
+          type="button"
+          onClick={() => setActivePage(6)}
+          aria-label="Page 6: The Living Hirerkey Form"
+          title="The Living Hirerkey Form (Key 6)"
+          sx={{
+            appearance: 'none',
+            border: activePage === 6 ? '1px solid rgba(124, 58, 237, 0.25)' : '1px solid transparent',
+            bgcolor: activePage === 6 ? '#FFFFFF' : 'transparent',
+            color: activePage === 6 ? '#7C3AED' : '#64748B',
+            fontWeight: activePage === 6 ? 700 : 600,
+            boxShadow: activePage === 6 ? '0 4px 14px -2px rgba(124, 58, 237, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05)' : 'none',
+            px: { xs: 1.5, sm: 1.75 },
+            py: 0.85,
+            borderRadius: '9999px',
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontSize: { xs: 11.5, sm: 12.5 },
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '7px',
+            cursor: 'pointer',
+            transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+            whiteSpace: 'nowrap',
+            '&:hover': {
+              color: '#0F172A',
+              bgcolor: activePage === 6 ? '#FFFFFF' : 'rgba(241, 245, 249, 0.8)',
+            },
+          }}
+        >
+          <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>⑥</span>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Brand</Box>
+          <Box
+            component="span"
+            sx={{
+              display: { xs: 'none', sm: 'inline-block' },
+              fontSize: '9px',
+              fontWeight: 800,
+              px: '6px',
+              py: '1.5px',
+              borderRadius: '9999px',
+              bgcolor: 'rgba(124, 58, 237, 0.12)',
+              color: '#7C3AED',
+              border: '1px solid rgba(124, 58, 237, 0.28)',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Living
+          </Box>
+          <Box
+            component="span"
+            sx={{
+              display: { xs: 'none', md: 'inline-block' },
+              fontSize: '10px',
+              fontFamily: 'monospace',
+              fontWeight: 600,
+              px: '5px',
+              py: '1px',
+              borderRadius: '4px',
+              bgcolor: activePage === 6 ? '#F5F3FF' : '#F1F5F9',
+              color: activePage === 6 ? '#8B5CF6' : '#94A3B8',
+              border: activePage === 6 ? '1px solid #DDD6FE' : '1px solid #E2E8F0',
+            }}
+          >
+            6
           </Box>
         </Box>
 
