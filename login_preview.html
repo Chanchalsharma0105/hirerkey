@@ -7058,7 +7058,8 @@
     /* Phones: let the stage use the hero column's side padding so the camera
        view lines up with the auth card below and its text renders larger. */
     @media (max-width: 480px) {
-      #login-view-5 .hq-stage {
+      #login-view-5 .hq-stage,
+      #login-view-7 .hq-stage {
         width: calc(100% + 28px);
         max-width: none;
         margin-left: -14px;
@@ -15835,6 +15836,1148 @@
       </div>
     </div> <!-- /#login-view-6 -->
 
+    <!-- ==========================================================================
+         PAGE 7: HOW HIRERKEY WORKS — FULL-FLOW FEATURE STORIES, RUN BY HyIQ (VIEW 7)
+         Exact replica of View 5 with full isolation and -p7 auth/sequencer binding
+         ========================================================================== -->
+<div id="login-view-7" class="login-view-wrapper" data-page="7">
+      <div id="page-7" style="display:contents;">
+        <div class="v4-layout-container">
+
+          <!-- LEFT COLUMN: HERO SHOWCASE WITH THE HOW-IT-WORKS FLOW ANIMATION -->
+          <section class="v4-hero-section">
+            <!-- Brand Logo Header & People Performance Progress Subtag -->
+            <div class="v4-brand-top-row">
+              <div class="v4-brand-logo">
+                <div class="v4-logo-mark">H</div>
+                <div class="v4-brand-wordmark">Hirerkey<span>.</span></div>
+              </div>
+              <div class="v4-subtag-pill">
+                <span>PEOPLE • PERFORMANCE • PROGRESS</span>
+              </div>
+            </div>
+
+            <!-- Headline (Exact match: Make worklife easy) -->
+            <h1 class="v4-hero-headline">
+              Make worklife <span class="v4-highlight-purple">easy</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="v4-hero-subtitle">
+              Everything you need to build, manage and grow a high-performing team.
+            </p>
+
+            <!-- ANIMATED STAGE: one feature story at a time, every one run through HyIQ -->
+            <div class="hq-stage" id="hqStage-p7" role="region" aria-roledescription="animated product tour" aria-label="How Hirerkey works">
+
+              <!-- Screen-reader summary of the story currently playing -->
+              <p class="hq-sr" id="hqDesc-p7">Pre-boarding: when Arjun accepts the offer, HyIQ builds a pre-boarding plan and routes tasks to Arjun, IT, the manager and a buddy. Arjun finishes the documents on mobile while HyIQ auto-fills the ID details, then HyIQ verifies everything so HR sees Arjun ready for Day 1.</p>
+
+              <div class="hq-canvas">
+
+                <!-- FEATURE RAIL: the employee lifecycle, left to right · pause -->
+                <div class="hq-rail">
+                  <div class="hq-rail-track" role="group" aria-label="Choose a feature to watch">
+                    <button type="button" class="hq-chip is-active" data-goto="0" aria-pressed="true" title="Pre-boarding" style="--dot:#059669;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-userplus"/></svg><span class="hq-chip-name">Pre-boarding</span><span class="hq-chip-bar"></span></button>
+                    <button type="button" class="hq-chip" data-goto="1" aria-pressed="false" title="Orientation" style="--dot:#D97706;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-compass"/></svg><span class="hq-chip-name">Orientation</span><span class="hq-chip-bar"></span></button>
+                    <button type="button" class="hq-chip" data-goto="2" aria-pressed="false" title="Business Card" style="--dot:#DB2777;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-card"/></svg><span class="hq-chip-name">Business Card</span><span class="hq-chip-bar"></span></button>
+                    <i class="hq-rail-sep" aria-hidden="true"></i>
+                    <button type="button" class="hq-chip" data-goto="3" aria-pressed="false" title="Attendance" style="--dot:#0284C7;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-clock"/></svg><span class="hq-chip-name">Attendance</span><span class="hq-chip-bar"></span></button>
+                    <button type="button" class="hq-chip" data-goto="4" aria-pressed="false" title="Task Checklist" style="--dot:#7C3AED;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-checks"/></svg><span class="hq-chip-name">Task Checklist</span><span class="hq-chip-bar"></span></button>
+                    <button type="button" class="hq-chip" data-goto="5" aria-pressed="false" title="HR Broadcast" style="--dot:#2563EB;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-megaphone"/></svg><span class="hq-chip-name">HR Broadcast</span><span class="hq-chip-bar"></span></button>
+                    <i class="hq-rail-sep" aria-hidden="true"></i>
+                    <button type="button" class="hq-chip" data-goto="6" aria-pressed="false" title="Service Desk" style="--dot:#EA580C;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-headset"/></svg><span class="hq-chip-name">Service Desk</span><span class="hq-chip-bar"></span></button>
+                    <button type="button" class="hq-chip" data-goto="7" aria-pressed="false" title="Pulse Survey" style="--dot:#0D9488;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-pulse"/></svg><span class="hq-chip-name">Pulse Survey</span><span class="hq-chip-bar"></span></button>
+                    <button type="button" class="hq-chip" data-goto="8" aria-pressed="false" title="SpeakUp" style="--dot:#E11D48;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-shield"/></svg><span class="hq-chip-name">SpeakUp</span><span class="hq-chip-bar"></span></button>
+                    <i class="hq-rail-sep" aria-hidden="true"></i>
+                    <button type="button" class="hq-chip" data-goto="9" aria-pressed="false" title="Appraisal" style="--dot:#4F46E5;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-award"/></svg><span class="hq-chip-name">Appraisal</span><span class="hq-chip-bar"></span></button>
+                    <button type="button" class="hq-chip" data-goto="10" aria-pressed="false" title="Analytics" style="--dot:#C026D3;"><svg class="hq-ic" aria-hidden="true"><use href="#hqi-chart"/></svg><span class="hq-chip-name">Analytics</span><span class="hq-chip-bar"></span></button>
+                  </div>
+                  <button type="button" class="hq-pause" id="hqPause-p7" aria-label="Pause the tour">
+                    <svg class="hq-ic hq-fill hq-ic-pause"><use href="#hqi-pause"/></svg>
+                    <svg class="hq-ic hq-fill hq-ic-play"><use href="#hqi-play"/></svg>
+                  </button>
+                </div>
+
+                <!-- DELIVERY NETWORK: dotted field + connector paths (paths built by script) -->
+                <div class="hq-backdrop" aria-hidden="true"></div>
+                <svg class="hq-net" viewBox="0 0 600 400" aria-hidden="true"></svg>
+
+                <!-- HR WEB CONSOLE -->
+                <div class="hq-console" aria-hidden="true">
+                  <div class="hq-con-chrome">
+                    <div class="hq-con-dots"><i></i><i></i><i></i></div>
+                    <div class="hq-con-url"><svg class="hq-ic"><use href="#hqi-lock"/></svg><span id="hqConUrl-p7">app.hirerkey.com/pre-boarding</span></div>
+                    <div class="hq-con-user"><b id="hqConIni-p7">PS</b><span id="hqConWho-p7">HR Admin</span></div>
+                  </div>
+                  <div class="hq-con-body">
+                    <div class="hq-con-side">
+                      <span class="hq-logo">H</span>
+                      <i></i><i></i><i></i><i></i><i></i><i></i>
+                      <span class="hq-con-hq"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></span>
+                    </div>
+                    <div class="hq-con-main">
+
+                      <!-- SCENE 0 · PRE-BOARDING (console) -->
+                      <div class="hq-pane is-active" data-scene="0" data-fx="is-synced@R+260" style="--acc:#059669;--acc-soft:#ECFDF5;">
+                        <div class="hq-builder">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-userplus"/></svg></span>Onboarding · Pre-boarding</div>
+                          <div class="hq-ctitle">New hire</div>
+                          <div class="hq-hire hq-rev" data-at="250">
+                            <i class="hq-mav hq-c2">AM</i>
+                            <span><b>Arjun Mehta</b><small>Front desk · Mon</small></span>
+                            <em class="hq-pill is-green hq-pop" data-at="700"><svg class="hq-ic"><use href="#hqi-check"/></svg>Offer accepted</em>
+                          </div>
+                          <div class="hq-label">Pre-boarding plan · 4 <span class="hq-ai hq-pop" data-at="950"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>Built by HyIQ</span></div>
+                          <div class="hq-rows">
+                            <div class="hq-row hq-rev" data-at="1150"><svg class="hq-ic"><use href="#hqi-id"/></svg>ID &amp; address proof<span class="hq-tag is-muted">Arjun</span></div>
+                            <div class="hq-row hq-rev" data-at="1330"><svg class="hq-ic"><use href="#hqi-bank"/></svg>Bank details<span class="hq-tag is-muted">Arjun</span></div>
+                            <div class="hq-row hq-rev" data-at="1510"><svg class="hq-ic"><use href="#hqi-pen"/></svg>e-Sign offer letter<span class="hq-tag is-muted">Arjun</span></div>
+                            <div class="hq-row hq-rev" data-at="1690"><svg class="hq-ic"><use href="#hqi-laptop"/></svg>Laptop &amp; email<span class="hq-tag is-muted">IT desk</span></div>
+                          </div>
+                          <div class="hq-cta hq-tap" data-fx="is-sent@S-40">
+                            <span class="hq-cta-idle">Start pre-boarding <svg class="hq-ic"><use href="#hqi-arrow"/></svg></span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Routed to 5 people</span>
+                          </div>
+                        </div>
+                        <div class="hq-results">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-userplus"/></svg></span>Pre-boarding · Live</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Arjun Mehta</div><span class="hq-live"><i></i>LIVE</span></div>
+                          <div class="hq-rows">
+                            <div class="hq-row"><svg class="hq-ic"><use href="#hqi-id"/></svg>ID &amp; address proof<span class="hq-status-pill" data-at="R+500" data-seq="Pending@0|Verified@R+500">Verified</span></div>
+                            <div class="hq-row"><svg class="hq-ic"><use href="#hqi-bank"/></svg>Bank details<span class="hq-status-pill" data-at="R+700" data-seq="Pending@0|Verified@R+700">Verified</span></div>
+                            <div class="hq-row"><svg class="hq-ic"><use href="#hqi-pen"/></svg>e-Sign offer letter<span class="hq-status-pill" data-at="R+900" data-seq="Pending@0|Signed@R+900">Signed</span></div>
+                            <div class="hq-row"><svg class="hq-ic"><use href="#hqi-laptop"/></svg>Laptop &amp; email<span class="hq-status-pill" data-at="R+1100" data-seq="Pending@0|Ready@R+1100">Ready</span></div>
+                          </div>
+                          <div class="hq-ai-note hq-rev" data-at="R+1000"><i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i><span><b>HyIQ</b> verified ID &amp; bank details in 40 sec</span></div>
+                          <div class="hq-banner hq-rev" data-at="R+1300"><i><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span><b>Ready for Day 1</b><small>Mon, 9:00 AM · desk, laptop &amp; buddy set</small></span></div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 1 · ORIENTATION (console) -->
+                      <div class="hq-pane" data-scene="1" data-fx="is-synced@R+260" style="--acc:#D97706;--acc-soft:#FFF7E6;">
+                        <div class="hq-builder">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-compass"/></svg></span>Onboarding · Orientation</div>
+                          <div class="hq-ctitle">Day-1 journey <span class="hq-pill is-accent">Front Desk</span></div>
+                          <div class="hq-label">Journey steps · 4 <span class="hq-ai hq-pop" data-at="1000"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>Quiz written by HyIQ</span></div>
+                          <div class="hq-journey">
+                            <div class="hq-jstep hq-rev" data-at="450"><i class="hq-jic"><svg class="hq-ic"><use href="#hqi-file"/></svg></i><span><b>Read &amp; agree</b><small>Guest privacy SOP</small></span><span class="hq-tag">Sign-off</span></div>
+                            <div class="hq-jstep hq-rev" data-at="800"><i class="hq-jic"><svg class="hq-ic"><use href="#hqi-help"/></svg></i><span><b>Knowledge quiz</b><small>5 questions · pass 80%</small></span><span class="hq-tag is-ai">AI quiz</span></div>
+                            <div class="hq-jstep hq-rev" data-at="1150"><i class="hq-jic"><svg class="hq-ic"><use href="#hqi-camera"/></svg></i><span><b>Photo upload</b><small>Grooming check</small></span><span class="hq-tag">Photo</span></div>
+                            <div class="hq-jstep hq-rev" data-at="1500"><i class="hq-jic"><svg class="hq-ic"><use href="#hqi-users"/></svg></i><span><b>Mentor session</b><small>with Sarah J. · 30 min</small></span><span class="hq-tag">Session</span></div>
+                          </div>
+                          <div class="hq-chips hq-rev" data-at="1850">
+                            <span class="hq-pill"><svg class="hq-ic"><use href="#hqi-users"/></svg>New joiners · 6</span>
+                            <span class="hq-pill"><svg class="hq-ic"><use href="#hqi-cal"/></svg>Starts Monday</span>
+                          </div>
+                          <div class="hq-cta hq-tap" data-fx="is-sent@S-40">
+                            <span class="hq-cta-idle">Publish journey <svg class="hq-ic"><use href="#hqi-arrow"/></svg></span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Published to 6</span>
+                          </div>
+                        </div>
+                        <div class="hq-results">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-compass"/></svg></span>Orientation · Live</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Day-1 journey</div><span class="hq-live"><i></i>LIVE</span></div>
+                          <div class="hq-ringrow">
+                            <div class="hq-ring" data-tw="R+420/1300"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.5" pathLength="100"/><circle class="fg" cx="18" cy="18" r="15.5" pathLength="100"/></svg><b data-count="R+420/1300">100%</b></div>
+                            <div class="hq-ringmeta"><b><span data-count="R+420/1300">6</span>/6</b><span>joiners completed</span><small>Avg. quiz score 92%</small></div>
+                          </div>
+                          <div class="hq-bars">
+                            <div class="hq-barline">Read &amp; agree<div class="hq-bar" data-tw="R+520/1000"><i></i></div><em>100%</em></div>
+                            <div class="hq-barline">Quiz passed<div class="hq-bar" data-tw="R+640/1000"><i></i></div><em>100%</em></div>
+                            <div class="hq-barline">Photo check<div class="hq-bar is-green" data-tw="R+760/1000"><i></i></div><em>100%</em></div>
+                          </div>
+                          <div class="hq-ai-note hq-rev" data-at="R+1100"><i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i><span><b>HyIQ</b> booked 6 mentor sessions for Tuesday</span></div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 2 · BUSINESS CARD (console) -->
+                      <div class="hq-pane" data-scene="2" data-fx="is-synced@R+260" style="--acc:#DB2777;--acc-soft:#FDF2F8;">
+                        <div class="hq-builder">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-card"/></svg></span>Workflows · Business Card</div>
+                          <div class="hq-ctitle">Card template</div>
+                          <div class="hq-bc hq-rev" data-at="250" data-fx="is-branded@2050">
+                            <div class="hq-bc-logo"><b>EH</b>Earth Hotels</div>
+                            <div class="hq-bc-lines"><i></i><i></i><i></i></div>
+                            <div class="hq-bc-qr"><svg data-qr="7"></svg></div>
+                          </div>
+                          <div class="hq-label">Brand colour</div>
+                          <div class="hq-swatches hq-rev" data-at="800">
+                            <i class="hq-swatch hq-tap is-target" style="--c:#7C3AED;" data-fx="is-sel@2050"></i>
+                            <i class="hq-swatch" style="--c:#DB2777;"></i>
+                            <i class="hq-swatch" style="--c:#0D9488;"></i>
+                            <i class="hq-swatch" style="--c:#94A3B8;" data-fx="is-sel@0..2050"></i>
+                          </div>
+                          <div class="hq-chips hq-rev" data-at="1150">
+                            <span class="hq-pill is-green"><svg class="hq-ic"><use href="#hqi-check"/></svg>QR code</span>
+                            <span class="hq-pill is-green"><svg class="hq-ic"><use href="#hqi-check"/></svg>Wallet pass</span>
+                            <span class="hq-pill is-ai"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>248 cards auto-filled by HyIQ</span>
+                          </div>
+                          <div class="hq-cta hq-tap" data-fx="is-sent@S-40">
+                            <span class="hq-cta-idle">Issue to 248 employees <svg class="hq-ic"><use href="#hqi-arrow"/></svg></span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Issued to 248</span>
+                          </div>
+                        </div>
+                        <div class="hq-results">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-card"/></svg></span>Business Card · Live</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Digital cards</div><span class="hq-live"><i></i>LIVE</span></div>
+                          <div class="hq-stats">
+                            <div class="hq-stat"><b data-count="R+420/1100">248</b><span>Issued</span></div>
+                            <div class="hq-stat"><b data-count="R+520/1200">1,240</b><span>Shares</span></div>
+                            <div class="hq-stat"><b data-count="R+620/1300">386</b><span>QR scans</span></div>
+                          </div>
+                          <div class="hq-label">Shares this week</div>
+                          <div class="hq-spark" data-tw="R+520/1300"><svg viewBox="0 0 160 40" preserveAspectRatio="none"><path class="fill" d="M0 36 L22 31 L44 33 L66 24 L88 26 L110 15 L132 17 L160 5 L160 40 L0 40 Z"/><path pathLength="1" d="M0 36 L22 31 L44 33 L66 24 L88 26 L110 15 L132 17 L160 5"/></svg></div>
+                          <div class="hq-feed">
+                            <div class="hq-frow hq-rev" data-at="R+900"><i class="hq-mav hq-c3">SK</i>Sara Khan<em>Shared via QR</em></div>
+                          </div>
+                          <div class="hq-ai-note hq-rev" data-at="R+1200"><i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i><span><b>HyIQ:</b> Guest Relations shares 3× more than average</span></div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 3 · ATTENDANCE (console) -->
+                      <div class="hq-pane" data-scene="3" style="--acc:#0284C7;--acc-soft:#E0F2FE;">
+                        <div class="hq-board">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-clock"/></svg></span>Attendance · Today</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Morning shift · 9:00 AM</div><span class="hq-live"><i></i>LIVE</span></div>
+                          <div class="hq-stats">
+                            <div class="hq-stat"><b><span data-count="R+200/900">47</span><small>/48</small></b><span>Checked in</span></div>
+                            <div class="hq-stat is-warn"><b data-count="R+300/700">1</b><span>Running late</span></div>
+                            <div class="hq-stat"><b>0</b><span>Absent</span></div>
+                          </div>
+                          <div class="hq-label">Live check-ins <span class="hq-ai"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>Face + geo verified</span></div>
+                          <div class="hq-feedwrap">
+                            <div class="hq-geo hq-fade" data-fx="is-gone@R+150">
+                              <span class="hq-geo-dot"><svg class="hq-ic"><use href="#hqi-pin"/></svg></span>
+                              Geo-fence on · Earth Hotels, 120 m
+                            </div>
+                            <div class="hq-feed">
+                              <div class="hq-frow hq-rev" data-at="R+300"><i class="hq-mav hq-c1">RK</i>Riya Kapoor<span class="hq-fmeta"><svg class="hq-ic"><use href="#hqi-pin"/></svg>8:54</span><em>On time</em></div>
+                              <div class="hq-frow hq-rev" data-at="R+450"><i class="hq-mav hq-c2">MS</i>Meera Shah<span class="hq-fmeta"><svg class="hq-ic"><use href="#hqi-pin"/></svg>8:51</span><em>On time</em></div>
+                              <div class="hq-frow hq-rev" data-at="R+600"><i class="hq-mav hq-c4">DV</i>Dev Verma<span class="hq-fmeta">ETA 9:12</span><em class="is-late">Late</em></div>
+                            </div>
+                          </div>
+                          <div class="hq-alert hq-rev" data-at="R+1000" data-fx="is-fixed@W+1400">
+                            <i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i>
+                            <span><b data-seq="Desk short by 1 at 9:00@0|Desk covered for 9:00@W+1400">Desk covered for 9:00</b><small data-seq="HyIQ suggests Ravi@0|Ravi moved · notified@W+1400">Ravi moved · notified</small></span>
+                            <span class="hq-btn hq-tap" data-fx="is-sent@W+120"><span class="hq-btn-idle">Approve</span><span class="hq-btn-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Done</span></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 4 · TASK CHECKLIST (console) -->
+                      <div class="hq-pane" data-scene="4" data-fx="is-synced@R+260" style="--acc:#7C3AED;--acc-soft:#F3EEFF;">
+                        <div class="hq-builder">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-checks"/></svg></span>Workplace · Task Checklist</div>
+                          <div class="hq-ctitle">New checklist</div>
+                          <div class="hq-label">Checklist name</div>
+                          <div class="hq-input" data-at="150..1300"><span class="hq-type" data-type="250/900">Opening shift checklist</span></div>
+                          <div class="hq-label">Tasks · 4 <span class="hq-ai hq-pop" data-at="1100"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>Suggested by HyIQ</span></div>
+                          <div class="hq-rows">
+                            <div class="hq-row hq-rev" data-at="1250"><i class="hq-box"></i>Uniform &amp; name badge<span class="hq-tag">Tick</span></div>
+                            <div class="hq-row hq-rev" data-at="1430"><i class="hq-box"></i>Lobby walkthrough<span class="hq-tag">Tick</span></div>
+                            <div class="hq-row hq-rev" data-at="1610"><i class="hq-box"></i>Cash float count<span class="hq-tag">Number</span></div>
+                            <div class="hq-row hq-rev" data-at="1790"><i class="hq-box"></i>Front desk photo<span class="hq-tag">Photo</span></div>
+                          </div>
+                          <div class="hq-chips hq-rev" data-at="1980">
+                            <span class="hq-pill"><svg class="hq-ic"><use href="#hqi-users"/></svg>Front Office · 24</span>
+                            <span class="hq-pill"><svg class="hq-ic"><use href="#hqi-clock"/></svg>Due 9:00 AM</span>
+                          </div>
+                          <div class="hq-cta hq-tap" data-fx="is-sent@S-40">
+                            <span class="hq-cta-idle">Assign checklist <svg class="hq-ic"><use href="#hqi-arrow"/></svg></span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Assigned to 24</span>
+                          </div>
+                        </div>
+                        <div class="hq-results">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-checks"/></svg></span>Task Checklist · Live</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Opening shift checklist</div><span class="hq-live"><i></i>LIVE</span></div>
+                          <div class="hq-ringrow">
+                            <div class="hq-ring" data-tw="R+420/1300"><svg viewBox="0 0 36 36"><circle class="bg" cx="18" cy="18" r="15.5" pathLength="100"/><circle class="fg" cx="18" cy="18" r="15.5" pathLength="100"/></svg><b data-count="R+420/1300">100%</b></div>
+                            <div class="hq-ringmeta"><b><span data-count="R+420/1300">24</span>/24</b><span>staff completed</span><small>Avg. 6 min · 0 overdue</small></div>
+                          </div>
+                          <div class="hq-feed">
+                            <div class="hq-frow hq-rev" data-at="R+600"><i class="hq-mav hq-c1">RK</i>Riya Kapoor<em>Done 8:41</em></div>
+                            <div class="hq-frow hq-rev" data-at="R+800"><i class="hq-mav hq-c2">MS</i>Meera Shah<em>Done 8:44</em></div>
+                          </div>
+                          <div class="hq-ai-note hq-rev" data-at="R+1100"><i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i><span><b>HyIQ</b> checked 24 desk photos &amp; cash counts · all pass</span></div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 5 · HR BROADCAST (console) -->
+                      <div class="hq-pane" data-scene="5" data-fx="is-synced@R+260" style="--acc:#2563EB;--acc-soft:#EFF6FF;">
+                        <div class="hq-builder">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-megaphone"/></svg></span>Workplace · HR Broadcast</div>
+                          <div class="hq-ctitle">Create broadcast</div>
+                          <div class="hq-label">Subject</div>
+                          <div class="hq-input" data-at="150..1200"><span class="hq-type" data-type="250/850">Annual policy update 2026</span></div>
+                          <div class="hq-label">Message <span class="hq-ai hq-pop" data-at="1500"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>Polished · 4 languages</span></div>
+                          <div class="hq-msg hq-rev" data-at="1200">Our leave &amp; travel policy has been refreshed for 2026. Please review and acknowledge by Friday.</div>
+                          <div class="hq-attach hq-rev" data-at="1480"><span class="hq-file"><svg class="hq-ic"><use href="#hqi-file"/></svg></span><span><b>Leave_Policy.pdf</b><small>PDF · 1.2 MB</small></span></div>
+                          <div class="hq-chips hq-rev" data-at="1760">
+                            <span class="hq-pill is-red"><i class="hq-dot"></i>High priority</span>
+                            <span class="hq-pill"><svg class="hq-ic"><use href="#hqi-users"/></svg>All employees · 248</span>
+                          </div>
+                          <div class="hq-cta hq-tap" data-fx="is-sent@S-40">
+                            <span class="hq-cta-idle"><svg class="hq-ic"><use href="#hqi-send"/></svg>Send broadcast</span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Sent to 248</span>
+                          </div>
+                        </div>
+                        <div class="hq-results">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-megaphone"/></svg></span>HR Broadcast · Delivery</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Annual policy update</div><span class="hq-live"><i></i>LIVE</span></div>
+                          <div class="hq-stats">
+                            <div class="hq-stat"><b data-count="R+420/1100">248</b><span>Delivered</span></div>
+                            <div class="hq-stat"><b data-count="R+520/1200">92%</b><span>Opened</span></div>
+                            <div class="hq-stat"><b data-count="R+620/1300">214</b><span>Acknowledged</span></div>
+                          </div>
+                          <div class="hq-bars">
+                            <div class="hq-barline">Opened<div class="hq-bar" data-tw="R+520/1200" data-to="0.92"><i></i></div><em>92%</em></div>
+                            <div class="hq-barline">Acknowledged<div class="hq-bar is-green" data-tw="R+620/1300" data-to="0.86"><i></i></div><em>86%</em></div>
+                          </div>
+                          <div class="hq-feed">
+                            <div class="hq-frow hq-rev" data-at="R+800"><i class="hq-mav hq-c1">AC</i>Alex Chen<em>Acknowledged</em></div>
+                          </div>
+                          <div class="hq-ai-note hq-rev" data-at="R+1100"><i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i><span><b>HyIQ</b> will nudge the 34 still pending on Thursday</span></div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 6 · SERVICE DESK (console: the IT agent's queue) -->
+                      <div class="hq-pane" data-scene="6" style="--acc:#EA580C;--acc-soft:#FFF1E7;">
+                        <div class="hq-board">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-headset"/></svg></span>Service Desk · IT queue</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Inbox</div><span class="hq-count" data-seq="0 OPEN@0|1 NEW@R|RESOLVED@W">RESOLVED</span></div>
+                          <div class="hq-deskwrap">
+                            <div class="hq-empty hq-fade" data-fx="is-gone@R">
+                              <span class="hq-empty-ic"><svg class="hq-ic"><use href="#hqi-check"/></svg></span>
+                              <b>All caught up</b>
+                              <small><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ auto-resolved 38% of requests today</small>
+                            </div>
+                            <div class="hq-ticket hq-rev" data-at="R">
+                              <div class="hq-tk-top"><b>#4821</b>Printer keeps jamming<span class="hq-tag is-amber">P2</span></div>
+                              <div class="hq-tk-meta"><i class="hq-mav hq-c1">RK</i>Riya K. · Front desk · just now<span class="hq-tk-rate hq-rev" data-at="Q">★★★★★</span></div>
+                              <div class="hq-triage hq-rev" data-at="R+300">
+                                <div class="hq-triage-head"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ triage</div>
+                                <div class="hq-triage-row"><span>Category</span><b>IT › Printer</b></div>
+                                <div class="hq-triage-row"><span>Due in</span><b>30 min (SLA)</b></div>
+                                <div class="hq-triage-row"><span>Likely fix</span><b>Clear tray 2, run head-clean</b></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="hq-label hq-rev" data-at="R+600">Reply to Riya</div>
+                          <div class="hq-input is-sm hq-reply hq-rev" data-at="R+600" data-fx="is-on@R+800..W"><span class="hq-type" data-type="R+900/650">Cleared tray 2 · test page OK</span></div>
+                          <div class="hq-cta hq-tap hq-rev" data-at="R+600" data-fx="is-sent@W-40">
+                            <span class="hq-cta-idle"><svg class="hq-ic"><use href="#hqi-check"/></svg>Resolve ticket</span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg><span data-seq="Resolved · Riya notified@0|CSAT 5.0 ★ · fixed in 12 min@Q">CSAT 5.0 ★ · fixed in 12 min</span></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 7 · PULSE SURVEY (console) -->
+                      <div class="hq-pane" data-scene="7" data-fx="is-synced@R+260" style="--acc:#0D9488;--acc-soft:#F0FDFA;">
+                        <div class="hq-builder">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-pulse"/></svg></span>Pulse Surveys · New pulse</div>
+                          <div class="hq-ctitle">Weekly well-being</div>
+                          <div class="hq-label">Question</div>
+                          <div class="hq-input" data-at="150..1050"><span class="hq-type" data-type="250/700">How was your week?</span></div>
+                          <div class="hq-label">Answer scale <span class="hq-ai hq-pop" data-at="1600"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>+ smart follow-up</span></div>
+                          <div class="hq-emojis">
+                            <span class="hq-emo hq-pop" data-at="1050">😞</span>
+                            <span class="hq-emo hq-pop" data-at="1150">😐</span>
+                            <span class="hq-emo hq-pop" data-at="1250">🙂</span>
+                            <span class="hq-emo hq-pop" data-at="1350">😄</span>
+                            <span class="hq-emo hq-pop" data-at="1450">🤩</span>
+                          </div>
+                          <div class="hq-chips hq-rev" data-at="1750">
+                            <span class="hq-pill"><svg class="hq-ic"><use href="#hqi-lock"/></svg>Anonymous</span>
+                            <span class="hq-pill"><svg class="hq-ic"><use href="#hqi-cal"/></svg>Every Friday</span>
+                            <span class="hq-pill"><svg class="hq-ic"><use href="#hqi-users"/></svg>All staff · 248</span>
+                          </div>
+                          <div class="hq-cta hq-tap" data-fx="is-sent@S-40">
+                            <span class="hq-cta-idle">Launch pulse <svg class="hq-ic"><use href="#hqi-arrow"/></svg></span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Live for 248</span>
+                          </div>
+                        </div>
+                        <div class="hq-results">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-pulse"/></svg></span>Pulse Surveys · Live</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Weekly well-being</div><span class="hq-live"><i></i>LIVE</span></div>
+                          <div class="hq-stats">
+                            <div class="hq-stat"><b data-count="R+420/1200">87%</b><span>Responded</span></div>
+                            <div class="hq-stat"><b data-count="R+520/1200">4.3</b><span>Mood / 5</span></div>
+                            <div class="hq-stat"><b data-count="R+620/1200">+42</b><span>eNPS</span></div>
+                          </div>
+                          <div class="hq-chart">
+                            <div class="hq-col"><i data-tw="R+500/1000" data-to="0.15"></i><span>😞</span></div>
+                            <div class="hq-col"><i data-tw="R+560/1000" data-to="0.25"></i><span>😐</span></div>
+                            <div class="hq-col"><i data-tw="R+620/1000" data-to="0.6"></i><span>🙂</span></div>
+                            <div class="hq-col"><i data-tw="R+680/1000" data-to="1"></i><span>😄</span></div>
+                            <div class="hq-col"><i data-tw="R+740/1000" data-to="0.5"></i><span>🤩</span></div>
+                          </div>
+                          <div class="hq-ai-note is-alert hq-rev" data-at="R+1200"><i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i><span><b>HyIQ:</b> Housekeeping mood dipped · 1:1s suggested</span></div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 8 · SPEAKUP (console: the safety committee's cases) -->
+                      <div class="hq-pane" data-scene="8" style="--acc:#E11D48;--acc-soft:#FFF1F3;">
+                        <div class="hq-board">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-shield"/></svg></span>SpeakUp · Safety committee</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">Cases</div><span class="hq-count" data-seq="0 OPEN@0|1 NEW@R|RESOLVED@Q">RESOLVED</span></div>
+                          <div class="hq-deskwrap">
+                            <div class="hq-empty hq-fade" data-fx="is-gone@R">
+                              <span class="hq-empty-ic"><svg class="hq-ic"><use href="#hqi-lock"/></svg></span>
+                              <b>No open cases</b>
+                              <small><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ keeps every reporter anonymous</small>
+                            </div>
+                            <div class="hq-ticket hq-rev" data-at="R">
+                              <div class="hq-tk-top"><b>SU-112</b>Wet floor at kitchen exit<span class="hq-tag is-red">High</span></div>
+                              <div class="hq-tk-meta"><i class="hq-mav hq-c6"><svg class="hq-ic"><use href="#hqi-lock"/></svg></i>Anonymous · Safety · 1 photo</div>
+                              <div class="hq-sev"><span>Severity</span><div class="hq-bar is-red" data-tw="R+400/800" data-to="0.82"><i></i></div><b>High</b></div>
+                              <div class="hq-triage hq-rev" data-at="R+300">
+                                <div class="hq-triage-head"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ summary</div>
+                                <p>Slip hazard, unfixed for 3 days. 2 similar reports in Oct. Names &amp; faces removed.</p>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="hq-label hq-rev" data-at="R+600">Update for the reporter <span class="hq-pill hq-assign hq-tap" data-fx="is-green@R+900"><span data-seq="Assign owner@0|Facilities ✓@R+900">Facilities ✓</span></span></div>
+                          <div class="hq-input is-sm hq-rev" data-at="R+600" data-fx="is-on@R+1000..W"><span class="hq-type" data-type="R+1100/650">Signage placed · floor repaired today</span></div>
+                          <div class="hq-cta hq-tap hq-rev" data-at="R+600" data-fx="is-sent@W-40">
+                            <span class="hq-cta-idle"><svg class="hq-ic"><use href="#hqi-send"/></svg>Send update</span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg><span data-seq="Sent · reporter stays anonymous@0|Resolved in 6 h · reporter 👍@Q">Resolved in 6 h · reporter 👍</span></span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 9 · APPRAISAL (console) -->
+                      <div class="hq-pane" data-scene="9" data-fx="is-synced@R+260" style="--acc:#4F46E5;--acc-soft:#EEF2FF;">
+                        <div class="hq-builder">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-award"/></svg></span>Performance · Appraisal</div>
+                          <div class="hq-ctitle">H2 2026 review cycle</div>
+                          <div class="hq-rows">
+                            <div class="hq-row hq-rev" data-at="300"><svg class="hq-ic"><use href="#hqi-file"/></svg>Template<span class="hq-tag is-muted">Self + manager</span></div>
+                            <div class="hq-row hq-rev" data-at="480"><svg class="hq-ic"><use href="#hqi-users"/></svg>Participants<span class="hq-tag is-muted">120 · 14 managers</span></div>
+                            <div class="hq-row hq-rev" data-at="660"><svg class="hq-ic"><use href="#hqi-cal"/></svg>Window<span class="hq-tag is-muted">Dec 1 – 15</span></div>
+                          </div>
+                          <div class="hq-aitoggle hq-rev" data-at="900" data-fx="is-on@1450">
+                            <i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i>
+                            <span><b>HyIQ drafts every self-review</b><small>From goals, tasks, attendance &amp; kudos</small></span>
+                            <i class="hq-switch is-ai hq-tap" data-fx="is-on@1450"></i>
+                          </div>
+                          <div class="hq-drafting hq-rev" data-at="1500"><span data-seq="Drafting 120 reviews…@0|120 drafts ready ✓@2300">120 drafts ready ✓</span><div class="hq-bar" data-tw="1500/800"><i></i></div></div>
+                          <div class="hq-cta hq-tap" data-fx="is-sent@S-40">
+                            <span class="hq-cta-idle">Launch cycle <svg class="hq-ic"><use href="#hqi-arrow"/></svg></span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Launched for 120</span>
+                          </div>
+                        </div>
+                        <div class="hq-results">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-award"/></svg></span>Appraisal · Calibration</div>
+                          <div class="hq-rhead"><div class="hq-ctitle">H2 2026 reviews</div><span class="hq-live"><i></i>LIVE</span></div>
+                          <div class="hq-stats">
+                            <div class="hq-stat"><b data-count="R+420/1100">96%</b><span>Submitted</span></div>
+                            <div class="hq-stat"><b data-count="R+520/1100">3.8</b><span>Avg rating</span></div>
+                            <div class="hq-stat"><b data-count="R+620/1100">14</b><span>Managers done</span></div>
+                          </div>
+                          <div class="hq-chart is-acc">
+                            <div class="hq-col"><i data-tw="R+500/900" data-to="0.12"></i><span>1★</span></div>
+                            <div class="hq-col"><i data-tw="R+560/900" data-to="0.3"></i><span>2★</span></div>
+                            <div class="hq-col"><i data-tw="R+620/900" data-to="0.72"></i><span>3★</span></div>
+                            <div class="hq-col"><i data-tw="R+680/900" data-to="1"></i><span>4★</span></div>
+                            <div class="hq-col"><i data-tw="R+740/900" data-to="0.38"></i><span>5★</span></div>
+                          </div>
+                          <div class="hq-ai-note is-alert hq-rev" data-at="R+1200"><i class="hq-ai-ic"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></i><span><b>HyIQ:</b> 3 ratings sit above peer median · flagged</span></div>
+                        </div>
+                      </div>
+
+                      <!-- SCENE 10 · ANALYTICS (console: ask HyIQ) -->
+                      <div class="hq-pane" data-scene="10" style="--acc:#C026D3;--acc-soft:#FDF4FF;">
+                        <div class="hq-board">
+                          <div class="hq-crumb"><span class="hq-tile"><svg class="hq-ic"><use href="#hqi-chart"/></svg></span>Analytics · Ask HyIQ</div>
+                          <div class="hq-ask" data-fx="is-on@250..K">
+                            <svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>
+                            <span class="hq-ask-q"><span class="hq-type" data-type="300/1300">Why are housekeepers leaving?</span></span>
+                            <span class="hq-ask-btn hq-tap"><svg class="hq-ic"><use href="#hqi-arrow"/></svg></span>
+                          </div>
+                          <div class="hq-answerwrap">
+                            <div class="hq-reading" data-at="K+100..R">
+                              <div class="hq-shim"></div>
+                              <div class="hq-shim"></div>
+                              <div class="hq-shim"></div>
+                              <div class="hq-srcs">
+                                <span class="hq-src" data-fx="is-on@K+900"><svg class="hq-ic"><use href="#hqi-clock"/></svg>Attendance</span>
+                                <span class="hq-src" data-fx="is-on@K+1020"><svg class="hq-ic"><use href="#hqi-pulse"/></svg>Pulse</span>
+                                <span class="hq-src" data-fx="is-on@K+1140"><svg class="hq-ic"><use href="#hqi-headset"/></svg>Service desk</span>
+                                <span class="hq-src" data-fx="is-on@K+1260"><svg class="hq-ic"><use href="#hqi-checks"/></svg>Tasks</span>
+                              </div>
+                            </div>
+                            <div class="hq-answer" data-at="R">
+                              <div class="hq-ans-head">Attrition · Housekeeping<span class="hq-tag is-red">↑ 4.1%</span></div>
+                              <div class="hq-line" data-tw="R+150/900"><svg viewBox="0 0 160 30" preserveAspectRatio="none"><path class="fill" d="M0 25 L27 24 L53 22 L80 23 L107 15 L133 11 L160 4 L160 30 L0 30 Z"/><path pathLength="1" d="M0 25 L27 24 L53 22 L80 23 L107 15 L133 11 L160 4"/></svg></div>
+                              <div class="hq-label">Top drivers found by HyIQ</div>
+                              <div class="hq-bars">
+                                <div class="hq-barline">Late shifts<div class="hq-bar is-acc" data-tw="R+450/800" data-to="0.9"><i></i></div><em>+32%</em></div>
+                                <div class="hq-barline">Pulse mood<div class="hq-bar is-acc" data-tw="R+550/800" data-to="0.62"><i></i></div><em>−0.8</em></div>
+                                <div class="hq-barline">Open tickets<div class="hq-bar is-acc" data-tw="R+650/800" data-to="0.4"><i></i></div><em>4</em></div>
+                              </div>
+                              <div class="hq-chips hq-rev" data-at="R+1000">
+                                <span class="hq-pill is-ai"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>Rebalance late shifts</span>
+                                <span class="hq-pill is-ai"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>Skip-level 1:1s</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="hq-cta hq-tap hq-rev" data-at="R+1000" data-fx="is-sent@S-40">
+                            <span class="hq-cta-idle"><svg class="hq-ic"><use href="#hqi-share"/></svg>Share with Anita (Ops)</span>
+                            <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg><span data-seq="Shared with Anita@0|Anita booked 1:1s for Thursday@Q">Anita booked 1:1s for Thursday</span></span>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="hq-cursor" id="hqCursor-p7"><svg viewBox="0 0 16 16"><path d="M2.5 1.5 13 8.2l-4.6.9 2.6 4.9-1.9 1-2.6-4.9-3.3 3.2z" fill="#0F172A" stroke="#FFFFFF" stroke-width="1.1" stroke-linejoin="round"/></svg></div>
+                </div>
+
+                <!-- HyIQ: THE BRAIN IN THE MIDDLE, AND WHAT IT IS DOING RIGHT NOW -->
+                <div class="hq-brain" id="hqBrain-p7" aria-hidden="true">
+                  <i class="hq-brain-ring"></i>
+                  <span class="hq-brain-core"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></span>
+                  <b class="hq-brain-name">HyIQ</b>
+                </div>
+                <div class="hq-think" id="hqThink-p7" aria-hidden="true">
+                  <span class="hq-hq-tag"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ</span>
+                  <span class="hq-hq-txt" id="hqThinkTxt-p7"></span>
+                  <i class="hq-hq-dots"><b></b><b></b><b></b></i>
+                  <i class="hq-hq-ok"><svg class="hq-ic"><use href="#hqi-check"/></svg></i>
+                </div>
+
+                <!-- EVERYONE HyIQ REACHES (people, teams or data sources, set per story) -->
+                <div class="hq-av" style="top: 98px;" aria-hidden="true"><span class="hq-av-txt">PS</span><svg class="hq-ic hq-av-ic"><use href="#hqi-users"/></svg><i class="hq-ping"></i><em class="hq-badge"><svg class="hq-ic hq-b-bell"><use href="#hqi-bell"/></svg><svg class="hq-ic hq-b-ok"><use href="#hqi-check"/></svg><svg class="hq-ic hq-b-warn"><use href="#hqi-clock"/></svg></em><small class="hq-av-role"></small></div>
+                <div class="hq-av" style="top: 147px;" aria-hidden="true"><span class="hq-av-txt">RT</span><svg class="hq-ic hq-av-ic"><use href="#hqi-users"/></svg><i class="hq-ping"></i><em class="hq-badge"><svg class="hq-ic hq-b-bell"><use href="#hqi-bell"/></svg><svg class="hq-ic hq-b-ok"><use href="#hqi-check"/></svg><svg class="hq-ic hq-b-warn"><use href="#hqi-clock"/></svg></em><small class="hq-av-role"></small></div>
+                <div class="hq-av is-me" style="top: 196px;" aria-hidden="true"><span class="hq-av-txt">AM</span><svg class="hq-ic hq-av-ic"><use href="#hqi-users"/></svg><i class="hq-ping"></i><em class="hq-badge"><svg class="hq-ic hq-b-bell"><use href="#hqi-bell"/></svg><svg class="hq-ic hq-b-ok"><use href="#hqi-check"/></svg><svg class="hq-ic hq-b-warn"><use href="#hqi-clock"/></svg></em><small class="hq-av-role"></small></div>
+                <div class="hq-av" style="top: 245px;" aria-hidden="true"><span class="hq-av-txt">SJ</span><svg class="hq-ic hq-av-ic"><use href="#hqi-users"/></svg><i class="hq-ping"></i><em class="hq-badge"><svg class="hq-ic hq-b-bell"><use href="#hqi-bell"/></svg><svg class="hq-ic hq-b-ok"><use href="#hqi-check"/></svg><svg class="hq-ic hq-b-warn"><use href="#hqi-clock"/></svg></em><small class="hq-av-role"></small></div>
+                <div class="hq-av" style="top: 294px;" aria-hidden="true"><span class="hq-av-txt">KL</span><svg class="hq-ic hq-av-ic"><use href="#hqi-users"/></svg><i class="hq-ping"></i><em class="hq-badge"><svg class="hq-ic hq-b-bell"><use href="#hqi-bell"/></svg><svg class="hq-ic hq-b-ok"><use href="#hqi-check"/></svg><svg class="hq-ic hq-b-warn"><use href="#hqi-clock"/></svg></em><small class="hq-av-role"></small></div>
+                <div class="hq-aud" aria-hidden="true"><svg class="hq-ic"><use href="#hqi-users"/></svg><span id="hqAud-p7">Hiring team · 5</span></div>
+
+                <!-- EMPLOYEE PHONE -->
+                <div class="hq-phone" aria-hidden="true">
+                  <div class="hq-screen">
+                    <div class="hq-status">
+                      <span id="hqStTime-p7">6:20</span>
+                      <span class="hq-st-icons">
+                        <svg viewBox="0 0 17 11"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+                        <svg viewBox="0 0 16 11"><path d="M8 2.2c2.4 0 4.6.9 6.2 2.5l1.3-1.3A10.5 10.5 0 0 0 8 .3 10.5 10.5 0 0 0 .5 3.4l1.3 1.3A8.7 8.7 0 0 1 8 2.2zm0 3.7c1.4 0 2.6.5 3.6 1.4l1.3-1.3A7 7 0 0 0 8 4a7 7 0 0 0-4.9 2l1.3 1.3c1-.9 2.2-1.4 3.6-1.4zm0 3.6 2.1-2.1a3 3 0 0 0-4.2 0z"/></svg>
+                        <svg viewBox="0 0 25 12"><rect x="0.5" y="0.5" width="21" height="11" rx="3" fill="none" stroke="currentColor" stroke-opacity="0.4"/><rect x="2" y="2" width="16" height="8" rx="1.8"/><path d="M23 4v4a2 2 0 0 0 0-4z" fill-opacity="0.45"/></svg>
+                      </span>
+                    </div>
+                    <i class="hq-island"></i>
+
+                    <!-- SCENE 0 · PRE-BOARDING (phone) -->
+                    <div class="hq-pane is-active" data-scene="0">
+                      <div class="hq-lock" data-fx="is-dim@S+1800">
+                        <div class="hq-lock-date">Wednesday, 11 November</div>
+                        <div class="hq-lock-time">6:20</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@S+1210 is-tapped@S+1650..S+2250">
+                          <div class="hq-notif-head"><b class="hq-app-ic">H</b>HIRERKEY<em>now</em></div>
+                          <div class="hq-notif-title">You're hired, Arjun! 🎉</div>
+                          <div class="hq-notif-body">Finish pre-boarding before Day 1 · 3 steps</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="S+1800">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>Pre-boarding</div>
+                        <div class="hq-app-body">
+                          <div class="hq-hello"><b>Welcome, Arjun</b><small>3 quick steps before Day 1</small></div>
+                          <div class="hq-pre hq-tap" data-fx="is-done@S+2650 is-tapped@S+2050..S+2650">
+                            <div class="hq-pre-top"><span class="hq-pre-ic"><svg class="hq-ic"><use href="#hqi-id"/></svg></span>ID &amp; address proof<i class="hq-idscan" data-at="S+2100..S+2650"></i><i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i></div>
+                            <div class="hq-pre-sub" data-fx="is-ai@S+2650" data-seq="Tap to scan@0|Scanning…@S+2100|✦ Auto-filled by HyIQ@S+2650">✦ Auto-filled by HyIQ</div>
+                          </div>
+                          <div class="hq-pre hq-tap" data-fx="is-done@S+3350 is-tapped@S+2800..S+3400">
+                            <div class="hq-pre-top"><span class="hq-pre-ic"><svg class="hq-ic"><use href="#hqi-bank"/></svg></span>Bank details<i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i></div>
+                            <div class="hq-pre-sub"><span class="hq-type" data-type="S+2850/450">HDFC •••• 4821</span></div>
+                          </div>
+                          <div class="hq-pre" data-fx="is-done@S+4300">
+                            <div class="hq-pre-top"><span class="hq-pre-ic"><svg class="hq-ic"><use href="#hqi-pen"/></svg></span>e-Sign offer letter<i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i></div>
+                            <div class="hq-sign" data-at="S+3450" data-tw="S+3550/750"><svg viewBox="0 0 120 34" preserveAspectRatio="none"><path pathLength="1" d="M10 24c4-9 7-15 9-13s-3 14 0 13 6-14 9-12-1 11 2 11 5-9 8-8-1 7 2 7 4-5 7-5c4 0 3 4 7 4 5 0 9-6 14-6 4 0 6 3 11 3"/></svg></div>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@S+4400..S+5000 is-pressed@S+4400..S+4580 is-ok@S+4550">
+                          <span class="hq-cta-idle">Submit</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>All set for Day 1</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 1 · ORIENTATION (phone) -->
+                    <div class="hq-pane" data-scene="1">
+                      <div class="hq-lock" data-fx="is-dim@S+1800">
+                        <div class="hq-lock-date">Monday, 16 November</div>
+                        <div class="hq-lock-time">8:58</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@S+1210 is-tapped@S+1650..S+2250">
+                          <div class="hq-notif-head"><b class="hq-app-ic">H</b>HIRERKEY<em>now</em></div>
+                          <div class="hq-notif-title">Welcome aboard, Neha! 🎉</div>
+                          <div class="hq-notif-body">Your Day-1 orientation is ready · 4 steps</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="S+1800">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>Orientation<em data-seq="1/4@0|2/4@S+2850|3/4@S+3850|4/4@S+4750">4/4</em></div>
+                        <div class="hq-app-body">
+                          <div class="hq-osegs"><i data-at="S+2650"></i><i data-at="S+3650"></i><i data-at="S+4550"></i><i data-at="S+4800"></i></div>
+                          <div class="hq-ostage">
+                            <div class="hq-ocard" data-fx="is-on@S+1800..S+2850 is-past@S+2850">
+                              <div class="hq-kicker">Step 1 · Read &amp; agree</div>
+                              <div class="hq-a-title">Guest privacy SOP</div>
+                              <div class="hq-doc"><i></i><i></i><i></i><i></i></div>
+                              <div class="hq-agree"><i class="hq-switch hq-tap" data-fx="is-on@S+2350 is-tapped@S+2300..S+2900"></i>I have read &amp; agree</div>
+                            </div>
+                            <div class="hq-ocard" data-fx="is-on@S+2850..S+3850 is-past@S+3850">
+                              <div class="hq-kicker">Step 2 · Quiz by HyIQ <svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></div>
+                              <div class="hq-q">Where are guest ID copies kept?</div>
+                              <div class="hq-opt"><b>A</b>At the front desk</div>
+                              <div class="hq-opt hq-tap" data-fx="is-tapped@S+3250..S+3850 is-correct@S+3350"><b>B</b>In the secure vault<svg class="hq-ic"><use href="#hqi-check"/></svg></div>
+                              <div class="hq-opt"><b>C</b>In the shared inbox</div>
+                            </div>
+                            <div class="hq-ocard" data-fx="is-on@S+3850..S+4750 is-past@S+4750">
+                              <div class="hq-kicker">Step 3 · Photo upload</div>
+                              <div class="hq-cam"><span class="hq-cam-person"></span><i class="hq-flash" data-at="S+4200..S+4330"></i><span class="hq-cam-ok hq-pop" data-at="S+4350"><svg class="hq-ic"><use href="#hqi-check"/></svg>Grooming check passed</span></div>
+                              <div class="hq-shutter hq-tap" data-fx="is-tapped@S+4150..S+4750 is-pressed@S+4150..S+4330"></div>
+                            </div>
+                            <div class="hq-ocard" data-at="S+4750">
+                              <div class="hq-done-card">
+                                <div class="hq-medal"><svg class="hq-ic"><use href="#hqi-award"/></svg></div>
+                                <b>Orientation complete!</b>
+                                <small>4 of 4 steps · quiz 100%</small>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@S+2650..S+3250 is-tapped@S+3650..S+4250 is-tapped@S+4550..S+5150 is-pressed@S+2650..S+2830 is-pressed@S+3650..S+3830 is-pressed@S+4550..S+4730 is-ok@S+4800">
+                          <span class="hq-cta-idle">Continue</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Completed</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 2 · BUSINESS CARD (phone) -->
+                    <div class="hq-pane" data-scene="2">
+                      <div class="hq-lock" data-fx="is-dim@S+1800">
+                        <div class="hq-lock-date">Thursday, 19 November</div>
+                        <div class="hq-lock-time">11:10</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@S+1210 is-tapped@S+1650..S+2250">
+                          <div class="hq-notif-head"><b class="hq-app-ic">H</b>HIRERKEY<em>now</em></div>
+                          <div class="hq-notif-title">Your digital business card is ready</div>
+                          <div class="hq-notif-body">Share it in a tap, or let guests scan your QR.</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="S+1800">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>My Card</div>
+                        <div class="hq-app-body">
+                          <div class="hq-vcard">
+                            <div class="hq-vc-top"><b>EH</b>Earth Hotels</div>
+                            <div class="hq-vc-name">Sara Khan</div>
+                            <div class="hq-vc-role">Guest Relations Lead</div>
+                            <div class="hq-vc-row"><svg class="hq-ic"><use href="#hqi-phone"/></svg>+91 98100 24410</div>
+                            <div class="hq-vc-row"><svg class="hq-ic"><use href="#hqi-mail"/></svg>sara.k@earthhotels.com</div>
+                          </div>
+                          <div class="hq-qrwrap">
+                            <div class="hq-qr" data-fx="is-big@S+2850 is-scan@S+2900..S+3650"><svg data-qr="11"></svg></div>
+                            <div class="hq-qrcap" data-seq="Scan to save my contact@0|Scanning…@S+2900|Contact saved ✓@S+3650">Contact saved ✓</div>
+                          </div>
+                          <div class="hq-toast hq-rev" data-at="S+3700"><svg class="hq-ic"><use href="#hqi-check"/></svg>Saved to a guest’s phone</div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@S+2700..S+3300 is-pressed@S+2700..S+2880 is-ok@S+3700">
+                          <span class="hq-cta-idle"><svg class="hq-ic"><use href="#hqi-share"/></svg>Share card</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Shared</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 3 · ATTENDANCE (phone) -->
+                    <div class="hq-pane" data-scene="3">
+                      <div class="hq-lock" data-fx="is-dim@P+590">
+                        <div class="hq-lock-date">Monday, 16 November</div>
+                        <div class="hq-lock-time">8:52</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@P is-tapped@P+440..P+1040">
+                          <div class="hq-notif-head"><b class="hq-app-ic is-hq"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></b>HYIQ · ATTENDANCE<em>now</em></div>
+                          <div class="hq-notif-title">Your shift starts at 9:00 ⏰</div>
+                          <div class="hq-notif-body">You're at Earth Hotels. Tap to check in.</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="P+590">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>Attendance<em>8:53</em></div>
+                        <div class="hq-app-body">
+                          <div class="hq-a-meta">Morning shift · 9:00 AM · Front Office</div>
+                          <div class="hq-map">
+                            <i class="hq-fence"></i>
+                            <span class="hq-pin hq-pop" data-at="P+800"><svg class="hq-ic"><use href="#hqi-pin"/></svg></span>
+                            <span class="hq-map-tag">Earth Hotels</span>
+                          </div>
+                          <div class="hq-check hq-rev" data-at="P+1000"><i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i>Inside geo-fence · 40 m</div>
+                          <div class="hq-faceid" data-fx="is-scan@P+1300..P+2100 is-ok@P+2100">
+                            <span class="hq-faceid-ring"></span>
+                            <span><b data-seq="Face check@0|Scanning…@P+1300|Face verified@P+2100">Face verified</b><small class="hq-ai-mini"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ face match</small></span>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@U-150..U+450 is-pressed@U-150..U+30 is-ok@U">
+                          <span class="hq-cta-idle"><svg class="hq-ic"><use href="#hqi-pin"/></svg>Check in</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Checked in · 8:54</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 4 · TASK CHECKLIST (phone) -->
+                    <div class="hq-pane" data-scene="4">
+                      <div class="hq-lock" data-fx="is-dim@S+1800">
+                        <div class="hq-lock-date">Monday, 16 November</div>
+                        <div class="hq-lock-time">8:32</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@S+1210 is-tapped@S+1650..S+2250">
+                          <div class="hq-notif-head"><b class="hq-app-ic">H</b>HIRERKEY<em>now</em></div>
+                          <div class="hq-notif-title">New checklist assigned</div>
+                          <div class="hq-notif-body">Opening shift checklist · 4 tasks · due 9:00 AM</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="S+1800">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>Task Checklist</div>
+                        <div class="hq-app-body">
+                          <div class="hq-a-title">Opening shift checklist</div>
+                          <div class="hq-a-meta">Due 9:00 AM · Front Office</div>
+                          <div class="hq-a-prog"><div class="hq-bar" data-pseq="0@0|0.25@S+2150|0.5@S+2550|0.75@S+3350|1@S+3900"><i></i></div><span><b data-seq="0@0|1@S+2150|2@S+2550|3@S+3350|4@S+3900">4</b>/4</span></div>
+                          <div class="hq-tasks">
+                            <div class="hq-task hq-tap" data-fx="is-done@S+2150 is-tapped@S+2100..S+2700"><i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Uniform &amp; name badge</span></div>
+                            <div class="hq-task hq-tap" data-fx="is-done@S+2550 is-tapped@S+2500..S+3100"><i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Lobby walkthrough</span></div>
+                            <div class="hq-task hq-tap" data-fx="is-done@S+3350 is-tapped@S+3300..S+3900"><i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Cash float</span><em class="hq-task-val">₹ <span class="hq-type" data-type="S+2800/450">5,000</span></em></div>
+                            <div class="hq-task hq-tap" data-fx="is-done@S+3900 is-tapped@S+3600..S+4200"><i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Front desk photo</span><em class="hq-thumb" data-at="S+3650"></em></div>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@S+4250..S+4850 is-pressed@S+4250..S+4430 is-ok@S+4400">
+                          <span class="hq-cta-idle">Submit checklist</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Submitted</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 5 · HR BROADCAST (phone) -->
+                    <div class="hq-pane" data-scene="5">
+                      <div class="hq-lock" data-fx="is-dim@S+1800">
+                        <div class="hq-lock-date">Tuesday, 17 November</div>
+                        <div class="hq-lock-time">10:05</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@S+1210 is-tapped@S+1650..S+2250">
+                          <div class="hq-notif-head"><b class="hq-app-ic">H</b>HR BROADCAST<em>now</em></div>
+                          <div class="hq-notif-title">Annual policy update 2026</div>
+                          <div class="hq-notif-body">Please review and acknowledge by Friday.</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="S+1800">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>HR Broadcast</div>
+                        <div class="hq-app-body">
+                          <div class="hq-scroll" data-at="S+2250">
+                            <span class="hq-prio"><i class="hq-dot"></i>High priority</span>
+                            <div class="hq-a-title">Annual policy update 2026</div>
+                            <div class="hq-sender"><i class="hq-mav hq-c1">HR</i><span><b>HR Team</b><small>Earth Hotels · just now</small></span></div>
+                            <p class="hq-a-text">Our leave &amp; travel policy has been refreshed for 2026. Please review and acknowledge by Friday.</p>
+                            <div class="hq-ai-card"><div class="hq-ai-card-head"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ summary</div><div class="hq-ai-card-row">+2 leave days · travel cap up 10%</div></div>
+                            <div class="hq-attach hq-tap" data-fx="is-tapped@S+2550..S+3150 is-seen@S+2650"><span class="hq-file"><svg class="hq-ic"><use href="#hqi-file"/></svg></span><span><b>Leave_Policy.pdf</b><small class="hq-seen" data-seq="PDF · 1.2 MB@0|Viewed ✓@S+2650">Viewed ✓</small></span></div>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@S+3250..S+3850 is-pressed@S+3250..S+3430 is-ok@S+3400">
+                          <span class="hq-cta-idle">Acknowledge</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Acknowledged</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 6 · SERVICE DESK (phone: raise → rate) -->
+                    <div class="hq-pane" data-scene="6">
+                      <div class="hq-app" data-at="0">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>Service Desk</div>
+                        <div class="hq-app-body">
+                          <div class="hq-stack">
+                            <div class="hq-fade" data-fx="is-gone@U+500">
+                              <div class="hq-kicker" style="color:#EA580C;">New request</div>
+                              <div class="hq-ta" data-at="250..U"><span class="hq-type" data-type="300/1200">Printer at the front desk keeps jamming</span></div>
+                              <div class="hq-attach-row"><span class="hq-chip-btn hq-tap" data-fx="is-tapped@1650..2250"><svg class="hq-ic"><use href="#hqi-camera"/></svg>Photo</span><em class="hq-thumb" data-at="1750"></em></div>
+                              <div class="hq-ai-card hq-rev" data-at="2100"><div class="hq-ai-card-head"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ sorted it</div><div class="hq-ai-card-row">IT › Printer · P2 · fix in ~30 min</div></div>
+                            </div>
+                            <div class="hq-later hq-rev" data-at="U+500">
+                              <div class="hq-kicker" style="color:#EA580C;">Ticket #4821</div>
+                              <div class="hq-a-title">Printer keeps jamming</div>
+                              <div class="hq-tline">
+                                <div class="hq-tl-row is-done"><i></i>Raised · 2:14 PM</div>
+                                <div class="hq-tl-row" data-fx="is-done@U+1300"><i></i>Sent to IT by HyIQ</div>
+                                <div class="hq-tl-row" data-fx="is-done@P"><i></i>Resolved · tray 2 cleared</div>
+                              </div>
+                              <div class="hq-rev" data-at="P+300">
+                                <div class="hq-follow-label">How did we do?</div>
+                                <div class="hq-stars" data-fx="is-r5@V">
+                                  <span class="hq-star"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                                  <span class="hq-star"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                                  <span class="hq-star"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                                  <span class="hq-star"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                                  <span class="hq-star hq-tap" data-fx="is-tapped@P+1000..P+1600"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                                </div>
+                                <div class="hq-thanks hq-rev" data-at="V+200">Thanks, Riya! 💜</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@U-150..U+450 is-pressed@U-150..U+30 is-ok@U is-gone@U+500">
+                          <span class="hq-cta-idle">Raise ticket</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Ticket raised</span>
+                        </div>
+                      </div>
+                      <div class="hq-hu" data-at="P..P+1700">
+                        <div class="hq-notif-head"><b class="hq-app-ic">H</b>SERVICE DESK<em>now</em></div>
+                        <div class="hq-notif-title">Printer is back ✓</div>
+                        <div class="hq-notif-body">IT cleared tray 2. Rate your experience.</div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 7 · PULSE SURVEY (phone) -->
+                    <div class="hq-pane" data-scene="7">
+                      <div class="hq-lock" data-fx="is-dim@S+1800">
+                        <div class="hq-lock-date">Friday, 20 November</div>
+                        <div class="hq-lock-time">4:45</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@S+1210 is-tapped@S+1650..S+2250">
+                          <div class="hq-notif-head"><b class="hq-app-ic">H</b>PULSE · 30 SEC<em>now</em></div>
+                          <div class="hq-notif-title">How was your week?</div>
+                          <div class="hq-notif-body">Tap to answer. It's completely anonymous.</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="S+1800">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>Pulse survey</div>
+                        <div class="hq-app-body">
+                          <div class="hq-kicker" style="color:#0D9488;">Weekly well-being</div>
+                          <div class="hq-pq">How was your week?</div>
+                          <div class="hq-faces" data-fx="is-picked@S+2400">
+                            <span class="hq-face">😞</span>
+                            <span class="hq-face">😐</span>
+                            <span class="hq-face">🙂</span>
+                            <span class="hq-face hq-tap" data-fx="is-tapped@S+2300..S+2900 is-sel@S+2400">😄</span>
+                            <span class="hq-face">🤩</span>
+                          </div>
+                          <div class="hq-rev" data-at="S+2600">
+                            <div class="hq-follow-label"><span class="hq-ai"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ</span>What would help most?</div>
+                            <div class="hq-opts">
+                              <span class="hq-optchip">🌴 Flexible schedule</span>
+                              <span class="hq-optchip hq-tap" data-fx="is-tapped@S+3050..S+3650 is-sel@S+3150">🏆 Recognition</span>
+                              <span class="hq-optchip">💡 Clearer priorities</span>
+                            </div>
+                            <div class="hq-anon"><svg class="hq-ic"><use href="#hqi-lock"/></svg>Your answer is 100% anonymous</div>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@S+3450..S+4050 is-pressed@S+3450..S+3630 is-ok@S+3600">
+                          <span class="hq-cta-idle">Submit</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Thanks for sharing</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 8 · SPEAKUP (phone: anonymous report → update) -->
+                    <div class="hq-pane" data-scene="8">
+                      <div class="hq-app" data-at="0">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>SpeakUp</div>
+                        <div class="hq-app-body">
+                          <div class="hq-stack">
+                            <div class="hq-fade" data-fx="is-gone@U+500">
+                              <div class="hq-anonbar"><svg class="hq-ic"><use href="#hqi-lock"/></svg><span><b>Anonymous</b><small>Name never shared</small></span><i class="hq-switch hq-tap" data-fx="is-on@450 is-tapped@400..1000"></i></div>
+                              <div class="hq-opts is-row">
+                                <span class="hq-optchip hq-tap" data-fx="is-tapped@900..1500 is-sel@1000">⚠️ Safety</span>
+                                <span class="hq-optchip">Conduct</span>
+                                <span class="hq-optchip">Other</span>
+                              </div>
+                              <div class="hq-ta" data-at="1250..U"><span class="hq-type" data-type="1300/1200">Wet floor near the kitchen exit, no sign for 3 days</span></div>
+                              <div class="hq-attach-row"><span class="hq-chip-btn hq-tap" data-fx="is-tapped@2600..3200"><svg class="hq-ic"><use href="#hqi-camera"/></svg>Photo</span><em class="hq-thumb is-blur" data-at="2700"></em></div>
+                              <div class="hq-ai-card hq-rev" data-at="3000"><div class="hq-ai-card-head"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ protected you</div><div class="hq-ai-card-row">Names &amp; faces removed from photo</div></div>
+                            </div>
+                            <div class="hq-later hq-rev" data-at="U+500">
+                              <div class="hq-kicker" style="color:#E11D48;"><svg class="hq-ic"><use href="#hqi-lock"/></svg>Case SU-112 · anonymous</div>
+                              <div class="hq-a-title">Wet floor at kitchen exit</div>
+                              <div class="hq-tline">
+                                <div class="hq-tl-row is-done"><i></i>Reported · 7:40 PM</div>
+                                <div class="hq-tl-row" data-fx="is-done@U+1300"><i></i>Sent to Safety by HyIQ</div>
+                                <div class="hq-tl-row" data-fx="is-done@P"><i></i>Action taken</div>
+                              </div>
+                              <div class="hq-bubble hq-rev" data-at="P+300"><b>Safety team</b>Signage placed · floor repaired today.</div>
+                              <span class="hq-optchip hq-tap hq-rev" data-at="P+500" data-fx="is-tapped@P+1000..P+1600 is-sel@V">👍 Helpful</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@U-150..U+450 is-pressed@U-150..U+30 is-ok@U is-gone@U+500">
+                          <span class="hq-cta-idle"><svg class="hq-ic"><use href="#hqi-lock"/></svg>Send anonymously</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Sent anonymously</span>
+                        </div>
+                      </div>
+                      <div class="hq-hu" data-at="P..P+1700">
+                        <div class="hq-notif-head"><b class="hq-app-ic">H</b>SPEAKUP<em>now</em></div>
+                        <div class="hq-notif-title">Update on case SU-112</div>
+                        <div class="hq-notif-body">The safety team took action. Tap to read.</div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 9 · APPRAISAL (phone) -->
+                    <div class="hq-pane" data-scene="9">
+                      <div class="hq-lock" data-fx="is-dim@S+1800">
+                        <div class="hq-lock-date">Tuesday, 1 December</div>
+                        <div class="hq-lock-time">9:10</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@S+1210 is-tapped@S+1650..S+2250">
+                          <div class="hq-notif-head"><b class="hq-app-ic">H</b>APPRAISAL<em>now</em></div>
+                          <div class="hq-notif-title">Your self-review is ready ✨</div>
+                          <div class="hq-notif-body">HyIQ drafted it from your year. Review &amp; submit.</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="S+1800">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>Self-review</div>
+                        <div class="hq-app-body">
+                          <div class="hq-kicker" style="color:#4F46E5;">H2 2026 · Nikhil B.</div>
+                          <div class="hq-draft">
+                            <div class="hq-draft-head"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>Drafted by HyIQ</div>
+                            <div class="hq-dl hq-rev" data-at="S+2100"><svg class="hq-ic"><use href="#hqi-check"/></svg>98% of tasks done on time</div>
+                            <div class="hq-dl hq-rev" data-at="S+2300"><svg class="hq-ic"><use href="#hqi-check"/></svg>Led 3 VIP check-ins</div>
+                            <div class="hq-dl hq-rev" data-at="S+2500"><svg class="hq-ic"><use href="#hqi-check"/></svg>12 guest kudos this year</div>
+                          </div>
+                          <div class="hq-follow-label">Your rating</div>
+                          <div class="hq-stars" data-fx="is-r4@S+3150">
+                            <span class="hq-star"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                            <span class="hq-star"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                            <span class="hq-star"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                            <span class="hq-star hq-tap" data-fx="is-tapped@S+3050..S+3650"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                            <span class="hq-star"><svg class="hq-ic"><use href="#hqi-star"/></svg></span>
+                          </div>
+                          <div class="hq-edit hq-rev" data-at="S+3400"><svg class="hq-ic"><use href="#hqi-pen"/></svg><span class="hq-type" data-type="S+3450/550">Added: mentored 2 new joiners</span></div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@S+4150..S+4750 is-pressed@S+4150..S+4330 is-ok@S+4300">
+                          <span class="hq-cta-idle">Submit review</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>Submitted</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SCENE 10 · ANALYTICS (phone: the manager gets the insight) -->
+                    <div class="hq-pane" data-scene="10">
+                      <div class="hq-lock" data-fx="is-dim@S+1800">
+                        <div class="hq-lock-date">Tuesday, 17 November</div>
+                        <div class="hq-lock-time">5:30</div>
+                        <div class="hq-notif hq-tap" data-fx="is-on@S+1210 is-tapped@S+1650..S+2250">
+                          <div class="hq-notif-head"><b class="hq-app-ic is-hq"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg></b>HYIQ INSIGHT<em>now</em></div>
+                          <div class="hq-notif-title">Housekeeping attrition risk ↑</div>
+                          <div class="hq-notif-body">Priya shared 3 drivers &amp; 2 actions with you.</div>
+                        </div>
+                      </div>
+                      <div class="hq-app" data-at="S+1800">
+                        <div class="hq-app-head"><svg class="hq-ic"><use href="#hqi-chev"/></svg>Insights</div>
+                        <div class="hq-app-body">
+                          <div class="hq-kicker" style="color:#C026D3;"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ · shared by Priya (HR)</div>
+                          <div class="hq-a-title">Attrition up 4.1% in Housekeeping</div>
+                          <div class="hq-line is-static" style="--acc:#C026D3;--acc-soft:#FDF4FF;"><svg viewBox="0 0 160 30" preserveAspectRatio="none"><path class="fill" d="M0 25 L27 24 L53 22 L80 23 L107 15 L133 11 L160 4 L160 30 L0 30 Z"/><path pathLength="1" d="M0 25 L27 24 L53 22 L80 23 L107 15 L133 11 L160 4"/></svg></div>
+                          <div class="hq-follow-label">Suggested actions</div>
+                          <div class="hq-tasks">
+                            <div class="hq-task is-plain"><i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Rebalance late shifts</span></div>
+                            <div class="hq-task is-plain hq-tap" data-fx="is-done@S+2600 is-tapped@S+2500..S+3100"><i class="hq-tick"><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Plan skip-level 1:1s</span></div>
+                          </div>
+                        </div>
+                        <div class="hq-a-cta hq-tap" data-fx="is-tapped@S+2850..S+3450 is-pressed@S+2850..S+3030 is-ok@S+3000">
+                          <span class="hq-cta-idle"><svg class="hq-ic"><use href="#hqi-cal"/></svg>Book 1:1s</span>
+                          <span class="hq-cta-done"><svg class="hq-ic"><use href="#hqi-check"/></svg>1:1s booked · Thursday</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <i class="hq-home"></i>
+                  </div>
+                </div>
+
+                <!-- STORY CAPTION: the four beats of the current feature -->
+                <div class="hq-steps" id="hqSteps-p7" aria-hidden="true">
+                  <div class="hq-step"><i><b>1</b><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Offer accepted</span></div>
+                  <svg class="hq-ic hq-sep"><use href="#hqi-chevr"/></svg>
+                  <div class="hq-step"><i><b>2</b><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>HyIQ plans &amp; routes</span></div>
+                  <svg class="hq-ic hq-sep"><use href="#hqi-chevr"/></svg>
+                  <div class="hq-step"><i><b>3</b><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Docs done on mobile</span></div>
+                  <svg class="hq-ic hq-sep"><use href="#hqi-chevr"/></svg>
+                  <div class="hq-step"><i><b>4</b><svg class="hq-ic"><use href="#hqi-check"/></svg></i><span>Verified for Day 1</span></div>
+                </div>
+
+                <!-- Compact layout only: HyIQ's narration as a subtitle line -->
+                <div class="hq-sub" id="hqSub-p7" aria-hidden="true">
+                  <span class="hq-hq-tag"><svg class="hq-ic hq-fill"><use href="#hqi-spark"/></svg>HyIQ</span>
+                  <span class="hq-hq-txt" id="hqSubTxt-p7"></span>
+                  <i class="hq-hq-dots"><b></b><b></b><b></b></i>
+                  <i class="hq-hq-ok"><svg class="hq-ic"><use href="#hqi-check"/></svg></i>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- RIGHT COLUMN: AUTHENTICATION CARD -->
+          <section class="v4-form-card">
+            <!-- Form Titles -->
+            <h2 class="v4-form-title">Welcome back</h2>
+            <p class="v4-form-subtitle">Sign in to continue to Hirerkey</p>
+
+            <!-- Dual Tab Segmented Track (OTP vs Password) -->
+            <div class="v4-tab-track">
+              <button type="button" id="tab-v4-otp-p7" class="v4-tab-btn active" onclick="switchV4AuthMode('otp')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+                <span>Login with OTP</span>
+              </button>
+              <button type="button" id="tab-v4-pwd-p7" class="v4-tab-btn" onclick="switchV4AuthMode('password')">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span>Login with password</span>
+              </button>
+            </div>
+
+            <!-- MODE A: EMAIL OTP FLOW -->
+            <div id="v4-step-email-otp-p7" class="auth-step">
+              <form id="v4-email-otp-form-p7" onsubmit="handleV4SendOTP(event)">
+                <div class="v4-field-group">
+                  <label for="v4-email-otp-input-p7" class="v4-field-label">Work email</label>
+                  <div class="v4-input-shell">
+                    <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input
+                      type="email"
+                      id="v4-email-otp-input-p7"
+                      class="v4-text-input"
+                      placeholder="you@company.com"
+                      value="alex.chen@earthhotels.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <!-- Primary Action: Send OTP Button -->
+                <button type="submit" id="btn-v4-send-otp-p7" class="v4-btn-primary">
+                  <span>Send OTP</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- MODE A2: OTP VERIFICATION STEP -->
+            <div id="v4-step-otp-verify-p7" class="auth-step hidden">
+              <h3 style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Enter verification code</h3>
+              <p style="font-size: 13px; color: #64748B; margin-bottom: 20px;">We sent a 6-digit code to <strong id="v4-sent-target-email-p7" style="color: #7C3AED;">alex.chen@earthhotels.com</strong></p>
+
+              <form id="v4-otp-verify-form-p7" onsubmit="handleV4VerifyOTP(event)">
+                <div class="v4-otp-grid">
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p7" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p7" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p7" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p7" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p7" inputmode="numeric" pattern="[0-9]*" />
+                  <input type="text" maxlength="1" class="v4-otp-digit v4-otp-digit-p7" inputmode="numeric" pattern="[0-9]*" />
+                </div>
+
+                <!-- Resend Timer -->
+                <div class="v4-resend-row">
+                  <span>Didn't receive code?</span>
+                  <span id="v4-countdown-text-p7">Resend in <strong id="v4-timer-val-p7" style="color: #7C3AED;">0:29</strong></span>
+                  <a href="javascript:void(0)" id="btn-v4-resend-p7" class="v4-recovery-link" style="display: none; font-weight: 700;" onclick="resendV4Code()">Resend OTP</a>
+                </div>
+
+                <!-- Primary Verify Button -->
+                <button type="submit" id="btn-v4-verify-otp-p7" class="v4-btn-primary">
+                  <span>Verify &amp; Sign in</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                    <path d="M5 12h14m-7-7 7 7-7 7" />
+                  </svg>
+                </button>
+              </form>
+
+              <div style="text-align: center; margin-top: 14px;">
+                <a href="javascript:void(0)" class="v4-recovery-link" onclick="switchV4ToEmailStep()">← Back to Email entry</a>
+              </div>
+            </div>
+
+            <!-- MODE B: PASSWORD LOGIN FLOW -->
+            <div id="v4-step-password-p7" class="auth-step hidden">
+              <form id="v4-password-form-p7" onsubmit="handleV4PasswordLogin(event)">
+                <div class="v4-field-group">
+                  <label for="v4-email-pwd-input-p7" class="v4-field-label">Work email</label>
+                  <div class="v4-input-shell">
+                    <svg class="v4-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
+                    <input
+                      type="email"
+                      id="v4-email-pwd-input-p7"
+                      class="v4-text-input"
+                      placeholder="you@company.com"
+                      value="alex.chen@earthhotels.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="v4-field-group">
+                  <label for="v4-password-input-p7" class="v4-field-label">Password</label>
+                  <div class="v4-input-shell">
+                    <span class="v4-input-icon">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                    </span>
+                    <input
+                      type="password"
+                      id="v4-password-input-p7"
+                      class="v4-text-input"
+                      placeholder="••••••••••••"
+                      value="EarthHotels2026!#"
+                      required
+                      autocomplete="current-password"
+                    />
+                    <button type="button" class="v4-pwd-toggle" onclick="toggleV4Password()" aria-label="Toggle password visibility">
+                      <svg id="v4-eye-icon-p7" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="v4-checkbox-row">
+                  <label class="v4-checkbox-label">
+                    <input type="checkbox" id="v4-remember-checkbox-p7" class="v4-checkbox" checked />
+                    <span>Keep me signed in</span>
+                  </label>
+                  <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Forgot password?</a>
+                </div>
+
+                <button type="submit" id="btn-v4-signin-p7" class="v4-btn-primary">
+                  <span>Sign in</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </button>
+              </form>
+            </div>
+
+            <!-- Can't access your login email recovery link -->
+            <div class="v4-recovery-row" style="margin-top: 24px;">
+              <a href="javascript:void(0)" class="v4-recovery-link" onclick="openHelpModal()">Can't access your login email?</a>
+            </div>
+
+            <!-- Legal Footer -->
+            <p class="v4-legal-footer">
+              By continuing, you agree to our
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Terms of Use')">Terms of Use</a> and
+              <a href="javascript:void(0)" onclick="showToast('Hirerkey Privacy Policy')">Privacy Policy</a>.
+            </p>
+          </section>
+
+        </div>
+      </div>
+    </div> <!-- /#login-view-7 -->
+
 
     <!-- ==========================================================================
          SLEEK BOTTOM PAGINATION DOCK (PAGE 1 vs PAGE 2 SWITCHER)
@@ -15884,6 +17027,13 @@
         <span class="v4-page-title">Brand</span>
         <span class="v4-page-badge" style="background: rgba(124, 58, 237, 0.12); color: #7C3AED; border-color: rgba(124, 58, 237, 0.28);">Living</span>
         <span class="v4-shortcut-hint">6</span>
+      </button>
+      <div class="v4-page-dock-divider"></div>
+      <button type="button" class="v4-page-btn" id="btn-page-7" onclick="switchPage(7)" aria-label="Page 7: How Hirerkey Works (View 7)" title="How Hirerkey Works (Key 7)">
+        <span class="v4-page-circle">⑦</span>
+        <span class="v4-page-title">How It Works</span>
+        <span class="v4-page-badge" style="background: rgba(219, 39, 119, 0.12); color: #DB2777; border-color: rgba(219, 39, 119, 0.28);">New</span>
+        <span class="v4-shortcut-hint">7</span>
       </button>
     </nav>
 
@@ -15967,7 +17117,7 @@
     // Each login view is #login-view-N with a dock button #btn-page-N. Auth
     // elements repeat once per page: no ID suffix on page 1, "-pN" on the rest.
     // ==========================================================================
-    const V4_PAGES = [1, 2, 3, 4, 5, 6];
+    const V4_PAGES = [1, 2, 3, 4, 5, 6, 7];
 
     function v4Suffix(page) {
       return page === 1 ? '' : `-p${page}`;
@@ -16062,6 +17212,9 @@
       '#view6': 6,
       '#page-6': 6,
       '#v6': 6,
+      '#view7': 7,
+      '#page-7': 7,
+      '#v7': 7,
     };
 
     function v4PageFromHash() {
@@ -17603,37 +18756,42 @@
     // render() is a pure function of the clock, so pause, skip and restart
     // are all "render at another time".
     // ==========================================================================
-    (() => {
-      const view = document.getElementById('login-view-5');
-      const stage = document.getElementById('hqStage');
-      if (!view || !stage) return;
+    function initHyIqSequencer(viewId = 'login-view-5', pSuffix = '') {
+      const view = document.getElementById(viewId);
+      if (!view) return;
+      const stage = document.getElementById('hqStage' + pSuffix) || view.querySelector('.hq-stage');
+      if (!stage) return;
 
       const canvas = stage.querySelector('.hq-canvas');
       const rail = stage.querySelector('.hq-rail');
       const net = stage.querySelector('.hq-net');
       const consoleEl = stage.querySelector('.hq-console');
-      const cursor = document.getElementById('hqCursor');
-      const brain = document.getElementById('hqBrain');
-      const pauseBtn = document.getElementById('hqPause');
-      const stepsEl = document.getElementById('hqSteps');
-      const stepEls = Array.from(stepsEl.querySelectorAll('.hq-step'));
+      const cursor = document.getElementById('hqCursor' + pSuffix) || stage.querySelector('.hq-cursor');
+      const brain = document.getElementById('hqBrain' + pSuffix) || stage.querySelector('.hq-brain');
+      const pauseBtn = document.getElementById('hqPause' + pSuffix) || stage.querySelector('.hq-pause');
+      const stepsEl = document.getElementById('hqSteps' + pSuffix) || stage.querySelector('.hq-steps');
+      const stepEls = stepsEl ? Array.from(stepsEl.querySelectorAll('.hq-step')) : [];
       const chips = Array.from(stage.querySelectorAll('.hq-chip'));
       const avatars = Array.from(stage.querySelectorAll('.hq-av'));
       const sideItems = Array.from(stage.querySelectorAll('.hq-con-side i'));
       const panes = Array.from(stage.querySelectorAll('.hq-pane[data-scene]'));
       // HyIQ's thought: a chip above the brain (desktop) and a subtitle (compact)
+      const thinkEl = document.getElementById('hqThink' + pSuffix) || stage.querySelector('.hq-think');
+      const thinkTxtEl = document.getElementById('hqThinkTxt' + pSuffix) || (thinkEl ? thinkEl.querySelector('.hq-hq-txt') : null);
+      const subElStage = document.getElementById('hqSub' + pSuffix) || stage.querySelector('.hq-sub');
+      const subTxtEl = document.getElementById('hqSubTxt' + pSuffix) || (subElStage ? subElStage.querySelector('.hq-hq-txt') : null);
       const thoughts = [
-        { el: document.getElementById('hqThink'), txt: document.getElementById('hqThinkTxt') },
-        { el: document.getElementById('hqSub'), txt: document.getElementById('hqSubTxt') },
+        { el: thinkEl, txt: thinkTxtEl },
+        { el: subElStage, txt: subTxtEl },
       ];
       const subEl = thoughts[1].el;
       const label = {
-        url: document.getElementById('hqConUrl'),
-        ini: document.getElementById('hqConIni'),
-        who: document.getElementById('hqConWho'),
-        clock: document.getElementById('hqStTime'),
-        audience: document.getElementById('hqAud'),
-        desc: document.getElementById('hqDesc'),
+        url: document.getElementById('hqConUrl' + pSuffix) || stage.querySelector('#hqConUrl' + pSuffix),
+        ini: document.getElementById('hqConIni' + pSuffix) || stage.querySelector('#hqConIni' + pSuffix),
+        who: document.getElementById('hqConWho' + pSuffix) || stage.querySelector('#hqConWho' + pSuffix),
+        clock: document.getElementById('hqStTime' + pSuffix) || stage.querySelector('#hqStTime' + pSuffix),
+        audience: document.getElementById('hqAud' + pSuffix) || stage.querySelector('#hqAud' + pSuffix),
+        desc: document.getElementById('hqDesc' + pSuffix) || stage.querySelector('#hqDesc' + pSuffix),
       };
 
       const NOTIFY = 1210;       // S → the employee's phone lights up
@@ -18545,12 +19703,12 @@
         own.forEach(p => p.classList.remove('hq-snap'));
         panes.forEach(p => p.classList.toggle('is-active', Number(p.dataset.scene) === k));
 
-        label.url.textContent = `app.hirerkey.com/${sc.url}`;
-        label.ini.textContent = sc.user[0];
-        label.who.textContent = sc.user[1];
-        label.clock.textContent = sc.clock;
-        label.audience.textContent = sc.aud;
-        label.desc.textContent = sc.desc;
+        if (label.url) label.url.textContent = `app.hirerkey.com/${sc.url}`;
+        if (label.ini) label.ini.textContent = sc.user[0];
+        if (label.who) label.who.textContent = sc.user[1];
+        if (label.clock) label.clock.textContent = sc.clock;
+        if (label.audience) label.audience.textContent = sc.aud;
+        if (label.desc) label.desc.textContent = sc.desc;
         sideItems.forEach((el, i) => el.classList.toggle('is-on', i === sc.side));
         const accent = chips[k].style.getPropertyValue('--dot');
         avatars.forEach((av, i) => {
@@ -18620,10 +19778,12 @@
         });
       });
 
-      pauseBtn.addEventListener('click', () => {
-        userPaused = !userPaused;
-        sync();
-      });
+      if (pauseBtn) {
+        pauseBtn.addEventListener('click', () => {
+          userPaused = !userPaused;
+          sync();
+        });
+      }
 
       new MutationObserver(sync).observe(view, { attributes: true, attributeFilter: ['class'] });
 
@@ -18663,7 +19823,10 @@
 
       setScene(0, true);
       sync();
-    })();
+    }
+
+    initHyIqSequencer('login-view-5', '');
+    initHyIqSequencer('login-view-7', '-p7');
 
     // ==========================================================================
     // VIEW 6 BRAND SEQUENCER CONTROLLER: The Living Hirerkey Form

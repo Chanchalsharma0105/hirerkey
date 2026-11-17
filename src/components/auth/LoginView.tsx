@@ -1692,7 +1692,7 @@ export const LoginView: React.FC<LoginViewProps> = ({
   defaultView,
 }) => {
   // Active page state (1: The Connected HR Ecosystem, 2: How Hirerkey Works, 3: How Hirerkey Works Replica, 4: The Connected HR Ecosystem V4, 5: How Hirerkey Works Copy, 6: The Living Hirerkey Form)
-  const [activePage, setActivePage] = useState<1 | 2 | 3 | 4 | 5 | 6>((defaultView === 6 ? 6 : defaultView === 5 ? 5 : defaultView === 4 ? 4 : defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3 | 4 | 5 | 6);
+  const [activePage, setActivePage] = useState<1 | 2 | 3 | 4 | 5 | 6 | 7>((defaultView === 7 ? 7 : defaultView === 6 ? 6 : defaultView === 5 ? 5 : defaultView === 4 ? 4 : defaultView === 3 ? 3 : defaultView === 2 ? 2 : 1) as 1 | 2 | 3 | 4 | 5 | 6 | 7);
 
   // View 4 form states (ApprovalMax Inspired Workflow Animation & Modern Split)
   const [v4AuthMode, setV4AuthMode] = useState<'otp' | 'password'>('otp');
@@ -1750,10 +1750,12 @@ export const LoginView: React.FC<LoginViewProps> = ({
         setActivePage(5);
       } else if (e.key === '6') {
         setActivePage(6);
+      } else if (e.key === '7') {
+        setActivePage(7);
       } else if (e.key === 'ArrowLeft') {
-        setActivePage((prev) => (prev === 1 ? 6 : ((prev - 1) as 1 | 2 | 3 | 4 | 5 | 6)));
+        setActivePage((prev) => (prev === 1 ? 7 : ((prev - 1) as 1 | 2 | 3 | 4 | 5 | 6 | 7)));
       } else if (e.key === 'ArrowRight') {
-        setActivePage((prev) => (prev === 6 ? 1 : ((prev + 1) as 1 | 2 | 3 | 4 | 5 | 6)));
+        setActivePage((prev) => (prev === 7 ? 1 : ((prev + 1) as 1 | 2 | 3 | 4 | 5 | 6 | 7)));
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -5566,6 +5568,77 @@ export const LoginView: React.FC<LoginViewProps> = ({
             }}
           >
             6
+          </Box>
+        </Box>
+
+        <Divider orientation="vertical" sx={{ height: 16, my: 'auto', bgcolor: '#E2E8F0' }} />
+
+        <Box
+          component="button"
+          type="button"
+          onClick={() => setActivePage(7)}
+          aria-label="Page 7: How Hirerkey Works (View 7)"
+          title="How Hirerkey Works (Key 7)"
+          sx={{
+            appearance: 'none',
+            border: activePage === 7 ? '1px solid rgba(124, 58, 237, 0.25)' : '1px solid transparent',
+            bgcolor: activePage === 7 ? '#FFFFFF' : 'transparent',
+            color: activePage === 7 ? '#7C3AED' : '#64748B',
+            fontWeight: activePage === 7 ? 700 : 600,
+            boxShadow: activePage === 7 ? '0 4px 14px -2px rgba(124, 58, 237, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05)' : 'none',
+            px: { xs: 1.5, sm: 1.75 },
+            py: 0.85,
+            borderRadius: '9999px',
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontSize: { xs: 11.5, sm: 12.5 },
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '7px',
+            cursor: 'pointer',
+            transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+            whiteSpace: 'nowrap',
+            '&:hover': {
+              color: '#0F172A',
+              bgcolor: activePage === 7 ? '#FFFFFF' : 'rgba(241, 245, 249, 0.8)',
+            },
+          }}
+        >
+          <span style={{ fontSize: '15px', lineHeight: 1, fontWeight: 700 }}>⑦</span>
+          <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>How It Works</Box>
+          <Box
+            component="span"
+            sx={{
+              display: { xs: 'none', sm: 'inline-block' },
+              fontSize: '9px',
+              fontWeight: 800,
+              px: '6px',
+              py: '1.5px',
+              borderRadius: '9999px',
+              bgcolor: 'rgba(219, 39, 119, 0.12)',
+              color: '#DB2777',
+              border: '1px solid rgba(219, 39, 119, 0.28)',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+            }}
+          >
+            New
+          </Box>
+          <Box
+            component="span"
+            sx={{
+              display: { xs: 'none', md: 'inline-block' },
+              fontSize: '10px',
+              fontFamily: 'monospace',
+              fontWeight: 600,
+              px: '5px',
+              py: '1px',
+              borderRadius: '4px',
+              bgcolor: activePage === 7 ? '#F5F3FF' : '#F1F5F9',
+              color: activePage === 7 ? '#8B5CF6' : '#94A3B8',
+              border: activePage === 7 ? '1px solid #DDD6FE' : '1px solid #E2E8F0',
+            }}
+          >
+            7
           </Box>
         </Box>
 
