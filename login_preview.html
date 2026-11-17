@@ -19516,6 +19516,7 @@
       const stepState = stepEls.map(() => null);
 
       function renderSteps(t, sc) {
+        if (!stepsEl || !stepEls.length) return;
         const bounds = [0, ...sc.boundList, Infinity];
         stepEls.forEach((el, k) => {
           const st = t >= bounds[k + 1] ? 2 : t >= bounds[k] ? 1 : 0;
@@ -19703,8 +19704,10 @@
 
         stage.classList.toggle('is-frozen', !play);
         stage.classList.toggle('is-paused', userPaused);
-        pauseBtn.style.display = reduced ? 'none' : '';
-        pauseBtn.setAttribute('aria-label', userPaused ? 'Play the tour' : 'Pause the tour');
+        if (pauseBtn) {
+          pauseBtn.style.display = reduced ? 'none' : '';
+          pauseBtn.setAttribute('aria-label', userPaused ? 'Play the tour' : 'Pause the tour');
+        }
 
         if (pageOn) {
           updateScale();
